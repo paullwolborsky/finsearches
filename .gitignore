@@ -5,9 +5,9 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
+# Server Specific Files
 .idea
-
 db_backup
-
+sites/all/modules/stage_file_proxy
 sites/all/modules/devel_themer
 sites/all/modules/simplehtmldom
