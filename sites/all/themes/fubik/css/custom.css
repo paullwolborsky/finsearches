@@ -1,0 +1,1442 @@
+/**
+ * @file
+ * Styles are organized using the SMACSS technique. @see http://smacss.com/book/
+ *
+ * When you turn on CSS aggregation at admin/config/development/performance, all
+ * of these @include files will be combined into a single file.
+ */
+/* line 4, ../sass/_fubik.scss */
+table.rules-overview-table a.action, .action-links.action-links-field-collection-add a, a.action-add, a.action-analyze, a.action-clone, a.action-configure, a.action-delete, a.action-devel, a.action-edit, a.action-export, a.action-revert, a.action-table, a.action-view, a.action-top, td.views-field-delete-node a, td.views-field-cancel-node a, td.views-field-delete a, td.views-field-devel-node a, td.views-field-edit-node a, td.views-field-edit-term a, td.views-field-edit a, td.views-field-view-node a, td.views-field-view-user a, td.views-field-devel-user a, td.views-field-view a, ul.links li.revert a, ul.links li.configure a, ul.links li.clone a, ul.links li.export a, ul.links li.enable a, ul.links li.disable a, ul.links li.flags_edit a, ul.links li.flags_delete a, ul.links li.flags_export a, ul.links li.edit a, ul.links li.delete a, ul.links li.devel a, ul.links li.view a, .field-collection-view-links li.edit a, .field-collection-view-links li.delete a, .author-image-edit, .coauthor-image-edit {
+  background-image: url(../images/action-icons.png);
+  background-repeat: no-repeat;
+  padding-left: 22px;
+}
+
+/* line 12, ../sass/_fubik.scss */
+body.page-admin-config-workflow-rules-links ul.rules-operations-add.action-links li a, body.page-admin-config-workflow-rules-reaction-manage ul.rules-operations-add.action-links li a, .field-name-field-aa-domestic-fixed-income, .field-name-field-aa-domestic-equities, .field-name-field-aa-alternative-strategies, .field-name-field-aa-hedge-fund-strategies, .field-name-field-aa-international-equities, .field-name-field-aa-intl-fixed-income, .field-name-field-aa-mutual-fund, .field-name-field-aa-private-equity, .field-name-field-aa-real-estate, .field-name-field-aa-real-assets, .field-name-field-aa-cash-other, .field-name-field-aa-balanced, .field-name-field-aa-global-equities, .field-name-field-aa-absolute-return, .field-name-field-aa-credit-opportunities, .field-name-field-aa-global-fixed-income, .field-name-field-aa-real-return, .field-name-field-aa-multi-asset, .field-name-field-aa-emerging-markets-equity, .field-name-field-aa-risk-parity, .field-name-field-aa-canadian-equities {
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-bottom: 4px;
+  padding-top: 5px;
+}
+
+/* line 22, ../sass/_fubik.scss */
+body.page-admin-config-workflow-rules-links ul.rules-operations.action-links li a, body.page-admin-config-workflow-rules-reaction-manage ul.rules-operations.action-links li a {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  display: inline;
+  text-shadow: 0 0 0 transparent;
+  color: #008eb1;
+  font-size: 13px;
+}
+
+/* line 36, ../sass/_fubik.scss */
+div.teaser-checkbox .form-item, .form-item .form-item, .filter-wrapper .form-item {
+  border: 0 none;
+  margin: 0;
+  padding: 5px 0;
+}
+
+/* line 44, ../sass/_fubik.scss */
+table td, table th {
+  border: 0 none;
+  padding: 8px 10px;
+  vertical-align: middle;
+}
+
+/* line 52, ../sass/_fubik.scss */
+h1.path-admin-dashboard span.icon, h1.path-admin-workbench span.icon, h1.path-admin-config-workbench span.icon, .path-admin-config-development-strongarm span.icon, .path-admin-config-user-interface-itoggle span.icon, .path-admin-config-workflow-subs span.icon, .path-admin-content-subscription span.icon, .path-admin-structure-subscriptions span.icon, .path-admin-structure-messages span.icon, .path-admin-config-content-fivestar span.icon, .path-admin-structure-mark span.icon, .path-admin-structure-flags span.icon, .path-admin-structure-file-types span.icon, .path-admin-structure-block-types span.icon, .page-admin-content-webform span.icon, .path-admin-config-content-webform span.icon, .page-admin-content-blocks span.icon, .page .page-admin-modules span.icon, .path-dashboard span.icon, .path-admin-advanced_help- span.icon, .path-admin-content-media span.icon, .path-admin-config-media-browser span.icon, .path-admin-config-workflow-rules span.icon, .path-admin-structure-profiles span.icon, .path-admin-structure-panels span.icon, .path-admin-structure-mini-panels span.icon, .path-admin-structure-views span.icon, .path-admin-structure-views- span.icon, .path-admin-structure-features span.icon, .path-admin-structure-field-collections span.icon, .path-admin-structure-context span.icon, .path-admin-config-administration-admin-menu span.icon, .path-admin-config-administration-admin_menu span.icon, .path-admin-config-user-interface-modulefilter span.icon {
+  background-color: transparent;
+  background-image: url(../images/page-icons.png);
+  background-repeat: no-repeat;
+  display: block;
+  height: 30px;
+  width: 30px;
+}
+
+/* line 62, ../sass/_fubik.scss */
+body {
+  min-width: 1000px;
+}
+/* line 64, ../sass/_fubik.scss */
+body.with-local-tasks #page-title div.contextual-links-wrapper {
+  top: 62px;
+}
+/* line 68, ../sass/_fubik.scss */
+body.page-admin-config-workflow-rules-links ul.rules-operations-add.action-links li {
+  margin-right: 10px;
+}
+/* line 79, ../sass/_fubik.scss */
+body.page-admin-config-workflow-rules-reaction-manage ul.rules-operations-add.action-links li {
+  margin-right: 10px;
+}
+
+/* line 90, ../sass/_fubik.scss */
+#main-content {
+  width: 96%;
+  position: relative;
+  float: left;
+  margin: 0 2%;
+}
+
+/* line 96, ../sass/_fubik.scss */
+.sidebar {
+  width: 200px;
+  float: left;
+  position: relative;
+}
+
+/* line 101, ../sass/_fubik.scss */
+.first_sidebar {
+  margin-left: -100%;
+  right: 200px;
+}
+
+/* line 105, ../sass/_fubik.scss */
+.second_sidebar {
+  margin-right: -200px;
+}
+
+/* line 108, ../sass/_fubik.scss */
+#footer {
+  margin: 10px 0 20px;
+}
+
+/* line 112, ../sass/_fubik.scss */
+div.view-header {
+  padding: 2px 5px 4px;
+}
+/* line 116, ../sass/_fubik.scss */
+div.views-displays .views-ui-display-tab-bucket.pager a span {
+  color: #59a;
+}
+/* line 119, ../sass/_fubik.scss */
+div.views-displays .pager a {
+  color: #59a;
+}
+/* line 123, ../sass/_fubik.scss */
+div.contextual-links-region {
+  position: relative;
+}
+/* line 126, ../sass/_fubik.scss */
+div.messages {
+  background-repeat: no-repeat;
+  background-position: 8px 8px;
+  padding: 10px 10px 10px 44px;
+}
+/* line 130, ../sass/_fubik.scss */
+div.messages.status {
+  background-image: url(/misc/message-24-ok.png);
+}
+/* line 133, ../sass/_fubik.scss */
+div.messages.warning {
+  background-image: url(/misc/message-24-warning.png);
+}
+/* line 136, ../sass/_fubik.scss */
+div.messages.error {
+  background-image: url(/misc/message-24-error.png);
+}
+/* line 143, ../sass/_fubik.scss */
+div.view div.view-header {
+  padding: 5px 10px 10px;
+}
+
+/* line 151, ../sass/_fubik.scss */
+table th {
+  text-transform: uppercase;
+}
+/* line 156, ../sass/_fubik.scss */
+table tr.odd td.active {
+  background-color: #e8e8e8;
+}
+/* line 159, ../sass/_fubik.scss */
+table tr.even td.active {
+  background-color: #f2f2f2;
+}
+/* line 165, ../sass/_fubik.scss */
+table.rules-overview-table a.action.delete {
+  background-position: 0 -100px;
+}
+/* line 168, ../sass/_fubik.scss */
+table.rules-overview-table a.action.disable {
+  background-position: 0 -354px;
+}
+/* line 171, ../sass/_fubik.scss */
+table.rules-overview-table a.action.enable {
+  background-position: 0 -314px;
+}
+/* line 174, ../sass/_fubik.scss */
+table.rules-overview-table a.action.export {
+  background-position: 0 -164px;
+}
+/* line 177, ../sass/_fubik.scss */
+table.rules-overview-table a.action.revert {
+  background-position: 0 -198px;
+}
+/* line 180, ../sass/_fubik.scss */
+table.rules-overview-table a.action.clone {
+  background-position: 0 -234px;
+}
+/* line 183, ../sass/_fubik.scss */
+table.rules-overview-table a.action.translate {
+  background-position: 0 -273px;
+}
+
+/* line 189, ../sass/_fubik.scss */
+.action-links.action-links-field-collection-add a {
+  margin-right: 10px;
+  background-position: 0 -67px;
+  background-color: transparent;
+  text-shadow: 0 0 0 transparent;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  color: #008eb1;
+  padding: 1px 0 1px 20px;
+}
+/* line 204, ../sass/_fubik.scss */
+.action-links.action-links-field-collection-add a:hover {
+  background-color: transparent;
+}
+/* line 208, ../sass/_fubik.scss */
+.action-links a:hover {
+  background-color: #6ac;
+}
+
+/* line 213, ../sass/_fubik.scss */
+a.action-add {
+  margin-right: 10px;
+  background-position: 0 -67px;
+}
+/* line 218, ../sass/_fubik.scss */
+a.action-analyze {
+  background-position: 0 -428px;
+}
+/* line 222, ../sass/_fubik.scss */
+a.action-clone {
+  background-position: 0 -234px;
+}
+/* line 226, ../sass/_fubik.scss */
+a.action-configure {
+  background-position: 0 -474px;
+}
+/* line 230, ../sass/_fubik.scss */
+a.action-delete {
+  background-position: 0 -100px;
+}
+/* line 237, ../sass/_fubik.scss */
+a.action-edit {
+  background-position: 0 1px;
+}
+/* line 241, ../sass/_fubik.scss */
+a.action-export {
+  background-position: 0 -164px;
+}
+/* line 245, ../sass/_fubik.scss */
+a.action-revert {
+  background-position: 0 -198px;
+}
+/* line 249, ../sass/_fubik.scss */
+a.action-table {
+  background-position: 0 -392px;
+}
+/* line 253, ../sass/_fubik.scss */
+a.action-view {
+  background-position: 0 -32px;
+  margin-right: 10px;
+}
+/* line 258, ../sass/_fubik.scss */
+a.action-top {
+  background-position: 0 -130px;
+  float: right;
+}
+/* line 263, ../sass/_fubik.scss */
+a.module-link {
+  display: block;
+  padding: 1px 0 1px 20px;
+  white-space: nowrap;
+}
+/* line 268, ../sass/_fubik.scss */
+a.module-link-help {
+  background: url(/misc/help.png) no-repeat scroll 0 50% transparent;
+}
+/* line 271, ../sass/_fubik.scss */
+a.module-link-permissions {
+  background: url(/misc/permissions.png) no-repeat scroll 0 50% transparent;
+}
+/* line 274, ../sass/_fubik.scss */
+a.module-link-configure {
+  background: url(/misc/configure.png) no-repeat scroll 0 50% transparent;
+}
+/* line 278, ../sass/_fubik.scss */
+a.admin-conflict:link {
+  background: #ff0;
+}
+/* line 281, ../sass/_fubik.scss */
+a.admin-conflict:visited {
+  background: #ff0;
+}
+
+/* line 287, ../sass/_fubik.scss */
+td.views-empty {
+  margin-top: 10px;
+  padding: 10px 0 10px 38px;
+  text-shadow: 1px 1px 1px #ccc;
+  background: url(../images/ico-warning.png) 8px 10px no-repeat;
+}
+/* line 294, ../sass/_fubik.scss */
+td.views-field-delete-node a {
+  background-position: 0 -100px;
+}
+/* line 298, ../sass/_fubik.scss */
+td.views-field-cancel-node a {
+  background-position: 0 -100px;
+}
+/* line 302, ../sass/_fubik.scss */
+td.views-field-delete a {
+  background-position: 0 -100px;
+}
+/* line 306, ../sass/_fubik.scss */
+td.views-field-devel-node a {
+  background-position: 0 -32px;
+}
+/* line 310, ../sass/_fubik.scss */
+td.views-field-edit-node a {
+  background-position: 0 1px;
+}
+/* line 314, ../sass/_fubik.scss */
+td.views-field-edit-term a {
+  background-position: 0 1px;
+}
+/* line 318, ../sass/_fubik.scss */
+td.views-field-edit a {
+  background-position: 0 1px;
+}
+/* line 322, ../sass/_fubik.scss */
+td.views-field-view-node a {
+  background-position: 0 -32px;
+}
+/* line 329, ../sass/_fubik.scss */
+td.views-field-devel-user a {
+  background-position: 0 -32px;
+}
+/* line 333, ../sass/_fubik.scss */
+td.views-field-view a {
+  background-position: 0 -32px;
+}
+
+/* line 338, ../sass/_fubik.scss */
+#overlay {
+  display: table;
+  margin: 0 auto;
+  min-height: 100px;
+  min-width: 700px;
+  padding: 0.2em 26px 2em 0.2em;
+  position: relative;
+  width: 93%;
+}
+
+/* line 347, ../sass/_fubik.scss */
+#edit-display-settings-title {
+  color: #59a;
+}
+
+/* line 350, ../sass/_fubik.scss */
+.contextual-links-region {
+  outline: none;
+  position: static;
+}
+
+/* line 354, ../sass/_fubik.scss */
+.secondary-tabs {
+  z-index: 100;
+}
+
+/* line 358, ../sass/_fubik.scss */
+.pager a {
+  text-shadow: 1px 1px 1px #fff;
+}
+/* line 362, ../sass/_fubik.scss */
+.pager span {
+  text-shadow: 1px 1px 1px #fff;
+}
+
+/* line 367, ../sass/_fubik.scss */
+#admin-menu {
+  margin: 0;
+  padding: 0;
+}
+/* line 371, ../sass/_fubik.scss */
+#admin-menu .admin-menu-search .form-item {
+  border: 0 none;
+}
+/* line 374, ../sass/_fubik.scss */
+#admin-menu .admin-menu-search input {
+  width: 184px;
+}
+
+/* line 383, ../sass/_fubik.scss */
+.form-item label {
+  color: #666;
+}
+
+/* line 388, ../sass/_fubik.scss */
+tr.odd {
+  background-color: #f3f3f3;
+}
+/* line 391, ../sass/_fubik.scss */
+tr.even {
+  background-color: #fff;
+}
+
+/* line 402, ../sass/_fubik.scss */
+h1.path-admin-config-workbench span.icon {
+  background-position: 0 -52px;
+}
+
+/* line 408, ../sass/_fubik.scss */
+#context-blockform td {
+  vertical-align: top;
+}
+/* line 411, ../sass/_fubik.scss */
+#context-blockform .context-blockform-selector {
+  height: 70em;
+}
+
+/* line 415, ../sass/_fubik.scss */
+.fubik-no-sidebars #main-content {
+  float: none;
+  width: auto;
+  margin: 0 30px;
+}
+
+/* line 420, ../sass/_fubik.scss */
+.fubik-sidebar-first #page {
+  padding-left: 230px;
+}
+
+/* line 423, ../sass/_fubik.scss */
+.fubik-two-sidebars #page {
+  padding-left: 230px;
+  padding-right: 230px;
+}
+
+/* line 427, ../sass/_fubik.scss */
+.fubik-sidebar-second #page {
+  padding-right: 230px;
+}
+
+/* line 431, ../sass/_fubik.scss */
+ul.links li.revert a {
+  margin-right: 8px;
+  background-position: 0 -198px;
+}
+/* line 436, ../sass/_fubik.scss */
+ul.links li.configure a {
+  margin-right: 8px;
+  background-position: 0 -474px;
+}
+/* line 441, ../sass/_fubik.scss */
+ul.links li.clone a {
+  margin-right: 8px;
+  background-position: 0 -234px;
+}
+/* line 446, ../sass/_fubik.scss */
+ul.links li.export a {
+  margin-right: 8px;
+  background-position: 0 -164px;
+}
+/* line 451, ../sass/_fubik.scss */
+ul.links li.enable a {
+  background-position: 0 -314px;
+}
+/* line 455, ../sass/_fubik.scss */
+ul.links li.disable a {
+  margin-right: 8px;
+  background-position: 0 -354px;
+}
+/* line 460, ../sass/_fubik.scss */
+ul.links li.flags_edit a {
+  margin-right: 8px;
+  background-position: 0 1px;
+}
+/* line 465, ../sass/_fubik.scss */
+ul.links li.flags_delete a {
+  margin-right: 8px;
+  background-position: 0 -100px;
+}
+/* line 470, ../sass/_fubik.scss */
+ul.links li.flags_export a {
+  background-position: 0 -164px;
+}
+/* line 474, ../sass/_fubik.scss */
+ul.links li.edit a {
+  margin-right: 8px;
+  background-position: 0 1px;
+}
+/* line 479, ../sass/_fubik.scss */
+ul.links li.delete a {
+  margin-right: 8px;
+  background-position: 0 -100px;
+}
+/* line 487, ../sass/_fubik.scss */
+ul.links li.view a {
+  margin-right: 8px;
+  background-position: 0 -32px;
+}
+/* line 492, ../sass/_fubik.scss */
+ul.links li.translate a {
+  background-position: 0 -273px;
+}
+
+/* line 497, ../sass/_fubik.scss */
+.field-collection-view-links li.edit a {
+  margin-right: 8px;
+  background-position: 0 1px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+/* line 504, ../sass/_fubik.scss */
+.field-collection-view-links li.delete a {
+  background-position: 0 -100px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+/* line 516, ../sass/_fubik.scss */
+html.js input.throbbing {
+  background-position: 100% -2px;
+}
+/* line 520, ../sass/_fubik.scss */
+html.js #edit-view-displays-wrapper div.form-item-show-tagged-with input.form-autocomplete {
+  width: 160px;
+}
+
+/* line 524, ../sass/_fubik.scss */
+.views-ui-dialog .ui-dialog-titlebar-close {
+  border-color: #ccc;
+  box-shadow: none;
+  right: 0;
+  top: 0;
+  background: url(../../rubik/images/buttons.png) no-repeat scroll -4000px 50% #444444;
+  border-radius: 5px 5px 5px 5px;
+  display: block;
+  height: 20px;
+  margin: 5px;
+  padding: 0;
+  position: absolute;
+  width: 20px;
+}
+
+/* line 540, ../sass/_fubik.scss */
+.dependent-options.form-item.form-item-menu-context {
+  position: absolute;
+  right: 22px;
+  width: 160px;
+}
+
+/* line 545, ../sass/_fubik.scss */
+.views-display-settings .ctools-toggle {
+  color: #59a;
+}
+
+/* line 548, ../sass/_fubik.scss */
+#dashboard ul.action-links a {
+  float: left;
+}
+
+/* line 551, ../sass/_fubik.scss */
+.theme-selector img {
+  width: 110px;
+}
+
+/* line 554, ../sass/_fubik.scss */
+.vertical-tabs .vertical-tabs-panes .vertical-tabs-pane div.fieldset-content legend {
+  display: block;
+}
+
+/* line 557, ../sass/_fubik.scss */
+.page-content #node-type-form div.form-item.form-item-name div.description {
+  margin: 0 0 -50px;
+}
+
+/* line 560, ../sass/_fubik.scss */
+.primary-tabs a {
+  text-shadow: 1px 1px 1px #fff;
+}
+
+/* line 564, ../sass/_fubik.scss */
+#admin-menu-wrapper div.toolbar-shortcuts ul.menu {
+  padding: 1px 0 6px;
+}
+/* line 566, ../sass/_fubik.scss */
+#admin-menu-wrapper div.toolbar-shortcuts ul.menu li {
+  border-bottom: 0 transparent;
+}
+
+/* line 573, ../sass/_fubik.scss */
+.field-collection-container ul.action-links-field-collection-add {
+  margin: 1em 0 1em 2em;
+}
+
+/* line 576, ../sass/_fubik.scss */
+#media-browser-tabset div.form-actions {
+  background: none repeat scroll 0 0 #eee;
+  border: 1px solid #ddd;
+  padding: 9px;
+}
+/* line 580, ../sass/_fubik.scss */
+#media-browser-tabset div.form-actions a.fake-submit {
+  margin-right: 5px;
+  box-shadow: 0 1px 1px #ddd;
+  padding: 2px 10px 2px 25px;
+  background: url(../../rubik/images/buttons.png) no-repeat scroll -2401px 50% white;
+  border-color: #ddd #ddd #ccc;
+  border-style: solid;
+  border-width: 1px;
+  color: #333;
+  cursor: pointer;
+  font-weight: normal;
+  text-align: center;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 1em;
+}
+
+/* line 597, ../sass/_fubik.scss */
+#block-system-help div.block-content {
+  background: url(../images/ico-help.png) 7px center no-repeat;
+  padding-left: 40px;
+}
+
+/* line 601, ../sass/_fubik.scss */
+.path-admin-config-development-strongarm span.icon {
+  background-position: 0 -1199px;
+}
+
+/* line 605, ../sass/_fubik.scss */
+.path-admin-config-user-interface-itoggle span.icon {
+  background-position: 0 -1250px;
+}
+
+/* line 609, ../sass/_fubik.scss */
+.path-admin-config-workflow-subs span.icon {
+  background-position: 0 -1152px;
+}
+
+/* line 613, ../sass/_fubik.scss */
+.path-admin-content-subscription span.icon {
+  background-position: 0 -1152px;
+}
+
+/* line 617, ../sass/_fubik.scss */
+.path-admin-structure-subscriptions span.icon {
+  background-position: 0 -1152px;
+}
+
+/* line 621, ../sass/_fubik.scss */
+.path-admin-structure-messages span.icon {
+  background-position: 0 -1103px;
+}
+
+/* line 625, ../sass/_fubik.scss */
+.path-admin-config-content-fivestar span.icon {
+  background-position: 0 -1049px;
+}
+
+/* line 629, ../sass/_fubik.scss */
+.path-admin-structure-mark span.icon {
+  background-position: 0 -951px;
+}
+
+/* line 633, ../sass/_fubik.scss */
+.path-admin-structure-flags span.icon {
+  background-position: 0 -898px;
+}
+
+/* line 637, ../sass/_fubik.scss */
+.path-admin-structure-file-types span.icon {
+  background-position: 0 -999px;
+}
+
+/* line 641, ../sass/_fubik.scss */
+.path-admin-structure-block-types span.icon {
+  background-position: 0 -643px;
+}
+
+/* line 645, ../sass/_fubik.scss */
+.page-admin-content-webform span.icon {
+  background-position: 0 -752px;
+}
+
+/* line 649, ../sass/_fubik.scss */
+.path-admin-config-content-webform span.icon {
+  background-position: 0 -752px;
+}
+
+/* line 653, ../sass/_fubik.scss */
+.page-admin-content-blocks span.icon {
+  background-position: 0 -643px;
+}
+
+/* line 657, ../sass/_fubik.scss */
+.page .page-admin-modules span.icon {
+  background-image: url(../../rubik/images/icons.png);
+  background-position: -210px -30px;
+}
+
+/* line 662, ../sass/_fubik.scss */
+.path-dashboard span.icon {
+  background-position: 0 -700px !important;
+}
+
+/* line 666, ../sass/_fubik.scss */
+.path-admin-advanced_help- span.icon {
+  background-position: 0 -525px;
+}
+
+/* line 670, ../sass/_fubik.scss */
+.path-admin-content-media span.icon {
+  background-position: 0 -466px;
+}
+
+/* line 674, ../sass/_fubik.scss */
+.path-admin-config-media-browser span.icon {
+  background-position: 0 -466px;
+}
+
+/* line 678, ../sass/_fubik.scss */
+.path-admin-config-workflow-rules span.icon {
+  background-position: 0 -348px;
+}
+
+/* line 682, ../sass/_fubik.scss */
+.path-admin-structure-profiles span.icon {
+  background-position: 0 -111px;
+}
+
+/* line 686, ../sass/_fubik.scss */
+.path-admin-structure-panels span.icon {
+  background-position: 0 -288px;
+}
+
+/* line 690, ../sass/_fubik.scss */
+.path-admin-structure-mini-panels span.icon {
+  background-position: 0 -230px;
+}
+
+/* line 694, ../sass/_fubik.scss */
+.path-admin-structure-views span.icon {
+  background-position: 0 2px;
+}
+
+/* line 698, ../sass/_fubik.scss */
+.path-admin-structure-views- span.icon {
+  background-position: 0 2px;
+}
+
+/* line 702, ../sass/_fubik.scss */
+.path-admin-structure-features span.icon {
+  background-position: 0 -406px;
+}
+
+/* line 706, ../sass/_fubik.scss */
+.path-admin-structure-field-collections span.icon {
+  background-position: 0 -582px;
+}
+
+/* line 710, ../sass/_fubik.scss */
+.path-admin-structure-context span.icon {
+  background-position: 0 -169px;
+}
+
+/* line 714, ../sass/_fubik.scss */
+.path-admin-config-administration-admin-menu span.icon {
+  background-position: 0 -848px;
+}
+
+/* line 718, ../sass/_fubik.scss */
+.path-admin-config-administration-admin_menu span.icon {
+  background-position: 0 -848px;
+}
+
+/* line 722, ../sass/_fubik.scss */
+.path-admin-config-user-interface-modulefilter span.icon {
+  background-position: 0 -802px;
+}
+
+/* line 726, ../sass/_fubik.scss */
+.path-admin-dashboard span.icon {
+  background-position: 0 -700px !important;
+}
+
+/* line 729, ../sass/_fubik.scss */
+.path-admin-workbench span.icon {
+  background-position: 0 -52px;
+}
+
+/* line 732, ../sass/_fubik.scss */
+span.admin-conflict {
+  background: #ff0;
+}
+
+/* line 4, ../sass/_styles.scss */
+table.rules-overview-table a.action, .action-links.action-links-field-collection-add a, a.action-add, a.action-analyze, a.action-clone, a.action-configure, a.action-delete, a.action-devel, a.action-edit, a.action-export, a.action-revert, a.action-table, a.action-view, a.action-top, td.views-field-delete-node a, td.views-field-cancel-node a, td.views-field-delete a, td.views-field-devel-node a, td.views-field-edit-node a, td.views-field-edit-term a, td.views-field-edit a, td.views-field-view-node a, td.views-field-view-user a, td.views-field-devel-user a, td.views-field-view a, ul.links li.revert a, ul.links li.configure a, ul.links li.clone a, ul.links li.export a, ul.links li.enable a, ul.links li.disable a, ul.links li.flags_edit a, ul.links li.flags_delete a, ul.links li.flags_export a, ul.links li.edit a, ul.links li.delete a, ul.links li.devel a, ul.links li.view a, .field-collection-view-links li.edit a, .field-collection-view-links li.delete a, .author-image-edit, .coauthor-image-edit {
+  width: 100px !important;
+  height: 100px !important;
+  margin: 0 auto 5px auto;
+}
+
+/*
+%extend_2 {
+	position: relative;
+	float: left;
+	margin: 0 30px 10px 0;
+	z-index: 50;
+}
+*/
+/* line 21, ../sass/_styles.scss */
+.form-type-checkbox {
+  display: inline-block;
+  margin: 0 0 0 10px !important;
+}
+
+/* line 25, ../sass/_styles.scss */
+.form-type-radio {
+  display: inline-block;
+  margin: 0 10px 10px 0;
+}
+
+/* line 29, ../sass/_styles.scss */
+.form-item-field-location-und-0-thoroughfare {
+  display: none;
+}
+
+/* line 32, ../sass/_styles.scss */
+.form-item-field-location-und-0-premise {
+  display: none;
+}
+
+/* line 35, ../sass/_styles.scss */
+.form-item-field-location-und-0-administrative-area {
+  margin-top: 0;
+}
+
+/* line 38, ../sass/_styles.scss */
+.form-item-field-location-und-0-postal-code {
+  display: none;
+}
+
+/* line 41, ../sass/_styles.scss */
+.node-admin-page {
+  display: none;
+}
+
+/* line 50, ../sass/_styles.scss */
+img {
+  width: inherit;
+  height: inherit;
+}
+
+/* line 54, ../sass/_styles.scss */
+.description {
+  right: -60px !important;
+  margin: 0 !important;
+}
+
+/* line 58, ../sass/_styles.scss */
+.field-name-field-aa-allocation-date {
+  width: 200px;
+}
+
+/* line 124, ../sass/_styles.scss */
+.form-item {
+  margin: 0 5px;
+}
+
+/* line 127, ../sass/_styles.scss */
+.form-item-log {
+  display: none;
+}
+
+/* line 130, ../sass/_styles.scss */
+.media-widget .preview {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #6cf !important;
+  background: url(images/button-gray.png);
+}
+
+/* line 136, ../sass/_styles.scss */
+table input.fluid {
+  width: 100%;
+}
+
+/* line 139, ../sass/_styles.scss */
+tr.even {
+  background-color: #eee !important;
+}
+
+/* line 142, ../sass/_styles.scss */
+ul.links li {
+  padding: 0 5px !important;
+}
+
+/**
+ *Styles for the mandate content type
+ */
+/**
+ *Edit screens
+ */
+/* line 8, ../sass/types/_mandate.scss */
+#edit-field-managed-amount {
+  position: relative;
+  top: -45px;
+  height: 35px;
+}
+/* line 12, ../sass/types/_mandate.scss */
+#edit-field-managed-amount .form-item {
+  position: absolute;
+  right: 0;
+}
+
+/**
+ *Styles for Plans
+ */
+/**
+ *Edit screen
+ */
+/* line 8, ../sass/types/_plan.scss */
+.field-multiple-drag {
+  display: none;
+}
+
+/* line 14, ../sass/types/_plan.scss */
+#field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper {
+  padding-top: 0;
+}
+/* line 16, ../sass/types/_plan.scss */
+#field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup {
+  float: none;
+  margin: 0 auto;
+  width: 100%;
+}
+/* line 20, ../sass/types/_plan.scss */
+#field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup label {
+  display: none;
+}
+/* line 23, ../sass/types/_plan.scss */
+#field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup input {
+  width: 100px;
+}
+/* line 26, ../sass/types/_plan.scss */
+#field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup .description {
+  display: none;
+}
+
+/* line 38, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable {
+  width: 19.9%;
+  min-width: 300px;
+  float: left;
+}
+/* line 42, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td {
+  padding: 10px 5px;
+}
+/* line 44, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date {
+  width: auto;
+}
+/* line 46, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper {
+  padding-top: 0;
+}
+/* line 48, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding {
+  padding: 10px 0;
+  width: 100%;
+}
+/* line 51, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding .form-item {
+  float: none;
+  margin: 0 auto;
+  width: 200px;
+}
+/* line 55, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding .form-item label {
+  display: none;
+}
+/* line 58, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding .form-item .description {
+  display: none;
+}
+/* line 66, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-type-number-decimal {
+  width: 145px;
+  float: left;
+}
+/* line 69, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-type-number-decimal input {
+  width: 50px;
+}
+/* line 73, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-name-field-allocation-total {
+  width: 145px;
+  float: left;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-bottom: 4px;
+  padding-top: 5px;
+}
+/* line 80, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-name-field-allocation-total input {
+  width: 50px;
+}
+/* line 85, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .button-remove {
+  clear: both;
+  float: none;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+@media all and (max-width: 1292px) {
+  /* line 42, ../sass/types/_plan.scss */
+  #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td {
+    width: 33.333%;
+  }
+}
+@media all and (max-width: 1000px) {
+  /* line 42, ../sass/types/_plan.scss */
+  #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td {
+    width: 50%;
+  }
+}
+
+/* line 107, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable {
+  width: 24.9%;
+  min-width: 300px;
+  float: left;
+  border-left: 1px solid #689afd;
+  /*
+  @media all and (max-width: 1292px) {
+     width: 33.333%;
+  }
+  @media all and (max-width: 1000px) {
+     width: 50%;
+  }
+  */
+}
+/* line 112, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable:first-child {
+  border-left: none;
+}
+/* line 115, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date {
+  width: auto;
+}
+/* line 117, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper {
+  padding-top: 0;
+}
+/* line 119, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding {
+  padding: 10px 0;
+  width: 100%;
+}
+/* line 122, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item {
+  float: none;
+  margin: 0 auto;
+  width: 100%;
+}
+/* line 126, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item label {
+  display: none;
+}
+/* line 129, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item input {
+  width: 100px;
+}
+/* line 132, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item .description {
+  display: none;
+}
+/* line 139, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .group-foia-contact {
+  margin: 0 5px 5px 5px;
+}
+/* line 141, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .group-foia-contact .fieldset-wrapper {
+  padding-top: 0;
+}
+/* line 143, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .group-foia-contact .fieldset-wrapper .form-wrapper {
+  margin-bottom: 5px;
+}
+
+/**
+ * Styles for consultant firm screens
+ */
+/* line 6, ../sass/types/_consultant.scss */
+#consultant-firm-node-form .ds-above-left, #consultant-firm-node-form .ds-above-right {
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+/* line 11, ../sass/types/_consultant.scss */
+#consultant-firm-node-form .field-name-field-consultant-contacts-embed .view-header {
+  padding: 0;
+  font-size: 10px;
+  font-weight: bold;
+}
+/* line 18, ../sass/types/_consultant.scss */
+#consultant-firm-node-form .field-name-field-aua input {
+  width: 200px;
+}
+
+/**
+ *Styles for modal windows
+ */
+/* line 7, ../sass/_modals.scss */
+#modalContent .node-contact-form .ds-above-left, #modalContent .node-contact-form .ds-above-right {
+  width: 33.3%;
+}
+/* line 10, ../sass/_modals.scss */
+#modalContent .node-contact-form .text-summary-wrapper {
+  display: none;
+}
+/* line 15, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-body .form-type-textarea label {
+  float: none;
+}
+/* line 18, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-body .form-type-textarea .form-textarea-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+}
+/* line 22, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_72, #modalContent .node-contact-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_75, #modalContent .node-contact-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_85, #modalContent .node-contact-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_93, #modalContent .node-contact-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_98 {
+  display: none;
+}
+/* line 30, ../sass/_modals.scss */
+#modalContent .node-contact-form tr .form-item {
+  white-space: normal;
+}
+/* line 36, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-field-employment-date .date-combo .date-float {
+  clear: both;
+  float: none;
+}
+/* line 40, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-field-employment-date .date-combo .start-date-wrapper, #modalContent .node-contact-form .field-name-field-employment-date .date-combo .end-date-wrapper {
+  width: 150px;
+  float: left;
+  clear: none;
+}
+/* line 44, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-field-employment-date .date-combo .start-date-wrapper input, #modalContent .node-contact-form .field-name-field-employment-date .date-combo .end-date-wrapper input {
+  width: 100px;
+}
+/* line 48, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-field-employment-date .date-combo .end-date-wrapper {
+  width: 200px;
+}
+/* line 50, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-field-employment-date .date-combo .end-date-wrapper label {
+  width: 40px;
+  clear: none;
+}
+/* line 60, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-field-address .addressfield-container-inline .form-item {
+  float: none;
+}
+/* line 66, ../sass/_modals.scss */
+#modalContent .node-contact-form .form-type-link-field label {
+  float: none;
+}
+/* line 71, ../sass/_modals.scss */
+#modalContent .node-contact-form .field-name-field-consultant-job-type label {
+  float: none;
+}
+/* line 78, ../sass/_modals.scss */
+#modalContent #consultant-firm-node-form .ds-above-left {
+  width: 49%;
+  margin: 0 1% 0 0;
+}
+/* line 82, ../sass/_modals.scss */
+#modalContent #consultant-firm-node-form .ds-above-right {
+  width: 49%;
+  margin: 0 0 0 1%;
+}
+/* line 88, ../sass/_modals.scss */
+#modalContent #consultant-firm-node-form .field-name-field-website .form-item label {
+  float: none;
+}
+/* line 93, ../sass/_modals.scss */
+#modalContent #consultant-firm-node-form .vertical-tabs {
+  margin: 0;
+}
+/* line 99, ../sass/_modals.scss */
+#modalContent #manager-firm-node-form .ds-above-left, #modalContent #manager-firm-node-form .ds-above-middle, #modalContent #manager-firm-node-form .ds-above-right {
+  width: 32%;
+  margin: 0 .5%;
+}
+/* line 103, ../sass/_modals.scss */
+#modalContent #manager-firm-node-form .form-item {
+  margin: 0;
+  width: 95%;
+}
+/* line 106, ../sass/_modals.scss */
+#modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
+  width: 98%;
+}
+
+/*** Color Variables ***/
+/* Page */
+/* Borders */
+/*Form Elements */
+/* Text */
+/* Misc */
+/********** CSS Overrides **********/
+/*** Page Elements ***/
+/* line 50, ../sass/custom.scss */
+body.tao {
+  background: #003366;
+}
+
+/* line 53, ../sass/custom.scss */
+#main-content, .block .block-content, .container-inline .fieldset-content, .fieldset-content {
+  background: #cddeff;
+}
+
+/* line 56, ../sass/custom.scss */
+#page-title {
+  background: #689afd;
+}
+/* line 58, ../sass/custom.scss */
+#page-title .page-title {
+  text-shadow: none;
+}
+
+/* line 62, ../sass/custom.scss */
+a {
+  color: #003399;
+}
+/* line 64, ../sass/custom.scss */
+a a:hover {
+  color: #0058ff;
+}
+
+/*** Form Elements ***/
+/* line 70, ../sass/custom.scss */
+.fieldset {
+  border: 1px solid #689afd;
+  margin: 5px;
+}
+/* line 73, ../sass/custom.scss */
+.fieldset .fieldset .fieldset-content {
+  background: #aac6ff none repeat scroll 0 0;
+}
+/* line 76, ../sass/custom.scss */
+.fieldset #main-content, .fieldset .block .block-content, .fieldset .container-inline .fieldset-content, .fieldset .fieldset-content {
+  background: #bad0fd none repeat scroll 0 0;
+}
+
+/* line 80, ../sass/custom.scss */
+.collapsible .fieldset-legend {
+  background: #689afd none repeat scroll 0 0;
+  padding: 0 5px;
+}
+
+/* line 84, ../sass/custom.scss */
+.item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
+  background: #689afd;
+}
+
+/* line 87, ../sass/custom.scss */
+.form-wrapper.form-actions {
+  background: #689afd;
+  border: 1px solid #689afd;
+}
+
+/* line 91, ../sass/custom.scss */
+.block, .item-list, .help-items ul, .form-item, .confirmation ul, .admin-list, .node-type-list, .admin-panel {
+  border-color: #689afd;
+  margin: 0;
+}
+
+/* line 95, ../sass/custom.scss */
+.vertical-tabs {
+  background: #aac6ff;
+  border: 1px solid #689afd;
+}
+
+/* line 100, ../sass/custom.scss */
+.vertical-tabs-list li a {
+  color: black;
+  text-shadow: none;
+  border-bottom: 1px solid #689afd;
+}
+/* line 105, ../sass/custom.scss */
+.vertical-tabs-list .selected a {
+  background: #bad0fd none repeat scroll 0 0;
+}
+
+/* line 109, ../sass/custom.scss */
+.form-item label {
+  color: black;
+  margin-left: 5px;
+}
+
+/*** Tables ***/
+/* line 115, ../sass/custom.scss */
+table {
+  background-color: #cddeff;
+  border-color: #689afd;
+}
+/* line 118, ../sass/custom.scss */
+table th {
+  background: #689afd;
+  text-transform: none;
+  text-shadow: none;
+}
+/* line 123, ../sass/custom.scss */
+table tr.odd td.active, table table tr.even td.active {
+  background-color: #87affe;
+}
+
+/* line 127, ../sass/custom.scss */
+tr.odd {
+  background: #aac6ff !important;
+  background-color: #aac6ff !important;
+}
+
+/* line 131, ../sass/custom.scss */
+tr.even {
+  background-color: #98bafe !important;
+  background: #98bafe !important;
+}
+
+/* line 136, ../sass/custom.scss */
+.page-admin table tr.odd, .page-admin .page-admin table tr.odd td {
+  background-color: #aac6ff !important;
+}
+/* line 139, ../sass/custom.scss */
+.page-admin table tr.even, .page-admin .page-admin table tr.even td {
+  background-color: #98bafe !important;
+}
+
+/* Fields */
+/* line 145, ../sass/custom.scss */
+#edit-field-status-tr {
+  float: left;
+  margin: 0 15px 0 0;
+}
+
+/* Buttons */
+/* line 151, ../sass/custom.scss */
+.pager li.pager-current, .primary-tabs li.active {
+  background-color: #aac6ff;
+}
+
+/* line 154, ../sass/custom.scss */
+input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
+  box-shadow: 0 1px 1px #666666;
+}
+
+/*** Devel ***/
+/* line 159, ../sass/custom.scss */
+.dev-query {
+  color: #666666;
+}
+
+/* Window size indicator */
+/* line 167, ../sass/custom.scss */
+#win-size {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  background-color: #EEE;
+  color: #000;
+  font-size: 12px;
+  font-family: sans-serif;
+  z-index: 1000;
+}
+
+/* line 180, ../sass/custom.scss */
+#edit-callbacks-search-api-alter-add-hierarchy-settings-fields {
+  height: auto;
+}
+
+/* line 184, ../sass/custom.scss */
+#facetapi-facet-display-form .facetapi-more-text-setting {
+  clear: both;
+}
+
+/* line 188, ../sass/custom.scss */
+.form-actions {
+  float: none;
+}
+
+/* line 193, ../sass/custom.scss */
+#contact-node-form .field-type-image {
+  position: relative;
+}
+/* line 195, ../sass/custom.scss */
+#contact-node-form .field-type-image .preview {
+  display: none;
+}
+/* line 198, ../sass/custom.scss */
+#contact-node-form .field-type-image .remove {
+  position: absolute;
+  left: 150px;
+  bottom: 0;
+}
+/* line 207, ../sass/custom.scss */
+#contact-node-form .manualcrop-thumblist .manualcrop-preview .manualcrop-preview-cropped img {
+  max-width: none;
+}
+
+/* line 222, ../sass/custom.scss */
+.view-comment-views th.views-field-edit-comment {
+  width: 70px;
+  padding: 0;
+}
+/* line 226, ../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment {
+  padding: 0;
+}
+/* line 228, ../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment a {
+  margin: 0;
+}
+/* line 231, ../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment div.magical-modal-link {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+
+/* line 238, ../sass/custom.scss */
+.view-reference-views th.views-field-edit-comment {
+  width: 70px;
+  padding: 0;
+}
+/* line 242, ../sass/custom.scss */
+.view-reference-views td.views-field-edit-comment {
+  padding: 0;
+}
+/* line 244, ../sass/custom.scss */
+.view-reference-views td.views-field-edit-comment a {
+  margin: 0;
+}
+/* line 247, ../sass/custom.scss */
+.view-reference-views td.views-field-edit-comment div.magical-modal-link {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}

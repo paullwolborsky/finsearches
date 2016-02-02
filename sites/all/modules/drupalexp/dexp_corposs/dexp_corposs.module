@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DrupalExp Corposs feature.
+ */
+
+include_once 'dexp_corposs.features.inc';

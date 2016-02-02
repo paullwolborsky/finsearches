@@ -1,0 +1,4 @@
+name = "Fin Modals"
+description = "Custom modal windows"
+package = "Custom"
+core = 7.x

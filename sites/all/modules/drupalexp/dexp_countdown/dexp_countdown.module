@@ -1,0 +1,200 @@
+<?php
+
+/**
+ * Implement hook_block_list().
+ */
+function dexp_countdown_block_info() {
+  $blocks['dexp_countdown_block']['info'] = 'Dexp Countdown';
+  return $blocks;
+}
+
+/**
+ * Implement hook_block_configure().
+ */
+function dexp_countdown_block_configure($delta = '') {
+  if ($delta == 'dexp_countdown_block') {
+    $form['dexp_countdown_event_name'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Event Name'),
+      '#default_value' => variable_get('dexp_countdown_event_name', ''),
+      '#size' => 30,
+      '#maxlength' => 200,
+      '#description' => t("Event name you're counting to or from."),
+      '#required' => TRUE
+    );
+    $form['dexp_countdown_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Event URL'),
+      '#default_value' => variable_get('dexp_countdown_url', ''),
+      '#size' => 30,
+      '#maxlength' => 200,
+      '#description' => t("Turn the event description into a link to more information about the event. Example: http://yoursite.com"),
+      '#required' => FALSE
+    );
+
+    $form['dexp_countdown_accuracy'] = array(
+      '#type' => 'radios',
+      '#title' => t('Accuracy'),
+      '#default_value' => variable_get('dexp_countdown_accuracy', 'd'),
+      '#options' => array('d' => t('days'), 'h' => t('hours'), 'm' => t('minutes'), 's' => 'seconds'),
+      '#description' => t('Select the smallest amount of detail to display. For example, selecting "days" will display only days, selecting "hours" will display the number of days and hours.')
+    );
+
+    $time = time();
+    $timestamp = variable_get('dexp_countdown_timestamp', $time);
+
+    $form['target_time'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Target date/time'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#description' => t('Select a date relative to the server time: %s', array('%s' => format_date($time)))
+    );
+
+    for ($years = array(), $i = 1970; $i < 2032; $years[$i] = $i, $i++);
+    $form['target_time']['year'] = array(
+      '#type' => 'select',
+      '#title' => t('Year'),
+      '#default_value' => (int)date('Y', $timestamp),
+      '#options' => $years
+    );
+    unset($years);
+
+    $form['target_time']['month'] = array(
+      '#type' => 'select',
+      '#title' => t('Month'),
+      '#default_value' => (int)date('n', $timestamp),
+      '#options' => array(1 => t('January'), 2 => t('February'), 3 => t('March'), 4 => t('April'),
+                          5 => t('May'), 6 => t('June'), 7 => t('July'), 8 => t('August'),
+                          9 => t('September'), 10 => t('October'), 11 => t('November'), 12 => t('December'))
+    );
+
+    for ($month_days = array(), $i = 1; $i < 32; $month_days[$i] = $i, $i++);
+    $form['target_time']['day'] = array(
+      '#type' => 'select',
+      '#title' => t('Day'),
+      '#default_value' => (int)date('j', $timestamp),
+      '#options' => $month_days
+    );
+    unset($month_days);
+
+    for ($hrs = array(), $i = 0; $i < 24; $hrs[] = $i, $i++);
+    $form['target_time']['hour'] = array(
+      '#type' => 'select',
+      '#title' => t('Hour'),
+      '#default_value' => (int)date('G', $timestamp),
+      '#options' => $hrs
+    );
+    unset($hrs);
+
+    for ($mins = array(), $i = 0; $i < 60; $mins[] = $i, $i++);
+    $form['target_time']['min'] = array(
+      '#type' => 'select',
+      '#title' => t('Minute'),
+      '#default_value' => (int)date('i', $timestamp),
+      '#options' => $mins
+    );
+    $form['target_time']['sec'] = array(
+      '#type' => 'select',
+      '#title' => t('Seconds'),
+      '#default_value' => (int)date('s', $timestamp),
+      '#options' => $mins
+    );
+
+    return $form;
+  }
+}
+
+/**
+ * Implement hook_block_save().
+ */
+function dexp_countdown_block_save($delta = '', $edit = array()) {
+  if ($delta == 'dexp_countdown_block') {
+    variable_set('dexp_countdown_event_name', $edit['dexp_countdown_event_name']);
+    variable_set('dexp_countdown_url', $edit['dexp_countdown_url']);
+    variable_set('dexp_countdown_accuracy', $edit['dexp_countdown_accuracy']);
+    variable_set('dexp_countdown_timestamp', mktime((int)$edit['hour'], (int)$edit['min'], (int)$edit['sec'], (int)$edit['month'], (int)$edit['day'], (int)$edit['year']));
+  }
+}
+
+/**
+ * Implement hook_block_view().
+ */
+function dexp_countdown_block_view($delta = '') {
+  if (user_access('access content') && $delta == 'dexp_countdown_block') {
+    $block['subject'] = variable_get('dexp_countdown_block_title', t('dexp_Countdown'));
+	 $content['timestamp'] = dexp_countdown_get_timestamp();
+	 $content['str_format'] = dexp_countdown_format();
+	 $content['event_name'] = dexp_countdown_event();
+    $block['content'] = theme('dexp_countdown',$content);
+	 //inlcude js
+	$path = drupal_get_path('module', 'dexp_countdown');
+	drupal_add_js($path .'/jquery.countdown.min.js');
+    return $block;
+  }
+}
+
+/**
+ * Implement hook_theme().
+ *
+ * Theme function for similar block
+ */
+function dexp_countdown_theme() {
+
+  return array(
+    'dexp_countdown' => array(
+      'template'  => 'dexp_countdown',
+    )
+  );
+}
+
+/**
+* Get timestamp
+*/
+function dexp_countdown_get_timestamp() {
+	//get timestamps has setting
+	$timestamp =  date('Y/n/d H:i:s',variable_get('dexp_countdown_timestamp'));
+	return $timestamp;
+}
+/**
+* Format string time countdown
+*/
+function dexp_countdown_format(){
+	//get accuracy
+	$accuracy = variable_get('dexp_countdown_accuracy');
+	
+	$day = '<div class="dexp-time dexp-date"><span class="number">%D<span><span class="text">Days</span></div>';
+	$hour = '<div class="dexp-time dexp-hour"><span class="number">%H<span><span class="text">Hr</span></div>';
+	$min = '<div class="dexp-time dexp-month"><span class="number">%M<span><span class="text">Mins</span></div>';
+	$second = '<div class="dexp-time dexp-second"><span class="number">%S<span><span class="text">Secs</span></div>';
+	
+	
+	$str_format = ""; //string format time countdown
+	switch($accuracy) {
+		case 'd' : //day
+			$str_format = $day;
+			break;
+		case 'h' : //hour
+			$str_format = $day.$hour;
+			break;
+		case 'm' :	//minute
+			$str_format = $day.$hour.$min;
+			break;
+		case 's' : //second
+		default :
+			$str_format = $day.$hour.$min.$second;
+			break;
+	}
+	
+	return $str_format;
+}
+
+/**
+*Get event URL
+*/
+function dexp_countdown_event() {
+	$event_name = variable_get('dexp_countdown_event_name', '');
+	$url = variable_get('dexp_countdown_url', '');
+	$event_name = !empty($url) && preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url) ? l($event_name, $url, array('absolute' => TRUE)) : NULL;
+	return $event_name;
+}

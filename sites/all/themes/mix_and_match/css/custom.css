@@ -1,0 +1,9 @@
+.field-type-taxonomy-term-reference {
+	margin-bottom: 0;
+}
+h2.field-label {
+	padding: 0 !important;
+}
+.field-items, ul.field-items, li.field-item even {
+	margin-top: 6px;
+}

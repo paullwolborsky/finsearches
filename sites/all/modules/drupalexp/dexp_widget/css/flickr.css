@@ -1,0 +1,14 @@
+/* Flickr Feeds */
+.flickr-widget a {
+    float:left;
+    margin-bottom:10px;
+    margin-right:10px;
+}
+.flickr-widget img {
+	display: block;
+	width: 50px;
+	height: 50px;
+}
+.flickr-widget img:hover {
+  opacity: 0.6;
+}

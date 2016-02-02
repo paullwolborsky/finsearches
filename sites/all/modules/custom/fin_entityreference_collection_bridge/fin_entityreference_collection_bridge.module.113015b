@@ -1,0 +1,344 @@
+<?php
+
+/*
+ * Module that maintain current data from multi paragraphs/Field Collections.
+ * This module may be refactored to hold most recent data from any multiple
+ * History fields.
+ *
+ * Why needed? The Contact type had a paragraph field called Job History.
+ * There was a recurring need to be able to pull contact data elsewhere, 
+ * using Firms to limit Offices and autofill address fields elsewhere.
+ * This would not work with Paragraphs, and could not work with a multi
+ * Field. This module fixes both issues.
+ *
+ * Latest Fields Instructions
+ * 
+ * Address Field need to be set "make optional"
+ */
+
+	function fin_entityreference_collection_bridge_node_submit($node, $form, &$form_state) {		
+		if ($node->type=="contact") {
+			_fin_entityreference_collection_bridge_node_submit($node, $form, $form_state);
+		}
+	}
+
+	function _fin_entityreference_collection_bridge_node_submit($node, $form, &$form_state) {
+		//$entity = entity_load('node', array($node->nid));
+		
+		// Wrap all fields to reference and updates. Primary purpose is to update fields in 
+		// a special fieldset, but can be used for other purposes too.
+		// NOTE: this is a form-handler, so theoretically, we should just update the form state
+		// rather than directly update the node, but that did not work. Also, hook_form_alter 
+		// did not trigger when you submit a contact, so updating the node directly necessary, but
+		// I populate form data anyway. I may disable that at a later time.
+		$wrapper = entity_metadata_wrapper('node', $node);
+		if ( isset($form_state['field']['#parents']) ) {		
+			$collection_fields = $form_state['field']['#parents'];
+
+			$entity_type = 'node';
+			$entity_bundle = 'contact';
+			$group_name = 'group_internal_use_only';
+			$groups = field_group_read_groups(array(
+  				'entity_type' => $entity_type,
+  				'bundle'      => $entity_bundle,
+  				'group_name' => $group_name,
+			));
+			$myGroup = $groups['node']['contact']['form']['group_internal_use_only'];
+			$myField_names = $myGroup->children;
+
+			// For Reference and paragraph/collection subfields
+			$inputs = $form_state['input'];
+			$flds = $form_state['field'];
+
+			$module = 'FIN_PARAPRAPH_BRIDGE';
+			
+			foreach ($collection_fields as $host_name => $info) {
+				// Bad design, paragraphs has each entry, plus an add_more array item.
+				// Gruesome code needed to find the highest numbered item, which is the
+				// most recently added entry.
+				$set = $inputs[$host_name][$node->language];
+				$keys = array_keys($set);
+				$ind = count($keys)-1;
+				$key = $keys[$ind];
+				while (!is_numeric($key) && $ind>0) {
+					$ind--;
+					$key = $keys[$ind];
+				}
+				// Now, pull the fields+data from the "rabbit hole"
+				$paydirt = $set[$ind];
+
+				foreach ($myField_names as $field_name) {
+					//Internal_use_only field not part of the latest entry
+					// (for paragraphs), obsolete, so must be cleaned.
+					if (!isset($paydirt[$field_name]) || !$field_name || empty($field_name)) {
+						$wdval = NULL;
+						_watchdog_this($wrapper, $field_name, $wdval, $module);
+						// plw 11/24/15 maybe this was a bad idea
+						//$wrapper->$field_name = NULL;
+						//$wrapper->save();
+						continue;
+					}					
+
+					// prevent illegal choice errors for these automated fields
+					$form[$field_name]['validated'] = FALSE;
+
+					// Now, we have to process form data so the wrapper can use it. Also
+					// transform data so it could be used by form data. This takes a lot of
+					// doing because we deal with blanks, single & multiple items, and many
+					// different classes of data: entityreferences, taxonomy, hierarchical
+					// select, drop-down list (options) which may be entity or taxonomy, email
+					// websites, addressfields. Because wrappers validate data, it will not
+					// accept data unless it is the correct type.
+					$val = array();
+					$wval = array();
+					$vals = $paydirt[$field_name];
+					$blankout = FALSE;
+					if (!isset($paydirt[$field_name])) {
+						$blankout = TRUE;
+					}
+					$type = $flds[$field_name][$node->language]['instance']['widget']['module'];
+					$type2 = $flds[$field_name][$node->language]['field']['type'];
+
+					// case 'options_select':
+					switch ($type) {
+						case 'entityreference':
+       					// it is now known this will always be autrocomplete or autocomplete
+       					// tagging style, so, one incoming result, but in either of 2 formatgs
+       						$simple = TRUE;
+       						//check if multiple, clean out blanks
+							$arr = array();
+							$out = '0';
+							$raw = '0';
+							$myVals = $vals[$node->language];
+							if ( !isset($myVals[0]['target_id']) ) {
+								$simple = TRUE;
+								$raw = $myVals;
+							} else {
+								$simple = FALSE;
+								$raw = $myVals[0]['target_id'];
+							}
+							$res = '0';
+							if (!empty($raw)) {
+								$matches = array();
+								preg_match_all('/\((.*?)\)/', $raw, $matches);        
+								$res = $matches[1][0];
+							}
+							$wrapper->$field_name = $res;
+        				break;
+        				case 'addressfield':
+       						$val[0] = $vals[$node->language][0];
+       						$wval = $vals[$node->language][0];
+	       					foreach ($wval as $key => $vl) {
+        						if ($vl) {
+	        						$wdval = $vl;
+									$wdfield = array($field_name, $key);
+									_watchdog_this($wrapper, $wdfield, $wdval, $module);
+    	   							$wrapper->$field_name->$key = $vl;
+       							}
+       						}
+       					break;
+						case 'options':
+ 							// Select Boxes may be both entity references & Taxonomy, id & process
+
+ 							//$val = $vals[$node->language][0]['tid'];
+ 							$vl = $vals[$node->language];
+							switch ($type2) {
+								case 'entityreference':
+									if ($blankout) {
+										$val[] = array('target_id' => '0');
+										$wval = '';
+									} else {
+										if (count($vl)>1) {
+											foreach ($vl as $v) {
+												$val[] = array('target_id' => $v);
+												$wval[] = array('target_id' => $v);
+											}
+										} else {
+											if (is_array($vl)) {
+												$val[] = array('target_id' => (int) $vl[0]);
+												$wval = array('target_id' => (int) $vl[0]);
+											}
+											else {
+												$val[] = array('target_id' => (int) $vl);
+												//$wval[] = array('target_id' => $vl);
+												$wval = $vl;
+											}
+										}
+									}
+        							$wdval = $wval;
+									_watchdog_this($wrapper, $field_name, $wdval, $module);
+        							if (empty($wval)) {
+        								$wval = "_none";
+        							}
+        							if ($wval=="_none") {
+        								$wrapper->$field_name->set(NULL);
+        							} else {
+        								$wrapper->$field_name = $wval;
+        							}	
+								break;
+								case 'taxonomy_term_reference':
+									if ($blankout) {
+										$val[] = array('tid' => '');
+										$wval = '0';
+									} else {
+										$set = $vals[$node->language];
+										if (count($set)>1) { //??
+											foreach ($set as $v) {
+												$val[] = array('tid' => $v);
+											}
+										} else {
+											$val[] = array('tid' => $set);
+										}
+										$wval = $set;
+									}
+	        						$wdval = $wval;
+									_watchdog_this($wrapper, $field_name, $wdval, $module);
+									$wrapper->$field_name = $wval;
+								break;
+	 						}
+						break;
+						case 'taxonomy':
+							if ($blankout) {
+								$val[] = array('tid' => '');
+								$wval = '0';
+								//$wval[] = array('tid' => '');
+							} else {
+ 								//$val = $vals[$node->language][0]['tid'];
+	 							$set = $vals[$node->language];
+ 								foreach ($set as $item) {
+ 									$val[] = array('tid' => $item['tid']);
+ 									//$wval[] = array($item['tid']); 
+ 								}
+	 							$wval = $set;
+	 						}
+       						$wdval = $wval;
+							_watchdog_this($wrapper, $field_name, $wdval, $module);
+							$wrapper->$field_name = $wval;
+	 					break;
+						case 'hs_taxonomy':
+							if ($blankout) {
+								$val[] = array('tid' => '0');
+								$wval = 0;
+							} else {
+ 								$set = $vals[$node->language]['hierarchical_select']['selects'];
+ 								if (count($set)>0) {
+ 									foreach ($set as $vl) {
+ 										$val[] = array('tid' => $vl);
+ 									}
+ 									$wval = $set;		
+ 								} else {
+ 									$val[] = array('tid' => '');
+ 									$wval = 0;
+ 								}
+	 						}
+       						$wdval = $wval;
+							_watchdog_this($wrapper, $field_name, $wdval, $module);
+							$wrapper->$field_name = $wval;
+	 					break;
+						case 'email':
+							if ($blankout) {
+								$val[] = array('email' => '');
+								$wval = NULL;
+								//$wval = '';
+							} else {
+ 								$val[] = array('email' => $vals[$node->language][0]['email']);
+	 							$wval = $vals[$node->language][0]['email'];
+	 						}
+      						$wdval = $wval;
+							_watchdog_this($wrapper, $field_name, $wdval, $module);
+							$wrapper->$field_name = $wval;
+							$wrapper->save();
+	 					break;
+	 					case 'link':						case 'link':
+							$url = NULL;
+							$title = '';
+							if ($blankout) {
+								$url = NULL;
+								$title = '';
+							} else {
+ 								$path = $vals[$node->language][0];
+ 								$url = $path['url'];
+ 								$title = $path['title'];
+	 						}
+	 						if ($url) {
+	 							if (!$title) {
+	 								$title = $url;
+	 							}
+								$parsed = parse_url($url);
+								if (empty($parsed['scheme'])) {
+    								$url = 'http://' . ltrim($url, '/');
+								}	 							
+	 						}
+	 						if (!$url) {
+	 							//$var = $wrapper->$field_name;
+	 							//$wrapper->$$var[0]->set(array(
+	 							//$var[0]->set(array(
+								$wrapper->$field_name->set(array(
+	 								'title' => '',
+	 								'url' => '',
+	 							));
+	 						} else {
+	 							$val[] = array('url' => $url, 'title' => $title);
+								$wdval = $title;
+								$wdfield = array($field_name, 'title');
+								_watchdog_this($wrapper, $wdfield, $wdval, $module);
+								$wdval = $url;
+								$wdfield = array($field_name, 'url');
+								_watchdog_this($wrapper, $wdfield, $wdval, $module);
+								$wrapper->$field_name->url = $url;
+								$wrapper->$field_name->title = $title;
+	 						}
+	 					break;
+    	    			default:
+							if ($blankout) {
+								$val[] = '';
+								$wval = NULL;
+							} else {
+								$val = $vals[$node->language][0];
+								if (isset($vals[$node->language][0]['value'])) {
+									$wval = $vals[$node->language][0]['value'];
+								}
+								if (!isset($vals[$node->language][0]['value'])) {
+									$wval = $vals[$node->language][0];
+								}
+							}
+   							$wdval = $wval;
+							_watchdog_this($wrapper, $field_name, $wdval, $module);
+							$wrapper->$field_name = $wval;
+						break;
+					}
+					$form_state['values'][$field_name][$node->language] = $val;
+					$wrapper->save();
+				}	
+			}
+			//return $form;
+		}
+		//drupal_form_submit($form_id, $form_state);
+		return;
+	} 
+
+	function _watchdog_this($wrapper, $field_name, $value, $module) {
+		$message = '';
+		$validated = TRUE;
+		
+		if (is_array($field_name)) {
+			$validated = $wrapper->$field_name[0]->$field_name[1]->validate($value);
+			$fldname = $field_name[0] .'->'.$field_name[1];
+		} else {
+			$validated = $wrapper->$field_name->validate($value);
+			$fldname = $field_name;
+		}
+		if ($validated) {
+			if (!$value) {
+				$message = t('Successfully NULLED %field_name', array('%field_name' => $fldname));
+				$state = WATCHDOG_NOTICE;
+			}
+		} else {
+			$message = t('VALUE FAILED for %field_name. Value: '.print_r($value,true), array('%field_name' => $fldname));
+			$state = WATCHDOG_ERROR;
+		}
+		if ($message) {
+			watchdog($module, $message, array(), $state);
+		}
+		return TRUE;
+	}

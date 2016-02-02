@@ -1,0 +1,252 @@
+/**
+ * @file
+ * Styles are organized using the SMACSS technique. @see http://smacss.com/book/
+ *
+ * When you turn on CSS aggregation at admin/config/development/performance, all
+ * of these @include files will be combined into a single file.
+ */
+
+//Importing other files
+@import "fubik";
+@import "styles";
+
+//Content Types
+@import "types/mandate";
+@import "types/plan";
+@import "types/consultant";
+
+//Modal windows
+@import "modals";
+
+/*** Color Variables ***/
+
+/* Page */
+$blue-black: #000033;
+$dark-blue: #003366;
+
+/* Borders */
+$border-blue: #689afd;
+
+/*Form Elements */
+$form-background-blue: #cddeff;
+$fieldset-background-blue: #bad0fd;
+$fieldset-label-background-blue: #689afd;
+$form-item-odd-blue: #aac6ff;
+$form-item-even-blue: #98bafe;
+$form-item-active-blue: #87affe;
+
+/* Text */
+$link: #003399;
+$link-hover: #0058ff;
+$form-item-label: #000000;
+
+/* Misc */
+$shadow: #666666;
+
+
+/********** CSS Overrides **********/
+
+/*** Page Elements ***/
+body.tao {
+  background: $dark-blue;
+}
+#main-content, .block .block-content, .container-inline .fieldset-content, .fieldset-content {
+  background: $form-background-blue;
+}
+#page-title {
+  background: $fieldset-label-background-blue;
+  .page-title{
+    text-shadow: none;
+  }
+}
+a {
+  color: $link;
+  a:hover {
+    color: $link-hover;
+  }
+}
+
+/*** Form Elements ***/
+.fieldset {
+  border: 1px solid $border-blue;
+  margin: 5px;
+  .fieldset .fieldset-content {
+    background: $form-item-odd-blue none repeat scroll 0 0;
+  }
+  #main-content, .block .block-content, .container-inline .fieldset-content, .fieldset-content {
+    background: $fieldset-background-blue none repeat scroll 0 0;
+  }
+}
+.collapsible .fieldset-legend {
+  background: $fieldset-label-background-blue none repeat scroll 0 0;
+  padding: 0 5px; 
+}
+.item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
+  background: $fieldset-label-background-blue;
+}
+.form-wrapper.form-actions {
+  background: $fieldset-label-background-blue;
+  border: 1px solid $border-blue;
+}
+.block, .item-list, .help-items ul, .form-item, .confirmation ul, .admin-list, .node-type-list, .admin-panel {
+  border-color: $border-blue;
+  margin: 0;
+}
+.vertical-tabs {
+  background: $form-item-odd-blue;
+  border: 1px solid $border-blue;
+}
+.vertical-tabs-list {
+  li a {
+    color: $form-item-label;
+    text-shadow: none;
+    border-bottom: 1px solid $border-blue;
+  }
+  .selected a {
+    background: $fieldset-background-blue none repeat scroll 0 0;
+  }
+}
+.form-item label {
+  color: $form-item-label;
+  margin-left: 5px;
+}
+
+/*** Tables ***/
+table {
+  background-color: $form-background-blue;
+  border-color: $border-blue;
+  th {
+    background: $fieldset-label-background-blue;
+    text-transform: none;
+    text-shadow: none;
+  }
+  tr.odd td.active, table tr.even td.active {
+    background-color: $form-item-active-blue;
+  }
+}
+tr.odd {
+  background: $form-item-odd-blue !important;
+  background-color: $form-item-odd-blue !important;
+}
+tr.even {
+  background-color: $form-item-even-blue !important;
+  background: $form-item-even-blue !important;
+}
+.page-admin {
+  table tr.odd, .page-admin table tr.odd td {
+    background-color: $form-item-odd-blue !important;
+  }
+  table tr.even, .page-admin table tr.even td {
+    background-color: $form-item-even-blue !important;
+  }
+}
+
+/* Fields */
+#edit-field-status-tr {
+  float: left;
+  margin: 0 15px 0 0;
+}
+
+/* Buttons */
+.pager li.pager-current, .primary-tabs li.active {
+  background-color: $form-item-odd-blue;
+}
+input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
+  box-shadow: 0 1px 1px $shadow;
+}
+
+/*** Devel ***/
+.dev-query {
+  color: #666666;
+}
+
+
+
+
+/* Window size indicator */
+#win-size {
+	position: fixed;
+	bottom: 0;
+	right: 0; 
+	width: 30px;
+	background-color: #EEE;
+	color: #000;
+	font-size: 12px;
+	font-family: sans-serif;
+	z-index: 1000;
+}
+
+
+#edit-callbacks-search-api-alter-add-hierarchy-settings-fields {
+  height: auto; 
+}
+#facetapi-facet-display-form {
+  .facetapi-more-text-setting {
+    clear: both;
+  }
+}
+.form-actions {
+  float: none;
+}
+
+#contact-node-form {
+  .field-type-image {
+    position: relative;
+    .preview {
+      display: none;
+    }
+    .remove {
+      position: absolute;
+      left: 150px;
+      bottom: 0;
+    }
+  }
+  .manualcrop-thumblist {
+    .manualcrop-preview {
+      .manualcrop-preview-cropped {
+        img {
+          max-width: none;
+        }
+      }
+      img {
+        //display: block !important;
+        //width: 200px;
+        //max-width: 200px;
+      }
+    }
+  }
+}
+
+
+.view-comment-views {
+  th.views-field-edit-comment {
+    width: 70px;
+    padding: 0;
+  }
+  td.views-field-edit-comment {
+    padding: 0;
+    a {
+      margin: 0;
+    }
+    div.magical-modal-link {
+      display: inline-block;
+      margin: 0 5px 0 0;
+    }
+  }
+}
+.view-reference-views {
+  th.views-field-edit-comment {
+    width: 70px;
+    padding: 0;
+  }
+  td.views-field-edit-comment {
+    padding: 0;
+    a {
+      margin: 0;
+    }
+    div.magical-modal-link {
+      display: inline-block;
+      margin: 0 5px 0 0;
+    }
+  }
+}

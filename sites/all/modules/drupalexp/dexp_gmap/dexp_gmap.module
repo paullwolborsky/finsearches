@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * Implement hook_menu().
+ */
+function dexp_gmap_menu() {
+  $items = array();
+  $items['admin/drupalexp/dexp_gmap'] = array(
+      'title' => t('Google maps settings'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('dexp_gmap_admin_settings'),
+      'access arguments' => array('administer onthisdate settings'),
+      'type' => MENU_NORMAL_ITEM,
+  );  
+  return $items;
+}
+function dexp_gmap_admin_settings() {
+//  $form['dexp_gmap_address'] = array(
+//      '#type' => 'textfield',
+//      '#title' => t('Address '),
+//      '#description' => t('Input the address to show google maps'),
+//  );
+  $form['dexp_gmap_pages_init_action'] = array(
+      '#type' => 'radios',
+      '#title' => t('Enable animate on specific pages '),
+      '#options' => array(
+          'page_enable' => t('Load only on the listed pages.'),
+          'page_disable' => t('Load on every page except the listed pages.')
+      ),
+      '#default_value' => variable_get('dexp_gmap_pages_init_action', 'page_disable'),
+  );
+  $form['dexp_gmap_pages_list'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Pages'),
+      '#description' => t('List one page per line as Drupal paths.  The * character is a wildcard.  Example paths are "node/add/page" and "node/add/*".  Use <front> to match the front page.'),
+      '#default_value' => variable_get('dexp_gmap_pages_list','')
+  );
+  return system_settings_form($form);
+}
+
+/*
+ * Implement hook_init().
+ */
+
+function dexp_gmap_init() {
+  if (dexp_gmap_exclude_these_paths() != 1) {
+    $module_path = drupal_get_path('module', 'dexp_gmap');     
+      drupal_add_js("http://maps.google.com/maps/api/js?sensor=false");
+      drupal_add_js($module_path . '/js/jquery.gomap-1.3.2.js');
+      drupal_add_js($module_path . '/js/dexp_gmap.js');
+  }
+}
+/**
+ * Return TRUE if current path is disabled for animate
+ */
+function dexp_gmap_exclude_these_paths() {
+  $action = variable_get('dexp_gmap_pages_init_action', 'page_disable');
+  $page_list = variable_get('dexp_gmap_pages_list', '');
+
+  if (!empty($page_list)) {
+    // Retrieve Drupal alias for the current path (if exists).
+    $alias = drupal_get_path_alias($_GET['q']);
+
+    if (drupal_match_path($_GET['q'], $page_list) || drupal_match_path($alias, $page_list)) {
+      return ($action == 'page_disable' ? 1 : 0);
+    }
+  }
+
+  return ($action == 'page_disable' ? 0 : 1);
+}
+function dexp_gmap_form_alter( &$form, &$form_state, $form_id ){
+    if($form_id=="contact_site_form")
+     $form['name']['#attributes']['placeholder'] = t( 'Name (Required)' );
+    $form['mail']['#attributes']['placeholder'] = t( 'E-mail (Required)' );
+    $form['subject']['#attributes']['placeholder'] = t( 'Subject (Required)' );
+    $form['message']['#attributes']['placeholder'] = t( 'Message (Required)' );
+    $form['captcha_questions_answer_given']['#attributes']['placeholder'] = t( 'Are you human? 1+6=' );
+    $form['name']['#title']=Null;
+    $form['mail']['#title']=Null;
+    $form['subject']['#title']=Null;
+    $form['message']['#title']=Null;
+    $form['captcha_questions_answer_given']['#title']=Null;
+    
+}
+?>

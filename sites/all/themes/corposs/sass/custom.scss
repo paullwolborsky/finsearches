@@ -1,0 +1,135 @@
+/**
+ *SCSS file for custom styling
+ */
+.block-facetapi {
+  h3.block-title {
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .content {
+    display: none;
+    &.open {
+      display: block;
+    }
+    .item-list {
+      margin: 0 0 4px 0
+    }
+  }
+  select {
+    max-width: 100%;
+  }
+}
+
+
+/*** Blocks ***/
+h3.block-title {
+  position: relative;
+  margin: 20px 0 0 0;
+}
+.block-views {
+  margin: 30px 0 0 0;
+}
+
+/*** Labels ***/
+h2.title {
+	margin: 30px 0 0 0;
+}
+
+/*** Tables ***/
+table.views-table {
+  width: 100%;
+}
+td.views-field {
+  padding: 0 10px;
+}
+td.views-field-field-cover-image img {
+  max-width: none !important;
+}
+
+/*** Charts ***/
+.view-display-id-eva_asset_allocation_chart {
+	margin: 70px 0 0 0;
+}
+
+/*** Content ***/
+.content legend {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+/*** Widgets ***/
+.chosen-container {
+  //display: none !important;
+}
+
+.view-views-search {
+  .view-content {
+    display: none;
+  }
+  .pager {
+    display: none;
+  }
+}
+
+/*** Views ***/
+.views-submit-button {
+  button.my-views-filter-reset {
+    position: relative;
+    top: 11px;
+    left: 10px;
+  }
+}
+
+.view-comment-views {
+  th.views-field-edit-comment {
+    width: 70px;
+    padding: 0;
+  }
+  td.views-field-edit-comment {
+    padding: 0;
+    a {
+      margin: 0;
+    }
+    div.magical-modal-link {
+      display: inline-block;
+      margin: 0 5px 0 0;
+    }
+  }
+}
+
+.view-content-lists, .view-reference-views {
+  th.views-field-edit-node, td.views-field-view-node {
+    width: 70px;
+  }
+  td.views-field-edit-node, td.views-field-view-node {
+    padding: 0;
+    a {
+      margin: 0 5px;
+    }
+  }
+  td.views-field-field-tasks {
+    .tasks {
+      display: block;
+      position: absolute;
+      left: 10%;
+      width: 80%;
+      border: 2px solid #000;
+      border-radius: 10px;
+      padding: 5px;
+      top: 60px;
+      background-color: #FFF;
+      z-index: 10;
+      &.closed {
+        display: none;
+      }
+      .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+

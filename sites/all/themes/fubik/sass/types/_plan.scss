@@ -1,0 +1,159 @@
+/**
+ *Styles for Plans
+ */
+
+/**
+ *Edit screen
+ */
+.field-multiple-drag {
+  display: none;
+}
+#field-plan-size-history-values {
+  .field-name-field-date {
+    .form-wrapper {
+      .fieldset-wrapper {
+        padding-top: 0;
+        .form-type-date-popup {
+          float: none;
+          margin: 0 auto;
+          width: 100%;
+          label {
+            display: none;
+          }
+          input {
+            width: 100px;
+          }
+          .description {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+#edit-field-asset-allocation-history {
+  .field-multiple-table {
+    tbody {
+      tr.draggable {
+        width: 19.9%;
+        min-width: 300px;
+        float: left;
+        td {
+          padding: 10px 5px;
+          .field-name-field-aa-allocation-date {
+            width: auto;
+            .fieldset-wrapper {
+              padding-top: 0;
+              .date-padding {
+                padding: 10px 0;
+                width: 100%;
+                .form-item {
+                  float: none;
+                  margin: 0 auto;
+                  width: 200px;
+                  label {
+                    display: none;
+                  }
+                  .description {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+          .group-allocations {
+            .field-type-number-decimal {
+              width: 145px;
+              float: left;
+              input {
+                width: 50px;
+              }
+            }
+            .field-name-field-allocation-total {
+              width: 145px;
+              float: left;
+              margin-top: 2px;
+              margin-bottom: 2px;
+              padding-bottom: 4px;
+              padding-top: 5px;
+              input {
+                width: 50px;
+              }
+            }
+          }
+          .button-remove {
+            clear: both;
+            float: none;
+            text-align: center;
+            margin: 0 auto;
+            display: block;
+          }
+          @media all and (max-width: 1292px) {
+             width: 33.333%;
+          }
+          @media all and (max-width: 1000px) {
+             width: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+#edit-field-foia-history {
+  .field-multiple-table {
+    tbody {
+      tr.draggable {
+        width: 24.9%;
+        min-width: 300px;
+        float: left;
+        border-left: 1px solid #689afd;
+        &:first-child {
+          border-left: none;
+        }
+        .field-name-field-foia-date {
+          width: auto;
+          .fieldset-wrapper {
+            padding-top: 0;
+            .date-padding {
+              padding: 10px 0;
+              width: 100%;
+              .form-item {
+                float: none;
+                margin: 0 auto;
+                width: 100%;
+                label {
+                  display: none;
+                }
+                input {
+                  width: 100px;
+                }
+                .description {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+        .group-foia-contact {
+          margin: 0 5px 5px 5px;
+          .fieldset-wrapper {
+            padding-top: 0;
+            .form-wrapper {
+              margin-bottom: 5px;
+            }
+          }
+        }
+        /*
+        @media all and (max-width: 1292px) {
+           width: 33.333%;
+        }
+        @media all and (max-width: 1000px) {
+           width: 50%;
+        }
+        */
+      }
+    }
+  }
+}

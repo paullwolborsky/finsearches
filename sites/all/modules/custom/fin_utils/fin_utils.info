@@ -1,0 +1,9 @@
+name = FIN Utils
+description = a collection of utility view/form functions for Fin Searches
+core = 7.x
+package = Custom
+dependencies[] = ctools
+dependencies[] = views
+
+files[] = fin_utils.views.inc
+
