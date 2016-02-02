@@ -5,4 +5,9 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
+.idea
+
 db_backup
+
+sites/all/modules/devel_themer
+sites/all/modules/simplehtmldom
