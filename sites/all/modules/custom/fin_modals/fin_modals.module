@@ -490,14 +490,14 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
     //$node->plan_name = $parent_node->title;
     if ($type == 'contact') {
       if (arg(5)) {
-        if (arg(5) == 'field_consultants_hired' || arg(5) == 'field_consultant_contacts_embed') {
+        if (arg(5) == 'field_consultants_hired' || arg(5) == 'field_consultant_contacts_embed' || arg(5) == 'consultant-contact') {
           $paragraph = new ParagraphsItemEntity(array('field_name' => 'field_job_history', 'bundle' => 'consultant_contact'));
           $paragraph->is_new = TRUE;
-          if (arg(5) == 'field_consultant_contacts_embed') {
+          if (arg(5) == 'field_consultant_contacts_embed' || arg(5) == 'consultant-contact') {
             $paragraph->field_consultant_firm_er[$node->language][0]['target_id'] = arg(4);
           }
           $paragraph->setHostEntity('node', $node);
-        } elseif (arg(5) == 'field_plan_contacts_embed') {
+        } elseif (arg(5) == 'field_plan_contacts_embed' || arg(5) == 'plan-contact') {
           $paragraph = new ParagraphsItemEntity(array('field_name' => 'field_job_history', 'bundle' => 'plan_contact'));
           $paragraph->is_new = TRUE;
           $paragraph->field_plan_er[$node->language][0]['target_id'] = arg(4);
@@ -509,6 +509,10 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
           $paragraph->setHostEntity('node', $node);
         }
       }
+    } elseif ($type == 'mandate') {
+      $node->field_plan_er[$node->language][0]['target_id'] = arg(4);
+    } elseif ($type == 'office') {
+      $node->field_consultant_firm_er[$node->language][0]['target_id'] = arg(4);
     }
   }  
 
@@ -547,6 +551,11 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
       if (!empty($node->parent_nid) && $field == 'field_consultant_contacts_embed') {
         $contact_view = views_embed_view('reference_views', 'eva_plan_contact_edit', $node->parent_nid);
         $commands[] = ajax_command_replace('#edit-field-plan-contacts-embed', $contact_view);
+      }
+      if ($field == 'plan-contact' || $field == 'plan-mandate') {
+        ctools_add_js('ajax-responder');
+        $commands = array();
+        $commands[] = ctools_ajax_command_reload();
       }
     }
 

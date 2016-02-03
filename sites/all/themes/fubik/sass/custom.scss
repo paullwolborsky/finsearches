@@ -217,6 +217,14 @@ input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
   }
 }
 
+/*
+ *Disable plan view fieldset on plan creation
+ */
+body.page-node-add-plan {
+  .group-plan-contacts {
+    display: none;
+  }
+}
 
 .view-comment-views {
   th.views-field-edit-comment {
@@ -249,8 +257,4 @@ input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
       margin: 0 5px 0 0;
     }
   }
-}
-
-#edit-field-placement-policy-tr {
-  display: inline-block;
 }
