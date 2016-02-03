@@ -20,8 +20,8 @@
           data.addRow([$(this).find('.views-label').html(), parseInt($(this).find('.field-content').html())]);
         });
         var options = {
-          is3D: true,
-          chartArea: {left:0,top:0},
+          is3D: false,
+          chartArea: {left:0,top:0, width: '75%', height:'100%'},
           tooltip: {text:'percentage'}
         };
         $('.pie-chart').html("<div id='aa-chart'></div>");
