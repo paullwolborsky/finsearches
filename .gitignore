@@ -11,3 +11,12 @@ db_backup
 sites/all/modules/stage_file_proxy
 sites/all/modules/devel_themer
 sites/all/modules/simplehtmldom
+
+#local files specific to local environment - JWJ
+sites/all/themes/corposs/.ruby-gemset
+sites/all/themes/corposs/.ruby-version
+sites/all/themes/corposs/.sass-cache/
+sites/all/themes/corposs/Gemfile.lock
+sites/all/themes/fubik/.ruby-gemset
+sites/all/themes/fubik/.ruby-version
+sites/all/themes/fubik/.sass-cache/

@@ -47,11 +47,6 @@ td.views-field-field-cover-image img {
   max-width: none !important;
 }
 
-/*** Charts ***/
-.view-display-id-eva_asset_allocation_chart {
-	margin: 70px 0 0 0;
-}
-
 /*** Content ***/
 .content legend {
 	margin-top: 10px;
@@ -133,3 +128,31 @@ td.views-field-field-cover-image img {
 }
 
 
+/**
+ *Nodes
+ */
+
+body.node-type-plan {
+  #block-system-main {
+    .ds-below-right.seventy {
+      width: 60%;
+      .view-display-id-eva_asset_allocation_chart {
+        margin: 30px 0 0 0;
+        height: 300px;
+        width: 100%;
+        .view-content {
+          height: 100%;
+          .pie-chart {
+            height: 100%;
+            #aa-chart {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+    .ds-below-left.thirty {
+      width: 40%;
+    }  
+  }
+}
