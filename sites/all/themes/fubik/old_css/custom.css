@@ -1,0 +1,100 @@
+/********************/
+/*** Media Widget ***/
+/********************/
+
+.media-widget .preview {
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #6CF !important;
+	background: url(images/button-gray.png);
+}
+
+
+/*************/
+/*** Forms ***/
+/*************/
+
+.form-type-checkbox {
+	display: inline-block;
+	margin: 0 0 0 10px !important;
+}
+.form-type-radio {
+	display: inline-block;
+	margin: 0 10px 10px 0;
+}
+table input.fluid {
+	width: 100%;
+}
+tr.even {
+	background-color: #EEEEEE !important;
+}
+
+
+/***************/
+/*** Profile ***/
+/***************/
+
+/*.street-block {
+	display: none;
+}*/
+.form-item-field-location-und-0-thoroughfare, .form-item-field-location-und-0-premise {
+	display: none;
+}
+.form-item-field-location-und-0-administrative-area {
+	margin-top: 0;
+}
+.form-item-field-location-und-0-postal-code {
+	display: none;
+}
+
+
+/*******************/
+/*** Admin Pages ***/
+/*******************/
+
+.node-admin-page {
+	display: none;
+}
+.author-image-edit, .coauthor-image-edit {
+	width: 100px !important;
+	height: 100px !important;
+	margin: 0 auto 5px auto;
+}
+img {
+	width: inherit;
+	height: inherit;
+}
+.description {
+	right: -60px !important;
+	margin: 0 !important;
+}
+
+
+/*******************/
+/*** Edit Pages ***/
+/*******************/
+
+.field-name-field-aa-allocation-date {
+	width: 200px;
+}
+.field-name-field-aa-domestic-fixed-income, .field-name-field-aa-domestic-equities, .field-name-field-aa-alternative-strategies, .field-name-field-aa-hedge-fund-strategies, .field-name-field-aa-international-equities, .field-name-field-aa-intl-fixed-income, .field-name-field-aa-mutual-fund, .field-name-field-aa-private-equity, .field-name-field-aa-real-estate, .field-name-field-aa-real-assets, .field-name-field-aa-cash-other, .field-name-field-aa-balanced, .field-name-field-aa-global-equities, .field-name-field-aa-absolute-return, .field-name-field-aa-credit-opportunities, .field-name-field-aa-global-fixed-income, .field-name-field-aa-real-return, .field-name-field-aa-multi-asset, .field-name-field-aa-emerging-markets-equity, .field-name-field-aa-risk-parity, .field-name-field-aa-canadian-equities {
+	position: relative;
+	float: left;
+	margin: 0 30px 10px 0;
+	z-index: 50;
+}
+.form-item {
+	margin: 0 5px;
+}
+
+
+/*****************/
+/*** Workbench ***/
+/*****************/
+
+ul.links li {
+	padding: 0 5px !important;
+}
+.form-item-log {
+	display: none;
+}

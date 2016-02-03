@@ -1,0 +1,332 @@
+// Core
+button, 
+input[type="submit"], 
+input[type="button"]{
+  border: 0;
+  outline: none;
+}
+
+.btn{
+  display: inline-block;
+  .ie7-inline-block();
+  padding: 4px 14px;
+  font-size: @btnFontSize;
+  line-height: @baseLineHeight;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  .transition(all 300ms ease 0s);
+  background: @infoColor;
+  border: none;
+  color: @white;
+  .box-shadow(none);
+  text-shadow: none;
+  text-decoration: none;
+  .border-radius(0);
+  // Hover state
+  &:hover {
+	  color: @grayDark;
+    text-decoration: none;
+    background: @bghover_btnlarg;
+    .transition(background-position .1s linear);
+  }
+
+  // Focus state for keyboard and accessibility
+  &:focus {
+    .tab-focus();
+    outline: none;
+  }
+
+  // Active state
+  &.active,
+  &:active {
+	  background-color: @bghover_btnlarg;
+	  background-image: none;
+	  outline: 0;
+	  .box-shadow(none);
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+	cursor: default;
+	  background-color: @bghover_btnlarg;
+	  background-image: none;
+	  .box-shadow(none);
+  }
+
+  // Button default
+  &.btn-default{
+	 background: @infoColor;
+	  color: @white ;
+	  text-shadow: none;
+	  &:hover{
+		background: @bghover_btnlarg;
+	  color: @grayDark;
+	  }
+	  &:focus{
+		background: @bghover_btnlarg;
+	  color: @grayDark;
+	  }
+  }
+  // Button Trans
+  &.btn-trans{
+    background: none;
+    border-width: 2px;
+    &:hover{
+
+    }
+  }
+  // Button White
+  &.btn-white{
+      background:#fff;
+      color:#666;
+  }
+  // Button Readmore
+  &.btn-readmore{
+  }
+  &.btn-link-color{
+    background: @link_hover_color;
+  }
+}
+
+// Button Sizes
+// --------------------------------------------------
+
+// Large
+.btn-large,
+.btn-lg {
+  padding: 9px 25px;
+  font-size: 16px;
+  line-height: normal;
+  .border-radius(0px);
+  color: @white;
+  &:hover{
+    background: @bghover_btnlarg;
+    color: @grayDark;
+  }
+}
+.btn-large {
+  i{
+    font-size: 14px;
+  }
+}
+
+// Small
+.btn-xs {
+  padding: 3px 9px;
+  font-size: 12px;
+  line-height: 18px;
+}
+.btn-xs  {
+  [class^="icon-"],
+  [class^="fa-"]{
+    margin-top: 0;
+  }
+}
+
+// Mini
+.btn-mini {
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+// Block button
+.btn-block {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  .box-sizing(border-box);
+}
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+
+
+// Alternate buttons
+// --------------------------------------------------
+
+// Provide *some* extra contrast for those who can get it
+.btn-primary.active,
+.btn-warning.active,
+.btn-danger.active,
+.btn-success.active,
+.btn-info.active,
+.btn-inverse.active {
+  color: #fff;
+}
+// Set the backgrounds
+// -------------------------
+.btn {
+  // reset here as of 2.0.3 due to Recess property order
+  //border-color: #c5c5c5;
+  //border-color: rgba(0,0,0,.15) rgba(0,0,0,.15) rgba(0,0,0,.25);
+}
+.btn-primary ,.contact-form .btn-default{
+  background: @link_hover_color;
+  &:hover,
+  &:focus{
+    background: darken(@link_hover_color,10%);
+    color: @white;
+  }
+}
+
+// Warning appears are orange
+.btn-default {
+  background: #fff;
+  &:hover {
+    background: #fcfcfc;
+  }
+}
+.btn.form-submit {
+  color: @white;
+  background: @infoColor;
+
+  &:hover{
+    background: @bghover_btnlarg;
+    color: @grayDark;
+  }
+}
+.btn-warning {
+  background: @btnWarningBackgroundHighlight;
+   .box-shadow(0 4px #c17305);
+	&:hover{
+		  background:@btnWarningBackground;
+		  .box-shadow(0 2px #c17305);
+	}
+  &:focus{
+     .translate(0px,4px);
+	.box-shadow(0 0 #c17305);
+  }
+}
+// Danger and error appear as red
+.btn-danger {
+  background: @btnDangerBackgroundHighlight;
+  .box-shadow(0 4px #6d2018);
+
+  &:hover{
+    background: @btnDangerBackground;
+	 .box-shadow(0 2px #6d2018);
+  }
+  &:focus{
+	.translate(0px,4px);
+	.box-shadow(0 0 #6d2018);
+  }
+}
+// Success appears as green
+.btn-success {
+  background: @btnSuccessBackgroundHighlight;
+  .box-shadow(0 4px #3f7228);
+
+  &:hover{
+    .box-shadow(0 2px #3f7228);
+    background: @btnSuccessBackground;
+  }
+  &:focus{
+  .translate(0px,4px);
+  .box-shadow(0 0 #3f7228);
+  }
+}
+// Info appears as a neutral blue
+.btn-info {
+  background: @btnInfoBackgroundHighlight;
+   .box-shadow(0 4px #ac1a1a);
+  &:hover{
+    .box-shadow(0 2px #ac1a1a);
+    background: @btnInfoBackground;
+  }
+  &:focus{
+	.box-shadow(0 0 #ac1a1a);
+	.translate(0px,4px);
+  }
+}
+// Inverse appears as dark gray
+.btn-inverse {
+  .buttonBackground(@btnInverseBackground, @btnInverseBackgroundHighlight);
+}
+
+
+
+// Cross-browser Jank
+// --------------------------------------------------
+
+button.btn,
+input[type="submit"].btn {
+
+  // Firefox 3.6 only I believe
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  // IE7 has some default padding on button controls
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+
+  &.btn-large {
+    *padding-top: 7px;
+    *padding-bottom: 7px;
+  }
+  &.btn-small {
+    *padding-top: 3px;
+    *padding-bottom: 3px;
+  }
+  &.btn-mini {
+    *padding-top: 1px;
+    *padding-bottom: 1px;
+  }
+}
+
+.tp-button {
+    border-radius: 3px;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    font-family: arial,sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    height: auto;
+    letter-spacing: -1px;
+    line-height: 45px !important;
+    padding: 6px 13px 5px;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6) !important;
+    background-color: #CB1D1D;
+    background-repeat: repeat-x;
+    background-position: center top;
+    box-shadow: 0 3px 0 0 #7C1212;
+    text-decoration: none !important;
+    outline: none !important;
+    &:hover {
+      background-image: url("../images/g30.png");
+    }
+}
+.tp-button.type2 {
+  background-color: #049CDB;
+  box-shadow: 0 -2px 0 0 rgba(0, 0, 0, 0.2) inset;
+}
+.tp-button.type3 {
+    background-color: #FF7700;
+    box-shadow: 0 3px 0 0 #A34C00;
+}
+// Link buttons
+// --------------------------------------------------
+
+// Make a button look and behave like a link
+.btn-link{
+	border-color: transparent;
+  cursor: pointer;
+  color: #049cdb;
+  .border-radius(0);
+  &:focus{
+	color: #000000;
+  text-decoration: underline;
+  background-color: transparent;
+  }
+}
+#edit-actions {
+  #edit-preview {
+    margin-left: 10px;
+  }
+}

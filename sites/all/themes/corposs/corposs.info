@@ -1,0 +1,88 @@
+name = Corposs
+description = "Corposs - Responsive Multi-Purpose Drupal Theme"
+core = 7.x
+base theme = drupalexp
+
+regions[content] = Content
+regions[right_sidebar] = Right sidebar
+regions[left_sidebar] = Left sidebar
+
+regions[top_left] = Top Left
+regions[top_right] = Top Right
+regions[logo] = Logo
+regions[navigation] = Navigation
+regions[banner] = Banner
+regions[shortcode] = Shortcode
+
+regions[action] = Action
+regions[users] = Users
+regions[utility] = Utility
+
+regions[portfolio] = Portfolio
+regions[breadcrumb] = Breadcrumb
+regions[page_title] = Page Title
+
+regions[feature] = Feature
+regions[feature_first] = Feature First
+regions[feature_second] = Feature Second
+regions[feature_third] = Feature Third
+
+regions[latestworks] = Latest Works
+regions[testimonial] = Testimonial
+regions[clients] = Clients
+regions[teams] = Teams
+
+regions[bottom_first] = Bottom First
+regions[bottom_second] = Bottom Second
+regions[bottom_third] = Bottom Third
+regions[bottom_fourth] = Bottom Fourth
+
+regions[footer_first] = Footer First
+regions[footer_second] = Footer Second
+
+;Extra regions
+regions[search] = Search
+regions[user1] = User 1
+regions[user2] = User 2
+regions[user3] = User 3
+regions[user4] = User 4
+regions[user5] = User 5
+regions[user6] = User 6
+regions[user7] = User 7
+regions[user8] = User 8
+regions[user9] = User 9
+regions[user10] = User 10
+regions[user11] = User 11
+regions[user12] = User 12
+regions[user13] = User 13
+regions[user14] = User 14
+regions[user15] = User 15
+regions[user16] = User 16
+regions[user17] = User 17
+regions[user18] = User 18
+regions[user19] = User 19
+regions[user20] = User 20
+regions[user21] = User 21
+
+lessc[] = lessc/variables.less
+lessc[] = lessc/mixins.less
+lessc[] = lessc/fonts.less
+lessc[] = lessc/drupal.less
+lessc[] = lessc/style.less
+lessc[] = lessc/style-rtl.less
+lessc[] = lessc/buttons.less
+lessc[] = lessc/mainmenu.less
+lessc[] = lessc/portfolio.less
+lessc[] = lessc/module.less
+lessc[] = lessc/shortcode.less
+lessc[] = lessc/typography.less
+lessc[] = lessc/responsive.less
+lessc[] = lessc/slideshow.less
+
+
+stylesheets[all][] = assets/css/fonts.css
+stylesheets[all][] = assets/css/custom.css
+scripts[] = assets/js/corposs.js
+scripts[] = assets/js/custom.js
+
+settings[drupalexp_default_preset] = '0'

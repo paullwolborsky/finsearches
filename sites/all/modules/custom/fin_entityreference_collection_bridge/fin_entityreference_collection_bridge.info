@@ -1,0 +1,6 @@
+name = FIN custom EntityReference - Collection Bridge
+description = Custom module whose mission is to make Paragraph, Field Collections work with EntityReference Behaviors like Autofill and Limit Option
+version = 1.0.alpha
+core = 7.x
+package = Custom
+author = Paul Wolborsky

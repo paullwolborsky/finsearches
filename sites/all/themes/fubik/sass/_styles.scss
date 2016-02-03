@@ -1,0 +1,144 @@
+//@extend-elements
+//original selectors
+//.author-image-edit, .coauthor-image-edit
+%extend_1 {
+	width: 100px !important;
+	height: 100px !important;
+	margin: 0 auto 5px auto;
+}
+
+//original selectors
+//.field-name-field-aa-domestic-fixed-income, .field-name-field-aa-domestic-equities, .field-name-field-aa-alternative-strategies, .field-name-field-aa-hedge-fund-strategies, .field-name-field-aa-international-equities, .field-name-field-aa-intl-fixed-income, .field-name-field-aa-mutual-fund, .field-name-field-aa-private-equity, .field-name-field-aa-real-estate, .field-name-field-aa-real-assets, .field-name-field-aa-cash-other, .field-name-field-aa-balanced, .field-name-field-aa-global-equities, .field-name-field-aa-absolute-return, .field-name-field-aa-credit-opportunities, .field-name-field-aa-global-fixed-income, .field-name-field-aa-real-return, .field-name-field-aa-multi-asset, .field-name-field-aa-emerging-markets-equity, .field-name-field-aa-risk-parity, .field-name-field-aa-canadian-equities
+/*
+%extend_2 {
+	position: relative;
+	float: left;
+	margin: 0 30px 10px 0;
+	z-index: 50;
+}
+*/
+
+.form-type-checkbox {
+	display: inline-block;
+	margin: 0 0 0 10px !important;
+}
+.form-type-radio {
+	display: inline-block;
+	margin: 0 10px 10px 0;
+}
+.form-item-field-location-und-0-thoroughfare {
+	display: none;
+}
+.form-item-field-location-und-0-premise {
+	display: none;
+}
+.form-item-field-location-und-0-administrative-area {
+	margin-top: 0;
+}
+.form-item-field-location-und-0-postal-code {
+	display: none;
+}
+.node-admin-page {
+	display: none;
+}
+.author-image-edit {
+	@extend %extend_1;
+}
+.coauthor-image-edit {
+	@extend %extend_1;
+}
+img {
+	width: inherit;
+	height: inherit;
+}
+.description {
+	right: -60px !important;
+	margin: 0 !important;
+}
+.field-name-field-aa-allocation-date {
+	width: 200px;
+}
+.field-name-field-aa-domestic-fixed-income {
+	@extend %extend_2;
+}
+.field-name-field-aa-domestic-equities {
+	@extend %extend_2;
+}
+.field-name-field-aa-alternative-strategies {
+	@extend %extend_2;
+}
+.field-name-field-aa-hedge-fund-strategies {
+	@extend %extend_2;
+}
+.field-name-field-aa-international-equities {
+	@extend %extend_2;
+}
+.field-name-field-aa-intl-fixed-income {
+	@extend %extend_2;
+}
+.field-name-field-aa-mutual-fund {
+	@extend %extend_2;
+}
+.field-name-field-aa-private-equity {
+	@extend %extend_2;
+}
+.field-name-field-aa-real-estate {
+	@extend %extend_2;
+}
+.field-name-field-aa-real-assets {
+	@extend %extend_2;
+}
+.field-name-field-aa-cash-other {
+	@extend %extend_2;
+}
+.field-name-field-aa-balanced {
+	@extend %extend_2;
+}
+.field-name-field-aa-global-equities {
+	@extend %extend_2;
+}
+.field-name-field-aa-absolute-return {
+	@extend %extend_2;
+}
+.field-name-field-aa-credit-opportunities {
+	@extend %extend_2;
+}
+.field-name-field-aa-global-fixed-income {
+	@extend %extend_2;
+}
+.field-name-field-aa-real-return {
+	@extend %extend_2;
+}
+.field-name-field-aa-multi-asset {
+	@extend %extend_2;
+}
+.field-name-field-aa-emerging-markets-equity {
+	@extend %extend_2;
+}
+.field-name-field-aa-risk-parity {
+	@extend %extend_2;
+}
+.field-name-field-aa-canadian-equities {
+	@extend %extend_2;
+}
+.form-item {
+	margin: 0 5px;
+}
+.form-item-log {
+	display: none;
+}
+.media-widget .preview {
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #6cf !important;
+	background: url(images/button-gray.png);
+}
+table input.fluid {
+	width: 100%;
+}
+tr.even {
+	background-color: #eee !important;
+}
+ul.links li {
+	padding: 0 5px !important;
+}

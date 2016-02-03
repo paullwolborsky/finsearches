@@ -1,0 +1,4 @@
+name = "Fin Cron"
+description = "Custom Cron code"
+package = "Custom"
+core = 7.x

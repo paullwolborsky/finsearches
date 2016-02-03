@@ -1,0 +1,734 @@
+//@extend-elements
+//original selectors
+//table.rules-overview-table a.action, ul.links li.revert a, ul.links li.configure a, ul.links li.clone a, ul.links li.export a, ul.links li.enable a, ul.links li.disable a, ul.links li.flags_edit a, ul.links li.flags_delete a, ul.links li.flags_export a, .field-collection-view-links li.edit a, .field-collection-view-links li.delete a, .action-links.action-links-field-collection-add a, ul.links li.edit a, ul.links li.delete a, ul.links li.devel a, ul.links li.view a, a.action-add, a.action-analyze, a.action-clone, a.action-configure, a.action-delete, a.action-devel, a.action-edit, a.action-export, a.action-revert, a.action-table, a.action-view, td.views-field-delete-node a, td.views-field-cancel-node a, td.views-field-delete a, td.views-field-devel-node a, td.views-field-edit-node a, td.views-field-edit-term a, td.views-field-edit a, td.views-field-view-node a, td.views-field-view-user a, td.views-field-devel-user a, td.views-field-view a, a.action-top
+%extend_1 {
+	background-image: url(../images/action-icons.png);
+	background-repeat: no-repeat;
+	padding-left: 22px;
+}
+
+//original selectors
+//body.page-admin-config-workflow-rules-links ul.rules-operations-add.action-links li a, body.page-admin-config-workflow-rules-reaction-manage ul.rules-operations-add.action-links li a
+%extend_2 {
+	display: block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-bottom: 4px;
+	padding-top: 5px;
+}
+
+//original selectors
+//body.page-admin-config-workflow-rules-links ul.rules-operations.action-links li a, body.page-admin-config-workflow-rules-reaction-manage ul.rules-operations.action-links li a
+%extend_3 {
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 0;
+	display: inline;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 0 0 transparent;
+	color: #008eb1;
+	font-size: 13px;
+}
+
+//original selectors
+//.filter-wrapper .form-item, div.teaser-checkbox .form-item, .form-item .form-item
+%extend_4 {
+	border: 0 none;
+	margin: 0;
+	padding: 5px 0;
+}
+
+//original selectors
+//table td, table th
+%extend_5 {
+	border: 0 none;
+	padding: 8px 10px;
+	vertical-align: middle;
+}
+
+//original selectors
+//.path-admin-config-development-strongarm span.icon, .path-admin-config-user-interface-itoggle span.icon, .path-admin-config-workflow-subs span.icon, .path-admin-content-subscription span.icon, .path-admin-structure-subscriptions span.icon, .path-admin-structure-messages span.icon, .path-admin-config-content-fivestar span.icon, .path-admin-structure-mark span.icon, .path-admin-structure-flags span.icon, .path-admin-structure-file-types span.icon, .path-admin-structure-block-types span.icon, .page-admin-content-webform span.icon, .path-admin-config-content-webform span.icon, .page-admin-content-blocks span.icon, .page .page-admin-modules span.icon, h1.path-admin-dashboard span.icon, .path-dashboard span.icon, .path-admin-advanced_help- span.icon, .path-admin-content-media span.icon, .path-admin-config-media-browser span.icon, .path-admin-config-workflow-rules span.icon, .path-admin-structure-profiles span.icon, .path-admin-structure-panels span.icon, .path-admin-structure-mini-panels span.icon, .path-admin-structure-views span.icon, .path-admin-structure-views- span.icon, h1.path-admin-workbench span.icon, h1.path-admin-config-workbench span.icon, .path-admin-structure-features span.icon, .path-admin-structure-field-collections span.icon, .path-admin-structure-context span.icon, .path-admin-config-administration-admin-menu span.icon, .path-admin-config-administration-admin_menu span.icon, .path-admin-config-user-interface-modulefilter span.icon
+%extend_6 {
+	background-color: transparent;
+	background-image: url(../images/page-icons.png);
+	background-repeat: no-repeat;
+	display: block;
+	height: 30px;
+	width: 30px;
+}
+
+
+body {
+	min-width: 1000px;
+	&.with-local-tasks #page-title div.contextual-links-wrapper {
+		top: 62px;
+	}
+	&.page-admin-config-workflow-rules-links ul {
+		&.rules-operations-add.action-links li {
+			margin-right: 10px;
+			a {
+				@extend %extend_2;
+			}
+		}
+		&.rules-operations.action-links li a {
+			@extend %extend_3;
+		}
+	}
+	&.page-admin-config-workflow-rules-reaction-manage ul {
+		&.rules-operations-add.action-links li {
+			margin-right: 10px;
+			a {
+				@extend %extend_2;
+			}
+		}
+		&.rules-operations.action-links li a {
+			@extend %extend_3;
+		}
+	}
+}
+#main-content {
+	width: 96%;
+	position: relative;
+	float: left;
+	margin: 0 2%;
+}
+.sidebar {
+	width: 200px;
+	float: left;
+	position: relative;
+}
+.first_sidebar {
+	margin-left: -100%;
+	right: 200px;
+}
+.second_sidebar {
+	margin-right: -200px;
+}
+#footer {
+	margin: 10px 0 20px;
+}
+div {
+	&.view-header {
+		padding: 2px 5px 4px;
+	}
+	&.views-displays {
+		.views-ui-display-tab-bucket.pager a span {
+			color: #59a;
+		}
+		.pager a {
+			color: #59a;
+		}
+	}
+	&.contextual-links-region {
+		position: relative;
+	}
+	&.messages {
+		background-repeat: no-repeat;
+		background-position: 8px 8px;
+		padding: 10px 10px 10px 44px;
+		&.status {
+			background-image: url(/misc/message-24-ok.png);
+		}
+		&.warning {
+			background-image: url(/misc/message-24-warning.png);
+		}
+		&.error {
+			background-image: url(/misc/message-24-error.png);
+		}
+	}
+	&.teaser-checkbox .form-item {
+		@extend %extend_4;
+	}
+	&.view div.view-header {
+		padding: 5px 10px 10px;
+	}
+}
+table {
+	td {
+		@extend %extend_5;
+	}
+	th {
+		@extend %extend_5;
+		text-transform: uppercase;
+	}
+	tr {
+		&.odd td.active {
+			background-color: #e8e8e8;
+		}
+		&.even td.active {
+			background-color: #f2f2f2;
+		}
+	}
+	&.rules-overview-table a.action {
+		@extend %extend_1;
+		&.delete {
+			background-position: 0 -100px;
+		}
+		&.disable {
+			background-position: 0 -354px;
+		}
+		&.enable {
+			background-position: 0 -314px;
+		}
+		&.export {
+			background-position: 0 -164px;
+		}
+		&.revert {
+			background-position: 0 -198px;
+		}
+		&.clone {
+			background-position: 0 -234px;
+		}
+		&.translate {
+			background-position: 0 -273px;
+		}
+	}
+}
+.action-links {
+	&.action-links-field-collection-add a {
+		@extend %extend_1;
+		margin-right: 10px;
+		background-position: 0 -67px;
+		background-color: transparent;
+		//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		text-shadow: 0 0 0 transparent;
+		-moz-border-radius: 0;
+		-webkit-border-radius: 0;
+		//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+		border-radius: 0;
+		padding: 0;
+		margin: 0;
+		color: #008eb1;
+		padding: 1px 0 1px 20px;
+		&:hover {
+			background-color: transparent;
+		}
+	}
+	a:hover {
+		background-color: #6ac;
+	}
+}
+a {
+	&.action-add {
+		@extend %extend_1;
+		margin-right: 10px;
+		background-position: 0 -67px;
+	}
+	&.action-analyze {
+		@extend %extend_1;
+		background-position: 0 -428px;
+	}
+	&.action-clone {
+		@extend %extend_1;
+		background-position: 0 -234px;
+	}
+	&.action-configure {
+		@extend %extend_1;
+		background-position: 0 -474px;
+	}
+	&.action-delete {
+		@extend %extend_1;
+		background-position: 0 -100px;
+	}
+	&.action-devel {
+		@extend %extend_1;
+	}
+	&.action-edit {
+		@extend %extend_1;
+		background-position: 0 1px;
+	}
+	&.action-export {
+		@extend %extend_1;
+		background-position: 0 -164px;
+	}
+	&.action-revert {
+		@extend %extend_1;
+		background-position: 0 -198px;
+	}
+	&.action-table {
+		@extend %extend_1;
+		background-position: 0 -392px;
+	}
+	&.action-view {
+		@extend %extend_1;
+		background-position: 0 -32px;
+		margin-right: 10px;
+	}
+	&.action-top {
+		@extend %extend_1;
+		background-position: 0 -130px;
+		float: right;
+	}
+	&.module-link {
+		display: block;
+		padding: 1px 0 1px 20px;
+		white-space: nowrap;
+	}
+	&.module-link-help {
+		background: url(/misc/help.png) no-repeat scroll 0 50% transparent;
+	}
+	&.module-link-permissions {
+		background: url(/misc/permissions.png) no-repeat scroll 0 50% transparent;
+	}
+	&.module-link-configure {
+		background: url(/misc/configure.png) no-repeat scroll 0 50% transparent;
+	}
+	&.admin-conflict {
+		&:link {
+			background: #ff0;
+		}
+		&:visited {
+			background: #ff0;
+		}
+	}
+}
+td {
+	&.views-empty {
+		margin-top: 10px;
+		padding: 10px 0 10px 38px;
+		//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		text-shadow: 1px 1px 1px #ccc;
+		background: url(../images/ico-warning.png) 8px 10px no-repeat;
+	}
+	&.views-field-delete-node a {
+		@extend %extend_1;
+		background-position: 0 -100px;
+	}
+	&.views-field-cancel-node a {
+		@extend %extend_1;
+		background-position: 0 -100px;
+	}
+	&.views-field-delete a {
+		@extend %extend_1;
+		background-position: 0 -100px;
+	}
+	&.views-field-devel-node a {
+		@extend %extend_1;
+		background-position: 0 -32px;
+	}
+	&.views-field-edit-node a {
+		@extend %extend_1;
+		background-position: 0 1px;
+	}
+	&.views-field-edit-term a {
+		@extend %extend_1;
+		background-position: 0 1px;
+	}
+	&.views-field-edit a {
+		@extend %extend_1;
+		background-position: 0 1px;
+	}
+	&.views-field-view-node a {
+		@extend %extend_1;
+		background-position: 0 -32px;
+	}
+	&.views-field-view-user a {
+		@extend %extend_1;
+	}
+	&.views-field-devel-user a {
+		@extend %extend_1;
+		background-position: 0 -32px;
+	}
+	&.views-field-view a {
+		@extend %extend_1;
+		background-position: 0 -32px;
+	}
+}
+#overlay {
+	display: table;
+	margin: 0 auto;
+	min-height: 100px;
+	min-width: 700px;
+	padding: 0.2em 26px 2em 0.2em;
+	position: relative;
+	width: 93%;
+}
+#edit-display-settings-title {
+	color: #59a;
+}
+.contextual-links-region {
+	outline: none;
+	position: static;
+}
+.secondary-tabs {
+	z-index: 100;
+}
+.pager {
+	a {
+		//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		text-shadow: 1px 1px 1px #fff;
+	}
+	span {
+		//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		text-shadow: 1px 1px 1px #fff;
+	}
+}
+#admin-menu {
+	margin: 0;
+	padding: 0;
+	.admin-menu-search {
+		.form-item {
+			border: 0 none;
+		}
+		input {
+			width: 184px;
+		}
+	}
+}
+.form-item {
+	.form-item {
+		@extend %extend_4;
+	}
+	label {
+		color: #666;
+	}
+}
+tr {
+	&.odd {
+		background-color: #f3f3f3;
+	}
+	&.even {
+		background-color: #fff;
+	}
+}
+h1 {
+	&.path-admin-dashboard span.icon {
+		@extend %extend_6;
+	}
+	&.path-admin-workbench span.icon {
+		@extend %extend_6;
+	}
+	&.path-admin-config-workbench span.icon {
+		@extend %extend_6;
+		background-position: 0 -52px;
+	}
+}
+#context-blockform {
+	td {
+		vertical-align: top;
+	}
+	.context-blockform-selector {
+		height: 70em;
+	}
+}
+.fubik-no-sidebars #main-content {
+	float: none;
+	width: auto;
+	margin: 0 30px;
+}
+.fubik-sidebar-first #page {
+	padding-left: 230px;
+}
+.fubik-two-sidebars #page {
+	padding-left: 230px;
+	padding-right: 230px;
+}
+.fubik-sidebar-second #page {
+	padding-right: 230px;
+}
+ul.links li {
+	&.revert a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 -198px;
+	}
+	&.configure a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 -474px;
+	}
+	&.clone a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 -234px;
+	}
+	&.export a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 -164px;
+	}
+	&.enable a {
+		@extend %extend_1;
+		background-position: 0 -314px;
+	}
+	&.disable a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 -354px;
+	}
+	&.flags_edit a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 1px;
+	}
+	&.flags_delete a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 -100px;
+	}
+	&.flags_export a {
+		@extend %extend_1;
+		background-position: 0 -164px;
+	}
+	&.edit a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 1px;
+	}
+	&.delete a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 -100px;
+	}
+	&.devel a {
+		@extend %extend_1;
+	}
+	&.view a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 -32px;
+	}
+	&.translate a {
+		background-position: 0 -273px;
+	}
+}
+.field-collection-view-links li {
+	&.edit a {
+		@extend %extend_1;
+		margin-right: 8px;
+		background-position: 0 1px;
+		padding-top: 2px;
+		padding-bottom: 2px;
+	}
+	&.delete a {
+		@extend %extend_1;
+		background-position: 0 -100px;
+		padding-top: 2px;
+		padding-bottom: 2px;
+	}
+}
+html.js {
+	input {
+		&.form-autocomplete {
+			//width: 95%;
+		}
+		&.throbbing {
+			background-position: 100% -2px;
+		}
+	}
+	#edit-view-displays-wrapper div.form-item-show-tagged-with input.form-autocomplete {
+		width: 160px;
+	}
+}
+.views-ui-dialog .ui-dialog-titlebar-close {
+	border-color: #ccc;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: none;
+	right: 0;
+	top: 0;
+	background: url(../../rubik/images/buttons.png) no-repeat scroll -4000px 50% #444;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 5px 5px 5px 5px;
+	display: block;
+	height: 20px;
+	margin: 5px;
+	padding: 0;
+	position: absolute;
+	width: 20px;
+}
+.dependent-options.form-item.form-item-menu-context {
+	position: absolute;
+	right: 22px;
+	width: 160px;
+}
+.views-display-settings .ctools-toggle {
+	color: #59a;
+}
+#dashboard ul.action-links a {
+	float: left;
+}
+.theme-selector img {
+	width: 110px;
+}
+.vertical-tabs .vertical-tabs-panes .vertical-tabs-pane div.fieldset-content legend {
+	display: block;
+}
+.page-content #node-type-form div.form-item.form-item-name div.description {
+	margin: 0 0 -50px;
+}
+.primary-tabs a {
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 1px 1px 1px #fff;
+}
+#admin-menu-wrapper div.toolbar-shortcuts ul.menu {
+	padding: 1px 0 6px;
+	li {
+		border-bottom: 0 transparent;
+	}
+}
+.filter-wrapper .form-item {
+	@extend %extend_4;
+}
+.field-collection-container ul.action-links-field-collection-add {
+	margin: 1em 0 1em 2em;
+}
+#media-browser-tabset div.form-actions {
+	background: none repeat scroll 0 0 #eee;
+	border: 1px solid #ddd;
+	padding: 9px;
+	a.fake-submit {
+		margin-right: 5px;
+		//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		box-shadow: 0 1px 1px #ddd;
+		padding: 2px 10px 2px 25px;
+		background: url(../../rubik/images/buttons.png) no-repeat scroll -2401px 50% #fff;
+		border-color: #ddd #ddd #ccc;
+		border-style: solid;
+		border-width: 1px;
+		color: #333;
+		cursor: pointer;
+		font-weight: normal;
+		text-align: center;
+		font-family: Verdana, Arial, sans-serif;
+		font-size: 1em;
+	}
+}
+#block-system-help div.block-content {
+	background: url(../images/ico-help.png) 7px center no-repeat;
+	padding-left: 40px;
+}
+.path-admin-config-development-strongarm span.icon {
+	@extend %extend_6;
+	background-position: 0 -1199px;
+}
+.path-admin-config-user-interface-itoggle span.icon {
+	@extend %extend_6;
+	background-position: 0 -1250px;
+}
+.path-admin-config-workflow-subs span.icon {
+	@extend %extend_6;
+	background-position: 0 -1152px;
+}
+.path-admin-content-subscription span.icon {
+	@extend %extend_6;
+	background-position: 0 -1152px;
+}
+.path-admin-structure-subscriptions span.icon {
+	@extend %extend_6;
+	background-position: 0 -1152px;
+}
+.path-admin-structure-messages span.icon {
+	@extend %extend_6;
+	background-position: 0 -1103px;
+}
+.path-admin-config-content-fivestar span.icon {
+	@extend %extend_6;
+	background-position: 0 -1049px;
+}
+.path-admin-structure-mark span.icon {
+	@extend %extend_6;
+	background-position: 0 -951px;
+}
+.path-admin-structure-flags span.icon {
+	@extend %extend_6;
+	background-position: 0 -898px;
+}
+.path-admin-structure-file-types span.icon {
+	@extend %extend_6;
+	background-position: 0 -999px;
+}
+.path-admin-structure-block-types span.icon {
+	@extend %extend_6;
+	background-position: 0 -643px;
+}
+.page-admin-content-webform span.icon {
+	@extend %extend_6;
+	background-position: 0 -752px;
+}
+.path-admin-config-content-webform span.icon {
+	@extend %extend_6;
+	background-position: 0 -752px;
+}
+.page-admin-content-blocks span.icon {
+	@extend %extend_6;
+	background-position: 0 -643px;
+}
+.page .page-admin-modules span.icon {
+	@extend %extend_6;
+	background-image: url(../../rubik/images/icons.png);
+	background-position: -210px -30px;
+}
+.path-dashboard span.icon {
+	@extend %extend_6;
+	background-position: 0 -700px !important;
+}
+.path-admin-advanced_help- span.icon {
+	@extend %extend_6;
+	background-position: 0 -525px;
+}
+.path-admin-content-media span.icon {
+	@extend %extend_6;
+	background-position: 0 -466px;
+}
+.path-admin-config-media-browser span.icon {
+	@extend %extend_6;
+	background-position: 0 -466px;
+}
+.path-admin-config-workflow-rules span.icon {
+	@extend %extend_6;
+	background-position: 0 -348px;
+}
+.path-admin-structure-profiles span.icon {
+	@extend %extend_6;
+	background-position: 0 -111px;
+}
+.path-admin-structure-panels span.icon {
+	@extend %extend_6;
+	background-position: 0 -288px;
+}
+.path-admin-structure-mini-panels span.icon {
+	@extend %extend_6;
+	background-position: 0 -230px;
+}
+.path-admin-structure-views span.icon {
+	@extend %extend_6;
+	background-position: 0 2px;
+}
+.path-admin-structure-views- span.icon {
+	@extend %extend_6;
+	background-position: 0 2px;
+}
+.path-admin-structure-features span.icon {
+	@extend %extend_6;
+	background-position: 0 -406px;
+}
+.path-admin-structure-field-collections span.icon {
+	@extend %extend_6;
+	background-position: 0 -582px;
+}
+.path-admin-structure-context span.icon {
+	@extend %extend_6;
+	background-position: 0 -169px;
+}
+.path-admin-config-administration-admin-menu span.icon {
+	@extend %extend_6;
+	background-position: 0 -848px;
+}
+.path-admin-config-administration-admin_menu span.icon {
+	@extend %extend_6;
+	background-position: 0 -848px;
+}
+.path-admin-config-user-interface-modulefilter span.icon {
+	@extend %extend_6;
+	background-position: 0 -802px;
+}
+.path-admin-dashboard span.icon {
+	background-position: 0 -700px !important;
+}
+.path-admin-workbench span.icon {
+	background-position: 0 -52px;
+}
+span.admin-conflict {
+	background: #ff0;
+}

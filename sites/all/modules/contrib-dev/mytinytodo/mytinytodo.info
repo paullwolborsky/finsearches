@@ -1,0 +1,19 @@
+name = myTinyTodo
+description = A simple way to manage your todo list.
+package = myTinyTodo
+configure = admin/config/content/mytinytodo
+core = 7.x
+
+files[] = views/handlers/views_handler_field_tags.inc
+files[] = views/handlers/views_handler_field_todo_priority.inc
+files[] = views/handlers/views_handler_field_duedate.inc
+files[] = views/handlers/views_handler_filter_duedate.inc
+files[] = views/handlers/views_handler_filter_tags.inc
+files[] = views/handlers/views_handler_sort_duedate.inc
+
+; Information added by Drupal.org packaging script on 2015-08-30
+version = "7.x-1.1+14-dev"
+core = "7.x"
+project = "mytinytodo"
+datestamp = "1440962651"
+

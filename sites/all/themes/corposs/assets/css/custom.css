@@ -1,0 +1,145 @@
+/**
+ *SCSS file for custom styling
+ */
+/* line 5, ../../sass/custom.scss */
+.block-facetapi h3.block-title {
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* line 10, ../../sass/custom.scss */
+.block-facetapi .content {
+  display: none;
+}
+/* line 12, ../../sass/custom.scss */
+.block-facetapi .content.open {
+  display: block;
+}
+/* line 15, ../../sass/custom.scss */
+.block-facetapi .content .item-list {
+  margin: 0 0 4px 0;
+}
+/* line 19, ../../sass/custom.scss */
+.block-facetapi select {
+  max-width: 100%;
+}
+
+/*** Blocks ***/
+/* line 26, ../../sass/custom.scss */
+h3.block-title {
+  position: relative;
+  margin: 20px 0 0 0;
+}
+
+/* line 30, ../../sass/custom.scss */
+.block-views {
+  margin: 30px 0 0 0;
+}
+
+/*** Labels ***/
+/* line 35, ../../sass/custom.scss */
+h2.title {
+  margin: 30px 0 0 0;
+}
+
+/*** Tables ***/
+/* line 40, ../../sass/custom.scss */
+table.views-table {
+  width: 100%;
+}
+
+/* line 43, ../../sass/custom.scss */
+td.views-field {
+  padding: 0 10px;
+}
+
+/* line 46, ../../sass/custom.scss */
+td.views-field-field-cover-image img {
+  max-width: none !important;
+}
+
+/*** Charts ***/
+/* line 51, ../../sass/custom.scss */
+.view-display-id-eva_asset_allocation_chart {
+  margin: 70px 0 0 0;
+}
+
+/*** Content ***/
+/* line 56, ../../sass/custom.scss */
+.content legend {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/*** Widgets ***/
+/* line 67, ../../sass/custom.scss */
+.view-views-search .view-content {
+  display: none;
+}
+/* line 70, ../../sass/custom.scss */
+.view-views-search .pager {
+  display: none;
+}
+
+/*** Views ***/
+/* line 77, ../../sass/custom.scss */
+.views-submit-button button.my-views-filter-reset {
+  position: relative;
+  top: 11px;
+  left: 10px;
+}
+
+/* line 85, ../../sass/custom.scss */
+.view-comment-views th.views-field-edit-comment {
+  width: 70px;
+  padding: 0;
+}
+/* line 89, ../../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment {
+  padding: 0;
+}
+/* line 91, ../../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment a {
+  margin: 0;
+}
+/* line 94, ../../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment div.magical-modal-link {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+
+/* line 102, ../../sass/custom.scss */
+.view-content-lists th.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views th.views-field-edit-node, .view-reference-views td.views-field-view-node {
+  width: 70px;
+}
+/* line 105, ../../sass/custom.scss */
+.view-content-lists td.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views td.views-field-edit-node, .view-reference-views td.views-field-view-node {
+  padding: 0;
+}
+/* line 107, ../../sass/custom.scss */
+.view-content-lists td.views-field-edit-node a, .view-content-lists td.views-field-view-node a, .view-reference-views td.views-field-edit-node a, .view-reference-views td.views-field-view-node a {
+  margin: 0 5px;
+}
+/* line 112, ../../sass/custom.scss */
+.view-content-lists td.views-field-field-tasks .tasks, .view-reference-views td.views-field-field-tasks .tasks {
+  display: block;
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 5px;
+  top: 60px;
+  background-color: #FFF;
+  z-index: 10;
+}
+/* line 123, ../../sass/custom.scss */
+.view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
+  display: none;
+}
+/* line 126, ../../sass/custom.scss */
+.view-content-lists td.views-field-field-tasks .tasks .close, .view-reference-views td.views-field-field-tasks .tasks .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -1,0 +1,17 @@
+/**
+ *Styles for the mandate content type
+ */
+
+/**
+ *Edit screens
+ */
+#edit-field-managed-amount {
+  position: relative;
+  top: -45px;
+  height: 35px;
+  .form-item {
+    position: absolute;
+    right: 0;
+  }
+}
+

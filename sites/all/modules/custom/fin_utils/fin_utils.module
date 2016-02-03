@@ -1,0 +1,143 @@
+<?php
+
+/*
+ * Implementation of hook_views_post_execute
+ *
+ * This hook grabs field collection managers hired major/minor values (or parent)
+ * and stuff 2 other fields in the field collection, field_special_major_minor 1 & 2
+ * These are hidden fields, set to a simple taxonomy select list and are added in
+ * all view displays that display major/minor styles.
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function fin_utils_views_api() {
+  return array(
+    'api' => '3',
+  );
+}
+
+//function fin_utils_field_views_data_views_data_alter(&$data, $field) {
+//function fin_utils_field_views_data_alter(&$result, $field, $module) {
+//debugBreak();
+//}
+
+function fin_utils_myfunction() {
+//function fin_utils_views_query_alter(&$view, &$query) {
+//_views_post_build(&$view) {
+//if ($view->current_display=="manager_plans" || $view->current_display=="block_1")  {
+if (1==0) {
+	debugBreak();
+}
+// Uh oh
+//debugBreak();
+/*
+	SQL for Plan Managers
+
+SELECT node.title AS node_title, node.nid AS nid, field_collection_item_field_data_field_managers_hired.item_id AS field_collection_item_field_data_field_managers_hired_item_i, taxonomy_term_data_taxonomy_term_hierarchy.name AS taxonomy_term_data_taxonomy_term_hierarchy_name, taxonomy_term_data_taxonomy_term_hierarchy.vid AS taxonomy_term_data_taxonomy_term_hierarchy_vid, taxonomy_term_data_taxonomy_term_hierarchy.tid AS taxonomy_term_data_taxonomy_term_hierarchy_tid, taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabulary.machine_name AS taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabul, taxonomy_term_data_node.name AS taxonomy_term_data_node_name, taxonomy_term_data_node.vid AS taxonomy_term_data_node_vid, taxonomy_term_data_node.tid AS taxonomy_term_data_node_tid, taxonomy_term_data_node__taxonomy_vocabulary.machine_name AS taxonomy_term_data_node__taxonomy_vocabulary_machine_name, node.created AS node_created, field_data_field_date.field_date_value AS field_data_field_date_field_date_value, 'field_collection_item' AS field_data_field_geographic_tr_field_collection_item_entity_, 'field_collection_item' AS field_data_field_amount_field_collection_item_entity_type
+FROM 
+{node} node
+LEFT JOIN (SELECT td.*, tn.nid AS nid
+FROM 
+{taxonomy_term_data} td
+LEFT JOIN {taxonomy_vocabulary} tv ON td.vid = tv.vid
+LEFT JOIN {taxonomy_index} tn ON tn.tid = td.tid
+WHERE  (tv.machine_name IN  ('major_minor_styles')) ) taxonomy_term_data_node ON node.nid = taxonomy_term_data_node.nid
+LEFT JOIN {taxonomy_term_hierarchy} taxonomy_term_data_node__taxonomy_term_hierarchy ON taxonomy_term_data_node.tid = taxonomy_term_data_node__taxonomy_term_hierarchy.tid
+LEFT JOIN {taxonomy_term_data} taxonomy_term_data_taxonomy_term_hierarchy ON taxonomy_term_data_node__taxonomy_term_hierarchy.parent = taxonomy_term_data_taxonomy_term_hierarchy.tid
+LEFT JOIN {field_data_field_managers_hired} field_data_field_managers_hired ON node.nid = field_data_field_managers_hired.entity_id AND (field_data_field_managers_hired.entity_type = 'node' AND field_data_field_managers_hired.deleted = '0')
+LEFT JOIN {field_collection_item} field_collection_item_field_data_field_managers_hired ON field_data_field_managers_hired.field_managers_hired_value = field_collection_item_field_data_field_managers_hired.item_id
+LEFT JOIN {field_data_field_manager_firm_er} field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er ON field_collection_item_field_data_field_managers_hired.item_id = field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.entity_id AND (field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.entity_type = 'field_collection_item' AND field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.deleted = '0')
+LEFT JOIN {node} node_field_data_field_manager_firm_er ON field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.field_manager_firm_er_target_id = node_field_data_field_manager_firm_er.nid
+LEFT JOIN {taxonomy_vocabulary} taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabulary ON taxonomy_term_data_taxonomy_term_hierarchy.vid = taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabulary.vid
+LEFT JOIN {taxonomy_vocabulary} taxonomy_term_data_node__taxonomy_vocabulary ON taxonomy_term_data_node.vid = taxonomy_term_data_node__taxonomy_vocabulary.vid
+LEFT JOIN {field_data_field_date} field_data_field_date ON node.nid = field_data_field_date.entity_id AND (field_data_field_date.entity_type = 'node' AND field_data_field_date.deleted = '0')
+WHERE (( (node_field_data_field_manager_firm_er.nid = '6794' ) )AND(( (node.status = '1') AND (node.type IN  ('plan')) )))
+ORDER BY node_created DESC, field_data_field_date_field_date_value ASC	
+
+/////////////////////////////////////////////////////////////
+
+SELECT node.title AS node_title, node.nid AS nid, field_collection_item_field_data_field_managers_hired.item_id AS field_collection_item_field_data_field_managers_hired_item_i, taxonomy_term_data_taxonomy_term_hierarchy.name AS taxonomy_term_data_taxonomy_term_hierarchy_name, taxonomy_term_data_taxonomy_term_hierarchy.vid AS taxonomy_term_data_taxonomy_term_hierarchy_vid, taxonomy_term_data_taxonomy_term_hierarchy.tid AS taxonomy_term_data_taxonomy_term_hierarchy_tid, taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabulary.machine_name AS taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabul, taxonomy_term_data_node.name AS taxonomy_term_data_node_name, taxonomy_term_data_node.vid AS taxonomy_term_data_node_vid, taxonomy_term_data_node.tid AS taxonomy_term_data_node_tid, taxonomy_term_data_node__taxonomy_vocabulary.machine_name AS taxonomy_term_data_node__taxonomy_vocabulary_machine_name, node.created AS node_created, field_data_field_date.field_date_value AS field_data_field_date_field_date_value, 'field_collection_item' AS field_data_field_geographic_tr_field_collection_item_entity_, 'field_collection_item' AS field_data_field_amount_field_collection_item_entity_type
+FROM 
+node node
+LEFT JOIN (SELECT td.*, tn.nid AS nid
+FROM 
+taxonomy_term_data td
+LEFT JOIN taxonomy_vocabulary tv ON td.vid = tv.vid
+LEFT JOIN taxonomy_index tn ON tn.tid = td.tid
+WHERE  (tv.machine_name IN  ('major_minor_styles')) ) taxonomy_term_data_node ON node.nid = taxonomy_term_data_node.nid
+LEFT JOIN taxonomy_term_hierarchy taxonomy_term_data_node__taxonomy_term_hierarchy ON taxonomy_term_data_node.tid = taxonomy_term_data_node__taxonomy_term_hierarchy.tid
+LEFT JOIN taxonomy_term_data taxonomy_term_data_taxonomy_term_hierarchy ON taxonomy_term_data_node__taxonomy_term_hierarchy.parent = taxonomy_term_data_taxonomy_term_hierarchy.tid
+LEFT JOIN field_data_field_managers_hired field_data_field_managers_hired ON node.nid = field_data_field_managers_hired.entity_id AND (field_data_field_managers_hired.entity_type = 'node' AND field_data_field_managers_hired.deleted = '0')
+LEFT JOIN field_collection_item field_collection_item_field_data_field_managers_hired ON field_data_field_managers_hired.field_managers_hired_value = field_collection_item_field_data_field_managers_hired.item_id
+LEFT JOIN field_data_field_manager_firm_er field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er ON field_collection_item_field_data_field_managers_hired.item_id = field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.entity_id AND (field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.entity_type = 'field_collection_item' AND field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.deleted = '0')
+LEFT JOIN node node_field_data_field_manager_firm_er ON field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.field_manager_firm_er_target_id = node_field_data_field_manager_firm_er.nid
+LEFT JOIN taxonomy_vocabulary taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabulary ON taxonomy_term_data_taxonomy_term_hierarchy.vid = taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabulary.vid
+LEFT JOIN taxonomy_vocabulary taxonomy_term_data_node__taxonomy_vocabulary ON taxonomy_term_data_node.vid = taxonomy_term_data_node__taxonomy_vocabulary.vid
+LEFT JOIN field_data_field_date field_data_field_date ON node.nid = field_data_field_date.entity_id AND (field_data_field_date.entity_type = 'node' AND field_data_field_date.deleted = '0')
+WHERE (( (node_field_data_field_manager_firm_er.nid = '6794' ) )AND(( (node.status = '1') AND (node.type IN  ('plan')) )))
+ORDER BY node_created DESC, field_data_field_date_field_date_value ASC	
+
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+
+SELECT node.title AS node_title, node.nid AS nid, field_collection_item_field_data_field_managers_hired.item_id AS field_collection_item_field_data_field_managers_hired_item_i, 
+
+taxonomy_term_data_taxonomy_term_hierarchy.name AS taxonomy_term_data_taxonomy_term_hierarchy_name, 
+
+taxonomy_term_data_taxonomy_term_hierarchy.vid AS taxonomy_term_data_taxonomy_term_hierarchy_vid, 
+
+taxonomy_term_data_taxonomy_term_hierarchy.tid AS taxonomy_term_data_taxonomy_term_hierarchy_tid, 
+
+taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabulary.machine_name AS taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabul, 
+
+taxonomy_term_data_node.name AS taxonomy_term_data_node_name, 
+
+taxonomy_term_data_node.vid AS taxonomy_term_data_node_vid, 
+
+taxonomy_term_data_node.tid AS taxonomy_term_data_node_tid, 
+
+taxonomy_term_data_node__taxonomy_vocabulary.machine_name AS taxonomy_term_data_node__taxonomy_vocabulary_machine_name, 
+
+node.created AS node_created, field_data_field_date.field_date_value AS field_data_field_date_field_date_value, 
+
+'field_collection_item' AS field_data_field_geographic_tr_field_collection_item_entity_, 
+
+'field_collection_item' AS field_data_field_amount_field_collection_item_entity_type
+
+FROM 
+node node
+
+LEFT JOIN (SELECT td.*, tn.nid AS nid
+FROM 
+taxonomy_term_data td
+
+LEFT JOIN taxonomy_vocabulary tv ON td.vid = tv.vid
+
+LEFT JOIN taxonomy_index tn ON tn.tid = td.tid
+WHERE  (tv.machine_name IN  ('major_minor_styles')) ) taxonomy_term_data_node ON node.nid = taxonomy_term_data_node.nid
+
+LEFT JOIN taxonomy_term_hierarchy taxonomy_term_data_node__taxonomy_term_hierarchy ON taxonomy_term_data_node.tid = taxonomy_term_data_node__taxonomy_term_hierarchy.tid
+
+LEFT JOIN taxonomy_term_data taxonomy_term_data_taxonomy_term_hierarchy ON taxonomy_term_data_node__taxonomy_term_hierarchy.parent = taxonomy_term_data_taxonomy_term_hierarchy.tid
+
+LEFT JOIN field_data_field_managers_hired field_data_field_managers_hired ON node.nid = field_data_field_managers_hired.entity_id AND (field_data_field_managers_hired.entity_type = 'node' AND field_data_field_managers_hired.deleted = '0')
+
+LEFT JOIN field_collection_item field_collection_item_field_data_field_managers_hired ON field_data_field_managers_hired.field_managers_hired_value = field_collection_item_field_data_field_managers_hired.item_id
+
+LEFT JOIN field_data_field_manager_firm_er field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er ON field_collection_item_field_data_field_managers_hired.item_id = field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.entity_id AND (field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.entity_type = 'field_collection_item' AND field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.deleted = '0')
+
+LEFT JOIN node node_field_data_field_manager_firm_er ON field_collection_item_field_data_field_managers_hired__field_data_field_manager_firm_er.field_manager_firm_er_target_id = node_field_data_field_manager_firm_er.nid
+LEFT JOIN taxonomy_vocabulary taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabulary ON taxonomy_term_data_taxonomy_term_hierarchy.vid = taxonomy_term_data_taxonomy_term_hierarchy__taxonomy_vocabulary.vid
+
+LEFT JOIN taxonomy_vocabulary taxonomy_term_data_node__taxonomy_vocabulary ON taxonomy_term_data_node.vid = taxonomy_term_data_node__taxonomy_vocabulary.vid
+
+LEFT JOIN field_data_field_date field_data_field_date ON node.nid = field_data_field_date.entity_id AND (field_data_field_date.entity_type = 'node' AND field_data_field_date.deleted = '0')
+
+WHERE (( (node_field_data_field_manager_firm_er.nid = '6794' ) )AND(( (node.status = '1') AND (node.type IN  ('plan')) )))
+ORDER BY node_created DESC, field_data_field_date_field_date_value ASC	
+
+yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+
+*/
+ }

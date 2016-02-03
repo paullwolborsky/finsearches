@@ -1,0 +1,10 @@
+name = Dexp Countdown
+description = Adds a block to count the days, hours, minutes, and seconds since or until a specified event.
+core = 7.x
+
+files[] = dexp_countdown.module
+files[] = dexp_countdown.tpl.php
+files[] = jquery.countdown.min.js
+
+version = "7.x-1.0"
+package = DrupalExp
