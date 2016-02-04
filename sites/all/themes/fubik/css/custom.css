@@ -1448,3 +1448,8 @@ body.page-node-add-plan .group-plan-contacts {
   display: inline-block;
   margin: 0 5px 0 0;
 }
+
+/* line 262, ../sass/custom.scss */
+#edit-field-placement-policy-tr {
+  display: inline-block;
+}
