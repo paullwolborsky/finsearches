@@ -30,10 +30,10 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
     );
 
     if (isset($context['instance']['widget']['settings']['phone_number_fields'])) {
-      $settings = $context['instance']['widget']['settings']['phone_number_fields'];
+      $settings = array_filter($context['instance']['widget']['settings']['phone_number_fields']);
     }
 
-    if ($settings['phone'] || !$settings) {
+    if (empty($settings) || !empty($settings['phone'])) {
       $format['phone_block']['phone_number']['phone_number'] = array(
         '#title' => t('Contact Phone'),
         '#size' => 15,
@@ -43,7 +43,7 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
         '#default_value' => isset($address['phone_number']) ? $address['phone_number'] : '',
       );
     }
-    if ($settings['extension'] || !$settings) {
+    if (empty($settings) || !empty($settings['extension'])) {
       $format['phone_block']['phone_number']['phone_number_extension'] = array(
         '#title' => t('Phone Extension'),
         '#size' => 10,
@@ -53,7 +53,7 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
         '#default_value' => isset($address['phone_number_extension']) ? $address['phone_number_extension'] : '',
       );
     }
-    if ($settings['mobile'] || !$settings) {
+    if (empty($settings) || !empty($settings['mobile'])) {
       $format['phone_block']['mobile_number'] = array(
         '#title' => t('Mobile Number'),
         '#size' => 15,
@@ -63,7 +63,7 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
         '#default_value' => isset($address['mobile_number']) ? $address['mobile_number'] : '',
       );
     }
-    if ($settings['fax'] || !$settings) {
+    if (empty($settings) || !empty($settings['fax'])) {
       $format['phone_block']['fax_number'] = array(
         '#title' => t('Fax Number'),
         '#size' => 15,

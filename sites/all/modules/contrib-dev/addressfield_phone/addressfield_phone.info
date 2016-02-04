@@ -10,9 +10,9 @@ files[] = views/handlers/addressfield_phone_handler_field_address_phone_nr.inc
 files[] = addressfield_phone.migrate.inc
 
 
-; Information added by Drupal.org packaging script on 2015-04-02
-version = "7.x-1.1+13-dev"
+; Information added by Drupal.org packaging script on 2015-05-01
+version = "7.x-1.2"
 core = "7.x"
 project = "addressfield_phone"
-datestamp = "1428005583"
+datestamp = "1430484482"
 
