@@ -1,0 +1,8 @@
+name = Address Field Address 3
+description = Implements a 3rd address field in an addressfield format handler.
+core = 7.x
+package = Custom
+
+dependencies[] = ctools
+dependencies[] = addressfield
+

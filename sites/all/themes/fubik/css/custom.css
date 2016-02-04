@@ -1403,45 +1403,53 @@ input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
   max-width: none;
 }
 
-/* line 222, ../sass/custom.scss */
+/*
+ *Disable plan view fieldset on plan creation
+ */
+/* line 224, ../sass/custom.scss */
+body.page-node-add-plan .group-plan-contacts {
+  display: none;
+}
+
+/* line 230, ../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 226, ../sass/custom.scss */
+/* line 234, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 228, ../sass/custom.scss */
+/* line 236, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 231, ../sass/custom.scss */
+/* line 239, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 238, ../sass/custom.scss */
+/* line 246, ../sass/custom.scss */
 .view-reference-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 242, ../sass/custom.scss */
+/* line 250, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 244, ../sass/custom.scss */
+/* line 252, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 247, ../sass/custom.scss */
+/* line 255, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 254, ../sass/custom.scss */
+/* line 262, ../sass/custom.scss */
 #edit-field-placement-policy-tr {
   display: inline-block;
 }
