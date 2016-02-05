@@ -3,10 +3,33 @@
  * don't have any meaningful classes.
  */
 
-(function($, Drupal){
+(function($){
   // Use strict mode to reduce development errors.
   // @link http://www.nczonline.net/blog/2012/03/13/its-time-to-start-using-javascript-strict-mode/
-  "use strict";
+  //"use strict";
+  Drupal.fubik = Drupal.fubik || {};
+    
+  Drupal.fubik.updateManaged = function (context) {
+    var accountSize = 0 || $('#edit-field-account-size input').val();
+    $('#edit-field-managed-amount').find('input').prop('readonly', true);
+    if ($('#edit-field-managed-amount').find('input').val() != accountSize) {
+      $('#edit-field-managed-amount').find('input').css({color: 'red'});
+    } else {
+      $('#edit-field-managed-amount').find('input').css({color: 'green'});
+    }
+    var managedTotal = 0;
+    $("#edit-field-managers-hired table.field-multiple-table tr.draggable div[id^='edit-field-managers-hired'].field-type-number-integer input").each(function(){
+      if ($(this).val() != '') {
+        managedTotal = managedTotal + parseInt($(this).val());
+      }
+    });
+    $('#edit-field-managed-amount input').val(managedTotal);
+    if ($('#edit-field-managed-amount').find('input').val() != accountSize) {
+      $('#edit-field-managed-amount').find('input').css({color: 'red'});
+    } else {
+      $('#edit-field-managed-amount').find('input').css({color: 'green'});
+    }
+  };
 
   Drupal.behaviors.fubik = {
     attach: function(context, settings) {
@@ -81,26 +104,9 @@
       /**
        *Update the total managed amount with the sum of the individual manager amounts
        */
-      var accountSize = 0 || $('#edit-field-account-size input').val();
-      $('#edit-field-managed-amount').find('input').prop('readonly', true);
-      if ($('#edit-field-managed-amount').find('input').val() != accountSize) {
-        $('#edit-field-managed-amount').find('input').css({color: 'red'});
-      } else {
-        $('#edit-field-managed-amount').find('input').css({color: 'green'});
-      }
+      Drupal.fubik.updateManaged(context);
       $("#edit-field-managers-hired table.field-multiple-table tr.draggable div[id^='edit-field-managers-hired'].field-type-number-integer").on('keyup', 'input', function(){
-        var managedTotal = 0;
-        $("#edit-field-managers-hired table.field-multiple-table tr.draggable div[id^='edit-field-managers-hired'].field-type-number-integer input").each(function(){
-          if ($(this).val() != '') {
-            managedTotal = managedTotal + parseInt($(this).val());
-          }
-        });
-        $('#edit-field-managed-amount input').val(managedTotal);
-        if ($('#edit-field-managed-amount').find('input').val() != accountSize) {
-          $('#edit-field-managed-amount').find('input').css({color: 'red'});
-        } else {
-          $('#edit-field-managed-amount').find('input').css({color: 'green'});
-        }
+        Drupal.fubik.updateManaged(context);      
       });
       
       
