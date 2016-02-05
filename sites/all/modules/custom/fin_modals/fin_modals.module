@@ -6,7 +6,7 @@
  * and also some replicate hooks
  *
  *Written by John W. Johnson
- *1-12-2015
+ *1-12-2016
  */
 
 /**
@@ -73,14 +73,6 @@ function fin_modals_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
-  $items['resources'] = array(
-    'type' => MENU_NORMAL_ITEM,
-    'title' => 'RESOURCES',
-    'access callback' => TRUE,
-    'menu_name' => 'main-menu',
-    'wieght' => 7,
-    'page callback' => 'fin_modals_menu_callbacks',
-  );
   $items['resources/shortcuts']  = array(
     'type' =>  MENU_NORMAL_ITEM,
     'title' => 'Shortcuts',
@@ -113,7 +105,6 @@ function fin_modals_menu() {
     'wieght' => 3,
     'page callback' => 'fin_modals_menu_callbacks',
   );
-  
   return $items;
 }
  
