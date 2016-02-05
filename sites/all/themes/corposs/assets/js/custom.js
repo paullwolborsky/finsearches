@@ -20,8 +20,8 @@
           data.addRow([$(this).find('.views-label').html(), parseInt($(this).find('.field-content').html())]);
         });
         var options = {
-          is3D: true,
-          chartArea: {left:0,top:0},
+          is3D: false,
+          chartArea: {left:0,top:0, width: '75%', height:'100%'},
           tooltip: {text:'percentage'}
         };
         $('.pie-chart').html("<div id='aa-chart'></div>");
@@ -51,7 +51,14 @@
       $('.view-content-lists .view-filters .views-exposed-form', context).before("<legend><span class='fieldset-legend'><a class='fieldset-title' href='#'>Filters</a></span></legend>");
       $('.view-content-lists .view-filters .views-exposed-form', context).wrap("<div class='fieldset-wrapper'></div>");
       $('.view-content-lists .view-filters fieldset legend a', context).click(function(){
-      $(this).parents('fieldset').toggleClass('collapsed');
+        $(this).parents('fieldset').toggleClass('collapsed');
+      });
+      $('.view-content-lists .views-field-field-tasks a.show-tasks').click(function(){
+        $(this).next('div.tasks').show();
+        return false;
+      });
+      $('.view-content-lists .views-field-field-tasks .tasks .close').click(function(){
+        $(this).parents('div.tasks').hide();
       });
     }
   };

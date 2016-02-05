@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
 	
-	$('.dtooltip').tooltip();
+	//$('.dtooltip').tooltip();
 	//scroll to top
 	$('#go-to-top').click(function(){
 		$('html, body').animate({scrollTop: 0}, 800);

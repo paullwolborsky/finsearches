@@ -4,6 +4,7 @@
  * Preprocessor for theme('page').
  */
 function fubik_preprocess_html(&$vars) {
+  drupal_add_css(drupal_get_path('theme', 'drupalexp') . '/vendor/font-awesome/css/font-awesome.min.css');
 
   $vars['classes_array'][] = 'fubik';
 
