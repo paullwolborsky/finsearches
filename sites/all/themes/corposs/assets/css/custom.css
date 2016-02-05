@@ -1,120 +1,125 @@
 /**
  *SCSS file for custom styling
  */
-/* line 5, ../../sass/custom.scss */
+/* line 4, ../../sass/custom.scss */
+body {
+  font-family: "Lato Regular Web" !important;
+}
+
+/* line 8, ../../sass/custom.scss */
 .block-facetapi h3.block-title {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
-/* line 10, ../../sass/custom.scss */
+/* line 13, ../../sass/custom.scss */
 .block-facetapi .content {
   display: none;
 }
-/* line 12, ../../sass/custom.scss */
+/* line 15, ../../sass/custom.scss */
 .block-facetapi .content.open {
   display: block;
 }
-/* line 15, ../../sass/custom.scss */
+/* line 18, ../../sass/custom.scss */
 .block-facetapi .content .item-list {
   margin: 0 0 4px 0;
 }
-/* line 19, ../../sass/custom.scss */
+/* line 22, ../../sass/custom.scss */
 .block-facetapi select {
   max-width: 100%;
 }
 
 /*** Blocks ***/
-/* line 26, ../../sass/custom.scss */
+/* line 29, ../../sass/custom.scss */
 h3.block-title {
   position: relative;
   margin: 20px 0 0 0;
 }
 
-/* line 30, ../../sass/custom.scss */
+/* line 33, ../../sass/custom.scss */
 .block-views {
   margin: 30px 0 0 0;
 }
 
 /*** Labels ***/
-/* line 35, ../../sass/custom.scss */
+/* line 38, ../../sass/custom.scss */
 h2.title {
   margin: 30px 0 0 0;
 }
 
 /*** Tables ***/
-/* line 40, ../../sass/custom.scss */
+/* line 43, ../../sass/custom.scss */
 table.views-table {
   width: 100%;
 }
 
-/* line 43, ../../sass/custom.scss */
+/* line 46, ../../sass/custom.scss */
 td.views-field {
   padding: 0 10px;
 }
 
-/* line 46, ../../sass/custom.scss */
+/* line 49, ../../sass/custom.scss */
 td.views-field-field-cover-image img {
   max-width: none !important;
 }
 
 /*** Content ***/
-/* line 51, ../../sass/custom.scss */
+/* line 54, ../../sass/custom.scss */
 .content legend {
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
 /*** Widgets ***/
-/* line 62, ../../sass/custom.scss */
+/* line 65, ../../sass/custom.scss */
 .view-views-search .view-content {
   display: none;
 }
-/* line 65, ../../sass/custom.scss */
+/* line 68, ../../sass/custom.scss */
 .view-views-search .pager {
   display: none;
 }
 
 /*** Views ***/
-/* line 72, ../../sass/custom.scss */
+/* line 75, ../../sass/custom.scss */
 .views-submit-button button.my-views-filter-reset {
   position: relative;
   top: 11px;
   left: 10px;
 }
 
-/* line 80, ../../sass/custom.scss */
+/* line 83, ../../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 84, ../../sass/custom.scss */
+/* line 87, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 86, ../../sass/custom.scss */
+/* line 89, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 89, ../../sass/custom.scss */
+/* line 92, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 97, ../../sass/custom.scss */
+/* line 100, ../../sass/custom.scss */
 .view-content-lists th.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views th.views-field-edit-node, .view-reference-views td.views-field-view-node {
   width: 70px;
 }
-/* line 100, ../../sass/custom.scss */
+/* line 103, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views td.views-field-edit-node, .view-reference-views td.views-field-view-node {
   padding: 0;
 }
-/* line 102, ../../sass/custom.scss */
+/* line 105, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node a, .view-content-lists td.views-field-view-node a, .view-reference-views td.views-field-edit-node a, .view-reference-views td.views-field-view-node a {
   margin: 0 5px;
 }
-/* line 107, ../../sass/custom.scss */
+/* line 110, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks, .view-reference-views td.views-field-field-tasks .tasks {
   display: block;
   position: absolute;
@@ -127,11 +132,11 @@ td.views-field-field-cover-image img {
   background-color: #FFF;
   z-index: 10;
 }
-/* line 118, ../../sass/custom.scss */
+/* line 121, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
   display: none;
 }
-/* line 121, ../../sass/custom.scss */
+/* line 124, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks .close, .view-reference-views td.views-field-field-tasks .tasks .close {
   position: absolute;
   top: 0;
@@ -141,29 +146,29 @@ td.views-field-field-cover-image img {
 /**
  *Nodes
  */
-/* line 137, ../../sass/custom.scss */
+/* line 140, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy {
   width: 60%;
 }
-/* line 139, ../../sass/custom.scss */
+/* line 142, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart {
   margin: 30px 0 0 0;
   height: 300px;
   width: 100%;
 }
-/* line 143, ../../sass/custom.scss */
+/* line 146, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content {
   height: 100%;
 }
-/* line 145, ../../sass/custom.scss */
+/* line 148, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart {
   height: 100%;
 }
-/* line 147, ../../sass/custom.scss */
+/* line 150, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart #aa-chart {
   height: 100%;
 }
-/* line 154, ../../sass/custom.scss */
+/* line 157, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-left.thirty {
   width: 40%;
 }
