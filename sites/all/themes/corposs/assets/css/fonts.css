@@ -262,3 +262,30 @@
   font-weight: 400;
   src: url(../fonts/7XUFZ5tgS-tD6QamInJTcQU404wzEgdBsmVXv_TVccA.eot);
 }
+
+@font-face {
+  font-family: 'Lato Regular Web';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/lato-regular-webfont.ttf);
+}
+@font-face {
+  font-family: 'Lato Regular Web';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/lato-regular-webfont.eot);
+}
+@font-face {
+  font-family: 'Lato Regular Web';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/lato-regular-webfont.woff);
+}
+
+@font-face {
+  font-family: 'Lato Regular Web';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/lato-regular-webfont.svg);
+}
+

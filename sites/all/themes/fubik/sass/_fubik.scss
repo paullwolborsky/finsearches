@@ -1,10 +1,11 @@
 //@extend-elements
 //original selectors
 //table.rules-overview-table a.action, ul.links li.revert a, ul.links li.configure a, ul.links li.clone a, ul.links li.export a, ul.links li.enable a, ul.links li.disable a, ul.links li.flags_edit a, ul.links li.flags_delete a, ul.links li.flags_export a, .field-collection-view-links li.edit a, .field-collection-view-links li.delete a, .action-links.action-links-field-collection-add a, ul.links li.edit a, ul.links li.delete a, ul.links li.devel a, ul.links li.view a, a.action-add, a.action-analyze, a.action-clone, a.action-configure, a.action-delete, a.action-devel, a.action-edit, a.action-export, a.action-revert, a.action-table, a.action-view, td.views-field-delete-node a, td.views-field-cancel-node a, td.views-field-delete a, td.views-field-devel-node a, td.views-field-edit-node a, td.views-field-edit-term a, td.views-field-edit a, td.views-field-view-node a, td.views-field-view-user a, td.views-field-devel-user a, td.views-field-view a, a.action-top
+
 %extend_1 {
-	background-image: url(../images/action-icons.png);
-	background-repeat: no-repeat;
-	padding-left: 22px;
+	//background-image: url(../images/action-icons.png);
+	//background-repeat: no-repeat;
+	padding-left: 10px;
 }
 
 //original selectors

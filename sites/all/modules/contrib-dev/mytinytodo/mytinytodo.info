@@ -5,6 +5,7 @@ configure = admin/config/content/mytinytodo
 core = 7.x
 
 files[] = views/handlers/views_handler_field_tags.inc
+files[] = views/handlers/views_handler_field_uid.inc
 files[] = views/handlers/views_handler_field_todo_priority.inc
 files[] = views/handlers/views_handler_field_duedate.inc
 files[] = views/handlers/views_handler_filter_duedate.inc
