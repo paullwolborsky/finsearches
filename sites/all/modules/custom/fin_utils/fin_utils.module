@@ -141,3 +141,11 @@ yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
 
 */
  }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function fin_utils_form_contact_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_job_history']['und']['add_more']['type']['#title'] = 'Select Job Type';
+  $form['field_job_history']['und']['add_more']['add_more']['#value'] = 'Add New Job';
+}
