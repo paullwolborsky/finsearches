@@ -58,8 +58,14 @@ td.views-field-field-cover-image img {
   max-width: none !important;
 }
 
-/*** Content ***/
+/*** Charts ***/
 /* line 51, ../../sass/custom.scss */
+.view-display-id-eva_asset_allocation_chart {
+  margin: 70px 0 0 0;
+}
+
+/*** Content ***/
+/* line 56, ../../sass/custom.scss */
 .content legend {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -67,103 +73,17 @@ td.views-field-field-cover-image img {
 
 /*** Widgets ***/
 /* line 62, ../../sass/custom.scss */
+.chosen-container {
+  display: none !important;
+}
+
+/* line 67, ../../sass/custom.scss */
 .view-views-search .view-content {
   display: none;
 }
-/* line 65, ../../sass/custom.scss */
+/* line 70, ../../sass/custom.scss */
 .view-views-search .pager {
   display: none;
 }
 
 /*** Views ***/
-/* line 72, ../../sass/custom.scss */
-.views-submit-button button.my-views-filter-reset {
-  position: relative;
-  top: 11px;
-  left: 10px;
-}
-
-/* line 80, ../../sass/custom.scss */
-.view-comment-views th.views-field-edit-comment {
-  width: 70px;
-  padding: 0;
-}
-/* line 84, ../../sass/custom.scss */
-.view-comment-views td.views-field-edit-comment {
-  padding: 0;
-}
-/* line 86, ../../sass/custom.scss */
-.view-comment-views td.views-field-edit-comment a {
-  margin: 0;
-}
-/* line 89, ../../sass/custom.scss */
-.view-comment-views td.views-field-edit-comment div.magical-modal-link {
-  display: inline-block;
-  margin: 0 5px 0 0;
-}
-
-/* line 97, ../../sass/custom.scss */
-.view-content-lists th.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views th.views-field-edit-node, .view-reference-views td.views-field-view-node {
-  width: 70px;
-}
-/* line 100, ../../sass/custom.scss */
-.view-content-lists td.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views td.views-field-edit-node, .view-reference-views td.views-field-view-node {
-  padding: 0;
-}
-/* line 102, ../../sass/custom.scss */
-.view-content-lists td.views-field-edit-node a, .view-content-lists td.views-field-view-node a, .view-reference-views td.views-field-edit-node a, .view-reference-views td.views-field-view-node a {
-  margin: 0 5px;
-}
-/* line 107, ../../sass/custom.scss */
-.view-content-lists td.views-field-field-tasks .tasks, .view-reference-views td.views-field-field-tasks .tasks {
-  display: block;
-  position: absolute;
-  left: 10%;
-  width: 80%;
-  border: 2px solid #000;
-  border-radius: 10px;
-  padding: 5px;
-  top: 60px;
-  background-color: #FFF;
-  z-index: 10;
-}
-/* line 118, ../../sass/custom.scss */
-.view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
-  display: none;
-}
-/* line 121, ../../sass/custom.scss */
-.view-content-lists td.views-field-field-tasks .tasks .close, .view-reference-views td.views-field-field-tasks .tasks .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-/**
- *Nodes
- */
-/* line 137, ../../sass/custom.scss */
-body.node-type-plan #block-system-main .ds-below-right.seventy {
-  width: 60%;
-}
-/* line 139, ../../sass/custom.scss */
-body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart {
-  margin: 30px 0 0 0;
-  height: 300px;
-  width: 100%;
-}
-/* line 143, ../../sass/custom.scss */
-body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content {
-  height: 100%;
-}
-/* line 145, ../../sass/custom.scss */
-body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart {
-  height: 100%;
-}
-/* line 147, ../../sass/custom.scss */
-body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart #aa-chart {
-  height: 100%;
-}
-/* line 154, ../../sass/custom.scss */
-body.node-type-plan #block-system-main .ds-below-left.thirty {
-  width: 40%;
-}
