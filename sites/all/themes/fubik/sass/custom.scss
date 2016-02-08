@@ -262,3 +262,15 @@ body.page-node-add-plan {
 #edit-field-placement-policy-tr {
   display: inline-block;
 }
+
+.page-node-edit {
+  .column-main {
+    width: 90%;
+  }
+  .column-side {
+    width: 10%;
+  }
+  table.sticky-header {
+    z-index: 1000;
+  }
+}
