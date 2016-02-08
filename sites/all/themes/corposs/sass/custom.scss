@@ -80,6 +80,9 @@ h3.block-title {
   background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
 }
+span.fieldset-legend {
+  text-transform: uppercase;  
+}
 .collapsiblock a {
   color: $background;
   margin: 0 0 0 5px;
@@ -94,6 +97,13 @@ h3.block-title {
   background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */  
+}
+#block-user-online .content {
+  background: $form-background-blue;
+  padding: 10px;
+}
+.item-list ul {
+  text-align: left;
 }
 .field-name-plan-new-leads-mandates-bf .block-views {
   margin: 5px 0 0 0;
@@ -308,6 +318,32 @@ tr.odd td.active, tr.even td.active {
   }
 }
 
+/*** Accordion **/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  background: $form-background-blue;
+  border: none;
+}
+.ui-accordion {
+  .ui-accordion-header .ui-accordion-header-icon {
+    left: 0.1em;
+  }
+  .ui-accordion-icons {
+    padding-left: 1.8em;
+  }
+  .ui-accordion-icons {
+    padding-left: 1.4em;
+  }
+  .ui-accordion-content {
+    padding: 0.5em 1em;  
+  }
+}
+.ui-corner-all {
+  border-radius: 0;
+}
+.ui-widget-content {
+  border: none;
+}
+
 
 /*** Widgets ***/
 .chosen-container {
@@ -323,69 +359,7 @@ tr.odd td.active, tr.even td.active {
   }
 }
 
-/*** Views ***/
-.views-submit-button {
-  button.my-views-filter-reset {
-    position: relative;
-    top: 11px;
-    left: 10px;
-  }
-}
-.view-comment-views {
-  th.views-field-edit-comment {
-    width: 70px;
-    padding: 0;
-  }
-  td.views-field-edit-comment {
-    padding: 0;
-    a {
-      margin: 0;
-    }
-    div.magical-modal-link {
-      display: inline-block;
-      margin: 0 5px 0 0;
-    }
-  }
-}
-.view-content-lists, .view-reference-views {
-  th.views-field-edit-node, td.views-field-view-node {
-    width: 70px;
-  }
-  td.views-field-edit-node, td.views-field-view-node {
-    padding: 0;
-    a {
-      margin: 0 5px;
-    }
-  }
-  td.views-field-field-tasks {
-    .tasks {
-      display: block;
-      position: absolute;
-      left: 10%;
-      width: 80%;
-      border: 2px solid #000;
-      border-radius: 10px;
-      padding: 5px;
-      top: 60px;
-      background-color: #FFF;
-      z-index: 10;
-      &.closed {
-        display: none;
-      }
-      .close {
-        position: absolute;
-        top: 0;
-        right: 0;
-      }
-    }
-  }
-}
-
-
-/**
- *Nodes
- */
-
+/*** Nodes ***/
 body.node-type-plan {
   #block-system-main {
     .ds-below-right.seventy {
@@ -410,8 +384,7 @@ body.node-type-plan {
     }  
   }
 }
-/*
- *Modal styles
+/*** Modal styles
  *Duplicated from Admin theme (Fubik)
  */
 #modalContent {
