@@ -629,7 +629,7 @@ function fin_modals_node_insert($node) {
         $new_comment->field_mandate_status_tr = $source_comment->field_mandate_status_tr;
       }
       if (!empty($source_comment->field_date)) {
-        $comment->field_date = $source_comment->field_date;
+        $new_comment->field_date = $source_comment->field_date;
       }
       comment_submit($new_comment);
       comment_save($new_comment);
@@ -651,7 +651,7 @@ function fin_modals_node_insert($node) {
         $comment->subject = $comment_values['subject'];
         $comment->comment_body[$comment->language][0]['value'] = $comment_values['body'];
         $comment->comment_body[$comment->language][0]['format'] = 'advanced_input';
-        if ($node->type == 'mandate') {
+        if ($node->type == 'mandate' && $comment_values['status'] != '_none') {
           $comment->field_mandate_status_tr[$comment->language][0]['tid'] = $comment_values['status'];
         }
         $comment->field_date[$comment->language][0] = array(
