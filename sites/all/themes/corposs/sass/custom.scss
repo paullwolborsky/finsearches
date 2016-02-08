@@ -257,6 +257,35 @@ fieldset.collapsible .fieldset-legend {
   padding: 10px;
 }
 
+/*
+ *Tasks table
+ */
+#user-tasks-table {
+  table {
+    width: 100%;
+    thead {
+      th {
+        padding: 0 5px;
+      }
+    }
+    td {
+      padding: 0 5px;
+    }
+    td:nth-child(5) {
+      min-width: 90px;
+    }
+    td:nth-child(6) {
+      //width: 250px;
+    }
+    td:nth-child(7) {
+      //width: 20px;
+      //padding: 0 2px;
+      text-align: center;
+    }
+  }
+}
+
+
 /*** Tables ***/
 table.views-table {
   width: 100%;
@@ -284,6 +313,7 @@ tr.even {
 tr.odd td.active, tr.even td.active {
   background-color: $form-item-active-blue;
 }
+
 .view-content-lists, .view-reference-views {
   th.views-field-edit-node, td.views-field-view-node {
     width: 70px;

@@ -1,0 +1,4 @@
+name = "Financial News Task Lists"
+description = "Custom code to produce task list pages and blocks"
+package = "Custom"
+core = 7.x
