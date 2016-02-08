@@ -84,9 +84,10 @@ function fin_tasks_user_list () {
     if ($rec->duedate != '') {
       $date = date('n-j-Y', strtotime($rec->duedate));
     }
+    $path = drupal_get_path_alias('node/' . $rec->node_nid);
     $rows[] = array($rec->title,
                     $rec->list_name,
-                    $rec->node_title,
+                    "<a href='/" . $path . "' >" . $rec->node_title . "</a>",
                     $type,
                     $date,
                     $rec->note,
