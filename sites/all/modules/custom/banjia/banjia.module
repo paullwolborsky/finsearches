@@ -1,13 +1,11 @@
 <?php
-// $Id$
-
 /**
  * @file
  * A module to perform custom migration from one version of Drupal to another.
  */
 
 /**
- * Implementation of hook_menu().
+ * Implements hook_menu().
  */
 function banjia_menu() {
   $items = array();
@@ -22,6 +20,9 @@ function banjia_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_form().
+ */
 function banjia_form() {
   $form['submit'] = array(
     '#type' => 'submit',
@@ -31,6 +32,9 @@ function banjia_form() {
   return $form;
 }
 
+/**
+ * Implements hook_form_submit().
+ */
 function banjia_form_submit($form, &$form_state) {
   ini_set('max_execution_time', 3600000);
   define('USER_RID_TRIAL_MEMBER', '6');
