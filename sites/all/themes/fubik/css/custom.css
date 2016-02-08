@@ -1453,14 +1453,14 @@ body.page-node-add-plan .group-plan-contacts {
 }
 
 /* line 267, ../sass/custom.scss */
-.page-node-edit .column-main {
+.page-node-edit .column-main, .page-node-add .column-main {
   width: 90%;
 }
 /* line 270, ../sass/custom.scss */
-.page-node-edit .column-side {
+.page-node-edit .column-side, .page-node-add .column-side {
   width: 10%;
 }
 /* line 273, ../sass/custom.scss */
-.page-node-edit table.sticky-header {
+.page-node-edit table.sticky-header, .page-node-add table.sticky-header {
   z-index: 1000;
 }
