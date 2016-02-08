@@ -1451,3 +1451,16 @@ body.page-node-add-plan .group-plan-contacts {
 #edit-field-placement-policy-tr {
   display: inline-block;
 }
+
+/* line 267, ../sass/custom.scss */
+.page-node-edit .column-main {
+  width: 90%;
+}
+/* line 270, ../sass/custom.scss */
+.page-node-edit .column-side {
+  width: 10%;
+}
+/* line 273, ../sass/custom.scss */
+.page-node-edit table.sticky-header {
+  z-index: 1000;
+}
