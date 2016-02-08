@@ -1,0 +1,101 @@
+<?php
+
+/**
+ * @file
+ * This file is for producing task lists by user
+ * and for everyone for administration purposes
+ *
+ *Written by John W. Johnson
+ *2-3-2016
+ */
+
+function fin_tasks_theme($existing, $type, $theme, $path) {
+  $hooks = array();
+  
+  return $hooks;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function fin_tasks_menu() {
+  global $user;
+  $items = array();
+  $items['resources/tasks']  = array(
+    'title' => "Tasks",
+    'type' => MENU_CALLBACK,
+    'access callback' => 'user_access',
+    'access arguments' => array('access content overview'),
+    'page callback' => 'fin_tasks_user_list',
+  );
+  return $items;
+}
+
+/**
+ *Produces task list for logged in user
+ */
+function fin_tasks_user_list () {
+  global $user;
+  ctools_include('modal');
+  ctools_modal_add_js();
+  $header = array(
+    array('data' => 'Task', 'field' => 'title', 'sort' => 'asc'),
+    array('data' => 'List', 'field' => 'list_name', 'sort' => 'asc'),
+    array('data' => 'Content', 'field' => 'title', 'sort' => 'desc'),
+    array('data' => 'Type', 'field' => 'node_type'),
+    array('data' => 'Due', 'field' => 'duedate', 'sort' => 'desc'),
+    array('data' => 'Note'),
+    array('data' => 'Actions'),
+  );
+
+  $query =  db_select('mytinytodo_todos', 't')
+            ->extend('TableSort');
+  $query->join('mytinytodo_lists', 'l', 't.list_id=l.id');
+  $query->join('mytinytodo_fields', 'f', 'l.field_id=f.id');
+  $query->join('node', 'n', 'f.entity_id=n.nid');
+  $query->fields('t');
+  $query->addField('n', 'nid', 'node_nid');
+  $query->addField('n', 'title', 'node_title');
+  $query->addField('n', 'type', 'node_type');
+  $query->addField('l', 'name', 'list_name');
+  $query->condition('t.compl', '0', '=');
+  $query->where("t.uid = " . $user->uid);
+  $result = $query
+      ->orderByHeader($header)
+      ->execute();
+  
+  $rows = array();
+
+  $out = "<div id='user-tasks-table'>";
+  $out .= "<h1 class='header'>Tasks for " . $user->name . "</h1>"; 
+  foreach ($result as $rec) {
+    switch($rec->node_type) {
+      case 'plan':
+        $type = "Plan";
+        break;
+      case 'consultant_firm':
+        $type = "Consultant Firm";
+        break;
+      case 'manager_firm':
+        $type = "Manager Firm";
+        break;
+    }
+    $date = '';
+    if ($rec->duedate != '') {
+      $date = date('n-j-Y', strtotime($rec->duedate));
+    }
+    $rows[] = array($rec->title,
+                    $rec->list_name,
+                    $rec->node_title,
+                    $type,
+                    $date,
+                    $rec->note,
+                    "<div><a class='ctools-use-modal' href='/modal/" . $rec->node_nid . "/tasks/nojs' title='Tasks'><i class='fa fa-list-alt'></i></a></div>"
+                  );
+  }
+  
+  $out .= theme('table', array('header' => $header, 'rows' => $rows ));
+
+  $out .= "</div>";
+  return $out;
+}
