@@ -37,7 +37,7 @@ function banjia_form() {
  */
 function banjia_form_submit($form, &$form_state) {
   ini_set('max_execution_time', 3600000);
-  define('USER_RID_NONE', '2');
+  define('BANJIA_USER_RID_NONE', '2');
 
   $oldnew = array();
   $newold = array();
@@ -152,19 +152,17 @@ function banjia_form_submit($form, &$form_state) {
       $noroles = array();
       $rolesuids = array_keys($roleres);
       $noroles = array_diff($getids, $rolesuids);
-      foreach ($noroles as $noRole) {
-        $roleres[$noRole][USER_RID_NONE] = USER_RID_NONE;
+      foreach ($noroles as $norole) {
+        $roleres[$norole][BANJIA_USER_RID_NONE] = BANJIA_USER_RID_NONE;
       }
 
       db_set_active();
       $userres = array();
 
-      /*
-      * SALESFORCE - get list of Emails to query SF with
-      */
+      // SALESFORCE - get list of Emails to query SF with.
       $emails = array();
-      $getEmails = $inusers;
-      foreach ($getEmails as $row) {
+      $getemails = $inusers;
+      foreach ($getemails as $row) {
         $emails[] = $row->mail;
       }
 
@@ -201,61 +199,63 @@ function banjia_form_submit($form, &$form_state) {
             'homephone' => '',
             'mobilephone' => '',
           );
-          $message = "D5 email not in SF, so we use D5 data instead. Email: ".$row->mail."Data: ".print_r($profile,true);
+          $message = "D5 email not in SF, so we use D5 data instead. Email: " . $row->mail . "Data: " . print_r($profile, TRUE);
 
-        } else { // if no sf data available
+        }
+        else {
           $profile = $sfdata[$row->mail];
         }
 
-        $sfStatus = 0;
+        $sfstatus = 0;
 
-        $d5Status = $row->status;
+        $d5status = $row->status;
 
-        $finalStatus = 0;
+        $finalstatus = 0;
 
-        if ($profile['expiry']>0) {
-          //fair game, determine status based on SF
+        if ($profile['expiry'] > 0) {
+          // Determine status based on SF.
           $now = time();
-          if ($profile['expiry']>$now && !$profile['inactive']) {
-            $sfStatus = 1;
-            $finalStatus = 1;
+          if ($profile['expiry'] > $now && !$profile['inactive']) {
+            $sfstatus = 1;
+            $finalstatus = 1;
           }
 
-          // If D5 says active & SF says Inactive, or vice versa, report the conflict
-          if ($sfStatus<>$d5Status) {
-            if ($d5Status) {
-              //drupal user going from active to inactive
+          // If D5 says active & SF says Inactive, or vice versa,
+          // report the conflict.
+          if ($sfstatus <> $d5status) {
+            if ($d5status) {
+              // Drupal user going from active to inactive.
               $statusactivetoinactive[$row->mail][] = $profile;
             }
-            if ($sfStatus) {
-              //drupal user going from inactive to active
+            if ($sfstatus) {
+              // Drupal user going from inactive to active.
               $statusinactivetoactive[$row->mail][] = $profile;
             }
 
-            $profile['d5_status'] = $d5Status;
-            $profile['sf_status'] = $sfStatus;
-            $profile['final_status'] = $finalStatus;
-            $sfStatusStr = "INACTIVE";
-            if ($sfStatus) {
-              $sfStatusStr = "ACTIVE";
+            $profile['d5_status'] = $d5status;
+            $profile['sf_status'] = $sfstatus;
+            $profile['final_status'] = $finalstatus;
+            $sfstatusstr = "INACTIVE";
+            if ($sfstatus) {
+              $sfstatusstr = "ACTIVE";
             }
-            $oldStatusStr = "INACTIVE";
+            $oldstatusstr = "INACTIVE";
             if ($row->status) {
-              $oldStatusStr = "ACTIVE";
+              $oldstatusstr = "ACTIVE";
             }
             $message = t('D5 says user %firstname %lastname ( %email ) is %oldstatus but Salesforce says status is %sfstatus. Inactive: %inactive Expiration Date: %expiry',
               array(
                 '%email' => $row->mail,
                 '%firstname' => $profile['firstname'],
                 '%lastname' => $profile['lastname'],
-                '%sfstatus' => $sfStatusStr,
-                '%oldstatus' => $oldStatusStr,
+                '%sfstatus' => $sfstatusstr,
+                '%oldstatus' => $oldstatusstr,
                 '%expiry' => date('m-d-y', $profile['expiry']),
                 '%inactive' => $profile['inactive'],
               )
             );
 
-            if ($finalStatus) {
+            if ($finalstatus) {
               $statusinactivetoactive[$row->mail][] = $profile;
             }
             else {
@@ -263,48 +263,49 @@ function banjia_form_submit($form, &$form_state) {
             }
           }
         }
-        else { // if there is no expiry or no sf data
-          $finalStatus = $d5Status;
-          if ($finalStatus) {
+        else {
+          // If there is no expiry or no sf data.
+          $finalstatus = $d5status;
+          if ($finalstatus) {
             $mailmismatches_active[$row->mail][] = $profile;
           }
           else {
             $mailmismatches_inactive[$row->mail][] = $profile;
           }
         }
- 
+
         $usr = array(
-          'uid'=>$row->uid,
-          'name'=>$row->name,
-          'mail'=>$row->mail,
-          'pass'=>$row->pass,
-          'status'=>$finalStatus,
-          'login'=>$row->login,
-          'created'=>$row->created,
+          'uid' => $row->uid,
+          'name' => $row->name,
+          'mail' => $row->mail,
+          'pass' => $row->pass,
+          'status' => $finalstatus,
+          'login' => $row->login,
+          'created' => $row->created,
         );
         $userres[$row->uid] = array_merge($usr, $profile);
         if ($keyyyy > 6018) {
         }
       }
 
-
       $rolesarr = array();
       foreach ($roleres as $uid => $roles) {
-        $uidStr = (string) $uid;
-        if (isset($trial_uids[$uidStr])) {
-          foreach($trialnewroles as $newRid) {
-            $newRidStr = (string) $newRid;
-            $newRole = $newroles[$newRidStr];
-            $rolesarr[$uidStr][$newRidStr] = $newRole;
+        $uidstr = (string) $uid;
+        if (isset($trial_uids[$uidstr])) {
+          foreach ($trialnewroles as $newrid) {
+            $newridstr = (string) $newrid;
+            $newrole = $newroles[$newridstr];
+            $rolesarr[$uidstr][$newridstr] = $newrole;
           }
-        } else {
+        }
+        else {
           foreach ($roles as $rid) {
-            $newRids = $rolemap[$rid];
-            foreach ($newRids as $newRid) {
-              $newRidStr = (string) $newRid;
+            $newrids = $rolemap[$rid];
+            foreach ($newrids as $newrid) {
+              $newridstr = (string) $newrid;
               $ind = (string) $rid;
-              $newRole = $newroles[$ind];
-              $rolesarr[$uidStr][$newRidStr] = $newRole;
+              $newrole = $newroles[$ind];
+              $rolesarr[$uidstr][$newridstr] = $newrole;
             }
           }
         }
