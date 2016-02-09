@@ -37,7 +37,6 @@ function banjia_form() {
  */
 function banjia_form_submit($form, &$form_state) {
   ini_set('max_execution_time', 3600000);
-  define('USER_RID_TRIAL_MEMBER', '6');
   define('USER_RID_NONE', '2');
 
   $oldnew = array();
@@ -112,27 +111,19 @@ function banjia_form_submit($form, &$form_state) {
 
   if ($stuffToMove) {
     db_set_active('legacy');
-    //$inUsers = db_query($sql);
-    $inUsers = db_query($usql)->fetchAll();
+    //$inusers = db_query($sql);
+    $inusers = db_query($usql)->fetchAll();
     db_set_active();
 
-    if ($inUsers) {
+    if ($inusers) {
 
-      $rowCount = 0;
-      if ($getids) {
-        $howManyRows = count($getids);
-      } else {
-        $howManyRows = count($oids)-count($noids);
-      } 
       $motion = "Starting Fresh ";
       if ($partial) {
         $motion = "Resuming ";
       }
-      $rowCount = 0;
       $start = time();
-// getids, is just getting key, not make sense.
 
-      // First, extract all Trial Members
+      // First, extract all Trial Members.
       $trial_uids = array();
       $sql = "select uid from accounttypes_users where atid=2 or atid=4";
       db_set_active('legacy');
@@ -142,17 +133,17 @@ function banjia_form_submit($form, &$form_state) {
         $trial_uids[$row->uid] = $row->uid;
       }
 
-      $profilesArr = array();
+      $profilesarr = array();
       $sql = "select * from {profile_values}";
-      
+
       db_set_active('legacy');
       $raw = db_query($sql);
       db_set_active();
 
       foreach ($raw as $row) {
-        $profilesArr[$row->uid][$row->fid]=$row->value; 
+        $profilesarr[$row->uid][$row->fid]=$row->value; 
       }
-  
+
       $sql = "select u.uid as uid,r.rid as role from {users_roles} u, {role} r where u.rid=r.rid";
       db_set_active('legacy');
       $result = db_query($sql);
@@ -175,7 +166,7 @@ function banjia_form_submit($form, &$form_state) {
       * SALESFORCE - get list of Emails to query SF with
       */
       $emails = array();
-      $getEmails = $inUsers;
+      $getEmails = $inusers;
       foreach ($getEmails as $row) {
         $emails[] = $row->mail;
       }
@@ -185,21 +176,21 @@ function banjia_form_submit($form, &$form_state) {
       $mailmismatches_inactive = array();
       $statusactivetoinactive = array();
       $statusinactivetoactive = array();
-      foreach ($inUsers as $keyyyy => $row) {
+      foreach ($inusers as $keyyyy => $row) {
         $profile = FALSE;
         if ( !isset($sfdata[$row->mail]) ) {
           $lastname = '';
           $firstname = '';
           $companyname = '';
-          if (isset($profilesArr[$row->uid][1])) {
-            $firstname = $profilesArr[$row->uid][1];
-          }    
-          if (isset($profilesArr[$row->uid][2])) {
-            $lastname = $profilesArr[$row->uid][2];
-          }    
-          if (isset($profilesArr[$row->uid][3])) {
-            $companyname = $profilesArr[$row->uid][3];
-          }    
+          if (isset($profilesarr[$row->uid][1])) {
+            $firstname = $profilesarr[$row->uid][1];
+          }
+          if (isset($profilesarr[$row->uid][2])) {
+            $lastname = $profilesarr[$row->uid][2];
+          }
+          if (isset($profilesarr[$row->uid][3])) {
+            $companyname = $profilesarr[$row->uid][3];
+          }
           $profile = array(
             'id' => 0,
             'email' => $row->mail,
