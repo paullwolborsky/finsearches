@@ -51,17 +51,6 @@ function _fin_migrate_operations() {
   $operations[] = array('_fin_migrate_do_migrate_users', array());
 //  $operations[] = array('_fin_migrate_do_node_step1', array());
 //  $operations[] = array('_fin_migrate_do_node_step2', array());
-
-  //$operations[] = array('_fin_migrate_batch_users', array());
-  //$operations[] = array('_fin_migrate_batch_users_stragglers', array());
-  //$operations[] = array('_fin_migrate_batch_users', array());
-  //$operations[] = array('_fin_migrate_do_migrate_users', array());
-  //$operations[] = array('_fin_migrate_batch_nodes', array());
-  //Now that we filled out all nodes, we can migrate relationships too
-  //$operations[] = array('_fin_migrate_batch_ref', array());
-  //Now that we migrated relationships, we have new ones to make on dst side
-  //$operations[] = array('_fin_migrate_batch_back_ref', array());
-
   return $operations;
 }
 function _fin_migrate_done() {
@@ -71,15 +60,6 @@ function _fin_migrate_done() {
 
 function _get_nodemaps($mode='step1') {
 
-/*
-  create view at least w/mandate & plan { FundSize
-
-  This is going to have to run at another stage. Do not put this in the same 'run set' as the others, it goes after the first round of nodes, before or after reference.
-
-  This is because of the stupid comma-delimited FirmsHired field, which contains
-  comma-delimited references that also determine how many entries there are in the
-  manager firm history. As an added bonus, so is FirmHiredSize field.
-*/
 $nm_co = array(
     'office' => array(
       'params' => array(
@@ -337,7 +317,6 @@ $nm_co = array(
     ),
   );
 
-//////////////////////////////////////////////////////////////
   $nm_contact = array(
     'contact' => array(
       'params' => array(
@@ -528,10 +507,6 @@ $nm_co = array(
     ),
   );
 
-//////////////////////////////////////////////////////////////
-
-// manager contacts have no address, special handling, use manager firm
-// fundcontact Inactive,   
   $nm_cc = array(
     'consultant contact' => array(
       'params' => array(
@@ -953,8 +928,6 @@ $nm_co = array(
       ),
     ),
   );
-// 242 Matt | 260 Gar SourceID just make UID 1
-// gar guymoso@Yahoo.com matt matt mmccue@fin-news.com
 
   $nodeMappArr = FALSE;
   if ($mode=="step1") {
@@ -1023,35 +996,19 @@ function _fin_migrate_batch_users(&$context) {
 }
 
 function _fin_migrate_batch_users_stragglers(&$context) {
-  // get all old user names
-/*
   db_set_active('legacy');
-  $osql = "select mail from {users}";
-  $oldusers = db_query($sql)->fetchAll();
-  db_set_active();
-  $nsql = "select mail from {user}";
-  $newusers = db_query($nsql)->fetchAllAssoc();
-*/
-  db_set_active('legacy');
-//  $osql = "select mail from {users} where uid>4";
   $osql = "select name from {users} where uid>4";
   $res = db_query($osql);
   db_set_active();
   $oldusers = array();
   foreach ($res as $usr) {
-    //$omail = $usr->mail;
-    //$oldusers[] = $omail;
     $oname = $usr->name;
     $oldusers[] = $oname;
   }    
-  // now get new user names
   db_set_active();
   $usrs = entity_load('user');
-  //$usrs = user_load_multiple();
   $newusers = array();
   foreach($usrs as $uid => $usr) {
-    //$nmail = $usr->mail;
-    //$newusers[] = $nmail;
     $nname = $usr->name;
     $newusers[] = $nname;
   } 
@@ -1076,7 +1033,6 @@ function _fin_migrate_batch_users_stragglers(&$context) {
   }
 }
   
-//function _fin_migrate_do_migrate_users($inUsers, &$context) {
 function _fin_migrate_do_migrate_users(&$context) {
   ini_set('max_execution_time', 3600000);
   define('USER_RID_TRIAL_MEMBER', '6');
@@ -1092,7 +1048,6 @@ watchdog('DEBUG66', $message, array(), WATCHDOG_INFO);
   $resuming = FALSE;
   if ( $uidmaps = unserialize(@variable_get('fin-migrate-oldnew-uids')) ) {
     if (isset($uidmaps['oldnew'])) {
-      //$oldnew = unserialize($uidmaps['oldnew']);    
       $oldnew = $uidmaps['oldnew'];    
     
       $message = "UIDMAPS containt ".print_r($uidmaps,true);
@@ -1135,38 +1090,11 @@ watchdog('DEBUG66', $message, array(), WATCHDOG_INFO);
 
   $compareUsers = '';
   
-  /*
-   * First, we will prep the old User data. We will translate old roles to new, save 
-   * separate first, last names & Company names for insertion into new User objects.
-   */
-
-  //db_set_active('south6');
-
-/* 012116 deprecate  
-db_set_active('legacy');
-  $uids = array();
-  $sql = "select uid from {users}";
-  $result = db_query($sql);
-  foreach ($result as $row) {
-    $uids[$row->uid] = $row->uid;
-  }
-  // First, extract all Trial Members
-  $trial_uids = array();
-  $sql = "select uid from accounttypes_users where atid=2 or atid=4";
-  $result = db_query($sql);
-  foreach ($result as $row) {
-    $trial_uids[$row->uid] = $row->uid;
-  }
-*/
-  
   // see what ids to draw from a table
   db_set_active('legacy');
   $sql = "select uid from {users} WHERE uid>7";
   $result = db_query($sql);
   db_set_active();
-  // oids are all old keys in source table, noids keys we saved
-  // We will use array_diff to tell us what ids have not been done
-  // yet.
   $oids = array();
   $res = array();
   foreach ($result as $row) {
@@ -1201,33 +1129,6 @@ db_set_active('legacy');
 $message = "B PARTIAL: ".$partial." | Stuff to move? ".$stuffToMove." |<br><br>ouids: ".print_r($oids,true)."<br><br>nuids: ".print_r($noids,true)."<br><br>SQL: ".$sql;
 watchdog('FIN_MIGRATE_USER_NEW', $message, array(), WATCHDOG_INFO);
 
-/*
-//////////////////
-  $nuids = array_values($newold);
-  if ($nuids) {
-    $uids = array();
-    $ouids = array();
-    $sql = "select uid from {users}";
-    $result = db_query($sql);
-    foreach ($result as $row) {
-      $ouids[$row->uid] = $row->uid;
-    }
-
-    $nsql = '';
-    $uids = array_diff($ouids, $nuids);
-    if ($uids) {
-      $uidsStr = "'".implode("','", $uids)."'";
-      $msql = "select u.uid as uid, u.name as name, u.pass as pass, u.mail as mail, u.status as status, u.created as created, u.login as login from {users} u where u.uid in (".$uidsStr.") order by uid";
-    }
-  } else {
-    $nsql = "select u.uid as uid, u.name as name, u.pass as pass, u.mail as mail, u.status as status, u.created as created, u.login as login from {users} u order by uid";
-  }
-  if ($nsql) {
-    db_set_active('legacy');
-    $inUsers = db_query($sql)->fetchAll();
-    db_set_active();
-*/
-  
   if ($stuffToMove) {
     db_set_active('legacy');
     //$inUsers = db_query($sql);
@@ -1272,10 +1173,6 @@ $message = "MARKER 2";
 watchdog('FIN_MIGRATE_USERS_NEW', $message, array(), WATCHDOG_INFO);
 
 
-      // Grab data from profile table, first, last name and company
-      // Array is of format UID | FID | Value.  FID is a 1,2,3. 1-First name, 2-Last name, 3-Company
-      ///////////////////////////////////////
-  
       $profilesArr = array();
       $sql = "select * from {profile_values}";
       
@@ -1284,8 +1181,6 @@ watchdog('FIN_MIGRATE_USERS_NEW', $message, array(), WATCHDOG_INFO);
       db_set_active();
 
       foreach ($raw as $row) {
-        //normalize (turn 3 rows for each user into 1
-        //$profilesArr[$row->uid][$row->fid][$row->value]=$row->value; 
         $profilesArr[$row->uid][$row->fid]=$row->value; 
       }
   
@@ -1310,9 +1205,6 @@ watchdog('FIN_MIGRATE_USERS_NEW', $message, array(), WATCHDOG_INFO);
       db_set_active();
       $userres = array();
 
-      /*
-      * SALESFORCE - get list of Emails to query SF with
-      */
       $emails = array();
       $getEmails = $inUsers;
       foreach ($getEmails as $row) {
@@ -1323,9 +1215,6 @@ $message = "MARKER 5 EMAILS: ".print_r($emails,true)."<br><br>INUSER: ".print_r(
 watchdog('FIN_MIGRATE_USERS_NEW', $message, array(), WATCHDOG_INFO);
 
 
-      /*
-      * You have a list of emails, get SF Data back
-      */
       $sfdata = '';
       $sfdata = _fin_migrate_get_sfdata($emails);
       $mailmismatches_active = array();
@@ -1377,15 +1266,10 @@ if (isset($profilesArr[$row->uid][3])) {
           );
           $message = "D5 email not in SF, so we use D5 data instead. Email: ".$row->mail."Data: ".print_r($profile,true);
          
-          // if profile 'expiry' is zero, we know we have an non-sf record
-          // only profiles w/expiration dates get considered for syncing to sf
         } else { // if no sf data available
           $profile = $sfdata[$row->mail];
         }
         
-        /*
-         * Determine wether account is blocked or actgive
-         */
         $sfStatus = 0;
     
         $d5Status = $row->status;
@@ -1473,9 +1357,6 @@ watchdog('FIN_MIGRATE_USERS_NEW', $message, array(), WATCHDOG_INFO);
 $message = "MERGED USER INFO: ".print_r($userres[$row->uid],true);
 watchdog('DEBUG5', $message, array(), WATCHDOG_INFO);
 
-      //////}
-        // We just finished putting db data into arrays to loop through again.
-        // Next, we will actually create accounts
       }
       $howMany = count($mailmismatches_active);
       $message = $howMany . " ACTIVE D5 User emails not on SalesForce, we cannot determine who they are here, this needs to be fixed on SF.<br /><br />LIST: ".print_r($mailmismatches_active,true);
@@ -1527,10 +1408,6 @@ watchdog('DEBUG5', $message, array(), WATCHDOG_INFO);
   
   db_set_active();
 
-  // PLW 081815
-  // Forever deprecated.  Default is 15, just do not assign a number
-  //$hash_count_log2 = 11;
-
   require_once 'includes/password.inc';
 
   $count = 0;
@@ -1541,24 +1418,10 @@ watchdog('DEBUG5', $message, array(), WATCHDOG_INFO);
     $context['message'] = "(".$count."/".count($userres).") Migrating User ".$oldUser['name'];
     $context['progress'] = ($count/$total)*100;
 
-    //deprecate
-    //$duplicate = 0;
-
     if (empty($oldUser['mail'])) {
       continue;
     }
 
-/* PLW 0116 move below
-    //extract bio data first
-    $lname = '';
-    $fname = '';
-    $company = '';
-    if (isset($profilesArr[$uidStr])) {
-      $lname = $profilesArr[$uidStr][2];
-      $fname = $profilesArr[$uidStr][1];
-      $company = $profilesArr[$uidStr][3];
-    }
-*/    
     $mail = (string) $oldUser['mail'];
     if (substr($mail,0,1)=="@") {
       $oldmail = $mail;
@@ -1566,22 +1429,6 @@ watchdog('DEBUG5', $message, array(), WATCHDOG_INFO);
       $message = "BAD EMAIL FORMAT >".$oldmail."< CORRECTED>>".$mail."< User data>>".print_r($user,true);
       watchdog('FIN_MIGRATE',$message,array(),WATCHDOG_INFO);
     }
-
-    /* deprecate
-    $check_sql = "select mail, uid from {users} where mail='".$mail."'";
-    $check_res = db_query($check_sql);
-    foreach ($check_res as $res) {
-      if ($res->mail) {
-        $message = "DUPLICATE User Email>".print_r($oldUser,true)."< ORIGINAL UID>>".$res->uid;
-        watchdog('FIN_MIGRATE_USER',$message,array(),WATCHDOG_INFO);
-        $duplicate = 1;
-      }
-    }
-
-    if ($duplicate) {
-      continue;
-    }
-*/
 
     $loop = $count+1;
 
@@ -1664,12 +1511,6 @@ watchdog('DEBUG4', $message, array(), WATCHDOG_INFO);
       $oldnew[$uid] = $newUid;
       $newold[$newUid] = $uid;
 
-      //$myUser = user_load($newUid);
-      //$myUser->field_last_name[LANGUAGE_DEFAULT][0]['value'] = $lname;
-      //$myUser->field_first_name[LANGUAGE_DEFAULT][0]['value'] = $fname;
-      //$myUser->field_user_company[LANGUAGE_DEFAULT][0]['value'] = $company;
-      //user_save($myUser);
-
       variable_set('lastuid', $uid);
       //$count++;
       variable_set('lastcount', $count);
@@ -1686,16 +1527,6 @@ watchdog('DEBUG4', $message, array(), WATCHDOG_INFO);
     $message = '';
     $userName = (string) $oldUser['name'];
     $email = (string) $oldUser['mail'];
-/*
-    $lastName = '';
-    $firstName = '';
-    $companyName = '';
-    if (isset($profilesArr[$uidStr])) {
-      $lastName = $profilesArr[$uidStr][2];
-      $firstName = $profilesArr[$uidStr][1];
-      $companyName = $profilesArr[$uidStr][3];
-    }
-*/
     $lastName = $oldUser['lastname'];
     $firstName = $oldUser['firstname'];
     $companyName = $oldUser['company'];
@@ -1797,40 +1628,7 @@ watchdog('DEBUG4', $message, array(), WATCHDOG_INFO);
   //echo $message ."<br />";
   watchdog('FIN_MIGRATE_USER',$message,array(),WATCHDOG_INFO);
 
-  // PLW 090315 - moving to batch, all nodes uid=1, so deprecate
-  //$out = array();
-  //$out['map']['uid']['oldnew'] = $oldNewUidMapArr;
-  //$out['map']['uid']['newold'] = $newOldUidMapArr;
-  //$out['phase'] = $phase;
-  //return $out;
 }
-
-/*
-  $params = array(
-    'new-users' => array(
-      'Contact' => array(
-        'fields' => array(  
-           'Unique_Email__c' => 'unique_email',
-           'Password__c' => 'password',
-           'Inactive__c' => 'inactive',
-           'Username__c' => 'username',
-           'FINsearches_Expiration_New__c' => 'expiry',
-           'FirstName' => 'firstname',
-           'LastName' => 'lastname',
-           'Email' => 'email' ,
-           'Account.Name' => 'company',
-           'Title' => 'title',       
-           'HomePhone' => 'homephone',
-           'MobilePhone' => 'mobilePhone',
-        ),
-        'types' => array(
-          'Contact',
-        ),
-      ),
-    ),
-  );
-
-*/
 
 function _fin_migrate_make_csv($inArr) {
   if ($inArr) {
@@ -1863,9 +1661,6 @@ function _fin_migrate_make_csv($inArr) {
 }
 
 function _fin_migrate_get_sfdata($emails) {
-  /*
-   * Grab Salesforce datga
-   */
   $params = array(
     'new-users' => array(
       'Contact' => array(
@@ -1945,9 +1740,6 @@ function _fin_migrate_get_sfdata($emails) {
     } // each map
   } // all maps
 
-//$message = print_r($debug,true);
-//watchdog('DEBUG11', $message, array(), WATCHDOG_INFO);
-
   $message = "SF OUT: ".print_r($out,true);
   watchdog('FIN_MIGRATE_SF', $message, array(), WATCHDOG_INFO);
   return $out;    
@@ -1981,74 +1773,10 @@ function _fin_migrate_get_entity_by_name($fieldname, $name, $bundle, $type) {
     if ($ids) {
       $id = $ids[0];
       return $id;
-      //$entity = entity_load($type, $id);
-      //return $entity;
     }
   }
   return FALSE;
 }
-
-/*
-
-function my_function_name_add_image_to_field_collection($nid, $fid){
-   // Load target node
-   $node = node_load($nid);
-
-   // Create a new field collection 
-   $field_collection_item = entity_create('field_collection_item', array('field_name' => 'my_field_collection_item_name'));
-
-   // Prepare link field
-   $link = array(
-      'title' => "",
-      'url' => "",
-      'attributes' => array(
-         'title' => "",
-      ),
-   );
-
-   // Prepare file 
-   $file = (array)file_load($fid);
-   $file['display'] = "1";
-
-   // Load items into field collection
-   $field_collection_item->field_image[LANGUAGE_NONE][] = $file;
-   $field_collection_item->field_link[LANGUAGE_NONE][] = $link;
-
-   // Save field collection item
-   $field_collection_item->setHostEntity('node', $node);
-   $field_collection_item->save(TRUE);
-   
-   node_save($node);
-}
-
-
-
-  $node->field_customer_nid[$node->language][]['target_id'] = $form_state['values']['entity id'];
-  $node->field_customer_nid[$node->language][]['target_type'] = "node" | "user"
-  ...
-  node_submit($node);
-  node_save($node);
-  */
-
-/*
-can assign this to a wrapper, once you create the field
-$field = array('alt' => '',
-          'title' => '',
-          'fid' => $file->fid,
-          'display' => 1,
-          'width' => $file->image_dimensions['width'],
-          'height' => $file->image_dimensions['height'],
-          'image_field_caption' => array
-              (
-                  'value' => '',
-                  'format' => 'full_html',
-              ),              
-    );
-
-*/
-
-
-  
 function _fin_migrate_handler_taxonomy($inArr, $inData, &$node, $termMap) {
   foreach ($inArr as $fldsArr) {
     $fldName = $inArr['fldname'];
@@ -2059,21 +1787,6 @@ function _fin_migrate_handler_taxonomy($inArr, $inData, &$node, $termMap) {
   }
 }
   
-/***
-sample populating addressfield.  Node_save.
-
-$lang = $node->language;
-$node->field_address[$lang][0] = array(
-  "country" => "US",
-  "thoroughfare" => "123 Fake Street",
-  "premise" => "",
-  "locality" => "Beverly Hills",
-  "administrative_area" => "CA",
-  "postal_code" => "90210"
-);
-
-***/
-
 //function _fin_migrate_handler_address($inArr, $inData, &$node) {
 function _fin_migrate_handler_address($dstFldName, $inArr, $inData, &$wrapper, $termMap) {
   $countries = array(
@@ -2283,15 +1996,6 @@ function _fin_migrate_handler_address($dstFldName, $inArr, $inData, &$wrapper, $
  
 function _fin_migrate_handler_paragraph($bundle, $hostFldName, $inArr, $inData, &$wrapper, &$entity, $termMap, $primeKeyFldName='', $primeKey=0) {
 
-//debugBreak();
-
-//function _fin_migrate_handler_paragraph($hostFldName, $inArr, $inData, &$wrapper, &$entity, $termMap, $primeKeyFldName='', $primeKey=0) {
-/*
-$paragraph = new ParagraphsItemEntity(array('field_name' => 'name_of_field_in_node', 'bundle' => 'name_of_paragraph_bundle'));
-$paragraph->is_new = TRUE;
-$paragraph->setHostEntity('node', $node);
-$paragraph->save();
-*/
   $fields = $inArr['fields'];
   $params = $inArr['params'];
   if ( isset($params['oldtable']) ) {
@@ -2360,19 +2064,6 @@ $paragraph->save();
 
 function _fin_migrate_handler_collection($hostFldName, $sets, $inData, &$wrapper, &$entity, $termMap, $primeKeyFldName='', $primeKey=0) {
 
-/*
-$collection = entity_create('field_collection_item', array('field_name' => 'field_user_location'));
-$collection->setHostEntity('user', $user);
-$fc_wrapper = entity_metadata_wrapper('field_collection_item', $collection);
-$fc_wrapper->field_land_phone->set($object['Phone Number']);
-
-    foreach ($fields as $dstFldName => $params) {
-        $oldname = $params['fldname'];
-        $keyFldNames[$dstField] = $oldname;
-      }
-*/
-//debugBrrreak();
-
   $oldNew_col = array();
   $newOld_col = array();
   $variable = 'fin-migrate-oldnew-collection';
@@ -2381,19 +2072,6 @@ $fc_wrapper->field_land_phone->set($object['Phone Number']);
     $oldNew_col = unserialize($oldNews['oldnew']);
     $newOld_col = unserialize($oldNews['newold']);
   }
-/*
-  What do we need to track?
-  DST
-   Collection ID
-   Host Fldname
-   Host Nid
-   Bundle (for paragraphs)
-
-  SRC
-   table name
-   search ID (like Fund ID used to get records from fundcontactgs
-   row id & fieldname (specify in nodemaparr)
-*/
   $fields = $sets['fields'];
   $params = $sets['params'];
   
@@ -2469,24 +2147,9 @@ watchdog('FIN_MIGRATE_COLLECTION', $message, array(), WATCHDOG_INFO);
 
 function _fin_migrate_update_migrate_table($pseudonym, $nid, $collection_id, $id, $srcItem_id, $dst_type, $collection_name, $srcTable, $srcKeyName, $paragraph_bundle='') {
 
-//bugBrrreak();
-
   $sql = 'INSERT INTO {fin_migrate} (pseudonym, src_id, nid, src_item_id, collection_id, dst_type, collection_name, paragraph_bundle, src_table_name, src_key_name) vALUES("'.$pseudonym.'", '.$id.', '.$nid.', '.$srcItem_id.', '.$collection_id.', "'.$dst_type.'", "'.$collection_name. '","'.$paragraph_bundle.'","'.$srcTable.'", "'.$srcKeyName.'")';
   $res = db_query($sql);
 
-/*
-`pseudonym` varchar(64) NOT NULL,
-  `dst_type` varchar(64) NOT NULL,
-  `src_id` int(11) NOT NULL,
-  `nid` int(11) NOT NULL,
-  `src_item_id` int(11) NOT NULL,
-  `collection_id` int(11) NOT NULL,
-  `collection_name` varchar(64) NOT NULL,
-  `paragraph_bundle` varchar(64) NOT NULL,
-  `src_item_name` varchar(64) NOT NULL,
-  `src_key_name` varchar(64) NOT NULL,
-  `src_table_name` varchar(64) NOT NULL,
-*/    
 }
 
 function _fin_migrate_process_fields($fields, $inData, &$wrapper, &$entity, $termMap,$primeKeyFldName='', $primeKey=0, $collection='') {
@@ -2515,9 +2178,6 @@ function _fin_migrate_process_field($handler, $dstFldName, $params, $inData, &$w
     $val = $params['value'];
   }
 
-  //$dstVal = $wrapper->$dstFldName;
-  //if (!empty($val)) {
-//  if (!empty($val) || !empty($dstval)) {
   if (1) {
     $action = $handler;
 
@@ -2748,9 +2408,6 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
               'url' => $url,
             ));
 
-            //$wrapper->$dstFldName->url = $out;
-            //$wrapper->$dstFldName->title = $url;
-            //$wrapper->$dstFldName->attributes = array('title'=>'Go Here', 'target'=>'_new');
           }
         }
       break;
@@ -2849,7 +2506,6 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
           'MandateID' => 'mandate'
         );
 
-//debugBrrreak();
         $oldKeyFldName = $params['fldname'];
         $pseudonym = $refArray[$oldKeyFldName];
         $oldNews = _fin_migrate_get_best_map();
@@ -2859,47 +2515,20 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
           $wrapper->$dstFldName = $new;
         }
 
-/* One field at a tgime, like the other handlers
-        $flds = $params['fields'];
-        if ($flds) {
-          foreach ($flds as $dstFld => $fld) {
-            $oldKeyFldName = $fld['fldname'];
-            $pseudonym = $refArray[$oldKeyFldName];
-            $vl = $inData->$oldKeyFldName;
-            $oldNews = _fin_migrate_get_best_map();
-            $ref = unserialize($oldNews['oldnew']);
-            $new = $ref[$pseudonym][$vl];
-            if ($new) {
-              $wrapper->$dstFld = $new;
-            }
-          }
-        }
-*/
       break;
       case 'inactive2term':
         $name = 'Active';
-        // if TRUE, inactive. Booleans should be positive, not negative, this is why 
-        // we have special handling here
         if ($val) {
           $name = 'Inactive';
         }
-        //$vid = intval($params['voc']);
-        //$term = _fin_migrate_get_tid_by_name($name, $vid);
-        //$out = $term->tid;
         $out = $statusArr[$name];
         $wrapper->$dstFldName = $out;
       break;
       case 'status2term':
         $name = 'Active';
-        // if TRUE, inactive. Booleans should be positive, not negative, this is why 
-        // we have special handling here
         if (!$val) {
           $name = 'Inactive';
         }
-//$out = $termMap[$fldName]['newterm'][$term];
-        //$vid = intval($params['voc']);
-        //$term = _fin_migrate_get_tid_by_name($name, $vid);
-        //$out = $term->tid;
         $out = $statusArr[$name];
         $wrapper->$dstFldName = intval($out);
       break;
@@ -2918,13 +2547,6 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
           'value2' => $out,
         ));
       break;
-/*
-case 'comma-delimited-delta-default':
-break;
-case 'field_manager_firm_er':
-break;
-
-*/
       case 'comma-delimited-delta-default':
         $delta = $inData['fin-delta'];
         $arr = explode(',',$arr);
@@ -2939,8 +2561,6 @@ break;
         $out = $oldnew['map'][$oldKeyName]['oldnew'][$old];
         $wrapper->$dstFldName = $out;
       break;
-///////////////      
-//zzzzzzzzzzz
       case 'employmentdate':
         if ($val) {
           // $val is a row id for target row
@@ -2961,9 +2581,7 @@ break;
         }
       break;
     
-////////////////////
       case 'collection':
-//debugBrrreak();
         $newInData[] = $inData;
         if (isset($params['multiplier'])) {
           $multi = $params['multiplier'];
@@ -3120,17 +2738,6 @@ break;
         }
         $message = "For ".$wrapper->label()." assign ".print_r($messageArr,true);
         watchdog("FIN_MIGRATE Asset Allocation", $message, array(), WATCHDOG_INFO);
-
-        //$keyFldName = $params['keyfldname'];
-        //$fid = $inData->$keyFldName;
-        //$dstFldName = $allocationFieldMap[$fid];
-        //$out = $inData->percentage;
-        //if ($out) {
-          //$wrapper->$dstFldName = $out;
-        //}
-
-//bugBrrrk();
-
       break;
       
       case 'asset-allocationxxx':
@@ -3206,7 +2813,7 @@ function _fin_migrate_handler_system($inArr, $inData, &$wrapper, &$entity, $term
   _fin_migrate_process_fields($fields, $inData, $wrapper, $entity, $termMap);
 }
 
-/*
+/**
  * Function to calculate Employment dates w/CreatedOn & UpdatedOn fields
  *
  * @Summary - The old database does not provide employment dates. So 
@@ -3676,7 +3283,6 @@ function _fin_migrate_batch_nodes(&$context) {
     ),
   );
 
-//////////////////////////////////////////////////////////////
   $nm_contact = array(
     'contact' => array(
       'params' => array(
@@ -3867,10 +3473,7 @@ function _fin_migrate_batch_nodes(&$context) {
     ),
   );
 
-//////////////////////////////////////////////////////////////
 
-// manager contacts have no address, special handling, use manager firm
-// fundcontact Inactive,   
   $nm_cc = array(
     'consultant contact' => array(
       'params' => array(
@@ -4190,18 +3793,6 @@ function _fin_migrate_batch_nodes(&$context) {
     ),
   );
 
-
-///////////////////////////////////////
-
-/*
-  create view at least w/mandate & plan { FundSize
-
-  This is going to have to run at another stage. Do not put this in the same 'run set' as the others, it goes after the first round of nodes, before or after reference.
-
-  This is because of the stupid comma-delimited FirmsHired field, which contains
-  comma-delimited references that also determine how many entries there are in the
-  manager firm history. As an added bonus, so is FirmHiredSize field.
-*/
   $nm_m = array(
     'mandate' => array(
       'params' => array(
@@ -4305,8 +3896,6 @@ function _fin_migrate_batch_nodes(&$context) {
       ),
     ),
   );
-// 242 Matt | 260 Gar SourceID just make UID 1
-// gar guymoso@Yahoo.com matt matt mmccue@fin-news.com
 
   $nodeMapArr = array(
     $nm_p, 
@@ -4442,16 +4031,9 @@ function _fin_migrate_batch_nodes(&$context) {
       'terms' => array(),
     ),
   );
-/*
-    'oldtaxonomy' => array(
-      'termfield' => 'Ref',
-      'terms' => array(),
-    ),
-*/
 
   ini_set('max_execution_time', 3600000);
 
-  // $termMap passed in by reference, fleshed out
   _fin_migrate_prep_terms($termMap);
 
   // do the 2 node steps here
@@ -4461,12 +4043,9 @@ function _fin_migrate_batch_nodes(&$context) {
   _fin_migrate_do_node_step2($nodeMapArr, $termMap, $context);
 }
   
-//function _fin_migrate_do_node_step1($nodeMapArr, $termMap, &$context) {
 function _fin_migrate_do_node_step1(&$context) {
   ini_set('max_execution_time', 3600000);
   ini_set('memory_limit','1024M');
-
-//die("At start of step1");
 
   // Get Parameters
   $nodeMapArr = _get_nodemaps('step1');
@@ -4550,8 +4129,6 @@ watchdog('DEBUG77', $message, array(), WATCHDOG_INFO);
       }
       $noids = array();
       if (isset($newOld[$pseudonym])) {
-        //$noids = array_values($newOld[$pseudonym]);
-        //$raw = array_values($newOld[$pseudonym]);
         $raw = $newOld[$pseudonym];
 $message = "NEWOLD ".$pseudonym."<br><br>".print_r($raw,true);
 watchdog('DEBUG44', $message, array(), WATCHDOG_INFO);
@@ -4623,7 +4200,6 @@ watchdog('DEBUG44', $message, array(), WATCHDOG_INFO);
 if ($rowCount>7000) {
   $stop = time();
   $elapsed = $stop-$start;
-///////////////////////////////////////
   if ($checkName) {
             $totalNodesToCreate = count($oids);
             $howManyContacts = $howManyRows;
@@ -4689,7 +4265,6 @@ if ($rowCount>7000) {
             watchdog('FIN_MIGRATE_STEP1', $message, array(), WATCHDOG_INFO);
 
 }
-//////////////////////////////////
     die("Elapsed time: ".$elapsed." Seconds. Count: ".$rowCount."-Step1 - Another 6000 complete, start next");
 }
 
@@ -4769,12 +4344,6 @@ if ($rowCount>7000) {
               }
               entity_save('node', $entity);
               $nid = $entity->nid;
-/*
-              if ($createdMsg) {
-                $createdMsg .= ' ID: '.$id.' NID: '.$nid.' ';
-                watchdog('FIN_MIGRATE_NODE_'.$pseudonym, $createdMsg, array(), WATCHDOG_WARNING);
-              }
-*/
             } // if not nid
 
 $message = "Record Done. ID: ".$id." | NID: ".$nid." | #".$nodesCreated;
@@ -4782,20 +4351,9 @@ watchdog('FIN_MIGRATE_NODE_STEP1_'.$pseudonym.'_ROW', $message, array(), WATCHDO
 
             if ($id && $nid) {
               $oldNew[$pseudonym][$id][$nid] = $nid;
-              //012816
-              //Because we consolidate contacts, new may link to multi old records
-              //$newOld[$pseudonym][$nid][$id] = $id;
               $newOld[$pseudonym][$nid][][$id] = $id;
               _fin_migrate_update_map($variable, $oldNew, $newOld);
          
-        /* PLW Deprecate 012616
-              if ($checkName) {
-                if ($contactName) {
-                  $nameNids[$contactName] = $nid;
-                  variable_set('fin-migrate-contact-contactnames', serialize($nameNids));
-                }
-              }
-        */
             } else {
               $message = "Oops, for some reason, node not successfully created | id: ".$id." | nid: ".$nid." | Data: ".print_r($row,true);
               watchdog('FIN_MIGRATE_NODE_STEP1', $message, array(), WATCHDOG_WARNING);
@@ -4803,7 +4361,6 @@ watchdog('FIN_MIGRATE_NODE_STEP1_'.$pseudonym.'_ROW', $message, array(), WATCHDO
             } // if row produced ids
           } // each row
 
-          //if ($dst=="contact") {
           if ($checkName) {
             $totalNodesToCreate = count($oids);
             $howManyContacts = $howManyRows;
@@ -4873,13 +4430,9 @@ watchdog('FIN_MIGRATE_NODE_STEP1_'.$pseudonym.'_ROW', $message, array(), WATCHDO
   }
 }
 
-//function _fin_migrate_do_node_step2($nodeMapArr, $termMap, &$context) {
-//function _fin_migrate_do_node_step2($nodeMapArr2, $termMap, &$context) {
 function _fin_migrate_do_node_step2(&$context) {
   ini_set('max_execution_time', 3600000);
   ini_set('memory_limit','1024M');
-
-  // calculate employment dates.
 
   // Get Parameters
   $nodeMapArr = _get_nodemaps('step2');
@@ -5000,7 +4553,6 @@ function _fin_migrate_do_node_step2(&$context) {
       'terms' => array(),
     ),
   );
-  // END TERM MAP ARRAY
 
   $movement = 0;
   $howManyMovements = count($nodeMapArr);
@@ -5041,9 +4593,6 @@ function _fin_migrate_do_node_step2(&$context) {
         $sql = "select ".$pKeyName." from {".$table."}";
         $result = db_query($sql);
         db_set_active();
-        // oids are all old keys in source table, noids keys we saved
-        // We will use array_diff to tell us what ids have not been done
-        // yet.
         $oids = array();
         $res = array();
         foreach ($result as $row) {
@@ -5112,36 +4661,20 @@ if ($rowCount>10) {
             $id = (int) $row->$pKeyName;
             $nid = (int) $oldNew_ref[$pseudonym][$id];
 
-//debugBrrreak();
-
             if ($id && $nid) {
-              // The entity is now created, but we have not yet simplified use of it.
-              // Now create an entity_metadata_wrapper around the new node entity
-              // to make getting and setting values easier
               
               $entity = entity_load('node', array($nid));              
               if (!$entity) {
                 $message = "ENTITY ID: ".$id." NID: ".$nid." NOT loaded. Element: ".print_r($entity,true)."--";
                 watchdog('FIN_MIGRATE_NODE_'.$pseudonym.'-STEP 2', $message, array(), WATCHDOG_ERROR);
               }
-              //$node = node_load(array($nid));
-//debugBrrreak();
-              //$entity_raw = entity_load('node', array($nid));
-              //$entity = $entity_raw[$nid];                            
               $node = node_load($nid);
               $entity = $node;
               $wrapper = entity_metadata_wrapper('node', $node);
-              //$wrapper = entity_metadata_wrapper('node', array($entity));
-//debugBrrreak();
-              //_fin_migrate_handler_system($map['system'], $row, $node, $termMap);
               _fin_migrate_handler_system($map['system'], $row, $wrapper, $entity, $termMap);
-              //_fin_migrate_handler_system($map['system'], $row, $wrapper, $node, $termMap);
 
               $wrapper->save();
 
-//debugBrrreak();
-
-              // currently we only have fields section to process
               $fields = $map['fields'];
               _fin_migrate_process_fields($fields, $row, $wrapper, $entity, $termMap, $pKeyName, $id);
 
@@ -5167,191 +4700,6 @@ if ($rowCount>10) {
 function _fin_migrate_do_node_step2a($pseudonym, $map, $termMap, $oldNew) {
 
 }
-/***
-function _fin_migrate_do_node_step2a($pseudonym, $map, $termMap, $oldNew) {
-  global $$global_empDates;
-  $global_empDates = _fin_migrate_prep_employment_dates();
-  $global_empDates = $arrs['jobs'];
-  $result = $arrs['res'];
-
-        if ($result) {
-          $rowCount = 0;
-          if ($getids) {
-            $howManyRows = count($getids);
-          } else {
-            $howManyRows = count($oids)-count($noids);
-          }
-          $motion = "Moving ";
-          if ($partial) {
-            $motion = "Resuming ";
-          }
-          $message = "Step (2/2) ".$motion." ".$pseudonym." SOURCE (".count($oids).") | EDITED: ".count($noids)." | EDIING: ".$howManyRows;
-          watchdog('FIN_MIGRATE_NODE-'.$pseudonym, $message, array(), WATCHDOG_INFO);
-          $prefix = "Step (1/2) Movement (".$movement."/".$howManyMovements.") ".$message;
-          $context['message'] = $prefix;
-
-          $rowCount = 0;
-          $start = time();
-          foreach ($result as $contactName => $data) {
-
-if ($rowCount>10) {
-  $stop = time();
-  $elapsed = $stop-$start;
-  die("Elapsed time: ".$elapsed." Seconds. Count: ".$rowCount."-Step2 - Another 6000 complete, start next");
-}
-            $rowCount++;
-            $context['progress'] = (int) ($rowCount/$howManyRows)*100;
-            $context['message'] = 'Movement ('.$movement.'/'.$howManyMovements.') gMoving '.$pseudonym.'... Row ('.$rowCount.'/'.$howManyRows.')...';
-            $context['progress'] = ($rowCount/$howManyRows)*100;
-            
-            $id = $row['rowid'];
-            $tbl = $row['tbl'];
-            switch ($tbl) {
-              case 'tblconsultantcontacts':
-                $pseudonym = 'consultant_contact';
-                break;
-              case 'tblmanagercontacts':
-                $pseudonym = 'manager_contact';
-                break;
-              case 'tblfundcontactgs':
-                $pseudonym = 'plan_contact';
-                break;
-            }
-            $nid = $oldNew[$pseudonym][$id];
-
-            if ($id && $nid) {
-              // The entity is now created, but we have not yet simplified use of it.
-              // Now create an entity_metadata_wrapper around the new node entity
-              // to make getting and setting values easier
-              
-              $entity = entity_load('node', array($nid));              
-              if (!$entity) {
-                $message = "ENTITY ID: ".$id." NID: ".$nid." NOT loaded. Element: ".print_r($entity,true)."--";
-                watchdog('FIN_MIGRATE_NODE_'.$pseudonym.'-STEP 2', $message, array(), WATCHDOG_ERROR);
-              }
-              //$node = node_load(array($nid));
-//debugBrrreak();
-              //$entity_raw = entity_load('node', array($nid));
-              //$entity = $entity_raw[$nid];                            
-              $node = node_load($nid);
-              $entity = $node;
-              $wrapper = entity_metadata_wrapper('node', $node);
-              //$wrapper = entity_metadata_wrapper('node', array($entity));
-//debugBrrreak();
-              //_fin_migrate_handler_system($map['system'], $row, $node, $termMap);
-              _fin_migrate_handler_system($map['system'], $row, $wrapper, $entity, $termMap);
-              //_fin_migrate_handler_system($map['system'], $row, $wrapper, $node, $termMap);
-
-              $wrapper->save();
-
-//debugBrrreak();
-
-              // currently we only have fields section to process
-              $fields = $map['fields'];
-              _fin_migrate_process_fields($fields, $row, $wrapper, $entity, $termMap, $pKeyName, $id);
-
-              $wrapper->save();
-
-              $oldNew[$pseudonym][$id] = $nid;
-              $newOld[$pseudonym][$nid] = $id;
-              _fin_migrate_update_map($variable, $oldNew, $newOld);
-            } else {
-              $message = "Oops, for some reason, node not successfully created | id: ".$id." | nid: ".$nid." | Data: ".print_r($row,true);
-              watchdog('FIN_MIGRATE_NODE_STEP2', $message, array(), WATCHDOG_WARNING);
-            } // if row produced ids
-          } // each row
-        } // if result
-      }
-    }
-  }
-}
-*/
-
-/*
- * Special Function to handle Contacts
- */
-/***
-function _fin_migrate_do_node_step2a($pseudonym, $map, $termMap) {
-  global $global_empDates;
-  $global_empDates = _fin_migrate_prep_employment_dates();
-  $global_empDates = $arrs['jobs'];
-  $result = $arrs['res'];
-
-        if ($result) {
-          $rowCount = 0;
-          if ($getids) {
-            $howManyRows = count($getids);
-          } else {
-            $howManyRows = count($oids)-count($noids);
-          }
-
-          $motion = "Moving ";
-          if ($partial) {
-            $motion = "Resuming ";
-          }
-
-          $rowCount = 0;
-          $start = time();
-          foreach ($result as $contactName) {
-
-if ($rowCount>10) {
-  $stop = time();
-  $elapsed = $stop-$start;
-  die("Elapsed time: ".$elapsed." Seconds. Count: ".$rowCount."-Step2 - Another 6000 complete, start next");
-}
-            $rowCount++;
-            $context['progress'] = (int) ($rowCount/$howManyRows)*100;
-            $context['message'] = 'Movement ('.$movement.'/'.$howManyMovements.') gMoving '.$pseudonym.'... Row ('.$rowCount.'/'.$howManyRows.')...';
-            $context['progress'] = ($rowCount/$howManyRows)*100;
-            $contactName = $row->ContactName;
-            $nid = (int) $oldNew_ref[$pseudonym][$id];
-
-            if ($id && $nid) {
-              // The entity is now created, but we have not yet simplified use of it.
-              // Now create an entity_metadata_wrapper around the new node entity
-              // to make getting and setting values easier
-              
-              $entity = entity_load('node', array($nid));              
-              if (!$entity) {
-                $message = "ENTITY ID: ".$id." NID: ".$nid." NOT loaded. Element: ".print_r($entity,true)."--";
-                watchdog('FIN_MIGRATE_NODE_'.$pseudonym.'-STEP 2', $message, array(), WATCHDOG_ERROR);
-              }
-              //$node = node_load(array($nid));
-//debugBrrreak();
-              //$entity_raw = entity_load('node', array($nid));
-              //$entity = $entity_raw[$nid];                            
-              $node = node_load($nid);
-              $entity = $node;
-              $wrapper = entity_metadata_wrapper('node', $node);
-              //$wrapper = entity_metadata_wrapper('node', array($entity));
-//debugBrrreak();
-              //_fin_migrate_handler_system($map['system'], $row, $node, $termMap);
-              _fin_migrate_handler_system($map['system'], $row, $wrapper, $entity, $termMap);
-              //_fin_migrate_handler_system($map['system'], $row, $wrapper, $node, $termMap);
-
-              $wrapper->save();
-
-//debugBrrreak();
-
-              // currently we only have fields section to process
-              $fields = $map['fields'];
-              _fin_migrate_process_fields($fields, $row, $wrapper, $entity, $termMap, $pKeyName, $id);
-
-              $wrapper->save();
-
-              $oldNew[$pseudonym][$id] = $nid;
-              $newOld[$pseudonym][$nid] = $id;
-              _fin_migrate_update_map($variable, $oldNew, $newOld);
-            } else {
-              $message = "Oops, for some reason, node not successfully created | id: ".$id." | nid: ".$nid." | Data: ".print_r($row,true);
-              watchdog('FIN_MIGRATE_NODE_STEP2', $message, array(), WATCHDOG_WARNING);
-            } // if row produced ids
-          } // each row
-        } // if result
-
-
-}
-***/
 
 /*
  * Helper function to grab data from secondary tables as needed
