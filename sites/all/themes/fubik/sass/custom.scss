@@ -141,6 +141,13 @@ tr.even {
   }
 }
 
+/* Field Groups */
+.item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+
 /* Fields */
 #edit-field-status-tr {
   float: left;
