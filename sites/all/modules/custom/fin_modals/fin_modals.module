@@ -507,9 +507,12 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
     } elseif ($type == 'mandate') {
       if (arg(5)) {
         if (arg(5) == 'consultant-mandate') {
+          /*
           $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_consultants_hired'));
           $field_collection_item->setHostEntity('node', $node);
           $field_collection_item->field_consultant_firm_er[$node->language][0]['target_id'] = arg(4);
+          */
+          $node->field_consultant_firm_er[$node->language][0]['target_id'] = arg(4);
         } elseif (arg(5) == 'manager-mandate') {
           $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_managers_hired'));
           $field_collection_item->setHostEntity('node', $node);
@@ -564,6 +567,7 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
     // Close the modal
     
     $commands = array();
+    ctools_add_js('ajax-responder');
     if($node_type == 'contact'){
       if ($field == 'field_consultants_hired') {
         $option = '<option value="' . $value . '"> ' . $form_state['node']->title . '</option>';
@@ -574,15 +578,12 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
         $contact_view = views_embed_view('reference_views', 'eva_plan_contact_edit', $node->parent_nid);
         $commands[] = ajax_command_replace('#edit-field-plan-contacts-embed', $contact_view);
       }
-      if ($field == 'plan-contact' || $field == 'plan-mandate') {
-        ctools_add_js('ajax-responder');
+      if ($field == 'plan-contact' || $field == 'plan-mandate' || $field = 'consultant-contact') {
         $commands[] = ctools_ajax_command_reload();
       }
     } elseif ($node_type == 'plan') {
-        ctools_add_js('ajax-responder');
         $commands[] = ctools_ajax_command_reload();
     } elseif ($node_type == 'mandate') {
-        ctools_add_js('ajax-responder');
         $commands[] = ctools_ajax_command_reload();
     } elseif ($node_type == 'consultant_firm') {
       if ($field == 'field_consultant_firm_er') {
@@ -591,7 +592,7 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
         $commands[] = ajax_command_replace('#edit-field-consultants-hired-und-0-field-consultant-firm-er-und-0-target-id', $new_manager_field);
       }
     } elseif ($node_type == 'office'){
-      $commands[] = ajax_command_invoke(NULL, "ajax_link");
+      $commands[] = ctools_ajax_command_reload();
     }
     
     $commands[] = ctools_modal_command_dismiss();
