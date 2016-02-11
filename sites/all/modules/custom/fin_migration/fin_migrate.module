@@ -48,8 +48,8 @@ function fin_migrate_form_submit($form, &$form_state) {
 function _fin_migrate_operations() {
   $operations = array();
   $operations = array();
-  $operations[] = array('_fin_migrate_do_migrate_users', array());
-//  $operations[] = array('_fin_migrate_do_node_step1', array());
+//  $operations[] = array('_fin_migrate_do_migrate_users', array());
+  $operations[] = array('_fin_migrate_do_node_step1', array());
 //  $operations[] = array('_fin_migrate_do_node_step2', array());
   return $operations;
 }
@@ -929,7 +929,7 @@ $nm_co = array(
     ),
   );
 
-  $nodeMappArr = FALSE;
+  $nodeMapArr = FALSE;
   if ($mode=="step1") {
     $nodeMapArr = array(
       $nm_p, 
@@ -952,7 +952,7 @@ $nm_co = array(
       $nm_contact,
     );
   }
-  return $nodeMappArr;
+  return $nodeMapArr;
 // END BIG NODE MAP ARRAY
 
 }
@@ -4043,19 +4043,17 @@ function _fin_migrate_batch_nodes(&$context) {
   _fin_migrate_do_node_step2($nodeMapArr, $termMap, $context);
 }
   
-function _fin_migrate_do_node_step1(&$context) {
+function _fin_migrate_do_node_step1() {
   ini_set('max_execution_time', 3600000);
   ini_set('memory_limit','1024M');
 
   // Get Parameters
   $nodeMapArr = _get_nodemaps('step1');
-
   $movement = 0;
   $howManyMovements = count($nodeMapArr);
   foreach ($nodeMapArr as $mapArr) {
     foreach ($mapArr as $pseudonym => $map) {
       $movement++;
-      $context['message'] = "Step (1/2) Movement (".$movement."/".$howManyMovements.") Moving ".$pseudonym;
 
       //if this is resuming, grab current old new map
       $oldNew = array();
@@ -4067,8 +4065,6 @@ function _fin_migrate_do_node_step1(&$context) {
         $newOld = unserialize($oldNews['newold']);
       }
 
-$message = "START grab newold: ".print_r($newOld,true)."<br><br>Oldnew: ".print_r($oldNew,true);
-watchdog('DEBUG77', $message, array(), WATCHDOG_INFO);
 
 
       $params = $map['params'];
@@ -4130,9 +4126,6 @@ watchdog('DEBUG77', $message, array(), WATCHDOG_INFO);
       $noids = array();
       if (isset($newOld[$pseudonym])) {
         $raw = $newOld[$pseudonym];
-$message = "NEWOLD ".$pseudonym."<br><br>".print_r($raw,true);
-watchdog('DEBUG44', $message, array(), WATCHDOG_INFO);
-
         $nid2ids = array();
         foreach ($raw as $nid => $more) {
           foreach ($more as $delta=>$yetmore) {
@@ -4145,11 +4138,10 @@ watchdog('DEBUG44', $message, array(), WATCHDOG_INFO);
       }
       $stuffToMove = TRUE;
       $partial = FALSE;
+
       if ($noids) {
         $getids = array_diff($oids, $noids);
 
-        $message = "Current Nodes-to-ids: ".print_r($nid2ids,true)."<br><br>IDs to Process: ".print_r($retids,true)."<br><br>Already Done: ".print_r($noids,true);
-        watchdog('FIN_MIGRATE_'.$pseudonym.'_RESUME', $message, array(), WATCHDOG_INFO);
 
         if (!$getids) {
           $stuffToMove = FALSE;
@@ -4188,7 +4180,6 @@ watchdog('DEBUG44', $message, array(), WATCHDOG_INFO);
           $message = $motion . $pseudonym." SOURCE (".count($oids).") | MOVED: ".count($noids)." | MOVING: ".$howManyRows;
           watchdog('FIN_MIGRATE_NODE-'.$pseudonym, $message, array(), WATCHDOG_INFO);
           $prefix = "Step (1/2) Movement (".$movement."/".$howManyMovements.") ".$message;
-          $context['message'] = $prefix;
 
           $rowCount = 0;
           $start = time();
@@ -4196,8 +4187,8 @@ watchdog('DEBUG44', $message, array(), WATCHDOG_INFO);
           $contactMatches = array();
           $nodesCreated = 0;
           foreach ($result as $row) {
-
-if ($rowCount>7000) {
+// Disable the no essential code
+if (FALSE && $rowCount>7000) {
   $stop = time();
   $elapsed = $stop-$start;
   if ($checkName) {
@@ -4265,17 +4256,13 @@ if ($rowCount>7000) {
             watchdog('FIN_MIGRATE_STEP1', $message, array(), WATCHDOG_INFO);
 
 }
-    die("Elapsed time: ".$elapsed." Seconds. Count: ".$rowCount."-Step1 - Another 6000 complete, start next");
+//    die("Elapsed time: ".$elapsed." Seconds. Count: ".$rowCount."-Step1 - Another 6000 complete, start next");
 }
 
             $rowCount++;
-            $context['progress'] = (int) ($rowCount/$howManyRows)*100;
-            $context['message'] = 'Movement ('.$movement.'/'.$howManyMovements.') gMoving '.$pseudonym.'... Row ('.$rowCount.'/'.$howManyRows.')...';
-            $context['progress'] = ($rowCount/$howManyRows)*100;
 
             $id = $row->$pKeyName;
             $nid = 0;
-
             // are we setting up contacts? Does this contact-by-email-address exist?
             if ($checkName) {
               $contactName = $row->{$nameFldName};
@@ -4346,8 +4333,6 @@ if ($rowCount>7000) {
               $nid = $entity->nid;
             } // if not nid
 
-$message = "Record Done. ID: ".$id." | NID: ".$nid." | #".$nodesCreated;
-watchdog('FIN_MIGRATE_NODE_STEP1_'.$pseudonym.'_ROW', $message, array(), WATCHDOG_INFO);
 
             if ($id && $nid) {
               $oldNew[$pseudonym][$id][$nid] = $nid;
