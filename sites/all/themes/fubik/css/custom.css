@@ -1329,32 +1329,39 @@ tr.even {
   background-color: #98bafe !important;
 }
 
-/* Fields */
+/* Field Groups */
 /* line 145, ../sass/custom.scss */
+.item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+/* Fields */
+/* line 152, ../sass/custom.scss */
 #edit-field-status-tr {
   float: left;
   margin: 0 15px 0 0;
 }
 
 /* Buttons */
-/* line 151, ../sass/custom.scss */
+/* line 158, ../sass/custom.scss */
 .pager li.pager-current, .primary-tabs li.active {
   background-color: #aac6ff;
 }
 
-/* line 154, ../sass/custom.scss */
+/* line 161, ../sass/custom.scss */
 input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
   box-shadow: 0 1px 1px #666666;
 }
 
 /*** Devel ***/
-/* line 159, ../sass/custom.scss */
+/* line 166, ../sass/custom.scss */
 .dev-query {
   color: #666666;
 }
 
 /* Window size indicator */
-/* line 167, ../sass/custom.scss */
+/* line 174, ../sass/custom.scss */
 #win-size {
   position: fixed;
   bottom: 0;
@@ -1367,36 +1374,36 @@ input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
   z-index: 1000;
 }
 
-/* line 180, ../sass/custom.scss */
+/* line 187, ../sass/custom.scss */
 #edit-callbacks-search-api-alter-add-hierarchy-settings-fields {
   height: auto;
 }
 
-/* line 184, ../sass/custom.scss */
+/* line 191, ../sass/custom.scss */
 #facetapi-facet-display-form .facetapi-more-text-setting {
   clear: both;
 }
 
-/* line 188, ../sass/custom.scss */
+/* line 195, ../sass/custom.scss */
 .form-actions {
   float: none;
 }
 
-/* line 193, ../sass/custom.scss */
+/* line 200, ../sass/custom.scss */
 #contact-node-form .field-type-image {
   position: relative;
 }
-/* line 195, ../sass/custom.scss */
+/* line 202, ../sass/custom.scss */
 #contact-node-form .field-type-image .preview {
   display: none;
 }
-/* line 198, ../sass/custom.scss */
+/* line 205, ../sass/custom.scss */
 #contact-node-form .field-type-image .remove {
   position: absolute;
   left: 150px;
   bottom: 0;
 }
-/* line 207, ../sass/custom.scss */
+/* line 214, ../sass/custom.scss */
 #contact-node-form .manualcrop-thumblist .manualcrop-preview .manualcrop-preview-cropped img {
   max-width: none;
 }
@@ -1404,63 +1411,63 @@ input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
 /*
  *Disable plan view fieldset on plan creation
  */
-/* line 224, ../sass/custom.scss */
+/* line 231, ../sass/custom.scss */
 body.page-node-add-plan .group-plan-contacts {
   display: none;
 }
 
-/* line 230, ../sass/custom.scss */
+/* line 237, ../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 234, ../sass/custom.scss */
+/* line 241, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 236, ../sass/custom.scss */
+/* line 243, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 239, ../sass/custom.scss */
+/* line 246, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 246, ../sass/custom.scss */
+/* line 253, ../sass/custom.scss */
 .view-reference-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 250, ../sass/custom.scss */
+/* line 257, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 252, ../sass/custom.scss */
+/* line 259, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 255, ../sass/custom.scss */
+/* line 262, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 262, ../sass/custom.scss */
+/* line 269, ../sass/custom.scss */
 #edit-field-placement-policy-tr {
   display: inline-block;
 }
 
-/* line 267, ../sass/custom.scss */
-.page-node-edit .column-main {
+/* line 274, ../sass/custom.scss */
+.page-node-edit .column-main, .page-node-add .column-main {
   width: 90%;
 }
-/* line 270, ../sass/custom.scss */
-.page-node-edit .column-side {
+/* line 277, ../sass/custom.scss */
+.page-node-edit .column-side, .page-node-add .column-side {
   width: 10%;
 }
-/* line 273, ../sass/custom.scss */
-.page-node-edit table.sticky-header {
+/* line 280, ../sass/custom.scss */
+.page-node-edit table.sticky-header, .page-node-add table.sticky-header {
   z-index: 1000;
 }

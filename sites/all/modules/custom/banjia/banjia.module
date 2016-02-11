@@ -37,17 +37,16 @@ function banjia_form() {
  */
 function banjia_form_submit($form, &$form_state) {
   ini_set('max_execution_time', 3600000);
-  define('USER_RID_TRIAL_MEMBER', '6');
-  define('USER_RID_NONE', '2');
+  define('BANJIA_USER_RID_NONE', '2');
 
   $oldnew = array();
   $newold = array();
-  $namesList = array();
+  $nameslist = array();
   $uidmaps = array();
   $resuming = FALSE;
 
-  $trialNewRoles = array(2,6);
-  $newRoles = array(
+  $trialnewroles = array(2, 6);
+  $newroles = array(
     '1' => 'anonymous users',
     '2' => 'authenticated user',
     '3' => 'administrator',
@@ -58,27 +57,23 @@ function banjia_form_submit($form, &$form_state) {
     '8' => 'Family Office',
   );
 
-  $roleMap = array(
+  $rolemap = array(
     '1' => array(1),
-    '2' => array(2,7),
-    '3' => array(2,3),
-    '4' => array(2,5),
-    '5' => array(2,4),
-    '6' => array(2,6),
-    '7' => array(2,7),
-    '8' => array(2,9),
+    '2' => array(2, 7),
+    '3' => array(2, 3),
+    '4' => array(2, 5),
+    '5' => array(2, 4),
+    '6' => array(2, 6),
+    '7' => array(2, 7),
+    '8' => array(2, 9),
   );
 
-  $compareUsers = '';
-  
   db_set_active('legacy');
   $sql = "select uid from {users} WHERE uid>7";
   $result = db_query($sql);
   db_set_active();
-  // oids are all old keys in source table, noids keys we saved
-  // We will use array_diff to tell us what ids have not been done
-  // yet.
-
+  // Oids are all old keys in source table, noids keys we saved
+  // We will use array_diff to tell us what ids have not been done yet.
   $oids = array();
   $res = array();
   foreach ($result as $row) {
@@ -91,48 +86,41 @@ function banjia_form_submit($form, &$form_state) {
   if (isset($newold)) {
     $noids = array_values($newold);
   }
-  $stuffToMove = TRUE;
+  $stufftomove = TRUE;
   $partial = FALSE;
   if ($noids) {
     $getids = array_diff($oids, $noids);
     if (!$getids) {
-      $stuffToMove = FALSE;
-    } else {
+      $stufftomove = FALSE;
+    }
+    else {
       $partial = TRUE;
     }
   }
   $sql = '';
-  if ($partial && $stuffToMove) {
-    $usql = "select uid, name, pass, mail, status, created, login from {users} where uid in (".implode(",", $getids).") order by uid";
-  } else if (!$partial && $stuffToMove) {
-    // we are starting fresh with a table, use simpler SQL
+  if ($partial && $stufftomove) {
+    $usql = "select uid, name, pass, mail, status, created, login from {users} where uid in (" . implode(",", $getids) . ") order by uid";
+  }
+  elseif (!$partial && $stufftomove) {
+    // We are starting fresh with a table, use simpler SQL.
     $getids = array_keys($oids);
     $usql = "select uid, name, pass, mail, status, created, login from {users} where uid > 777 order by uid";
   }
 
-  if ($stuffToMove) {
+  if ($stufftomove) {
     db_set_active('legacy');
-    //$inUsers = db_query($sql);
-    $inUsers = db_query($usql)->fetchAll();
+    $inusers = db_query($usql)->fetchAll();
     db_set_active();
 
-    if ($inUsers) {
+    if ($inusers) {
 
-      $rowCount = 0;
-      if ($getids) {
-        $howManyRows = count($getids);
-      } else {
-        $howManyRows = count($oids)-count($noids);
-      } 
       $motion = "Starting Fresh ";
       if ($partial) {
         $motion = "Resuming ";
       }
-      $rowCount = 0;
       $start = time();
-// getids, is just getting key, not make sense.
 
-      // First, extract all Trial Members
+      // First, extract all Trial Members.
       $trial_uids = array();
       $sql = "select uid from accounttypes_users where atid=2 or atid=4";
       db_set_active('legacy');
@@ -142,17 +130,17 @@ function banjia_form_submit($form, &$form_state) {
         $trial_uids[$row->uid] = $row->uid;
       }
 
-      $profilesArr = array();
+      $profilesarr = array();
       $sql = "select * from {profile_values}";
-      
+
       db_set_active('legacy');
       $raw = db_query($sql);
       db_set_active();
 
       foreach ($raw as $row) {
-        $profilesArr[$row->uid][$row->fid]=$row->value; 
+        $profilesarr[$row->uid][$row->fid] = $row->value;
       }
-  
+
       $sql = "select u.uid as uid,r.rid as role from {users_roles} u, {role} r where u.rid=r.rid";
       db_set_active('legacy');
       $result = db_query($sql);
@@ -161,22 +149,20 @@ function banjia_form_submit($form, &$form_state) {
       foreach ($result as $row) {
         $roleres[$row->uid][$row->role] = $row->role;
       }
-      $noRoles = array();
+      $noroles = array();
       $rolesuids = array_keys($roleres);
-      $noRoles = array_diff($getids, $rolesuids);
-      foreach ($noRoles as $noRole) {
-        $roleres[$noRole][USER_RID_NONE] = USER_RID_NONE;
+      $noroles = array_diff($getids, $rolesuids);
+      foreach ($noroles as $norole) {
+        $roleres[$norole][BANJIA_USER_RID_NONE] = BANJIA_USER_RID_NONE;
       }
 
       db_set_active();
       $userres = array();
 
-      /*
-      * SALESFORCE - get list of Emails to query SF with
-      */
+      // SALESFORCE - get list of Emails to query SF with.
       $emails = array();
-      $getEmails = $inUsers;
-      foreach ($getEmails as $row) {
+      $getemails = $inusers;
+      foreach ($getemails as $row) {
         $emails[] = $row->mail;
       }
 
@@ -185,21 +171,21 @@ function banjia_form_submit($form, &$form_state) {
       $mailmismatches_inactive = array();
       $statusactivetoinactive = array();
       $statusinactivetoactive = array();
-      foreach ($inUsers as $keyyyy => $row) {
+      foreach ($inusers as $keyyyy => $row) {
         $profile = FALSE;
-        if ( !isset($sfdata[$row->mail]) ) {
+        if (!isset($sfdata[$row->mail])) {
           $lastname = '';
           $firstname = '';
           $companyname = '';
-          if (isset($profilesArr[$row->uid][1])) {
-            $firstname = $profilesArr[$row->uid][1];
-          }    
-          if (isset($profilesArr[$row->uid][2])) {
-            $lastname = $profilesArr[$row->uid][2];
-          }    
-          if (isset($profilesArr[$row->uid][3])) {
-            $companyname = $profilesArr[$row->uid][3];
-          }    
+          if (isset($profilesarr[$row->uid][1])) {
+            $firstname = $profilesarr[$row->uid][1];
+          }
+          if (isset($profilesarr[$row->uid][2])) {
+            $lastname = $profilesarr[$row->uid][2];
+          }
+          if (isset($profilesarr[$row->uid][3])) {
+            $companyname = $profilesarr[$row->uid][3];
+          }
           $profile = array(
             'id' => 0,
             'email' => $row->mail,
@@ -213,61 +199,63 @@ function banjia_form_submit($form, &$form_state) {
             'homephone' => '',
             'mobilephone' => '',
           );
-          $message = "D5 email not in SF, so we use D5 data instead. Email: ".$row->mail."Data: ".print_r($profile,true);
-         
-        } else { // if no sf data available
+          $message = "D5 email not in SF, so we use D5 data instead. Email: " . $row->mail . "Data: " . print_r($profile, TRUE);
+
+        }
+        else {
           $profile = $sfdata[$row->mail];
         }
-        
-        $sfStatus = 0;
-    
-        $d5Status = $row->status;
-    
-        $finalStatus = 0;
-    
-        if ($profile['expiry']>0) {
-          //fair game, determine status based on SF
+
+        $sfstatus = 0;
+
+        $d5status = $row->status;
+
+        $finalstatus = 0;
+
+        if ($profile['expiry'] > 0) {
+          // Determine status based on SF.
           $now = time();
-          if ($profile['expiry']>$now && !$profile['inactive']) {
-            $sfStatus = 1;
-            $finalStatus = 1;
+          if ($profile['expiry'] > $now && !$profile['inactive']) {
+            $sfstatus = 1;
+            $finalstatus = 1;
           }
 
-          // If D5 says active & SF says Inactive, or vice versa, report the conflict
-          if ($sfStatus<>$d5Status) {
-            if ($d5Status) {
-              //drupal user going from active to inactive
+          // If D5 says active & SF says Inactive, or vice versa,
+          // report the conflict.
+          if ($sfstatus <> $d5status) {
+            if ($d5status) {
+              // Drupal user going from active to inactive.
               $statusactivetoinactive[$row->mail][] = $profile;
             }
-            if ($sfStatus) {
-              //drupal user going from inactive to active
+            if ($sfstatus) {
+              // Drupal user going from inactive to active.
               $statusinactivetoactive[$row->mail][] = $profile;
             }
 
-            $profile['d5_status'] = $d5Status;
-            $profile['sf_status'] = $sfStatus;
-            $profile['final_status'] = $finalStatus;
-            $sfStatusStr = "INACTIVE";
-            if ($sfStatus) {
-              $sfStatusStr = "ACTIVE";
+            $profile['d5_status'] = $d5status;
+            $profile['sf_status'] = $sfstatus;
+            $profile['final_status'] = $finalstatus;
+            $sfstatusstr = "INACTIVE";
+            if ($sfstatus) {
+              $sfstatusstr = "ACTIVE";
             }
-            $oldStatusStr = "INACTIVE";
+            $oldstatusstr = "INACTIVE";
             if ($row->status) {
-              $oldStatusStr = "ACTIVE";
+              $oldstatusstr = "ACTIVE";
             }
             $message = t('D5 says user %firstname %lastname ( %email ) is %oldstatus but Salesforce says status is %sfstatus. Inactive: %inactive Expiration Date: %expiry',
               array(
                 '%email' => $row->mail,
                 '%firstname' => $profile['firstname'],
                 '%lastname' => $profile['lastname'],
-                '%sfstatus' => $sfStatusStr,
-                '%oldstatus' => $oldStatusStr,
+                '%sfstatus' => $sfstatusstr,
+                '%oldstatus' => $oldstatusstr,
                 '%expiry' => date('m-d-y', $profile['expiry']),
                 '%inactive' => $profile['inactive'],
               )
             );
-      
-            if ($finalStatus) {
+
+            if ($finalstatus) {
               $statusinactivetoactive[$row->mail][] = $profile;
             }
             else {
@@ -275,48 +263,49 @@ function banjia_form_submit($form, &$form_state) {
             }
           }
         }
-        else { // if there is no expiry or no sf data
-          $finalStatus = $d5Status;
-          if ($finalStatus) {
+        else {
+          // If there is no expiry or no sf data.
+          $finalstatus = $d5status;
+          if ($finalstatus) {
             $mailmismatches_active[$row->mail][] = $profile;
           }
           else {
             $mailmismatches_inactive[$row->mail][] = $profile;
           }
         }
-    
+
         $usr = array(
-          'uid'=>$row->uid,
-          'name'=>$row->name,
-          'mail'=>$row->mail,
-          'pass'=>$row->pass,
-          'status'=>$finalStatus,
-          'login'=>$row->login,
-          'created'=>$row->created,
+          'uid' => $row->uid,
+          'name' => $row->name,
+          'mail' => $row->mail,
+          'pass' => $row->pass,
+          'status' => $finalstatus,
+          'login' => $row->login,
+          'created' => $row->created,
         );
         $userres[$row->uid] = array_merge($usr, $profile);
         if ($keyyyy > 6018) {
         }
       }
 
-
-      $rolesArr = array();
+      $rolesarr = array();
       foreach ($roleres as $uid => $roles) {
-        $uidStr = (string) $uid;
-        if (isset($trial_uids[$uidStr])) {
-          foreach($trialNewRoles as $newRid) {
-            $newRidStr = (string) $newRid;
-            $newRole = $newRoles[$newRidStr];
-            $rolesArr[$uidStr][$newRidStr] = $newRole;
+        $uidstr = (string) $uid;
+        if (isset($trial_uids[$uidstr])) {
+          foreach ($trialnewroles as $newrid) {
+            $newridstr = (string) $newrid;
+            $newrole = $newroles[$newridstr];
+            $rolesarr[$uidstr][$newridstr] = $newrole;
           }
-        } else {
+        }
+        else {
           foreach ($roles as $rid) {
-            $newRids = $roleMap[$rid];
-            foreach ($newRids as $newRid) {
-              $newRidStr = (string) $newRid;
+            $newrids = $rolemap[$rid];
+            foreach ($newrids as $newrid) {
+              $newridstr = (string) $newrid;
               $ind = (string) $rid;
-              $newRole = $newRoles[$ind];
-              $rolesArr[$uidStr][$newRidStr] = $newRole;
+              $newrole = $newroles[$ind];
+              $rolesarr[$uidstr][$newridstr] = $newrole;
             }
           }
         }
@@ -329,157 +318,142 @@ function banjia_form_submit($form, &$form_state) {
     'operations' => array(),
     'finished' => '_banjia_done',
   );
-  foreach ($userres as $uid => $oldUser) {
+  foreach ($userres as $uid => $olduser) {
 
-    if (empty($oldUser['mail'])) {
+    if (empty($olduser['mail'])) {
       continue;
     }
     $uidstr = (string) $uid;
-    $userRoles = FALSE;
-    if (isset($rolesArr[$uidstr])) {
-      $userRoles = $rolesArr[$uidstr];
+    $userroles = FALSE;
+    if (isset($rolesarr[$uidstr])) {
+      $userroles = $rolesarr[$uidstr];
     }
-    $batch['operations'][] = array('_banjia_do_migrate_users', array($oldUser, $userRoles));
+    $batch['operations'][] = array('_banjia_do_migrate_users',
+      array($olduser, $userroles),
+    );
   }
-/*
-  ini_set('max_execution_time', 3600000);
-
-  $batch = array(
-    'title' => t('Importing data'),
-    'operations' => _banjia_operations(),
-    'finished' => '_banjia_done',
-  );
-*/
   batch_set($batch);
 
-}  
-
-function _banjia_operations() {
-  $operations = array();
-  $operations = array();
-  $operations[] = array('_banjia_do_migrate_users', array());
-  return $operations;
 }
+
+/**
+ * Handle the close of batch.
+ */
 function _banjia_done() {
   $message = "DONE";
   watchdog('FIN_MIGRATE', $message, array(), WATCHDOG_INFO);
 }
 
-function _banjia_do_migrate_users(array $oldUser, $userRoles, &$context) {
+/**
+ * Create user and realted node and entity.
+ */
+function _banjia_do_migrate_users(array $olduser, $userroles, &$context) {
 
   require_once 'includes/password.inc';
 
-  $mail = (string) $oldUser['mail'];
-  if (substr($mail,0,1)=="@") {
+  $mail = (string) $olduser['mail'];
+  if (substr($mail, 0, 1) == "@") {
     $oldmail = $mail;
-    $mail = 'corrected'.$fname.'.'.$lname.$mail;
+    $mail = 'corrected' . $fname . '.' . $lname . $mail;
   }
 
   $uidstr = (string) $uid;
-  $oldPass = (string) $oldUser['pass'];
-  $newPass = 'qapla';
-  $noRoles = FALSE;
-  if ($userRoles) {
+  $oldpass = (string) $olduser['pass'];
+  $newpass = 'qapla';
+  $noroles = FALSE;
+  if ($userroles) {
     $fields = array(
-      'name' => $oldUser['name'],
-      'mail' => $oldUser['mail'],
-      'pass' => $newPass,
-      'status' => $oldUser['status'],
-      'init' => $oldUser['mail'],
-      'roles' => $userRoles,
-      'created' => $oldUser['created'],
-      'access' => $oldUser['login'],
+      'name' => $olduser['name'],
+      'mail' => $olduser['mail'],
+      'pass' => $newpass,
+      'status' => $olduser['status'],
+      'init' => $olduser['mail'],
+      'roles' => $userroles,
+      'created' => $olduser['created'],
+      'access' => $olduser['login'],
     );
   }
   else {
-    $message = "This User ".print_r($oldUser,true)." does not have any roles. Something went wrong here";
-    watchdog('FIN_MIGRATE',$message,array(),WATCHDOG_WARNING);      
+    $message = "This User " . print_r($olduser, TRUE) . " does not have any roles. Something went wrong here";
+    watchdog('FIN_MIGRATE', $message, array(), WATCHDOG_WARNING);
     $fields = array(
-      'name' => $oldUser['name'],
-      'mail' => $oldUser['mail'],
-      'pass' => $newPass,
-      'status' => $oldUser['status'],
-      'init' => (string) $oldUser['mail'],
-      'created' => $oldUser['created'],
-      'login' => $oldUser['login'],
+      'name' => $olduser['name'],
+      'mail' => $olduser['mail'],
+      'pass' => $newpass,
+      'status' => $olduser['status'],
+      'init' => (string) $olduser['mail'],
+      'created' => $olduser['created'],
+      'login' => $olduser['login'],
     );
   }
 
-  //the first parameter is left blank so a new user is created
-  $alreadyThere = 0;
-
-  //013116 - for some reason there is a duplicate key error, remedy here
-  $curuser = user_load_by_mail($oldUser['mail']);
-  $uname = $oldUser['name'];
-  if($curuser) return;
+  // 013116 - for some reason there is a duplicate key error, remedy here.
+  $curuser = user_load_by_mail($olduser['mail']);
+  $uname = $olduser['name'];
+  if ($curuser) {
+    return;
+  }
   if (!$curuser) {
     $acct = new stdClass();
-    //$acct->is_new = 1;
     $acct->active = 1;
 
     $curuser = user_save($acct, $fields);
 
-    $newUid = (int) $curuser->uid;
-    $context['message'] = 'New user created with user id ' . $newUid;
-    $oldUid = $uid;
-    $namesList[$uname] = $uname;
-      // now try the password
-    $newPass = user_hash_password($oldPass);
-    if ($newPass) {
+    $newuid = (int) $curuser->uid;
+    $context['message'] = 'New user created with user id ' . $newuid;
+    $nameslist[$uname] = $uname;
+    $newpass = user_hash_password($oldpass);
+    if ($newpass) {
       // Indicate an updated password.
-      $newPass  = 'U' . $newPass;
+      $newpass  = 'U' . $newpass;
     }
-    
-    db_update('users')->fields(array('pass' => $newPass))->condition('uid', $curuser->uid)->execute();
 
-    $oldnew[$uid] = $newUid;
-    $newold[$newUid] = $uid;
+    db_update('users')->fields(array('pass' => $newpass))->condition('uid', $curuser->uid)->execute();
 
-    //$count++;
+    $oldnew[$uid] = $newuid;
+    $newold[$newuid] = $uid;
 
     $uidmaps = array();
     $uidmaps['oldnew'] = $oldnew;
     $uidmaps['newold'] = $newold;
-    $uidmaps['nameslist'] = $namesList;
+    $uidmaps['nameslist'] = $nameslist;
   }
-  
-  // plw 0116 now take care of organization & profile2
-  //extract bio data first
+
+  // Plw 0116 now take care of organization & profile2, extract bio data first.
   $message = '';
-  $userName = (string) $oldUser['name'];
-  $email = (string) $oldUser['mail'];
-  $lastName = $oldUser['lastname'];
-  $firstName = $oldUser['firstname'];
-  $companyName = $oldUser['company'];
-  
+  $username = (string) $olduser['name'];
+  $email = (string) $olduser['mail'];
+  $lastname = $olduser['lastname'];
+  $firstname = $olduser['firstname'];
+  $companyname = $olduser['company'];
+
   $organization_nid = 0;
-  if ($companyName) {
-    $organization_nid = _banjia_get_entity_by_name('field_organization_name', $oldUser['company'], 'organization','node');
+  if ($companyname) {
+    $organization_nid = _banjia_get_entity_by_name('field_organization_name', $olduser['company'], 'organization', 'node');
     if (!$organization_nid) {
       try {
-         $organization = entity_create('node', array('type'=>'organization', 'uid'=>1, 'status'=>1));
-        //$organization = entity_create('node', array('type'=>'organization'));
-        $organization->field_organization_name[LANGUAGE_NONE][0]['value'] = $companyName;
-        $organization->title = $companyName;
+        $organization = entity_create('node',
+          array('type' => 'organization', 'uid' => 1, 'status' => 1));
+        $organization->field_organization_name[LANGUAGE_NONE][0]['value'] = $companyname;
+        $organization->title = $companyname;
         entity_save('node', $organization);
         $organization_nid = $organization->nid;
-        $message = t('Created new Organization %company from D5 Row: %data. ',
+        $message = t('Created new Organization %company from D5 Row: %data.',
           array(
-            '%company' => $companyName,
-            '%data' => print_r($row,true),
+            '%company' => $companyname,
+            '%data' => print_r($row, TRUE),
           )
         );
-      } 
+      }
       catch (Exception $e) {
-              $message = t('Failed to create organization %company from D5 Row: %data. Error: @msg<br /><br />%data',
-                array(
-                  '%username' => $userName,
-                  '%email' => $email,
-                  '%data' => print_r($row,true),
-                  '@msg' => $e->getMessage(),
-                )
-            );
-        //continue;
+        $message = t('Failed to create organization %company from D5 Row: %data. Error: @msg<br /><br />%data',
+           array(
+             '%username' => $username,
+             '%email' => $email,
+             '%data' => print_r($row, TRUE),
+             '@msg' => $e->getMessage(),
+           )
+         );
       }
       if ($message) {
         watchdog('FIN_MIGRATE_ORGANIZATION', $message, array(), WATCHDOG_INFO);
@@ -488,7 +462,7 @@ function _banjia_do_migrate_users(array $oldUser, $userRoles, &$context) {
     }
   }
 
-  $main_profile = banjia_profile2_by_uid_load($newUid, 'main');
+  $main_profile = banjia_profile2_by_uid_load($newuid, 'main');
   if (!$main_profile) {
     $main_profile = entity_create('profile2', array('type' => 'main', 'node'));
   }
@@ -497,42 +471,41 @@ function _banjia_do_migrate_users(array $oldUser, $userRoles, &$context) {
     $action = 'Create';
   }
   try {
-    //$main_profile = entity_create('profile2', array('type' => 'main', 'node'));
     if (!$main_profile->uid && $uid) {
       $main_profile->uid = $uid;
       $message = t('Profile attached to a User. This should only happen w/new profiles. User %username ( %email ) UID %uid',
-        array('%username' => $userName,
+        array(
+          '%username' => $username,
           '%email' => $email,
-          '%uid' => $newUid,
+          '%uid' => $newuid,
         )
       );
     }
-    $main_profile->field_pf_first_name[LANGUAGE_NONE][0]['value'] = $oldUser['firstname'];
-    $main_profile->field_pf_last_name[LANGUAGE_NONE][0]['value'] = $oldUser['lastname'];
-    $main_profile->field_pf_job_title[LANGUAGE_NONE][0]['value'] = $oldUser['title'];
-    $main_profile->field_pf_expiration_date [LANGUAGE_NONE][0]['value'] = $oldUser['expiry'];
-    //$main_profile->field_pf_job_title [LANGUAGE_NONE][0]['addressfield'] = $address;
+    $main_profile->field_pf_first_name[LANGUAGE_NONE][0]['value'] = $olduser['firstname'];
+    $main_profile->field_pf_last_name[LANGUAGE_NONE][0]['value'] = $olduser['lastname'];
+    $main_profile->field_pf_job_title[LANGUAGE_NONE][0]['value'] = $olduser['title'];
+    $main_profile->field_pf_expiration_date[LANGUAGE_NONE][0]['value'] = $olduser['expiry'];
     if ($organization_nid) {
       $main_profile->field_pf_organization[LANGUAGE_NONE][0]['target_id'] = $organization_nid;
     }
     entity_save('node', $main_profile);
-  
+
     $message = t('Successfully %action profile for user %username ( %email ) from D5 Row: %data.',
       array(
-        '%action' => $action .'d',
-        '%username' => $userName,
+        '%action' => $action . 'd',
+        '%username' => $username,
         '%email' => $email,
-        '%data' => print_r($row,true),
+        '%data' => print_r($row, TRUE),
       )
     );
-  }        
+  }
   catch (Exception $e) {
     $message = t('Failed to %action profile for user %username ( %email ) from D5 Row: %data. Error: @msg',
       array(
         '%action' => $action,
-        '%username' => $userName,
+        '%username' => $username,
         '%email' => $email,
-        '%data' => print_r($row,true),
+        '%data' => print_r($row, TRUE),
         '@msg' => $e->getMessage(),
       )
     );
@@ -543,8 +516,11 @@ function _banjia_do_migrate_users(array $oldUser, $userRoles, &$context) {
   }
 }
 
-function _banjia_make_csv($inArr) {
-  if ($inArr) {
+/**
+ * Create csv file.
+ */
+function _banjia_make_csv($inarr) {
+  if ($inarr) {
     $arr = array(
       'firstname',
       'lastname',
@@ -554,25 +530,27 @@ function _banjia_make_csv($inArr) {
       'expiry_date',
     );
 
-    $outArr = array();
     $header = FALSE;
-    foreach ($inArr as $row_raw) {
+    foreach ($inarr as $row_raw) {
       $row = array();
       foreach ($arr as $fld) {
         $row[$fld] = $row_raw[0][$fld];
       }
       if (!$header) {
-        $out[] = '"'.implode('" , "', array_keys($row)).'"';
+        $out[] = '"' . implode('" , "', array_keys($row)) . '"';
         $header = TRUE;
       }
       $vals = array_values($row);
-      $out[] = '"'.implode('" , "', $vals).'"';
+      $out[] = '"' . implode('" , "', $vals) . '"';
     }
     return implode("\r\n", $out);
   }
   return FALSE;
 }
 
+/**
+ * Get salesforce data via their API.
+ */
 function _banjia_get_sfdata($emails) {
   /*
    * Grab Salesforce datga
@@ -580,16 +558,16 @@ function _banjia_get_sfdata($emails) {
   $params = array(
     'new-users' => array(
       'Contact' => array(
-        'fields' => array(  
-           'Inactive__c' => 'inactive',
-           'FINsearches_Expiration_New__c' => 'expiry',
-           'FirstName' => 'firstname',
-           'LastName' => 'lastname',
-           'Email' => 'email' ,
-           'Account.Name' => 'company',
-           'Title' => 'title',
-           'HomePhone' => 'homephone',
-           'MobilePhone' => 'mobilephone',
+        'fields' => array(
+          'Inactive__c' => 'inactive',
+          'FINsearches_Expiration_New__c' => 'expiry',
+          'FirstName' => 'firstname',
+          'LastName' => 'lastname',
+          'Email' => 'email' ,
+          'Account.Name' => 'company',
+          'Title' => 'title',
+          'HomePhone' => 'homephone',
+          'MobilePhone' => 'mobilephone',
         ),
         'types' => array(
           'Contact',
@@ -600,22 +578,22 @@ function _banjia_get_sfdata($emails) {
   $sfapi = salesforce_get_api();
   $out = FALSE;
   foreach ($params as $pseudonym => $maps) {
-    foreach($maps as $sf_object_type => $map) {
+    foreach ($maps as $sf_object_type => $map) {
       $mapped_fields = $map['fields'];
       $sf_object_type = $map['types'][0];
       $soql = new SalesforceSelectQuery($sf_object_type);
-      
+
       // Convert field mappings to SOQL.
       $soql->fields = array('Id', 'LastModifiedDate');
       foreach ($mapped_fields as $field => $ignore) {
-          $soql->fields[] = $field;
+        $soql->fields[] = $field;
       }
 
       $chunks = array_chunk($emails, 400);
       foreach ($chunks as $chunk) {
         $soql->conditions = array();
         $soql->addCondition('Email', $chunk, 'IN');
-        
+
         // Execute query.
         $results = $sfapi->query($soql);
         if (!isset($results['errorCode'])) {
@@ -625,29 +603,30 @@ function _banjia_get_sfdata($emails) {
             if ($email) {
               $arr = array();
               foreach ($row as $key => $val) {
-                if ($key=="Account") {
+                if ($key == "Account") {
                   $val = $val['Name'];
                   $alias = 'company';
                   $arr[$alias] = $val;
                 }
-                if ( isset($mapped_fields[$key]) ) {
+                if (isset($mapped_fields[$key])) {
                   $alias = $mapped_fields[$key];
-                  if ($alias=="expiry") {
+                  if ($alias == "expiry") {
                     $arr['expiry_date'] = $val;
                     $val = strtotime($val);
                   }
-                  if ($alias=="company") {
+                  if ($alias == "company") {
                     $val = $val['Name'];
                   }
                   $arr[$alias] = $val;
                 }
-                else if ( ($key=='Id') ) {
+                elseif (($key == 'Id')) {
                   $arr['id'] = $val;
                 }
               }
               $out[$email] = $arr;
-            } else {
-              $message = "MISSING EMAIL - Row: ".print_r($row,true);
+            }
+            else {
+              $message = "MISSING EMAIL - Row: " . print_r($row, TRUE);
               watchdog('SF_MIGRATION_SF', $message, array(), WATCHDOG_ERROR);
             }
           }
@@ -656,12 +635,14 @@ function _banjia_get_sfdata($emails) {
     } // each map
   } // all maps
 
-
-  $message = "SF OUT: ".print_r($out,true);
+  $message = "SF OUT: " . print_r($out, TRUE);
   watchdog('FIN_MIGRATE_SF', $message, array(), WATCHDOG_INFO);
-  return $out;    
+  return $out;
 }
 
+/**
+ * Load user by id.
+ */
 function banjia_profile2_by_uid_load($uid, $type_name) {
   if ($uid && is_numeric($uid) && ($account = user_load($uid))) {
     $profile = profile2_load_by_user($account, $type_name);
@@ -675,7 +656,9 @@ function banjia_profile2_by_uid_load($uid, $type_name) {
   return FALSE;
 }
 
-
+/**
+ * Load entity by entity title, lable.
+ */
 function _banjia_get_entity_by_name($fieldname, $name, $bundle, $type) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', $type)
@@ -690,8 +673,6 @@ function _banjia_get_entity_by_name($fieldname, $name, $bundle, $type) {
     if ($ids) {
       $id = $ids[0];
       return $id;
-      //$entity = entity_load($type, $id);
-      //return $entity;
     }
   }
   return FALSE;

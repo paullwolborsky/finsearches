@@ -141,6 +141,13 @@ tr.even {
   }
 }
 
+/* Field Groups */
+.item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+
 /* Fields */
 #edit-field-status-tr {
   float: left;
@@ -263,7 +270,7 @@ body.page-node-add-plan {
   display: inline-block;
 }
 
-.page-node-edit {
+.page-node-edit, .page-node-add {
   .column-main {
     width: 90%;
   }

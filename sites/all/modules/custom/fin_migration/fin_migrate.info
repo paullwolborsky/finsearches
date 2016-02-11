@@ -1,0 +1,4 @@
+name = Custom Migrate D5-D7
+description = Migrate data from old to new Finsearch websites
+core = 7.x
+files[] = fin_migrate.module
