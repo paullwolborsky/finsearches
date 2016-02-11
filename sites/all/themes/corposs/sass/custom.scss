@@ -147,6 +147,9 @@ body {
   margin-top: 10px;
   margin-bottom: 5px;
 }
+.field-name-field-photo .field-item {
+  text-align: center;
+}
 
 /*** Display Suite ***/
 .ds-header {
@@ -193,11 +196,6 @@ ul.links {
     padding: 0 0 10px 0;
     background: $form-background-blue;
   }
-}
-
-/*** Widgets ***/
-.chosen-container {
-  //display: none !important;
 }
 
 /*** Views ***/
@@ -375,9 +373,7 @@ tr.odd td.active, tr.even td.active {
 }
 
 /*** Widgets ***/
-.chosen-container {
-  //display: none !important;
-}
+
 
 .view-views-search {
   .view-content {
@@ -413,6 +409,7 @@ body.node-type-plan {
     }  
   }
 }
+
 /*** Modal styles
  *Duplicated from Admin theme (Fubik)
  */
