@@ -88,7 +88,8 @@ span.fieldset-legend {
   margin: 0 0 0 5px;
 }
 .block-views {
-  margin: 30px 0 0 0;
+  //margin: 30px 0 0 0;
+  margin:  0;
   padding: 0;
 }
 #block-subscriptions-ui-0 {
@@ -152,53 +153,83 @@ body {
 }
 
 /*** Display Suite ***/
-.ds-header {
-  margin: 0 0 30px 0;
+h3.block-title {
+  font-size: 21px;
+  padding: 2px 0;
+  a {
+    background: none;
+  }
 }
+
+.ds-header {
+  padding: 0 0 30px 0;
+}
+
+#block-system-main {
+  h3.block-title {
+    padding: 4px 0 4px 15px;
+    font-size: 21px;
+  }
+}
+.ds-above-left, .ds-above-right {
+  padding: 0 10px 10px 0;
+  .field-group-fieldset {
+    background: $form-background-blue;
+    legend {
+      padding: 5px 0;
+      background: #1368a6; /* Old browsers */
+      background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
+      span.fieldset-legend {
+        color: $background;
+        background: none;
+      }
+    }
+  }
+}
+.ds-above-right {
+  padding: 0 0 10px 10px;
+  div.field-items {
+    background-color: #cddeff;
+  }
+}
+
+.ds-below-left, .ds-below-right {
+  padding: 0 10px 30px 0;
+  
+}
+.ds-below-right {
+  padding: 0 0 30px 10px;
+}
+
+#block-system-main {
+  div.field-type-ds {
+    margin: 0 0 30px 0;
+  }
+}
+
+.ds-footer {
+  //Have to use padding because of floats
+  padding: 20px 0 0 0;
+}
+
 ul.links {
   float: right;
   margin: 0;
 }
-.ds-above-left {
-  margin-bottom: 30px;
-  legend {
-    padding: 5px 0;
-    background: #1368a6; /* Old browsers */
-    background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
-    span.fieldset-legend {
-      color: $background;
-    }
-  }
-  .field-group-fieldset {
-    width: 98%;
-    padding: 0 0 10px 0;
-    background: $form-background-blue;
-  }
-}
-.ds-above-right {
-  margin-bottom: 30px;
-  legend {
-    padding: 5px 0;
-    background: #1368a6; /* Old browsers */
-    background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
-    span.fieldset-legend {
-      color: $background;
-    }
-  }
-  .field-group-fieldset {
-    width: 98%;
-    padding: 0 0 10px 0;
-    background: $form-background-blue;
-  }
-}
 
 /*** Views ***/
+/**  Recent content block **/
+#block-views-tracker-recent-content-sidebar {
+  .ui-accordion-content {
+    .recent-actions {
+      display: inline-block;
+      margin: 0 10px 0 0;
+    }
+  }
+}
 .view-views-search {
   .view-content {
     display: none;
@@ -242,14 +273,16 @@ ul.links {
     }
 }
 span.fieldset-legend {
-  padding: 0 0 10px 0;
-  margin: 0 0 0 5px;
+  //padding: 0 0 10px 0;
+  padding: 0;
+  //margin: 0 0 0 5px;
+  margin: 0;
   a {
     color: $background;
     }
 }
 fieldset.collapsible .fieldset-legend {
-  margin: -5px 0 0 0;
+  //margin: -5px 0 0 0;
 }
 .views-exposed-form {
   padding: 10px;

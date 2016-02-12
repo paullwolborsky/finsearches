@@ -595,7 +595,6 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
       $commands[] = ctools_ajax_command_reload();
     }
     
-    $commands[] = ctools_modal_command_dismiss();
     print ajax_render($commands);
     exit;
   }
