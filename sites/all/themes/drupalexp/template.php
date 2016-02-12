@@ -134,7 +134,7 @@ function drupalexp_preprocess_html(&$vars) {
   require_once dirname(__FILE__) . '/includes/lessc.php';
   $theme = drupalexp_get_theme();
   if($theme->get('drupalexp_smoothscroll')){
-    drupal_add_js(drupal_get_path('theme', 'drupalexp') . '/assets/js/dexp-smoothscroll.js');
+    //drupal_add_js(drupal_get_path('theme', 'drupalexp') . '/assets/js/dexp-smoothscroll.js');
   }
   $direction = isset($_SESSION['drupalexp_default_direction'])?$_SESSION['drupalexp_default_direction']:null;
   if (empty($direction)) {
