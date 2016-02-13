@@ -35,7 +35,7 @@ function banjia_form() {
 /**
  * Implements hook_form_submit().
  */
-function banjia_form_submit($form, &$form_state) {
+function banjia_user_batch_wrap(&$batch) {
   ini_set('max_execution_time', 3600000);
   define('BANJIA_USER_RID_NONE', '2');
 
@@ -313,13 +313,7 @@ function banjia_form_submit($form, &$form_state) {
 
     }
   }
-  $batch = array(
-    'title' => t('Importing data'),
-    'operations' => array(),
-    'finished' => '_banjia_done',
-  );
   foreach ($userres as $uid => $olduser) {
-
     if (empty($olduser['mail'])) {
       continue;
     }
@@ -332,8 +326,18 @@ function banjia_form_submit($form, &$form_state) {
       array($olduser, $userroles),
     );
   }
+}
+/**
+ * Implements hook_form_submit().
+ */
+function banjia_form_submit($form, &$form_state) {
+  $batch = array(
+    'title' => t('Importing data'),
+    'operations' => array(),
+    'finished' => '_banjia_done',
+  );
+  $state_user = banjia_user_batch_wrap($batch);
   batch_set($batch);
-
 }
 
 /**
