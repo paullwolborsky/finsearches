@@ -337,6 +337,7 @@ function banjia_form_submit($form, &$form_state) {
     'finished' => '_banjia_done',
   );
   $state_user = banjia_user_batch_wrap($batch);
+  $state_node_part_1 = banjia_fin_migrate_do_node_step1($batch);
   batch_set($batch);
 }
 
@@ -361,7 +362,6 @@ function _banjia_do_migrate_users(array $olduser, $userroles, &$context) {
     $mail = 'corrected' . $fname . '.' . $lname . $mail;
   }
 
-  $uidstr = (string) $uid;
   $oldpass = (string) $olduser['pass'];
   $newpass = 'qapla';
   $noroles = FALSE;
@@ -685,7 +685,7 @@ function _banjia_get_entity_by_name($fieldname, $name, $bundle, $type) {
 /**
  * Creates the node.
  */
-function banjia_part_one_create_node($pseudonym, $row, $checkName, $nameFldName, $nameNids = NULL) {
+function banjia_part_one_create_node($pseudonym, $row, $checkName, $nameFldName, $nameNids = NULL, &$context) {
             $id = $row->$pKeyName;
             $nid = 0;
             // are we setting up contacts? Does this contact-by-email-address exist?
@@ -743,8 +743,10 @@ function banjia_part_one_create_node($pseudonym, $row, $checkName, $nameFldName,
               $n_wrapper = entity_metadata_wrapper('node', $entity);
               $n_wrapper->save();
 
+              $context['message'] = 'Created a new ' . $n_wrapper->value()->type . '  node with nid ' . $n_wrapper->value()->nid;
          
-            } else {
+            }
+   else {
               //$message = "Oops, for some reason, node not successfully created | id: ".$id." | nid: ".$nid." | Data: ".print_r($row,true);
               //watchdog('FIN_MIGRATE_NODE_STEP1', $message, array(), WATCHDOG_WARNING);
         
@@ -763,8 +765,6 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
   $nodeMapArr = banjia_get_nodemaps('step1');
   $movement = 0;
   $howManyMovements = count($nodeMapArr);
-  dsm($nodeMapArr);
-  return;
   foreach ($nodeMapArr as $mapArr) {
     foreach ($mapArr as $pseudonym => $map) {
       $movement++;
@@ -812,8 +812,8 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
                  'nid' => 0
               );
             }
-            variable_set('fin-migrate-contact-contactnames', serialize($nameNids));          
-            variable_set('fin-migrate-contact-contactnames_total', serialize($multiplesTotal));          
+//            variable_set('fin-migrate-contact-contactnames', serialize($nameNids));          
+//            variable_set('fin-migrate-contact-contactnames_total', serialize($multiplesTotal));          
           }
         }
         $checkName = TRUE;
@@ -907,6 +907,7 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
       }
     } // foreach pseudonym
   }
+return TRUE;
 }
 
 /**
