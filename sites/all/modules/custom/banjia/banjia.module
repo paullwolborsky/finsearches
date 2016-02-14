@@ -762,10 +762,10 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
   ini_set('memory_limit','1024M');
 
   // Get Parameters
-  $nodeMapArr = banjia_get_nodemaps('step1');
+  $nodemaparr = banjia_get_nodemaps('step1');
   $movement = 0;
-  $howManyMovements = count($nodeMapArr);
-  foreach ($nodeMapArr as $mapArr) {
+  $howManyMovements = count($nodemaparr);
+  foreach ($nodemaparr as $mapArr) {
     foreach ($mapArr as $pseudonym => $map) {
       $movement++;
 
@@ -907,15 +907,15 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
       }
     } // foreach pseudonym
   }
-return TRUE;
+  return TRUE;
 }
 
 /**
  * Get content field mapping for migration.
  */
-function banjia_get_nodemaps($mode='step1') {
+function banjia_get_nodemaps($mode = 'step1') {
 
-$nm_co = array(
+  $nm_co = array(
     'office' => array(
       'params' => array(
         'oldtable' => 'tblconsultantoffices',
@@ -925,44 +925,44 @@ $nm_co = array(
       'system' => array(
         'fields' => array(
           'node-title' => array(
-            'title' => array('fldname'=>'ConsultantOfficeName'), 
+            'title' => array('fldname' => 'ConsultantOfficeName'),
           ),
           'node-body' => array(
-            'body' => array('fldname'=>'Comments'),      
+            'body' => array('fldname' => 'Comments'),
           ),
         ),
       ),
       'fields' => array(
         'default' => array(
-          'title_field' => array('fldname'=>'ConsultantOfficeName'),
+          'title_field' => array('fldname' => 'ConsultantOfficeName'),
         ),
         'lu2term' => array(
-          'field_office_type_tr' => array('fldname'=>'OfficeType'),
+          'field_office_type_tr' => array('fldname' => 'OfficeType'),
         ),
         'text2email' => array(
-          'field_email' => array('fldname'=>'Email'),
+          'field_email' => array('fldname' => 'Email'),
         ),
         'reference' => array(
-          'field_consultant_firm_er'=>array('fldname'=>'ConsultantFirmID'),
+          'field_consultant_firm_er' => array('fldname' => 'ConsultantFirmID'),
         ),
         'address' => array(
           'field_address' => array(
             'fields' => array(
               'default' => array(
-                'thoroughfare' => array('fldname'=>array('Address1')),
-                'premise' => array('fldname'=>array('Address2', 'Address3')),
-                'locality' => array('fldname'=>'City'),
-                'postal_code' => array('fldname'=>'ZIP'),
+                'thoroughfare' => array('fldname' => array('Address1')),
+                'premise' => array('fldname' => array('Address2', 'Address3')),
+                'locality' => array('fldname' => 'City'),
+                'postal_code' => array('fldname' => 'ZIP'),
               ),
               'phone' => array(
-                'phone_number' => array('fldname'=>'Phone'),
-                'fax_number' => array('fldname'=>'Fax'),
+                'phone_number' => array('fldname' => 'Phone'),
+                'fax_number' => array('fldname' => 'Fax'),
               ),
               'lu2state' => array(
-                'administrative_area' => array('fldname'=>'StateID'),
+                'administrative_area' => array('fldname' => 'StateID'),
               ),
               'lu2country' => array(
-                'country' => array('fldname'=>'CountryID'),
+                'country' => array('fldname' => 'CountryID'),
               ),
             ),
           ),
@@ -976,37 +976,36 @@ $nm_co = array(
       'params' => array(
         'oldtable' => 'tblconsultantfirms',
         'oldkeyfldname' => 'ConsultantFirmID',
-        'dst'=>'consultant_firm',
+        'dst' => 'consultant_firm',
       ),
       'system' => array(
         'fields' => array(
           'node-title' => array(
-            'title' => array('fldname'=>'ConsultantFirmName'),
+            'title' => array('fldname' => 'ConsultantFirmName'),
           ),
           'node-body' => array(
-            'body' => array('fldname'=>'Comments'),      
+            'body' => array('fldname' => 'Comments'),
           ),
         ),
       ),
       'fields' => array(
         'default' => array(
-          'title_field' => array('fldname'=>'ConsultantFirmName'),
-          'field_aua' => array('fldname'=>'AUA'),
+          'title_field' => array('fldname' => 'ConsultantFirmName'),
+          'field_aua' => array('fldname' => 'AUA'),
         ),
         'text2email' => array(
-          'field_email' => array('fldname'=>'Email'),
+          'field_email' => array('fldname' => 'Email'),
         ),
         'http2link' => array(
-          'field_website' => array('fldname'=>'Website'),          
+          'field_website' => array('fldname' => 'Website'),
         ),
         'inactive2term' => array(
-          'field_status_tr' => array('fldname'=>'Inactive'),
+          'field_status_tr' => array('fldname' => 'Inactive'),
         ),
       ),
     ),
   );
 
-  //'ldtable' => 'tblfunds',
   $nm_p = array(
     'plan' => array(
       'params' => array(
@@ -1017,65 +1016,64 @@ $nm_co = array(
       'system' => array(
         'fields' => array(
           'node-title' => array(
-            'title' => array('fldname'=>'FundName'),
+            'title' => array('fldname' => 'FundName'),
           ),
           'node-body' => array(
-            'body' => array(),      
+            'body' => array(),
           ),
         ),
       ),
       'fields' => array(
         'default' => array(
-          'title_field' => array('fldname'=>'FundName'),
-          'field_plan_acronym' => array('fldname'=>'Acronym'),
+          'title_field' => array('fldname' => 'FundName'),
+          'field_plan_acronym' => array('fldname' => 'Acronym'),
         ),
         'http2link' => array(
-          'field_website' => array('fldname'=>'Website'),
-          'field_placement_policy_link' => array('fldname'=>'PlacementPolicyLink', 'title'=>'Placement Policy'),
+          'field_website' => array('fldname' => 'Website'),
+          'field_placement_policy_link' => array('fldname' => 'PlacementPolicyLink', 'title' => 'Placement Policy'),
         ),
         'lu2term' => array(
-          'field_placement_policy_tr' => array('fldname'=>'PlacementPolicy'),
-          'field_plan_type_tr' => array('fldname'=>'FundTypeID'),
-          'field_currency_tr' => array('fldname'=>'CurrencyID'),
-          'field_status_tr' => array('fldname'=>'Status', 'voc'=>'5'),
-        ),          
+          'field_placement_policy_tr' => array('fldname' => 'PlacementPolicy'),
+          'field_plan_type_tr' => array('fldname' => 'FundTypeID'),
+          'field_currency_tr' => array('fldname' => 'CurrencyID'),
+          'field_status_tr' => array('fldname' => 'Status', 'voc' => '5'),
+        ),
         'text2email' => array(
-           'field_email' => array('fldname'=>'Email'),
+          'field_email' => array('fldname' => 'Email'),
         ),
         'http2link' => array(
-          'field_website' => array('fldname'=>'Website'),          
+          'field_website' => array('fldname' => 'Website'),
         ),
         'address' => array(
           'field_address' => array(
             'fields' => array(
               'default' => array(
-                'thoroughfare' => array('fldname'=>array('Address1')),
-                'premise' => array('fldname'=>array('Address2', 'Address3')),
-                'locality' => array('fldname'=>'City'),
-                'postal_code' => array('fldname'=>'Zip'),
+                'thoroughfare' => array('fldname' => array('Address1')),
+                'premise' => array('fldname' => array('Address2', 'Address3')),
+                'locality' => array('fldname' => 'City'),
+                'postal_code' => array('fldname' => 'Zip'),
               ),
               'phone' => array(
-                'phone_number' => array('fldname'=>'Phone'),
-                'fax_number' => array('fldname'=>'Fax'),
+                'phone_number' => array('fldname' => 'Phone'),
+                'fax_number' => array('fldname' => 'Fax'),
               ),
               'lu2state' => array(
-                'administrative_area' => array('fldname'=>'StateID'),
+                'administrative_area' => array('fldname' => 'StateID'),
               ),
               'lu2country' => array(
-                'country' => array('fldname'=>'CountryID'),
+                'country' => array('fldname' => 'CountryID'),
               ),
             ),
           ),
         ),
         'collection' => array(
           'field_asset_allocation_history' => array(
-            'params' => array(
-            ),
+            'params' => array(),
             'sets' => array(
               array(
                 'params' => array(
                   'oldtable' => 'finsearch_asset_allocations',
-                  'rowkeyfldname' => 'allocation_id',                  
+                  'rowkeyfldname' => 'allocation_id',
                   'key-alias' => 'firm_id',
                   'onerow' => 'TRUE',
                   'onerowkeyname' => 'asset_class_id',
@@ -1083,11 +1081,11 @@ $nm_co = array(
                 ),
                 'fields' => array(
                   'asset-allocation' => array(
-                    'automatically-determined' => array('fldname'=>'percentage', 'keyfldname'=>'asset_class_id'),
+                    'automatically-determined' => array('fldname' => 'percentage', 'keyfldname' => 'asset_class_id'),
                   ),
                 ),
               ),
-            ),              
+            ),
           ),
           'field_consultants_hired' => array(
             'sets' => array(
@@ -1098,12 +1096,12 @@ $nm_co = array(
                 ),
                 'fields' => array(
                   'reference' => array(
-                    'field_consultant_firm_er' => array('fldname'=>'ConsultantFirmID'),
-                    'field_consultant_contact_er' => array('fldname'=>'ConsultantContactID'),
+                    'field_consultant_firm_er' => array('fldname' => 'ConsultantFirmID'),
+                    'field_consultant_contact_er' => array('fldname' => 'ConsultantContactID'),
                   ),
                 ),
               ),
-            ),              
+            ),
           ),
           'field_managers_hired' => array(
             'sets' => array(
@@ -1114,21 +1112,20 @@ $nm_co = array(
                 ),
                 'fields' => array(
                   'default' => array(
-                    'field_amount' => array('fldname'=>'Amount'),                  
+                    'field_amount' => array('fldname' => 'Amount'),
                   ),
                   'lu2term' => array(
-                    'field_geographic_tr' => array('fldname'=>'GeographicID'),
+                    'field_geographic_tr' => array('fldname' => 'GeographicID'),
                   ),
                   'reference' => array(
-                    'field_manager_firm_er' => array('fldname'=>'ManagerFirmID'),
+                    'field_manager_firm_er' => array('fldname' => 'ManagerFirmID'),
                   ),
                 ),
               ),
-            ),              
+            ),
           ),
           'field_plan_size_history' => array(
-            'params' => array(
-            ),
+            'params' => array(),
             'sets' => array(
               array(
                 'params' => array(
@@ -1136,14 +1133,14 @@ $nm_co = array(
                 ),
                 'fields' => array(
                   'default' => array(
-                    'field_plan_size' => array('fldname'=>'FundSize'),
+                    'field_plan_size' => array('fldname' => 'FundSize'),
                   ),
                   'date2timestamp' => array(
-                    'field_date' => array('fldname'=>'FundSizeAsOfDate'),
+                    'field_date' => array('fldname' => 'FundSizeAsOfDate'),
                   ),
                 ),
               ),
-            ),              
+            ),
           ),
           'field_foia_history' => array(
             'sets' => array(
@@ -1153,19 +1150,19 @@ $nm_co = array(
                 ),
                 'fields' => array(
                   'mixed2link' => array(
-                    'field_foia_form' => array('fldname'=>'FOIAForm')
+                    'field_foia_form' => array('fldname' => 'FOIAForm'),
                   ),
                   'foia2notes' => array(
-                    'field_foia_notes' => array('names'=>array('FOIAMethod', 'FOIAForm'))
+                    'field_foia_notes' => array('names' => array('FOIAMethod', 'FOIAForm')),
                   ),
                   'default' => array(
-                    'field_full_name' => array('fldname'=>'FOIAContactName'),
-                    'field_foia_required' => array('fldname'=>'FOIA'),
-                    'field_foia_date' => array('fldname'=>'FOIADate'),                  
+                    'field_full_name' => array('fldname' => 'FOIAContactName'),
+                    'field_foia_required' => array('fldname' => 'FOIA'),
+                    'field_foia_date' => array('fldname' => 'FOIADate'),
                   ),
                 ),
               ),
-            ),              
+            ),
           ),
         ),
       ),
@@ -1175,21 +1172,21 @@ $nm_co = array(
   $nm_contact = array(
     'contact' => array(
       'params' => array(
-        'dst'=>'contact',
+        'dst' => 'contact',
       ),
       'system' => array(
         'fields' => array(
           'node-title' => array(
-            'title' => array('fldname'=>'ContactName'),
+            'title' => array('fldname' => 'ContactName'),
           ),
         ),
       ),
       'fields' => array(
         'default' => array(
-          'title_field' => array('fldname'=>'ContactName'),
+          'title_field' => array('fldname' => 'ContactName'),
         ),
         'picture' => array(
-          'field_photo' => array('fldname'=>'Picture'),
+          'field_photo' => array('fldname' => 'Picture'),
         ),
         'job-history' => array(
           'field_job_history' => array(
@@ -1199,135 +1196,135 @@ $nm_co = array(
             'bundles' => array(
               'consultant_contact' => array(
                 'params' => array(
-                  'bundle'=>'consultant_contact',
-                  'rowkeyfldname'=>'ConsultantContactID',
+                  'bundle' => 'consultant_contact',
+                  'rowkeyfldname' => 'ConsultantContactID',
                 ),
                 'fields' => array(
-                  'default'=>array(
-                    'field_job_title'=>array('fldname'=>'Title'),
+                  'default' => array(
+                    'field_job_title' => array('fldname' => 'Title'),
                   ),
                   'lu2term' => array(
-                    'field_consultant_type_tr' => array('fldname'=>'ConsultantType'),
+                    'field_consultant_type_tr' => array('fldname' => 'ConsultantType'),
                   ),
                   'employmentdate' => array(
                     'field_employment_date' => array(
-                      'fldname'=>'ConsultantContactID', 
-                      'tbl'=>'tblconsultantcontacts', 
+                      'fldname' => 'ConsultantContactID',
+                      'tbl' => 'tblconsultantcontacts',
                       'contactfldname' => 'ContactName',
                     ),
                   ),
                   'inactive2term' => array(
-                    'field_status_tr' => array('fldname'=>'Inactive'),
+                    'field_status_tr' => array('fldname' => 'Inactive'),
                   ),
                   'text2email' => array(
-                    'field_email' => array('fldname'=>'Email'),
+                    'field_email' => array('fldname' => 'Email'),
                   ),
                   'reference' => array(
-                    'field_consultant_firm_er' => array('fldname'=>'ConsultantFirmID'),
-                    'field_consultant_office_er' => array('fldname'=>'ConsultantOfficeID'),
+                    'field_consultant_firm_er' => array('fldname' => 'ConsultantFirmID'),
+                    'field_consultant_office_er' => array('fldname' => 'ConsultantOfficeID'),
                   ),
                   'address' => array(
                     'field_address' => array(
                       'fields' => array(
                         'default' => array(
-                          'thoroughfare' => array('fldname'=>array('Address')),
-                          'locality' => array('fldname'=>'City'),
-                          'postal_code' => array('fldname'=>'ZIP'),
+                          'thoroughfare' => array('fldname' => array('Address')),
+                          'locality' => array('fldname' => 'City'),
+                          'postal_code' => array('fldname' => 'ZIP'),
                         ),
                         'phone' => array(
-                          'phone_number' => array('fldname'=>'Phone'),
-                          'fax_number' => array('fldname'=>'Fax'),
+                          'phone_number' => array('fldname' => 'Phone'),
+                          'fax_number' => array('fldname' => 'Fax'),
                         ),
                         'lu2state' => array(
-                          'administrative_area' => array('fldname'=>'StateID'),
+                          'administrative_area' => array('fldname' => 'StateID'),
                         ),
                         'lu2country' => array(
-                          'country' => array('fldname'=>'CountryID'),
+                          'country' => array('fldname' => 'CountryID'),
                         ),
                       ),
                     ),
                   ),
-                ),       
+                ),
               ),
               'manager_contact' => array(
                 'params' => array(
-                  'bundle'=>'manager_contact',
+                  'bundle' => 'manager_contact',
                   'rowkeyfldname' => 'ManagerContactID',
                 ),
                 'fields' => array(
                   'default' => array(
-                    'field_job_title' => array('fldname'=>'Title'),
+                    'field_job_title' => array('fldname' => 'Title'),
                   ),
                   'employmentdate' => array(
                     'field_employment_date' => array(
-                      'fldname'=>'ManagerContactID', 
-                      'tbl'=>'tblmanagercontacts', 
+                      'fldname' => 'ManagerContactID',
+                      'tbl' => 'tblmanagercontacts',
                       'contactfldname' => 'ContactName',
                     ),
                   ),
                   'lu2term' => array(
-                    'field_consultant_type_tr' => array('fldname'=>'ContactType'),
+                    'field_consultant_type_tr' => array('fldname' => 'ContactType'),
                   ),
                   'inactive2term' => array(
-                    'field_status_tr' => array('fldname'=>'Inactive'),
+                    'field_status_tr' => array('fldname' => 'Inactive'),
                   ),
                   'text2email' => array(
-                    'field_email' => array('fldname'=>'Email'),
+                    'field_email' => array('fldname' => 'Email'),
                   ),
                   'reference' => array(
-                    'field_manager_firm_er' => array('fldname'=>'ManagerFirmID'),
+                    'field_manager_firm_er' => array('fldname' => 'ManagerFirmID'),
                   ),
                   'address' => array(
                     'field_address' => array(
                       'fields' => array(
                         'default' => array(
-                          'thoroughfare' => array('fldname'=>array('Address')),
-                          'locality' => array('fldname'=>'City'),
-                          'postal_code' => array('fldname'=>'ZIP'),
+                          'thoroughfare' => array('fldname' => array('Address')),
+                          'locality' => array('fldname' => 'City'),
+                          'postal_code' => array('fldname' => 'ZIP'),
                         ),
                         'phone' => array(
-                          'phone_number' => array('fldname'=>'Phone'),
-                          'fax_number' => array('fldname'=>'Fax'),
+                          'phone_number' => array('fldname' => 'Phone'),
+                          'fax_number' => array('fldname' => 'Fax'),
                         ),
                         'lu2state' => array(
-                          'administrative_area' => array('fldname'=>'StateID'),
+                          'administrative_area' => array('fldname' => 'StateID'),
                         ),
                         'lu2country' => array(
-                          'country' => array('fldname'=>'CountryID'),
+                          'country' => array('fldname' => 'CountryID'),
                         ),
                       ),
                     ),
                   ),
-                ),       
+                ),
               ),
               'plan_contact' => array(
-                'params'=> array(
+                'params' => array(
                   'oldtable' => 'tblFundContacts',
                   'oldkeyfldname' => 'FundContactID',
                   'bundle' => 'plan_contact',
-                  'sort' => array('fldname'=>'field_employment_date'),
+                  'sort' => array('fldname' => 'field_employment_date'),
                 ),
                 'fields' => array(
                   'default' => array(
-                    'title_field' => array('fldname'=>'ContactName'),
-                    'field_job_title' => array('fldname'=>'Title'),
+                    'title_field' => array('fldname' => 'ContactName'),
+                    'field_job_title' => array('fldname' => 'Title'),
                   ),
                   'employmentdate' => array(
                     'field_employment_date' => array(
-                      'fldname'=>'FundContactID', 
-                      'tbl'=>'tblFundcontacts', 
+                      'fldname' => 'FundContactID',
+                      'tbl' => 'tblFundcontacts',
                       'contactfldname' => 'ContactName',
                     ),
                   ),
                   'inactive2term' => array(
-                    'field_status_tr' => array('fldname'=>'Inactive'),
+                    'field_status_tr' => array('fldname' => 'Inactive'),
                   ),
                   'text2email' => array(
-                    'field_email' => array('fldname'=>'Email'),
+                    'field_email' => array('fldname' => 'Email'),
                   ),
                   'reference' => array(
-                    'field_plan_er' => array('fldname'=>'FundID'),
-                  ),       
+                    'field_plan_er' => array('fldname' => 'FundID'),
+                  ),
                   'address' => array(
                     'field_address' => array(
                       'params' => array(
@@ -1336,19 +1333,19 @@ $nm_co = array(
                       ),
                       'fields' => array(
                         'default' => array(
-                          'thoroughfare' => array('fldname'=>array('Address')),
-                          'locality' => array('fldname'=>'City'),
-                          'postal_code' => array('fldname'=>'ZIP'),
+                          'thoroughfare' => array('fldname' => array('Address')),
+                          'locality' => array('fldname' => 'City'),
+                          'postal_code' => array('fldname' => 'ZIP'),
                         ),
                         'phone' => array(
-                          'phone_number' => array('fldname'=>'Phone'),
-                          'fax_number' => array('fldname'=>'Fax'),
+                          'phone_number' => array('fldname' => 'Phone'),
+                          'fax_number' => array('fldname' => 'Fax'),
                         ),
                         'lu2state' => array(
-                          'administrative_area' => array('fldname'=>'StateID'),
+                          'administrative_area' => array('fldname' => 'StateID'),
                         ),
                         'lu2country' => array(
-                          'country' => array('fldname'=>'CountryID'),
+                          'country' => array('fldname' => 'CountryID'),
                         ),
                       ),
                     ),
@@ -1357,7 +1354,7 @@ $nm_co = array(
               ),
             ),
           ),
-        ),     
+        ),
       ),
     ),
   );
@@ -1367,84 +1364,84 @@ $nm_co = array(
       'params' => array(
         'oldtable' => 'tblconsultantcontacts',
         'oldkeyfldname' => 'ConsultantContactID',
-        'dst'=>'contact',
-        'checkname' => array('fldname'=>'ContactName'),
+        'dst' => 'contact',
+        'checkname' => array('fldname' => 'ContactName'),
       ),
       'system' => array(
         'fields' => array(
           'node-title' => array(
-            'title' => array('fldname'=>'ContactName'),
+            'title' => array('fldname' => 'ContactName'),
             'node-body' => array(
-              'body' => array('fldname'=>'Bio'),
+              'body' => array('fldname' => 'Bio'),
             ),
           ),
         ),
       ),
       'fields' => array(
         'default' => array(
-          'title_field' => array('fldname'=>'ContactName'),
+          'title_field' => array('fldname' => 'ContactName'),
         ),
         'picture' => array(
-          'field_photo' => array('fldname'=>'Picture'),
+          'field_photo' => array('fldname' => 'Picture'),
         ),
         'paragraph' => array(
           'field_job_history' => array(
             'sets' => array(
               array(
                 'params' => array(
-                  'bundle'=>'consultant_contact',
-                  'rowkeyfldname'=>'ConsultantContactID',
+                  'bundle' => 'consultant_contact',
+                  'rowkeyfldname' => 'ConsultantContactID',
                 ),
                 'fields' => array(
-                  'default'=>array(
-                    'field_job_title'=>array('fldname'=>'Title'),
+                  'default' => array(
+                    'field_job_title' => array('fldname' => 'Title'),
                   ),
                   'lu2term' => array(
-                    'field_consultant_type_tr' => array('fldname'=>'ConsultantType'),
+                    'field_consultant_type_tr' => array('fldname' => 'ConsultantType'),
                   ),
                   'employmentdate' => array(
                     'field_employment_date' => array(
-                      'fldname'=>'ConsultantContactID', 
-                      'tbl'=>'tblconsultantcontacts', 
+                      'fldname' => 'ConsultantContactID',
+                      'tbl' => 'tblconsultantcontacts',
                       'contactfldname' => 'ContactName',
                     ),
                   ),
                   'inactive2term' => array(
-                    'field_status_tr' => array('fldname'=>'Inactive'),
+                    'field_status_tr' => array('fldname' => 'Inactive'),
                   ),
                   'text2email' => array(
-                    'field_email' => array('fldname'=>'Email'),
+                    'field_email' => array('fldname' => 'Email'),
                   ),
                   'reference' => array(
-                    'field_consultant_firm_er' => array('fldname'=>'ConsultantFirmID'),
-                    'field_consultant_office_er' => array('fldname'=>'ConsultantOfficeID'),
+                    'field_consultant_firm_er' => array('fldname' => 'ConsultantFirmID'),
+                    'field_consultant_office_er' => array('fldname' => 'ConsultantOfficeID'),
                   ),
                   'address' => array(
                     'field_address' => array(
                       'fields' => array(
                         'default' => array(
-                          'thoroughfare' => array('fldname'=>array('Address')),
-                          'locality' => array('fldname'=>'City'),
-                          'postal_code' => array('fldname'=>'ZIP'),
+                          'thoroughfare' => array('fldname' => array('Address')),
+                          'locality' => array('fldname' => 'City'),
+                          'postal_code' => array('fldname' => 'ZIP'),
                         ),
                         'phone' => array(
-                          'phone_number' => array('fldname'=>'Phone'),
-                          'fax_number' => array('fldname'=>'Fax'),
+                          'phone_number' => array('fldname' => 'Phone'),
+                          'fax_number' => array('fldname' => 'Fax'),
                         ),
                         'lu2state' => array(
-                          'administrative_area' => array('fldname'=>'StateID'),
+                          'administrative_area' => array('fldname' => 'StateID'),
                         ),
                         'lu2country' => array(
-                          'country' => array('fldname'=>'CountryID'),
+                          'country' => array('fldname' => 'CountryID'),
                         ),
                       ),
                     ),
                   ),
-                ),       
+                ),
               ),
             ),
           ),
-        ),     
+        ),
       ),
     ),
   );
@@ -1454,83 +1451,83 @@ $nm_co = array(
       'params' => array(
         'oldtable' => 'tblmanagercontacts',
         'oldkeyfldname' => 'ManagerContactID',
-        'dst'=>'contact',
-        'checkname' => array('fldname'=>'ContactName'),
+        'dst' => 'contact',
+        'checkname' => array('fldname' => 'ContactName'),
       ),
       'system' => array(
         'fields' => array(
           'node-title' => array(
-            'title' => array('fldname'=>'ContactName'),
+            'title' => array('fldname' => 'ContactName'),
             'node-body' => array(
-              'body' => array('fldname'=>'Bio'),
+              'body' => array('fldname' => 'Bio'),
             ),
           ),
         ),
       ),
       'fields' => array(
         'default' => array(
-          'title_field' => array('fldname'=>'ContactName'),
+          'title_field' => array('fldname' => 'ContactName'),
         ),
         'picture' => array(
-          'field_photo' => array('fldname'=>'Picture'),
+          'field_photo' => array('fldname' => 'Picture'),
         ),
         'paragraph' => array(
           'field_job_history' => array(
             'sets' => array(
               array(
                 'params' => array(
-                  'bundle'=>'manager_contact',
+                  'bundle' => 'manager_contact',
                   'rowkeyfldname' => 'ManagerContactID',
                 ),
                 'fields' => array(
                   'default' => array(
-                    'field_job_title' => array('fldname'=>'Title'),
+                    'field_job_title' => array('fldname' => 'Title'),
                   ),
                   'employmentdate' => array(
                     'field_employment_date' => array(
-                      'fldname'=>'ManagerContactID', 
-                      'tbl'=>'tblmanagercontacts', 
+                      'fldname' => 'ManagerContactID',
+                      'tbl' => 'tblmanagercontacts',
                       'contactfldname' => 'ContactName',
                     ),
                   ),
                   'lu2term' => array(
-                    'field_consultant_type_tr' => array('fldname'=>'ContactType'),
+                    'field_consultant_type_tr' => array('fldname' => 'ContactType'),
                   ),
                   'inactive2term' => array(
-                    'field_status_tr' => array('fldname'=>'Inactive'),
+                    'field_status_tr' => array('fldname' => 'Inactive'),
                   ),
                   'text2email' => array(
-                    'field_email' => array('fldname'=>'Email'),
+                    'field_email' => array('fldname' => 'Email'),
                   ),
                   'reference' => array(
-                    'field_manager_firm_er' => array('fldname'=>'ManagerFirmID'),
+                    'field_manager_firm_er' => array('fldname' => 'ManagerFirmID'),
                   ),
                   'address' => array(
                     'field_address' => array(
                       'fields' => array(
                         'default' => array(
-                          'thoroughfare' => array('fldname'=>array('Address')),
-                          'locality' => array('fldname'=>'City'),
-                          'postal_code' => array('fldname'=>'ZIP'),
+                          'thoroughfare' => array('fldname' => array('Address')),
+                          'locality' => array('fldname' => 'City'),
+                          'postal_code' => array('fldname' => 'ZIP'),
                         ),
                         'phone' => array(
-                          'phone_number' => array('fldname'=>'Phone'),
-                          'fax_number' => array('fldname'=>'Fax'),
+                          'phone_number' => array('fldname' => 'Phone'),
+                          'fax_number' => array('fldname' => 'Fax'),
                         ),
                         'lu2state' => array(
-                          'administrative_area' => array('fldname'=>'StateID'),
+                          'administrative_area' => array('fldname' => 'StateID'),
                         ),
                         'lu2country' => array(
-                          'country' => array('fldname'=>'CountryID'),
+                          'country' => array('fldname' => 'CountryID'),
                         ),
                       ),
                     ),
                   ),
-                ),       
+                ),
               ),
             ),
           ),
-        ),     
+        ),
       ),
     ),
   );
@@ -1540,57 +1537,57 @@ $nm_co = array(
       'params' => array(
         'oldtable' => 'tblfundcontacts',
         'oldkeyfldname' => 'FundContactID',
-        'dst'=>'contact',
-        'checkname' => array('fldname'=>'ContactName'),      
+        'dst' => 'contact',
+        'checkname' => array('fldname' => 'ContactName'),
       ),
       'system' => array(
         'fields' => array(
           'node-title' => array(
-            'title' => array('fldname'=>'ContactName'),
+            'title' => array('fldname' => 'ContactName'),
             'node-body' => array(
-              'body' => array('fldname'=>'Bio'),
+              'body' => array('fldname' => 'Bio'),
             ),
           ),
         ),
       ),
       'fields' => array(
         'default' => array(
-          'title_field' => array('fldname'=>'ConsultantFirmName'),
+          'title_field' => array('fldname' => 'ConsultantFirmName'),
         ),
         'picture' => array(
-          'field_photo' => array('fldname'=>'Picture'),
+          'field_photo' => array('fldname' => 'Picture'),
         ),
         'paragraph' => array(
           'field_job_history' => array(
-            'sets' => array(            
+            'sets' => array(
               array(
-                'params'=> array(
+                'params' => array(
                   'oldtable' => 'tblFundContacts',
                   'oldkeyfldname' => 'FundContactID',
                   'bundle' => 'plan_contact',
-                  'sort' => array('fldname'=>'field_employment_date'),
+                  'sort' => array('fldname' => 'field_employment_date'),
                 ),
                 'fields' => array(
                   'default' => array(
-                    'title_field' => array('fldname'=>'ContactName'),
-                    'field_job_title' => array('fldname'=>'Title'),
+                    'title_field' => array('fldname' => 'ContactName'),
+                    'field_job_title' => array('fldname' => 'Title'),
                   ),
                   'employmentdate' => array(
                     'field_employment_date' => array(
-                      'fldname'=>'FundContactID', 
-                      'tbl'=>'tblFundcontacts', 
+                      'fldname' => 'FundContactID',
+                      'tbl' => 'tblFundcontacts',
                       'contactfldname' => 'ContactName',
                     ),
                   ),
                   'inactive2term' => array(
-                    'field_status_tr' => array('fldname'=>'Inactive'),
+                    'field_status_tr' => array('fldname' => 'Inactive'),
                   ),
                   'text2email' => array(
-                    'field_email' => array('fldname'=>'Email'),
+                    'field_email' => array('fldname' => 'Email'),
                   ),
                   'reference' => array(
-                    'field_plan_er' => array('fldname'=>'FundID'),
-                  ),       
+                    'field_plan_er' => array('fldname' => 'FundID'),
+                  ),
                   'address' => array(
                     'field_address' => array(
                       'params' => array(
@@ -1599,19 +1596,19 @@ $nm_co = array(
                       ),
                       'fields' => array(
                         'default' => array(
-                          'thoroughfare' => array('fldname'=>array('Address')),
-                          'locality' => array('fldname'=>'City'),
-                          'postal_code' => array('fldname'=>'ZIP'),
+                          'thoroughfare' => array('fldname' => array('Address')),
+                          'locality' => array('fldname' => 'City'),
+                          'postal_code' => array('fldname' => 'ZIP'),
                         ),
                         'phone' => array(
-                          'phone_number' => array('fldname'=>'Phone'),
-                          'fax_number' => array('fldname'=>'Fax'),
+                          'phone_number' => array('fldname' => 'Phone'),
+                          'fax_number' => array('fldname' => 'Fax'),
                         ),
                         'lu2state' => array(
-                          'administrative_area' => array('fldname'=>'StateID'),
+                          'administrative_area' => array('fldname' => 'StateID'),
                         ),
                         'lu2country' => array(
-                          'country' => array('fldname'=>'CountryID'),
+                          'country' => array('fldname' => 'CountryID'),
                         ),
                       ),
                     ),
@@ -1619,7 +1616,7 @@ $nm_co = array(
                 ),
               ),
             ),
-          ),     
+          ),
         ),
       ),
     ),
@@ -1630,49 +1627,54 @@ $nm_co = array(
       'params' => array(
         'oldtable' => 'tblmanagerfirms',
         'oldkeyfldname' => 'ManagerFirmID',
-        'dst'=>'manager_firm',
+        'dst' => 'manager_firm',
       ),
       'system' => array(
         'fields' => array(
           'node-title' => array(
-            'title' => array('fldname'=>'ManagerFirmName'),
+            'title' => array('fldname' => 'ManagerFirmName'),
           ),
           'node-inactive-status' => array(
-            'status' => array('fldname'=>'Archive'),
+            'status' => array('fldname' => 'Archive'),
           ),
         ),
       ),
       'fields' => array(
         'default' => array(
-          'title_field' => array('fldname'=>'ManagerFirmName'),
+          'title_field' => array('fldname' => 'ManagerFirmName'),
         ),
         'text2email' => array(
-          'field_email' => array('fldname'=>'Email'),
+          'field_email' => array('fldname' => 'Email'),
         ),
         'http2link' => array(
-          'field_website' => array('fldname'=>'Website'),          
+          'field_website' => array('fldname' => 'Website'),
         ),
         'value2term' => array(
-          'field_status_tr' => array('fldname'=>'Archive', 'handler'=>'negate', 'voc'=>5, 'values'=>array('0'=>'Inactive','1'=>'Active')),
+          'field_status_tr' => array(
+            'fldname' => 'Archive',
+            'handler' => 'negate',
+            'voc' => 5,
+            'values' => array('0' => 'Inactive', '1' => 'Active'),
+          ),
         ),
         'address' => array(
           'field_address' => array(
             'fields' => array(
               'default' => array(
-                'thoroughfare' => array('fldname'=>array('Address1')),
-                'premise' => array('fldname'=>array('Address2', 'Address3')),
-                'locality' => array('fldname'=>'City'),
-                'postal_code' => array('fldname'=>'Zip'),
+                'thoroughfare' => array('fldname' => array('Address1')),
+                'premise' => array('fldname' => array('Address2', 'Address3')),
+                'locality' => array('fldname' => 'City'),
+                'postal_code' => array('fldname' => 'Zip'),
               ),
               'phone' => array(
-                'phone_number' => array('fldname'=>'Phone'),
-                'fax_number' => array('fldname'=>'Fax'),
+                'phone_number' => array('fldname' => 'Phone'),
+                'fax_number' => array('fldname' => 'Fax'),
               ),
               'lu2state' => array(
-                'administrative_area' => array('fldname'=>'StateID'),
+                'administrative_area' => array('fldname' => 'StateID'),
               ),
               'lu2country' => array(
-                'country' => array('fldname'=>'CountryID'),
+                'country' => array('fldname' => 'CountryID'),
               ),
             ),
           ),
@@ -1690,61 +1692,61 @@ $nm_co = array(
       'system' => array(
         'fields' => array(
           'node-body' => array(
-            'body' => array('fldname'=>'History'),      
+            'body' => array('fldname' => 'History'),
           ),
           'node-inactive-status' => array(
-            'status' => array('fldname'=>'Archive'),
+            'status' => array('fldname' => 'Archive'),
           ),
         ),
       ),
       'fields' => array(
         'default' => array(
-          'field_title' => array('fldname'=>'FundName'),
-          'field_account_size' => array('fldname'=>'Size'),
-          'field_plan_size' => array('fldname'=>'FundSize'),
+          'field_title' => array('fldname' => 'FundName'),
+          'field_account_size' => array('fldname' => 'Size'),
+          'field_plan_size' => array('fldname' => 'FundSize'),
         ),
         'date2date' => array(
-          'field_mandate_date' => array('fldname'=>'MandateDate'),
-          'field_rfp_date' => array('fldname'=>'RFPDate'),
+          'field_mandate_date' => array('fldname' => 'MandateDate'),
+          'field_rfp_date' => array('fldname' => 'RFPDate'),
         ),
         'link' => array(
-          'field_placement_policy_link' => array('fldname'=>'PlacementPolicyLink'),
+          'field_placement_policy_link' => array('fldname' => 'PlacementPolicyLink'),
         ),
         'http2link' => array(
-          'field_rfp_link' => array('fldname'=>'RFPLink'),
-          'field_website' => array('fldname'=>'Website'),
+          'field_rfp_link' => array('fldname' => 'RFPLink'),
+          'field_website' => array('fldname' => 'Website'),
         ),
         'lu2term' => array(
-          'field_mandate_status_tr' => array('fldname'=>'StatusID'),
+          'field_mandate_status_tr' => array('fldname' => 'StatusID'),
           'field_attribute_tr' => array(),
-          'field_geographic_tr' => array('fldname'=>'GeographicID'),
-          'field_currency_tr' => array('fldname'=>'CurrencyID'),
+          'field_geographic_tr' => array('fldname' => 'GeographicID'),
+          'field_currency_tr' => array('fldname' => 'CurrencyID'),
         ),
         'majorminor' => array(
-          'field_major_minor_style_tr' => array('fields'=>array('major'=>'MajorStyleID', 'minor'=>'MinorStyleID')),
-        ), 
+          'field_major_minor_style_tr' => array('fields' => array('major' => 'MajorStyleID', 'minor' => 'MinorStyleID')),
+        ),
         'reference' => array(
-          'field_plan_er' => array('fldname'=>'FundID'),
-          'field_consultant_firm_er' => array('fldname'=>'ConsultantFirmID'),
-          'field_consultant_contact_er' => array('fldname'=>'ConsultantContactID'),
+          'field_plan_er' => array('fldname' => 'FundID'),
+          'field_consultant_firm_er' => array('fldname' => 'ConsultantFirmID'),
+          'field_consultant_contact_er' => array('fldname' => 'ConsultantContactID'),
         ),
         'collection' => array(
           'field_manager_history' => array(
             'multiplier' => array(
-              'field_manager_firm_er' => array('fldname'=>'FirmsHired', 'handler'=>'comma-delimited-er'),
+              'field_manager_firm_er' => array('fldname' => 'FirmsHired', 'handler' => 'comma-delimited-er'),
             ),
           ),
           'sets' => array(
             array(
               'fields' => array(
                 'default' => array(
-                  'field_amount' => array('fldname'=>'FirmsHiredAmount'),
+                  'field_amount' => array('fldname' => 'FirmsHiredAmount'),
                 ),
                 'comma-delimited-delta-default' => array(
-                  'field_amount' => array('fldname'=>'FirmsHiredAmount'),
+                  'field_amount' => array('fldname' => 'FirmsHiredAmount'),
                 ),
                 'comma-delimited-er' => array(
-                  'field_manager_er' => array('fldname'=>'FirmHiredAmount'),
+                  'field_manager_er' => array('fldname' => 'FirmHiredAmount'),
                 ),
               ),
             ),
@@ -1754,14 +1756,14 @@ $nm_co = array(
               array(
                 'fields' => array(
                   'default' => array(
-                    'field_plan_size' => array('fldname'=>'FundSize'),
+                    'field_plan_size' => array('fldname' => 'FundSize'),
                   ),
                   'date2timestamp' => array(
-                    'field_date' => array('fldname'=>'FundAsOfDate'),
+                    'field_date' => array('fldname' => 'FundAsOfDate'),
                   ),
                 ),
               ),
-            ),              
+            ),
           ),
           'field_mandate_notes' => array(
             'sets' => array(
@@ -1784,48 +1786,49 @@ $nm_co = array(
     ),
   );
 
-  $nodeMapArr = FALSE;
-  if ($mode=="step1") {
-    $nodeMapArr = array(
-      $nm_p, 
+  $nodemaparr = FALSE;
+  if ($mode == "step1") {
+    $nodemaparr = array(
+      $nm_p,
       $nm_cc,
       $nm_mc,
       $nm_cf,
       $nm_co,
       $nm_mf,
-      $nm_pc, 
-      $nm_m  
+      $nm_pc,
+      $nm_m,
     );
   }
-  else if ($mode=="step2") {
-    $nodeMapArr = array(
+  elseif ($mode == "step2") {
+    $nodemaparr = array(
       $nm_cf,
       $nm_co,
       $nm_mf,
-      $nm_p, 
-      $nm_m, 
+      $nm_p,
+      $nm_m,
       $nm_contact,
     );
   }
-  return $nodeMapArr;
-// END BIG NODE MAP ARRAY
-
+  return $nodemaparr;
 }
 
-/*
- * Function that checks Drupal Variable Store for ongoing maps/node progress list.
- * For Found 1 Node transfers, we maintain 2 copies of old ID/NID lists, for Round 2,
- * Similar lists tracking what nodes are filled out. We maintain a double set of each
- * for fault tolerance, since both of these sets of numbers are mission-critical.
- * 
+/**
+ * Check drupal variable map.
+ *
+ * Function that checks Drupal Variable Store for ongoing maps/node progress
+ * list. For Found 1 Node transfers, we maintain 2 copies of old ID/NID lists,
+ * for Round 2, Similar lists tracking what nodes are filled out. We maintain a
+ * double set of each for fault tolerance, since both of these sets of numbers
+ * are mission-critical.
+ *
  * @parameters
  *  $var1 - the variable name of the 1st copy of the list
  *  $var2 - the name of the backup copy
  *  $check1 - the newold list
  *  $check2 - the oldnew list
  */
-function banjia_fin_migrate_get_best_map($name='fin-migrate-node') {
-  $name1 = $name .'1';
+function banjia_fin_migrate_get_best_map($name = 'fin-migrate-node') {
+  $name1 = $name . '1';
   $name2 = $name . '2';
   // PLW 090115 first thing to figure out whether we are beginning or resuming.
   // Its a bit complicated. We have 2 variables set at different times so if
@@ -1833,24 +1836,23 @@ function banjia_fin_migrate_get_best_map($name='fin-migrate-node') {
   // variable, or w/in a variable, a busted new/old key map.
   $proceed = FALSE;
   $out = array();
-  if ( $out = unserialize(variable_get($name2)) ) {
-    // so far, so good. But old/new key map may be corrupted. Check for it.
-    if ( isset($out['oldnew']) && isset($out['newold']) ) {
+  if ($out = unserialize(variable_get($name2))) {
+    // So far, so good. But old/new key map may be corrupted. Check for it.
+    if (isset($out['oldnew']) && isset($out['newold'])) {
       $proceed = TRUE;
     }
   }
-  // okay, something went wrong and the updated data was irretrievable, lets try the backup set
+  // Okay, something went wrong and the updated data was irretrievable, lets try
+  // the backup set.
   if (!$proceed) {
-    // uncap when done 
-    //variable_set('fin-migrate-node2', array());
-    if ( $out = unserialize(variable_get($name1)) ) {
-      // so far, so good. But old/new key map may be corrupted. Check for it.
-      if ( isset($out['oldnew']) && isset($out['newold']) ) {        
+    // Uncap when done.
+    if ($out = unserialize(variable_get($name1))) {
+      // So far, so good. But old/new key map may be corrupted. Check for it.
+      if (isset($out['oldnew']) && isset($out['newold'])) {
         $message = "Recovering from an abort or failure. Deleting latest node and using 1 node old data - ";
-        watchdog('FIN_MIGRATE_OLDNEW',$message,array(),WATCHDOG_WARNING);   
+        watchdog('FIN_MIGRATE_OLDNEW', $message, array(), WATCHDOG_WARNING);
       }
     }
   }
-  // If both come up blank, this is a new migration, not a resumption
   return $out;
 }
