@@ -685,74 +685,74 @@ function _banjia_get_entity_by_name($fieldname, $name, $bundle, $type) {
 /**
  * Creates the node.
  */
-function banjia_part_one_create_node($pseudonym, $row, $checkname, $namefldname, $namenids = NULL, $pkeyname, &$context) {
-            $id = $row->$pkeyname;
-            $nid = 0;
-            // are we setting up contacts? Does this contact-by-email-address exist?
-            if ($checkname) {
-              $contactName = $row->{$namefldname};
-              if (isset($namenids[$contactName])) {
-                $nid = $namenids[$contactName]['nid'];
-                if ($nid) {
-                  $message = "Contact exist. ".$pseudonym." Name ".$contactName." Update NID: ".$nid." | ID: ".$id;
-                  watchdog('FIN_MIGRATE_NODE_CONTACT_NAME_MULTIPLE', $message, array(), WATCHDOG_INFO);
-                  $contactmatches = array();
-                  $contactmatches[] = '"'.$contactName.'", "'.$id.'", "'.$nid.'"';
-              
-                  $duplicates[$nid]['name'][$contactName][$id] = array(
-                    'id' => $id,
-                    'nid' => $nid,
-                    'name' => $contactName,
-                    'type' => $dst,
-                    'bundle' => $bundle,
-                  );
-                 // variable_set('fin-migrate-step1-duplicates', serialize($duplicates));
-                }
-              }
-            }
-            if (!$nid) {
-              $createdMsg = '';
-              $created = strtotime($row->CreatedOn);
-              $changed = strtotime($row->UpdatedOn);
-              if ($created<0 or !is_numeric($created)) {
-                $bad = $created;
-                $created = $changed;
-                if ($created<0 or !is_numeric($created)) {  
-                  $bad2 = $created;
-                  $created = time();
-                  $changed = $created;
-                  $createdMsg = 'Type: '.$dst.' Movement: '.$pseudonym.' Email: '.$email.' | '.'Src Created Date ['.$bad.'] bad. So is Changed ['.$bad2.']. Both set to current ['.strtotime($created).']';
-                } else {
-                  $createdMsg = 'Type: '.$dst.' Movement: '.$pseudonym.' Email: '.$email.' | '.'Src Created Date ['.$bad.'] bad. Assigned Change Date ['.$changed.']';
-                }
-              } else if ($changed<0 or !is_numeric($created)) {
-                $bad = $changed;
-                $changed = $created;
-                $createdMsg = 'Type: '.$dst.' Movement: '.$pseudonym.' Email: '.$email.' | '.'Src Changed Date ['.$bad.'] bad. Assigned Created Date ['.$created.']';
-              }
-              
-              $values = array(
-                'title' => $pseudonym ."-".$id,
-                'type' => $dst,
-                'uid' => 1,
-                'status' => 1,
-                'promote' => 0,
-                'created' => $created,
-                'changed' => $changed,
-              );
-              $entity = entity_create('node', $values);
-              $n_wrapper = entity_metadata_wrapper('node', $entity);
-              $n_wrapper->save();
+function banjia_part_one_create_node($pseudonym, $row, $checkname, $namefldname, $namenids, $pkeyname, &$context) {
+  $id = $row->$pkeyname;
+  $nid = 0;
+  // Are we setting up contacts? Does this contact-by-email-address exist?
+  if ($checkname) {
+    $contactname = $row->{$namefldname};
+    if (isset($namenids[$contactname])) {
+      $nid = $namenids[$contactname]['nid'];
+      if ($nid) {
+        $message = "Contact exist. " . $pseudonym . " Name " . $contactname . " Update NID: " . $nid . " | ID: " . $id;
+        watchdog('FIN_MIGRATE_NODE_CONTACT_NAME_MULTIPLE', $message, array(), WATCHDOG_INFO);
+        $contactmatches = array();
+        $contactmatches[] = '"' . $contactname . '", "' . $id . '", "' . $nid . '"';
 
-              $context['message'] = 'Created a new ' . $n_wrapper->value()->type . '  node with nid ' . $n_wrapper->value()->nid;
-         
-            }
-   else {
-              //$message = "Oops, for some reason, node not successfully created | id: ".$id." | nid: ".$nid." | Data: ".print_r($row,true);
-              //watchdog('FIN_MIGRATE_NODE_STEP1', $message, array(), WATCHDOG_WARNING);
-        
-            } // if row produced ids
-          } // each row
+        $duplicates[$nid]['name'][$contactname][$id] = array(
+          'id' => $id,
+          'nid' => $nid,
+          'name' => $contactname,
+          'type' => $dst,
+          'bundle' => $bundle,
+        );
+        // Disable because this part can potentially slow down the system.
+        // We are serializing and updating whole array in databaes every time
+        // for a single node duplication.
+        // variable_set('fin-migrate-step1-duplicates', serialize($duplicates));
+      }
+    }
+  }
+  if (!$nid) {
+    $created = strtotime($row->CreatedOn);
+    $changed = strtotime($row->UpdatedOn);
+    if ($created < 0 or !is_numeric($created)) {
+      $bad = $created;
+      $created = $changed;
+      if ($created < 0 or !is_numeric($created)) {
+        $bad2 = $created;
+        $created = time();
+        $changed = $created;
+      }
+    }
+    elseif ($changed < 0 or !is_numeric($created)) {
+      $bad = $changed;
+      $changed = $created;
+    }
+
+    $values = array(
+      'title' => $pseudonym . "-" . $id,
+      'type' => $dst,
+      'uid' => 1,
+      'status' => 1,
+      'promote' => 0,
+      'created' => $created,
+      'changed' => $changed,
+    );
+    $entity = entity_create('node', $values);
+    $n_wrapper = entity_metadata_wrapper('node', $entity);
+    $n_wrapper->save();
+
+    $context['message'] = 'Created a new ' . $n_wrapper->value()->type . '  node with nid ' . $n_wrapper->value()->nid;
+
+  }
+  else {
+    // Disabled since we are not need it for now.
+    // $message = "Oops, for some reason, node not successfully created | id: "
+    // $message .= $id." | nid: ".$nid." | Data: ".print_r($row,true);
+    // watchdog('FIN_MIGRATE_NODE_STEP1', $message, array(), WATCHDOG_WARNING);
+  } // if row produced ids
+} // each row
 
 
 /**
