@@ -685,18 +685,19 @@ function _banjia_get_entity_by_name($fieldname, $name, $bundle, $type) {
 /**
  * Creates the node.
  */
-function banjia_part_one_create_node($pseudonym, $row, $checkName, $nameFldName, $nameNids = NULL, &$context) {
-            $id = $row->$pKeyName;
+function banjia_part_one_create_node($pseudonym, $row, $checkname, $namefldname, $namenids = NULL, $pkeyname, &$context) {
+            $id = $row->$pkeyname;
             $nid = 0;
             // are we setting up contacts? Does this contact-by-email-address exist?
-            if ($checkName) {
-              $contactName = $row->{$nameFldName};
-              if (isset($nameNids[$contactName])) {
-                $nid = $nameNids[$contactName]['nid'];
+            if ($checkname) {
+              $contactName = $row->{$namefldname};
+              if (isset($namenids[$contactName])) {
+                $nid = $namenids[$contactName]['nid'];
                 if ($nid) {
                   $message = "Contact exist. ".$pseudonym." Name ".$contactName." Update NID: ".$nid." | ID: ".$id;
                   watchdog('FIN_MIGRATE_NODE_CONTACT_NAME_MULTIPLE', $message, array(), WATCHDOG_INFO);
-                  $contactMatches[] = '"'.$contactName.'", "'.$id.'", "'.$nid.'"';
+                  $contactmatches = array();
+                  $contactmatches[] = '"'.$contactName.'", "'.$id.'", "'.$nid.'"';
               
                   $duplicates[$nid]['name'][$contactName][$id] = array(
                     'id' => $id,
@@ -759,88 +760,89 @@ function banjia_part_one_create_node($pseudonym, $row, $checkName, $nameFldName,
  */
 function banjia_fin_migrate_do_node_step1(&$batch) {
   ini_set('max_execution_time', 3600000);
-  ini_set('memory_limit','1024M');
+  ini_set('memory_limit', '1024M');
 
-  // Get Parameters
+  // Get Parameters.
   $nodemaparr = banjia_get_nodemaps('step1');
   $movement = 0;
-  $howManyMovements = count($nodemaparr);
-  foreach ($nodemaparr as $mapArr) {
-    foreach ($mapArr as $pseudonym => $map) {
+  $howmanymovements = count($nodemaparr);
+  foreach ($nodemaparr as $maparr) {
+    foreach ($maparr as $pseudonym => $map) {
       $movement++;
 
-      //if this is resuming, grab current old new map
-      $oldNew = array();
-      $newOld = array();
+      // If this is resuming, grab current old new map.
+      $oldnew = array();
+      $newold = array();
       $variable = 'fin-migrate-node';
-      $oldNews = banjia_fin_migrate_get_best_map($variable);
-      if ($oldNews) {
-        $oldNew = unserialize($oldNews['oldnew']);
-        $newOld = unserialize($oldNews['newold']);
+      $oldnews = banjia_fin_migrate_get_best_map($variable);
+      if ($oldnews) {
+        $oldnew = unserialize($oldnews['oldnew']);
+        $newold = unserialize($oldnews['newold']);
       }
 
       $params = $map['params'];
       $table = $params['oldtable'];
       $dst = $params['dst'];
-      $pKeyName = $params['oldkeyfldname'];    
+      $pkeyname = $params['oldkeyfldname'];
       $bundle = '';
       if (isset($params['bundle'])) {
         $bundle = $params['bundle'];
       }
 
-      $checkName = FALSE;
-      $nameNids = array();
-      $multiplesTotal = FALSE;
+      $checkname = FALSE;
+      $namenids = array();
+      $multiplestotal = FALSE;
       if (isset($params['checkname'])) {
-        $nameFldName = $params['checkname']['fldname'];
-        $nameNids = unserialize(variable_get('fin-migrate-contact-contactnames'));
-        $multiplesTotal = unserialize(variable_get('fin-migrate-contact-contactnames_total'));
-        if (!$nameNids) {
-          $sql = "SELECT COUNT(*) AS cnt, ".$nameFldName." AS name FROM {".$table."} WHERE ".$nameFldName." <> '' GROUP BY ".$nameFldName." HAVING count( ".$nameFldName." ) >1";
+        $namefldname = $params['checkname']['fldname'];
+        $namenids = unserialize(variable_get('fin-migrate-contact-contactnames'));
+        $multiplestotal = unserialize(variable_get('fin-migrate-contact-contactnames_total'));
+        if (!$namenids) {
+          $sql = "SELECT COUNT(*) AS cnt, " . $namefldname . " AS name FROM {" . $table . "} WHERE " . $namefldname . " <> '' GROUP BY " . $namefldname . " HAVING count( " . $namefldname . " ) >1";
           db_set_active('legacy');
           $res = db_query($sql);
           db_set_active();
           if ($res) {
-            $multiplesTotal = 0;
+            $multiplestotal = 0;
             foreach ($res as $rw) {
               $name = $rw->name;
-              $cnt = $rw->cnt-1;
-              $multiplesTotal += $cnt-1;
-              $nameNids[$name] = array(
-                'cnt' => $cnt, 
+              $cnt = $rw->cnt - 1;
+              $multiplestotal += $cnt - 1;
+              $namenids[$name] = array(
+                'cnt' => $cnt,
                 'hits' => 0,
-                 'nid' => 0
+                'nid' => 0,
               );
             }
-//            variable_set('fin-migrate-contact-contactnames', serialize($nameNids));          
-//            variable_set('fin-migrate-contact-contactnames_total', serialize($multiplesTotal));          
+            variable_set('fin-migrate-contact-contactnames', serialize($namenids));
+            variable_set('fin-migrate-contact-contactnames_total', serialize($multiplestotal));
           }
         }
-        $checkName = TRUE;
+        $checkname = TRUE;
       }
-      // see what ids to draw from a table
+
+      // See what ids to draw from a table.
       db_set_active('legacy');
-      $sql = "select ".$pKeyName." from {".$table."}";
+      $sql = "select " . $pkeyname . " from {" . $table . "}";
       $result = db_query($sql);
       db_set_active();
-      // oids are all old keys in source table, noids keys we saved
+      // Oids are all old keys in source table, noids keys we saved
       // We will use array_diff to tell us what ids have not been done
       // yet.
       $oids = array();
       $res = array();
 
       foreach ($result as $row) {
-        $res[$row->$pKeyName] = $row->$pKeyName;
+        $res[$row->$pkeyname] = $row->$pkeyname;
       }
       if ($res) {
         $oids = array_values($res);
       }
       $noids = array();
-      if (isset($newOld[$pseudonym])) {
-        $raw = $newOld[$pseudonym];
+      if (isset($newold[$pseudonym])) {
+        $raw = $newold[$pseudonym];
         $nid2ids = array();
         foreach ($raw as $nid => $more) {
-          foreach ($more as $delta=>$yetmore) {
+          foreach ($more as $delta => $yetmore) {
             foreach ($yetmore as $id) {
               $noids[$id] = $id;
               $nid2ids[$nid][] = $id;
@@ -848,29 +850,30 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
           }
         }
       }
-      $stuffToMove = TRUE;
+      $stufftomove = TRUE;
       $partial = FALSE;
 
       if ($noids) {
         $getids = array_diff($oids, $noids);
 
-
         if (!$getids) {
-          $stuffToMove = FALSE;
-        } else {
+          $stufftomove = FALSE;
+        }
+        else {
           $partial = TRUE;
         }
       }
       $sql = '';
-      if ($partial && $stuffToMove) {
-        $sql = "select * from {".$table."} where ".$pKeyName." in (".implode(',',$getids).")";
-      } else if (!$partial && $stuffToMove) {
-        // we are starting fresh with a table, use simpler SQL
+      if ($partial && $stufftomove) {
+        $sql = "select * from {" . $table . "} where " . $pkeyname . " in (" . implode(',', $getids) . ")";
+      }
+      elseif (!$partial && $stufftomove) {
+        // We are starting fresh with a table, use simpler SQL.
         $getids = array_keys($oids);
-        $sql = "select * from {".$table."}";
+        $sql = "select * from {" . $table . "}";
       }
 
-      if ($stuffToMove) {
+      if ($stufftomove) {
         $duplicates = array();
         if ($duplicates = unserialize(variable_get('fin-migrate-step1-duplicates'))) {
         }
@@ -879,28 +882,31 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
         db_set_active();
 
         if ($result) {
-          $rowCount = 0;
           if ($getids) {
-            $howManyRows = count($getids);
-          } else {
-            $howManyRows = count($oids)-count($noids);
+            $howmanyrows = count($getids);
+          }
+          else {
+            $howmanyrows = count($oids) - count($noids);
           }
           $motion = "Moving ";
           if ($partial) {
             $motion = "Resuming ";
           }
-          $message = $motion . $pseudonym." SOURCE (".count($oids).") | MOVED: ".count($noids)." | MOVING: ".$howManyRows;
-          watchdog('FIN_MIGRATE_NODE-'.$pseudonym, $message, array(), WATCHDOG_INFO);
-          $prefix = "Step (1/2) Movement (".$movement."/".$howManyMovements.") ".$message;
+          $message = $motion . $pseudonym . " SOURCE (" . count($oids) . ") | MOVED: " . count($noids) . " | MOVING: " . $howmanyrows;
+          watchdog('FIN_MIGRATE_NODE-' . $pseudonym, $message, array(), WATCHDOG_INFO);
+          $prefix = "Step (1/2) Movement (" . $movement . "/" . $howmanymovements . ") " . $message;
 
-          $rowCount = 0;
           $start = time();
-          
-          $contactMatches = array();
-          $nodesCreated = 0;
           foreach ($result as $row) {
             $batch['operations'][] = array('banjia_part_one_create_node',
-              array($pseudonym, $row, $checkName, $nameFldName, $nameNids),
+              array(
+                $pseudonym,
+                $row,
+                $checkname,
+                $namefldname,
+                $namenids,
+                $pkeyname,
+              ),
             );
           } // each row
         } // if result
