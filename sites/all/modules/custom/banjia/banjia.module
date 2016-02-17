@@ -732,9 +732,9 @@ function banjia_part_one_create_node($pseudonym, $dst, $table, $pkeyname, $row, 
     }
 
     if ($dst=="contact") {
-        $title = "contactmigration-".$contactname . "-" . $id;
+        $title = "contactmigration|".$pseudonym."|".$id . "|" . $contactname;
     } else {
-        $title = "migration-".$pseudonym . "-" . $id;
+        $title = "migration|".$pseudonym . "|" . $id;
     }   
     $values = array(
       'title' => $title,
@@ -1829,11 +1829,7 @@ function banjia_get_nodemaps($mode = 'step1') {
   $nodemaparr = FALSE;
   if ($mode == "step1") {
     $nodemaparr = array(
-      $nm_cf,
-      $nm_co,
-      $nm_mf,
-      $nm_p,
-      $nm_m,
+      $nm_mc,
     );
 
     $mytemp = array(
