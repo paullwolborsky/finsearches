@@ -11,7 +11,7 @@ function banjia_menu() {
   $items = array();
 
   $items['admin/content/banjia'] = array(
-    'title' => 'FIN D5-to-D7 migrate',
+    'title' => '(BANJIA) FIN D5-to-D7 migrate',
     'description' => 'Migrate data from D5 production to new D7 - Users, Search data, links between them.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('banjia_form'),
@@ -336,7 +336,7 @@ function banjia_form_submit($form, &$form_state) {
     'operations' => array(),
     'finished' => '_banjia_done',
   );
-  $state_user = banjia_user_batch_wrap($batch);
+  //// PLW $state_user = banjia_user_batch_wrap($batch);
   $state_node_part_1 = banjia_fin_migrate_do_node_step1($batch);
   batch_set($batch);
 }
@@ -685,7 +685,8 @@ function _banjia_get_entity_by_name($fieldname, $name, $bundle, $type) {
 /**
  * Creates the node.
  */
-function banjia_part_one_create_node($pseudonym, $row, $checkname, $namefldname, $namenids, $pkeyname, &$context) {
+function banjia_part_one_create_node($pseudonym, $dst, $table, $pkeyname, $row, $checkname, $namefldname, $pkeyname, &$context) {
+
   $id = $row->$pkeyname;
   $nid = 0;
   // Are we setting up contacts? Does this contact-by-email-address exist?
@@ -695,7 +696,7 @@ function banjia_part_one_create_node($pseudonym, $row, $checkname, $namefldname,
       $nid = $namenids[$contactname]['nid'];
       if ($nid) {
         $message = "Contact exist. " . $pseudonym . " Name " . $contactname . " Update NID: " . $nid . " | ID: " . $id;
-        watchdog('FIN_MIGRATE_NODE_CONTACT_NAME_MULTIPLE', $message, array(), WATCHDOG_INFO);
+        watchdog('FIN_MIGRATE_BATCH_CONTACT_NAME_MULTIPLE', $message, array(), WATCHDOG_INFO);
         $contactmatches = array();
         $contactmatches[] = '"' . $contactname . '", "' . $id . '", "' . $nid . '"';
 
@@ -730,8 +731,13 @@ function banjia_part_one_create_node($pseudonym, $row, $checkname, $namefldname,
       $changed = $created;
     }
 
+    if ($dst=="contact") {
+        $title = "contactmigration-".$contactname . "-" . $id;
+    } else {
+        $title = "migration-".$pseudonym . "-" . $id;
+    }   
     $values = array(
-      'title' => $pseudonym . "-" . $id,
+      'title' => $title,
       'type' => $dst,
       'uid' => 1,
       'status' => 1,
@@ -742,18 +748,53 @@ function banjia_part_one_create_node($pseudonym, $row, $checkname, $namefldname,
     $entity = entity_create('node', $values);
     $n_wrapper = entity_metadata_wrapper('node', $entity);
     $n_wrapper->save();
+    $nid = (int) $n_wrapper->getidentifier();
 
-    $context['message'] = 'Created a new ' . $n_wrapper->value()->type . '  node with nid ' . $n_wrapper->value()->nid;
+    if ($nid) {
+/*
+      $oldnew = array();
+      $newold = array();
+      $variable = 'fin-migrate-node';
+      $oldnews = banjia_fin_migrate_get_best_map($variable);
+      if ($oldnews) {
+        $oldnew = unserialize($oldnews['oldnew']);
+        $newold = unserialize($oldnews['newold']);
+      }
 
-  }
-  else {
-    // Disabled since we are not need it for now.
-    // $message = "Oops, for some reason, node not successfully created | id: "
-    // $message .= $id." | nid: ".$nid." | Data: ".print_r($row,true);
-    // watchdog('FIN_MIGRATE_NODE_STEP1', $message, array(), WATCHDOG_WARNING);
+      $oldnew[$pseudonym][$id][$nid] = $nid;
+      //012816
+      //Because we consolidate contacts, new may link to multi old records
+      //$newOld[$pseudonym][$nid][$id] = $id;
+      $newold[$pseudonym][$nid][][$id] = $id;
+      banjia_fin_migrate_update_map($variable, $oldnew, $newold);
+*/
+      if ($checkname) {
+        $nameNids = unserialize(variable_get('fin-migrate-contact-contactnames'));
+        if (isset($namenids[$contactname])) {
+          $namenids[$contactname]['nid'] = $nid;
+          if (isset($namenids[$contactname])) {
+            $namenids[$contactname]['hits']++;
+            if (empty($namenids[$contactname]['nid'])) {
+              $namenids[$contactname]['nid'] = $nid;
+            }
+            variable_set('fin-migrate-contact-contactnames', serialize($namenids));
+          }
+          $message = "Contact Node (".$nid.") created for Multiple Contact ".$contactName;
+          watchdog('FIN_MIGRATE_CONTACT_MULTIPLE', $message, array(), WATCHDOG_INFO);
+        }
+      }
+
+      $context['message'] = 'Created a new ' . $n_wrapper->value()->type . '  node with nid ' . $n_wrapper->value()->nid;
+
+    }
+    else {
+      // Disabled since we are not need it for now.
+      // $message = "Oops, for some reason, node not successfully created | id: "
+      // $message .= $id." | nid: ".$nid." | Data: ".print_r($row,true);
+      // watchdog('FIN_MIGRATE_NODE_STEP1', $message, array(), WATCHDOG_WARNING);
+    }
   } // if row produced ids
 } // each row
-
 
 /**
  * Node part one batch wrapper.
@@ -770,16 +811,6 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
     foreach ($maparr as $pseudonym => $map) {
       $movement++;
 
-      // If this is resuming, grab current old new map.
-      $oldnew = array();
-      $newold = array();
-      $variable = 'fin-migrate-node';
-      $oldnews = banjia_fin_migrate_get_best_map($variable);
-      if ($oldnews) {
-        $oldnew = unserialize($oldnews['oldnew']);
-        $newold = unserialize($oldnews['newold']);
-      }
-
       $params = $map['params'];
       $table = $params['oldtable'];
       $dst = $params['dst'];
@@ -791,6 +822,7 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
 
       $checkname = FALSE;
       $namenids = array();
+      $namefldname = '';
       $multiplestotal = FALSE;
       if (isset($params['checkname'])) {
         $namefldname = $params['checkname']['fldname'];
@@ -901,10 +933,12 @@ function banjia_fin_migrate_do_node_step1(&$batch) {
             $batch['operations'][] = array('banjia_part_one_create_node',
               array(
                 $pseudonym,
+                $dst,
+                $table,
+                $pkeyname,               
                 $row,
                 $checkname,
                 $namefldname,
-                $namenids,
                 $pkeyname,
               ),
             );
@@ -1795,14 +1829,24 @@ function banjia_get_nodemaps($mode = 'step1') {
   $nodemaparr = FALSE;
   if ($mode == "step1") {
     $nodemaparr = array(
+      $nm_cf,
+      $nm_co,
+      $nm_mf,
       $nm_p,
+      $nm_m,
+    );
+
+    $mytemp = array(
+      $nm_p,
+      $nm_m,      
       $nm_cc,
       $nm_mc,
       $nm_cf,
       $nm_co,
       $nm_mf,
       $nm_pc,
-      $nm_m,
+      $nm_cc,
+      $nm_mc,
     );
   }
   elseif ($mode == "step2") {
@@ -1862,3 +1906,18 @@ function banjia_fin_migrate_get_best_map($name = 'fin-migrate-node') {
   }
   return $out;
 }
+
+/*
+ * Helper Functions
+ */
+function banjia_fin_migrate_update_map($name, $oldNew, $newOld) {
+  $var1 = $name .'1';
+  $var2 = $name . '2';
+  $saveArr = array(
+    'oldnew' => serialize($oldNew),
+    'newold' => serialize($newOld),
+  );
+  variable_set($var1, serialize($saveArr));
+  variable_set($var2, serialize($saveArr));
+}
+
