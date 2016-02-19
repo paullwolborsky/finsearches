@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file misc modifications to finsearch
+ */
+
+/**
+ * Implements hook_form_alter
+ */
+function fin_mod_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'mandate_node_form') {
+    global $user; 
+    $form['field_mandate_comments_fc']['und'][0]['field_author_er']['und']['#default_value'] = t($user->name . ' (' . $user->uid . ')');
+  }
+}
