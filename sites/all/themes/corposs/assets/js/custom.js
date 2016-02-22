@@ -17,11 +17,12 @@
         data.addColumn('string', 'Label');
         data.addColumn('number', 'Value');
         $('.pie-chart .views-field').each(function(){
-          data.addRow([$(this).find('.views-label').html(), parseInt($(this).find('.field-content').html())]);
+          data.addRow([$(this).find('.views-label').html(), parseFloat($(this).find('.field-content').html())]);
         });
         var options = {
           is3D: false,
-          chartArea: {left:0,top:0, width: '75%', height:'100%'},
+          chartArea: {left:10,top:0, width: '100%', height:'100%'},
+          legend: {position: 'right',alignment:'top'},
           tooltip: {text:'percentage'}
         };
         $('.pie-chart').html("<div id='aa-chart'></div>");
