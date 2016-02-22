@@ -436,7 +436,6 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
   }
 }
 
- 
 /**
  * Callback function for the rendered form
  */

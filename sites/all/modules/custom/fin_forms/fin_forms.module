@@ -1,0 +1,107 @@
+<?php
+/**
+ * @file
+ * This file contains code for form alteration AJAX stuff
+ * and also some replicate hooks
+ *
+ *Written by John W. Johnson
+ *2-17-2016
+ */
+
+ /**
+  *Impliments hook_form_alter
+  */
+function fin_forms_form_alter(&$form, &$form_state, $form_id) {
+  $lang = !empty($form_state['values']['language'])?$form_state['values']['language']:'und';
+  switch ($form_id) {
+    case 'mandate_node_form':
+      $form['field_plan_er'][$lang][0]['target_id']['#ajax']['callback'] = 'fin_forms_plan_size_callback';
+      $form['field_plan_er'][$lang][0]['target_id']['#ajax']['wrapper'] = 'edit-field-plan-size';
+      $form['field_plan_er'][$lang][0]['target_id']['#ajax']['method'] = 'replace';
+      $form['field_plan_er'][$lang][0]['target_id']['#ajax']['effect'] = 'fade';
+      
+      if (!empty($form_state['values']['field_plan_er'][$lang][0]['target_id']) && empty($form_state['values']['field_plan_size'][$lang][0]['value'])) {
+        $plan = node_load($form_state['values']['field_plan_er'][$lang][0]['target_id']);
+        $last_size = array_pop($plan->field_plan_size_history[$lang]);
+        $size_entity = entity_load('field_collection_item', array($last_size));
+        $size_entity = array_pop($size_entity);
+        $value = $size_entity->field_plan_size[$lang][0]['value'];
+        $form['field_plan_size'][$lang][0]['value']['#value'] = $value;
+        $form['field_plan_size'][$lang][0]['value']['#default_value'] = $value;
+      }
+      break;
+    case 'contact_node_form':
+      if (!empty($form['field_job_history'][$lang][0])) {
+        foreach ($form['field_job_history'][$lang] as $key => $instance) {
+          if (is_int($key)) {
+            if (!empty($form['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0])) {
+              $form['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id']['#ajax'] = array(
+                'callback' => 'fin_forms_office_callback',
+                //'wrapper' => 'website-wrapper-' . $key,
+                'method' => 'replace',
+                'effect' => 'fade',
+                'event' => 'autocompleteSelect'
+              );
+              //$form['field_job_history'][$lang][$key]['field_consultant_office_er'][$lang]['#prefix'] = "<div id='offfice-wrapper-" . $key . "'>";
+              //$form['field_job_history'][$lang][$key]['field_consultant_office_er'][$lang]['#suffix'] = "</div>";
+              
+              //$form['field_job_history'][$lang][$key]['field_website'][$lang]['#prefix'] = "<div id='website-wrapper-" . $key . "'>";
+              //$form['field_job_history'][$lang][$key]['field_website'][$lang]['#suffix'] = "</div>";
+              //dd($form['field_job_history'][$lang][$key]['field_website'][$lang][0]);
+            }
+            if (!empty($form_state['values']['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id'])) {
+              $options = fin_forms_get_offices($form_state['values']['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id']);
+              $form['field_job_history'][$lang][$key]['field_consultant_office_er'][$lang]['#options'] = $options;
+              $website = fin_forms_get_website($form_state['values']['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id']);
+              //$form['field_job_history'][$lang][$key]['field_website'][$lang][0]['#value']['url'] = $website;
+              $form_state['website'] = $website;
+              //dd($form['field_job_history'][$lang][$key]['field_website'], "After");
+            }
+          }
+        }
+      }
+      break;
+  }
+}
+
+function fin_forms_plan_size_callback (&$form, &$form_state = null) {
+  return $form['field_plan_size'];
+}
+
+function fin_forms_office_callback (&$form, &$form_state = null) {
+  $lang = !empty($form_state['values']['language'])?$form_state['values']['language']:'und';
+  $key = $form_state['triggering_element']['#parents'][2];
+  $new_office = render($form['field_job_history'][$lang][$key]['field_consultant_office_er']);
+  $new_website = render($form['field_job_history'][$lang][$key]['field_website']);
+  $new_website = str_replace('value=""', 'value="' . $form_state['website'] . '"', $new_website);
+  return array(
+    '#type' => 'ajax',
+    '#commands' => array(
+      ajax_command_replace("#edit-field-job-history-und-" . $key . "-field-consultant-office-er", $new_office),
+      ajax_command_replace("div[id^='edit-field-job-history-und-" . $key . "-field-website']", $new_website),
+    ),
+  );
+}
+
+function fin_forms_get_offices ($firm_nid = NULL) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+  ->entityCondition('bundle', 'office')
+  ->fieldCondition('field_consultant_firm_er', 'target_id', $firm_nid, '=');
+  $result = $query->execute();
+  $options = array('_none'=>'-none-');
+  foreach ($result['node'] as $key=>$value) {
+    $office = node_load($value->nid);
+    $options[$value->nid] = $office->title_field[$office->language][0]['value']; 
+  }
+  return $options;
+}
+
+function fin_forms_get_website($firm_nid = NULL) {
+  $firm = node_load($firm_nid);
+  if (!empty($firm->field_website[$firm->language][0]['url'])) {
+    return $firm->field_website[$firm->language][0]['url'];
+  } else {
+    return '';
+  }
+}
