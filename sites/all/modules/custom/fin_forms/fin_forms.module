@@ -42,12 +42,6 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
                 'effect' => 'fade',
                 'event' => 'autocompleteSelect'
               );
-              //$form['field_job_history'][$lang][$key]['field_consultant_office_er'][$lang]['#prefix'] = "<div id='offfice-wrapper-" . $key . "'>";
-              //$form['field_job_history'][$lang][$key]['field_consultant_office_er'][$lang]['#suffix'] = "</div>";
-              
-              //$form['field_job_history'][$lang][$key]['field_website'][$lang]['#prefix'] = "<div id='website-wrapper-" . $key . "'>";
-              //$form['field_job_history'][$lang][$key]['field_website'][$lang]['#suffix'] = "</div>";
-              //dd($form['field_job_history'][$lang][$key]['field_website'][$lang][0]);
             }
             if (!empty($form_state['values']['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id'])) {
               $options = fin_forms_get_offices($form_state['values']['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id']);
