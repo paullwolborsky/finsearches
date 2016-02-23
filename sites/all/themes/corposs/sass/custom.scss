@@ -35,6 +35,16 @@ $shadow: #666666;
  *SCSS file for custom styling
  */
 
+/*** Addressfield country fix ***/
+.field-type-addressfield {
+  .addressfield-container-inline {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .country {
+    margin: 0 0 0 5px;
+  }
+}
 /*** Menu ***/
 #section-header .dexp-dropdown > ul > li {
   border-left: 1px solid $fin-navy;
@@ -423,7 +433,6 @@ body.node-type-plan {
     .ds-below-right.seventy {
       width: 60%;
       .view-display-id-eva_asset_allocation_chart {
-        margin: 30px 0 0 0;
         height: 300px;
         width: 100%;
         .view-content {

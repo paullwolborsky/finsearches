@@ -21,7 +21,7 @@
         });
         var options = {
           is3D: false,
-          chartArea: {left:10,top:0, width: '100%', height:'100%'},
+          chartArea: {left:10,top:10, width: '100%', height:'90%'},
           legend: {position: 'right',alignment:'top'},
           tooltip: {text:'percentage'}
         };

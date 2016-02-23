@@ -22,16 +22,17 @@ function fin_modals_init() {
     ctools_include('modal');
     ctools_modal_add_js();
   }
-  /*
-  $js = "(function($) {
-  $.fn.ajax_link = function() {
-  hold = window.location;
-  hold2 = location;
-    window.setTimeout('location.reload()', 3000);
-  }
-})(jQuery);"; 
-drupal_add_js($js,'inline');
-*/
+  //Theme the modals
+  drupal_add_js(array(
+    'fin-modals-contact-style' => array(
+      'modalSize' => array(
+        'type' => 'scale',
+        'width' => .95,
+        'height' => .8,
+        'contentRight' => 25,
+      ),
+    ),
+  ), 'setting');
 }
 
 function fin_modals_theme() {
@@ -370,21 +371,21 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
 
       ctools_include('ajax');
       ctools_include('modal');
-      
+    
+
       $href = 'modal/nojs/add';
-      $link[] = ctools_modal_text_button('Create New Mandate', $href . '/mandate', 'Create New Mandate', '');
-      $link[] = ctools_modal_text_button('Create New Contact', $href. '/contact', 'Create New Contact', '');
-      $link[] = ctools_modal_text_button('Create New Manager Firm', $href. '/manager_firm', 'Create New Manager Firm', '');
-      $link[] = ctools_modal_text_button('Create New Consultant Firm', $href. '/consultant_firm', 'Create New Consultant Firm', '');
-      $link[] = ctools_modal_text_button('Create New Office', $href. '/office', 'Create New Office', '');
-      $link[] = ctools_modal_text_button('Create New Contact', $href. '/contact/' . $form['#node']->nid, 'Create New Contact', '');
-  
+      $link[] = ctools_modal_text_button('Create New Mandate', $href . '/mandate', 'Create New Mandate', 'ctools-modal-fin-modals-contact-style');
+      $link[] = ctools_modal_text_button('Create New Contact', $href. '/contact', 'Create New Contact', 'ctools-modal-fin-modals-contact-style');
+      $link[] = ctools_modal_text_button('Create New Manager Firm', $href. '/manager_firm', 'Create New Manager Firm', 'ctools-modal-fin-modals-contact-style');
+      $link[] = ctools_modal_text_button('Create New Consultant Firm', $href. '/consultant_firm', 'Create New Consultant Firm', 'ctools-modal-fin-modals-contact-style');
+      $link[] = ctools_modal_text_button('Create New Office', $href. '/office', 'Create New Office', 'ctools-modal-fin-modals-contact-style');
+      $link[] = ctools_modal_text_button('Create New Contact', $href. '/contact/' . $form['#node']->nid, 'Create New Contact', 'ctools-modal-fin-modals-contact-style');
       //Alterations by form
       //Links used later
       $consultants_hired_link = "<div class='modal-links'><div class='left'>"
-      . ctools_modal_text_button('Create New Consultant Firm', $href. '/consultant_firm/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Consultant Firm', '')
+      . ctools_modal_text_button('Create New Consultant Firm', $href. '/consultant_firm/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Consultant Firm', 'ctools-modal-fin-modals-contact-style')
       . "</div><div class='right'>"
-      . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', '')
+      . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', 'ctools-modal-fin-modals-contact-style')
       . "</div></div>";
     
       $managers_hired_link = "<div class='modal-links'>"
@@ -392,16 +393,16 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
       . "</div>";
       
       if($form_id == "mandate_node_form"){ 
-        $form['field_consultants_terminated']['und']['#suffix'] = "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', '') . "</div>";
+        $form['field_consultants_terminated']['und']['#suffix'] = "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', 'ctools-modal-fin-modals-contact-style') . "</div>";
     
       }elseif($form_id == "plan_node_form"){
         $form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
         $form['field_consultants_hired']['und']['#suffix'] =
-        "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', '') . "</div>";
+        "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', 'ctools-modal-fin-modals-contact-style') . "</div>";
         //$form['field_managers_hired']['und']['#suffix'] =  $managers_hired_link;
         if (!empty($form['#node']->nid)) {
           $form['field_plan_contacts_embed']['und'][0]['#suffix'] =  '<span class="modal-make-contact">'
-          . ctools_modal_text_button('Create New Plan Contact', $href. '/contact/' . $form['#node']->nid . '/field_plan_contacts_embed', 'Create New Contact', '') . '</span>';
+          . ctools_modal_text_button('Create New Plan Contact', $href. '/contact/' . $form['#node']->nid . '/field_plan_contacts_embed', 'Create New Contact', 'ctools-modal-fin-modals-contact-style') . '</span>';
         }
       }elseif($form_id == 'consultant_firm_node_form'){
         /*
@@ -415,7 +416,7 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
         */
       }elseif($form_id == 'manager_firm_node_form') {
         $form['field_sub_manager_firms_er']['und']['#suffix'] = $managers_hired_link;
-        $form['field_manager_of_managers']['und']['#suffix'] = ctools_modal_text_button('Create New Manager Contact', $href. '/contact/' . $form['#node']->nid . '/field_manager_of_managers', 'Create New ManagerContact', '');
+        $form['field_manager_of_managers']['und']['#suffix'] = ctools_modal_text_button('Create New Manager Contact', $href. '/contact/' . $form['#node']->nid . '/field_manager_of_managers', 'Create New ManagerContact', 'ctools-modal-fin-modals-contact-style');
 
       } elseif($form_id == 'comment_form') {
         if (!empty($form_state['ajax']) && $form_state['ajax']) {
