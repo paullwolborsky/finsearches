@@ -1,0 +1,8 @@
+name = fs_f_pg_bt_manager_news
+core = 7.x
+package = Custom
+dependencies[] = entityreference
+dependencies[] = features
+dependencies[] = fs_f_base
+features[features_api][] = api:2
+features[field_instance][] = paragraphs_item-manager_news-field_manager_firm_er

@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the FIN Views feature.
- */
-
-include_once 'fin_views.features.inc';
