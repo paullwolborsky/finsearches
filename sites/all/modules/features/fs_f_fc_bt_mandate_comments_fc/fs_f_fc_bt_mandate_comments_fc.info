@@ -1,0 +1,11 @@
+name = fs_f_fc_bt_mandate_comments_fc
+core = 7.x
+package = Custom
+features[features_api][] = api:2
+features[field_base][] = field_author_er
+features[field_base][] = field_comment
+features[field_base][] = field_subject
+features[field_instance][] = field_collection_item-field_mandate_comments_fc-field_author_er
+features[field_instance][] = field_collection_item-field_mandate_comments_fc-field_comment
+features[field_instance][] = field_collection_item-field_mandate_comments_fc-field_date
+features[field_instance][] = field_collection_item-field_mandate_comments_fc-field_subject

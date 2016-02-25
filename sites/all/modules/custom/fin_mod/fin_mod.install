@@ -1,0 +1,21 @@
+<?php
+/**
+ * @file install file for fin_mod
+ */
+
+/**
+ * Removes content types that are not needed.
+ */
+function fin_mod_update_7001(&$sandbox) {
+  $node_types = array(
+    'article',
+    'clients',
+    'dexp_portfolio',
+    'gallery',
+    'team',
+    'testimonial'
+  );
+  foreach($node_types as $node_type) {
+    node_type_delete($node_type);
+  }
+}
