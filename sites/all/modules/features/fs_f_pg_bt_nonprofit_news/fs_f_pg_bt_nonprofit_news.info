@@ -1,0 +1,9 @@
+name = fs_f_pg_bt_nonprofit_news
+core = 7.x
+package = Custom
+features[features_api][] = api:2
+features[field_instance][] = paragraphs_item-nonprofit_news-field_cover_image
+features_exclude[dependencies][features] = features
+features_exclude[dependencies][image] = image
+features_exclude[dependencies][media] = media
+features_exclude[field_base][field_cover_image] = field_cover_image
