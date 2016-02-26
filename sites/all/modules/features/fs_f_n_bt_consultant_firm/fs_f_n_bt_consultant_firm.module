@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the fs_f_n_bt_consultant_firm feature.
+ */
+
+include_once 'fs_f_n_bt_consultant_firm.features.inc';

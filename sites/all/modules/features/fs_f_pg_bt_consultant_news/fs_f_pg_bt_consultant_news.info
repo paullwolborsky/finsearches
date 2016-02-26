@@ -1,0 +1,8 @@
+name = fs_f_pg_bt_consultant_news
+core = 7.x
+package = Custom
+features[features_api][] = api:2
+features[field_instance][] = paragraphs_item-consultant_news-field_consultant_firm_er
+features_exclude[dependencies][entityreference] = entityreference
+features_exclude[dependencies][features] = features
+features_exclude[dependencies][fs_f_base] = fs_f_base
