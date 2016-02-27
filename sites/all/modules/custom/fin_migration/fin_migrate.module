@@ -1235,7 +1235,9 @@ function _fin_migrate_process_batch_step2a($start, $pseudonym, $contactName, $ni
 
   //The Contact and its Job History have been built, save everything now
   foreach ($wrappers as $p_wrapper) {
-    $p_wrapper->save();
+    if (is_object($p_wrapper)) {
+      $p_wrapper->save();
+    }
   }
   $wrapper->save();
   _fin_migrate_node_step2_updated($nid);
@@ -1964,20 +1966,22 @@ watchdog('FIN_MIGRATE_COLLECTION', $message, array(), WATCHDOG_INFO);
     //$wrappers = array();
     $entities = array();
     foreach ($res as $rw) {
-      $newParagraph = new ParagraphsItemEntity(array('field_name' => $hostFldName, 'bundle' => $bundle));
-      $newParagraph->is_new = TRUE;
-      $newParagraph->setHostEntity('node', $entity);
-      //$newParagraph->save();
-      //$p_wrapper = entity_metadata_wrapper('field_paragraph_item', $newParagraph);
-      $p_wrapper = entity_metadata_wrapper('paragraphs_item', $newParagraph);
+      if ($hostFldName) {
+        $newParagraph = new ParagraphsItemEntity(array('field_name' => $hostFldName, 'bundle' => $bundle));
+        $newParagraph->is_new = TRUE;
+        $newParagraph->setHostEntity('node', $entity);
+        //$newParagraph->save();
+        //$p_wrapper = entity_metadata_wrapper('field_paragraph_item', $newParagraph);
+        $p_wrapper = entity_metadata_wrapper('paragraphs_item', $newParagraph);
 
-      $flds = $sets['fields'];
-      _fin_migrate_process_fields($flds, $rw, $p_wrapper, $entity, $termMap, $pKeyName, $pKey, "collection");
+        $flds = $sets['fields'];
+        _fin_migrate_process_fields($flds, $rw, $p_wrapper, $entity, $termMap, $pKeyName, $pKey, "collection");
 
-      //$p_wrapper->save();
-      $newParagraph->save();
-      $wrappers[] = $p_wrapper;
-      //$newParagraph->save();
+        //$p_wrapper->save();
+        $newParagraph->save();
+        $wrappers[] = $p_wrapper;
+        //$newParagraph->save();
+      }
     }
   }
   
