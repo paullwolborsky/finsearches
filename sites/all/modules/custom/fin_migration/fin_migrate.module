@@ -1,4 +1,9 @@
 <?php
+/*
+Had to fix fin_migrate, which had 13k 'consultant contacts w/consultant firm nodes
+delete from fin_migrate where nid in (select nid from node where type<>'contact') and contactname<>''
+*/
+
 /**
  * @file
  * A module to perform custom migration from one version of Drupal to another.
@@ -42,8 +47,9 @@ function fin_migrate_form_submit($form, &$form_state) {
     'finished' => '_fin_migrate_done',
   );
   //// PLW $state_user = fin_migrate_move_users($batch);
-  //$state_node_step_1 = fin_migrate_do_step1($batch);
+  $state_node_step_1 = fin_migrate_do_step1($batch);
   $state_node_step_2 = fin_migrate_do_step2($batch);
+  $state_node_step_2a = fin_migrate_do_step2a($batch);
   batch_set($batch);
 }
 
@@ -860,27 +866,18 @@ function _fin_migrate_process_batch_step1($pseudonym, $dst, $table, $pkeyname, $
   $nid = 0;
   // Are we setting up contacts? Does this contact-by-email-address exist?
   if ($checkname) {
-    $contactname = $row->{$namefldname};
+    $namenids = unserialize(variable_get('fin-migrate-contact-contactnames'));          
+    //$contactname = $row->{$namefldname};
+    $contactname = $row->ContactName;;
+    $contactname = str_replace("'", "`", $contactname);
     if (isset($namenids[$contactname])) {
+      // We have a NID. Take care of business then move on to next record
       $nid = $namenids[$contactname]['nid'];
-      if ($nid) {
-        $message = "Contact exist. " . $pseudonym . " Name " . $contactname . " Update NID: " . $nid . " | ID: " . $id;
-        watchdog('FIN_MIGRATE_BATCH_CONTACT_NAME_MULTIPLE', $message, array(), WATCHDOG_INFO);
-        $contactmatches = array();
-        $contactmatches[] = '"' . $contactname . '", "' . $id . '", "' . $nid . '"';
-
-        $duplicates[$nid]['name'][$contactname][$id] = array(
-          'id' => $id,
-          'nid' => $nid,
-          'name' => $contactname,
-          'type' => $dst,
-          'bundle' => $bundle,
-        );
-        // Disable because this part can potentially slow down the system.
-        // We are serializing and updating whole array in databaes every time
-        // for a single node duplication.
-        // variable_set('fin-migrate-step1-duplicates', serialize($duplicates));
-      }
+      $namenids[$contactname]['hits']++;      
+      variable_set('fin-migrate-contact-contactnames',serialize($namenids));
+      
+      $message = "Contact exist. " . $pseudonym . " Name " . $contactname . " Update NID: " . $nid . " | ID: " . $id;
+      watchdog('FIN_MIGRATE_BATCH_CONTACT_NAME_MULTIPLE', $message, array(), WATCHDOG_INFO);
     }
   }
   if (!$nid) {
@@ -920,50 +917,27 @@ function _fin_migrate_process_batch_step1($pseudonym, $dst, $table, $pkeyname, $
     $nid = (int) $n_wrapper->getidentifier();
 
     if ($nid) {
-/*
-      $oldnew = array();
-      $newold = array();
-      $variable = 'fin-migrate-node';
-      $oldnews = fin_migrate_get_best_map($variable);
-      if ($oldnews) {
-        $oldnew = unserialize($oldnews['oldnew']);
-        $newold = unserialize($oldnews['newold']);
+      $sql = "INSERT INTO {fin_migrate} (pseudonym, srcid, nid, contactname) VALUES('%pseudonym', %srcid, %nid, '%contactname')";
+      $sql = str_replace('%pseudonym', $pseudonym, $sql);
+      $sql = str_replace('%srcid', $id, $sql);
+      $sql = str_replace('%nid', $nid, $sql);
+      $sql = str_replace('%contactname', $contactname, $sql);
+      db_query($sql);
+ 
+      if ($checkname) {
+        // We created a new node, now we need to create a new entry in the Names list
+        $namenids[$contactname]['hits'] = 1;
+        $namenids[$contactname]['nid'] = $nid;
+        variable_set('fin-migrate-contact-contactnames',serialize($namenids));      
       }
 
-      $oldnew[$pseudonym][$id][$nid] = $nid;
-      //012816
-      //Because we consolidate contacts, new may link to multi old records
-      //$newOld[$pseudonym][$nid][$id] = $id;
-      $newold[$pseudonym][$nid][][$id] = $id;
-      fin_migrate_update_map($variable, $oldnew, $newold);
-*/
-      if ($checkname) {
-        $nameNids = unserialize(variable_get('fin-migrate-contact-contactnames'));
-        if (isset($namenids[$contactname])) {
-          $namenids[$contactname]['nid'] = $nid;
-          if (isset($namenids[$contactname])) {
-            $namenids[$contactname]['hits']++;
-            if (empty($namenids[$contactname]['nid'])) {
-              $namenids[$contactname]['nid'] = $nid;
-            }
-            variable_set('fin-migrate-contact-contactnames', serialize($namenids));
-          }
-          $message = "Contact Node (".$nid.") created for Multiple Contact ".$contactName;
-          watchdog('FIN_MIGRATE_CONTACT_MULTIPLE', $message, array(), WATCHDOG_INFO);
-        }
-      }
+      $message = "Contact Node (".$nid.") created for Multiple Contact ".$contactName;
+      watchdog('FIN_MIGRATE_CONTACT_MULTIPLE', $message, array(), WATCHDOG_INFO);
 
       $context['message'] = 'Created a new ' . $n_wrapper->value()->type . '  node with nid ' . $n_wrapper->value()->nid;
-
-    }
-    else {
-      // Disabled since we are not need it for now.
-      // $message = "Oops, for some reason, node not successfully created | id: "
-      // $message .= $id." | nid: ".$nid." | Data: ".print_r($row,true);
-      // watchdog('FIN_MIGRATE_NODE_STEP1', $message, array(), WATCHDOG_WARNING);
     }
   } // if row produced ids
-} // each row
+} // end batch processing for a single row
 
 /**
  * Get content field mapping for migration.
@@ -1036,127 +1010,13 @@ function fin_migrate_do_step2(&$batch) {
   ini_set('memory_limit','1024M');
 
   // Build New Old & Old New w/latest step1 content
-  _fin_migrate_add_step1_nodes_to_oldnew();
+  //_fin_migrate_add_step1_nodes_to_oldnew();
 
   // Get Parameters
-  $nodeMapArr = _get_nodemaps('step2');
+  $nodeMapArr = fin_migrate_get_nodemaps('step2');
 
-  // Array containing old, new taxonomies
-  $termMap = array(
-    'Inactive' => array(
-      'values' => array('0' => 'Inactive', '1' => 'Active'),
-      'oldfldname' => 'Inactive',
-      'oldterms' => array(),
-      'newvoc' => '5',
-      'newterms' => array(),
-    ),
-    'AssetClassID' => array(
-      'table' => 'tblassetclasses',
-      'oldfldname' => 'AssetClassID',
-      'termfield' => 'AssetClassName',
-      'oldterms' => array(),
-      'newvoc' => '9',
-      'newterms' => array(),
-    ),
-    'ClientTypeID' => array(
-      'table' => 'tblclienttypes',
-      'oldfldname' => 'ClientTypeID',
-      'termfield' => 'ClientTypeName',
-      'newvoc' => '8',
-      'newterms' => array(),
-    ),
-    'ConsultantTypeID' => array(
-      'table' => 'tblconsultanttypes',
-      'oldfldname' => 'ConsultantTypeID',
-      'termfield' => 'ConsultantTypeName',
-      'oldterms' => array(),
-      'newvoc' => '4',
-      'newterms' => array(),
-    ),
-    'ConsultantOfficeID' => array(
-      'table' => 'tblconsultantoffices',
-      'oldfldname' => 'ConsultantOfficeID',      
-      'termfield' => 'ConsultantOfficeName',
-      'oldterms' => array(),
-      'newvoc' => '3',
-      'newterms' => array(),
-    ),
-    'CurrencyID' => array(
-      'table' => 'tblcurrency',
-      'oldfldname' => 'CurrencyID',
-      'termfield' => 'FullName',
-      'oldterms' => array(),
-      'newvoc' => '11',
-      'newterms' => array(),
-    ),
-    'DatabasesUsedID' => array(
-      'table' => 'tbldatabasesused',
-      'oldfldname' => 'DatabasesUsedID',
-      'termfield' => 'DatabasesUsedName',
-      'oldterms' => array(),
-      'newvoc' => '10',
-      'newterms' => array(),
-    ),
-    'FundTypeID' => array(
-      'table' => 'tblfundtypes',
-      'oldfldname' => 'FundTypeID',
-      'termfield' => 'FundType',
-      'oldterms' => array(),
-      'newvoc' => '12',
-      'newterms' => array(),
-    ),
-    'GeographicID' => array(
-      'table' => 'tblgeographic',
-      'oldfldname' => 'GeographicID',
-      'termfield' => 'GeographicName',
-      'oldterms' => array(),
-      'newvoc' => '16',
-      'newterms' => array(),
-    ),
-    'MajorStyleID' => array(
-      'table' => 'tblmajorstyles',
-      'oldfldname' => 'MajorStyleID',
-      'termfield' => 'MajorStyle',
-      'oldterms' => array(),
-      'newvoc' => '',
-      'newterms' => array(),
-    ),
-    'MinorStyleID' => array(
-      'table' => 'tblminorstyles',
-      'oldfldname' => 'MinorStyleID',
-      'termfield' => 'MinorStyle',
-      'oldterms' => array(),
-      'newvoc' => '',
-      'newterms' => array(),
-    ),
-    'OfficeType' => array(
-      'values' => array('0'=>'Main', '1'=>'Branch'),
-      'oldfldname' => 'OfficeType',
-      'oldterms' => array(),
-      'newvoc' => '3',
-      'newterms' => array(),
-    ),
-    'PlacementPolicy' => array(
-      'table' => 'tblplacementpolicies',
-      'oldfldname' => 'PlacementPolicy',
-      'termfield' => 'PlacementPolicyName',
-      'oldterms' => array(),
-      'newvoc' => '14',
-      'newterms' => array(),
-    ),
-    'SourceID' => array(
-      'table' => 'tblsources',
-      'oldfldname' => 'SourceID',
-      'termfield' => 'Source',
-      'oldterms' => array(),
-      'newvoc' => '',
-      'newterms' => array(),
-    ),
-    'oldtaxonomy' => array(
-      'newterms' => array(),
-      'terms' => array(),
-    ),
-  );
+  $termMap = _fin_migrate_prep_terms();
+
   // END TERM MAP ARRAY
 
   $movement = 0;
@@ -1167,145 +1027,78 @@ function fin_migrate_do_step2(&$batch) {
       $context['message'] = "Step (2/2) Movement (".$movement."/".$howManyMovements.") Moving ".$pseudonym;
 
       $params = $map['params'];
-      $table = $params['oldtable'];
       $dst = $params['dst'];
-      $pKeyName = $params['oldkeyfldname'];    
-
-      $oldNew_ref = array();
-      $newOld_ref = array();
-      $varname = 'fin-migrate-node';
-      $oldNews_ref = _fin_migrate_get_best_map($varname);
-      // we need the below in this function
-      $oldNew_ref = unserialize($oldNews_ref['oldnew']);
-      $newOld_ref = unserialize($oldNews_ref['newold']);
-
-      //if this is resuming, grab current old new map
-      $oldNew = array();
-      $newOld = array();
-      $variable = 'fin-migrate-done';
-      $oldNews = _fin_migrate_get_best_map($variable);
-      if ($oldNews) {
-        $oldNew = unserialize($oldNews['oldnew']);
-        $newOld = unserialize($oldNews['newold']);
-      }
-      
+ 
       // Contacts require completely different handling
       if ($dst=='contact') {
-        fin_migrate_do_step2a($pseudonym, $map, $termMap, $newOld, $oldNew);
+        //fin_migrate_do_step2a($pseudonym, $map, $termMap, $newOld, $oldNew);
+        //fin_migrate_do_step2a($pseudonym, $map, $termMap, $batch);
+        continue;
       } else {
+        $table = $params['oldtable'];        
+        $pKeyName = $params['oldkeyfldname'];            
+
         // see what ids to draw from a table
         db_set_active('legacy');
-        $sql = "select ".$pKeyName." from {".$table."}";
+        $sql = "select * from {".$table."}";
         $result = db_query($sql);
         db_set_active();
-        // oids are all old keys in source table, noids keys we saved
-        // We will use array_diff to tell us what ids have not been done
-        // yet.
-        $oids = array();
-        $res = array();
+
+        $howManyRows = $result->rowCount();
+        $rowCount=0;
+        
+        $start = time();
         foreach ($result as $row) {
-          $res[$row->$pKeyName] = $row->$pKeyName;
-        } 
-        if ($res) {
-          $oids = array_values($res);
-        }
-        $noids = array();
-        if (isset($newOld[$pseudonym])) {
-          $noids = array_values($newOld[$pseudonym]);
-        }
-        $stuffToMove = TRUE;
-        $partial = FALSE;
-        if ($noids) {
-          $getids = array_diff($oids, $noids);
-          if (!$getids) {
-            $stuffToMove = FALSE;
-          } else {
-            $partial = TRUE;
-          }
-        }
-        $sql = '';
-        if ($partial && $stuffToMove) {
-          $sql = "select * from {".$table."} where ".$pKeyName." in (".implode(',',$getids).")";
-        } else if (!$partial && $stuffToMove) {
-          // we are starting fresh with a table, use simpler SQL
-          $getids = array_keys($oids);
-          $sql = "select * from {".$table."}";
-        }
-        if ($stuffToMove) {
-          db_set_active('legacy');
-          $result = db_query($sql);
-          db_set_active();
-        }
-
-        if ($result) {
-          $howManyRows = $result->rowCount();
-          $rowCount=0;
-          $motion = "Moving ";
-          if ($partial) {
-            $motion = "Resuming ";
-          }
-          $message = "Step (2/2) ".$motion." ".$pseudonym." SOURCE (".count($oids).") | EDITED: ".count($noids)." | EDIING: ".$howManyRows;
-          watchdog('FIN_MIGRATE_NODE-'.$pseudonym, $message, array(), WATCHDOG_INFO);
-          $prefix = "Step (1/2) Movement (".$movement."/".$howManyMovements.") ".$message;
-          $context['message'] = $prefix;
-
-          $rowCount = 0;
-          $start = time();
-          foreach ($result as $row) {
-
-if ($rowCount>40) {
-  $stop = time();
-  $elapsed = $stop-$start;
-  die("Step2 Type: ".$dst."| Elapsed time: ".$elapsed." Seconds. Count: ".$rowCount."-Step2 - Another 6000 complete, start next");
+          $batch['operations'][] = array('_fin_migrate_process_batch_step2',
+            array(
+              $pseudonym,
+              $dst,
+              $table,
+              $row,
+              $map,
+              $termMap,
+              $start,
+              $pKeyName
+            ),
+          );
+          $rowCount++;
+if ($rowCount>20) {
+  return;
+  //die("Step2 Type: ".$dst."| Elapsed time: ".$elapsed." Seconds. Count: ".$rowCount."-Step2 - Another 6000 complete, start next");
 }
 
-            $context['progress'] = (int) ($rowCount/$howManyRows)*100;
-            $context['message'] = 'Movement ('.$movement.'/'.$howManyMovements.') Moving '.$pseudonym.'... Row ('.$rowCount.'/'.$howManyRows.')...';
-            $context['progress'] = ($rowCount/$howManyRows)*100;
-            $id = (int) $row->$pKeyName;
-            $nid = _fin_migrate_gotIdgetNid($id, $pseudonym, $oldNew);
-            if ($id && $nid) {
-              // The entity is now created, but we have not yet simplified use of it.
-              // Now create an entity_metadata_wrapper around the new node entity
-              // to make getting and setting values easier
-              
-              $entity = entity_load('node', array($nid));              
-              if (!$entity) {
-                $message = "ENTITY ID: ".$id." NID: ".$nid." NOT loaded. Element: ".print_r($entity,true)."--";
-                watchdog('FIN_MIGRATE_NODE_'.$pseudonym.'-STEP 2', $message, array(), WATCHDOG_ERROR);
-              }
-              //$node = node_load(array($nid));
-              //$entity_raw = entity_load('node', array($nid));
-              //$entity = $entity_raw[$nid];                            
-              $node = node_load($nid);
-              $entity = $node;
-              $wrapper = entity_metadata_wrapper('node', $node);
-              //$wrapper = entity_metadata_wrapper('node', array($entity));
-              //_fin_migrate_handler_system($map['system'], $row, $node, $termMap);
-              _fin_migrate_handler_system($map['system'], $row, $wrapper, $entity, $termMap);
-              //_fin_migrate_handler_system($map['system'], $row, $wrapper, $node, $termMap);
 
-              $wrapper->save();
-              // currently we only have fields section to process
-              $fields = $map['fields'];
-              _fin_migrate_process_fields($fields, $row, $wrapper, $entity, $termMap, $pKeyName, $id);
-
-              $wrapper->save();
-
-              $oldNew[$pseudonym][$id] = $nid;
-              $newOld[$pseudonym][$nid] = $id;
-              _fin_migrate_update_map($variable, $oldNew, $newOld);
-            } else {
-              $message = "Oops, for some reason, node not successfully created | id: ".$id." | nid: ".$nid." | Data: ".print_r($row,true);
-              watchdog('FIN_MIGRATE_NODE_STEP2', $message, array(), WATCHDOG_WARNING);
-            } // if row produced ids
-          $rowCount++;
-          } // each row
-        } // if result
+        }
       }
     }
   }
 }
+
+function _fin_migrate_process_batch_step2($pseudonym, $dst, $table, $row, $map, $termMap, $start, $pKeyName, &$context) {
+
+  $id = (int) $row->$pKeyName;
+  $nid = _fin_migrate_gotIdgetNid($id, $pseudonym);
+
+  if ($id && $nid) {
+    $node = node_load($nid);
+    $entity = $node;
+    $wrapper = entity_metadata_wrapper('node', $node);
+    _fin_migrate_handler_system($map['system'], $row, $wrapper, $entity, $termMap);
+
+    $fields = $map['fields'];
+    _fin_migrate_process_fields($fields, $row, $wrapper, $entity, $termMap, $pKeyName, $id);
+
+    $wrapper->save();
+    _fin_migrate_node_step2_updated($nid);
+  
+    $elapsed = time()-$start;
+    $context['message'] = '[T+'.$elapsed.' Seconds] '.$pseudonym.'- Updated ' . $wrapper->value()->type . '  node with nid ' . $wrapper->value()->nid;
+  } else {
+    $message = "Oops, for some reason, node not successfully created | id: ".$id." | nid: ".$nid." | Data: ".print_r($row,true);
+    watchdog('FIN_MIGRATE_NODE_STEP2', $message, array(), WATCHDOG_WARNING);
+    $failed = TRUE;
+  } // if row produced ids
+} 
 
 /* SECTION STEP2A - Special Handling for Contacts
  * ////////////////// STEP 2A //////////////////////////
@@ -1317,22 +1110,31 @@ if ($rowCount>40) {
  * Populate Step1 contact nodes w/basic information, use the rest to
  * create the Job History.
  */
-function fin_migrate_do_step2a($pseudonym, $map, $termMap, &$newOld_ref, &$oldNew_ref) {
-  $variable = 'fin-migrate-contacts_done';
-  $done = unserialize(variable_get($variable));
-  if (!$done) {
-    $done = array();
+//function fin_migrate_do_step2a($pseudonym, $map, $termMap, &$newOld_ref, &$oldNew_ref) {
+function fin_migrate_do_step2a(&$batch) {
+  $pseudonym = "contact";
+  $termMap = _fin_migrate_prep_terms();
+
+  //make namenids
+  $sql = "select contactname, nid from {fin_migrate} where contactname<>''";
+  $res = db_query($sql);
+  $nameNids = array();
+  foreach ($res as $row) {
+    $nameNids[$row->contactname]['nid'] = $row->nid;
   }
 
-  $variable = 'fin-migrate-node';
-  $oldNews = _fin_migrate_get_best_map($variable);
-  if ($oldNews) {
-    $oldNew_ref = unserialize($oldNews['oldnew']);
-    $newOld_ref = unserialize($oldNews['newold']);
+  $mapArr = fin_migrate_get_nodemaps('step2a');
+  $map = $mapArr[$pseudonym];
+
+  $donesql = "select contactname from {fin_migrate} where step2=1 and contactname<>''";
+  $doneres = db_query($donesql);
+  $done = array();
+  foreach ($doneres as $donerow) {
+    $done[$donerow->contactname] = $donerow->contactname;
   }
- 
-  $variable = 'fin-migrate-contact-contactnames';
-  $nameNids = unserialize(variable_get('fin-migrate-contact-contactnames'));
+
+  //$variable = 'fin-migrate-contact-contactnames';
+  //$nameNids = unserialize(variable_get('fin-migrate-contact-contactnames'));
 
   $arrs = array();
   $arrs = _fin_migrate_prep_employment_dates($done);
@@ -1341,122 +1143,118 @@ function fin_migrate_do_step2a($pseudonym, $map, $termMap, &$newOld_ref, &$oldNe
 
   if ($jobs) {
     $howManyRows = count($jobs);
-    $motion = "Moving ";
-    if ($done) {
-      $motion = "Resuming ";
-    }
     $rowCount = 0;
-    $paragraphCount = 0;
     $start = time();
     
     foreach ($jobs as $contactName => $row) {
-      // The first thing we do, get nid, load contact, do contact properties
       $nid = $nameNids[$contactName]['nid'];
-
-      //Now that we have a person jobs, let aggregate pictures and bio
-      $scoop = $row;
-      $picture = '';
-      $bio = '';
-      $firstRow = TRUE;
-      $sysArr = array();
-      foreach ($scoop as $start => $more) {
-        foreach ($more as $tbl => $yetmore) {
-          foreach ($yetmore as $rowid => $data) {
-            if (!$bio && !empty($data['Bio'])) {
-              $bio = $data['Bio'];
-            }
-            if (!$picture && isset($data['Picture']) and !empty($data['Picture'])) {
-              $picture = $data['Picture'];
-            }
-            if ($firstRow) {
-              $sysArr = $data;
-              $firstRow = FALSE;
-            }
-          }
-        }
-      }
-      $sysArr['Bio'] = $bio;
-      $sysArr['Picture'] = $picture;
-      $sysData = (object) $sysArr;
-
-      //$node = node_load(array($nid));
-      //$entity_raw = entity_load('node', array($nid));
-      //$entity = $entity_raw[$nid];                            
-      //$entity = entity_load('node', array($nid));                      
-      $node = node_load($nid);
-      $oldTitle = $node->title;
-      $wrapper = entity_metadata_wrapper('node', $node);
-
-      // we want to pass in both entity and wrapper, just keeping true to naming
-      $entity = $node;
-      // Basic Contact Node data populated here
-      _fin_migrate_handler_system($map['system'], $sysData, $wrapper, $entity, $termMap);
-      
-      $newTitle = $wrapper->title_field;
-
-      $jobMap = $map['job-history'];
-      $params = $jobMap['params'];
-      $hostFldName = $params['hostfield'];
-      $bundles = $jobMap['bundles'];
-      $wrappers = array();
-      foreach ($row as $start => $tblarr) {
-        foreach ($tblarr as $tbl => $idarr) {
-          $fields = $bundles[$tbl]['fields'];        
-          foreach ($idarr as $id => $data) {
-            $inData = (object) $data;
-          
-            // Now, we call the function to create the paragraphs
-            $paragraph = $bundles[$tbl];
-            $bundle = $paragraph['params']['bundle'];
-            $deferSave = FALSE;
-            // only needed if we will query another table, not this time
-            $keyName = '';
-            $keyVal = 0;
-            $wrapperArr = _fin_migrate_handler_paragraph($bundle, $hostFldName, $paragraph, $inData, $wrapper, $entity, $termMap, $keyName, $keyVal, $deferSave);       
-            //even done one at a time, a single product is wrapped in an box, or array
-            $wrappers[] = $wrapperArr[0];
-          }
-        }
-      }
-     
-     //The Contact and its Job History have been built, save everything now
-     //foreach ($wrappers as $p_wrapper) {
-     //  $p_wrapper->save();
-     //}
-     //$wrapper->save();
-
-     $oldNew[$pseudonym][$id] = $nid;
-     $newOld[$pseudonym][$nid] = $id;
-     _fin_migrate_update_map($variable, $oldNew, $newOld);
-     $rowCount++;
-
-     $message = t("Old Title: %oldtitle | New Title: %newtitle", array(
-       'oldtitle' => $oldTitle,
-       'newtitle' => $newTitle,
-     ));
-     watchdog('FIN_MIGRATE_CONTACT_NODE_UPDATED', $message, array(), WATCHDOG_INFO);
-
-if ($rowCount>10) {
-  $stop = time();
-  $elapsed = $stop-$start;
-  die("Elapsed time: ".$elapsed." Seconds. Count: ".$rowCount."-Step2 - Another 6000 complete, start next");
+      $batch['operations'][] = array('_fin_migrate_process_batch_step2a',
+        array(
+          $start,
+          $pseudonym,
+          $contactName,
+          $nid,
+          $row,
+          $map,
+          $termMap,
+        ),
+      );
+      $rowCount++;
+if ($rowCount>200) {
+  return;
 }
-      
-     $context['progress'] = (int) ($rowCount/$howManyRows)*100;
-     $context['message'] = 'Movement ('.$movement.'/'.$howManyMovements.') gMoving '.$pseudonym.'... Row ('.$rowCount.'/'.$howManyRows.')...';
-     $context['progress'] = ($rowCount/$howManyRows)*100;
+
+    }
+  }
+}
+
+function _fin_migrate_process_batch_step2a($start, $pseudonym, $contactName, $nid, $row, $map, $termMap, &$context) {
+  if (empty($nid)) {
+    $message = $contactName." not on namenids. Row: ".print_r($row,true);
+    watchdog('FIN_MIGRATE_MISSING_CONTACT', $message, array(), WATCHDOG_ERROR);
+  } else {
+
+  //Now that we have a person jobs, let aggregate pictures and bio
+  $scoop = $row;
+  $picture = '';
+  $bio = '';
+  $firstRow = TRUE;
+  $sysArr = array();
+  foreach ($scoop as $start => $more) {
+    foreach ($more as $tbl => $yetmore) {
+      foreach ($yetmore as $rowid => $data) {
+        if (!$bio && !empty($data['Bio'])) {
+          $bio = $data['Bio'];
+        }
+        if (!$picture && isset($data['Picture']) and !empty($data['Picture'])) {
+          $picture = $data['Picture'];
+        }
+        if ($firstRow) {
+          $sysArr = $data;
+          $firstRow = FALSE;
+        }
+      }
+    }
+  }
+  $sysArr['Bio'] = $bio;
+  $sysArr['Picture'] = $picture;
+  $sysData = (object) $sysArr;
+  $node = node_load($nid);
+  $oldTitle = $node->title;
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // we want to pass in both entity and wrapper, just keeping true to naming
+  $entity = $node;
+  // Basic Contact Node data populated here
+  _fin_migrate_handler_system($map['system'], $sysData, $wrapper, $entity, $termMap);
+    
+  $newTitle = $wrapper->title->value();
+
+  $jobMap = $map['job-history'];
+  $params = $jobMap['params'];
+  $hostFldName = $params['hostfield'];
+  $bundles = $jobMap['bundles'];
+  $wrappers = array();
+  foreach ($row as $start => $tblarr) {
+    foreach ($tblarr as $tbl => $idarr) {
+      $fields = $bundles[$tbl]['fields'];        
+      foreach ($idarr as $id => $data) {
+        $inData = (object) $data;
+          
+        // Now, we call the function to create the paragraphs
+        $paragraph = $bundles[$tbl];
+        $bundle = $paragraph['params']['bundle'];
+        $deferSave = TRUE;
+          // only needed if we will query another table, not this time
+        $wrapperArr = _fin_migrate_handler_paragraph($bundle, $hostFldName, $paragraph, $inData, $wrapper, $entity, $termMap);       
+        //even done one at a time, a single product is wrapped in an box, or array
+        $wrappers[] = $wrapperArr[0];
+      }
+    }
+  }
+
+  //The Contact and its Job History have been built, save everything now
+  foreach ($wrappers as $p_wrapper) {
+    $p_wrapper->save();
+  }
+  $wrapper->save();
+  _fin_migrate_node_step2_updated($nid);
+
+  $message = t("Old Title: %oldtitle | New Title: %newtitle", array(
+   'oldtitle' => $oldTitle,
+   'newtitle' => $newTitle,
+    ));
+  //watchdog('FIN_MIGRATE_CONTACT_NODE_UPDATED', $message, array(), WATCHDOG_INFO);
+     
+  $elapsed = time()-$start;
+  $context['message'] = '[T+'.$elapsed.' Seconds] '.$pseudonym.'- Updated ' . $wrapper->value()->type . '  node with nid ' . $wrapper->value()->nid;
              
-     if (!$entity) {
-       $message = "ENTITY ID: ".$id." NID: ".$nid." NOT loaded. Element: ".print_r($entity,true)."--";
-       watchdog('FIN_MIGRATE_NODE_'.$pseudonym.'-STEP 2', $message, array(), WATCHDOG_ERROR);
-     }
-
-    } // each row
-  } //if result
+  if (!$entity) {
+    $message = "ENTITY ID: ".$id." NID: ".$nid." NOT loaded. Element: ".print_r($entity,true)."--";
+    watchdog('FIN_MIGRATE_NODE_'.$pseudonym.'-STEP 2', $message, array(), WATCHDOG_ERROR);
+  } // end main if else
+  } // each row
 } // end function
-
-
-
 
  /*
  * Function to calculate Employment dates w/CreatedOn & UpdatedOn fields
@@ -1478,6 +1276,9 @@ if ($rowCount>10) {
  * done at once and it simplifies the code that acxtually creates the paragraphs.
  */
 function _fin_migrate_prep_employment_dates($done) {
+  $message = "Assemble Jobs, except for: <br><br>".print_r($done,true);
+  watchdog('FIN_MIGRATE_JOBS_TABLE', $message, array(), WATCHDOG_INFO);
+
   $arr = array();
   $tbl = 'tblconsultantcontacts';
   $id = 'ConsultantContactID';
@@ -1577,10 +1378,10 @@ function _fin_migrate_prep_employment_dates($done) {
 }
 
 function _fin_migrate_grab_job_data($tbl, $id, &$out, $done) {
-  $doneStr = '';
-  if ($done) {
-    $doneStr = "'".implode("','", $done)."'";
-  }
+  //$doneStr = '';
+  //if ($done) {
+  //  $doneStr = "'".implode("','", $done)."'";
+  //}
 
   switch($tbl) {
     case 'tblconsultantcontacts':
@@ -1590,11 +1391,13 @@ function _fin_migrate_grab_job_data($tbl, $id, &$out, $done) {
       $sql = "SELECT ContactName, %id as id, Inactive, Title, CreatedOn, UpdatedOn, Fax, Phone, Email, Address, City, StateID, CountryID, ZIP, Picture, Bio, FundID as er from {%tbl} %where";
     break;
     case 'tblmanagercontacts':
-      $sql = "SELECT c.ContactName, %id as id, c.Title as Title, c.CreatedOn as CreatedOn, c.UpdatedOn as UpdatedOn, c.Fax as Fax, c.Phone as Phone, c.Email as Email, c.Picture as Picture, c.ManagerFirmID as er, CONCAT(m.Address1, m.Address2, m.Address3) as Address, m.City as City, m.ZIP as ZIP, m.StateID as StateID,  m.CountryID as CountryID from tblManagerContacts c, tblManagerFirms as m WHERE c.ManagerFirmID=m.ManagerFirmID %andwhere";
+      $sql = "SELECT c.ContactName, %id as id, c.Title as Title, c.CreatedOn as CreatedOn, c.UpdatedOn as UpdatedOn, c.Fax as Fax, c.Phone as Phone, c.Email as Email, c.Picture as Picture, c.ManagerFirmID as er, CONCAT(m.Address1, m.Address2, m.Address3) as Address, m.City as City, m.ZIP as ZIP, m.StateID as StateID,  m.CountryID as CountryID from tblmanagercontacts c, tblmanagerfirms as m WHERE c.ManagerFirmID=m.ManagerFirmID %andwhere";
     break;
   }
   $sql = str_replace('%id', $id, $sql);
   $sql = str_replace('%tbl', $tbl, $sql);
+  
+  $doneStr = '';
   if ($doneStr) {
     $sql = str_replace('%where', 'WHERE ContactName NOT IN ('.$doneStr.')', $sql);
     $sql = str_replace('%andwhere', ' AND WHERE ContactName NOT IN ('.$doneStr.')', $sql);
@@ -1608,59 +1411,62 @@ function _fin_migrate_grab_job_data($tbl, $id, &$out, $done) {
   db_set_active();
   if ($res) {
     foreach ($res as $row) {
-      //use 
-    $address = '';
-    $city = '';
-    $stateID = '';
-    $countryID = '';
-    $zip = '';
-    $address = $row->Address;
-    $city = $row->City;
-    $stateID = $row->StateID;
-    $countryID = $row->CountryID;
-    $zip = $row->ZIP;
-    if ($tbl=='tblmanagercontacts') {
-      $inactive = 0;
-      $bio = '';
-    } else {
-      $inactive = $row->Inactive;
-      $bio = $row->Bio;
-    }     
-    $rowid = $row->id;
-    $contactName = $row->ContactName;
-    $title = $row->Title;
-    $er = $row->er;
-    $er2 = 0;
-    $consultantType = 0;
-    $consultantOfficeID = 0;
-    if ($tbl=='tblconsultantcontacts') {
-      $consultantOfficeID = $row->ConsultantOfficeID;
-      $consultantType = $row->ConsultantType;
-    }
-
-    $start = strtotime($row->CreatedOn);
-    $out[$contactName][$start][$tbl][$rowid] = array(
-      'ContactName' => $contactName,
-      'CreatedOn' => $row->CreatedOn,
-      'Inactive' => $inactive,
-      'UpdatedOn' => $row->UpdatedOn,
-      'start' => $start,
-      'end' => 0,
-      'Title' => $title,
-      'Address' => $address,
-      'City' => $city,
-      'ZIP' => $zip,
-      'StateID' => $stateID,
-      'CountryID' => $countryID,
-      'Phone' => $row->Phone,
-      'Fax' => $row->Fax,
-      'Email' => $row->Email,
-      'Picture' => $row->Picture,
-      'Bio' => $bio,
-      'er' => $row->er,
-      'ConsultantOfficeID' => $consultantOfficeID,
-      'ConsultantType' => $consultantType,
-      );
+      $contactName = $row->ContactName;
+      $contactName = str_replace("'", "`", $contactName);
+      
+      if (!isset($done[$contactName])) {
+        //use 
+        $address = '';
+        $city = '';
+        $stateID = '';
+        $countryID = '';
+        $zip = '';
+        $address = $row->Address;
+        $city = $row->City;
+        $stateID = $row->StateID;
+        $countryID = $row->CountryID;
+        $zip = $row->ZIP;
+        if ($tbl=='tblmanagercontacts') {
+          $inactive = 0;
+          $bio = '';
+        } else {
+          $inactive = $row->Inactive;
+          $bio = $row->Bio;
+        }     
+        $rowid = $row->id;
+        $title = $row->Title;
+        $er = $row->er;
+        $er2 = 0;
+        $consultantType = 0;
+        $consultantOfficeID = 0;
+        if ($tbl=='tblconsultantcontacts') {
+          $consultantOfficeID = $row->ConsultantOfficeID;
+          $consultantType = $row->ConsultantType;
+        }
+        $start = strtotime($row->CreatedOn);
+        $out[$contactName][$start][$tbl][$rowid] = array(
+          'ContactName' => $contactName,
+          'CreatedOn' => $row->CreatedOn,
+          'Inactive' => $inactive,
+          'UpdatedOn' => $row->UpdatedOn,
+          'start' => $start,
+          'end' => 0,
+          'Title' => $title,
+          'Address' => $address,
+          'City' => $city,
+          'ZIP' => $zip,
+          'StateID' => $stateID,
+          'CountryID' => $countryID,
+          'Phone' => $row->Phone,
+          'Fax' => $row->Fax,
+          'Email' => $row->Email,
+          'Picture' => $row->Picture,
+          'Bio' => $bio,
+          'er' => $row->er,
+          'ConsultantOfficeID' => $consultantOfficeID,
+          'ConsultantType' => $consultantType,
+        );
+      }
     }
   }
 }
@@ -1668,11 +1474,129 @@ function _fin_migrate_grab_job_data($tbl, $id, &$out, $done) {
 /* SECTION OLDNEW - link nodes, collections, paragraphs to source table/ids
  * ///////////////////////// OLDNEW //////////////////////////
  */
-function _fin_migrate_prep_terms(&$termMap) { 
+function _fin_migrate_prep_terms() { 
+  // Array containing old, new taxonomies
+  $termMap = array(
+    'Inactive' => array(
+      'values' => array('0' => 'Inactive', '1' => 'Active'),
+      'oldfldname' => 'Inactive',
+      'oldterms' => array(),
+      'newvoc' => '5',
+      'newterms' => array(),
+    ),
+    'AssetClassID' => array(
+      'table' => 'tblassetclasses',
+      'oldfldname' => 'AssetClassID',
+      'termfield' => 'AssetClassName',
+      'oldterms' => array(),
+      'newvoc' => '9',
+      'newterms' => array(),
+    ),
+    'ClientTypeID' => array(
+      'table' => 'tblclienttypes',
+      'oldfldname' => 'ClientTypeID',
+      'termfield' => 'ClientTypeName',
+      'newvoc' => '8',
+      'newterms' => array(),
+    ),
+    'ConsultantTypeID' => array(
+      'table' => 'tblconsultanttypes',
+      'oldfldname' => 'ConsultantTypeID',
+      'termfield' => 'ConsultantTypeName',
+      'oldterms' => array(),
+      'newvoc' => '4',
+      'newterms' => array(),
+    ),
+    'ConsultantOfficeID' => array(
+      'table' => 'tblconsultantoffices',
+      'oldfldname' => 'ConsultantOfficeID',      
+      'termfield' => 'ConsultantOfficeName',
+      'oldterms' => array(),
+      'newvoc' => '3',
+      'newterms' => array(),
+    ),
+    'CurrencyID' => array(
+      'table' => 'tblcurrency',
+      'oldfldname' => 'CurrencyID',
+      'termfield' => 'FullName',
+      'oldterms' => array(),
+      'newvoc' => '11',
+      'newterms' => array(),
+    ),
+    'DatabasesUsedID' => array(
+      'table' => 'tbldatabasesused',
+      'oldfldname' => 'DatabasesUsedID',
+      'termfield' => 'DatabasesUsedName',
+      'oldterms' => array(),
+      'newvoc' => '10',
+      'newterms' => array(),
+    ),
+    'FundTypeID' => array(
+      'table' => 'tblfundtypes',
+      'oldfldname' => 'FundTypeID',
+      'termfield' => 'FundType',
+      'oldterms' => array(),
+      'newvoc' => '12',
+      'newterms' => array(),
+    ),
+    'GeographicID' => array(
+      'table' => 'tblgeographic',
+      'oldfldname' => 'GeographicID',
+      'termfield' => 'GeographicName',
+      'oldterms' => array(),
+      'newvoc' => '16',
+      'newterms' => array(),
+    ),
+    'MajorStyleID' => array(
+      'table' => 'tblmajorstyles',
+      'oldfldname' => 'MajorStyleID',
+      'termfield' => 'MajorStyle',
+      'oldterms' => array(),
+      'newvoc' => '',
+      'newterms' => array(),
+    ),
+    'MinorStyleID' => array(
+      'table' => 'tblminorstyles',
+      'oldfldname' => 'MinorStyleID',
+      'termfield' => 'MinorStyle',
+      'oldterms' => array(),
+      'newvoc' => '',
+      'newterms' => array(),
+    ),
+    'OfficeType' => array(
+      'values' => array('0'=>'Branch', '1'=>'Main'),
+      'oldfldname' => 'OfficeType',
+      'oldterms' => array(),
+      'newvoc' => '3',
+      'newterms' => array(),
+    ),
+    'PlacementPolicy' => array(
+      'table' => 'tblplacementpolicies',
+      'oldfldname' => 'PlacementPolicy',
+      'termfield' => 'PlacementPolicyName',
+      'oldterms' => array(),
+      'newvoc' => '14',
+      'newterms' => array(),
+    ),
+    'SourceID' => array(
+      'table' => 'tblsources',
+      'oldfldname' => 'SourceID',
+      'termfield' => 'Source',
+      'oldterms' => array(),
+      'newvoc' => '',
+      'newterms' => array(),
+    ),
+    'oldtaxonomy' => array(
+      'newterms' => array(),
+      'terms' => array(),
+    ),
+  );
+
   // Fill taxonomy array with new terms
   foreach ($termMap as $pseudonym => $settings) {
     $termIDField = $settings['oldfldname'];
     $out = array();
+
     if ( isset($settings['table']) ) {
       $id = $termIDField;
       $name = $settings['termfield'];
@@ -1704,6 +1628,7 @@ function _fin_migrate_prep_terms(&$termMap) {
       $termMap[$termIDField]['newvoc'] = $vid;  
     }
   }
+  return $termMap;
 }
 
 /*
@@ -2042,16 +1967,17 @@ watchdog('FIN_MIGRATE_COLLECTION', $message, array(), WATCHDOG_INFO);
       $newParagraph = new ParagraphsItemEntity(array('field_name' => $hostFldName, 'bundle' => $bundle));
       $newParagraph->is_new = TRUE;
       $newParagraph->setHostEntity('node', $entity);
-      $newParagraph->save();
-
-debugBreak();
+      //$newParagraph->save();
+      //$p_wrapper = entity_metadata_wrapper('field_paragraph_item', $newParagraph);
+      $p_wrapper = entity_metadata_wrapper('paragraphs_item', $newParagraph);
 
       $flds = $sets['fields'];
-      _fin_migrate_process_fields($flds, $rw, $newParagraph, $newParagraph, $termMap, $pKeyName, $pKey, "collection");
+      _fin_migrate_process_fields($flds, $rw, $p_wrapper, $entity, $termMap, $pKeyName, $pKey, "collection");
 
+      //$p_wrapper->save();
       $newParagraph->save();
       $wrappers[] = $p_wrapper;
-      $newParagraph->save();
+      //$newParagraph->save();
     }
   }
   
@@ -2067,14 +1993,6 @@ debugBreak();
 
 function _fin_migrate_handler_collection($hostFldName, $sets, $inData, &$wrapper, &$entity, $termMap, $primeKeyFldName='', $primeKey=0) {
 
-  $oldNew_col = array();
-  $newOld_col = array();
-  $variable = 'fin-migrate-oldnew-collection';
-  $oldNews = _fin_migrate_get_best_map($variable);
-  if ($oldNews) {
-    $oldNew_col = unserialize($oldNews['oldnew']);
-    $newOld_col = unserialize($oldNews['newold']);
-  }
   $fields = $sets['fields'];
   $params = $sets['params'];
   
@@ -2137,13 +2055,21 @@ watchdog('FIN_MIGRATE_COLLECTION', $message, array(), WATCHDOG_INFO);
       $flds = $sets['fields'];
       _fin_migrate_process_fields($flds, $rw, $fc_wrapper, $entity, $termMap, $pKeyName, $pKey, "collection");
 
-      $wrapper[] = $fc_wrapper;
+      $wrappers[] = $fc_wrapper;
     }
   }
   
   // We save everything at once, a cheap form of atomicity
-  foreach ($wrapper as $fc_wrapper) {
+  foreach ($wrappers as $fc_wrapper) {
     $fc_wrapper->save();
+
+/*
+      $sql = "INSERT INTO {fin_migrate} (pseudonym, srcid, nid, contactname) VALUES('%pseudonym', %srcid, %nid, '%contactname')";
+      $sql = str_replace('%pseudonym', $pseudonym, $sql);
+      $sql = str_replace('%srcid', $id, $sql);
+      $sql = str_replace('%nid', $nid, $sql);
+      db_query($sql);
+*/
   }
   $wrapper->save();
 }
@@ -2352,33 +2278,17 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
         $wrapper->$dstFldName = intval($out);
       break;
       case 'majorminor':
+        //$minorTid = $termMap['MinorStyleID']['newterms'][$minorName];
+        $majorName = '';
         $majorId = $inData->MajorStyleID;
         if ($majorId) {
           $majorName = $termMap['MajorStyleID']['oldterms'][$majorId];
-          $majorTid = $termMap['MajorStyleID']['newterms'][$majorName];
-
-          $minorId = $inData->MinorStyleID;
-          if ($minorId) {
-            $minorName = $termMap['MinorStyleID']['oldterms'][$minorId];
-            $minorTid = $termMap['MinorStyleID']['newterms'][$minorName];
-            if ($minorTid && $majorTid) {          
-              $out = array(
-                array('target_id' => $majorTid),
-                array('target_id' => $minorTid),
-              );
-              $wrapper->$dstFldName = $out;
-            } else {
-              $message = t('PROBLEM: Major: %majorname | ID: %majorid | Tid: %majortid || Minor: %minorname | ID: %minorid | Tid: %majorid', array(
-                 '%majorname' => $majorName,
-                 '%majorid' => $majorId,
-                 '%majortid' => $majorTid,
-                 '%minorname' => $minorName,
-                 '%minorid' => $minorId,
-                 '%minortid' => $minorTid
-                )
-              );
-            }
-          }
+          $wrapper->field_old_major = $majorName;
+        }
+        $minorId = $inData->MinorStyleID;
+        if ($minorId) {
+          $minorName = $termMap['MinorStyleID']['oldterms'][$minorId];
+          $wrapper->field_old_minor = $minorName;   
         }
       break;    
       case 'majorminorxxx':
@@ -2526,7 +2436,10 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
         //$entity->$dstFldName['und'][0] = $out;
         //entity_save($entity);
         foreach ($out as $fldName => $val) {
-          $wrapper->$dstFldName->$fldName = trim($val);
+          if (!empty($val)) {
+            //zzzzzz
+            $wrapper->$dstFldName->$fldName = trim($val);
+          }
         }
       break;
       case 'reference':
@@ -2540,16 +2453,24 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
           'FundID' => 'plan',
           'MandateID' => 'mandate'
         );
-
         $oldKeyFldName = $params['fldname'];
-        $pseudonym = $refArray[$oldKeyFldName];
-        $oldNews = _fin_migrate_get_best_map();
-        $ref = unserialize($oldNews['oldnew']);
-        $new = $ref[$pseudonym][$val];
-        if ($new) {
-          //$entity->$dstFldName['und'][0]['target_id'] = $new;
-          //entity_save($entity);
-          $wrapper->$dstFldName = $new;
+        if (isset($params['pseudonym'])) {
+          $pseudo = $params['pseudonym'];
+        } else {
+          $pseudo = $refArray[$oldKeyFldName];
+        }
+        $oldid = $val;
+        if (!empty($oldid)) {
+          $newid = _fin_migrate_gotIdgetNid($oldid, $pseudo);        
+          //$oldNews = _fin_migrate_get_best_map();
+          //$ref = unserialize($oldNews['oldnew']);
+          //$new = $ref[$pseudonym][$val];
+        
+          if ($newid) {
+            //$entity->$dstFldName['und'][0]['target_id'] = $new;
+            //entity_save($entity);
+            $wrapper->$dstFldName = $newid;
+          }
         }
 
 /* One field at a time, like the other handlers
@@ -2646,6 +2567,8 @@ break;
           $arr = array(
             'value' => $fdate1,
               'value2' => $fdate2);
+          $wrapper->{$dstFldName}->set($arr);
+
           //$entity->{$dstFldName}['und'][0] = $arr;
           //entity_save($entity);
   
@@ -2681,6 +2604,8 @@ break;
           }
         }
       break;
+      
+      // probably will not be used
       case 'paragraph':          
         //$paragraphs = $map['paragraph'];
         $bundle = $params['param']['bundle'];
@@ -2782,27 +2707,27 @@ break;
       case 'disabled':
       break;
       case 'mom':
+        $pseudonym = 'manager firm';
         $mom = $inData->ManagerFirmID;
         $sql = 'SELECT ManagerFirmID FROM tblmommanagers WHERE MoMID='.$mom;
         db_set_active('legacy');
         $res = db_query($sql);
         db_set_active();
         if ($res->rowCount()>0) {
-debugBreak();
-          $oldNews = _fin_migrate_get_best_map();
-          $ref = unserialize($oldNews['oldnew']);
+          //$oldNews = _fin_migrate_get_best_map();
+          //$ref = unserialize($oldNews['oldnew']);
           $out = array();
           foreach ($res as $item) {
             $oldid = $item->ManagerFirmID;
-            $newid = _fin_migrate_gotIdgetNid($id, $pseudonym, $newOld);
-            $out[]['target_id'] = $item->ManagerFirmID;
+            $newid = _fin_migrate_gotIdgetNid($oldid, $pseudonym);
+            $out[] = $newid;
+            //$out[]['target_id'] = $item->ManagerFirmID;
           }
           $wrapper->{$dstFldName} = $out;
           $wrapper->field_manager_of_managers = 1;
         }
       break;
       case 'onwatch':
-case 'reference':
         $refArray = array(
           'ConsultantOfficeID'=>'office',
           'ConsultantFirmID' => 'consultant firm',
@@ -2816,14 +2741,16 @@ case 'reference':
 
         // val is a single oldid or comma delimited id
         $oldids = explode("," , $val);
-        $oldKeyFldName = $params['oldkeyfldname'];
+        //$oldKeyFldName = $params['oldkeyfldname'];
+        $oldKeyFldName = $params['fldname'];
         $pseudonym = $refArray[$oldKeyFldName];
-        $oldNews = _fin_migrate_get_best_map();
-        $ref = unserialize($oldNews['oldnew']);
+        //$oldNews = _fin_migrate_get_best_map();
+        //$ref = unserialize($oldNews['oldnew']);
         $out = array();
         foreach ($oldids as $oldid) {
-          $newid = $ref[$pseudonym][$oldid];
-          $out[]['target_id'] = $item->{$oldKeyFldName};
+          //$newid = $ref[$pseudonym][$oldid];
+          $out[]['target_id'] = _fin_migrate_gotIdgetNid($oldid, $pseudonym);
+          //$out[]['target_id'] = $item->{$oldKeyFldName};
         }
         if (!empty($out)) {
           $wrapper->{$dstFldName} = $out;
@@ -2991,21 +2918,50 @@ function _fin_migrate_get_best_additional_table_data($srcTable, $primeKeyFldName
     }
   } else {
     $ind = (int) $primeKey;
-    $resArray = $tabls[$srcTable][$primeKey];  }   
+    $resArray = $tabls[$srcTable][$primeKey];  
+  }   
   return $resArray;
 }
 
 /*
  * Wrapper Function to make a common id for nid operation consistent
  */
-function _fin_migrate_gotIdgetNid($id, $pseudonym, $oldNew) {
+function _fin_migrate_gotIdgetNid($id, $pseudonym, $oldNew=array()) {
+  /*
+  if ($pseudonym="contact") {
+    $pseudo = "'consultant contact','manager contact','fund contact'";
+  } else {
+    $pseudo = "'".$pseudonym."'";
+  }
+  $sql = "SELECT nid FROM {fin_migrate} WHERE srcid=".$id." and pseudonym IN (".$pseudo.") and nid>0";
+
+*/
+  $sql = "SELECT nid FROM {fin_migrate} WHERE srcid=".$id." and pseudonym='".$pseudonym."'";
+  $res = db_query($sql);
+  $nid = 0;
+  foreach ($res as $row) {
+    $nid = $row->nid;
+  }
+  return $nid;
+}
+
+function _fin_migrate_node_step2_updated($nid, $failed=FALSE) {
+  if ($nid) {
+    $flag = 1;
+    $sql = "UPDATE {fin_migrate} set step2=".$flag." where nid=".$nid;
+    $res = db_query($sql);
+  }
+}
+
+/*
   if (isset($oldNew[$pseudonym][$id]['nid'])) {
     return $nid;
   } else {
     $message = $pseudonym ." |id: ".$id." missing from OldNew: ".print_r($oldNew,true);
     watchdog('FIN_MIGRATE_NID4ID', $message, array(), WATCHDOG_INFO);
   }
-}
+*/
+
 
 /*
  * Function to build and add to New Old Tables upon arrival of new batch of
@@ -3016,15 +2972,19 @@ function _fin_migrate_gotIdgetNid($id, $pseudonym, $oldNew) {
  * Yes, it could take awhile.
  */
 function _fin_migrate_add_step1_nodes_to_oldnew() {
+  ini_set('max_execution_time', 3600000);
+  ini_set('memory_limit','1024M');
+  
   $refArray = array(
     'consultant firm' => 'tblconsultantfirms',
-    'office' => 'tblconsultantfirmoffices',
+    'office' => 'tblconsultantoffices',
     'consultant contact' => 'tblconsultantcontacts',
     'manager contact' => 'tblmanagercontacts',
    'manager firm' => 'tblmanagerfirms',
     'plan contact' => 'tblfundcontacts',
     'plan' => 'tblfunds',
-    'mandate' => 'tblmandates'
+    'mandate' => 'tblmandates',
+    'news' => 'tblnews',
   );
 
   // if we already have a new old index, we may want to add to it
@@ -3041,6 +3001,23 @@ function _fin_migrate_add_step1_nodes_to_oldnew() {
   $nameNids = array();
   $nameNids = unserialize(variable_get('fin-migrate-contact-contactnames'));
 
+  $sql = "SELECT * FROM {fin_migrate}";
+  $res = db_query($sql);
+  foreach ($res as $row) {
+    $id = $row->id;
+    $nid = $row->nid;
+    $pseudonym = $row->pseudonym;
+
+    if (!isset($oldNew[$pseudonym][$id])) {
+      $oldNew[$pseudonym][$id]['nid'] = $nid;
+    } 
+    //New Old is one to many, since contact may serve many ids
+    if (!isset($newOld[$pseudonym][$nid][$id])) {
+      $newOld[$pseudonym][$nid]['id'][$id] = $id;
+    }
+
+
+/*
 // Get the new nodes
   $sql = "SELECT nid, title FROM {node} WHERE title LIKE 'migration%' or title LIKE 'contactmigration%' or title like 'mandate-[%'";
   $res = db_query($sql);
@@ -3070,7 +3047,8 @@ function _fin_migrate_add_step1_nodes_to_oldnew() {
     if (!isset($newOld[$pseudonym][$nid][$id])) {
       $newOld[$pseudonym][$nid]['id'][$id] = $id;
     }
-
+*/
+    
     $contactName = '';
     if ($class=="contactmigration") {
         $contactName = $pieces[3];
@@ -3081,9 +3059,6 @@ function _fin_migrate_add_step1_nodes_to_oldnew() {
     $sql = str_replace('%srcid', $id, $sql);
     $sql = str_replace('%nid', $nid, $sql);
     $sql = str_replace('%contactname', $contactName, $sql);
-
-debugBreak();
-
     db_query($sql);
   }
 
@@ -3095,8 +3070,8 @@ debugBreak();
   watchdog('FIN_MIGRATE_BATCH_BUILD_NEWOLD', $message, array(), WATCHDOG_INFO);
 
 // Now that we are done building/updating the Indices, save them
-////_fin_migrate_update_map($variable, $oldNew, $newOld);
-////variable_set('fin-migrate-contact-contactnames', serialize($nameNids));
+  _fin_migrate_update_map($variable, $oldNew, $newOld);
+  variable_set('fin-migrate-contact-contactnames', serialize($nameNids));
 }
 
 /*
@@ -3113,11 +3088,12 @@ function fin_migrate_update_map($name, $oldNew, $newOld) {
   variable_set($var2, serialize($saveArr));
 }
 
-function _get_nodemaps($mode='step1') {
+function fin_migrate_get_nodemaps($mode='step1') {
 
 /*
  * Consultants Firms, Office & Manager Firms, Plans & Mandates
  */
+//'address3' => array('fldname'=>array('Address3')),
 $nm_co = array(
     'office' => array(
       'params' => array(
@@ -3153,8 +3129,7 @@ $nm_co = array(
             'fields' => array(
               'default' => array(
                 'thoroughfare' => array('fldname'=>array('Address1')),
-                'premise' => array('fldname'=>array('Address2')),
-                'address3' => array('fldname'=>array('Address3')),
+                'premise' => array('fldname'=>array('Address2', 'Address3')),
                 'locality' => array('fldname'=>'City'),
                 'postal_code' => array('fldname'=>'ZIP'),
               ),
@@ -3273,6 +3248,7 @@ $nm_co = array(
     ),
   );
     
+  //'address3' => array('fldname'=>array('Address3')),
   $nm_p = array(
     'plan' => array(
       'params' => array(
@@ -3316,8 +3292,7 @@ $nm_co = array(
             'fields' => array(
               'default' => array(
                 'thoroughfare' => array('fldname'=>array('Address1')),
-                'premise' => array('fldname'=>array('Address2')),
-                'address3' => array('fldname'=>array('Address3')),
+                'premise' => array('fldname'=>array('Address2', 'Address3')),
                 'locality' => array('fldname'=>'City'),
                 'postal_code' => array('fldname'=>'Zip'),
               ),
@@ -3356,7 +3331,7 @@ $nm_co = array(
               ),
             ),              
           ),
-          'field_consultants_hired' => array(
+          'field_consultant_roster_fc' => array(
             'sets' => array(
               array(
                 'params' => array(
@@ -3372,7 +3347,7 @@ $nm_co = array(
               ),
             ),              
           ),
-          'field_managers_hired' => array(
+          'field_manager_roster_fc' => array(
             'sets' => array(
               array(
                 'params' => array(
@@ -3386,6 +3361,9 @@ $nm_co = array(
                   'lu2term' => array(
                     'field_geographic_tr' => array('fldname'=>'GeographicID'),
                   ),
+                  'majorminor' => array(
+                    'field_major_minor_style_tr' => array('fields'=>array('major'=>'MajorStyleID', 'minor'=>'MinorStyleID')),
+                  ), 
                   'reference' => array(
                     'field_manager_firm_er' => array('fldname'=>'ManagerFirmID'),
                   ),
@@ -3525,9 +3503,6 @@ $nm_co = array(
                   'default' => array(
                     'field_amount' => array('fldname'=>'Amount'),                  
                   ),
-                  'lu2term' => array(
-                    'field_geographic_tr' => array('fldname'=>'GeographicID'),
-                  ),
                   'reference' => array(
                     'field_manager_firm_er' => array('fldname'=>'ManagerFirmID'),
                   ),
@@ -3574,9 +3549,6 @@ $nm_co = array(
           'node-body' => array(
             'body' => array('fldname'=>'Bio'),      
           ),
-          'default' => array(
-            'title_field' => array('fldname'=>'ContactName'),
-          ),
           'picture' => array(
             'field_photo' => array('fldname'=>'Picture'),
           ),
@@ -3614,8 +3586,8 @@ $nm_co = array(
                 'field_email' => array('fldname'=>'Email'),
               ),
               'reference' => array(
-                'field_consultant_firm_er' => array('fldname'=>'er'),
-                'field_consultant_office_er' => array('fldname'=>'ConsultantOfficeID'),
+                'field_consultant_firm_er' => array('fldname'=>'er', 'pseudonym'=>'consultant firm'),
+                'field_consultant_office_er' => array('fldname'=>'ConsultantOfficeID', 'pseudonym'=>'office'),
               ),
               'address' => array(
                 'field_address' => array(
@@ -3667,7 +3639,7 @@ $nm_co = array(
                 'field_email' => array('fldname'=>'Email'),
               ),
               'reference' => array(
-                'field_manager_firm_er' => array('fldname'=>'er'),
+                'field_manager_firm_er' => array('fldname'=>'er', 'pseudonym'=>'manager firm'),
               ),
               'address' => array(
                 'field_address' => array(
@@ -3698,7 +3670,6 @@ $nm_co = array(
             ),
             'fields' => array(
               'default' => array(
-                'title_field' => array('fldname'=>'Title'),
                 'field_job_title' => array('fldname'=>'Title'),
               ),
               'employmentdate' => array(
@@ -3717,7 +3688,7 @@ $nm_co = array(
                 'field_email' => array('fldname'=>'Email'),
               ),
               'reference' => array(
-                'field_plan_er' => array('fldname'=>'er'),
+                'field_plan_er' => array('fldname'=>'er', 'pseudonym'=>'plan'),
               ),       
               'address' => array(
                 'field_address' => array(
@@ -3774,7 +3745,7 @@ $nm_co = array(
   );
 
   $nm_mc = array(
-    'consultant contact' => array(
+    'manager contact' => array(
       'params' => array(
         'oldtable' => 'tblmanagercontacts',
         'oldkeyfldname' => 'ManagerContactID',
@@ -3815,31 +3786,43 @@ $nm_co = array(
     ),
   );
 
+ /*
+  Maps to choose from
+  $nm_cc, // Consultant Contacts, step1
+  $nm_mc, // Manager Contacts, step1
+  $nm_pc, // Plan Contacts, step1
+  $nm_cf, // Consultant Firms, Step1 & 2
+  $nm_co, // Consultant Offices, Step1 & 2
+  $nm_mf, // Manager Firms, step1 & 2
+  $nm_p, // Plans, Step1 & 2. In Step2 now, only populating status=1
+  $nm_m, // Mandates, Step1 & 2
+  $nm_contact // for step2a, solely for contact population
+ 
+Bill Wu,
+  This is where the moves are identified.  You can changes these
+  to customize what happens in step1, step2, or step2a. If you
+  want to start fresh, you enter nm_cf, nm_co, nm_mf first in Step1, 
+  then nm_p, then nm_m, then nm_cc, nm_pc, nm_mc.  Batch
+  does not like it when you do too much.
+
+  This is set now for step2, plans.  Step2 runs a specific query selecting
+  only 58 active plans.
+ */
   $nodeMapArr = FALSE;
   if ($mode=="step1") {
     $nodeMapArr = array(
-      $nm_p, 
-      $nm_cc,
-      $nm_mc,
-      $nm_cf,
-      $nm_co,
-      $nm_mf,
-      $nm_pc, 
-      $nm_m  
-    );
+    );      
+    return $nodeMapArr;
   }
   else if ($mode=="step2") {
     $nodeMapArr = array(
-      $nm_mf,
-      $nm_cf,
-      $nm_contact,
-      $nm_cf,
-      $nm_co,
-      $nm_p, 
-      $nm_m, 
+      $nm_p,
     );
+    return $nodeMapArr;
   }
-  return $nodeMapArr;
+  else if ($mode=="step2a") {
+    // return $nm_contact;
+  }
 // END BIG NODE MAP ARRAY
 
 }
