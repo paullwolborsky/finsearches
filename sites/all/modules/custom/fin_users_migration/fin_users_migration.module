@@ -1,0 +1,330 @@
+<?php
+/**
+ * @file
+ * A module to perform custom migration from one version of Drupal to another.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function fin_users_migration_menu() {
+  $items = array();
+
+  $items['admin/people/fin_users_migration'] = array(
+    'title' => 'FIN D5-to-D7 users migrate',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fin_users_migration_form'),
+    'access arguments' => array('administer site configuration'),
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_form().
+ */
+function fin_users_migration_form() {
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Start import user'),
+  );
+
+  return $form;
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function fin_users_migration_user_batch_wrap(&$batch) {
+
+  db_set_active('legacy');
+  $sql = "select u.*, at.name as accounttype from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid where u.uid > 330";
+  $result = db_query($sql);
+  db_set_active();
+  // Oids are all old keys in source table, noids keys we saved
+  // We will use array_diff to tell us what ids have not been done yet.
+  foreach ($result as $row) {
+    $row = (array) $row;
+    $batch['operations'][] = array(
+      '_fin_users_migration_do_migrate_users',
+      array($row),
+    );
+  }
+}
+/**
+ * Implements hook_form_submit().
+ */
+function fin_users_migration_form_submit($form, &$form_state) {
+  $batch = array(
+    'title' => t('Importing users data'),
+    'operations' => array(),
+    'finished' => '_fin_users_migration_done',
+  );
+  $state_user = fin_users_migration_user_batch_wrap($batch);
+  batch_set($batch);
+}
+
+/**
+ * Handle the close of batch.
+ */
+function _fin_users_migration_done() {
+  $message = "DONE";
+  watchdog('FIN_MIGRATE', $message, array(), WATCHDOG_INFO);
+}
+
+/**
+ * Create user and realted node and entity.
+ */
+function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
+
+  require_once 'includes/password.inc';
+  $profile = unserialize($olduser['data']);
+
+  $mail = (string) $olduser['mail'];
+  if (substr($mail, 0, 1) == "@") {
+    $oldmail = $mail;
+    $mail = 'corrected' . $fname . '.' . $lname . $mail;
+  }
+
+  $oldpass = (string) $olduser['pass'];
+  $newpass = 'qapla';
+  $noroles = FALSE;
+  $fields = array(
+    'name' => $olduser['name'],
+    'mail' => $olduser['mail'],
+    'pass' => $newpass,
+    'status' => $olduser['status'],
+    'init' => (string) $olduser['mail'],
+    'created' => $olduser['created'],
+    'login' => $olduser['login'],
+    'field_account_type' => array(LANGUAGE_NONE => array(array('value' => $olduser['accounttype']))),
+  );
+  // 013116 - for some reason there is a duplicate key error, remedy here.
+  $curuser = user_load_by_mail($olduser['mail']);
+  $uname = $olduser['name'];
+  if ($curuser) {
+    return;
+  }
+  if (!$curuser) {
+    $acct = new stdClass();
+    $acct->active = 1;
+
+    $curuser = user_save($acct, $fields);
+
+    $newuid = (int) $curuser->uid;
+    $context['message'] = 'New user created with user id ' . $newuid;
+    $newpass = user_hash_password($oldpass);
+    if ($newpass) {
+      $newpass  = 'U' . $newpass;
+    }
+
+    db_update('users')->fields(array('pass' => $newpass))->condition('uid', $curuser->uid)->execute();
+
+  }
+
+  // Plw 0116 now take care of organization & profile2, extract bio data first.
+  $message = '';
+  $username = (string) $olduser['name'];
+  $email = (string) $olduser['mail'];
+  $lastname = isset($profile['profile_last_name']) ? $profile['profile_last_name'] : '';
+  $firstname = isset($profile['profile_first_name']) ? $profile['profile_first_name'] : '';
+  $companyname = isset($profile['profile_company']) ? $profile['profile_company'] : '';
+
+  $organization_nid = 0;
+  if ($companyname) {
+    $organization_nid = _fin_users_migration_get_entity_by_name('field_organization_name', $companyname, 'organization', 'node');
+    if (!$organization_nid) {
+      try {
+        $organization = entity_create('node',
+          array('type' => 'organization', 'uid' => 1, 'status' => 1));
+        $organization->field_organization_name[LANGUAGE_NONE][0]['value'] = $companyname;
+        $organization->title = $companyname;
+        entity_save('node', $organization);
+        $organization_nid = $organization->nid;
+      }
+      catch (Exception $e) {
+        $message = t('Failed to create organization %company from D5 Row: %data. Error: @msg<br /><br />%data',
+           array(
+             '%username' => $username,
+             '%email' => $email,
+             '%data' => print_r($row, TRUE),
+             '@msg' => $e->getMessage(),
+           )
+         );
+      }
+      if ($message) {
+        watchdog('FIN_MIGRATE_ORGANIZATION', $message, array(), WATCHDOG_INFO);
+        $message = '';
+      }
+    }
+  }
+
+  $main_profile = fin_users_migration_profile2_by_uid_load($newuid, 'main');
+  if (!$main_profile) {
+    $main_profile = entity_create('profile2', array('type' => 'main', 'node'));
+  }
+  $action = 'Update';
+  if ($main_profile->uid) {
+    $action = 'Create';
+  }
+  try {
+
+    if (!$main_profile->uid && $newuid) {
+      $main_profile->uid = $newuid;
+    }
+    $main_profile->field_pf_first_name[LANGUAGE_NONE][0]['value'] = $firstname;
+    $main_profile->field_pf_last_name[LANGUAGE_NONE][0]['value'] = $lastname;
+//    $profilewrap = entity_metadata_wrapper('profile2', $main_profile);
+    if ($organization_nid) {
+ //     $profilewrap->field_pf_organization = $organization;
+      $main_profile->field_pf_organization_er[LANGUAGE_NONE][0]['target_id'] = $organization_nid;
+    }
+ 
+    entity_save('profile2', $main_profile);
+//    $profilewrap->save();
+  }
+  catch (Exception $e) {
+    $message = t('Failed to %action profile for user %username ( %email ) from D5 Row: %data. Error: @msg',
+      array(
+        '%action' => $action,
+        '%username' => $username,
+        '%email' => $email,
+        '%data' => print_r($row, TRUE),
+        '@msg' => $e->getMessage(),
+      )
+    );
+  }
+  if ($message) {
+    watchdog('FIN_MIGRATE_PROFILE2', $message, array(), WATCHDOG_INFO);
+    $message = '';
+  }
+}
+
+/**
+ * Get salesforce data via their API.
+ */
+function _fin_users_migration_get_sfdata($emails) {
+  /*
+   * Grab Salesforce datga
+   */
+  $params = array(
+    'new-users' => array(
+      'Contact' => array(
+        'fields' => array(
+          'Inactive__c' => 'inactive',
+          'FINsearches_Expiration_New__c' => 'expiry',
+          'FirstName' => 'firstname',
+          'LastName' => 'lastname',
+          'Email' => 'email' ,
+          'Account.Name' => 'company',
+          'Title' => 'title',
+          'HomePhone' => 'homephone',
+          'MobilePhone' => 'mobilephone',
+        ),
+        'types' => array(
+          'Contact',
+        ),
+      ),
+    ),
+  );
+  $sfapi = salesforce_get_api();
+  $out = FALSE;
+  foreach ($params as $pseudonym => $maps) {
+    foreach ($maps as $sf_object_type => $map) {
+      $mapped_fields = $map['fields'];
+      $sf_object_type = $map['types'][0];
+      $soql = new SalesforceSelectQuery($sf_object_type);
+
+      // Convert field mappings to SOQL.
+      $soql->fields = array('Id', 'LastModifiedDate');
+      foreach ($mapped_fields as $field => $ignore) {
+        $soql->fields[] = $field;
+      }
+
+      $chunks = array_chunk($emails, 400);
+      foreach ($chunks as $chunk) {
+        $soql->conditions = array();
+        $soql->addCondition('Email', $chunk, 'IN');
+
+        // Execute query.
+        $results = $sfapi->query($soql);
+        if (!isset($results['errorCode'])) {
+          $rows = $results['records'];
+          foreach ($rows as $row) {
+            $email = $row['Email'];
+            if ($email) {
+              $arr = array();
+              foreach ($row as $key => $val) {
+                if ($key == "Account") {
+                  $val = $val['Name'];
+                  $alias = 'company';
+                  $arr[$alias] = $val;
+                }
+                if (isset($mapped_fields[$key])) {
+                  $alias = $mapped_fields[$key];
+                  if ($alias == "expiry") {
+                    $arr['expiry_date'] = $val;
+                    $val = strtotime($val);
+                  }
+                  if ($alias == "company") {
+                    $val = $val['Name'];
+                  }
+                  $arr[$alias] = $val;
+                }
+                elseif (($key == 'Id')) {
+                  $arr['id'] = $val;
+                }
+              }
+              $out[$email] = $arr;
+            }
+            else {
+              $message = "MISSING EMAIL - Row: " . print_r($row, TRUE);
+              watchdog('SF_MIGRATION_SF', $message, array(), WATCHDOG_ERROR);
+            }
+          }
+        }
+      } // if results
+    } // each map
+  } // all maps
+
+  $message = "SF OUT: " . print_r($out, TRUE);
+  watchdog('FIN_MIGRATE_SF', $message, array(), WATCHDOG_INFO);
+  return $out;
+}
+
+/**
+ * Load user by id.
+ */
+function fin_users_migration_profile2_by_uid_load($uid, $type_name) {
+  if ($uid && is_numeric($uid) && ($account = user_load($uid))) {
+    $profile = profile2_load_by_user($account, $type_name);
+    if (!$profile) {
+      $profile = profile2_create(array('type' => $type_name, 'uid' => $uid));
+      $profile->setUser($account);
+      $profile->is_new = TRUE;
+    }
+    return $profile;
+  }
+  return FALSE;
+}
+
+/**
+ * Load entity by entity title, lable.
+ */
+function _fin_users_migration_get_entity_by_name($fieldname, $name, $bundle, $type) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', $type)
+    ->entityCondition('bundle', $bundle)
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('field_organization_name', 'value', $name, '=');
+  $result = $query->execute();
+
+  $id = FALSE;
+  if (isset($result['node'])) {
+    $ids = array_keys($result['node']);
+    if ($ids) {
+      $id = $ids[0];
+      return $id;
+    }
+  }
+  return FALSE;
+}
