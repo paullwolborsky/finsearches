@@ -37,7 +37,7 @@ function fin_users_migration_form() {
 function fin_users_migration_user_batch_wrap(&$batch) {
 
   db_set_active('legacy');
-  $sql = "select u.*, at.name as accounttype from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid where u.uid > 330";
+  $sql = "select u.*, at.name as accounttype from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid where u.uid > 230";
   $result = db_query($sql);
   db_set_active();
   // Oids are all old keys in source table, noids keys we saved
@@ -85,6 +85,17 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     $mail = 'corrected' . $fname . '.' . $lname . $mail;
   }
 
+  db_set_active('legacy');
+  $sql = "select * from users_roles u join role r on r.rid = u.rid where u.uid = " . $olduser['uid'];
+  $result = db_query($sql);
+  db_set_active();
+  // Oids are all old keys in source table, noids keys we saved
+  // We will use array_diff to tell us what ids have not been done yet.
+  $roles = _fin_users_migration_get_new_roles();
+  $newroles = array();
+  foreach ($result as $row) {
+    $newroles = $newroles + $roles[$row->name];
+  }
   $oldpass = (string) $olduser['pass'];
   $newpass = 'qapla';
   $noroles = FALSE;
@@ -98,6 +109,9 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     'login' => $olduser['login'],
     'field_account_type' => array(LANGUAGE_NONE => array(array('value' => $olduser['accounttype']))),
   );
+  if (!empty($newroles)) {
+    $fields['roles'] = $newroles;
+  }
   // 013116 - for some reason there is a duplicate key error, remedy here.
   $curuser = user_load_by_mail($olduser['mail']);
   $uname = $olduser['name'];
@@ -118,7 +132,6 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     }
 
     db_update('users')->fields(array('pass' => $newpass))->condition('uid', $curuser->uid)->execute();
-
   }
 
   // Plw 0116 now take care of organization & profile2, extract bio data first.
@@ -327,4 +340,19 @@ function _fin_users_migration_get_entity_by_name($fieldname, $name, $bundle, $ty
     }
   }
   return FALSE;
+}
+
+/**
+ * Utility function to get role map.
+ */
+function _fin_users_migration_get_new_roles() {
+  $roles = array(
+    'anonymous user' => array(1 => 'anonymous user'),
+    'authenticated user' => array(2 => 'authenticated user'),
+    'basic admin' => array(3 => 'administrator'),
+    'user admin' => array(4 => 'manager'),
+    'tasks enabled' => array(5 => 'editor'),
+    'access family offices' => array(9 => 'Visit Family Office'),
+  );
+  return $roles;
 }
