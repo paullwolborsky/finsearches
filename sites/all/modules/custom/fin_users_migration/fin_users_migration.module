@@ -118,6 +118,8 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     'created' => $olduser['created'],
     'login' => $olduser['login'],
     'field_account_type' => array(LANGUAGE_NONE => array(array('value' => $olduser['accounttype']))),
+    'field_legend_id' => array(LANGUAGE_NONE => array(array('value' => $olduser['uid']))),
+    'field_wuin' => array(LANGUAGE_NONE => array(array('value' => md5('users' . $olduser['uid'])))),
   );
   if (!empty($newroles)) {
     $fields['roles'] = $newroles;
