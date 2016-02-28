@@ -77,6 +77,16 @@ function _fin_users_migration_done() {
 function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
 
   require_once 'includes/password.inc';
+  $curuser = user_load_by_mail($olduser['mail']);
+  if ($curuser) {
+    watchdog('FIN_USERS_MIGRATE', 'User with same email !email address exists in current user !user' , array('!email' => $olduser['mail'], '$user' => $curuser->uid), WATCHDOG_INFO);
+    return;
+  }
+  $curuser = user_load_by_name($olduser['name']);
+  if ($curuser) {
+    watchdog('FIN_USERS_MIGRATE', 'User with same name !name exists in current user !user' , array('!name' => $olduser['name'], '$user' => $curuser->uid), WATCHDOG_INFO);
+    return;
+  }
   $profile = unserialize($olduser['data']);
 
   $mail = (string) $olduser['mail'];
@@ -113,11 +123,6 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     $fields['roles'] = $newroles;
   }
   // 013116 - for some reason there is a duplicate key error, remedy here.
-  $curuser = user_load_by_mail($olduser['mail']);
-  $uname = $olduser['name'];
-  if ($curuser) {
-    return;
-  }
   if (!$curuser) {
     $acct = new stdClass();
     $acct->active = 1;
