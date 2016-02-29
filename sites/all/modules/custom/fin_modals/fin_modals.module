@@ -306,7 +306,6 @@ function fin_modals_form_views_exposed_form_alter(&$form, &$form_state) {
  */
 function fin_modals_form_alter(&$form, &$form_state, $form_id){
   global $user;
-  //dd($form_id, "Form ID");
   if(
         ($form_id == "mandate_node_form")
      || ($form_id == "plan_node_form")
@@ -380,8 +379,8 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
       $link[] = ctools_modal_text_button('Create New Consultant Firm', $href. '/consultant_firm', 'Create New Consultant Firm', 'ctools-modal-fin-modals-contact-style');
       $link[] = ctools_modal_text_button('Create New Office', $href. '/office', 'Create New Office', 'ctools-modal-fin-modals-contact-style');
       $link[] = ctools_modal_text_button('Create New Contact', $href. '/contact/' . $form['#node']->nid, 'Create New Contact', 'ctools-modal-fin-modals-contact-style');
+
       //Alterations by form
-      //Links used later
       $consultants_hired_link = "<div class='modal-links'><div class='left'>"
       . ctools_modal_text_button('Create New Consultant Firm', $href. '/consultant_firm/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Consultant Firm', 'ctools-modal-fin-modals-contact-style')
       . "</div><div class='right'>"
@@ -392,12 +391,12 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
       . ctools_modal_text_button('Create New Manager Firm', $href. '/manager_firm/' . $form['#node']->nid . '/field_managers_hired', 'Create New Manager Firm', '')
       . "</div>";
       
-      if($form_id == "mandate_node_form"){ 
+      if($form_id == "mandate_node_form"){
         $form['field_consultants_terminated']['und']['#suffix'] = "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', 'ctools-modal-fin-modals-contact-style') . "</div>";
     
       }elseif($form_id == "plan_node_form"){
         $form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
-        $form['field_consultants_hired']['und']['#suffix'] =
+        $form['field_consultant_roster_fc']['und']['#suffix'] =
         "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', 'ctools-modal-fin-modals-contact-style') . "</div>";
         //$form['field_managers_hired']['und']['#suffix'] =  $managers_hired_link;
         if (!empty($form['#node']->nid)) {
@@ -507,11 +506,6 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
     } elseif ($type == 'mandate') {
       if (arg(5)) {
         if (arg(5) == 'consultant-mandate') {
-          /*
-          $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_consultants_hired'));
-          $field_collection_item->setHostEntity('node', $node);
-          $field_collection_item->field_consultant_firm_er[$node->language][0]['target_id'] = arg(4);
-          */
           $node->field_consultant_firm_er[$node->language][0]['target_id'] = arg(4);
         } elseif (arg(5) == 'manager-mandate') {
           $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_managers_hired'));
