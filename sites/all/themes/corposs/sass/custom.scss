@@ -1,3 +1,7 @@
+/**
+ *SCSS file for custom styling
+ */
+
 
 /*** Color Variables ***/
 
@@ -31,20 +35,16 @@ $form-item-label: #000000;
 $shadow: #666666;
 
 
-/**
- *SCSS file for custom styling
- */
-
 /*** Addressfield country fix ***/
 .field-type-addressfield {
   .addressfield-container-inline {
-    display: inline-block;
-    vertical-align: top;
   }
   .country {
-    margin: 0 0 0 5px;
+    margin: 0;
+    display: block;
   }
 }
+
 /*** Menu ***/
 #section-header .dexp-dropdown > ul > li {
   border-left: 1px solid $fin-navy;
@@ -233,11 +233,19 @@ ul.links {
 /*** Views ***/
 /**  Recent content block **/
 #block-views-tracker-recent-content-sidebar {
+  .views-accordion-header {
+    .field-content {
+      font-family: "Lato Regular Web" !important;
+    }
+  }
   .ui-accordion-content {
     .recent-actions {
       display: inline-block;
       margin: 0 10px 0 0;
     }
+  }
+  .item-list {
+    margin: 5px 0 4px 0;
   }
 }
 .view-views-search {

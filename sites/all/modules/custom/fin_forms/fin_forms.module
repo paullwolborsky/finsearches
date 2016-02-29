@@ -116,10 +116,16 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+/**
+ *AJAXcallback for updating mandate plan size from plan_er field
+ */
 function fin_forms_plan_size_callback (&$form, &$form_state = null) {
   return $form['field_plan_size'];
 }
 
+/**
+ *AJAX callback for option limiting offices
+ */
 function fin_forms_office_callback (&$form, &$form_state = null) {
   $lang = !empty($form_state['values']['language'])?$form_state['values']['language']:'und';
   $key = $form_state['triggering_element']['#parents'][2];
@@ -168,13 +174,15 @@ function fin_forms_consultants_callback (&$form, &$form_state = null) {
 function fin_forms_get_offices ($firm_nid = NULL) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
-  ->entityCondition('bundle', 'field_consultants_hired')
+  ->entityCondition('bundle', 'office')
   ->fieldCondition('field_consultant_firm_er', 'target_id', $firm_nid, '=');
   $result = $query->execute();
   $options = array('none'=>'-none-');
-  foreach ($result['node'] as $key=>$value) {
-    $office = node_load($value->nid);
-    $options[$value->nid] = $office->title_field[$office->language][0]['value']; 
+  if (!empty($result)) {
+    foreach ($result['node'] as $key=>$value) {
+      $office = node_load($value->nid);
+      $options[$value->nid] = $office->title_field[$office->language][0]['value']; 
+    }
   }
   return $options;
 }
