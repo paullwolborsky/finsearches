@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * fs_f_pg_bt_consultant_contact.features.field_instance.inc
@@ -10,7 +9,7 @@
  */
 function fs_f_pg_bt_consultant_contact_field_default_field_instances() {
   $field_instances = array();
-  
+
   // Exported field_instance: 'paragraphs_item-consultant_contact-field_address'
   $field_instances['paragraphs_item-consultant_contact-field_address'] = array(
     'bundle' => 'consultant_contact',
@@ -206,7 +205,7 @@ function fs_f_pg_bt_consultant_contact_field_default_field_instances() {
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_consultant_office_er',
     'label' => 'Consultant Office',
-    'options_limit' => 1,
+    'options_limit' => 0,
     'options_limit_empty_behaviour' => 1,
     'options_limit_fields' => array(
       'field_address' => 0,
@@ -666,27 +665,19 @@ function fs_f_pg_bt_consultant_contact_field_default_field_instances() {
       'weight' => 8,
     ),
   );
-  
+
+  // Translatables
+  // Included for use with string extractors like potx.
   t('Address');
-    t('Manager Firm');
-  t('Manager Firm Finalists');
-  t('Manager Firms Hired');
-  t('Manager Firms On Watch');
-  t('Manager Firms Terminated');
-    t('Consultant Contact');
   t('Consultant Firm');
-  t('Consultant Firm Finalists');
-  t('Consultant Firms On Watch');
-  t('Consultant Firms Terminated');
   t('Consultant Office');
   t('Consultant Type');
-    t('Job History');
+  t('Email');
+  t('Employment Date');
   t('Job Title');
   t('Job Type');
-  t('Website');
   t('Status');
-  t('Employment Date');
-  t('Email');
-  
+  t('Website');
+
   return $field_instances;
 }

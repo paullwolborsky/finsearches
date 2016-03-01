@@ -21,7 +21,7 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Branch Offices',
-    'weight' => '6',
+    'weight' => '8',
     'children' => array(
       0 => 'field_branch_offices_ev',
     ),
@@ -41,6 +41,38 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_consultant_info|node|consultant_firm|form';
+  $field_group->group_name = 'group_consultant_info';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'consultant_firm';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Consultant Info',
+    'weight' => '0',
+    'children' => array(
+      0 => 'title_field',
+      1 => 'field_email',
+      2 => 'field_website',
+      3 => 'field_status_tr',
+      4 => 'field_acronym',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Consultant Info',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'classes' => 'group-consultant-info field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsible',
+    ),
+  );
+  $export['group_consultant_info|node|consultant_firm|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_main_office|node|consultant_firm|form';
   $field_group->group_name = 'group_main_office';
   $field_group->entity_type = 'node';
@@ -49,7 +81,7 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Main Office',
-    'weight' => '5',
+    'weight' => '7',
     'children' => array(
       0 => 'field_main_office_ev',
     ),
