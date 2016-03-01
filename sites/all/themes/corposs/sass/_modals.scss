@@ -1,0 +1,10 @@
+/**
+ *Override styles for modal windows
+ */
+div#modalContent.modal-default {
+  //box-sizing: content-box;
+  .ctools-modal-content {
+    width: auto !important;
+    height: 100% !important;
+  }
+}
