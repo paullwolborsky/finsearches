@@ -51,8 +51,7 @@ function fs_f_n_bt_plan_field_group_info() {
     'label' => 'Consultant Roster',
     'weight' => '4',
     'children' => array(
-      0 => 'field_consultants_hired',
-      1 => 'field_consultant_roster_fc',
+      0 => 'field_consultant_roster_fc',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -167,8 +166,7 @@ function fs_f_n_bt_plan_field_group_info() {
     'label' => 'Manager Roster',
     'weight' => '5',
     'children' => array(
-      0 => 'field_managers_hired',
-      1 => 'field_manager_roster_fc',
+      0 => 'field_manager_roster_fc',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -253,11 +251,11 @@ function fs_f_n_bt_plan_field_group_info() {
     'label' => 'Plan Info',
     'weight' => '2',
     'children' => array(
-      0 => 'field_plan_acronym',
-      1 => 'field_placement_policy_link',
-      2 => 'field_plan_type_tr',
-      3 => 'field_status_tr',
-      4 => 'field_placement_policy_tr',
+      0 => 'field_placement_policy_link',
+      1 => 'field_plan_type_tr',
+      2 => 'field_status_tr',
+      3 => 'field_placement_policy_tr',
+      4 => 'field_acronym',
       5 => 'reference_views_eva_foia_required',
       6 => 'reference_views_eva_plan_size',
     ),
@@ -287,9 +285,9 @@ function fs_f_n_bt_plan_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'title_field',
-      1 => 'field_plan_acronym',
-      2 => 'field_plan_type_tr',
-      3 => 'field_status_tr',
+      1 => 'field_plan_type_tr',
+      2 => 'field_status_tr',
+      3 => 'field_acronym',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
