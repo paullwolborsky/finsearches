@@ -20,6 +20,7 @@ features[field_base][] = field_branch_offices_ev
 features[field_base][] = field_consultant_contacts_embed
 features[field_base][] = field_main_office_ev
 features[field_group][] = group_branch_offices|node|consultant_firm|form
+features[field_group][] = group_consultant_info|node|consultant_firm|form
 features[field_group][] = group_main_office|node|consultant_firm|form
 features[field_instance][] = node-consultant_firm-body
 features[field_instance][] = node-consultant_firm-field_aua

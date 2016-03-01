@@ -83,8 +83,9 @@ function fs_f_n_bt_manager_firm_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'field_status_tr',
-      1 => 'reference_views_eva_major_style',
-      2 => 'reference_views_eva_minor_style',
+      1 => 'field_acronym',
+      2 => 'reference_views_eva_major_style',
+      3 => 'reference_views_eva_minor_style',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -113,6 +114,7 @@ function fs_f_n_bt_manager_firm_field_group_info() {
     'children' => array(
       0 => 'title_field',
       1 => 'field_status_tr',
+      2 => 'field_acronym',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
