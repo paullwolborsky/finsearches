@@ -51,7 +51,7 @@ function addressfield_format_address3_generate(&$format, $address, $context = ar
   }
   else {
     // Add our own render callback for the format view
-    $format['#pre_render'][] = '_addressfield_phone_render_address';
+    $format['#pre_render'][] = '_addressfield_address3_render_address';
   }
 }
 

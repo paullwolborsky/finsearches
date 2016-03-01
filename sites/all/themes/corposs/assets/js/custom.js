@@ -61,6 +61,12 @@
       $('.view-content-lists .views-field-field-tasks .tasks .close').click(function(){
         $(this).parents('div.tasks').hide();
       });
+      
+      //Make links work in recent content view
+      $('.view-display-id-recent_content_sidebar .view-content .views-row .field-content a').click(function(){
+        window.location = jQuery(this).attr('href');
+        return false;
+      });
     }
   };
 })(jQuery, Drupal);

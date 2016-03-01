@@ -1,3 +1,18 @@
+/**
+ *SCSS file for custom styling
+ */
+/**
+ *Import other sheets
+ **/
+/**
+ *Override styles for modal windows
+ */
+/* line 6, ../../sass/_modals.scss */
+div#modalContent.modal-default .ctools-modal-content {
+  width: auto !important;
+  height: 100% !important;
+}
+
 /*** Color Variables ***/
 /* FIN */
 /* Page */
@@ -5,50 +20,43 @@
 /*Form Elements */
 /* Text */
 /* Misc */
-/**
- *SCSS file for custom styling
- */
 /*** Addressfield country fix ***/
-/* line 40, ../../sass/custom.scss */
-.field-type-addressfield .addressfield-container-inline {
-  display: inline-block;
-  vertical-align: top;
-}
-/* line 44, ../../sass/custom.scss */
+/* line 46, ../../sass/custom.scss */
 .field-type-addressfield .country {
-  margin: 0 0 0 5px;
+  margin: 0;
+  display: block;
 }
 
 /*** Menu ***/
-/* line 49, ../../sass/custom.scss */
+/* line 53, ../../sass/custom.scss */
 #section-header .dexp-dropdown > ul > li {
   border-left: 1px solid #142a45;
   border-right: 1px solid #142a45;
 }
 
 /*** Sections ***/
-/* line 55, ../../sass/custom.scss */
+/* line 59, ../../sass/custom.scss */
 #section-top-bar {
   padding: 5px;
 }
-/* line 58, ../../sass/custom.scss */
+/* line 62, ../../sass/custom.scss */
 #section-top-bar .region-top-right .block {
   float: none;
   text-align: right;
 }
-/* line 63, ../../sass/custom.scss */
+/* line 67, ../../sass/custom.scss */
 #section-top-bar .region-top-right .block-search-api-page div.form-type-textfield {
   display: inline-block;
   vertical-align: top;
 }
-/* line 67, ../../sass/custom.scss */
+/* line 71, ../../sass/custom.scss */
 #section-top-bar .region-top-right .block-search-api-page input.btn-primary {
   display: inline-block;
   vertical-align: top;
   margin: 15px 0 0 0;
 }
 
-/* line 75, ../../sass/custom.scss */
+/* line 79, ../../sass/custom.scss */
 #section-header {
   background: #1368a6;
   /* Old browsers */
@@ -63,7 +71,7 @@
 }
 
 /*** Blocks ***/
-/* line 84, ../../sass/custom.scss */
+/* line 88, ../../sass/custom.scss */
 h3.block-title {
   position: relative;
   margin: 0;
@@ -79,24 +87,24 @@ h3.block-title {
   /* IE6-9 */
 }
 
-/* line 93, ../../sass/custom.scss */
+/* line 97, ../../sass/custom.scss */
 span.fieldset-legend {
   text-transform: uppercase;
 }
 
-/* line 96, ../../sass/custom.scss */
+/* line 100, ../../sass/custom.scss */
 .collapsiblock a {
   color: white;
   margin: 0 0 0 5px;
 }
 
-/* line 100, ../../sass/custom.scss */
+/* line 104, ../../sass/custom.scss */
 .block-views {
   margin: 0;
   padding: 0;
 }
 
-/* line 105, ../../sass/custom.scss */
+/* line 109, ../../sass/custom.scss */
 #block-subscriptions-ui-0 {
   background: #1368a6;
   /* Old browsers */
@@ -110,114 +118,114 @@ span.fieldset-legend {
   /* IE6-9 */
 }
 
-/* line 112, ../../sass/custom.scss */
+/* line 116, ../../sass/custom.scss */
 #block-user-online .content {
   background: #cddeff;
   padding: 10px;
 }
 
-/* line 116, ../../sass/custom.scss */
+/* line 120, ../../sass/custom.scss */
 .item-list ul {
   text-align: left;
 }
 
-/* line 119, ../../sass/custom.scss */
+/* line 123, ../../sass/custom.scss */
 .field-name-plan-new-leads-mandates-bf .block-views {
   margin: 5px 0 0 0;
 }
 
-/* line 121, ../../sass/custom.scss */
+/* line 125, ../../sass/custom.scss */
 .field-name-plan-ongoing-mandates-bf .block-views {
   margin: 5px 0 0 0;
 }
 
-/* line 123, ../../sass/custom.scss */
+/* line 127, ../../sass/custom.scss */
 .field-name-plan-completed-mandates-bf .block-views {
   margin: 5px 0 0 0;
 }
 
-/* line 125, ../../sass/custom.scss */
+/* line 129, ../../sass/custom.scss */
 .field-name-plan-closed-mandates-bf .block-views {
   margin: 5px 0 0 0;
 }
 
-/* line 129, ../../sass/custom.scss */
+/* line 133, ../../sass/custom.scss */
 .block-facetapi h3.block-title {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
-/* line 134, ../../sass/custom.scss */
+/* line 138, ../../sass/custom.scss */
 .block-facetapi .content {
   display: none;
 }
-/* line 136, ../../sass/custom.scss */
+/* line 140, ../../sass/custom.scss */
 .block-facetapi .content.open {
   display: block;
 }
-/* line 139, ../../sass/custom.scss */
+/* line 143, ../../sass/custom.scss */
 .block-facetapi .content .item-list {
   margin: 0 0 4px 0;
 }
-/* line 143, ../../sass/custom.scss */
+/* line 147, ../../sass/custom.scss */
 .block-facetapi select {
   max-width: 100%;
 }
 
 /*** Labels ***/
-/* line 149, ../../sass/custom.scss */
+/* line 153, ../../sass/custom.scss */
 h2.title {
   margin: 30px 0 0 0;
 }
 
 /*** Content ***/
-/* line 154, ../../sass/custom.scss */
+/* line 158, ../../sass/custom.scss */
 body {
   font-family: "Lato Regular Web" !important;
 }
 
-/* line 157, ../../sass/custom.scss */
+/* line 161, ../../sass/custom.scss */
 .content legend {
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
-/* line 161, ../../sass/custom.scss */
+/* line 165, ../../sass/custom.scss */
 .field-name-field-photo .field-item {
   text-align: center;
 }
 
 /*** Display Suite ***/
-/* line 166, ../../sass/custom.scss */
+/* line 170, ../../sass/custom.scss */
 h3.block-title {
   font-size: 21px;
   padding: 2px 0;
 }
-/* line 169, ../../sass/custom.scss */
+/* line 173, ../../sass/custom.scss */
 h3.block-title a {
   background: none;
 }
 
-/* line 174, ../../sass/custom.scss */
+/* line 178, ../../sass/custom.scss */
 .ds-header {
   padding: 0 0 30px 0;
 }
 
-/* line 179, ../../sass/custom.scss */
+/* line 183, ../../sass/custom.scss */
 #block-system-main h3.block-title {
   padding: 4px 0 4px 15px;
   font-size: 21px;
 }
 
-/* line 184, ../../sass/custom.scss */
+/* line 188, ../../sass/custom.scss */
 .ds-above-left, .ds-above-right {
   padding: 0 10px 10px 0;
 }
-/* line 186, ../../sass/custom.scss */
+/* line 190, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset, .ds-above-right .field-group-fieldset {
   background: #cddeff;
 }
-/* line 188, ../../sass/custom.scss */
+/* line 192, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend, .ds-above-right .field-group-fieldset legend {
   padding: 5px 0;
   background: #1368a6;
@@ -231,42 +239,42 @@ h3.block-title a {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
   /* IE6-9 */
 }
-/* line 195, ../../sass/custom.scss */
+/* line 199, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend {
   color: white;
   background: none;
 }
 
-/* line 202, ../../sass/custom.scss */
+/* line 206, ../../sass/custom.scss */
 .ds-above-right {
   padding: 0 0 10px 10px;
 }
-/* line 204, ../../sass/custom.scss */
+/* line 208, ../../sass/custom.scss */
 .ds-above-right div.field-items {
   background-color: #cddeff;
 }
 
-/* line 209, ../../sass/custom.scss */
+/* line 213, ../../sass/custom.scss */
 .ds-below-left, .ds-below-right {
   padding: 0 10px 30px 0;
 }
 
-/* line 213, ../../sass/custom.scss */
+/* line 217, ../../sass/custom.scss */
 .ds-below-right {
   padding: 0 0 30px 10px;
 }
 
-/* line 218, ../../sass/custom.scss */
+/* line 222, ../../sass/custom.scss */
 #block-system-main div.field-type-ds {
   margin: 0 0 30px 0;
 }
 
-/* line 223, ../../sass/custom.scss */
+/* line 227, ../../sass/custom.scss */
 .ds-footer {
   padding: 20px 0 0 0;
 }
 
-/* line 228, ../../sass/custom.scss */
+/* line 232, ../../sass/custom.scss */
 ul.links {
   float: right;
   margin: 0;
@@ -274,53 +282,62 @@ ul.links {
 
 /*** Views ***/
 /**  Recent content block **/
-/* line 237, ../../sass/custom.scss */
-#block-views-tracker-recent-content-sidebar .ui-accordion-content .recent-actions {
+/* line 241, ../../sass/custom.scss */
+.view-id-extra_views .views-accordion-header .field-content {
+  font-family: "Lato Regular Web" !important;
+  font-size: 14px;
+}
+/* line 247, ../../sass/custom.scss */
+.view-id-extra_views .ui-accordion-content .recent-actions {
   display: inline-block;
   margin: 0 10px 0 0;
 }
+/* line 252, ../../sass/custom.scss */
+.view-id-extra_views .item-list {
+  margin: 5px 0 4px 0;
+}
 
-/* line 244, ../../sass/custom.scss */
+/* line 257, ../../sass/custom.scss */
 .view-views-search .view-content {
   display: none;
 }
-/* line 247, ../../sass/custom.scss */
+/* line 260, ../../sass/custom.scss */
 .view-views-search .pager {
   display: none;
 }
 
-/* line 252, ../../sass/custom.scss */
+/* line 265, ../../sass/custom.scss */
 .views-submit-button button.my-views-filter-reset {
   position: relative;
   top: 11px;
   left: 10px;
 }
 
-/* line 259, ../../sass/custom.scss */
+/* line 272, ../../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 263, ../../sass/custom.scss */
+/* line 276, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 265, ../../sass/custom.scss */
+/* line 278, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 268, ../../sass/custom.scss */
+/* line 281, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 274, ../../sass/custom.scss */
+/* line 287, ../../sass/custom.scss */
 .view-filters {
   background-color: #1368a6;
   color: white;
 }
-/* line 277, ../../sass/custom.scss */
+/* line 290, ../../sass/custom.scss */
 .view-filters legend {
   background: #1368a6;
   /* Old browsers */
@@ -334,17 +351,17 @@ ul.links {
   /* IE6-9 */
 }
 
-/* line 285, ../../sass/custom.scss */
+/* line 298, ../../sass/custom.scss */
 span.fieldset-legend {
   padding: 0;
   margin: 0;
 }
-/* line 290, ../../sass/custom.scss */
+/* line 303, ../../sass/custom.scss */
 span.fieldset-legend a {
   color: white;
 }
 
-/* line 297, ../../sass/custom.scss */
+/* line 310, ../../sass/custom.scss */
 .views-exposed-form {
   padding: 10px;
 }
@@ -352,83 +369,83 @@ span.fieldset-legend a {
 /*
  *Tasks table
  */
-/* line 305, ../../sass/custom.scss */
+/* line 318, ../../sass/custom.scss */
 #user-tasks-table table {
   width: 100%;
 }
-/* line 308, ../../sass/custom.scss */
+/* line 321, ../../sass/custom.scss */
 #user-tasks-table table thead th {
   padding: 0 5px;
 }
-/* line 312, ../../sass/custom.scss */
+/* line 325, ../../sass/custom.scss */
 #user-tasks-table table td {
   padding: 0 5px;
 }
-/* line 315, ../../sass/custom.scss */
+/* line 328, ../../sass/custom.scss */
 #user-tasks-table table td:nth-child(5) {
   min-width: 90px;
 }
-/* line 321, ../../sass/custom.scss */
+/* line 334, ../../sass/custom.scss */
 #user-tasks-table table td:nth-child(7) {
   text-align: center;
 }
 
 /*** Tables ***/
-/* line 331, ../../sass/custom.scss */
+/* line 344, ../../sass/custom.scss */
 table.views-table {
   width: 100%;
 }
 
-/* line 334, ../../sass/custom.scss */
+/* line 347, ../../sass/custom.scss */
 th {
   border-bottom: none;
 }
 
-/* line 337, ../../sass/custom.scss */
+/* line 350, ../../sass/custom.scss */
 th.views-field {
   padding: 0 5px;
 }
 
-/* line 340, ../../sass/custom.scss */
+/* line 353, ../../sass/custom.scss */
 td.views-field {
   padding: 0 5px;
 }
 
-/* line 343, ../../sass/custom.scss */
+/* line 356, ../../sass/custom.scss */
 td.views-field-field-cover-image img {
   max-width: none !important;
 }
 
-/* line 346, ../../sass/custom.scss */
+/* line 359, ../../sass/custom.scss */
 tr.odd {
   background-color: #aac6ff;
   border: 1px solid white;
 }
 
-/* line 350, ../../sass/custom.scss */
+/* line 363, ../../sass/custom.scss */
 tr.even {
   background-color: #98bafe;
   border: 1px solid white;
 }
 
-/* line 354, ../../sass/custom.scss */
+/* line 367, ../../sass/custom.scss */
 tr.odd td.active, tr.even td.active {
   background-color: #87affe;
 }
 
-/* line 359, ../../sass/custom.scss */
+/* line 372, ../../sass/custom.scss */
 .view-content-lists th.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views th.views-field-edit-node, .view-reference-views td.views-field-view-node {
   width: 70px;
 }
-/* line 362, ../../sass/custom.scss */
+/* line 375, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views td.views-field-edit-node, .view-reference-views td.views-field-view-node {
   padding: 0;
 }
-/* line 364, ../../sass/custom.scss */
+/* line 377, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node a, .view-content-lists td.views-field-view-node a, .view-reference-views td.views-field-edit-node a, .view-reference-views td.views-field-view-node a {
   margin: 0 5px;
 }
-/* line 369, ../../sass/custom.scss */
+/* line 382, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks, .view-reference-views td.views-field-field-tasks .tasks {
   display: block;
   position: absolute;
@@ -441,11 +458,11 @@ tr.odd td.active, tr.even td.active {
   background-color: #FFF;
   z-index: 10;
 }
-/* line 380, ../../sass/custom.scss */
+/* line 393, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
   display: none;
 }
-/* line 383, ../../sass/custom.scss */
+/* line 396, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks .close, .view-reference-views td.views-field-field-tasks .tasks .close {
   position: absolute;
   top: 0;
@@ -453,72 +470,72 @@ tr.odd td.active, tr.even td.active {
 }
 
 /*** Accordion **/
-/* line 393, ../../sass/custom.scss */
+/* line 406, ../../sass/custom.scss */
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   background: #cddeff;
   border: none;
 }
 
-/* line 398, ../../sass/custom.scss */
+/* line 411, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-header .ui-accordion-header-icon {
   left: 0.1em;
 }
-/* line 401, ../../sass/custom.scss */
+/* line 414, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-icons {
   padding-left: 1.8em;
 }
-/* line 404, ../../sass/custom.scss */
+/* line 417, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-icons {
   padding-left: 1.4em;
 }
-/* line 407, ../../sass/custom.scss */
+/* line 420, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-content {
   padding: 0.5em 1em;
 }
 
-/* line 411, ../../sass/custom.scss */
+/* line 424, ../../sass/custom.scss */
 .ui-corner-all {
   border-radius: 0;
 }
 
-/* line 414, ../../sass/custom.scss */
+/* line 427, ../../sass/custom.scss */
 .ui-widget-content {
   border: none;
 }
 
 /*** Widgets ***/
-/* line 422, ../../sass/custom.scss */
+/* line 435, ../../sass/custom.scss */
 .view-views-search .view-content {
   display: none;
 }
-/* line 425, ../../sass/custom.scss */
+/* line 438, ../../sass/custom.scss */
 .view-views-search .pager {
   display: none;
 }
 
 /*** Nodes ***/
-/* line 433, ../../sass/custom.scss */
+/* line 446, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy {
   width: 60%;
 }
-/* line 435, ../../sass/custom.scss */
+/* line 448, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart {
   height: 300px;
   width: 100%;
 }
-/* line 438, ../../sass/custom.scss */
+/* line 451, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content {
   height: 100%;
 }
-/* line 440, ../../sass/custom.scss */
+/* line 453, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart {
   height: 100%;
 }
-/* line 442, ../../sass/custom.scss */
+/* line 455, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart #aa-chart {
   height: 100%;
 }
-/* line 449, ../../sass/custom.scss */
+/* line 462, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-left.thirty {
   width: 40%;
 }
@@ -526,142 +543,142 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 /*** Modal styles
  *Duplicated from Admin theme (Fubik)
  */
-/* line 461, ../../sass/custom.scss */
+/* line 474, ../../sass/custom.scss */
 #modalContent #contact-node-form .ds-above-left, #modalContent #contact-node-form .ds-above-right {
   width: 33.3%;
 }
-/* line 464, ../../sass/custom.scss */
+/* line 477, ../../sass/custom.scss */
 #modalContent #contact-node-form .text-summary-wrapper {
   display: none;
 }
-/* line 469, ../../sass/custom.scss */
+/* line 482, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea label {
   float: none;
 }
-/* line 472, ../../sass/custom.scss */
+/* line 485, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper {
   margin-left: 0;
   margin-right: 0;
 }
-/* line 476, ../../sass/custom.scss */
+/* line 489, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_72, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_75, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_85, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_93, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_98 {
   display: none;
 }
-/* line 484, ../../sass/custom.scss */
+/* line 497, ../../sass/custom.scss */
 #modalContent #contact-node-form tr .form-item {
   white-space: normal;
 }
-/* line 490, ../../sass/custom.scss */
+/* line 503, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .date-float {
   clear: both;
   float: none;
 }
-/* line 494, ../../sass/custom.scss */
+/* line 507, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
   width: 150px;
   float: left;
   clear: none;
 }
-/* line 498, ../../sass/custom.scss */
+/* line 511, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper input, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper input {
   width: 100px;
 }
-/* line 502, ../../sass/custom.scss */
+/* line 515, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
   width: 200px;
 }
-/* line 504, ../../sass/custom.scss */
+/* line 517, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper label {
   width: 40px;
   clear: none;
 }
-/* line 514, ../../sass/custom.scss */
+/* line 527, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-field-address .addressfield-container-inline .form-item {
   float: none;
 }
-/* line 520, ../../sass/custom.scss */
+/* line 533, ../../sass/custom.scss */
 #modalContent #contact-node-form .form-type-link-field label {
   float: none;
 }
-/* line 525, ../../sass/custom.scss */
+/* line 538, ../../sass/custom.scss */
 #modalContent #contact-node-form .field-name-field-consultant-job-type label {
   float: none;
 }
-/* line 532, ../../sass/custom.scss */
+/* line 545, ../../sass/custom.scss */
 #modalContent form#mandate-node-form .ds-above-left, #modalContent form#mandate-node-form .ds-above-right, #modalContent form#mandate-node-form .ds-below-left, #modalContent form#mandate-node-form .ds-below-right {
   width: 33.3%;
 }
-/* line 535, ../../sass/custom.scss */
+/* line 548, ../../sass/custom.scss */
 #modalContent form#mandate-node-form .ds-above-left, #modalContent form#mandate-node-form .ds-below-left, #modalContent form#mandate-node-form .ds-above-middle, #modalContent form#mandate-node-form .ds-below-middle {
   padding: 0 20px 0 0;
 }
-/* line 538, ../../sass/custom.scss */
+/* line 551, ../../sass/custom.scss */
 #modalContent form#mandate-node-form table {
   width: 100%;
 }
-/* line 542, ../../sass/custom.scss */
+/* line 555, ../../sass/custom.scss */
 #modalContent form#mandate-node-form div.form-wrapper label {
   float: none;
   display: block;
 }
-/* line 548, ../../sass/custom.scss */
+/* line 561, ../../sass/custom.scss */
 #modalContent form#mandate-node-form div.field-widget-field-collection-embed .form-select {
   display: block;
 }
-/* line 551, ../../sass/custom.scss */
+/* line 564, ../../sass/custom.scss */
 #modalContent form#mandate-node-form div.field-widget-field-collection-embed .chosen-container {
   width: 100% !important;
   display: block;
 }
-/* line 558, ../../sass/custom.scss */
+/* line 571, ../../sass/custom.scss */
 #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-left, #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-right {
   float: none;
   display: block;
   width: 100%;
 }
-/* line 562, ../../sass/custom.scss */
+/* line 575, ../../sass/custom.scss */
 #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-left .chosen-container, #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-right .chosen-container {
   display: block !important;
 }
-/* line 567, ../../sass/custom.scss */
+/* line 580, ../../sass/custom.scss */
 #modalContent form#mandate-node-form div.field-name-field-managers-hired .description {
   white-space: normal;
 }
-/* line 571, ../../sass/custom.scss */
+/* line 584, ../../sass/custom.scss */
 #modalContent form#mandate-node-form input.form-autocomplete {
   width: 100%;
   max-width: 100%;
   display: block;
 }
-/* line 579, ../../sass/custom.scss */
+/* line 592, ../../sass/custom.scss */
 #modalContent #consultant-firm-node-form .ds-above-left {
   width: 49%;
   margin: 0 1% 0 0;
 }
-/* line 583, ../../sass/custom.scss */
+/* line 596, ../../sass/custom.scss */
 #modalContent #consultant-firm-node-form .ds-above-right {
   width: 49%;
   margin: 0 0 0 1%;
 }
-/* line 589, ../../sass/custom.scss */
+/* line 602, ../../sass/custom.scss */
 #modalContent #consultant-firm-node-form .field-name-field-website .form-item label {
   float: none;
 }
-/* line 594, ../../sass/custom.scss */
+/* line 607, ../../sass/custom.scss */
 #modalContent #consultant-firm-node-form .vertical-tabs {
   margin: 0;
 }
-/* line 600, ../../sass/custom.scss */
+/* line 613, ../../sass/custom.scss */
 #modalContent #manager-firm-node-form .ds-above-left, #modalContent #manager-firm-node-form .ds-above-middle, #modalContent #manager-firm-node-form .ds-above-right {
   width: 32%;
   margin: 0 .5%;
 }
-/* line 604, ../../sass/custom.scss */
+/* line 617, ../../sass/custom.scss */
 #modalContent #manager-firm-node-form .form-item {
   margin: 0;
   width: 95%;
 }
-/* line 607, ../../sass/custom.scss */
+/* line 620, ../../sass/custom.scss */
 #modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
   width: 98%;
 }

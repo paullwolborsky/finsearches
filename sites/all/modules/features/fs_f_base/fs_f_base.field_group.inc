@@ -473,5 +473,59 @@ function fs_f_base_field_group_info() {
   );
   $export['group_search_consultant|node|mandate|form'] = $field_group;
 
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_traits|node|mandate|default';
+  $field_group->group_name = 'group_traits';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'mandate';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Traits',
+    'weight' => '78',
+    'children' => array(
+      0 => 'field_traits_tr',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-traits field-group-fieldset',
+      ),
+    ),
+  );
+  $export['group_traits|node|mandate|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_traits|node|mandate|form';
+  $field_group->group_name = 'group_traits';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'mandate';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Traits',
+    'weight' => '76',
+    'children' => array(
+      0 => 'field_traits_tr',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Traits',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'classes' => 'group-traits field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsible',
+    ),
+  );
+  $export['group_traits|node|mandate|form'] = $field_group;
+
   return $export;
 }
