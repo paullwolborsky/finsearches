@@ -236,10 +236,11 @@ ul.links {
 
 /*** Views ***/
 /**  Recent content block **/
-#block-views-tracker-recent-content-sidebar {
+.view-id-extra_views {
   .views-accordion-header {
     .field-content {
       font-family: "Lato Regular Web" !important;
+      font-size: 14px;
     }
   }
   .ui-accordion-content {
