@@ -113,6 +113,9 @@ span.fieldset-legend {
   background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */  
 }
+#block-views-a9706a0c2bd6ed2ad2a9fb0317b34834 {
+  margin: 30px 0 0 0;
+}
 #block-user-online .content {
   background: $form-background-blue;
   padding: 10px;
@@ -187,6 +190,9 @@ h3.block-title {
 }
 .ds-above-left, .ds-above-right {
   padding: 0 10px 10px 0;
+  .fieldset-wrapper {
+    padding: 0 0 10px 10px;
+  }
   .field-group-fieldset {
     background: $form-background-blue;
     legend {
@@ -490,6 +496,16 @@ body.node-type-plan {
       width: 40%;
     }  
   }
+}
+
+/*** Buttons ***/
+input#edit-submit-1 {
+
+}
+
+/*** Modal Links ***/
+.field-name-modal-contact-link, .field-name-modal-mandate-link {
+  margin-top: -30px;
 }
 
 /*** Modal styles
