@@ -218,6 +218,8 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'module' => 'field_collection',
         'settings' => array(
           'add' => 'Add',
@@ -436,6 +438,8 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'module' => 'field_collection',
         'settings' => array(
           'add' => 'Add',

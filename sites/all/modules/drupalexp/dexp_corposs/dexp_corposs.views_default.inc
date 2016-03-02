@@ -164,19 +164,12 @@ function dexp_corposs_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Content: Media */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_media']['id'] = 'field_media';
   $handler->display->display_options['fields']['field_media']['table'] = 'field_data_field_media';
   $handler->display->display_options['fields']['field_media']['field'] = 'field_media';
   $handler->display->display_options['fields']['field_media']['label'] = '';
   $handler->display->display_options['fields']['field_media']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_media']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_media']['type'] = 'media';
-  $handler->display->display_options['fields']['field_media']['settings'] = array(
-    'file_view_mode' => 'media_small',
-  );
-  $handler->display->display_options['fields']['field_media']['delta_limit'] = '1';
-  $handler->display->display_options['fields']['field_media']['delta_offset'] = '0';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -238,19 +231,12 @@ function dexp_corposs_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Media */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_media']['id'] = 'field_media';
   $handler->display->display_options['fields']['field_media']['table'] = 'field_data_field_media';
   $handler->display->display_options['fields']['field_media']['field'] = 'field_media';
   $handler->display->display_options['fields']['field_media']['label'] = '';
   $handler->display->display_options['fields']['field_media']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_media']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_media']['type'] = 'media';
-  $handler->display->display_options['fields']['field_media']['settings'] = array(
-    'file_view_mode' => 'media_small',
-  );
-  $handler->display->display_options['fields']['field_media']['delta_limit'] = '1';
-  $handler->display->display_options['fields']['field_media']['delta_offset'] = '0';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -289,19 +275,12 @@ function dexp_corposs_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Content: Media */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_media']['id'] = 'field_media';
   $handler->display->display_options['fields']['field_media']['table'] = 'field_data_field_media';
   $handler->display->display_options['fields']['field_media']['field'] = 'field_media';
   $handler->display->display_options['fields']['field_media']['label'] = '';
   $handler->display->display_options['fields']['field_media']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_media']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_media']['type'] = 'media';
-  $handler->display->display_options['fields']['field_media']['settings'] = array(
-    'file_view_mode' => 'media_small',
-  );
-  $handler->display->display_options['fields']['field_media']['delta_limit'] = '1';
-  $handler->display->display_options['fields']['field_media']['delta_offset'] = '0';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -485,15 +464,13 @@ function dexp_corposs_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
   );
-  /* Filter criterion: Content: Categories (field_categories) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_categories_tid']['id'] = 'field_categories_tid';
   $handler->display->display_options['filters']['field_categories_tid']['table'] = 'field_data_field_categories';
   $handler->display->display_options['filters']['field_categories_tid']['field'] = 'field_categories_tid';
   $handler->display->display_options['filters']['field_categories_tid']['value'] = array(
     19 => '19',
   );
-  $handler->display->display_options['filters']['field_categories_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_categories_tid']['vocabulary'] = 'blog_categories';
 
   /* Display: Blog Banner Slider */
   $handler = $view->new_display('block', 'Blog Banner Slider', 'block');
@@ -623,7 +600,7 @@ function dexp_corposs_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Image */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -631,12 +608,6 @@ function dexp_corposs_views_default_views() {
   $handler->display->display_options['fields']['field_image']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_image']['alter']['text'] = '<span data-toggle="tooltip" rel="tooltip" data-placement="top" class="dtooltip" data-original-title="[title]">[field_image]</span>';
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => '',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_image']['delta_offset'] = '0';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -692,19 +663,13 @@ function dexp_corposs_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Image */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['label'] = '';
   $handler->display->display_options['fields']['field_image']['alter']['text'] = '<span data-toggle="tooltip" rel="tooltip" data-placement="top" class="dtooltip" data-original-title="[title]">[field_image]</span>';
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => '',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_image']['delta_offset'] = '0';
 
   /* Display: Testimonials Style 2 */
   $handler = $view->new_display('block', 'Testimonials Style 2', 'block_1');
@@ -741,19 +706,13 @@ function dexp_corposs_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Image */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['label'] = '';
   $handler->display->display_options['fields']['field_image']['alter']['text'] = '<span data-toggle="tooltip" rel="tooltip" data-placement="top" class="dtooltip" data-original-title="[title]">[field_image]</span>';
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => '',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_image']['delta_offset'] = '0';
   $export['clients'] = $view;
 
   $view = new view();
@@ -1101,18 +1060,12 @@ function dexp_corposs_views_default_views() {
   $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Images */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_portfolio_images']['id'] = 'field_portfolio_images';
   $handler->display->display_options['fields']['field_portfolio_images']['table'] = 'field_data_field_portfolio_images';
   $handler->display->display_options['fields']['field_portfolio_images']['field'] = 'field_portfolio_images';
   $handler->display->display_options['fields']['field_portfolio_images']['label'] = '';
   $handler->display->display_options['fields']['field_portfolio_images']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_portfolio_images']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_portfolio_images']['settings'] = array(
-    'image_style' => 'portfolio_medium',
-    'image_link' => 'content',
-  );
-  $handler->display->display_options['fields']['field_portfolio_images']['delta_offset'] = '0';
   $handler->display->display_options['block_description'] = 'My Latest Works';
   $export['latest_projects'] = $view;
 
