@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the fs_f_n_bt_mandate feature.
  */
+
+include_once 'fs_f_n_bt_mandate.features.inc';
