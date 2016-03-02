@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * fs_f_pg_bt_consultant_contact.features.field_instance.inc
@@ -9,7 +10,6 @@
  */
 function fs_f_pg_bt_consultant_contact_field_default_field_instances() {
   $field_instances = array();
-
   // Exported field_instance: 'paragraphs_item-consultant_contact-field_address'
   $field_instances['paragraphs_item-consultant_contact-field_address'] = array(
     'bundle' => 'consultant_contact',

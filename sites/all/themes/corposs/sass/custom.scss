@@ -368,6 +368,33 @@ tr.odd td.active, tr.even td.active {
   background-color: $form-item-active-blue;
 }
 
+#privatemsg-list-form .privatemsg-list {
+  width: 100%;
+}
+.privatemsg-list td {
+  padding: 0 5px;
+}
+.privatemsg-list th {
+    padding: 0 5px;
+}
+.privatemsg-list tr.odd {
+  background-color: $form-item-odd-blue;
+  border: 1px solid $background;
+}
+.privatemsg-list tr.even {
+  background-color: $form-item-even-blue;
+  border: 1px solid $background;
+}
+.privatemsg-list tr.odd td.active, tr.even td.active {
+  background-color: $form-item-active-blue;
+}
+.privatemsg-list .form-checkbox {
+    margin-top: -1px;
+}
+#privatemsg-list span.fieldset-legend a {
+    color: #aaa;
+}
+
 .view-content-lists, .view-reference-views {
   th.views-field-edit-node, td.views-field-view-node {
     width: 70px;

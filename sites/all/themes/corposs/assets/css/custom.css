@@ -31,10 +31,22 @@ div#modalContent.modal-default .ctools-modal-content {
 /* line 53, ../../sass/custom.scss */
 #section-header .dexp-dropdown > ul > li {
   border-left: 1px solid #142a45;
-  border-right: 1px solid #142a45;
-}
+  border-right: 1px solid #142a45; }
 
 /*** Sections ***/
+#section-top-bar {
+  padding: 5px; }
+  #section-top-bar .region-top-right .block {
+    float: none;
+    text-align: right; }
+  #section-top-bar .region-top-right .block-search-api-page div.form-type-textfield {
+    display: inline-block;
+    vertical-align: top; }
+  #section-top-bar .region-top-right .block-search-api-page input.btn-primary {
+    display: inline-block;
+    vertical-align: top;
+    margin: 15px 0 0 0; }
+
 /* line 59, ../../sass/custom.scss */
 #section-top-bar {
   padding: 5px;
@@ -66,9 +78,8 @@ div#modalContent.modal-default .ctools-modal-content {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
-  /* IE6-9 */
-}
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+  /* IE6-9 */ }
 
 /*** Blocks ***/
 /* line 88, ../../sass/custom.scss */
@@ -83,26 +94,22 @@ h3.block-title {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
-  /* IE6-9 */
-}
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+  /* IE6-9 */ }
 
 /* line 97, ../../sass/custom.scss */
 span.fieldset-legend {
-  text-transform: uppercase;
-}
+  text-transform: uppercase; }
 
 /* line 100, ../../sass/custom.scss */
 .collapsiblock a {
-  color: white;
-  margin: 0 0 0 5px;
-}
+  color: #ffffff;
+  margin: 0 0 0 5px; }
 
 /* line 104, ../../sass/custom.scss */
 .block-views {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 /* line 109, ../../sass/custom.scss */
 #block-subscriptions-ui-0 {
@@ -114,40 +121,33 @@ span.fieldset-legend {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
-  /* IE6-9 */
-}
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+  /* IE6-9 */ }
 
 /* line 116, ../../sass/custom.scss */
 #block-user-online .content {
   background: #cddeff;
-  padding: 10px;
-}
+  padding: 10px; }
 
 /* line 120, ../../sass/custom.scss */
 .item-list ul {
-  text-align: left;
-}
+  text-align: left; }
 
 /* line 123, ../../sass/custom.scss */
 .field-name-plan-new-leads-mandates-bf .block-views {
-  margin: 5px 0 0 0;
-}
+  margin: 5px 0 0 0; }
 
 /* line 125, ../../sass/custom.scss */
 .field-name-plan-ongoing-mandates-bf .block-views {
-  margin: 5px 0 0 0;
-}
+  margin: 5px 0 0 0; }
 
 /* line 127, ../../sass/custom.scss */
 .field-name-plan-completed-mandates-bf .block-views {
-  margin: 5px 0 0 0;
-}
+  margin: 5px 0 0 0; }
 
 /* line 129, ../../sass/custom.scss */
 .field-name-plan-closed-mandates-bf .block-views {
-  margin: 5px 0 0 0;
-}
+  margin: 5px 0 0 0; }
 
 /* line 133, ../../sass/custom.scss */
 .block-facetapi h3.block-title {
@@ -169,33 +169,34 @@ span.fieldset-legend {
 }
 /* line 147, ../../sass/custom.scss */
 .block-facetapi select {
-  max-width: 100%;
-}
+  max-width: 100%; }
 
 /*** Labels ***/
 /* line 153, ../../sass/custom.scss */
 h2.title {
-  margin: 30px 0 0 0;
-}
+  margin: 30px 0 0 0; }
 
 /*** Content ***/
 /* line 158, ../../sass/custom.scss */
 body {
-  font-family: "Lato Regular Web" !important;
-}
+  font-family: "Lato Regular Web" !important; }
 
 /* line 161, ../../sass/custom.scss */
 .content legend {
   margin-top: 10px;
-  margin-bottom: 5px;
-}
+  margin-bottom: 5px; }
 
 /* line 165, ../../sass/custom.scss */
 .field-name-field-photo .field-item {
-  text-align: center;
-}
+  text-align: center; }
 
 /*** Display Suite ***/
+h3.block-title {
+  font-size: 21px;
+  padding: 2px 0; }
+  h3.block-title a {
+    background: none; }
+
 /* line 170, ../../sass/custom.scss */
 h3.block-title {
   font-size: 21px;
@@ -208,14 +209,37 @@ h3.block-title a {
 
 /* line 178, ../../sass/custom.scss */
 .ds-header {
-  padding: 0 0 30px 0;
-}
+  padding: 0 0 30px 0; }
 
 /* line 183, ../../sass/custom.scss */
 #block-system-main h3.block-title {
   padding: 4px 0 4px 15px;
-  font-size: 21px;
-}
+  font-size: 21px; }
+
+.ds-above-left, .ds-above-right {
+  padding: 0 10px 10px 0; }
+  .ds-above-left .field-group-fieldset, .ds-above-right .field-group-fieldset {
+    background: #cddeff; }
+    .ds-above-left .field-group-fieldset legend, .ds-above-right .field-group-fieldset legend {
+      padding: 5px 0;
+      background: #1368a6;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #1368a6 0%, #142a45 100%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+      /* IE6-9 */ }
+      .ds-above-left .field-group-fieldset legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend {
+        color: #ffffff;
+        background: none; }
+
+.ds-above-right {
+  padding: 0 0 10px 10px; }
+  .ds-above-right div.field-items {
+    background-color: #cddeff; }
 
 /* line 188, ../../sass/custom.scss */
 .ds-above-left, .ds-above-right {
@@ -256,32 +280,33 @@ h3.block-title a {
 
 /* line 213, ../../sass/custom.scss */
 .ds-below-left, .ds-below-right {
-  padding: 0 10px 30px 0;
-}
+  padding: 0 10px 30px 0; }
 
 /* line 217, ../../sass/custom.scss */
 .ds-below-right {
-  padding: 0 0 30px 10px;
-}
+  padding: 0 0 30px 10px; }
 
 /* line 222, ../../sass/custom.scss */
 #block-system-main div.field-type-ds {
-  margin: 0 0 30px 0;
-}
+  margin: 0 0 30px 0; }
 
 /* line 227, ../../sass/custom.scss */
 .ds-footer {
-  padding: 20px 0 0 0;
-}
+  padding: 20px 0 0 0; }
 
 /* line 232, ../../sass/custom.scss */
 ul.links {
   float: right;
-  margin: 0;
-}
+  margin: 0; }
 
 /*** Views ***/
 /**  Recent content block **/
+#block-views-tracker-recent-content-sidebar .ui-accordion-content .recent-actions {
+  display: inline-block;
+  margin: 0 10px 0 0; }
+
+.view-views-search .view-content {
+  display: none; }
 /* line 241, ../../sass/custom.scss */
 .view-id-extra_views .views-accordion-header .field-content {
   font-family: "Lato Regular Web" !important;
@@ -303,15 +328,45 @@ ul.links {
 }
 /* line 260, ../../sass/custom.scss */
 .view-views-search .pager {
-  display: none;
-}
+  display: none; }
 
 /* line 265, ../../sass/custom.scss */
 .views-submit-button button.my-views-filter-reset {
   position: relative;
   top: 11px;
-  left: 10px;
-}
+  left: 10px; }
+
+.view-comment-views th.views-field-edit-comment {
+  width: 70px;
+  padding: 0; }
+.view-comment-views td.views-field-edit-comment {
+  padding: 0; }
+  .view-comment-views td.views-field-edit-comment a {
+    margin: 0; }
+  .view-comment-views td.views-field-edit-comment div.magical-modal-link {
+    display: inline-block;
+    margin: 0 5px 0 0; }
+
+.view-filters {
+  background-color: #1368a6;
+  color: #ffffff; }
+  .view-filters legend {
+    background: #1368a6;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #1368a6 0%, #142a45 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+    /* IE6-9 */ }
+
+span.fieldset-legend {
+  padding: 0;
+  margin: 0; }
+  span.fieldset-legend a {
+    color: #ffffff; }
 
 /* line 272, ../../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
@@ -363,12 +418,23 @@ span.fieldset-legend a {
 
 /* line 310, ../../sass/custom.scss */
 .views-exposed-form {
-  padding: 10px;
-}
+  padding: 10px; }
 
 /*
  *Tasks table
  */
+#user-tasks-table table {
+  width: 100%; }
+  #user-tasks-table table thead th {
+    padding: 0 5px; }
+  #user-tasks-table table td {
+    padding: 0 5px; }
+  #user-tasks-table table td:nth-child(5) {
+    min-width: 90px; }
+  #user-tasks-table table td:nth-child(7) {
+    text-align: center; }
+
+/*** Tables ***/
 /* line 318, ../../sass/custom.scss */
 #user-tasks-table table {
   width: 100%;
@@ -393,50 +459,72 @@ span.fieldset-legend a {
 /*** Tables ***/
 /* line 344, ../../sass/custom.scss */
 table.views-table {
-  width: 100%;
-}
+  width: 100%; }
 
 /* line 347, ../../sass/custom.scss */
 th {
-  border-bottom: none;
-}
+  border-bottom: none; }
 
 /* line 350, ../../sass/custom.scss */
 th.views-field {
-  padding: 0 5px;
-}
+  padding: 0 5px; }
 
 /* line 353, ../../sass/custom.scss */
 td.views-field {
-  padding: 0 5px;
-}
+  padding: 0 5px; }
 
 /* line 356, ../../sass/custom.scss */
 td.views-field-field-cover-image img {
-  max-width: none !important;
-}
+  max-width: none !important; }
 
 /* line 359, ../../sass/custom.scss */
 tr.odd {
   background-color: #aac6ff;
-  border: 1px solid white;
-}
+  border: 1px solid #ffffff; }
 
 /* line 363, ../../sass/custom.scss */
 tr.even {
   background-color: #98bafe;
-  border: 1px solid white;
-}
+  border: 1px solid #ffffff; }
 
 /* line 367, ../../sass/custom.scss */
 tr.odd td.active, tr.even td.active {
-  background-color: #87affe;
-}
+  background-color: #87affe; }
 
-/* line 372, ../../sass/custom.scss */
+#privatemsg-list-form .privatemsg-list {
+  width: 100%; }
+
+.privatemsg-list td {
+  padding: 0 5px; }
+
+.privatemsg-list th {
+  padding: 0 5px; }
+
+.privatemsg-list tr.odd {
+  background-color: #aac6ff;
+  border: 1px solid #ffffff; }
+
+.privatemsg-list tr.even {
+  background-color: #98bafe;
+  border: 1px solid #ffffff; }
+
+.privatemsg-list tr.odd td.active, tr.even td.active {
+  background-color: #87affe; }
+
+.privatemsg-list .form-checkbox {
+  margin-top: -1px; }
+
+#privatemsg-list span.fieldset-legend a {
+  color: #aaa; }
+
 .view-content-lists th.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views th.views-field-edit-node, .view-reference-views td.views-field-view-node {
-  width: 70px;
-}
+  width: 70px; }
+.view-content-lists td.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views td.views-field-edit-node, .view-reference-views td.views-field-view-node {
+  padding: 0; }
+  .view-content-lists td.views-field-edit-node a, .view-content-lists td.views-field-view-node a, .view-reference-views td.views-field-edit-node a, .view-reference-views td.views-field-view-node a {
+    margin: 0 5px; }
+
+  
 /* line 375, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views td.views-field-edit-node, .view-reference-views td.views-field-view-node {
   padding: 0;
@@ -456,8 +544,14 @@ tr.odd td.active, tr.even td.active {
   padding: 5px;
   top: 60px;
   background-color: #FFF;
-  z-index: 10;
-}
+  z-index: 10; }
+  .view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
+    display: none; }
+  .view-content-lists td.views-field-field-tasks .tasks .close, .view-reference-views td.views-field-field-tasks .tasks .close {
+    position: absolute;
+    top: 0;
+    right: 0; }
+
 /* line 393, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
   display: none;
@@ -473,9 +567,14 @@ tr.odd td.active, tr.even td.active {
 /* line 406, ../../sass/custom.scss */
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   background: #cddeff;
-  border: none;
-}
+  border: none; }
 
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+  left: 0.1em; }
+.ui-accordion .ui-accordion-icons {
+  padding-left: 1.8em; }
+.ui-accordion .ui-accordion-icons {
+  padding-left: 1.4em; }
 /* line 411, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-header .ui-accordion-header-icon {
   left: 0.1em;
@@ -490,34 +589,40 @@ tr.odd td.active, tr.even td.active {
 }
 /* line 420, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-content {
-  padding: 0.5em 1em;
-}
+  padding: 0.5em 1em; }
 
 /* line 424, ../../sass/custom.scss */
 .ui-corner-all {
-  border-radius: 0;
-}
+  border-radius: 0; }
 
 /* line 427, ../../sass/custom.scss */
 .ui-widget-content {
-  border: none;
-}
+  border: none; }
 
 /*** Widgets ***/
+.view-views-search .view-content {
+  display: none; }
 /* line 435, ../../sass/custom.scss */
 .view-views-search .view-content {
   display: none;
 }
 /* line 438, ../../sass/custom.scss */
 .view-views-search .pager {
-  display: none;
-}
+  display: none; }
 
 /*** Nodes ***/
-/* line 446, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy {
-  width: 60%;
-}
+  width: 60%; }
+  body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart {
+    margin: 30px 0 0 0;
+    height: 300px;
+    width: 100%; }
+    body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content {
+      height: 100%; }
+      body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart {
+        height: 100%; }
+        body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart #aa-chart {
+          height: 100%; }
 /* line 448, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart {
   height: 300px;
@@ -537,12 +642,90 @@ body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-
 }
 /* line 462, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-left.thirty {
-  width: 40%;
-}
+  width: 40%; }
 
 /*** Modal styles
  *Duplicated from Admin theme (Fubik)
  */
+#modalContent #contact-node-form .ds-above-left, #modalContent #contact-node-form .ds-above-right {
+  width: 33.3%; }
+#modalContent #contact-node-form .text-summary-wrapper {
+  display: none; }
+#modalContent #contact-node-form .field-name-body .form-type-textarea label {
+  float: none; }
+#modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper {
+  margin-left: 0;
+  margin-right: 0; }
+  #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_72, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_75, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_85, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_93, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_98 {
+    display: none; }
+#modalContent #contact-node-form tr .form-item {
+  white-space: normal; }
+#modalContent #contact-node-form .field-name-field-employment-date .date-combo .date-float {
+  clear: both;
+  float: none; }
+#modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
+  width: 150px;
+  float: left;
+  clear: none; }
+  #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper input, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper input {
+    width: 100px; }
+#modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
+  width: 200px; }
+  #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper label {
+    width: 40px;
+    clear: none; }
+#modalContent #contact-node-form .field-name-field-address .addressfield-container-inline .form-item {
+  float: none; }
+#modalContent #contact-node-form .form-type-link-field label {
+  float: none; }
+#modalContent #contact-node-form .field-name-field-consultant-job-type label {
+  float: none; }
+#modalContent form#mandate-node-form .ds-above-left, #modalContent form#mandate-node-form .ds-above-right, #modalContent form#mandate-node-form .ds-below-left, #modalContent form#mandate-node-form .ds-below-right {
+  width: 33.3%; }
+#modalContent form#mandate-node-form .ds-above-left, #modalContent form#mandate-node-form .ds-below-left, #modalContent form#mandate-node-form .ds-above-middle, #modalContent form#mandate-node-form .ds-below-middle {
+  padding: 0 20px 0 0; }
+#modalContent form#mandate-node-form table {
+  width: 100%; }
+#modalContent form#mandate-node-form div.form-wrapper label {
+  float: none;
+  display: block; }
+#modalContent form#mandate-node-form div.field-widget-field-collection-embed .form-select {
+  display: block; }
+#modalContent form#mandate-node-form div.field-widget-field-collection-embed .chosen-container {
+  width: 100% !important;
+  display: block; }
+#modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-left, #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-right {
+  float: none;
+  display: block;
+  width: 100%; }
+  #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-left .chosen-container, #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-right .chosen-container {
+    display: block !important; }
+#modalContent form#mandate-node-form div.field-name-field-managers-hired .description {
+  white-space: normal; }
+#modalContent form#mandate-node-form input.form-autocomplete {
+  width: 100%;
+  max-width: 100%;
+  display: block; }
+#modalContent #consultant-firm-node-form .ds-above-left {
+  width: 49%;
+  margin: 0 1% 0 0; }
+#modalContent #consultant-firm-node-form .ds-above-right {
+  width: 49%;
+  margin: 0 0 0 1%; }
+#modalContent #consultant-firm-node-form .field-name-field-website .form-item label {
+  float: none; }
+#modalContent #consultant-firm-node-form .vertical-tabs {
+  margin: 0; }
+#modalContent #manager-firm-node-form .ds-above-left, #modalContent #manager-firm-node-form .ds-above-middle, #modalContent #manager-firm-node-form .ds-above-right {
+  width: 32%;
+  margin: 0 .5%; }
+#modalContent #manager-firm-node-form .form-item {
+  margin: 0;
+  width: 95%; }
+  #modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
+    width: 98%; }
+
+/*# sourceMappingURL=custom.css.map */
 /* line 474, ../../sass/custom.scss */
 #modalContent #contact-node-form .ds-above-left, #modalContent #contact-node-form .ds-above-right {
   width: 33.3%;
