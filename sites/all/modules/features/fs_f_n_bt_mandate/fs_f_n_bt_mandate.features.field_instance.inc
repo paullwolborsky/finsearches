@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * fs_f_n_bt_mandate.features.field_instance.inc
@@ -10,7 +9,7 @@
  */
 function fs_f_n_bt_mandate_field_default_field_instances() {
   $field_instances = array();
- 
+
   // Exported field_instance: 'node-mandate-body'
   $field_instances['node-mandate-body'] = array(
     'bundle' => 'mandate',
@@ -1368,7 +1367,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
             'editor' => 'form',
           ),
         ),
-        'type' => 'link_url',
+        'type' => 'link_default',
         'weight' => 13,
       ),
       'teaser' => array(
@@ -1648,81 +1647,42 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
       'weight' => 14,
     ),
   );
-  
-    // Translatables
+
+  // Translatables
   // Included for use with string extractors like potx.
   t('Account Size');
-  t('Address');
-  t('Amount');
   t('Attribute');
-  t('Author');
-  t('Bio');
   t('Body');
-  t('Comment');
   t('Consultant Contact');
   t('Consultant Firm');
   t('Consultant Firm Finalists');
+  t('Consultant Firms Hired');
   t('Consultant Firms On Watch');
   t('Consultant Firms Terminated');
-  t('Consultant Office');
-  t('Consultant Type');
   t('Content Type Shortcode');
   t('Currency');
   t('Date');
-  t('Email');
-  t('Employment Date');
   t('Geographic');
-  t('Job History');
-  t('Job Title');
-  t('Job Type');
-  t('Lateset Major Minor');
-  t('Latest Address');
-  t('Latest Consultant Firm');
-  t('Latest Consultant Office');
-  t('Latest Email');
-  t('Latest Geography');
-  t('Latest Job Title');
-  t('Latest Manager Firm');
-  t('Latest Mandate');
-  t('Latest Plan Size');
-  t('Latest Plan Types');
-  t('Latest Plans');
-  t('Latest Website');
-  t('Lead Plan Contact?');
   t('Major/Minor Style');
-  t('Major/Minor Styles');
-  t('Manager Firm');
   t('Manager Firm Finalists');
   t('Manager Firms Hired');
   t('Manager Firms On Watch');
   t('Manager Firms Terminated');
-  t('Mandate');
   t('Mandate Comments');
   t('Mandate Notes');
   t('Mandate Number');
   t('Mandate Status');
-  t('Migration Notes');
-  t('Name');
-  t('Non-user field for any important details involved in the Great Migration.');
   t('Old Mandate ID');
-  t('Photo');
   t('Plan');
   t('Plan Size');
   t('RFP Date');
   t('RFP Link');
   t('Serialized Comment');
-  t('Special Major Minor 1');
-  t('Special Major Minor 2');
   t('Special Major Style');
   t('Special Minor Style');
-  t('Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed');
-  t('Status');
-  t('Subject');
   t('This is the mandate ID from the old D5 site.');
   t('Title');
   t('Total Amount');
-  t('Website');
-  
-  
+
   return $field_instances;
 }

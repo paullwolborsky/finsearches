@@ -51,7 +51,7 @@ function fs_f_fc_bt_managers_hired_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 3,
+      'weight' => 1,
     ),
   );
 
@@ -64,10 +64,15 @@ function fs_f_fc_bt_managers_hired_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 7,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -88,7 +93,7 @@ function fs_f_fc_bt_managers_hired_field_default_field_instances() {
         'apply_chosen' => 0,
       ),
       'type' => 'options_select',
-      'weight' => 1,
+      'weight' => 3,
     ),
   );
 
@@ -276,12 +281,16 @@ function fs_f_fc_bt_managers_hired_field_default_field_instances() {
       'weight' => 5,
     ),
   );
-  
-    t('Manager Firm');
-  t('Manager Firm Finalists');
-  t('Manager Firms Hired');
-  t('Manager Firms On Watch');
-  t('Manager Firms Terminated');
-  
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Amount');
+  t('Geographic');
+  t('Major/Minor Style');
+  t('Manager Firm');
+  t('Special Major Minor 1');
+  t('Special Major Minor 2');
+  t('Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed');
+
   return $field_instances;
 }

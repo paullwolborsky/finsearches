@@ -14,7 +14,7 @@ function fs_f_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'chosen_jquery_selector';
-  $strongarm->value = 'select:visible:not(#edit-field-major-minor-style-tr-und-hierarchical-select-selects-1)';
+  $strongarm->value = 'select:visible';
   $export['chosen_jquery_selector'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -192,6 +192,9 @@ function fs_f_base_strongarm() {
         'custom_settings' => FALSE,
       ),
       'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
     ),
