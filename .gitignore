@@ -20,3 +20,4 @@ sites/all/themes/corposs/Gemfile.lock
 sites/all/themes/fubik/.ruby-gemset
 sites/all/themes/fubik/.ruby-version
 sites/all/themes/fubik/.sass-cache/
+*.css.map
