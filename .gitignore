@@ -21,3 +21,6 @@ sites/all/themes/fubik/.ruby-gemset
 sites/all/themes/fubik/.ruby-version
 sites/all/themes/fubik/.sass-cache/
 *.css.map
+
+#Ignore vagrant files
+.vagrant
