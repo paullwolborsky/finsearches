@@ -21,7 +21,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 49,
+        'weight' => 56,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -76,7 +76,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
           'thousand_separator' => ',',
         ),
         'type' => 'number_decimal',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -123,7 +123,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 51,
+        'weight' => 58,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -167,7 +167,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 50,
+        'weight' => 57,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -209,7 +209,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 54,
+        'weight' => 62,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -256,7 +256,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
           ),
         ),
         'type' => 'email_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -301,7 +301,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 52,
+        'weight' => 59,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -393,7 +393,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 45,
+        'weight' => 54,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -435,7 +435,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
           ),
         ),
         'type' => 'link_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -492,7 +492,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 48,
+        'weight' => 55,
       ),
       'teaser' => array(
         'label' => 'above',
