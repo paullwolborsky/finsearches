@@ -223,19 +223,19 @@ h3.block-title a {
 }
 
 /* line 191, ../../sass/custom.scss */
-.ds-above-left, .ds-above-right {
+.ds-above-left, .ds-above-right, .group-mandates {
   padding: 0 10px 10px 0;
 }
 /* line 193, ../../sass/custom.scss */
-.ds-above-left .fieldset-wrapper, .ds-above-right .fieldset-wrapper {
+.ds-above-left .fieldset-wrapper, .ds-above-right .fieldset-wrapper, .group-mandates .fieldset-wrapper {
   padding: 0 0 10px 10px;
 }
 /* line 196, ../../sass/custom.scss */
-.ds-above-left .field-group-fieldset, .ds-above-right .field-group-fieldset {
+.ds-above-left .field-group-fieldset, .ds-above-right .field-group-fieldset, .group-mandates .field-group-fieldset {
   background: #cddeff;
 }
 /* line 198, ../../sass/custom.scss */
-.ds-above-left .field-group-fieldset legend, .ds-above-right .field-group-fieldset legend {
+.ds-above-left .field-group-fieldset legend, .ds-above-right .field-group-fieldset legend, .group-mandates .field-group-fieldset legend {
   padding: 5px 0;
   background: #1368a6;
   /* Old browsers */
@@ -249,7 +249,7 @@ h3.block-title a {
   /* IE6-9 */
 }
 /* line 205, ../../sass/custom.scss */
-.ds-above-left .field-group-fieldset legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend {
+.ds-above-left .field-group-fieldset legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend, .group-mandates .field-group-fieldset legend span.fieldset-legend {
   color: white;
   background: none;
 }
