@@ -190,10 +190,13 @@ h3.block-title {
 }
 .ds-above-left, .ds-above-right, .group-mandates {
   padding: 0 10px 10px 0;
-  .fieldset-wrapper {
+  margin-bottom: 15px;
+  .fieldset-wrapper,
+  .content {
     padding: 0 0 10px 10px;
   }
-  .field-group-fieldset {
+  .field-group-fieldset,
+  .field-name-mandate-plan-info-bf{
     background: $form-background-blue;
     legend {
       padding: 5px 0;
@@ -205,34 +208,39 @@ h3.block-title {
       span.fieldset-legend {
         color: $background;
         background: none;
+        padding: 4px 0 4px 20px;
+        font-size: 21px;
       }
     }
   }
 }
 .ds-above-right {
   padding: 0 0 10px 10px;
-  div.field-items {
-    background-color: #cddeff;
-  }
 }
 
 .ds-below-left, .ds-below-right {
-  padding: 0 10px 30px 0;
+  padding: 0 10px 25px 0;
   
 }
 .ds-below-right {
-  padding: 0 0 30px 10px;
+  padding: 0 0 25px 10px;
 }
 
 #block-system-main {
   div.field-type-ds {
-    margin: 0 0 30px 0;
+    margin: 0 0 2px 0;
+
+    &.field-name-modal-contact-link,
+    &.field-name-modal-mandate-link,
+    &.field-name-modal-plan-link{
+      margin-bottom:25px;
+    }
   }
 }
 
 .ds-footer {
   //Have to use padding because of floats
-  padding: 20px 0 0 0;
+  padding: 0 0 0 0;
 }
 
 ul.links {
