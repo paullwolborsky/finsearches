@@ -595,7 +595,7 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 /*** Modal Links ***/
 /* line 507, ../../sass/custom.scss */
 .field-name-modal-contact-link, .field-name-modal-mandate-link {
-  margin-top: -30px;
+  margin: -30px 0 0 0;
 }
 
 /*** Modal styles
