@@ -746,7 +746,6 @@ ul.links li {
 /* Page */
 /* Borders */
 /*Form Elements */
-/*cddeff*/
 /* Text */
 /* Misc */
 /********** CSS Overrides **********/
@@ -758,7 +757,7 @@ body.tao {
   background: #f0f5ff; }
 
 #page-title {
-  background: #689afd; }
+  background: #94b8ff; }
   #page-title .page-title {
     text-shadow: none; }
 
@@ -772,19 +771,19 @@ a {
   border: 1px solid #689afd;
   margin: 5px; }
   .fieldset .fieldset .fieldset-content {
-    background: #cedaff none repeat scroll 0 0; }
+    background: #e7efff none repeat scroll 0 0; }
   .fieldset #main-content, .fieldset .block .block-content, .fieldset .container-inline .fieldset-content, .fieldset .fieldset-content {
     background: #dee6ff none repeat scroll 0 0; }
 
 .collapsible .fieldset-legend {
-  background: #689afd none repeat scroll 0 0;
+  background: #94b8ff none repeat scroll 0 0;
   padding: 0 5px; }
 
 .item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
-  background: #689afd; }
+  background: #94b8ff; }
 
 .form-wrapper.form-actions {
-  background: #689afd;
+  background: #94b8ff;
   border: 1px solid #689afd; }
 
 .block, .item-list, .help-items ul, .form-item, .confirmation ul, .admin-list, .node-type-list, .admin-panel {
@@ -792,7 +791,7 @@ a {
   margin: 0; }
 
 .vertical-tabs {
-  background: #cedaff;
+  background: #e7efff;
   border: 1px solid #689afd; }
 
 .vertical-tabs-list li a {
@@ -811,24 +810,24 @@ table {
   background-color: #f0f5ff;
   border-color: #689afd; }
   table th {
-    background: #689afd;
+    background: #94b8ff;
     text-transform: none;
     text-shadow: none; }
   table tr.odd td.active, table table tr.even td.active {
-    background-color: #87affe; }
+    background-color: #cadcff; }
 
 tr.odd {
-  background: #cedaff !important;
-  background-color: #cedaff !important; }
+  background: #e7efff !important;
+  background-color: #e7efff !important; }
 
 tr.even {
-  background-color: #98bafe !important;
-  background: #98bafe !important; }
+  background-color: #d8e5ff !important;
+  background: #d8e5ff !important; }
 
 .page-admin table tr.odd, .page-admin .page-admin table tr.odd td {
-  background-color: #cedaff !important; }
+  background-color: #e7efff !important; }
 .page-admin table tr.even, .page-admin .page-admin table tr.even td {
-  background-color: #98bafe !important; }
+  background-color: #d8e5ff !important; }
 
 /* Field Groups */
 .item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
@@ -842,7 +841,7 @@ tr.even {
 
 /* Buttons */
 .pager li.pager-current, .primary-tabs li.active {
-  background-color: #cedaff; }
+  background-color: #e7efff; }
 
 input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
   box-shadow: 0 1px 1px #666666; }
