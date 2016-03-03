@@ -198,6 +198,10 @@ h3.block-title {
   .field-group-fieldset,
   .field-name-mandate-plan-info-bf{
     background: $form-background-blue;
+    .field-label,
+    .field-content strong{
+      padding-right:0.25em;
+    }
     legend {
       padding: 5px 0;
       background: #1368a6; /* Old browsers */
@@ -228,11 +232,12 @@ h3.block-title {
 
 #block-system-main {
   div.field-type-ds {
-    margin: 0 0 2px 0;
+    margin: 0 0 25px 0;
 
     &.field-name-modal-contact-link,
     &.field-name-modal-mandate-link,
     &.field-name-modal-plan-link{
+      margin-top: -23px;
       margin-bottom:25px;
     }
   }
@@ -308,6 +313,10 @@ ul.links {
     background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
     }
+  .views-exposed-form .views-exposed-widget{
+    width: 31%;
+    padding-right: 20px;
+  }
 }
 span.fieldset-legend {
   //padding: 0 0 10px 0;
