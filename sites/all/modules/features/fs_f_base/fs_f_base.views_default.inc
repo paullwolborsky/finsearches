@@ -3425,7 +3425,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_job_title']['table'] = 'field_data_field_job_title';
   $handler->display->display_options['fields']['field_job_title']['field'] = 'field_job_title';
   $handler->display->display_options['fields']['field_job_title']['element_label_colon'] = FALSE;
-  /* Field: Field: Consultant Office */
+  /* Field: Field: Latest Consultant Office */
   $handler->display->display_options['fields']['field_consultant_office_er']['id'] = 'field_consultant_office_er';
   $handler->display->display_options['fields']['field_consultant_office_er']['table'] = 'field_data_field_consultant_office_er';
   $handler->display->display_options['fields']['field_consultant_office_er']['field'] = 'field_consultant_office_er';
@@ -6832,7 +6832,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_consultant_firm_er']['settings'] = array(
     'link' => 1,
   );
-  /* Field: Field: Consultant Office */
+  /* Field: Field: Latest Consultant Office */
   $handler->display->display_options['fields']['field_consultant_office_er']['id'] = 'field_consultant_office_er';
   $handler->display->display_options['fields']['field_consultant_office_er']['table'] = 'field_data_field_consultant_office_er';
   $handler->display->display_options['fields']['field_consultant_office_er']['field'] = 'field_consultant_office_er';
