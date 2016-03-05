@@ -105,6 +105,7 @@ features[field_instance][] = node-manager_firm-field_wuin
 features[field_instance][] = node-mandate-field_legendid
 features[field_instance][] = node-mandate-field_traits_tr
 features[field_instance][] = node-mandate-field_wuin
+features[field_instance][] = node-news-field_legendid
 features[field_instance][] = node-news-field_wuin
 features[field_instance][] = node-office-field_legendid
 features[field_instance][] = node-office-field_wuin
