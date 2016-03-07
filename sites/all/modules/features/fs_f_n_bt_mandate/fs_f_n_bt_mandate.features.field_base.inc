@@ -59,6 +59,32 @@ function fs_f_n_bt_mandate_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
+    // Exported field_base: 'field_currency_tr'
+  $field_bases['field_currency_tr'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_currency_tr',
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'currencies',
+          'parent' => 0,
+        ),
+      ),
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+  
   // Exported field_base: 'field_consultants_finalists_er'
   $field_bases['field_consultants_finalists_er'] = array(
     'active' => 1,
@@ -136,6 +162,32 @@ function fs_f_n_bt_mandate_field_default_field_bases() {
     'translatable' => 0,
     'type' => 'entityreference',
   );
+  
+    // Exported field_base: 'field_managers_terminated'
+  $field_bases['field_managers_terminated'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_managers_terminated',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(
+      'revision_id' => array(
+        0 => 'revision_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'field_collection',
+    'settings' => array(
+      'hide_blank_items' => 1,
+      'path' => '',
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'field_collection',
+  );
 
   // Exported field_base: 'field_currency_tr'
   $field_bases['field_currency_tr'] = array(
@@ -177,6 +229,7 @@ function fs_f_n_bt_mandate_field_default_field_bases() {
     'translatable' => 0,
     'type' => 'number_integer',
   );
+  
 
   // Exported field_base: 'field_managers_finalists_er'
   $field_bases['field_managers_finalists_er'] = array(
@@ -255,31 +308,25 @@ function fs_f_n_bt_mandate_field_default_field_bases() {
     'translatable' => 0,
     'type' => 'entityreference',
   );
-
-  // Exported field_base: 'field_managers_terminated'
-  $field_bases['field_managers_terminated'] = array(
+  
+    // Exported field_base: 'field_mandate_notes_ev'
+  $field_bases['field_mandate_notes_ev'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_managers_terminated',
+    'field_name' => 'field_mandate_notes_ev',
     'field_permissions' => array(
       'type' => 0,
     ),
-    'indexes' => array(
-      'revision_id' => array(
-        0 => 'revision_id',
-      ),
-    ),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'field_collection',
+    'module' => 'embeddedviewfield',
     'settings' => array(
-      'hide_blank_items' => 1,
-      'path' => '',
       'profile2_private' => FALSE,
     ),
     'translatable' => 0,
-    'type' => 'field_collection',
+    'type' => 'embeddedviewfield',
   );
 
   // Exported field_base: 'field_mandate_comments_fc'

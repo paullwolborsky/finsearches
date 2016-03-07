@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * fs_f_n_bt_mandate.features.field_instance.inc
@@ -1486,90 +1487,6 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-mandate-field_special_major_minor_1'
-  $field_instances['node-mandate-field_special_major_minor_1'] = array(
-    'bundle' => 'mandate',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 72,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'node',
-    'field_name' => 'field_special_major_minor_1',
-    'label' => 'Special Major Style',
-    'options_limit' => FALSE,
-    'options_limit_empty_behaviour' => 0,
-    'options_limit_fields' => array(),
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 9,
-    ),
-  );
-
-  // Exported field_instance: 'node-mandate-field_special_major_minor_2'
-  $field_instances['node-mandate-field_special_major_minor_2'] = array(
-    'bundle' => 'mandate',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 73,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'node',
-    'field_name' => 'field_special_major_minor_2',
-    'label' => 'Special Minor Style',
-    'options_limit' => FALSE,
-    'options_limit_empty_behaviour' => 0,
-    'options_limit_fields' => array(),
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 10,
-    ),
-  );
-
   // Exported field_instance: 'node-mandate-title_field'
   $field_instances['node-mandate-title_field'] = array(
     'bundle' => 'mandate',
@@ -1668,21 +1585,33 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
   t('Manager Firms Hired');
   t('Manager Firms On Watch');
   t('Manager Firms Terminated');
+  t('Mandate');
   t('Mandate Comments');
   t('Mandate Notes');
   t('Mandate Number');
   t('Mandate Status');
+  t('Migration Notes');
+  t('Name');
+  t('Non-user field for any important details involved in the Great Migration.');
+  t('Old Mandate ID');
+  t('Photo');
   t('Old Mandate ID');
   t('Plan');
   t('Plan Size');
   t('RFP Date');
   t('RFP Link');
   t('Serialized Comment');
+  t('Special Major Minor 1');
+  t('Special Major Minor 2');
   t('Special Major Style');
   t('Special Minor Style');
+  t('Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed');
+  t('Status');
+  t('Subject');
   t('This is the mandate ID from the old D5 site.');
   t('Title');
   t('Total Amount');
-
+  t('Website');
+  
   return $field_instances;
 }
