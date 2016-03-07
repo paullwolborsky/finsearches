@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file install file for fin_mod
  */
@@ -15,7 +16,29 @@ function fin_mod_update_7001(&$sandbox) {
     'team',
     'testimonial'
   );
-  foreach($node_types as $node_type) {
+  foreach ($node_types as $node_type) {
     node_type_delete($node_type);
+  }
+}
+
+/**
+ * Removes the extra Major/Minor fields
+ */
+function fin_mod_update_7002(&$sandbox) {
+  $fields = array(
+    'field_special_major_minor_1',
+    'field_special_major_minor_2',
+  );
+  $entities = entity_get_info();
+
+  foreach ($fields as $field) {
+    foreach ($entities as $entity => $entity_type) {
+      foreach ($entity_type['bundles'] as $bundle => $bundle_data) {
+        if ($instance = field_info_instance($entity, $field, $bundle)) {
+          field_delete_instance($instance);
+        }
+      }
+    }
+    field_delete_field($field);
   }
 }

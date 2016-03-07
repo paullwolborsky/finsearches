@@ -189,98 +189,7 @@ function fs_f_fc_bt_managers_hired_field_default_field_instances() {
       'weight' => 0,
     ),
   );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_managers_hired-field_special_major_minor_1'
-  $field_instances['field_collection_item-field_managers_hired-field_special_major_minor_1'] = array(
-    'bundle' => 'field_managers_hired',
-    'default_value' => array(
-      0 => array(
-        'tid' => 815,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 5,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_special_major_minor_1',
-    'label' => 'Special Major Minor 1',
-    'options_limit' => FALSE,
-    'options_limit_empty_behaviour' => 0,
-    'options_limit_fields' => array(),
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_managers_hired-field_special_major_minor_2'
-  $field_instances['field_collection_item-field_managers_hired-field_special_major_minor_2'] = array(
-    'bundle' => 'field_managers_hired',
-    'default_value' => array(
-      0 => array(
-        'tid' => 816,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 6,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_special_major_minor_2',
-    'label' => 'Special Major Minor 2',
-    'options_limit' => FALSE,
-    'options_limit_empty_behaviour' => 0,
-    'options_limit_fields' => array(),
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 5,
-    ),
-  );
+  
 
   // Translatables
   // Included for use with string extractors like potx.
@@ -288,6 +197,10 @@ function fs_f_fc_bt_managers_hired_field_default_field_instances() {
   t('Geographic');
   t('Major/Minor Style');
   t('Manager Firm');
+  t('Manager Firm Finalists');
+  t('Manager Firms Hired');
+  t('Manager Firms On Watch');
+  t('Manager Firms Terminated');
   t('Special Major Minor 1');
   t('Special Major Minor 2');
   t('Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed');
