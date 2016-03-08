@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * fs_f_pg_bt_manager_contact.features.field_instance.inc
@@ -10,8 +9,8 @@
  */
 function fs_f_pg_bt_manager_contact_field_default_field_instances() {
   $field_instances = array();
-  
-    // Exported field_instance: 'paragraphs_item-manager_contact-field_address'
+
+  // Exported field_instance: 'paragraphs_item-manager_contact-field_address'
   $field_instances['paragraphs_item-manager_contact-field_address'] = array(
     'bundle' => 'manager_contact',
     'default_value' => NULL,
@@ -430,77 +429,6 @@ function fs_f_pg_bt_manager_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'paragraphs_item-manager_contact-field_mandate_er'
-  $field_instances['paragraphs_item-manager_contact-field_mandate_er'] = array(
-    'bundle' => 'manager_contact',
-    'default_value' => NULL,
-    'default_value_function' => '',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 8,
-      ),
-      'job_type' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-      'paragraphs_editor_preview' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'paragraphs_item',
-    'field_name' => 'field_mandate_er',
-    'label' => 'Mandate',
-    'options_limit' => 0,
-    'options_limit_empty_behaviour' => 0,
-    'options_limit_fields' => array(
-      'field_address' => 0,
-      'field_manager_firm_er' => 0,
-    ),
-    'required' => 0,
-    'settings' => array(
-      'behaviors' => array(
-        'autofill' => array(
-          'status' => 0,
-        ),
-        'prepopulate' => array(
-          'status' => 0,
-        ),
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'references_dialog_add' => 0,
-        'references_dialog_edit' => 0,
-        'references_dialog_search' => 0,
-        'references_dialog_search_view' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 9,
-    ),
-  );
-
   // Exported field_instance: 'paragraphs_item-manager_contact-field_status_tr'
   $field_instances['paragraphs_item-manager_contact-field_status_tr'] = array(
     'bundle' => 'manager_contact',
@@ -624,25 +552,17 @@ function fs_f_pg_bt_manager_contact_field_default_field_instances() {
       'weight' => 8,
     ),
   );
-  
+
+  // Translatables
+  // Included for use with string extractors like potx.
   t('Address');
-  t('Website');
-  t('Status');
-    t('Mandate');
-  t('Mandate Comments');
-  t('Mandate Notes');
-  t('Mandate Number');
-  t('Mandate Status');
-    t('Manager Firm');
-  t('Manager Firm Finalists');
-  t('Manager Firms Hired');
-  t('Manager Firms On Watch');
-  t('Manager Firms Terminated');
-    t('Job Title');
-  t('Job Type');
-    t('Email');
+  t('Email');
   t('Employment Date');
-  
-  
+  t('Job Title');
+  t('Job Type');
+  t('Manager Firm');
+  t('Status');
+  t('Website');
+
   return $field_instances;
 }
