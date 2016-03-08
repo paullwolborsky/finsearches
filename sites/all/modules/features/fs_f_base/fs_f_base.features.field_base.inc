@@ -700,7 +700,7 @@ function fs_f_base_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_plan_size',
     'field_permissions' => array(
-      'type' => 2,
+      'type' => 0,
     ),
     'indexes' => array(),
     'locked' => 0,
