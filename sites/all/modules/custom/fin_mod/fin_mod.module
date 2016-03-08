@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file misc modifications to finsearch
  */
@@ -8,7 +9,31 @@
  */
 function fin_mod_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'mandate_node_form') {
-    global $user; 
+    global $user;
     $form['field_mandate_comments_fc']['und'][0]['field_author_er']['und']['#default_value'] = t($user->name . ' (' . $user->uid . ')');
   }
+}
+
+function fin_mod_theme_registry_alter(&$theme_registry) {
+  $theme_registry['hierarchical_select_select']['function'] = 'fin_mod_hierarchical_select_select';
+  $theme_registry['hierarchical_select_select']['includes'] = array();
+  unset($theme_registry['hierarchical_select_select']['file']);
+}
+
+function fin_mod_hierarchical_select_select($variables) {
+  $element = $variables['element'];
+  if(isset($element['#options']['label_1']) && $element['#options']['label_1'] == '') {
+    $element['#options']['label_1'] = '<none>';
+  }
+  element_set_attributes($element, array('id', 'name', 'size'));
+  _form_set_class($element, array('form-select'));
+
+  return '<select' . drupal_attributes($element['#attributes']) . '>' . _hierarchical_select_options($element) . '</select>';
+}
+
+function fin_mod_hierarchical_select_ajax_commands_alter(&$commands, &$context) {
+  $context['element']['hierarchical_select']['selects'][1]['#options']['label_1'] = '<none>';
+  $context['element']['#printed'] = FALSE;
+  $output = theme('status_messages') . drupal_render($context['element']);
+  $commands[0]['output'] = $output;
 }
