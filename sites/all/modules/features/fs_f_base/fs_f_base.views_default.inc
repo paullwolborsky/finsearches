@@ -4927,7 +4927,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['label'] = '';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'delete\'></i>';
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
@@ -5463,10 +5463,11 @@ function fs_f_base_views_default_views() {
     'name_1' => 'name_1',
     'name' => 'name',
     'field_account_size' => 'field_account_size',
-    'edit_node' => 'edit_node',
-    'delete_node' => 'edit_node',
+    'view_node' => 'view_node',
+    'edit_node' => 'view_node',
+    'delete_node' => 'view_node',
   );
-  $handler->display->display_options['style_options']['default'] = 'title_field';
+  $handler->display->display_options['style_options']['default'] = 'field_plan_er';
   $handler->display->display_options['style_options']['info'] = array(
     'title_field' => array(
       'sortable' => 1,
@@ -5574,9 +5575,22 @@ function fs_f_base_views_default_views() {
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
     ),
-    'edit_node' => array(
+    'view_node' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
+      'align' => 'views-align-center',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'edit_node' => array(
       'align' => 'views-align-center',
       'separator' => '',
       'empty_column' => 0,
@@ -5669,6 +5683,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = 'Mandate';
+  $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   /* Field: Field: Mandate Status */
@@ -5715,11 +5730,18 @@ function fs_f_base_views_default_views() {
     'thousand_separator' => ',',
     'prefix_suffix' => 0,
   );
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = '<i class="fa fa-eye" title=\'View\'></i>';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
@@ -5770,7 +5792,6 @@ function fs_f_base_views_default_views() {
     'field_address_locality' => 'field_address_locality',
     'field_address_administrative_area' => 'field_address_administrative_area',
     'title_field' => 'title_field',
-    'field_consultant_type_tr' => 'field_consultant_type_tr',
     'field_address_data' => 'field_address_data',
     'field_address_data_1' => 'field_address_data',
     'field_email' => 'field_email',
@@ -5855,21 +5876,6 @@ function fs_f_base_views_default_views() {
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
     ),
-    'field_consultant_type_tr' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
-    ),
     'field_address_data' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
@@ -5916,7 +5922,7 @@ function fs_f_base_views_default_views() {
       'aggr_par_column' => '',
     ),
     'edit_node' => array(
-      'sortable' => 1,
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => 'views-align-center',
       'separator' => '',
@@ -6821,8 +6827,9 @@ function fs_f_base_views_default_views() {
     'field_special_major_minor_2' => 'field_special_major_minor_2',
     'field_amount' => 'field_amount',
     'field_consultant_firm_er' => 'field_consultant_firm_er',
-    'edit_node' => 'edit_node',
-    'delete_node' => 'edit_node',
+    'view_node' => 'view_node',
+    'edit_node' => 'view_node',
+    'delete_node' => 'view_node',
   );
   $handler->display->display_options['style_options']['default'] = 'title_field_1';
   $handler->display->display_options['style_options']['info'] = array(
@@ -6948,9 +6955,22 @@ function fs_f_base_views_default_views() {
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
     ),
-    'edit_node' => array(
-      'sortable' => 1,
+    'view_node' => array(
+      'sortable' => 0,
       'default_sort_order' => 'asc',
+      'align' => 'views-align-center',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'edit_node' => array(
       'align' => 'views-align-center',
       'separator' => '',
       'empty_column' => 0,
@@ -7059,6 +7079,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = 'Mandate';
+  $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   /* Field: Field: Mandate Status */
@@ -7112,18 +7133,25 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_consultant_firm_er']['settings'] = array(
     'link' => 1,
   );
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = '<i class="fa fa-eye" title=\'View\'></i>';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
-  $handler->display->display_options['fields']['delete_node']['label'] = '';
+  $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
