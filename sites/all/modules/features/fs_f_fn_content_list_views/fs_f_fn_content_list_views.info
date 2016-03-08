@@ -1,5 +1,5 @@
-name = fs_f_fn_content_lists
-description = Settings for all content list views.
+name = fs_f_fn_content_list_views
+description = Configuration for parent content iist views.
 core = 7.x
 package = Custom
 dependencies[] = better_exposed_filters
