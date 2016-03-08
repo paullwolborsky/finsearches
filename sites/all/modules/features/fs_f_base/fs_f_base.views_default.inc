@@ -5432,7 +5432,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['filters']['field_consultant_office_er_target_id_selective']['ui_name'] = 'Consultant Office (field_consultant_office_er) (selective)';
   $handler->display->display_options['filters']['field_consultant_office_er_target_id_selective']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_consultant_office_er_target_id_selective']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['field_consultant_office_er_target_id_selective']['expose']['label'] = 'Filter by Office';
+  $handler->display->display_options['filters']['field_consultant_office_er_target_id_selective']['expose']['label'] = 'Office';
   $handler->display->display_options['filters']['field_consultant_office_er_target_id_selective']['expose']['identifier'] = 'field_consultant_office_er_target_id_selective';
   $handler->display->display_options['filters']['field_consultant_office_er_target_id_selective']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_consultant_office_er_target_id_selective']['expose']['remember_roles'] = array(
