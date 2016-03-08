@@ -23,12 +23,13 @@ $text: #666666;
 $border-blue: #689afd;
 
 /*Form Elements */
-$form-background-blue: #e7efff;
+$form-background-blue: #e7f5ff;
 $fieldset-background-blue: #bad0fd;
 $fieldset-label-background-blue: #689afd;
 $form-item-odd-blue: #e7efff;
 $form-item-even-blue: #d8e5ff;
 $form-item-active-blue: #cadcff;
+$dark-button: #ddd;
 
 /* Text */
 $link: #003399;
@@ -41,375 +42,390 @@ $shadow: #666666;
 
 /*** Addressfield country fix ***/
 .field-type-addressfield {
-  .addressfield-container-inline {
-  }
-  .country {
-    margin: 0;
-    display: block;
-  }
+    .addressfield-container-inline {
+    }
+    .country {
+        margin: 0;
+        display: block;
+    }
 }
 
 /*** Menu ***/
 #section-header .dexp-dropdown > ul > li {
-  border-left: 1px solid $fin-navy;
-  border-right: 1px solid $fin-navy;
+    border-left: 1px solid $fin-navy;
+    border-right: 1px solid $fin-navy;
 }
 
 /*** Sections ***/
 #section-top-bar {
-  padding: 5px;
-  .region-top-right {
-    .block {
-      float: none;
-      text-align: right;
+    padding: 5px;
+    .region-top-right {
+        .block {
+            float: none;
+            text-align: right;
+        }
+        .block-search-api-page {
+            div.form-type-textfield {
+                display: inline-block;
+                vertical-align: top;
+            }
+            input.btn-primary {
+                display: inline-block;
+                vertical-align: top;
+                margin: 15px 0 0 0;
+            }
+        }
     }
-    .block-search-api-page {
-      div.form-type-textfield {
-        display: inline-block;
-        vertical-align: top;
-      }
-      input.btn-primary {
-        display: inline-block;
-        vertical-align: top;
-        margin: 15px 0 0 0;
-      }
-    }
-  }
 }
 #section-header {
-  background: #1368a6; /* Old browsers */
-  background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
-}
-
-/*** Blocks ***/
-h3.block-title {
-  position: relative;
-  margin: 0;
-  background: #1368a6; /* Old browsers */
-  background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
-}
-span.fieldset-legend {
-  text-transform: uppercase;  
-}
-.collapsiblock a {
-  color: $background;
-  margin: 0 0 0 5px;
-}
-.block-views {
-  //margin: 30px 0 0 0;
-  margin:  0;
-  padding: 0;
-}
-#block-subscriptions-ui-0 {
-  background: #1368a6; /* Old browsers */
-  background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */  
-}
-#block-views-a9706a0c2bd6ed2ad2a9fb0317b34834 {
-  margin: 30px 0 0 0;
-}
-#block-user-online .content {
-  background: $form-background-blue;
-  padding: 10px;
-}
-.item-list ul {
-  text-align: left;
-}
-.field-name-plan-new-leads-mandates-bf .block-views {
-  margin: 5px 0 0 0;
-}.field-name-plan-ongoing-mandates-bf .block-views {
-  margin: 5px 0 0 0;
-}.field-name-plan-completed-mandates-bf .block-views {
-  margin: 5px 0 0 0;
-}.field-name-plan-closed-mandates-bf .block-views {
-  margin: 5px 0 0 0;
-}
-.block-facetapi {
-  h3.block-title {
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .content {
-    display: none;
-    &.open {
-      display: block;
-    }
-    .item-list {
-      margin: 0 0 4px 0
-    }
-  }
-  select {
-    max-width: 100%;
-  }
-}
-
-/*** Labels ***/
-h2.title {
-	margin: 30px 0 0 0;
-}
-
-/*** Content ***/
-body {
-  font-family: "Lato Regular Web" !important;
-}
-.content legend {
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-.field-name-field-photo .field-item {
-  text-align: center;
-}
-
-/*** Display Suite ***/
-h3.block-title {
-  font-size: 21px;
-  padding: 2px 0;
-  a {
-    background: none;
-  }
-}
-
-.ds-header {
-  padding: 0 0 30px 0;
-}
-
-#block-system-main {
-  h3.block-title {
-    padding: 4px 0 4px 15px;
-    font-size: 21px;
-  }
-}
-.ds-above-left, .ds-above-right, .group-mandates {
-  padding: 0 10px 10px 0;
-  margin-bottom: 15px;
-  .fieldset-wrapper,
-  .content {
-    padding: 0 0 10px 10px;
-  }
-  .field-group-fieldset,
-  .field-name-mandate-plan-info-bf{
-    background: $form-background-blue;
-    .field-label,
-    .field-content strong{
-      padding-right:0.25em;
-    }
-    legend {
-      padding: 5px 0;
-      background: #1368a6; /* Old browsers */
-      background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-      background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
-      span.fieldset-legend {
-        color: $background;
-        background: none;
-        padding: 4px 0 4px 20px;
-        font-size: 21px;
-      }
-    }
-  }
-}
-.ds-above-right {
-  padding: 0 0 10px 10px;
-}
-
-.ds-below-left, .ds-below-right {
-  padding: 0 10px 25px 0;
-  
-}
-.ds-below-right {
-  padding: 0 0 25px 10px;
-}
-
-#block-system-main {
-  div.field-type-ds {
-    margin: 0 0 25px 0;
-
-    &.field-name-modal-contact-link,
-    &.field-name-modal-mandate-link,
-    &.field-name-modal-plan-link{
-      margin-top: -23px;
-      margin-bottom:25px;
-    }
-  }
-}
-
-.ds-footer {
-  //Have to use padding because of floats
-  padding: 0 0 0 0;
-}
-
-ul.links {
-  float: right;
-  margin: 0;
-}
-
-/*** Views ***/
-/**  Recent content block **/
-.view-id-extra_views {
-  .views-accordion-header {
-    .field-content {
-      font-family: "Lato Regular Web" !important;
-      font-size: 14px;
-    }
-  }
-  .ui-accordion-content {
-    .recent-actions {
-      display: inline-block;
-      margin: 0 10px 0 0;
-    }
-  }
-  .item-list {
-    margin: 5px 0 4px 0;
-  }
-}
-.view-views-search {
-  .view-content {
-    display: none;
-  }
-  .pager {
-    display: none;
-  }
-}
-.views-submit-button {
-  button.my-views-filter-reset {
-    position: relative;
-    top: 11px;
-    left: 10px;
-  }
-}
-.view-comment-views {
-  th.views-field-edit-comment {
-    width: 70px;
-    padding: 0;
-  }
-  td.views-field-edit-comment {
-    padding: 0;
-    a {
-      margin: 0;
-    }
-    div.magical-modal-link {
-      display: inline-block;
-      margin: 0 5px 0 0;
-    }
-  }
-}
-.view-filters {
-  background-color: $fin-blue;
-  color: $background;
-  legend {
     background: #1368a6; /* Old browsers */
     background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
+        .btn {
+        background: $dark-button;
     }
-  .views-exposed-form .views-exposed-widget{
-    width: 31%;
-    padding-right: 20px;
-  }
+}
+
+/*** Blocks ***/
+h3.block-title {
+    position: relative;
+    margin: 0;
+    background: #1368a6; /* Old browsers */
+    background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
 }
 span.fieldset-legend {
-  //padding: 0 0 10px 0;
-  padding: 0;
-  //margin: 0 0 0 5px;
-  margin: 0;
-  a {
+    text-transform: uppercase;  
+}
+.collapsiblock a {
     color: $background;
+    margin: 0 0 0 5px;
+}
+.block-views {
+    //margin: 30px 0 0 0;
+    margin:  0;
+    padding: 0;
+}
+#block-subscriptions-ui-0 {
+    background: #1368a6; /* Old browsers */
+    background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */  
+        .btn {
+        background: $dark-button;
+    }
+}
+#block-views-a9706a0c2bd6ed2ad2a9fb0317b34834 {
+    margin: 30px 0 0 0;
+}
+#block-user-online .content {
+    background: $form-background-blue;
+    padding: 10px;
+}
+.item-list ul {
+    text-align: left;
+}
+.field-name-plan-new-leads-mandates-bf .block-views {
+    margin: 5px 0 0 0;
+}.field-name-plan-ongoing-mandates-bf .block-views {
+    margin: 5px 0 0 0;
+}.field-name-plan-completed-mandates-bf .block-views {
+    margin: 5px 0 0 0;
+}.field-name-plan-closed-mandates-bf .block-views {
+    margin: 5px 0 0 0;
+}
+.block-facetapi {
+    h3.block-title {
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .content {
+        display: none;
+        &.open {
+            display: block;
+        }
+        .item-list {
+            margin: 0 0 4px 0
+        }
+    }
+    select {
+        max-width: 100%;
+    }
+}
+
+/*** Labels ***/
+h2.title {
+    margin: 30px 0 0 0;
+}
+
+/*** Content ***/
+body {
+    font-family: "Lato Regular Web" !important;
+}
+.content legend {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.field-name-field-photo .field-item {
+    text-align: center;
+}
+
+/*** Display Suite ***/
+h3.block-title {
+    font-size: 21px;
+    padding: 2px 0;
+    a {
+        background: none;
+    }
+}
+
+.ds-header {
+    padding: 0 0 30px 0;
+}
+
+#block-system-main {
+    h3.block-title {
+        padding: 4px 0 4px 15px;
+        font-size: 21px;
+    }
+}
+.ds-above-left, .ds-above-right, .group-mandates {
+    padding: 0 10px 10px 0;
+    margin-bottom: 15px;
+    .fieldset-wrapper,
+    .content {
+        padding: 0 0 10px 10px;
+    }
+    .field-group-fieldset,
+    .field-name-mandate-plan-info-bf{
+        background: $form-background-blue;
+        .field-label,
+        .field-content strong{
+            padding-right:0.25em;
+        }
+        legend {
+            padding: 5px 0;
+            background: #1368a6; /* Old browsers */
+            background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
+            .btn {
+                background: $dark-button;
+            }
+            span.fieldset-legend {
+                color: $background;
+                background: none;
+                padding: 4px 0 4px 20px;
+                font-size: 21px;
+            }
+        }
+    }
+}
+.ds-above-right {
+    padding: 0 0 10px 10px;
+}
+
+.ds-below-left, .ds-below-right {
+    padding: 0 10px 25px 0;
+
+}
+.ds-below-right {
+    padding: 0 0 25px 10px;
+}
+
+#block-system-main {
+    div.field-type-ds {
+        margin: 0 0 25px 0;
+
+        &.field-name-modal-contact-link,
+        &.field-name-modal-mandate-link,
+        &.field-name-modal-plan-link{
+            margin-top: -23px;
+            margin-bottom:25px;
+        }
+    }
+}
+
+.ds-footer {
+    //Have to use padding because of floats
+    padding: 0 0 0 0;
+}
+
+ul.links {
+    float: right;
+    margin: 0;
+}
+
+/*** Views ***/
+/**  Recent content block **/
+.view-id-extra_views {
+    .views-accordion-header {
+        .field-content {
+            font-family: "Lato Regular Web" !important;
+            font-size: 14px;
+        }
+    }
+    .ui-accordion-content {
+        .recent-actions {
+            display: inline-block;
+            margin: 0 10px 0 0;
+        }
+    }
+    .item-list {
+        margin: 5px 0 4px 0;
+    }
+}
+.view-views-search {
+    .view-content {
+        display: none;
+    }
+    .pager {
+        display: none;
+    }
+}
+.views-submit-button {
+    button.my-views-filter-reset {
+        position: relative;
+        top: 11px;
+        left: 10px;
+    }
+}
+.view-comment-views {
+    th.views-field-edit-comment {
+        width: 70px;
+        padding: 0;
+    }
+    td.views-field-edit-comment {
+        padding: 0;
+        a {
+            margin: 0;
+        }
+        div.magical-modal-link {
+            display: inline-block;
+            margin: 0 5px 0 0;
+        }
+    }
+}
+.view-filters {
+    background-color: $fin-blue;
+    color: $background;
+    .btn {
+        background: $dark-button;
+    }
+    legend {
+        background: #1368a6; /* Old browsers */
+        background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
+        .btn {
+        background: $dark-button;
+    }
+    }
+    .views-exposed-form .views-exposed-widget{
+        width: 31%;
+        padding-right: 20px;
+    }
+}
+span.fieldset-legend {
+    //padding: 0 0 10px 0;
+    padding: 0;
+    //margin: 0 0 0 5px;
+    margin: 0;
+    a {
+        color: $background;
     }
 }
 fieldset.collapsible .fieldset-legend {
-  //margin: -5px 0 0 0;
+    //margin: -5px 0 0 0;
 }
 .views-exposed-form {
-  padding: 10px;
+    padding: 10px;
 }
 
 /*
  *Tasks table
  */
 #user-tasks-table {
-  table {
-    width: 100%;
-    thead {
-      th {
-        padding: 0 5px;
-      }
+    table {
+        width: 100%;
+        thead {
+            th {
+                padding: 0 5px;
+            }
+        }
+        td {
+            padding: 0 5px;
+        }
+        td:nth-child(5) {
+            min-width: 90px;
+        }
+        td:nth-child(6) {
+            //width: 250px;
+        }
+        td:nth-child(7) {
+            //width: 20px;
+            //padding: 0 2px;
+            text-align: center;
+        }
     }
-    td {
-      padding: 0 5px;
-    }
-    td:nth-child(5) {
-      min-width: 90px;
-    }
-    td:nth-child(6) {
-      //width: 250px;
-    }
-    td:nth-child(7) {
-      //width: 20px;
-      //padding: 0 2px;
-      text-align: center;
-    }
-  }
 }
 
 
 /*** Tables ***/
 table.views-table {
-  width: 100%;
+    width: 100%;
 }
 th {
-  border-bottom: none;
+    border-bottom: none;
 }
 th.views-field {
     padding: 0 5px;
 }
 td.views-field {
-  padding: 0 5px;
+    padding: 0 5px;
 }
 td.views-field-field-cover-image img {
-  max-width: none !important;
+    max-width: none !important;
 }
 tr.odd {
-  background-color: $form-item-odd-blue;
-  border: 1px solid $background;
+    background-color: $form-item-odd-blue;
+    border: none;
 }
 tr.even {
-  background-color: $form-item-even-blue;
-  border: 1px solid $background;
+    background-color: $form-item-even-blue;
+    border: none;
 }
 tr.odd td.active, tr.even td.active {
-  background-color: $form-item-active-blue;
+    background-color: $form-item-active-blue;
 }
 
 #privatemsg-list-form .privatemsg-list {
-  width: 100%;
+    width: 100%;
 }
 .privatemsg-list td {
-  padding: 0 5px;
+    padding: 0 5px;
 }
 .privatemsg-list th {
     padding: 0 5px;
 }
 .privatemsg-list tr.odd {
-  background-color: $form-item-odd-blue;
-  border: 1px solid $background;
+    background-color: $form-item-odd-blue;
+    border: 1px solid $background;
 }
 .privatemsg-list tr.even {
-  background-color: $form-item-even-blue;
-  border: 1px solid $background;
+    background-color: $form-item-even-blue;
+    border: 1px solid $background;
 }
 .privatemsg-list tr.odd td.active, tr.even td.active {
-  background-color: $form-item-active-blue;
+    background-color: $form-item-active-blue;
 }
 .privatemsg-list .form-checkbox {
     margin-top: -1px;
@@ -419,100 +435,100 @@ tr.odd td.active, tr.even td.active {
 }
 
 .view-content-lists, .view-reference-views {
-  th.views-field-edit-node, td.views-field-view-node {
-    width: 70px;
-  }
-  td.views-field-edit-node, td.views-field-view-node {
-    padding: 0;
-    a {
-      margin: 0 5px;
+    th.views-field-edit-node, td.views-field-view-node {
+        width: 70px;
     }
-  }
-  td.views-field-field-tasks {
-    .tasks {
-      display: block;
-      position: absolute;
-      left: 10%;
-      width: 80%;
-      border: 2px solid #000;
-      border-radius: 10px;
-      padding: 5px;
-      top: 60px;
-      background-color: #FFF;
-      z-index: 10;
-      &.closed {
-        display: none;
-      }
-      .close {
-        position: absolute;
-        top: 0;
-        right: 0;
-      }
+    td.views-field-edit-node, td.views-field-view-node {
+        padding: 0;
+        a {
+            margin: 0 5px;
+        }
     }
-  }
+    td.views-field-field-tasks {
+        .tasks {
+            display: block;
+            position: absolute;
+            left: 10%;
+            width: 80%;
+            border: 2px solid #000;
+            border-radius: 10px;
+            padding: 5px;
+            top: 60px;
+            background-color: #FFF;
+            z-index: 10;
+            &.closed {
+                display: none;
+            }
+            .close {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
 }
 
 /*** Accordion **/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-  background: $form-background-blue;
-  border: none;
+    background: $form-background-blue;
+    border: none;
 }
 .ui-accordion {
-  .ui-accordion-header .ui-accordion-header-icon {
-    left: 0.1em;
-  }
-  .ui-accordion-icons {
-    padding-left: 1.8em;
-  }
-  .ui-accordion-icons {
-    padding-left: 1.4em;
-  }
-  .ui-accordion-content {
-    padding: 0.5em 1em;
-  }
+    .ui-accordion-header .ui-accordion-header-icon {
+        left: 0.1em;
+    }
+    .ui-accordion-icons {
+        padding-left: 1.8em;
+    }
+    .ui-accordion-icons {
+        padding-left: 1.4em;
+    }
+    .ui-accordion-content {
+        padding: 0.5em 1em;
+    }
 }
 .ui-corner-all {
-  border-radius: 0;
+    border-radius: 0;
 }
 .ui-widget-content {
-  border: none;
+    border: none;
 }
 
 /*** Widgets ***/
 
 
 .view-views-search {
-  .view-content {
-    display: none;
-  }
-  .pager {
-    display: none;
-  }
+    .view-content {
+        display: none;
+    }
+    .pager {
+        display: none;
+    }
 }
 
 /*** Nodes ***/
 body.node-type-plan {
-  #block-system-main {
-    .ds-below-right.seventy {
-      width: 60%;
-      .view-display-id-eva_asset_allocation_chart {
-        height: 300px;
-        width: 100%;
-        .view-content {
-          height: 100%;
-          .pie-chart {
-            height: 100%;
-            #aa-chart {
-              height: 100%;
+    #block-system-main {
+        .ds-below-right.seventy {
+            width: 60%;
+            .view-display-id-eva_asset_allocation_chart {
+                height: 300px;
+                width: 100%;
+                .view-content {
+                    height: 100%;
+                    .pie-chart {
+                        height: 100%;
+                        #aa-chart {
+                            height: 100%;
+                        }
+                    }
+                }
             }
-          }
         }
-      }
+        .ds-below-left.thirty {
+            width: 40%;
+        }  
     }
-    .ds-below-left.thirty {
-      width: 40%;
-    }  
-  }
 }
 
 /*** Buttons ***/
@@ -522,164 +538,197 @@ input#edit-submit-1 {
 
 /*** Modal Links ***/
 .field-name-modal-contact-link, .field-name-modal-mandate-link {
-  margin: -30px 0 0 0;
+    margin: -30px 0 0 0;
 }
 
 /*** Modal styles
  *Duplicated from Admin theme (Fubik)
  */
 #modalContent {
-  //Contact form
-  #contact-node-form {
-    .ds-above-left, .ds-above-right {
-      width: 33.3%;
-    }
-    .text-summary-wrapper {
-      display: none;
-    }
-    .field-name-body {
-      .form-type-textarea {
-        label {
-          float: none;
+    //Contact form
+    #contact-node-form {
+        .ds-above-left, .ds-above-right {
+            width: 33.3%;
         }
-        .form-textarea-wrapper {
-          margin-left: 0;
-          margin-right: 0;
-          #cke_2_top {//Clean up the edit dialog box
-            #cke_72, #cke_75, #cke_85, #cke_93, #cke_98 {
-              display: none;
+        .text-summary-wrapper {
+            display: none;
+        }
+        .field-name-body {
+            .form-type-textarea {
+                label {
+                    float: none;
+                }
+                .form-textarea-wrapper {
+                    margin-left: 0;
+                    margin-right: 0;
+                    #cke_2_top {//Clean up the edit dialog box
+                                #cke_72, #cke_75, #cke_85, #cke_93, #cke_98 {
+                                    display: none;
+                                }
+                    }
+                }
             }
-          }
         }
-      }
+        tr {
+            .form-item {
+                white-space: normal;
+            }
+        }
+        .field-name-field-employment-date {
+            .date-combo {
+                .date-float {
+                    clear: both;
+                    float: none;
+                }
+                .start-date-wrapper, .end-date-wrapper {
+                    width: 150px;
+                    float: left;
+                    clear: none;
+                    input {
+                        width: 100px;
+                    }
+                }
+                .end-date-wrapper {
+                    width: 200px;
+                    label {
+                        width: 40px;
+                        clear: none;
+                    }
+
+                }
+            }
+        }
+        .field-name-field-address {
+            .addressfield-container-inline {
+                .form-item {
+                    float: none;
+                }
+            }
+        }
+        .form-type-link-field {
+            label {
+                float: none;
+            }
+        }
+        .field-name-field-consultant-job-type {
+            label {
+                float: none;
+            }
+        }
     }
-    tr {
-      .form-item {
-        white-space: normal;
-      }
+    //Mandate node form
+    form#mandate-node-form {
+        .ds-above-left, .ds-above-right, .ds-below-left, .ds-below-right {
+            width: 33.3%;
+        }
+        .ds-above-left, .ds-below-left, .ds-above-middle, .ds-below-middle {
+            padding: 0 20px 0 0; 
+        }
+        table {
+            width: 100%;
+        }
+        div.form-wrapper {
+            label {
+                float: none;
+                display: block;
+            }
+        }
+        div.field-widget-field-collection-embed {
+            .form-select {
+                display: block;
+            }
+            .chosen-container {
+                width: 100% !important;
+                display: block;
+            }
+        }
+        div.field-name-field-managers-hired {
+            .ds-2col-stacked-fluid {
+                .group-left, .group-right {
+                    float: none;
+                    display: block;
+                    width: 100%;
+                    .chosen-container {
+                        display: block !important;
+                    }
+                }
+            }
+            .description {
+                white-space: normal;
+            }
+        }
+        input.form-autocomplete {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+        }
     }
-    .field-name-field-employment-date {
-      .date-combo {
-        .date-float {
-          clear: both;
-          float: none;
+    //Consultant firm
+    #consultant-firm-node-form {
+        .ds-above-left {
+            width: 49%;
+            margin: 0 1% 0 0;
         }
-        .start-date-wrapper, .end-date-wrapper {
-          width: 150px;
-          float: left;
-          clear: none;
-          input {
-            width: 100px;
-          }
+        .ds-above-right {
+            width: 49%;
+            margin: 0 0 0 1%;
         }
-        .end-date-wrapper {
-          width: 200px;
-          label {
-            width: 40px;
-            clear: none;
-          }
-          
+        .field-name-field-website {
+            .form-item {
+                label {
+                    float: none;
+                }
+            }
         }
-      }
+        .vertical-tabs {
+            margin: 0;
+        }
     }
-    .field-name-field-address {
-      .addressfield-container-inline {
+    //Manager firm
+    #manager-firm-node-form {
+        .ds-above-left, .ds-above-middle, .ds-above-right {
+            width: 32%;
+            margin: 0 .5%;
+        }
         .form-item {
-          float: none;
+            margin: 0;
+            width: 95%;
+            input, select {
+                width: 98%;
+            }
         }
-      }
     }
-    .form-type-link-field {
-      label {
-        float: none;
-      }
-    }
-    .field-name-field-consultant-job-type {
-      label {
-        float: none;
-      }
-    }
-  }
-  //Mandate node form
-  form#mandate-node-form {
-    .ds-above-left, .ds-above-right, .ds-below-left, .ds-below-right {
-      width: 33.3%;
-    }
-    .ds-above-left, .ds-below-left, .ds-above-middle, .ds-below-middle {
-      padding: 0 20px 0 0; 
-    }
-    table {
-      width: 100%;
-    }
-    div.form-wrapper {
-      label {
-        float: none;
-        display: block;
-      }
-    }
-    div.field-widget-field-collection-embed {
-      .form-select {
-        display: block;
-      }
-      .chosen-container {
-        width: 100% !important;
-        display: block;
-      }
-    }
-    div.field-name-field-managers-hired {
-      .ds-2col-stacked-fluid {
-        .group-left, .group-right {
-          float: none;
-          display: block;
-          width: 100%;
-          .chosen-container {
-            display: block !important;
-          }
-        }
-      }
-      .description {
-        white-space: normal;
-      }
-    }
-    input.form-autocomplete {
-      width: 100%;
-      max-width: 100%;
-      display: block;
-    }
-  }
-  //Consultant firm
-  #consultant-firm-node-form {
-    .ds-above-left {
-      width: 49%;
-      margin: 0 1% 0 0;
-    }
-    .ds-above-right {
-      width: 49%;
-      margin: 0 0 0 1%;
-    }
-    .field-name-field-website {
-      .form-item {
-        label {
-          float: none;
-        }
-      }
-    }
-    .vertical-tabs {
-      margin: 0;
-    }
-  }
-  //Manager firm
-  #manager-firm-node-form {
-    .ds-above-left, .ds-above-middle, .ds-above-right {
-      width: 32%;
-      margin: 0 .5%;
-    }
-    .form-item {
-      margin: 0;
-      width: 95%;
-      input, select {
-        width: 98%;
-      }
-    }
-  }
+}
+
+.breadcrumb {
+    background-color: #fff; }
+
+.view-filters label {
+    text-align: center;
+    width: 100%;
+}
+
+.view-filters .views-table .collapsiblock a {
+    background: none;
+    color: #1368a6;
+    display: inline; }
+
+.page-node .collapsiblock .views-table a:not(.contextual-links-trigger) {
+    background: none;
+    color: #1368a6;
+    display: inline; }
+
+.view-mandate-managers-hired h2 {
+    padding: 4px 0 4px 15px;
+    font-size: 21px;
+    background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 400; }
+
+.view-filters #edit-field-date-value-wrapper label {
+    margin-left: -20px;
+}
+.page-node ul.links {
+    margin-bottom: 20px;
 }
