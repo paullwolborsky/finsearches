@@ -7,10 +7,14 @@
 /**
  *Override styles for modal windows
  */
-/* line 6, ../../sass/_modals.scss */
+/* line 5, ../../sass/_modals.scss */
 div#modalContent.modal-default .ctools-modal-content {
   width: auto !important;
   height: 100% !important;
+}
+/* line 12, ../../sass/_modals.scss */
+div#modalContent.modal-default .ctools-modal-content form.node-contact-form .field-name-body ul.tips {
+  display: none;
 }
 
 /*** Color Variables ***/
@@ -66,7 +70,7 @@ div#modalContent.modal-default .ctools-modal-content {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
   /* IE6-9 */
 }
 
@@ -83,7 +87,7 @@ h3.block-title {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
   /* IE6-9 */
 }
 
@@ -94,7 +98,7 @@ span.fieldset-legend {
 
 /* line 100, ../../sass/custom.scss */
 .collapsiblock a {
-  color: #ffffff;
+  color: white;
   margin: 0 0 0 5px;
 }
 
@@ -114,7 +118,7 @@ span.fieldset-legend {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
   /* IE6-9 */
 }
 
@@ -125,7 +129,7 @@ span.fieldset-legend {
 
 /* line 119, ../../sass/custom.scss */
 #block-user-online .content {
-  background: #cddeff;
+  background: #e7efff;
   padding: 10px;
 }
 
@@ -227,21 +231,21 @@ h3.block-title a {
   padding: 0 10px 10px 0;
   margin-bottom: 15px;
 }
-/* line 194, ../../sass/custom.scss */
+/* line 195, ../../sass/custom.scss */
 .ds-above-left .fieldset-wrapper,
 .ds-above-left .content, .ds-above-right .fieldset-wrapper,
 .ds-above-right .content, .group-mandates .fieldset-wrapper,
 .group-mandates .content {
   padding: 0 0 10px 10px;
 }
-/* line 198, ../../sass/custom.scss */
+/* line 199, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset,
 .ds-above-left .field-name-mandate-plan-info-bf, .ds-above-right .field-group-fieldset,
 .ds-above-right .field-name-mandate-plan-info-bf, .group-mandates .field-group-fieldset,
 .group-mandates .field-name-mandate-plan-info-bf {
-  background: #cddeff;
+  background: #e7efff;
 }
-/* line 201, ../../sass/custom.scss */
+/* line 202, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset .field-label,
 .ds-above-left .field-group-fieldset .field-content strong,
 .ds-above-left .field-name-mandate-plan-info-bf .field-label,
@@ -268,7 +272,7 @@ h3.block-title a {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
   /* IE6-9 */
 }
 /* line 212, ../../sass/custom.scss */
@@ -276,7 +280,7 @@ h3.block-title a {
 .ds-above-left .field-name-mandate-plan-info-bf legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend,
 .ds-above-right .field-name-mandate-plan-info-bf legend span.fieldset-legend, .group-mandates .field-group-fieldset legend span.fieldset-legend,
 .group-mandates .field-name-mandate-plan-info-bf legend span.fieldset-legend {
-  color: #ffffff;
+  color: white;
   background: none;
   padding: 4px 0 4px 20px;
   font-size: 21px;
@@ -301,7 +305,7 @@ h3.block-title a {
 #block-system-main div.field-type-ds {
   margin: 0 0 25px 0;
 }
-/* line 237, ../../sass/custom.scss */
+/* line 239, ../../sass/custom.scss */
 #block-system-main div.field-type-ds.field-name-modal-contact-link, #block-system-main div.field-type-ds.field-name-modal-mandate-link, #block-system-main div.field-type-ds.field-name-modal-plan-link {
   margin-top: -23px;
   margin-bottom: 25px;
@@ -373,7 +377,7 @@ ul.links {
 /* line 306, ../../sass/custom.scss */
 .view-filters {
   background-color: #1368a6;
-  color: #ffffff;
+  color: white;
 }
 /* line 309, ../../sass/custom.scss */
 .view-filters legend {
@@ -385,7 +389,7 @@ ul.links {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 );
   /* IE6-9 */
 }
 /* line 316, ../../sass/custom.scss */
@@ -401,7 +405,7 @@ span.fieldset-legend {
 }
 /* line 326, ../../sass/custom.scss */
 span.fieldset-legend a {
-  color: #ffffff;
+  color: white;
 }
 
 /* line 333, ../../sass/custom.scss */
@@ -461,19 +465,19 @@ td.views-field-field-cover-image img {
 
 /* line 382, ../../sass/custom.scss */
 tr.odd {
-  background-color: #aac6ff;
-  border: 1px solid #ffffff;
+  background-color: #e7efff;
+  border: 1px solid white;
 }
 
 /* line 386, ../../sass/custom.scss */
 tr.even {
-  background-color: #98bafe;
-  border: 1px solid #ffffff;
+  background-color: #d8e5ff;
+  border: 1px solid white;
 }
 
 /* line 390, ../../sass/custom.scss */
 tr.odd td.active, tr.even td.active {
-  background-color: #87affe;
+  background-color: #cadcff;
 }
 
 /* line 394, ../../sass/custom.scss */
@@ -493,19 +497,19 @@ tr.odd td.active, tr.even td.active {
 
 /* line 403, ../../sass/custom.scss */
 .privatemsg-list tr.odd {
-  background-color: #aac6ff;
-  border: 1px solid #ffffff;
+  background-color: #e7efff;
+  border: 1px solid white;
 }
 
 /* line 407, ../../sass/custom.scss */
 .privatemsg-list tr.even {
-  background-color: #98bafe;
-  border: 1px solid #ffffff;
+  background-color: #d8e5ff;
+  border: 1px solid white;
 }
 
 /* line 411, ../../sass/custom.scss */
 .privatemsg-list tr.odd td.active, tr.even td.active {
-  background-color: #87affe;
+  background-color: #cadcff;
 }
 
 /* line 414, ../../sass/custom.scss */
@@ -557,7 +561,7 @@ tr.odd td.active, tr.even td.active {
 /*** Accordion **/
 /* line 456, ../../sass/custom.scss */
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-  background: #cddeff;
+  background: #e7efff;
   border: none;
 }
 
@@ -774,5 +778,3 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 #modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
   width: 98%;
 }
-
-/*# sourceMappingURL=custom.css.map */

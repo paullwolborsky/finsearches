@@ -2,9 +2,17 @@
  *Override styles for modal windows
  */
 div#modalContent.modal-default {
-  //box-sizing: content-box;
   .ctools-modal-content {
     width: auto !important;
     height: 100% !important;
+    
+    //Plan contacts from plan view page
+    form.node-contact-form {
+      .field-name-body {
+        ul.tips {
+          display: none;
+        }
+      }
+    }
   }
 }
