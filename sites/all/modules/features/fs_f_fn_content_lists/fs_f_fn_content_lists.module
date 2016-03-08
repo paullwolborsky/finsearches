@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the fs_f_fn_content_lists feature.
+ */
+
+include_once 'fs_f_fn_content_lists.features.inc';
