@@ -16,3 +16,167 @@ div#modalContent.modal-default {
     }
   }
 }
+
+/*** Modal Links ***/
+.field-name-modal-contact-link, .field-name-modal-mandate-link {
+  margin: -30px 0 0 0;
+}
+
+/*** Modal styles
+ *Duplicated from Admin theme (Fubik)
+ */
+#modalContent {
+  //Contact form
+  #contact-node-form {
+    .ds-above-left, .ds-above-right {
+      width: 33.3%;
+    }
+    .text-summary-wrapper {
+      display: none;
+    }
+    .field-name-body {
+      .form-type-textarea {
+        label {
+          float: none;
+        }
+        .form-textarea-wrapper {
+          margin-left: 0;
+          margin-right: 0;
+          #cke_2_top {//Clean up the edit dialog box
+            #cke_72, #cke_75, #cke_85, #cke_93, #cke_98 {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    tr {
+      .form-item {
+        white-space: normal;
+      }
+    }
+    .field-name-field-employment-date {
+      .date-combo {
+        .date-float {
+          clear: both;
+          float: none;
+        }
+        .start-date-wrapper, .end-date-wrapper {
+          width: 150px;
+          float: left;
+          clear: none;
+          input {
+            width: 100px;
+          }
+        }
+        .end-date-wrapper {
+          width: 200px;
+          label {
+            width: 40px;
+            clear: none;
+          }
+          
+        }
+      }
+    }
+    .field-name-field-address {
+      .addressfield-container-inline {
+        .form-item {
+          float: none;
+        }
+      }
+    }
+    .form-type-link-field {
+      label {
+        float: none;
+      }
+    }
+    .field-name-field-consultant-job-type {
+      label {
+        float: none;
+      }
+    }
+  }
+  //Mandate node form
+  form#mandate-node-form {
+    .ds-above-left, .ds-above-right, .ds-below-left, .ds-below-right {
+      width: 33.3%;
+    }
+    .ds-above-left, .ds-below-left, .ds-above-middle, .ds-below-middle {
+      padding: 0 20px 0 0; 
+    }
+    table {
+      width: 100%;
+    }
+    div.form-wrapper {
+      label {
+        float: none;
+        display: block;
+      }
+    }
+    div.field-widget-field-collection-embed {
+      .form-select {
+        display: block;
+      }
+      .chosen-container {
+        width: 100% !important;
+        display: block;
+      }
+    }
+    div.field-name-field-managers-hired {
+      .ds-2col-stacked-fluid {
+        .group-left, .group-right {
+          float: none;
+          display: block;
+          width: 100%;
+          .chosen-container {
+            display: block !important;
+          }
+        }
+      }
+      .description {
+        white-space: normal;
+      }
+    }
+    input.form-autocomplete {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+    }
+  }
+  //Consultant firm
+  #consultant-firm-node-form {
+    .ds-above-left {
+      width: 49%;
+      margin: 0 1% 0 0;
+    }
+    .ds-above-right {
+      width: 49%;
+      margin: 0 0 0 1%;
+    }
+    .field-name-field-website {
+      .form-item {
+        label {
+          float: none;
+        }
+      }
+    }
+    .vertical-tabs {
+      margin: 0;
+    }
+  }
+  //Manager firm
+  #manager-firm-node-form {
+    .ds-above-left, .ds-above-middle, .ds-above-right {
+      width: 32%;
+      margin: 0 .5%;
+    }
+    .form-item {
+      margin: 0;
+      width: 95%;
+      input, select {
+        width: 98%;
+      }
+    }
+  }
+}

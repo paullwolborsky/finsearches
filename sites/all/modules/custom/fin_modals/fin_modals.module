@@ -49,22 +49,39 @@ function fin_modals_theme() {
   );
   return $theme;
 }
+
+function _fin_modals_theme($theme = 'fubik') {
+  return $theme;
+}
 /**
  * Implements hook_menu().
  */
 function fin_modals_menu() {
   global $user;
   $items = array();
+  //BACK END links
   $items['modal/%ctools_js/add'] = array(
     'page callback' => 'fin_modals_node_add_modal_callback',
     'page arguments' => array(1),
     'access arguments' => array('access content'),
+    'theme callback' => '_fin_modals_theme',
+    'theme arguments' => array('fubik'),
   );
+  //FRONT END links
+  //Different link needed for different themes
+  $items['modal-front/%ctools_js/add'] = array(
+    'page callback' => 'fin_modals_node_add_modal_callback',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'theme callback' => '_fin_modals_theme',
+    'theme arguments' => array('corposs'),
+  );  
   $items['modal/%/comment/%ctools_js'] = array(
     'page callback' => 'fin_modals_new_callback',
     'page arguments' => array(1,3),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
+    'theme callback' => '_fin_modals_theme',
   );
 
   $items['modal/%/tasks/%ctools_js'] = array(
@@ -72,6 +89,7 @@ function fin_modals_menu() {
     'page arguments' => array(1,3),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
+    'theme callback' => '_fin_modals_theme',
   );
 
   $items['modal/%/comment/%ctools_js/%'] = array(
@@ -79,6 +97,7 @@ function fin_modals_menu() {
     'page arguments' => array(1,3,4),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
+    'theme callback' => '_fin_modals_theme',
   );
   $items['resources/shortcuts']  = array(
     'type' =>  MENU_NORMAL_ITEM,

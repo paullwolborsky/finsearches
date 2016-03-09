@@ -99,10 +99,10 @@ print $layout_attributes; ?> class="<?php print $classes; ?> clearfix">
       </<?php print $footer_wrapper; ?>>
       </div>
     </div>
-    <div class='column-side'>
-      <div class='column-wrapper clearfix'>
+    <div class='node-action-block'>
+      <div class='action-wrapper clearfix'>
         <?php print render($form['actions']); ?>
-        <?php print drupal_render($sidebar); ?>
+        <?php //print drupal_render($sidebar); ?>
       </div>
     </div>
   </div>
