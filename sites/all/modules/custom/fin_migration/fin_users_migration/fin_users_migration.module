@@ -363,3 +363,18 @@ function _fin_users_migration_get_new_roles() {
   );
   return $roles;
 }
+
+/**
+ * Utility function of duplication check.
+ */
+function fin_user_entity_existed($hash) {
+  $sql = "select * from field_data_field_wuin where field_wuin_value = :hash";
+  $result = db_query($sql, array(':hash' => $hash));
+  foreach ($result as $row) {
+    $entity =  entity_load_single($row->entity_type, intval($row->entity_id));
+    if ($entity) {
+      return $entity;
+    }
+  }
+  return FALSE;
+}
