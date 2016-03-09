@@ -34,11 +34,6 @@
   Drupal.behaviors.fubik = {
     attach: function(context, settings) {
 
-      $('#win-size').html($(window).width());
-      $(window).resize(function() {
-        $('#win-size').html($(window).width());
-      });
-
       //Get fancy with asset allocation
       
 

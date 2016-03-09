@@ -67,6 +67,13 @@
         window.location = jQuery(this).attr('href');
         return false;
       });
+      
+      //Trigger focus and blur on plan contact modals.
+      //I cannot believe this actually works.
+      if ($('#modalContent').length) {
+        $('#edit-field-job-history-und-0-field-plan-er-und-0-target-id').focus();
+        $('#edit-title-field-und-0-value').focus();
+      }
     }
   };
 })(jQuery, Drupal);

@@ -6,6 +6,7 @@ Drupal.behaviors.rubik = {};
 Drupal.behaviors.rubik.attach = function(context, settings) {
   // If there are both main column and side column buttons, only show the main
   // column buttons if the user scrolls past the ones to the side.
+  /*
   $('div.form:has(div.column-main div.form-actions):not(.rubik-processed)', context).each(function() {
     var form = $(this);
     var offset = $('div.column-side div.form-actions', form).height() + $('div.column-side div.form-actions', form).offset().top;
@@ -19,7 +20,7 @@ Drupal.behaviors.rubik.attach = function(context, settings) {
     });
     form.addClass('rubik-processed');
   });
-
+  */
   $('a.toggler:not(.rubik-processed)', context).each(function() {
     var id = $(this).attr('href').split('#')[1];
     // Target exists, add click handler.
@@ -50,6 +51,7 @@ Drupal.behaviors.rubik.attach = function(context, settings) {
     $(this).parents('.secondary-tabs').toggleClass('focused');
   });
 
+  /*
   // Sticky sidebar
   // Disable this functionality if the user chooses.
   var disableSticky = settings.rubik.disable_sticky;
@@ -71,12 +73,12 @@ Drupal.behaviors.rubik.attach = function(context, settings) {
           }
         });
     }
-
     // Move fields to sidebar.
     $('.rubik_sidebar_field', context).once('rubik', function() {
       $('.column-side .column-wrapper').append($(this));
     });
   }
+  */
   
 };
 })(jQuery);

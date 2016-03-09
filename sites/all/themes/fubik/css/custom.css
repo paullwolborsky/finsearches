@@ -5,16 +5,21 @@
  * When you turn on CSS aggregation at admin/config/development/performance, all
  * of these @include files will be combined into a single file.
  */
+/* line 5, ../sass/_fubik.scss */
 table.rules-overview-table a.action, .action-links.action-links-field-collection-add a, a.action-add, a.action-analyze, a.action-clone, a.action-configure, a.action-delete, a.action-devel, a.action-edit, a.action-export, a.action-revert, a.action-table, a.action-view, a.action-top, td.views-field-delete-node a, td.views-field-cancel-node a, td.views-field-delete a, td.views-field-devel-node a, td.views-field-edit-node a, td.views-field-edit-term a, td.views-field-edit a, td.views-field-view-node a, td.views-field-view-user a, td.views-field-devel-user a, td.views-field-view a, ul.links li.revert a, ul.links li.configure a, ul.links li.clone a, ul.links li.export a, ul.links li.enable a, ul.links li.disable a, ul.links li.flags_edit a, ul.links li.flags_delete a, ul.links li.flags_export a, ul.links li.edit a, ul.links li.delete a, ul.links li.devel a, ul.links li.view a, .field-collection-view-links li.edit a, .field-collection-view-links li.delete a, .author-image-edit, .coauthor-image-edit {
-  padding-left: 10px; }
+  padding-left: 10px;
+}
 
+/* line 13, ../sass/_fubik.scss */
 body.page-admin-config-workflow-rules-links ul.rules-operations-add.action-links li a, body.page-admin-config-workflow-rules-reaction-manage ul.rules-operations-add.action-links li a, .field-name-field-aa-domestic-fixed-income, .field-name-field-aa-domestic-equities, .field-name-field-aa-alternative-strategies, .field-name-field-aa-hedge-fund-strategies, .field-name-field-aa-international-equities, .field-name-field-aa-intl-fixed-income, .field-name-field-aa-mutual-fund, .field-name-field-aa-private-equity, .field-name-field-aa-real-estate, .field-name-field-aa-real-assets, .field-name-field-aa-cash-other, .field-name-field-aa-balanced, .field-name-field-aa-global-equities, .field-name-field-aa-absolute-return, .field-name-field-aa-credit-opportunities, .field-name-field-aa-global-fixed-income, .field-name-field-aa-real-return, .field-name-field-aa-multi-asset, .field-name-field-aa-emerging-markets-equity, .field-name-field-aa-risk-parity, .field-name-field-aa-canadian-equities {
   display: block;
   margin-top: 2px;
   margin-bottom: 2px;
   padding-bottom: 4px;
-  padding-top: 5px; }
+  padding-top: 5px;
+}
 
+/* line 23, ../sass/_fubik.scss */
 body.page-admin-config-workflow-rules-links ul.rules-operations.action-links li a, body.page-admin-config-workflow-rules-reaction-manage ul.rules-operations.action-links li a {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -22,98 +27,162 @@ body.page-admin-config-workflow-rules-links ul.rules-operations.action-links li 
   display: inline;
   text-shadow: 0 0 0 transparent;
   color: #008eb1;
-  font-size: 13px; }
+  font-size: 13px;
+}
 
+/* line 37, ../sass/_fubik.scss */
 div.teaser-checkbox .form-item, .form-item .form-item, .filter-wrapper .form-item {
   border: 0 none;
   margin: 0;
-  padding: 5px 0; }
+  padding: 5px 0;
+}
 
+/* line 45, ../sass/_fubik.scss */
 table td, table th {
   border: 0 none;
   padding: 8px 10px;
-  vertical-align: middle; }
+  vertical-align: middle;
+}
 
+/* line 53, ../sass/_fubik.scss */
 h1.path-admin-dashboard span.icon, h1.path-admin-workbench span.icon, h1.path-admin-config-workbench span.icon, .path-admin-config-development-strongarm span.icon, .path-admin-config-user-interface-itoggle span.icon, .path-admin-config-workflow-subs span.icon, .path-admin-content-subscription span.icon, .path-admin-structure-subscriptions span.icon, .path-admin-structure-messages span.icon, .path-admin-config-content-fivestar span.icon, .path-admin-structure-mark span.icon, .path-admin-structure-flags span.icon, .path-admin-structure-file-types span.icon, .path-admin-structure-block-types span.icon, .page-admin-content-webform span.icon, .path-admin-config-content-webform span.icon, .page-admin-content-blocks span.icon, .page .page-admin-modules span.icon, .path-dashboard span.icon, .path-admin-advanced_help- span.icon, .path-admin-content-media span.icon, .path-admin-config-media-browser span.icon, .path-admin-config-workflow-rules span.icon, .path-admin-structure-profiles span.icon, .path-admin-structure-panels span.icon, .path-admin-structure-mini-panels span.icon, .path-admin-structure-views span.icon, .path-admin-structure-views- span.icon, .path-admin-structure-features span.icon, .path-admin-structure-field-collections span.icon, .path-admin-structure-context span.icon, .path-admin-config-administration-admin-menu span.icon, .path-admin-config-administration-admin_menu span.icon, .path-admin-config-user-interface-modulefilter span.icon {
   background-color: transparent;
   background-image: url(../images/page-icons.png);
   background-repeat: no-repeat;
   display: block;
   height: 30px;
-  width: 30px; }
+  width: 30px;
+}
 
+/* line 63, ../sass/_fubik.scss */
 body {
-  min-width: 1000px; }
-  body.with-local-tasks #page-title div.contextual-links-wrapper {
-    top: 62px; }
-  body.page-admin-config-workflow-rules-links ul.rules-operations-add.action-links li {
-    margin-right: 10px; }
-  body.page-admin-config-workflow-rules-reaction-manage ul.rules-operations-add.action-links li {
-    margin-right: 10px; }
+  min-width: 1000px;
+}
+/* line 65, ../sass/_fubik.scss */
+body.with-local-tasks #page-title div.contextual-links-wrapper {
+  top: 62px;
+}
+/* line 69, ../sass/_fubik.scss */
+body.page-admin-config-workflow-rules-links ul.rules-operations-add.action-links li {
+  margin-right: 10px;
+}
+/* line 80, ../sass/_fubik.scss */
+body.page-admin-config-workflow-rules-reaction-manage ul.rules-operations-add.action-links li {
+  margin-right: 10px;
+}
 
+/* line 91, ../sass/_fubik.scss */
 #main-content {
   width: 96%;
   position: relative;
   float: left;
-  margin: 0 2%; }
+  margin: 0 2%;
+}
 
+/* line 97, ../sass/_fubik.scss */
 .sidebar {
   width: 200px;
   float: left;
-  position: relative; }
+  position: relative;
+}
 
+/* line 102, ../sass/_fubik.scss */
 .first_sidebar {
   margin-left: -100%;
-  right: 200px; }
+  right: 200px;
+}
 
+/* line 106, ../sass/_fubik.scss */
 .second_sidebar {
-  margin-right: -200px; }
+  margin-right: -200px;
+}
 
+/* line 109, ../sass/_fubik.scss */
 #footer {
-  margin: 10px 0 20px; }
+  margin: 10px 0 20px;
+}
 
+/* line 113, ../sass/_fubik.scss */
 div.view-header {
-  padding: 2px 5px 4px; }
+  padding: 2px 5px 4px;
+}
+/* line 117, ../sass/_fubik.scss */
 div.views-displays .views-ui-display-tab-bucket.pager a span {
-  color: #59a; }
+  color: #59a;
+}
+/* line 120, ../sass/_fubik.scss */
 div.views-displays .pager a {
-  color: #59a; }
+  color: #59a;
+}
+/* line 124, ../sass/_fubik.scss */
 div.contextual-links-region {
-  position: relative; }
+  position: relative;
+}
+/* line 127, ../sass/_fubik.scss */
 div.messages {
   background-repeat: no-repeat;
   background-position: 8px 8px;
-  padding: 10px 10px 10px 44px; }
-  div.messages.status {
-    background-image: url(/misc/message-24-ok.png); }
-  div.messages.warning {
-    background-image: url(/misc/message-24-warning.png); }
-  div.messages.error {
-    background-image: url(/misc/message-24-error.png); }
+  padding: 10px 10px 10px 44px;
+}
+/* line 131, ../sass/_fubik.scss */
+div.messages.status {
+  background-image: url(/misc/message-24-ok.png);
+}
+/* line 134, ../sass/_fubik.scss */
+div.messages.warning {
+  background-image: url(/misc/message-24-warning.png);
+}
+/* line 137, ../sass/_fubik.scss */
+div.messages.error {
+  background-image: url(/misc/message-24-error.png);
+}
+/* line 144, ../sass/_fubik.scss */
 div.view div.view-header {
-  padding: 5px 10px 10px; }
+  padding: 5px 10px 10px;
+}
 
+/* line 152, ../sass/_fubik.scss */
 table th {
-  text-transform: uppercase; }
+  text-transform: uppercase;
+}
+/* line 157, ../sass/_fubik.scss */
 table tr.odd td.active {
-  background-color: #e8e8e8; }
+  background-color: #e8e8e8;
+}
+/* line 160, ../sass/_fubik.scss */
 table tr.even td.active {
-  background-color: #f2f2f2; }
+  background-color: #f2f2f2;
+}
+/* line 166, ../sass/_fubik.scss */
 table.rules-overview-table a.action.delete {
-  background-position: 0 -100px; }
+  background-position: 0 -100px;
+}
+/* line 169, ../sass/_fubik.scss */
 table.rules-overview-table a.action.disable {
-  background-position: 0 -354px; }
+  background-position: 0 -354px;
+}
+/* line 172, ../sass/_fubik.scss */
 table.rules-overview-table a.action.enable {
-  background-position: 0 -314px; }
+  background-position: 0 -314px;
+}
+/* line 175, ../sass/_fubik.scss */
 table.rules-overview-table a.action.export {
-  background-position: 0 -164px; }
+  background-position: 0 -164px;
+}
+/* line 178, ../sass/_fubik.scss */
 table.rules-overview-table a.action.revert {
-  background-position: 0 -198px; }
+  background-position: 0 -198px;
+}
+/* line 181, ../sass/_fubik.scss */
 table.rules-overview-table a.action.clone {
-  background-position: 0 -234px; }
+  background-position: 0 -234px;
+}
+/* line 184, ../sass/_fubik.scss */
 table.rules-overview-table a.action.translate {
-  background-position: 0 -273px; }
+  background-position: 0 -273px;
+}
 
+/* line 190, ../sass/_fubik.scss */
 .action-links.action-links-field-collection-add a {
   margin-right: 10px;
   background-position: 0 -67px;
@@ -125,78 +194,140 @@ table.rules-overview-table a.action.translate {
   padding: 0;
   margin: 0;
   color: #008eb1;
-  padding: 1px 0 1px 20px; }
-  .action-links.action-links-field-collection-add a:hover {
-    background-color: transparent; }
+  padding: 1px 0 1px 20px;
+}
+/* line 205, ../sass/_fubik.scss */
+.action-links.action-links-field-collection-add a:hover {
+  background-color: transparent;
+}
+/* line 209, ../sass/_fubik.scss */
 .action-links a:hover {
-  background-color: #6ac; }
+  background-color: #6ac;
+}
 
+/* line 214, ../sass/_fubik.scss */
 a.action-add {
   margin-right: 10px;
-  background-position: 0 -67px; }
+  background-position: 0 -67px;
+}
+/* line 219, ../sass/_fubik.scss */
 a.action-analyze {
-  background-position: 0 -428px; }
+  background-position: 0 -428px;
+}
+/* line 223, ../sass/_fubik.scss */
 a.action-clone {
-  background-position: 0 -234px; }
+  background-position: 0 -234px;
+}
+/* line 227, ../sass/_fubik.scss */
 a.action-configure {
-  background-position: 0 -474px; }
+  background-position: 0 -474px;
+}
+/* line 231, ../sass/_fubik.scss */
 a.action-delete {
-  background-position: 0 -100px; }
+  background-position: 0 -100px;
+}
+/* line 238, ../sass/_fubik.scss */
 a.action-edit {
-  background-position: 0 1px; }
+  background-position: 0 1px;
+}
+/* line 242, ../sass/_fubik.scss */
 a.action-export {
-  background-position: 0 -164px; }
+  background-position: 0 -164px;
+}
+/* line 246, ../sass/_fubik.scss */
 a.action-revert {
-  background-position: 0 -198px; }
+  background-position: 0 -198px;
+}
+/* line 250, ../sass/_fubik.scss */
 a.action-table {
-  background-position: 0 -392px; }
+  background-position: 0 -392px;
+}
+/* line 254, ../sass/_fubik.scss */
 a.action-view {
   background-position: 0 -32px;
-  margin-right: 10px; }
+  margin-right: 10px;
+}
+/* line 259, ../sass/_fubik.scss */
 a.action-top {
   background-position: 0 -130px;
-  float: right; }
+  float: right;
+}
+/* line 264, ../sass/_fubik.scss */
 a.module-link {
   display: block;
   padding: 1px 0 1px 20px;
-  white-space: nowrap; }
+  white-space: nowrap;
+}
+/* line 269, ../sass/_fubik.scss */
 a.module-link-help {
-  background: url(/misc/help.png) no-repeat scroll 0 50% transparent; }
+  background: url(/misc/help.png) no-repeat scroll 0 50% transparent;
+}
+/* line 272, ../sass/_fubik.scss */
 a.module-link-permissions {
-  background: url(/misc/permissions.png) no-repeat scroll 0 50% transparent; }
+  background: url(/misc/permissions.png) no-repeat scroll 0 50% transparent;
+}
+/* line 275, ../sass/_fubik.scss */
 a.module-link-configure {
-  background: url(/misc/configure.png) no-repeat scroll 0 50% transparent; }
+  background: url(/misc/configure.png) no-repeat scroll 0 50% transparent;
+}
+/* line 279, ../sass/_fubik.scss */
 a.admin-conflict:link {
-  background: #ff0; }
+  background: #ff0;
+}
+/* line 282, ../sass/_fubik.scss */
 a.admin-conflict:visited {
-  background: #ff0; }
+  background: #ff0;
+}
 
+/* line 288, ../sass/_fubik.scss */
 td.views-empty {
   margin-top: 10px;
   padding: 10px 0 10px 38px;
   text-shadow: 1px 1px 1px #ccc;
-  background: url(../images/ico-warning.png) 8px 10px no-repeat; }
+  background: url(../images/ico-warning.png) 8px 10px no-repeat;
+}
+/* line 295, ../sass/_fubik.scss */
 td.views-field-delete-node a {
-  background-position: 0 -100px; }
+  background-position: 0 -100px;
+}
+/* line 299, ../sass/_fubik.scss */
 td.views-field-cancel-node a {
-  background-position: 0 -100px; }
+  background-position: 0 -100px;
+}
+/* line 303, ../sass/_fubik.scss */
 td.views-field-delete a {
-  background-position: 0 -100px; }
+  background-position: 0 -100px;
+}
+/* line 307, ../sass/_fubik.scss */
 td.views-field-devel-node a {
-  background-position: 0 -32px; }
+  background-position: 0 -32px;
+}
+/* line 311, ../sass/_fubik.scss */
 td.views-field-edit-node a {
-  background-position: 0 1px; }
+  background-position: 0 1px;
+}
+/* line 315, ../sass/_fubik.scss */
 td.views-field-edit-term a {
-  background-position: 0 1px; }
+  background-position: 0 1px;
+}
+/* line 319, ../sass/_fubik.scss */
 td.views-field-edit a {
-  background-position: 0 1px; }
+  background-position: 0 1px;
+}
+/* line 323, ../sass/_fubik.scss */
 td.views-field-view-node a {
-  background-position: 0 -32px; }
+  background-position: 0 -32px;
+}
+/* line 330, ../sass/_fubik.scss */
 td.views-field-devel-user a {
-  background-position: 0 -32px; }
+  background-position: 0 -32px;
+}
+/* line 334, ../sass/_fubik.scss */
 td.views-field-view a {
-  background-position: 0 -32px; }
+  background-position: 0 -32px;
+}
 
+/* line 339, ../sass/_fubik.scss */
 #overlay {
   display: table;
   margin: 0 auto;
@@ -204,289 +335,458 @@ td.views-field-view a {
   min-width: 700px;
   padding: 0.2em 26px 2em 0.2em;
   position: relative;
-  width: 93%; }
+  width: 93%;
+}
 
+/* line 348, ../sass/_fubik.scss */
 #edit-display-settings-title {
-  color: #59a; }
+  color: #59a;
+}
 
+/* line 351, ../sass/_fubik.scss */
 .contextual-links-region {
   outline: none;
-  position: static; }
+  position: static;
+}
 
+/* line 355, ../sass/_fubik.scss */
 .secondary-tabs {
-  z-index: 100; }
+  z-index: 100;
+}
 
+/* line 359, ../sass/_fubik.scss */
 .pager a {
-  text-shadow: 1px 1px 1px #fff; }
+  text-shadow: 1px 1px 1px #fff;
+}
+/* line 363, ../sass/_fubik.scss */
 .pager span {
-  text-shadow: 1px 1px 1px #fff; }
+  text-shadow: 1px 1px 1px #fff;
+}
 
+/* line 368, ../sass/_fubik.scss */
 #admin-menu {
   margin: 0;
-  padding: 0; }
-  #admin-menu .admin-menu-search .form-item {
-    border: 0 none; }
-  #admin-menu .admin-menu-search input {
-    width: 184px; }
+  padding: 0;
+}
+/* line 372, ../sass/_fubik.scss */
+#admin-menu .admin-menu-search .form-item {
+  border: 0 none;
+}
+/* line 375, ../sass/_fubik.scss */
+#admin-menu .admin-menu-search input {
+  width: 184px;
+}
 
+/* line 384, ../sass/_fubik.scss */
 .form-item label {
-  color: #666; }
+  color: #666;
+}
 
+/* line 389, ../sass/_fubik.scss */
 tr.odd {
-  background-color: #f3f3f3; }
+  background-color: #f3f3f3;
+}
+/* line 392, ../sass/_fubik.scss */
 tr.even {
-  background-color: #fff; }
+  background-color: #fff;
+}
 
+/* line 403, ../sass/_fubik.scss */
 h1.path-admin-config-workbench span.icon {
-  background-position: 0 -52px; }
+  background-position: 0 -52px;
+}
 
+/* line 409, ../sass/_fubik.scss */
 #context-blockform td {
-  vertical-align: top; }
+  vertical-align: top;
+}
+/* line 412, ../sass/_fubik.scss */
 #context-blockform .context-blockform-selector {
-  height: 70em; }
+  height: 70em;
+}
 
+/* line 416, ../sass/_fubik.scss */
 .fubik-no-sidebars #main-content {
   float: none;
   width: auto;
-  margin: 0 30px; }
+  margin: 0 30px;
+}
 
+/* line 421, ../sass/_fubik.scss */
 .fubik-sidebar-first #page {
-  padding-left: 230px; }
+  padding-left: 230px;
+}
 
+/* line 424, ../sass/_fubik.scss */
 .fubik-two-sidebars #page {
   padding-left: 230px;
-  padding-right: 230px; }
+  padding-right: 230px;
+}
 
+/* line 428, ../sass/_fubik.scss */
 .fubik-sidebar-second #page {
-  padding-right: 230px; }
+  padding-right: 230px;
+}
 
+/* line 432, ../sass/_fubik.scss */
 ul.links li.revert a {
   margin-right: 8px;
-  background-position: 0 -198px; }
+  background-position: 0 -198px;
+}
+/* line 437, ../sass/_fubik.scss */
 ul.links li.configure a {
   margin-right: 8px;
-  background-position: 0 -474px; }
+  background-position: 0 -474px;
+}
+/* line 442, ../sass/_fubik.scss */
 ul.links li.clone a {
   margin-right: 8px;
-  background-position: 0 -234px; }
+  background-position: 0 -234px;
+}
+/* line 447, ../sass/_fubik.scss */
 ul.links li.export a {
   margin-right: 8px;
-  background-position: 0 -164px; }
+  background-position: 0 -164px;
+}
+/* line 452, ../sass/_fubik.scss */
 ul.links li.enable a {
-  background-position: 0 -314px; }
+  background-position: 0 -314px;
+}
+/* line 456, ../sass/_fubik.scss */
 ul.links li.disable a {
   margin-right: 8px;
-  background-position: 0 -354px; }
+  background-position: 0 -354px;
+}
+/* line 461, ../sass/_fubik.scss */
 ul.links li.flags_edit a {
   margin-right: 8px;
-  background-position: 0 1px; }
+  background-position: 0 1px;
+}
+/* line 466, ../sass/_fubik.scss */
 ul.links li.flags_delete a {
   margin-right: 8px;
-  background-position: 0 -100px; }
+  background-position: 0 -100px;
+}
+/* line 471, ../sass/_fubik.scss */
 ul.links li.flags_export a {
-  background-position: 0 -164px; }
+  background-position: 0 -164px;
+}
+/* line 475, ../sass/_fubik.scss */
 ul.links li.edit a {
   margin-right: 8px;
-  background-position: 0 1px; }
+  background-position: 0 1px;
+}
+/* line 480, ../sass/_fubik.scss */
 ul.links li.delete a {
   margin-right: 8px;
-  background-position: 0 -100px; }
+  background-position: 0 -100px;
+}
+/* line 488, ../sass/_fubik.scss */
 ul.links li.view a {
   margin-right: 8px;
-  background-position: 0 -32px; }
+  background-position: 0 -32px;
+}
+/* line 493, ../sass/_fubik.scss */
 ul.links li.translate a {
-  background-position: 0 -273px; }
+  background-position: 0 -273px;
+}
 
+/* line 498, ../sass/_fubik.scss */
 .field-collection-view-links li.edit a {
   margin-right: 8px;
   background-position: 0 1px;
   padding-top: 2px;
-  padding-bottom: 2px; }
+  padding-bottom: 2px;
+}
+/* line 505, ../sass/_fubik.scss */
 .field-collection-view-links li.delete a {
   background-position: 0 -100px;
   padding-top: 2px;
-  padding-bottom: 2px; }
+  padding-bottom: 2px;
+}
 
+/* line 517, ../sass/_fubik.scss */
 html.js input.throbbing {
-  background-position: 100% -2px; }
+  background-position: 100% -2px;
+}
+/* line 521, ../sass/_fubik.scss */
 html.js #edit-view-displays-wrapper div.form-item-show-tagged-with input.form-autocomplete {
-  width: 160px; }
+  width: 160px;
+}
 
+/* line 525, ../sass/_fubik.scss */
 .views-ui-dialog .ui-dialog-titlebar-close {
   border-color: #ccc;
   box-shadow: none;
   right: 0;
   top: 0;
-  background: url(../../rubik/images/buttons.png) no-repeat scroll -4000px 50% #444;
+  background: url(../../rubik/images/buttons.png) no-repeat scroll -4000px 50% #444444;
   border-radius: 5px 5px 5px 5px;
   display: block;
   height: 20px;
   margin: 5px;
   padding: 0;
   position: absolute;
-  width: 20px; }
+  width: 20px;
+}
 
+/* line 541, ../sass/_fubik.scss */
 .dependent-options.form-item.form-item-menu-context {
   position: absolute;
   right: 22px;
-  width: 160px; }
+  width: 160px;
+}
 
+/* line 546, ../sass/_fubik.scss */
 .views-display-settings .ctools-toggle {
-  color: #59a; }
+  color: #59a;
+}
 
+/* line 549, ../sass/_fubik.scss */
 #dashboard ul.action-links a {
-  float: left; }
+  float: left;
+}
 
+/* line 552, ../sass/_fubik.scss */
 .theme-selector img {
-  width: 110px; }
+  width: 110px;
+}
 
+/* line 555, ../sass/_fubik.scss */
 .vertical-tabs .vertical-tabs-panes .vertical-tabs-pane div.fieldset-content legend {
-  display: block; }
+  display: block;
+}
 
+/* line 558, ../sass/_fubik.scss */
 .page-content #node-type-form div.form-item.form-item-name div.description {
-  margin: 0 0 -50px; }
+  margin: 0 0 -50px;
+}
 
+/* line 561, ../sass/_fubik.scss */
 .primary-tabs a {
-  text-shadow: 1px 1px 1px #fff; }
+  text-shadow: 1px 1px 1px #fff;
+}
 
+/* line 565, ../sass/_fubik.scss */
 #admin-menu-wrapper div.toolbar-shortcuts ul.menu {
-  padding: 1px 0 6px; }
-  #admin-menu-wrapper div.toolbar-shortcuts ul.menu li {
-    border-bottom: 0 transparent; }
+  padding: 1px 0 6px;
+}
+/* line 567, ../sass/_fubik.scss */
+#admin-menu-wrapper div.toolbar-shortcuts ul.menu li {
+  border-bottom: 0 transparent;
+}
 
+/* line 574, ../sass/_fubik.scss */
 .field-collection-container ul.action-links-field-collection-add {
-  margin: 1em 0 1em 2em; }
+  margin: 1em 0 1em 2em;
+}
 
+/* line 577, ../sass/_fubik.scss */
 #media-browser-tabset div.form-actions {
   background: none repeat scroll 0 0 #eee;
   border: 1px solid #ddd;
-  padding: 9px; }
-  #media-browser-tabset div.form-actions a.fake-submit {
-    margin-right: 5px;
-    box-shadow: 0 1px 1px #ddd;
-    padding: 2px 10px 2px 25px;
-    background: url(../../rubik/images/buttons.png) no-repeat scroll -2401px 50% #fff;
-    border-color: #ddd #ddd #ccc;
-    border-style: solid;
-    border-width: 1px;
-    color: #333;
-    cursor: pointer;
-    font-weight: normal;
-    text-align: center;
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 1em; }
+  padding: 9px;
+}
+/* line 581, ../sass/_fubik.scss */
+#media-browser-tabset div.form-actions a.fake-submit {
+  margin-right: 5px;
+  box-shadow: 0 1px 1px #ddd;
+  padding: 2px 10px 2px 25px;
+  background: url(../../rubik/images/buttons.png) no-repeat scroll -2401px 50% white;
+  border-color: #ddd #ddd #ccc;
+  border-style: solid;
+  border-width: 1px;
+  color: #333;
+  cursor: pointer;
+  font-weight: normal;
+  text-align: center;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 1em;
+}
 
+/* line 598, ../sass/_fubik.scss */
 #block-system-help div.block-content {
   background: url(../images/ico-help.png) 7px center no-repeat;
-  padding-left: 40px; }
+  padding-left: 40px;
+}
 
+/* line 602, ../sass/_fubik.scss */
 .path-admin-config-development-strongarm span.icon {
-  background-position: 0 -1199px; }
+  background-position: 0 -1199px;
+}
 
+/* line 606, ../sass/_fubik.scss */
 .path-admin-config-user-interface-itoggle span.icon {
-  background-position: 0 -1250px; }
+  background-position: 0 -1250px;
+}
 
+/* line 610, ../sass/_fubik.scss */
 .path-admin-config-workflow-subs span.icon {
-  background-position: 0 -1152px; }
+  background-position: 0 -1152px;
+}
 
+/* line 614, ../sass/_fubik.scss */
 .path-admin-content-subscription span.icon {
-  background-position: 0 -1152px; }
+  background-position: 0 -1152px;
+}
 
+/* line 618, ../sass/_fubik.scss */
 .path-admin-structure-subscriptions span.icon {
-  background-position: 0 -1152px; }
+  background-position: 0 -1152px;
+}
 
+/* line 622, ../sass/_fubik.scss */
 .path-admin-structure-messages span.icon {
-  background-position: 0 -1103px; }
+  background-position: 0 -1103px;
+}
 
+/* line 626, ../sass/_fubik.scss */
 .path-admin-config-content-fivestar span.icon {
-  background-position: 0 -1049px; }
+  background-position: 0 -1049px;
+}
 
+/* line 630, ../sass/_fubik.scss */
 .path-admin-structure-mark span.icon {
-  background-position: 0 -951px; }
+  background-position: 0 -951px;
+}
 
+/* line 634, ../sass/_fubik.scss */
 .path-admin-structure-flags span.icon {
-  background-position: 0 -898px; }
+  background-position: 0 -898px;
+}
 
+/* line 638, ../sass/_fubik.scss */
 .path-admin-structure-file-types span.icon {
-  background-position: 0 -999px; }
+  background-position: 0 -999px;
+}
 
+/* line 642, ../sass/_fubik.scss */
 .path-admin-structure-block-types span.icon {
-  background-position: 0 -643px; }
+  background-position: 0 -643px;
+}
 
+/* line 646, ../sass/_fubik.scss */
 .page-admin-content-webform span.icon {
-  background-position: 0 -752px; }
+  background-position: 0 -752px;
+}
 
+/* line 650, ../sass/_fubik.scss */
 .path-admin-config-content-webform span.icon {
-  background-position: 0 -752px; }
+  background-position: 0 -752px;
+}
 
+/* line 654, ../sass/_fubik.scss */
 .page-admin-content-blocks span.icon {
-  background-position: 0 -643px; }
+  background-position: 0 -643px;
+}
 
+/* line 658, ../sass/_fubik.scss */
 .page .page-admin-modules span.icon {
   background-image: url(../../rubik/images/icons.png);
-  background-position: -210px -30px; }
+  background-position: -210px -30px;
+}
 
+/* line 663, ../sass/_fubik.scss */
 .path-dashboard span.icon {
-  background-position: 0 -700px !important; }
+  background-position: 0 -700px !important;
+}
 
+/* line 667, ../sass/_fubik.scss */
 .path-admin-advanced_help- span.icon {
-  background-position: 0 -525px; }
+  background-position: 0 -525px;
+}
 
+/* line 671, ../sass/_fubik.scss */
 .path-admin-content-media span.icon {
-  background-position: 0 -466px; }
+  background-position: 0 -466px;
+}
 
+/* line 675, ../sass/_fubik.scss */
 .path-admin-config-media-browser span.icon {
-  background-position: 0 -466px; }
+  background-position: 0 -466px;
+}
 
+/* line 679, ../sass/_fubik.scss */
 .path-admin-config-workflow-rules span.icon {
-  background-position: 0 -348px; }
+  background-position: 0 -348px;
+}
 
+/* line 683, ../sass/_fubik.scss */
 .path-admin-structure-profiles span.icon {
-  background-position: 0 -111px; }
+  background-position: 0 -111px;
+}
 
+/* line 687, ../sass/_fubik.scss */
 .path-admin-structure-panels span.icon {
-  background-position: 0 -288px; }
+  background-position: 0 -288px;
+}
 
+/* line 691, ../sass/_fubik.scss */
 .path-admin-structure-mini-panels span.icon {
-  background-position: 0 -230px; }
+  background-position: 0 -230px;
+}
 
+/* line 695, ../sass/_fubik.scss */
 .path-admin-structure-views span.icon {
-  background-position: 0 2px; }
+  background-position: 0 2px;
+}
 
+/* line 699, ../sass/_fubik.scss */
 .path-admin-structure-views- span.icon {
-  background-position: 0 2px; }
+  background-position: 0 2px;
+}
 
+/* line 703, ../sass/_fubik.scss */
 .path-admin-structure-features span.icon {
-  background-position: 0 -406px; }
+  background-position: 0 -406px;
+}
 
+/* line 707, ../sass/_fubik.scss */
 .path-admin-structure-field-collections span.icon {
-  background-position: 0 -582px; }
+  background-position: 0 -582px;
+}
 
+/* line 711, ../sass/_fubik.scss */
 .path-admin-structure-context span.icon {
-  background-position: 0 -169px; }
+  background-position: 0 -169px;
+}
 
+/* line 715, ../sass/_fubik.scss */
 .path-admin-config-administration-admin-menu span.icon {
-  background-position: 0 -848px; }
+  background-position: 0 -848px;
+}
 
+/* line 719, ../sass/_fubik.scss */
 .path-admin-config-administration-admin_menu span.icon {
-  background-position: 0 -848px; }
+  background-position: 0 -848px;
+}
 
+/* line 723, ../sass/_fubik.scss */
 .path-admin-config-user-interface-modulefilter span.icon {
-  background-position: 0 -802px; }
+  background-position: 0 -802px;
+}
 
+/* line 727, ../sass/_fubik.scss */
 .path-admin-dashboard span.icon {
-  background-position: 0 -700px !important; }
+  background-position: 0 -700px !important;
+}
 
+/* line 730, ../sass/_fubik.scss */
 .path-admin-workbench span.icon {
-  background-position: 0 -52px; }
+  background-position: 0 -52px;
+}
 
+/* line 733, ../sass/_fubik.scss */
 span.admin-conflict {
-  background: #ff0; }
+  background: #ff0;
+}
 
+/* line 4, ../sass/_styles.scss */
 table.rules-overview-table a.action, .action-links.action-links-field-collection-add a, a.action-add, a.action-analyze, a.action-clone, a.action-configure, a.action-delete, a.action-devel, a.action-edit, a.action-export, a.action-revert, a.action-table, a.action-view, a.action-top, td.views-field-delete-node a, td.views-field-cancel-node a, td.views-field-delete a, td.views-field-devel-node a, td.views-field-edit-node a, td.views-field-edit-term a, td.views-field-edit a, td.views-field-view-node a, td.views-field-view-user a, td.views-field-devel-user a, td.views-field-view a, ul.links li.revert a, ul.links li.configure a, ul.links li.clone a, ul.links li.export a, ul.links li.enable a, ul.links li.disable a, ul.links li.flags_edit a, ul.links li.flags_delete a, ul.links li.flags_export a, ul.links li.edit a, ul.links li.delete a, ul.links li.devel a, ul.links li.view a, .field-collection-view-links li.edit a, .field-collection-view-links li.delete a, .author-image-edit, .coauthor-image-edit {
   width: 100px !important;
   height: 100px !important;
-  margin: 0 auto 5px auto; }
+  margin: 0 auto 5px auto;
+}
 
 /*
 %extend_2 {
@@ -496,60 +796,92 @@ table.rules-overview-table a.action, .action-links.action-links-field-collection
 	z-index: 50;
 }
 */
+/* line 21, ../sass/_styles.scss */
 .form-type-checkbox {
   display: inline-block;
-  margin: 0 0 0 10px !important; }
+  margin: 0 0 0 10px !important;
+}
 
+/* line 25, ../sass/_styles.scss */
 .form-type-radio {
   display: inline-block;
-  margin: 0 10px 10px 0; }
+  margin: 0 10px 10px 0;
+}
 
+/* line 29, ../sass/_styles.scss */
 .form-item-field-location-und-0-thoroughfare {
-  display: none; }
+  display: none;
+}
 
+/* line 32, ../sass/_styles.scss */
 .form-item-field-location-und-0-premise {
-  display: none; }
+  display: none;
+}
 
+/* line 35, ../sass/_styles.scss */
 .form-item-field-location-und-0-administrative-area {
-  margin-top: 0; }
+  margin-top: 0;
+}
 
+/* line 38, ../sass/_styles.scss */
 .form-item-field-location-und-0-postal-code {
-  display: none; }
+  display: none;
+}
 
+/* line 41, ../sass/_styles.scss */
 .node-admin-page {
-  display: none; }
+  display: none;
+}
 
+/* line 50, ../sass/_styles.scss */
 img {
   width: inherit;
-  height: inherit; }
+  height: inherit;
+}
 
+/* line 54, ../sass/_styles.scss */
 .description {
   right: -60px !important;
-  margin: 0 !important; }
+  margin: 0 !important;
+}
 
+/* line 58, ../sass/_styles.scss */
 .field-name-field-aa-allocation-date {
-  width: 200px; }
+  width: 200px;
+}
 
+/* line 124, ../sass/_styles.scss */
 .form-item {
-  margin: 0 5px; }
+  margin: 0 5px;
+}
 
+/* line 127, ../sass/_styles.scss */
 .form-item-log {
-  display: none; }
+  display: none;
+}
 
+/* line 130, ../sass/_styles.scss */
 .media-widget .preview {
   display: inline-block;
   vertical-align: middle;
   background-color: #6cf !important;
-  background: url(images/button-gray.png); }
+  background: url(images/button-gray.png);
+}
 
+/* line 136, ../sass/_styles.scss */
 table input.fluid {
-  width: 100%; }
+  width: 100%;
+}
 
+/* line 139, ../sass/_styles.scss */
 tr.even {
-  background-color: #eee !important; }
+  background-color: #eee !important;
+}
 
+/* line 142, ../sass/_styles.scss */
 ul.links li {
-  padding: 0 5px !important; }
+  padding: 0 5px !important;
+}
 
 /**
  *Styles for the mandate content type
@@ -557,13 +889,17 @@ ul.links li {
 /**
  *Edit screens
  */
+/* line 8, ../sass/types/_mandate.scss */
 #edit-field-managed-amount {
   position: relative;
   top: -45px;
-  height: 35px; }
-  #edit-field-managed-amount .form-item {
-    position: absolute;
-    right: 0; }
+  height: 35px;
+}
+/* line 12, ../sass/types/_mandate.scss */
+#edit-field-managed-amount .form-item {
+  position: absolute;
+  right: 0;
+}
 
 /**
  *Styles for Plans
@@ -571,70 +907,115 @@ ul.links li {
 /**
  *Edit screen
  */
+/* line 8, ../sass/types/_plan.scss */
 .field-multiple-drag {
-  display: none; }
+  display: none;
+}
 
+/* line 14, ../sass/types/_plan.scss */
 #field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper {
-  padding-top: 0; }
-  #field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup {
-    float: none;
-    margin: 0 auto;
-    width: 100%; }
-    #field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup label {
-      display: none; }
-    #field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup input {
-      width: 100px; }
-    #field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup .description {
-      display: none; }
+  padding-top: 0;
+}
+/* line 16, ../sass/types/_plan.scss */
+#field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup {
+  float: none;
+  margin: 0 auto;
+  width: 100%;
+}
+/* line 20, ../sass/types/_plan.scss */
+#field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup label {
+  display: none;
+}
+/* line 23, ../sass/types/_plan.scss */
+#field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup input {
+  width: 100px;
+}
+/* line 26, ../sass/types/_plan.scss */
+#field-plan-size-history-values .field-name-field-date .form-wrapper .fieldset-wrapper .form-type-date-popup .description {
+  display: none;
+}
 
+/* line 38, ../sass/types/_plan.scss */
 #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable {
   width: 19.9%;
   min-width: 300px;
-  float: left; }
+  float: left;
+}
+/* line 42, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td {
+  padding: 10px 5px;
+}
+/* line 44, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date {
+  width: auto;
+}
+/* line 46, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper {
+  padding-top: 0;
+}
+/* line 48, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding {
+  padding: 10px 0;
+  width: 100%;
+}
+/* line 51, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding .form-item {
+  float: none;
+  margin: 0 auto;
+  width: 200px;
+}
+/* line 55, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding .form-item label {
+  display: none;
+}
+/* line 58, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding .form-item .description {
+  display: none;
+}
+/* line 66, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-type-number-decimal {
+  width: 145px;
+  float: left;
+}
+/* line 69, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-type-number-decimal input {
+  width: 50px;
+}
+/* line 73, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-name-field-allocation-total {
+  width: 145px;
+  float: left;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-bottom: 4px;
+  padding-top: 5px;
+}
+/* line 80, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-name-field-allocation-total input {
+  width: 50px;
+}
+/* line 85, ../sass/types/_plan.scss */
+#edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .button-remove {
+  clear: both;
+  float: none;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+@media all and (max-width: 1292px) {
+  /* line 42, ../sass/types/_plan.scss */
   #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td {
-    padding: 10px 5px; }
-    #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date {
-      width: auto; }
-      #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper {
-        padding-top: 0; }
-        #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding {
-          padding: 10px 0;
-          width: 100%; }
-          #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding .form-item {
-            float: none;
-            margin: 0 auto;
-            width: 200px; }
-            #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding .form-item label {
-              display: none; }
-            #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .field-name-field-aa-allocation-date .fieldset-wrapper .date-padding .form-item .description {
-              display: none; }
-    #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-type-number-decimal {
-      width: 145px;
-      float: left; }
-      #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-type-number-decimal input {
-        width: 50px; }
-    #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-name-field-allocation-total {
-      width: 145px;
-      float: left;
-      margin-top: 2px;
-      margin-bottom: 2px;
-      padding-bottom: 4px;
-      padding-top: 5px; }
-      #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .group-allocations .field-name-field-allocation-total input {
-        width: 50px; }
-    #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td .button-remove {
-      clear: both;
-      float: none;
-      text-align: center;
-      margin: 0 auto;
-      display: block; }
-    @media all and (max-width: 1292px) {
-      #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td {
-        width: 33.333%; } }
-    @media all and (max-width: 1000px) {
-      #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td {
-        width: 50%; } }
+    width: 33.333%;
+  }
+}
+@media all and (max-width: 1000px) {
+  /* line 42, ../sass/types/_plan.scss */
+  #edit-field-asset-allocation-history .field-multiple-table tbody tr.draggable td {
+    width: 50%;
+  }
+}
 
+/* line 107, ../sass/types/_plan.scss */
 #edit-field-foia-history .field-multiple-table tbody tr.draggable {
   width: 24.9%;
   min-width: 300px;
@@ -647,100 +1028,175 @@ ul.links li {
   @media all and (max-width: 1000px) {
      width: 50%;
   }
-  */ }
-  #edit-field-foia-history .field-multiple-table tbody tr.draggable:first-child {
-    border-left: none; }
-  #edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date {
-    width: auto; }
-    #edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper {
-      padding-top: 0; }
-      #edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding {
-        padding: 10px 0;
-        width: 100%; }
-        #edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item {
-          float: none;
-          margin: 0 auto;
-          width: 100%; }
-          #edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item label {
-            display: none; }
-          #edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item input {
-            width: 100px; }
-          #edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item .description {
-            display: none; }
-  #edit-field-foia-history .field-multiple-table tbody tr.draggable .group-foia-contact {
-    margin: 0 5px 5px 5px; }
-    #edit-field-foia-history .field-multiple-table tbody tr.draggable .group-foia-contact .fieldset-wrapper {
-      padding-top: 0; }
-      #edit-field-foia-history .field-multiple-table tbody tr.draggable .group-foia-contact .fieldset-wrapper .form-wrapper {
-        margin-bottom: 5px; }
+  */
+}
+/* line 112, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable:first-child {
+  border-left: none;
+}
+/* line 115, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date {
+  width: auto;
+}
+/* line 117, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper {
+  padding-top: 0;
+}
+/* line 119, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding {
+  padding: 10px 0;
+  width: 100%;
+}
+/* line 122, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item {
+  float: none;
+  margin: 0 auto;
+  width: 100%;
+}
+/* line 126, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item label {
+  display: none;
+}
+/* line 129, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item input {
+  width: 100px;
+}
+/* line 132, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .field-name-field-foia-date .fieldset-wrapper .date-padding .form-item .description {
+  display: none;
+}
+/* line 139, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .group-foia-contact {
+  margin: 0 5px 5px 5px;
+}
+/* line 141, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .group-foia-contact .fieldset-wrapper {
+  padding-top: 0;
+}
+/* line 143, ../sass/types/_plan.scss */
+#edit-field-foia-history .field-multiple-table tbody tr.draggable .group-foia-contact .fieldset-wrapper .form-wrapper {
+  margin-bottom: 5px;
+}
 
 /**
  * Styles for consultant firm screens
  */
+/* line 6, ../sass/types/_consultant.scss */
 #consultant-firm-node-form .ds-above-left, #consultant-firm-node-form .ds-above-right {
   box-sizing: border-box;
-  padding: 0 5px; }
+  padding: 0 5px;
+}
+/* line 11, ../sass/types/_consultant.scss */
 #consultant-firm-node-form .field-name-field-consultant-contacts-embed .view-header {
   padding: 0;
   font-size: 10px;
-  font-weight: bold; }
+  font-weight: bold;
+}
+/* line 18, ../sass/types/_consultant.scss */
 #consultant-firm-node-form .field-name-field-aua input {
-  width: 200px; }
+  width: 200px;
+}
 
 /**
  *Styles for modal windows
  */
+/* line 7, ../sass/_modals.scss */
 #modalContent #contact-node-form .ds-above-left, #modalContent #contact-node-form .ds-above-right {
-  width: 33.3%; }
+  width: 33.3%;
+}
+/* line 10, ../sass/_modals.scss */
 #modalContent #contact-node-form .text-summary-wrapper {
-  display: none; }
+  display: none;
+}
+/* line 15, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea label {
-  float: none; }
+  float: none;
+}
+/* line 18, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper {
   margin-left: 0;
-  margin-right: 0; }
-  #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_72, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_75, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_85, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_93, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_98 {
-    display: none; }
+  margin-right: 0;
+}
+/* line 22, ../sass/_modals.scss */
+#modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_72, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_75, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_85, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_93, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_98 {
+  display: none;
+}
+/* line 30, ../sass/_modals.scss */
 #modalContent #contact-node-form tr .form-item {
-  white-space: normal; }
+  white-space: normal;
+}
+/* line 36, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .date-float {
   clear: both;
-  float: none; }
+  float: none;
+}
+/* line 40, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
   width: 150px;
   float: left;
-  clear: none; }
-  #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper input, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper input {
-    width: 100px; }
+  clear: none;
+}
+/* line 44, ../sass/_modals.scss */
+#modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper input, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper input {
+  width: 100px;
+}
+/* line 48, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
-  width: 200px; }
-  #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper label {
-    width: 40px;
-    clear: none; }
+  width: 200px;
+}
+/* line 50, ../sass/_modals.scss */
+#modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper label {
+  width: 40px;
+  clear: none;
+}
+/* line 60, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-address .addressfield-container-inline .form-item {
-  float: none; }
+  float: none;
+}
+/* line 66, ../sass/_modals.scss */
 #modalContent #contact-node-form .form-type-link-field label {
-  float: none; }
+  float: none;
+}
+/* line 71, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-consultant-job-type label {
-  float: none; }
+  float: none;
+}
+/* line 78, ../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .ds-above-left {
   width: 49%;
-  margin: 0 1% 0 0; }
+  margin: 0 1% 0 0;
+}
+/* line 82, ../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .ds-above-right {
   width: 49%;
-  margin: 0 0 0 1%; }
+  margin: 0 0 0 1%;
+}
+/* line 88, ../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .field-name-field-website .form-item label {
-  float: none; }
+  float: none;
+}
+/* line 93, ../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .vertical-tabs {
-  margin: 0; }
+  margin: 0;
+}
+/* line 99, ../sass/_modals.scss */
 #modalContent #manager-firm-node-form .ds-above-left, #modalContent #manager-firm-node-form .ds-above-middle, #modalContent #manager-firm-node-form .ds-above-right {
   width: 32%;
-  margin: 0 .5%; }
+  margin: 0 .5%;
+}
+/* line 103, ../sass/_modals.scss */
 #modalContent #manager-firm-node-form .form-item {
   margin: 0;
-  width: 95%; }
-  #modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
-    width: 98%; }
+  width: 95%;
+}
+/* line 106, ../sass/_modals.scss */
+#modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
+  width: 98%;
+}
+/* line 111, ../sass/_modals.scss */
+#modalContent .node-action-block {
+  display: none;
+}
 
 /*** Color Variables ***/
 /* Page */
@@ -750,107 +1206,166 @@ ul.links li {
 /* Misc */
 /********** CSS Overrides **********/
 /*** Page Elements ***/
+/* line 50, ../sass/custom.scss */
 body.tao {
-  background: #003366; }
+  background: #003366;
+}
 
+/* line 53, ../sass/custom.scss */
 #main-content, .block .block-content, .container-inline .fieldset-content, .fieldset-content {
-  background: #f0f5ff; }
+  background: #f0f5ff;
+}
 
+/* line 56, ../sass/custom.scss */
 #page-title {
-  background: #94b8ff; }
-  #page-title .page-title {
-    text-shadow: none; }
+  background: #94b8ff;
+}
+/* line 58, ../sass/custom.scss */
+#page-title .page-title {
+  text-shadow: none;
+}
 
+/* line 62, ../sass/custom.scss */
 a {
-  color: #003399; }
-  a a:hover {
-    color: #0058ff; }
+  color: #003399;
+}
+/* line 64, ../sass/custom.scss */
+a a:hover {
+  color: #0058ff;
+}
 
 /*** Form Elements ***/
+/* line 70, ../sass/custom.scss */
 .fieldset {
   border: 1px solid #689afd;
-  margin: 5px; }
-  .fieldset .fieldset .fieldset-content {
-    background: #e7efff none repeat scroll 0 0; }
-  .fieldset #main-content, .fieldset .block .block-content, .fieldset .container-inline .fieldset-content, .fieldset .fieldset-content {
-    background: #dee6ff none repeat scroll 0 0; }
+  margin: 5px;
+}
+/* line 73, ../sass/custom.scss */
+.fieldset .fieldset .fieldset-content {
+  background: #e7efff none repeat scroll 0 0;
+}
+/* line 76, ../sass/custom.scss */
+.fieldset #main-content, .fieldset .block .block-content, .fieldset .container-inline .fieldset-content, .fieldset .fieldset-content {
+  background: #dee6ff none repeat scroll 0 0;
+}
 
+/* line 80, ../sass/custom.scss */
 .collapsible .fieldset-legend {
   background: #94b8ff none repeat scroll 0 0;
-  padding: 0 5px; }
+  padding: 0 5px;
+}
 
+/* line 84, ../sass/custom.scss */
 .item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
-  background: #94b8ff; }
+  background: #94b8ff;
+}
 
+/* line 87, ../sass/custom.scss */
 .form-wrapper.form-actions {
   background: #94b8ff;
-  border: 1px solid #689afd; }
+  border: 1px solid #689afd;
+}
 
+/* line 91, ../sass/custom.scss */
 .block, .item-list, .help-items ul, .form-item, .confirmation ul, .admin-list, .node-type-list, .admin-panel {
   border-color: #689afd;
-  margin: 0; }
+  margin: 0;
+}
 
+/* line 95, ../sass/custom.scss */
 .vertical-tabs {
   background: #e7efff;
-  border: 1px solid #689afd; }
+  border: 1px solid #689afd;
+}
 
+/* line 100, ../sass/custom.scss */
 .vertical-tabs-list li a {
-  color: #000000;
+  color: black;
   text-shadow: none;
-  border-bottom: 1px solid #689afd; }
+  border-bottom: 1px solid #689afd;
+}
+/* line 105, ../sass/custom.scss */
 .vertical-tabs-list .selected a {
-  background: #dee6ff none repeat scroll 0 0; }
+  background: #dee6ff none repeat scroll 0 0;
+}
 
+/* line 109, ../sass/custom.scss */
 .form-item label {
-  color: #000000;
-  margin-left: 5px; }
+  color: black;
+  margin-left: 5px;
+}
 
 /*** Tables ***/
+/* line 115, ../sass/custom.scss */
 table {
   background-color: #f0f5ff;
-  border-color: #689afd; }
-  table th {
-    background: #94b8ff;
-    text-transform: none;
-    text-shadow: none; }
-  table tr.odd td.active, table table tr.even td.active {
-    background-color: #cadcff; }
+  border-color: #689afd;
+}
+/* line 118, ../sass/custom.scss */
+table th {
+  background: #94b8ff;
+  text-transform: none;
+  text-shadow: none;
+}
+/* line 123, ../sass/custom.scss */
+table tr.odd td.active, table table tr.even td.active {
+  background-color: #cadcff;
+}
 
+/* line 127, ../sass/custom.scss */
 tr.odd {
   background: #e7efff !important;
-  background-color: #e7efff !important; }
+  background-color: #e7efff !important;
+}
 
+/* line 131, ../sass/custom.scss */
 tr.even {
   background-color: #d8e5ff !important;
-  background: #d8e5ff !important; }
+  background: #d8e5ff !important;
+}
 
+/* line 136, ../sass/custom.scss */
 .page-admin table tr.odd, .page-admin .page-admin table tr.odd td {
-  background-color: #e7efff !important; }
+  background-color: #e7efff !important;
+}
+/* line 139, ../sass/custom.scss */
 .page-admin table tr.even, .page-admin .page-admin table tr.even td {
-  background-color: #d8e5ff !important; }
+  background-color: #d8e5ff !important;
+}
 
 /* Field Groups */
+/* line 145, ../sass/custom.scss */
 .item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
   font-size: 14px;
-  font-weight: bolder; }
+  font-weight: bolder;
+}
 
 /* Fields */
+/* line 152, ../sass/custom.scss */
 #edit-field-status-tr {
   float: left;
-  margin: 0 15px 0 0; }
+  margin: 0 15px 0 0;
+}
 
 /* Buttons */
+/* line 158, ../sass/custom.scss */
 .pager li.pager-current, .primary-tabs li.active {
-  background-color: #e7efff; }
+  background-color: #e7efff;
+}
 
+/* line 161, ../sass/custom.scss */
 input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
-  box-shadow: 0 1px 1px #666666; }
+  box-shadow: 0 1px 1px #666666;
+}
 
 /*** Devel ***/
+/* line 166, ../sass/custom.scss */
 .dev-query {
-  color: #666666; }
+  color: #666666;
+}
 
 /* Window size indicator */
+/* line 174, ../sass/custom.scss */
 #win-size {
   position: fixed;
   bottom: 0;
@@ -860,64 +1375,130 @@ input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
   color: #000;
   font-size: 12px;
   font-family: sans-serif;
-  z-index: 1000; }
+  z-index: 1000;
+}
 
+/* line 187, ../sass/custom.scss */
 #edit-callbacks-search-api-alter-add-hierarchy-settings-fields {
-  height: auto; }
+  height: auto;
+}
 
+/* line 191, ../sass/custom.scss */
 #facetapi-facet-display-form .facetapi-more-text-setting {
-  clear: both; }
+  clear: both;
+}
 
+/* line 195, ../sass/custom.scss */
 .form-actions {
-  float: none; }
+  float: none;
+}
 
+/* line 200, ../sass/custom.scss */
 #contact-node-form .field-type-image {
-  position: relative; }
-  #contact-node-form .field-type-image .preview {
-    display: none; }
-  #contact-node-form .field-type-image .remove {
-    position: absolute;
-    left: 150px;
-    bottom: 0; }
+  position: relative;
+}
+/* line 202, ../sass/custom.scss */
+#contact-node-form .field-type-image .preview {
+  display: none;
+}
+/* line 205, ../sass/custom.scss */
+#contact-node-form .field-type-image .remove {
+  position: absolute;
+  left: 150px;
+  bottom: 0;
+}
+/* line 214, ../sass/custom.scss */
 #contact-node-form .manualcrop-thumblist .manualcrop-preview .manualcrop-preview-cropped img {
-  max-width: none; }
+  max-width: none;
+}
 
 /*
  *Disable plan view fieldset on plan creation
  */
+/* line 231, ../sass/custom.scss */
 body.page-node-add-plan .group-plan-contacts {
-  display: none; }
+  display: none;
+}
 
+/* line 237, ../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
   width: 70px;
-  padding: 0; }
+  padding: 0;
+}
+/* line 241, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment {
-  padding: 0; }
-  .view-comment-views td.views-field-edit-comment a {
-    margin: 0; }
-  .view-comment-views td.views-field-edit-comment div.magical-modal-link {
-    display: inline-block;
-    margin: 0 5px 0 0; }
+  padding: 0;
+}
+/* line 243, ../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment a {
+  margin: 0;
+}
+/* line 246, ../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment div.magical-modal-link {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
 
+/* line 253, ../sass/custom.scss */
 .view-reference-views th.views-field-edit-comment {
   width: 70px;
-  padding: 0; }
+  padding: 0;
+}
+/* line 257, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment {
-  padding: 0; }
-  .view-reference-views td.views-field-edit-comment a {
-    margin: 0; }
-  .view-reference-views td.views-field-edit-comment div.magical-modal-link {
-    display: inline-block;
-    margin: 0 5px 0 0; }
+  padding: 0;
+}
+/* line 259, ../sass/custom.scss */
+.view-reference-views td.views-field-edit-comment a {
+  margin: 0;
+}
+/* line 262, ../sass/custom.scss */
+.view-reference-views td.views-field-edit-comment div.magical-modal-link {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
 
+/* line 269, ../sass/custom.scss */
 #edit-field-placement-policy-tr {
-  display: inline-block; }
+  display: inline-block;
+}
 
+/* line 274, ../sass/custom.scss */
 .page-node-edit .column-main, .page-node-add .column-main {
-  width: 90%; }
-.page-node-edit .column-side, .page-node-add .column-side {
-  width: 10%; }
+  width: 100%;
+}
+/* line 277, ../sass/custom.scss */
+.page-node-edit .node-action-block, .page-node-add .node-action-block {
+  width: 130px;
+  position: fixed;
+  top: 60px;
+  right: 36px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 4px 4px 5px 0px #000;
+  z-index: 20;
+}
+/* line 286, ../sass/custom.scss */
+.page-node-edit .node-action-block .action-wrapper, .page-node-add .node-action-block .action-wrapper {
+  border-radius: 5px;
+}
+/* line 288, ../sass/custom.scss */
+.page-node-edit .node-action-block .action-wrapper .form-wrapper, .page-node-add .node-action-block .action-wrapper .form-wrapper {
+  border-radius: 5px;
+  margin: 0;
+  padding: 5px;
+}
+/* line 292, ../sass/custom.scss */
+.page-node-edit .node-action-block .action-wrapper .form-wrapper .form-actions, .page-node-add .node-action-block .action-wrapper .form-wrapper .form-actions {
+  border-radius: 5px;
+  border: none;
+  text-align: left;
+}
+/* line 296, ../sass/custom.scss */
+.page-node-edit .node-action-block .action-wrapper .form-wrapper .form-actions input, .page-node-add .node-action-block .action-wrapper .form-wrapper .form-actions input {
+  margin: 0 0 5px 0;
+}
+/* line 303, ../sass/custom.scss */
 .page-node-edit table.sticky-header, .page-node-add table.sticky-header {
-  z-index: 1000; }
-
-/*# sourceMappingURL=custom.css.map */
+  z-index: 10;
+}

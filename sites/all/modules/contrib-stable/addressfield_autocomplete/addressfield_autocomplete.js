@@ -461,7 +461,7 @@
          * select this will be returned. As new fields may have
          * been added we need to update the address.
          */
-        if (context[0] !== undefined && context.has('[id^="addressfield-wrapper"]')) {
+        if (context[0] !== undefined && typeof context === 'array' && context.has('[id^="addressfield-wrapper"]')) {
           var input = context.prevAll('.form-item').find('.addressfield-autocomplete-input');
           if (input[0] !== undefined && input.data('result') !== undefined) {
             addressfieldAutocompleteUpdateAddress(input);
