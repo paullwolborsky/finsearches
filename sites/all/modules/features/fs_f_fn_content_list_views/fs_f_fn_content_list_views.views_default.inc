@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * fs_f_fn_content_lists.views_default.inc
+ * fs_f_fn_content_list_views.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function fs_f_fn_content_lists_views_default_views() {
+function fs_f_fn_content_list_views_views_default_views() {
   $export = array();
 
   $view = new view();
@@ -900,7 +900,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'There are no consultant firms at this time.';
+  $handler->display->display_options['empty']['area']['content'] = 'There are no plan contacts at this time.';
   $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Job History (field_job_history) */
@@ -959,20 +959,18 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['relationship'] = 'field_consultant_firm_er_target_id';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil"></i>';
+  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
-  $handler->display->display_options['fields']['delete_node']['relationship'] = 'field_consultant_firm_er_target_id';
   $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash"></i>';
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -1481,8 +1479,9 @@ function fs_f_fn_content_lists_views_default_views() {
     'field_special_major_minor_2' => 'field_special_major_minor_2',
     'field_account_size' => 'field_account_size',
     'field_consultant_firm_er' => 'field_consultant_firm_er',
-    'edit_node' => 'edit_node',
-    'delete_node' => 'edit_node',
+    'view_node' => 'view_node',
+    'edit_node' => 'view_node',
+    'delete_node' => 'view_node',
   );
   $handler->display->display_options['style_options']['default'] = 'field_date';
   $handler->display->display_options['style_options']['info'] = array(
@@ -1652,9 +1651,22 @@ function fs_f_fn_content_lists_views_default_views() {
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
     ),
-    'edit_node' => array(
-      'sortable' => 1,
+    'view_node' => array(
+      'sortable' => 0,
       'default_sort_order' => 'asc',
+      'align' => 'views-align-center',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'edit_node' => array(
       'align' => 'views-align-center',
       'separator' => '',
       'empty_column' => 0,
@@ -1749,6 +1761,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Mandate';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name_1']['id'] = 'name_1';
@@ -1830,14 +1843,21 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['field_consultant_firm_er']['settings'] = array(
     'link' => 1,
   );
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = '<i class="fa fa-eye" title=\'View\'></i>';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil"></i>';
+  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
@@ -1845,7 +1865,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash"></i>';
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -2181,7 +2201,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil"></i>';
+  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
@@ -2190,7 +2210,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash"></i>';
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -2381,7 +2401,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'There are no consultant firms at this time.';
+  $handler->display->display_options['empty']['area']['content'] = 'There are no consultant contacts at this time.';
   $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Job History (field_job_history) */
@@ -2446,7 +2466,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil"></i>';
+  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
@@ -2454,7 +2474,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash"></i>';
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -2721,7 +2741,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil"></i>';
+  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
@@ -2729,7 +2749,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash"></i>';
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -2909,7 +2929,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'There are no consultant firms at this time.';
+  $handler->display->display_options['empty']['area']['content'] = 'There are no manager contacts at this time.';
   $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Job History (field_job_history) */
@@ -2969,20 +2989,18 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['relationship'] = 'field_consultant_firm_er_target_id';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil"></i>';
+  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
-  $handler->display->display_options['fields']['delete_node']['relationship'] = 'field_consultant_firm_er_target_id';
   $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash"></i>';
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -3227,7 +3245,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil"></i>';
+  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
@@ -3235,7 +3253,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash"></i>';
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -3491,7 +3509,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['view_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['view_node']['text'] = '<i class="fa fa-eye"></i>';
+  $handler->display->display_options['fields']['view_node']['text'] = '<i class="fa fa-eye" title=\'View\'></i>';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -3499,7 +3517,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil"></i>';
+  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
   /* Field: Content: Delete link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
@@ -3507,7 +3525,7 @@ function fs_f_fn_content_lists_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash"></i>';
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */

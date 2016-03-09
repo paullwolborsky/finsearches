@@ -11,6 +11,98 @@ function fs_f_base_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
+  // 'field_collection_item-field_managers_hired-field_special_major_minor_1'
+  $field_instances['field_collection_item-field_managers_hired-field_special_major_minor_1'] = array(
+    'bundle' => 'field_managers_hired',
+    'default_value' => array(
+      0 => array(
+        'tid' => 815,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 5,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_special_major_minor_1',
+    'label' => 'Special Major Minor 1',
+    'options_limit' => FALSE,
+    'options_limit_empty_behaviour' => 0,
+    'options_limit_fields' => array(),
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_managers_hired-field_special_major_minor_2'
+  $field_instances['field_collection_item-field_managers_hired-field_special_major_minor_2'] = array(
+    'bundle' => 'field_managers_hired',
+    'default_value' => array(
+      0 => array(
+        'tid' => 816,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 6,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_special_major_minor_2',
+    'label' => 'Special Major Minor 2',
+    'options_limit' => FALSE,
+    'options_limit_empty_behaviour' => 0,
+    'options_limit_fields' => array(),
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_mandate_comments_fc-field_author_ur'
   $field_instances['field_collection_item-field_mandate_comments_fc-field_author_ur'] = array(
     'bundle' => 'field_mandate_comments_fc',
@@ -52,6 +144,90 @@ function fs_f_base_field_default_field_instances() {
       ),
       'type' => 'user_reference_autocomplete',
       'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-mandate-field_special_major_minor_1'
+  $field_instances['node-mandate-field_special_major_minor_1'] = array(
+    'bundle' => 'mandate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 72,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_special_major_minor_1',
+    'label' => 'Special Major Style',
+    'options_limit' => FALSE,
+    'options_limit_empty_behaviour' => 0,
+    'options_limit_fields' => array(),
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-mandate-field_special_major_minor_2'
+  $field_instances['node-mandate-field_special_major_minor_2'] = array(
+    'bundle' => 'mandate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 73,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_special_major_minor_2',
+    'label' => 'Special Minor Style',
+    'options_limit' => FALSE,
+    'options_limit_empty_behaviour' => 0,
+    'options_limit_fields' => array(),
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 10,
     ),
   );
 
@@ -325,6 +501,11 @@ function fs_f_base_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Account Type');
   t('Author');
+  t('Special Major Minor 1');
+  t('Special Major Minor 2');
+  t('Special Major Style');
+  t('Special Minor Style');
+  t('Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed');
   t('Traits');
   t('legendid');
   t('wuin');
