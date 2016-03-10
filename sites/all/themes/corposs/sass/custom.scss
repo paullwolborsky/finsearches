@@ -718,13 +718,19 @@ input#edit-submit-1 {
     color: #1368a6;
     display: inline; }
 
-.view-mandate-managers-hired h2, .view-mandate-plan-info h2 {
+.view.collapsiblock h2 {
     padding: 4px 0 4px 15px;
     font-size: 21px;
     background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
     color: #fff;
     text-transform: uppercase;
     font-weight: 400;
+}
+
+.ds-middle, .ds-below-left, .ds-footer {
+    .view.collapsiblock {
+        background-color: #fff;
+    }
 }
 
 .view.collapsiblock {
@@ -740,13 +746,18 @@ input#edit-submit-1 {
     padding: 5px 0 10px 10px;
 }
 
-.view-mandate-managers-hired h2.title, .view-mandate-plan-info h2.title {
-    margin-top:0px;
+.ds-below-left, .ds-middle {
+    h2.title {
+        margin-top:0px;
+    }
 }
 
 .view-filters #edit-field-date-value-wrapper label {
     margin-left: -20px;
 }
 .page-node ul.links {
+    margin-bottom: 20px;
+}
+.view-foia-history {
     margin-bottom: 20px;
 }
