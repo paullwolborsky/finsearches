@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * fs_f_n_bt_mandate.features.field_instance.inc
@@ -1585,33 +1584,19 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
   t('Manager Firms Hired');
   t('Manager Firms On Watch');
   t('Manager Firms Terminated');
-  t('Mandate');
   t('Mandate Comments');
   t('Mandate Notes');
   t('Mandate Number');
   t('Mandate Status');
-  t('Migration Notes');
-  t('Name');
-  t('Non-user field for any important details involved in the Great Migration.');
-  t('Old Mandate ID');
-  t('Photo');
   t('Old Mandate ID');
   t('Plan');
   t('Plan Size');
   t('RFP Date');
   t('RFP Link');
   t('Serialized Comment');
-  t('Special Major Minor 1');
-  t('Special Major Minor 2');
-  t('Special Major Style');
-  t('Special Minor Style');
-  t('Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed');
-  t('Status');
-  t('Subject');
   t('This is the mandate ID from the old D5 site.');
   t('Title');
   t('Total Amount');
-  t('Website');
-  
+
   return $field_instances;
 }

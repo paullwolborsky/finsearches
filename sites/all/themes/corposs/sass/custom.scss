@@ -83,7 +83,7 @@ $shadow: #666666;
     background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
-        .btn {
+    .btn {
         background: $dark-button;
     }
 }
@@ -116,7 +116,7 @@ span.fieldset-legend {
     background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */  
-        .btn {
+    .btn {
         background: $dark-button;
     }
 }
@@ -326,8 +326,8 @@ ul.links {
         background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
         .btn {
-        background: $dark-button;
-    }
+            background: $dark-button;
+        }
     }
     .views-exposed-form .views-exposed-widget{
         width: 31%;
@@ -718,13 +718,31 @@ input#edit-submit-1 {
     color: #1368a6;
     display: inline; }
 
-.view-mandate-managers-hired h2 {
+.view-mandate-managers-hired h2, .view-mandate-plan-info h2 {
     padding: 4px 0 4px 15px;
     font-size: 21px;
     background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
     color: #fff;
     text-transform: uppercase;
-    font-weight: 400; }
+    font-weight: 400;
+}
+
+.view.collapsiblock {
+    background-color: #e7f5ff;
+    color: #000;
+    a {
+        display: inline;
+        background: transparent url(images/gear-select.png) no-repeat 2px 0;
+        color: #1368a6;
+    }
+}
+.view.collapsiblock .views-row {
+    padding: 5px 0 10px 10px;
+}
+
+.view-mandate-managers-hired h2.title, .view-mandate-plan-info h2.title {
+    margin-top:0px;
+}
 
 .view-filters #edit-field-date-value-wrapper label {
     margin-left: -20px;

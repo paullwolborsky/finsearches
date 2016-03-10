@@ -533,13 +533,27 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
   color: #1368a6;
   display: inline; }
 
-.view-mandate-managers-hired h2 {
+.view-mandate-managers-hired h2, .view-mandate-plan-info h2 {
   padding: 4px 0 4px 15px;
   font-size: 21px;
   background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
   color: #fff;
   text-transform: uppercase;
   font-weight: 400; }
+
+.view.collapsiblock {
+  background-color: #e7f5ff;
+  color: #000; }
+  .view.collapsiblock a {
+    display: inline;
+    background: transparent url(images/gear-select.png) no-repeat 2px 0;
+    color: #1368a6; }
+
+.view.collapsiblock .views-row {
+  padding: 5px 0 10px 10px; }
+
+.view-mandate-managers-hired h2.title, .view-mandate-plan-info h2.title {
+  margin-top: 0px; }
 
 .view-filters #edit-field-date-value-wrapper label {
   margin-left: -20px; }
