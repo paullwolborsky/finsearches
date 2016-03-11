@@ -76,6 +76,10 @@ function fs_f_fn_extra_views_views_default_views() {
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  /* Relationship: Entity Reference: Referencing entity */
+  $handler->display->display_options['relationships']['reverse_field_subscribed_node']['id'] = 'reverse_field_subscribed_node';
+  $handler->display->display_options['relationships']['reverse_field_subscribed_node']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_subscribed_node']['field'] = 'reverse_field_subscribed_node';
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
@@ -227,11 +231,9 @@ function fs_f_fn_extra_views_views_default_views() {
   $handler->display->display_options['sorts']['changed']['id'] = 'changed';
   $handler->display->display_options['sorts']['changed']['table'] = 'node';
   $handler->display->display_options['sorts']['changed']['field'] = 'changed';
+  $handler->display->display_options['sorts']['changed']['relationship'] = 'reverse_field_subscribed_node';
   $handler->display->display_options['sorts']['changed']['order'] = 'DESC';
-  /* Sort criterion: Content: Last comment time */
-  $handler->display->display_options['sorts']['last_comment_timestamp']['id'] = 'last_comment_timestamp';
-  $handler->display->display_options['sorts']['last_comment_timestamp']['table'] = 'node_comment_statistics';
-  $handler->display->display_options['sorts']['last_comment_timestamp']['field'] = 'last_comment_timestamp';
+  $handler->display->display_options['sorts']['changed']['granularity'] = 'hour';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -253,6 +255,14 @@ function fs_f_fn_extra_views_views_default_views() {
     'news' => 'news',
     'plan' => 'plan',
   );
+  /* Filter criterion: Content: Updated date */
+  $handler->display->display_options['filters']['changed']['id'] = 'changed';
+  $handler->display->display_options['filters']['changed']['table'] = 'node';
+  $handler->display->display_options['filters']['changed']['field'] = 'changed';
+  $handler->display->display_options['filters']['changed']['relationship'] = 'reverse_field_subscribed_node';
+  $handler->display->display_options['filters']['changed']['operator'] = '>=';
+  $handler->display->display_options['filters']['changed']['value']['value'] = '-1 month';
+  $handler->display->display_options['filters']['changed']['value']['type'] = 'offset';
   $handler->display->display_options['block_description'] = 'Recent Content - Sidebar';
   $export['extra_views'] = $view;
 
