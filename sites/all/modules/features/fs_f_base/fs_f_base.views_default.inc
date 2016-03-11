@@ -1620,14 +1620,14 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['label'] = '';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = '';
   $handler->display->display_options['fields']['field_special_major_minor_1']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 2 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
@@ -1895,13 +1895,13 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Field: Special Major Minor 2 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
@@ -2142,13 +2142,13 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Field: Special Major Minor 2 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
@@ -2389,13 +2389,13 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Field: Special Major Minor 2 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
@@ -2635,12 +2635,12 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['table'] = 'field_data_field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Field: Special Major Minor 2 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
@@ -2880,13 +2880,13 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Field: Special Major Minor 2 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
@@ -7101,13 +7101,13 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['table'] = 'field_data_field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Field: Special Major Minor 2 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
@@ -7316,13 +7316,13 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Field: Special Major Minor 2 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
@@ -7657,13 +7657,13 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['table'] = 'field_data_field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
   $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Field: Special Major Minor 2 */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
   $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
