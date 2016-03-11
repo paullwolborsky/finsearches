@@ -37,7 +37,7 @@ function fin_users_migration_form() {
 function fin_users_migration_user_batch_wrap(&$batch) {
 
   db_set_active('legacy');
-  $sql = "select u.*, at.name as accounttype from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid where u.uid > 230";
+  $sql = "select u.*, at.name as accounttype from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid";
   $result = db_query($sql);
   db_set_active();
   // Oids are all old keys in source table, noids keys we saved

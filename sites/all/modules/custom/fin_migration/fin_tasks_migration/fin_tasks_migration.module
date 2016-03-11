@@ -180,7 +180,7 @@ function fin_tasks_migration_manager_contact_create($id) {
         ->fields(array(
           'uuid' => $field_wuin,
           'field_id' => $field_id,
-          'name' => $row->Subject,
+          'name' => substr($row->Subject, 0, 50),
           'd_created' => strtotime($row->CreationTime),
           'd_edited' => time(),
          ))
