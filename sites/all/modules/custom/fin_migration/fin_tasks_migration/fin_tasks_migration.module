@@ -143,7 +143,7 @@ function fin_tasks_migration_manager_contact_create($id) {
     return $isexist;
   }
   db_set_active('legacy');
-  $sql = "select * from tbltasks where TaskID = :id";
+  $sql = "select t.*, f.ContactName from tbltasks t left join tblfundcontacts f on t.ContactID = f.FundContactID  where TaskID = :id";
   $result = db_query($sql, array(':id' => $id));
   db_set_active();
   foreach ($result as $row) {
@@ -198,8 +198,10 @@ function fin_tasks_migration_manager_contact_create($id) {
           'r_note' => $row->ReminderText,
           'tags' => "Default tag ",
           'note' => $row->Text,
-          'r_date' => strtotime($row->ReminderDate),
+          'r_date' => substr($row->ReminderDate, 0, 10),
           'c_type' => fin_tasks_migration_contact_type($row->ContactMethod),
+          'c_contact' => empty($row->ContactName) ? '0' : $row->ContactName,
+          'c_date' => substr($row->ContactDate, 0, 10),
           'r_email' => $row->ReminderEmail,
           'prio' => rand(-1, 2),
          ))
