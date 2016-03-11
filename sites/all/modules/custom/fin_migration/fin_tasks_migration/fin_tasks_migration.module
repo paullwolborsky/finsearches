@@ -196,7 +196,7 @@ function fin_tasks_migration_manager_contact_create($id) {
           'compl' => $row->IsComplete,
           'tags_ids' => '',
           'r_note' => $row->ReminderText,
-          'tags' => "Example tag ",
+          'tags' => "Default tag ",
           'note' => $row->Text,
           'r_date' => strtotime($row->ReminderDate),
           'c_type' => fin_tasks_migration_contact_type($row->ContactMethod),
