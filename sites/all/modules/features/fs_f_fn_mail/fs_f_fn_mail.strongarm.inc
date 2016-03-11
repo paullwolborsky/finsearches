@@ -22,7 +22,7 @@ function fs_f_fn_mail_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'mail_system';
   $strongarm->value = array(
-    'default-system' => 'MimeMailSystem__SmtpMailSystem',
+    'default-system' => 'DefaultMailSystem',
     'mimemail' => 'MimeMailSystem',
   );
   $export['mail_system'] = $strongarm;
@@ -38,7 +38,7 @@ function fs_f_fn_mail_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'smtp_debugging';
-  $strongarm->value = '2';
+  $strongarm->value = 0;
   $export['smtp_debugging'] = $strongarm;
 
   $strongarm = new stdClass();
