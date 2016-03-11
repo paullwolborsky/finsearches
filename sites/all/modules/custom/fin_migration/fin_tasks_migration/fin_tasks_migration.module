@@ -198,7 +198,7 @@ function fin_tasks_migration_manager_contact_create($id) {
           'r_note' => $row->ReminderText,
           'tags' => "Default tag ",
           'note' => $row->Text,
-          'r_date' => substr($row->ReminderDate, 0, 10),
+          'r_date' => strtotime($row->ReminderDate),
           'c_type' => fin_tasks_migration_contact_type($row->ContactMethod),
           'c_contact' => empty($row->ContactName) ? '0' : $row->ContactName,
           'c_date' => substr($row->ContactDate, 0, 10),
