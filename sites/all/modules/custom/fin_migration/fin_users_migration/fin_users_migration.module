@@ -37,7 +37,7 @@ function fin_users_migration_form() {
 function fin_users_migration_user_batch_wrap(&$batch) {
 
   db_set_active('legacy');
-  $sql = "select u.*, at.name as accounttype from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid where u.uid > 230";
+  $sql = "select u.*, at.name as accounttype from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid";
   $result = db_query($sql);
   db_set_active();
   // Oids are all old keys in source table, noids keys we saved
@@ -362,4 +362,22 @@ function _fin_users_migration_get_new_roles() {
     'access family offices' => array(9 => 'Visit Family Office'),
   );
   return $roles;
+}
+
+/**
+ * Utility function of duplication check.
+ */
+function fin_user_entity_existed($hash) {
+  if (empty($hash)) {
+    return FALSE;
+  }
+  $sql = "select * from field_data_field_wuin where field_wuin_value = :hash";
+  $result = db_query($sql, array(':hash' => $hash));
+  foreach ($result as $row) {
+    $entity =  entity_load_single($row->entity_type, intval($row->entity_id));
+    if ($entity) {
+      return $entity;
+    }
+  }
+  return FALSE;
 }
