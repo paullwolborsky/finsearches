@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * fs_f_n_bt_mandate.features.field_instance.inc
@@ -22,7 +21,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 51,
+        'weight' => 54,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -68,7 +67,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 70,
+        'weight' => 73,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -156,7 +155,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 66,
+        'weight' => 69,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -216,7 +215,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 65,
+        'weight' => 68,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -277,7 +276,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 57,
+        'weight' => 60,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -335,7 +334,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 62,
+        'weight' => 65,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -373,7 +372,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 64,
+        'weight' => 67,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -430,7 +429,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 63,
+        'weight' => 66,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -471,7 +470,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 74,
+        'weight' => 77,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -671,7 +670,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 50,
+        'weight' => 53,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -716,7 +715,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 55,
+        'weight' => 58,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -757,7 +756,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 60,
+        'weight' => 63,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -816,7 +815,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 49,
+        'weight' => 52,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -853,7 +852,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 61,
+        'weight' => 64,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -912,7 +911,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 59,
+        'weight' => 62,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -949,7 +948,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 69,
+        'weight' => 72,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -992,7 +991,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 68,
+        'weight' => 71,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1029,7 +1028,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 53,
+        'weight' => 56,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1112,7 +1111,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 67,
+        'weight' => 70,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1187,7 +1186,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 56,
+        'weight' => 59,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1261,7 +1260,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 54,
+        'weight' => 57,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1425,7 +1424,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 58,
+        'weight' => 61,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1498,7 +1497,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 52,
+        'weight' => 55,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1585,33 +1584,19 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
   t('Manager Firms Hired');
   t('Manager Firms On Watch');
   t('Manager Firms Terminated');
-  t('Mandate');
   t('Mandate Comments');
   t('Mandate Notes');
   t('Mandate Number');
   t('Mandate Status');
-  t('Migration Notes');
-  t('Name');
-  t('Non-user field for any important details involved in the Great Migration.');
-  t('Old Mandate ID');
-  t('Photo');
   t('Old Mandate ID');
   t('Plan');
   t('Plan Size');
   t('RFP Date');
   t('RFP Link');
   t('Serialized Comment');
-  t('Special Major Minor 1');
-  t('Special Major Minor 2');
-  t('Special Major Style');
-  t('Special Minor Style');
-  t('Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed');
-  t('Status');
-  t('Subject');
   t('This is the mandate ID from the old D5 site.');
   t('Title');
   t('Total Amount');
-  t('Website');
-  
+
   return $field_instances;
 }
