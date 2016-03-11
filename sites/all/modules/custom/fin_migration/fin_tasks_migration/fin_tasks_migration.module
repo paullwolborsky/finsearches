@@ -175,44 +175,75 @@ function fin_tasks_migration_manager_contact_create($id) {
     }
     $transaction = db_transaction();
     try {
-      $abc = mytinytodo_get_field_id('node', $new_host_entity->nid, array('field_id' => 394));
+      $field_id = mytinytodo_get_field_id('node', $new_host_entity->nid, array('field_id' => 394));
+      $listid = db_insert('mytinytodo_lists')
+        ->fields(array(
+          'uuid' => $field_wuin,
+          'field_id' => $field_id,
+          'name' => $row->Subject,
+          'd_created' => strtotime($row->CreationTime),
+          'd_edited' => time(),
+         ))
+        ->execute();
       db_insert('mytinytodo_todos')
         ->fields(array(
           'uuid' => $field_wuin,
           'uid' => $new_user->uid,
-          'list_id' => 1,
+          'list_id' => $listid,
           'title' => $row->Subject,
           'd_created' => strtotime($row->CreationTime),
           'd_edited' => time(),
           'compl' => $row->IsComplete,
-          'tags' => "Example tag ",
           'tags_ids' => '',
-          'ow' => 1,
+          'r_note' => $row->ReminderText,
+          'tags' => "Example tag ",
+          'note' => $row->Text,
+          'r_date' => strtotime($row->ReminderDate),
+          'c_type' => fin_tasks_migration_contact_type($row->ContactMethod),
           'r_email' => $row->ReminderEmail,
           'prio' => rand(-1, 2),
          ))
         ->execute();
+      return TRUE;
     }
     catch (Exception $e) {
       $transaction->rollback('mytinytodo_todos');
       watchdog_exception('fin_tasks_migration', $e);
       throw $e;
     }
-    return;
-    db_insert('mytinytodo_todos')
-      ->fields(array(
-        'uuid' => $field_wuin,
-        'list_id' => 1,
-        'title' => "Example task $i",
-        'd_created' => time(),
-        'd_edited' => time(),
-        'tags' => "Example tag $i",
-        'tags_ids' => '',
-        'ow' => $i,
-        'prio' => rand(-1, 2),
-         ))
-      ->execute();
-      return TRUE;
-  } 
+  }
   return FALSE;
+}
+
+/**
+ * Load user by id.
+ */
+function fin_tasks_migration_contact_type($ct) {
+  if (strpos($ct, 'phone') !== FALSE) {
+    $return = '{"phone":1,';
+  }
+  else {
+    $return = '{"phone":0,';
+  }
+  if (strpos($ct, 'vm') !== FALSE) {
+    $return .= '"voicemail":1,';
+  }
+  else {
+    $return .= '"voicemail":0,';
+  }
+  if (strpos($ct, 'email') !== FALSE) {
+    $return .= '"email":1,';
+  }
+  else {
+    $return .= '"email":0,';
+  }
+  if (strpos($ct, 'other') !== FALSE) {
+    $return .= '"other":1,"reason":"';
+    $return .= $ct;
+    $return .= '"}';
+  }
+  else {
+    $return .= '"other":0,"reason":""}';
+  }
+  return $return;
 }
