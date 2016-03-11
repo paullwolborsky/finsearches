@@ -45,7 +45,7 @@ function fs_f_fn_mail_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'smtp_from';
-  $strongarm->value = 'admin@finsearches.com';
+  $strongarm->value = 'info@finsearches.com';
   $export['smtp_from'] = $strongarm;
 
   $strongarm = new stdClass();
