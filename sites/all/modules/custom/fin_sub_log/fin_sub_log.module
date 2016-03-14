@@ -25,8 +25,9 @@ function fin_sub_log_node_presave($node) {
     ->fieldCondition('field_subscribed', 'target_id', $node->nid, '=');
     $log_result = $query->execute();
     if (!empty($log_result['node'])) {
-      $temp = array_pop(array_values($log_result['node']));
-      $log_entry = node_load($temp->nid);
+      $elements = array_values($log_result['node']);
+      $element = array_pop($elements);
+      $log_entry = node_load($element->nid);
       $log_entry->changed = $time;
       $lang = $log_entry->language;
       $log_entry->field_recipient[$lang][0]['uid'] = $recipient_uid;
