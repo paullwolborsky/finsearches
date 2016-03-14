@@ -18,18 +18,21 @@ $background: #ffffff;
 $blue-black: #000033;
 $dark-blue: #003366;
 $text: #666666;
+$header: #000000;
 
 /* Borders */
 $border-blue: #689afd;
 
-/*Form Elements */
-$form-background-blue: #e7f5ff;
+/* Form Elements */
+$form-background-blue: #e7efff;
 $fieldset-background-blue: #bad0fd;
 $fieldset-label-background-blue: #689afd;
 $form-item-odd-blue: #e7efff;
-$form-item-even-blue: #d8e5ff;
-$form-item-active-blue: #cadcff;
-$dark-button: #ddd;
+$form-item-even-blue: #ffffff;
+$form-item-active-blue: #d4e2fe;
+
+/* Buttons*/
+$dark-button: #1368a6;
 
 /* Text */
 $link: #003399;
@@ -51,9 +54,14 @@ $shadow: #666666;
 }
 
 /*** Menu ***/
-#section-header .dexp-dropdown > ul > li {
-    border-left: 1px solid $fin-navy;
-    border-right: 1px solid $fin-navy;
+#section-header {
+    .container {
+        background-color: $header;
+    }
+    .dexp-dropdown > ul > li {
+        border-left: 1px solid $fin-navy;
+        border-right: 1px solid $fin-navy;
+    }
 }
 
 /*** Sections ***/
@@ -74,29 +82,44 @@ $shadow: #666666;
                 vertical-align: top;
                 margin: 15px 0 0 0;
             }
+            .btn.form-submit {
+                background: $dark-button;
+            }
         }
     }
 }
 #section-header {
-    background: #1368a6; /* Old browsers */
-    background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
+    background: $header;
     .btn {
         background: $dark-button;
     }
 }
+.ds-header li.comment-add {
+    display: none;
+}
 
 /*** Blocks ***/
 h3.block-title {
+    font-size: 21px;
+    padding: 2px 0;
+    a {
+        background: none;
+    }
     position: relative;
     margin: 0;
-    background: #1368a6; /* Old browsers */
-    background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
+    background: $header;
+}
+#block-system-main {
+    div.field-type-ds {
+        margin: 0 0 25px 0;
+
+        &.field-name-modal-contact-link,
+        &.field-name-modal-mandate-link,
+        &.field-name-modal-plan-link{
+            margin-top: -23px;
+            margin-bottom:25px;
+        }
+    }
 }
 span.fieldset-legend {
     text-transform: uppercase;  
@@ -111,11 +134,7 @@ span.fieldset-legend {
     padding: 0;
 }
 #block-subscriptions-ui-0 {
-    background: #1368a6; /* Old browsers */
-    background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */  
+    background: $header;
     .btn {
         background: $dark-button;
     }
@@ -169,22 +188,14 @@ body {
     font-family: "Lato Regular Web" !important;
 }
 .content legend {
-    margin-top: 10px;
-    margin-bottom: 5px;
+/*    margin-top: 10px;
+    margin-bottom: 10px; */
 }
 .field-name-field-photo .field-item {
     text-align: center;
 }
 
 /*** Display Suite ***/
-h3.block-title {
-    font-size: 21px;
-    padding: 2px 0;
-    a {
-        background: none;
-    }
-}
-
 .ds-header {
     padding: 0 0 30px 0;
 }
@@ -211,11 +222,7 @@ h3.block-title {
         }
         legend {
             padding: 5px 0;
-            background: #1368a6; /* Old browsers */
-            background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
+            background: $header;
             .btn {
                 background: $dark-button;
             }
@@ -224,35 +231,26 @@ h3.block-title {
                 background: none;
                 padding: 4px 0 4px 20px;
                 font-size: 21px;
+                a.fieldset-title {
+                    margin: 10px 0;
+                }
             }
         }
     }
 }
+.ds-middle legend {
+    background: $header;
+    padding: 5px 0;
+}
 .ds-above-right {
     padding: 0 0 10px 10px;
 }
-
 .ds-below-left, .ds-below-right {
     padding: 0 10px 25px 0;
-
 }
 .ds-below-right {
     padding: 0 0 25px 10px;
 }
-
-#block-system-main {
-    div.field-type-ds {
-        margin: 0 0 25px 0;
-
-        &.field-name-modal-contact-link,
-        &.field-name-modal-mandate-link,
-        &.field-name-modal-plan-link{
-            margin-top: -23px;
-            margin-bottom:25px;
-        }
-    }
-}
-
 .ds-footer {
     //Have to use padding because of floats
     padding: 0 0 0 0;
@@ -314,24 +312,24 @@ ul.links {
     }
 }
 .view-filters {
-    background-color: $fin-blue;
-    color: $background;
+    background-color: $form-item-active-blue;
+    color: $fin-blue;
     .btn {
         background: $dark-button;
+        :hover {
+            background: $fin-navy; //Doesn't work, investigate
+        }
     }
     legend {
-        background: #1368a6; /* Old browsers */
-        background: -moz-linear-gradient(top, #1368a6 0%, #142a45 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #1368a6 0%,#142a45 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #1368a6 0%,#142a45 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#142a45',GradientType=0 ); /* IE6-9 */
+        padding: 10px 0;
+        background: $header;
         .btn {
             background: $dark-button;
         }
     }
     .views-exposed-form .views-exposed-widget{
         width: 31%;
-        padding-right: 20px;
+        padding: 5px 20px 5px 10px;
     }
 }
 span.fieldset-legend {
@@ -353,8 +351,9 @@ fieldset.collapsible .fieldset-legend {
     height: auto;
     legend {
       border-bottom: none;
-      margin: 0 0 0 5px;
-      padding: 2px 0;
+      margin: 0;
+      padding: 4px 0 4px 5px;
+      background: $header;
       .fieldset-legend {
         background: none;
         background-image: none;
@@ -362,13 +361,10 @@ fieldset.collapsible .fieldset-legend {
       }
     }
     .fieldset-wrapper {
-      background: #e7efff;
+      background: $form-background-blue;
       padding: 10px;
     }
   }
-}
-.views-exposed-form {
-    padding: 10px;
 }
 
 /*
@@ -403,6 +399,9 @@ fieldset.collapsible .fieldset-legend {
 /*** Tables ***/
 table.views-table {
     width: 100%;
+}
+tbody {
+    border-top: none;
 }
 th {
     border-bottom: none;
@@ -528,6 +527,9 @@ tr.odd td.active, tr.even td.active {
 }
 
 /*** Nodes ***/
+legend {
+    margin-bottom: 0;
+}
 body.node-type-plan {
     #block-system-main {
         .ds-below-right.seventy {
@@ -550,11 +552,6 @@ body.node-type-plan {
             width: 40%;
         }  
     }
-}
-
-/*** Buttons ***/
-input#edit-submit-1 {
-
 }
 .breadcrumb {
     background-color: #fff; }
@@ -617,3 +614,4 @@ input#edit-submit-1 {
 .view-foia-history {
     margin-bottom: 20px;
 }
+

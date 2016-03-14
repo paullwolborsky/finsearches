@@ -1597,14 +1597,13 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'views_aggregator';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
-    'name_1' => 'name_1',
-    'name' => 'name',
     'field_date' => 'field_date',
     'field_mandate_status_tr' => 'field_mandate_status_tr',
     'field_plan_er' => 'field_plan_er',
     'field_geographic_tr' => 'field_geographic_tr',
-    'field_special_major_minor_1' => 'field_special_major_minor_1',
-    'field_special_major_minor_2' => 'field_special_major_minor_2',
+    'name_1' => 'name_1',
+    'name' => 'name',
+    'field_attribute_tr' => 'field_attribute_tr',
     'field_account_size' => 'field_account_size',
     'field_consultant_firm_er' => 'field_consultant_firm_er',
     'view_node' => 'view_node',
@@ -1623,36 +1622,6 @@ function fs_f_fn_content_list_views_views_default_views() {
       'aggr' => array(
         'views_aggregator_first' => 'views_aggregator_first',
         'views_aggregator_group_and_compress' => 'views_aggregator_group_and_compress',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
-    ),
-    'name_1' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
-    ),
-    'name' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
       ),
       'aggr_par' => '',
       'has_aggr_column' => 0,
@@ -1719,7 +1688,7 @@ function fs_f_fn_content_list_views_views_default_views() {
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
     ),
-    'field_special_major_minor_1' => array(
+    'name_1' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -1734,7 +1703,22 @@ function fs_f_fn_content_list_views_views_default_views() {
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
     ),
-    'field_special_major_minor_2' => array(
+    'name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'field_attribute_tr' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -1886,24 +1870,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Mandate';
   $handler->display->display_options['fields']['title']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Taxonomy term: Name */
-  $handler->display->display_options['fields']['name_1']['id'] = 'name_1';
-  $handler->display->display_options['fields']['name_1']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['fields']['name_1']['field'] = 'name';
-  $handler->display->display_options['fields']['name_1']['relationship'] = 'parent';
-  $handler->display->display_options['fields']['name_1']['label'] = '';
-  $handler->display->display_options['fields']['name_1']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['name_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['name_1']['link_to_taxonomy'] = TRUE;
-  /* Field: Taxonomy term: Name */
-  $handler->display->display_options['fields']['name']['id'] = 'name';
-  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['fields']['name']['label'] = '';
-  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
   /* Field: Field: Date */
   $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
@@ -1937,16 +1903,29 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['table'] = 'field_data_field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Special Major Minor 1 */
-  $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Field: Special Major Minor 2 */
-  $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['label'] = 'Minor Style';
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name_1']['id'] = 'name_1';
+  $handler->display->display_options['fields']['name_1']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name_1']['field'] = 'name';
+  $handler->display->display_options['fields']['name_1']['relationship'] = 'parent';
+  $handler->display->display_options['fields']['name_1']['label'] = '';
+  $handler->display->display_options['fields']['name_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_1']['link_to_taxonomy'] = TRUE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
+  /* Field: Field: Attribute */
+  $handler->display->display_options['fields']['field_attribute_tr']['id'] = 'field_attribute_tr';
+  $handler->display->display_options['fields']['field_attribute_tr']['table'] = 'field_data_field_attribute_tr';
+  $handler->display->display_options['fields']['field_attribute_tr']['field'] = 'field_attribute_tr';
+  $handler->display->display_options['fields']['field_attribute_tr']['element_label_colon'] = FALSE;
   /* Field: Content: Account Size */
   $handler->display->display_options['fields']['field_account_size']['id'] = 'field_account_size';
   $handler->display->display_options['fields']['field_account_size']['table'] = 'field_data_field_account_size';
@@ -2181,6 +2160,30 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['name_selective']['selective_display_field'] = 'name';
   $handler->display->display_options['filters']['name_selective']['selective_items_limit'] = '100';
+  /* Filter criterion: Attribute (field_attribute_tr) (selective) */
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['id'] = 'field_attribute_tr_tid_selective';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['table'] = 'field_data_field_attribute_tr';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['field'] = 'field_attribute_tr_tid_selective';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['ui_name'] = 'Attribute (field_attribute_tr) (selective)';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['label'] = 'Attribute';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['identifier'] = 'field_attribute_tr_tid_selective';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_display_field'] = 'field_attribute_tr';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_items_limit'] = '100';
 
   /* Display: Mandates - Export */
   $handler = $view->new_display('views_data_export', 'Mandates - Export', 'mandates_export');
@@ -3262,6 +3265,10 @@ function fs_f_fn_content_list_views_views_default_views() {
     'field_address_administrative_area' => 'field_address_administrative_area',
     'field_address_data' => 'field_address_data',
     'field_address_data_1' => 'field_address_data',
+    'field_geographic_tr' => 'field_geographic_tr',
+    'name' => 'name',
+    'name_1' => 'name_1',
+    'field_attribute_tr' => 'field_attribute_tr',
     'edit_node' => 'edit_node',
     'delete_node' => 'edit_node',
   );
@@ -3307,6 +3314,34 @@ function fs_f_fn_content_list_views_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
+    'field_geographic_tr' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name_1' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_attribute_tr' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'edit_node' => array(
       'align' => 'views-align-center',
       'separator' => '',
@@ -3330,6 +3365,42 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'There are no manager firms at this time.';
   $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Taxonomy terms on node */
+  $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
+  $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
+  $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
+  $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
+    'major_minor_styles' => 'major_minor_styles',
+    'activity_status' => 0,
+    'asset_allocation' => 0,
+    'asset_classes' => 0,
+    'assignment_types' => 0,
+    'attributes' => 0,
+    'blog_categories' => 0,
+    'client_types' => 0,
+    'consultant_types' => 0,
+    'content_type_shortcodes' => 0,
+    'currencies' => 0,
+    'databases_used' => 0,
+    'gallery_categories' => 0,
+    'geographic' => 0,
+    'job_types' => 0,
+    'manager_research_contacts' => 0,
+    'mandate_status' => 0,
+    'news_types' => 0,
+    'office_types' => 0,
+    'organization_type' => 0,
+    'placement_policies' => 0,
+    'plan_types' => 0,
+    'portfolio_category' => 0,
+    'tags' => 0,
+    'traits' => 0,
+  );
+  /* Relationship: Taxonomy term: Parent term */
+  $handler->display->display_options['relationships']['parent']['id'] = 'parent';
+  $handler->display->display_options['relationships']['parent']['table'] = 'taxonomy_term_hierarchy';
+  $handler->display->display_options['relationships']['parent']['field'] = 'parent';
+  $handler->display->display_options['relationships']['parent']['relationship'] = 'term_node_tid';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';

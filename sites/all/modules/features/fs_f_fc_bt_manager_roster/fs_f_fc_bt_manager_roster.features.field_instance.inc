@@ -51,7 +51,7 @@ function fs_f_fc_bt_manager_roster_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -133,7 +133,7 @@ function fs_f_fc_bt_manager_roster_field_default_field_instances() {
       'module' => 'hs_taxonomy',
       'settings' => array(),
       'type' => 'taxonomy_hs',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 

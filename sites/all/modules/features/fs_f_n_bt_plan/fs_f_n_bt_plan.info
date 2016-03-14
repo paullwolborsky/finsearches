@@ -53,6 +53,7 @@ features[field_group][] = group_plan_info|node|plan|default
 features[field_group][] = group_plan_info|node|plan|form
 features[field_group][] = group_plan_notes|node|plan|form
 features[field_group][] = group_plan_size_history|node|plan|form
+features[field_instance][] = field_collection_item-field_manager_roster_fc-field_attribute_tr
 features[field_instance][] = field_collection_item-field_plan_size_history-field_plan_size
 features[field_instance][] = node-plan-body
 features[field_instance][] = node-plan-field_address
