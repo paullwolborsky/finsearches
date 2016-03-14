@@ -1489,7 +1489,7 @@ function fs_f_base_views_default_views() {
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Geographic (field_geographic_tr) (selective) */
-  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['id'] = 'field_geographic_tr_tid_selective';
+  /*$handler->display->display_options['filters']['field_geographic_tr_tid_selective']['id'] = 'field_geographic_tr_tid_selective';
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['table'] = 'field_data_field_geographic_tr';
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['field'] = 'field_geographic_tr_tid_selective';
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['relationship'] = 'field_manager_roster_fc_value';
@@ -1515,7 +1515,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['selective_display_field'] = 'field_geographic_tr';
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['selective_items_limit'] = '100';
   /* Filter criterion: Attribute (field_attribute_tr) (selective) */
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['id'] = 'field_attribute_tr_tid_selective';
+  /*$handler->display->display_options['filters']['field_attribute_tr_tid_selective']['id'] = 'field_attribute_tr_tid_selective';
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['table'] = 'field_data_field_attribute_tr';
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['field'] = 'field_attribute_tr_tid_selective';
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['relationship'] = 'field_manager_roster_fc_value';
@@ -1538,7 +1538,7 @@ function fs_f_base_views_default_views() {
     9 => 0,
   );
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_display_field'] = 'field_attribute_tr';
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_items_limit'] = '100';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_items_limit'] = '100';*/
 
   /* Display: Plan Mandate Managers ATT */
   $handler = $view->new_display('attachment', 'Plan Mandate Managers ATT', 'att_plan_mandate_managers');
