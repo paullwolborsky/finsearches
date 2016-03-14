@@ -7466,9 +7466,9 @@ function fs_f_base_views_default_views() {
     'field_mandate_status_tr' => 'field_mandate_status_tr',
     'title_field_1' => 'title_field_1',
     'field_geographic_tr' => 'field_geographic_tr',
-    /*'name' => 'name',
+    'name' => 'name',
     'name_1' => 'name_1',
-    'field_attribute_tr' => 'field_attribute_tr',*/
+    'field_attribute_tr' => 'field_attribute_tr',
     'field_amount' => 'field_amount',
     'field_consultant_firm_er' => 'field_consultant_firm_er',
     'view_node' => 'view_node',
@@ -7539,7 +7539,7 @@ function fs_f_base_views_default_views() {
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
     ),
-    /*'name' => array(
+    'name' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -7583,7 +7583,7 @@ function fs_f_base_views_default_views() {
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),*/
+    ),
     'field_amount' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
@@ -7846,7 +7846,7 @@ function fs_f_base_views_default_views() {
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Mandate Status (field_mandate_status_tr) (selective) */
-  /*$handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['id'] = 'field_mandate_status_tr_tid_selective';
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['id'] = 'field_mandate_status_tr_tid_selective';
   $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['table'] = 'field_data_field_mandate_status_tr';
   $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['field'] = 'field_mandate_status_tr_tid_selective';
   $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['ui_name'] = 'Mandate Status (field_mandate_status_tr) (selective)';
@@ -7871,7 +7871,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['selective_display_field'] = 'field_mandate_status_tr';
   $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['selective_items_limit'] = '100';
   /* Filter criterion: Geographic (field_geographic_tr) (selective) */
-  /*$handler->display->display_options['filters']['field_geographic_tr_tid_selective']['id'] = 'field_geographic_tr_tid_selective';
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['id'] = 'field_geographic_tr_tid_selective';
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['table'] = 'field_data_field_geographic_tr';
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['field'] = 'field_geographic_tr_tid_selective';
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['ui_name'] = 'Geographic (field_geographic_tr) (selective)';
@@ -7896,7 +7896,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['selective_display_field'] = 'field_geographic_tr';
   $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['selective_items_limit'] = '100';
   /* Filter criterion: Name (selective) */
-  /*$handler->display->display_options['filters']['name_selective']['id'] = 'name_selective';
+  $handler->display->display_options['filters']['name_selective']['id'] = 'name_selective';
   $handler->display->display_options['filters']['name_selective']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['filters']['name_selective']['field'] = 'name_selective';
   $handler->display->display_options['filters']['name_selective']['relationship'] = 'term_node_tid';
@@ -7922,7 +7922,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['filters']['name_selective']['selective_display_field'] = 'name_1';
   $handler->display->display_options['filters']['name_selective']['selective_items_limit'] = '100';
   /* Filter criterion: Attribute (field_attribute_tr) (selective) */
-  /*$handler->display->display_options['filters']['field_attribute_tr_tid_selective']['id'] = 'field_attribute_tr_tid_selective';
+  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['id'] = 'field_attribute_tr_tid_selective';
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['table'] = 'field_data_field_attribute_tr';
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['field'] = 'field_attribute_tr_tid_selective';
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['ui_name'] = 'Attribute (field_attribute_tr) (selective)';
@@ -7947,7 +7947,7 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_display_field'] = 'field_attribute_tr';
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_items_limit'] = '100';
   /* Filter criterion: Amount (field_amount) (selective) */
-  /*$handler->display->display_options['filters']['field_amount_value_selective']['id'] = 'field_amount_value_selective';
+  $handler->display->display_options['filters']['field_amount_value_selective']['id'] = 'field_amount_value_selective';
   $handler->display->display_options['filters']['field_amount_value_selective']['table'] = 'field_data_field_amount';
   $handler->display->display_options['filters']['field_amount_value_selective']['field'] = 'field_amount_value_selective';
   $handler->display->display_options['filters']['field_amount_value_selective']['relationship'] = 'field_managers_hired_value';
