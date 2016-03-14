@@ -1682,20 +1682,6 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['label'] = '';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = '';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['label'] = '';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['element_label_colon'] = FALSE;
   /* Field: Field collection item: Amount */
   $handler->display->display_options['fields']['field_amount']['id'] = 'field_amount';
   $handler->display->display_options['fields']['field_amount']['table'] = 'field_data_field_amount';
@@ -1957,18 +1943,6 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['label'] = 'Minor Style';
   /* Field: Field: Consultant Firm */
   $handler->display->display_options['fields']['field_consultant_firm_er']['id'] = 'field_consultant_firm_er';
   $handler->display->display_options['fields']['field_consultant_firm_er']['table'] = 'field_data_field_consultant_firm_er';
@@ -2204,18 +2178,6 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['label'] = 'Minor Style';
   /* Field: Field: Consultant Firm */
   $handler->display->display_options['fields']['field_consultant_firm_er']['id'] = 'field_consultant_firm_er';
   $handler->display->display_options['fields']['field_consultant_firm_er']['table'] = 'field_data_field_consultant_firm_er';
@@ -2452,18 +2414,6 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['label'] = 'Minor Style';
   /* Field: Field: Consultant Firm */
   $handler->display->display_options['fields']['field_consultant_firm_er']['id'] = 'field_consultant_firm_er';
   $handler->display->display_options['fields']['field_consultant_firm_er']['table'] = 'field_data_field_consultant_firm_er';
@@ -2698,16 +2648,6 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['table'] = 'field_data_field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['label'] = 'Minor Style';
   /* Field: Field: Consultant Firm */
   $handler->display->display_options['fields']['field_consultant_firm_er']['id'] = 'field_consultant_firm_er';
   $handler->display->display_options['fields']['field_consultant_firm_er']['table'] = 'field_data_field_consultant_firm_er';
@@ -2943,18 +2883,6 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['relationship'] = 'field_managers_hired_value';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['label'] = 'Minor Style';
   /* Field: Field: Consultant Firm */
   $handler->display->display_options['fields']['field_consultant_firm_er']['id'] = 'field_consultant_firm_er';
   $handler->display->display_options['fields']['field_consultant_firm_er']['table'] = 'field_data_field_consultant_firm_er';
@@ -8685,18 +8613,6 @@ function fs_f_base_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['table'] = 'field_data_field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_1']['id'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['table'] = 'field_data_field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['field'] = 'field_special_major_minor_1';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_1']['label'] = 'Major Style';
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_special_major_minor_2']['id'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['table'] = 'field_data_field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['field'] = 'field_special_major_minor_2';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['relationship'] = 'field_managers_hired_value';
-  $handler->display->display_options['fields']['field_special_major_minor_2']['label'] = 'Minor Style';
   /* Field: Field collection item: Amount */
   $handler->display->display_options['fields']['field_amount']['id'] = 'field_amount';
   $handler->display->display_options['fields']['field_amount']['table'] = 'field_data_field_amount';
