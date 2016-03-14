@@ -11,6 +11,48 @@ function fs_f_n_bt_plan_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
+  // 'field_collection_item-field_manager_roster_fc-field_attribute_tr'
+  $field_instances['field_collection_item-field_manager_roster_fc-field_attribute_tr'] = array(
+    'bundle' => 'field_manager_roster_fc',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 4,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_attribute_tr',
+    'label' => 'Attribute',
+    'options_limit' => FALSE,
+    'options_limit_empty_behaviour' => 0,
+    'options_limit_fields' => array(),
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => 1,
+      ),
+      'type' => 'options_select',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_plan_size_history-field_plan_size'
   $field_instances['field_collection_item-field_plan_size_history-field_plan_size'] = array(
     'bundle' => 'field_plan_size_history',
@@ -1163,6 +1205,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Address');
   t('Asset Allocation');
+  t('Attribute');
   t('Body');
   t('Consultant Roster');
   t('Content Type Shortcode');

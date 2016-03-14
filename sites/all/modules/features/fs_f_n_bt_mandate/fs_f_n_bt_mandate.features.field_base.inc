@@ -40,6 +40,9 @@ function fs_f_n_bt_mandate_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_attribute_tr',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -54,6 +57,7 @@ function fs_f_n_bt_mandate_field_default_field_bases() {
           'parent' => 0,
         ),
       ),
+      'profile2_private' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'taxonomy_term_reference',
