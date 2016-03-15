@@ -716,6 +716,10 @@ class views_handler_field_field extends views_handler_field {
   }
 
   function get_value($values, $field = NULL) {
+    if(!isset($values->_field_data)) {
+      $values->_field_data[$this->field_alias]['entity'] = new stdClass();
+      $values->_field_data[$this->field_alias]['entity_type'] = $this->aliases['entity_type'];
+    }
     // Go ahead and render and store in $this->items.
     $entity = clone $values->_field_data[$this->field_alias]['entity'];
 
