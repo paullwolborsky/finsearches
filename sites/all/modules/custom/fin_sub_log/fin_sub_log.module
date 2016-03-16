@@ -10,7 +10,7 @@
 
 
 function fin_sub_log_node_presave($node) {
-  if (!empty($node->subscriptions_notify) && $node->subscriptions_notify == 1) {
+  if (!empty($node->subscriptions_notify) && $node->subscriptions_notify == 1 && !empty($node->nid)) {
     $time = time();
     //Even if there are thousands of people subscribed to this entity, we just want ONE of them.
     $recipient_sql = "SELECT recipient_uid FROM subscriptions WHERE value = " . $node->nid . " ORDER BY sid DESC LIMIT 1";
