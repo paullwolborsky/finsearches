@@ -201,9 +201,6 @@ function fs_f_fc_bt_managers_hired_field_default_field_instances() {
   t('Manager Firms Hired');
   t('Manager Firms On Watch');
   t('Manager Firms Terminated');
-  t('Special Major Minor 1');
-  t('Special Major Minor 2');
-  t('Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed');
 
   return $field_instances;
 }

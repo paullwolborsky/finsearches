@@ -1195,11 +1195,6 @@ function fs_f_n_bt_contact_field_default_field_instances() {
   t('RFP Date');
   t('RFP Link');
   t('Serialized Comment');
-  t('Special Major Minor 1');
-  t('Special Major Minor 2');
-  t('Special Major Style');
-  t('Special Minor Style');
-  t('Special, normally hidden field to automatically receive a Minor of a Major/Minor Style when a eligible view is displayed');
   t('Status');
   t('Subject');
   t('This is the mandate ID from the old D5 site.');
