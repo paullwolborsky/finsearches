@@ -1,0 +1,5 @@
+name = Tasks Migrate D5-D7
+description = Migrate tasks data from old to new Finsearch websites
+core = 7.x
+
+dependencies[] = fin_users_migration

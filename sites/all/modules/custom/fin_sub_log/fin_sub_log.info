@@ -1,0 +1,4 @@
+name = "Fin Subscription Log"
+description = "Adds a log to subscriptions"
+package = "Custom"
+core = 7.x

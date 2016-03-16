@@ -450,7 +450,7 @@ function quickedit_preprocess_field(&$variables) {
   }
 
   $field_name = $element['#field_name'];
-  $language = $element['#language'];
+  $language = isset($element['#language']) ? $element['#language'] : LANGUAGE_NONE;
   $view_mode = $element['#view_mode'];
   $entity = $element['#object'];
   list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);

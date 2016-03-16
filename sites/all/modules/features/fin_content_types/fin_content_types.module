@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the FIN Content Types feature.
- */
-
-include_once 'fin_content_types.features.inc';

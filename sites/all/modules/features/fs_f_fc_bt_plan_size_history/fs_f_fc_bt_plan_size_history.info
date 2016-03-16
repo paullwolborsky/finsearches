@@ -1,0 +1,8 @@
+name = fs_f_fc_bt_plan_size_history
+core = 7.x
+package = Custom
+dependencies[] = date
+dependencies[] = features
+dependencies[] = fs_f_base
+features[features_api][] = api:2
+features[field_instance][] = field_collection_item-field_plan_size_history-field_date

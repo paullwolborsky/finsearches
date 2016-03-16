@@ -1193,6 +1193,10 @@ ul.links li {
 #modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
   width: 98%;
 }
+/* line 111, ../sass/_modals.scss */
+#modalContent .node-action-block {
+  display: none;
+}
 
 /*** Color Variables ***/
 /* Page */
@@ -1209,12 +1213,12 @@ body.tao {
 
 /* line 53, ../sass/custom.scss */
 #main-content, .block .block-content, .container-inline .fieldset-content, .fieldset-content {
-  background: #cddeff;
+  background: #f0f5ff;
 }
 
 /* line 56, ../sass/custom.scss */
 #page-title {
-  background: #689afd;
+  background: #94b8ff;
 }
 /* line 58, ../sass/custom.scss */
 #page-title .page-title {
@@ -1238,27 +1242,27 @@ a a:hover {
 }
 /* line 73, ../sass/custom.scss */
 .fieldset .fieldset .fieldset-content {
-  background: #aac6ff none repeat scroll 0 0;
+  background: #e7efff none repeat scroll 0 0;
 }
 /* line 76, ../sass/custom.scss */
 .fieldset #main-content, .fieldset .block .block-content, .fieldset .container-inline .fieldset-content, .fieldset .fieldset-content {
-  background: #bad0fd none repeat scroll 0 0;
+  background: #dee6ff none repeat scroll 0 0;
 }
 
 /* line 80, ../sass/custom.scss */
 .collapsible .fieldset-legend {
-  background: #689afd none repeat scroll 0 0;
+  background: #94b8ff none repeat scroll 0 0;
   padding: 0 5px;
 }
 
 /* line 84, ../sass/custom.scss */
 .item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
-  background: #689afd;
+  background: #94b8ff;
 }
 
 /* line 87, ../sass/custom.scss */
 .form-wrapper.form-actions {
-  background: #689afd;
+  background: #94b8ff;
   border: 1px solid #689afd;
 }
 
@@ -1270,7 +1274,7 @@ a a:hover {
 
 /* line 95, ../sass/custom.scss */
 .vertical-tabs {
-  background: #aac6ff;
+  background: #e7efff;
   border: 1px solid #689afd;
 }
 
@@ -1282,7 +1286,7 @@ a a:hover {
 }
 /* line 105, ../sass/custom.scss */
 .vertical-tabs-list .selected a {
-  background: #bad0fd none repeat scroll 0 0;
+  background: #dee6ff none repeat scroll 0 0;
 }
 
 /* line 109, ../sass/custom.scss */
@@ -1294,39 +1298,39 @@ a a:hover {
 /*** Tables ***/
 /* line 115, ../sass/custom.scss */
 table {
-  background-color: #cddeff;
+  background-color: #f0f5ff;
   border-color: #689afd;
 }
 /* line 118, ../sass/custom.scss */
 table th {
-  background: #689afd;
+  background: #94b8ff;
   text-transform: none;
   text-shadow: none;
 }
 /* line 123, ../sass/custom.scss */
 table tr.odd td.active, table table tr.even td.active {
-  background-color: #87affe;
+  background-color: #cadcff;
 }
 
 /* line 127, ../sass/custom.scss */
 tr.odd {
-  background: #aac6ff !important;
-  background-color: #aac6ff !important;
+  background: #e7efff !important;
+  background-color: #e7efff !important;
 }
 
 /* line 131, ../sass/custom.scss */
 tr.even {
-  background-color: #98bafe !important;
-  background: #98bafe !important;
+  background-color: #d8e5ff !important;
+  background: #d8e5ff !important;
 }
 
 /* line 136, ../sass/custom.scss */
 .page-admin table tr.odd, .page-admin .page-admin table tr.odd td {
-  background-color: #aac6ff !important;
+  background-color: #e7efff !important;
 }
 /* line 139, ../sass/custom.scss */
 .page-admin table tr.even, .page-admin .page-admin table tr.even td {
-  background-color: #98bafe !important;
+  background-color: #d8e5ff !important;
 }
 
 /* Field Groups */
@@ -1346,7 +1350,7 @@ tr.even {
 /* Buttons */
 /* line 158, ../sass/custom.scss */
 .pager li.pager-current, .primary-tabs li.active {
-  background-color: #aac6ff;
+  background-color: #e7efff;
 }
 
 /* line 161, ../sass/custom.scss */
@@ -1461,13 +1465,40 @@ body.page-node-add-plan .group-plan-contacts {
 
 /* line 274, ../sass/custom.scss */
 .page-node-edit .column-main, .page-node-add .column-main {
-  width: 90%;
+  width: 100%;
 }
 /* line 277, ../sass/custom.scss */
-.page-node-edit .column-side, .page-node-add .column-side {
-  width: 10%;
+.page-node-edit .node-action-block, .page-node-add .node-action-block {
+  width: 130px;
+  position: fixed;
+  top: 60px;
+  right: 36px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 4px 4px 5px 0px #000;
+  z-index: 20;
 }
-/* line 280, ../sass/custom.scss */
+/* line 286, ../sass/custom.scss */
+.page-node-edit .node-action-block .action-wrapper, .page-node-add .node-action-block .action-wrapper {
+  border-radius: 5px;
+}
+/* line 288, ../sass/custom.scss */
+.page-node-edit .node-action-block .action-wrapper .form-wrapper, .page-node-add .node-action-block .action-wrapper .form-wrapper {
+  border-radius: 5px;
+  margin: 0;
+  padding: 5px;
+}
+/* line 292, ../sass/custom.scss */
+.page-node-edit .node-action-block .action-wrapper .form-wrapper .form-actions, .page-node-add .node-action-block .action-wrapper .form-wrapper .form-actions {
+  border-radius: 5px;
+  border: none;
+  text-align: left;
+}
+/* line 296, ../sass/custom.scss */
+.page-node-edit .node-action-block .action-wrapper .form-wrapper .form-actions input, .page-node-add .node-action-block .action-wrapper .form-wrapper .form-actions input {
+  margin: 0 0 5px 0;
+}
+/* line 303, ../sass/custom.scss */
 .page-node-edit table.sticky-header, .page-node-add table.sticky-header {
-  z-index: 1000;
+  z-index: 10;
 }

@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file modifies privatemsg to support finsearches messaging needs
+ */
+
+/**
+ * Implements hook_form_alter
+ */
+function fin_privatemsg_form_alter(&$form, &$form_state, $form_id) {
+  //drupal_set_message($form_id);
+  if ($form_id == 'privatemsg_new') {
+    $form['actions']['submit']['#validate'][] = 'fin_privatemsg_new_validate';
+  }
+}
+
+/**
+ * Validation to ensure that the user can send a message to this recipient.
+ */
+function fin_privatemsg_new_validate($form, &$form_state) {
+  $user_org = fin_privatemsg_user_org();
+  $recipients = $form_state['validate_built_message']->recipients;
+  if (!isset($user_org->nid)) {
+    $same_org = FALSE;
+  }
+  else {
+    $same_org = TRUE;
+
+    foreach ($recipients as $recipient) {
+      $same_org = fin_privatemsg_recipient_check($recipient, $user_org, $same_org);
+    }
+    if ($same_org == FALSE) {
+      form_set_error('recipient', 'Recipient(s) not in your organization');
+    }
+  }
+}
+
+/**
+ * Pulls the organization data for the logged in user.
+ */
+function fin_privatemsg_user_org() {
+  global $user;
+  $user_profile = profile2_load_by_user($user->uid, 'main');
+  $user_profile_wrapper = entity_metadata_wrapper('profile2', $user_profile);
+  $user_org = $user_profile_wrapper->field_pf_organization_er->value();
+  return $user_org;
+}
+
+/**
+ * Checks to see if a given recipient is in the same org as logged in user.
+ */
+function fin_privatemsg_recipient_check(&$recipient, $user_org, $same_org = TRUE) {
+  $uid = $recipient->uid;
+  $profile = profile2_load_by_user($uid, 'main');
+  if (empty($profile)) {
+    $same_org = FALSE;
+  }
+  else {
+    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+    $org = $profile_wrapper->field_pf_organization_er->value();
+    if (!isset($org->nid)) {
+      $same_org = FALSE;
+    }
+    else if ($user_org->nid != $org->nid) {
+      $same_org = FALSE;
+    }
+  }
+  return $same_org;
+}
+
+/**
+ * Removes user from autocomplete when they are not in correct org.
+ */
+function fin_privatemsg_privatemsg_autocomplete_alter(&$matches, $names, $fragment) {
+  $user_org = fin_privatemsg_user_org();
+  if (!isset($user_org->nid)) {
+    $matches = array();
+  }
+  else {
+    foreach ($matches as $name => $recipient) {
+      $same_org = fin_privatemsg_recipient_check($recipient, $user_org);
+      if ($same_org != TRUE) {
+        unset($matches[$name]);
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+name = "Fin Forms"
+description = "Custom form alteration"
+package = "Custom"
+core = 7.x

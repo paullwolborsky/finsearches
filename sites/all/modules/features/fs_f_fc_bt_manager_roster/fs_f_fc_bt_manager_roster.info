@@ -1,0 +1,15 @@
+name = fs_f_fc_bt_manager_roster
+core = 7.x
+package = Custom
+dependencies[] = entityreference
+dependencies[] = features
+dependencies[] = fs_f_base
+dependencies[] = hs_taxonomy
+dependencies[] = number
+dependencies[] = options
+dependencies[] = taxonomy
+features[features_api][] = api:2
+features[field_instance][] = field_collection_item-field_manager_roster_fc-field_amount
+features[field_instance][] = field_collection_item-field_manager_roster_fc-field_geographic_tr
+features[field_instance][] = field_collection_item-field_manager_roster_fc-field_major_minor_style_tr
+features[field_instance][] = field_collection_item-field_manager_roster_fc-field_manager_firm_er

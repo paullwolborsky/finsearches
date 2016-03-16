@@ -1,0 +1,4 @@
+name = Fin Privatemsg
+description = Finsearches Privatemsg modifications
+package = Custom
+core = 7.x

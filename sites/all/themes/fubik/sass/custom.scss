@@ -28,12 +28,12 @@ $dark-blue: #003366;
 $border-blue: #689afd;
 
 /*Form Elements */
-$form-background-blue: #cddeff;
-$fieldset-background-blue: #bad0fd;
-$fieldset-label-background-blue: #689afd;
-$form-item-odd-blue: #aac6ff;
-$form-item-even-blue: #98bafe;
-$form-item-active-blue: #87affe;
+$form-background-blue: #f0f5ff;
+$fieldset-background-blue: #dee6ff;
+$fieldset-label-background-blue: #94b8ff;
+$form-item-odd-blue: #e7efff;
+$form-item-even-blue: #d8e5ff;
+$form-item-active-blue: #cadcff;
 
 /* Text */
 $link: #003399;
@@ -272,12 +272,35 @@ body.page-node-add-plan {
 
 .page-node-edit, .page-node-add {
   .column-main {
-    width: 90%;
+    width: 100%;
   }
-  .column-side {
-    width: 10%;
+  .node-action-block {
+    width: 130px;
+    position: fixed;
+    top: 60px;
+    right: 36px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 4px 4px 5px 0px #000;
+    z-index: 20;
+    .action-wrapper {
+      border-radius: 5px;
+      .form-wrapper {
+        border-radius: 5px;
+        margin: 0;
+        padding: 5px;
+        .form-actions {
+          border-radius: 5px;
+          border: none;
+          text-align: left;
+          input {
+            margin: 0 0 5px 0;
+          }
+        }
+      }
+    }
   }
   table.sticky-header {
-    z-index: 1000;
+    z-index: 10;
   }
 }

@@ -17,11 +17,12 @@
         data.addColumn('string', 'Label');
         data.addColumn('number', 'Value');
         $('.pie-chart .views-field').each(function(){
-          data.addRow([$(this).find('.views-label').html(), parseInt($(this).find('.field-content').html())]);
+          data.addRow([$(this).find('.views-label').html(), parseFloat($(this).find('.field-content').html())]);
         });
         var options = {
           is3D: false,
-          chartArea: {left:0,top:0, width: '75%', height:'100%'},
+          chartArea: {left:10,top:10, width: '100%', height:'90%'},
+          legend: {position: 'right',alignment:'top'},
           tooltip: {text:'percentage'}
         };
         $('.pie-chart').html("<div id='aa-chart'></div>");
@@ -60,6 +61,19 @@
       $('.view-content-lists .views-field-field-tasks .tasks .close').click(function(){
         $(this).parents('div.tasks').hide();
       });
+      
+      //Make links work in recent content view
+      $('.view-display-id-recent_content_sidebar .view-content .views-row .field-content a').click(function(){
+        window.location = jQuery(this).attr('href');
+        return false;
+      });
+      
+      //Trigger focus and blur on plan contact modals.
+      //I cannot believe this actually works.
+      if ($('#modalContent').length) {
+        $('#edit-field-job-history-und-0-field-plan-er-und-0-target-id').focus();
+        $('#edit-title-field-und-0-value').focus();
+      }
     }
   };
 })(jQuery, Drupal);

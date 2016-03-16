@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Add additional phone fields to addressfield.
+ * Add additional Address 3 fields to addressfield.
  */
 
 /**
@@ -102,7 +102,7 @@ function addressfield_address3_field_attach_presave($entity_type, $entity) {
  */
 function addressfield_address3_field_attach_load($entity_type, $entities, $age, $options){
   $addressfields = addressfield_address3_addressfield_types();
-  $phone_elements = drupal_map_assoc(array(
+  $address3_elements = drupal_map_assoc(array(
     'address3',
   ));
 
@@ -114,17 +114,17 @@ function addressfield_address3_field_attach_load($entity_type, $entities, $age, 
 
       foreach ($entity->$field_name as $lang_code => $fields) {
         foreach ($fields as $delta => $fieldset) {
-          // Fill default values for pre-addressfield_phone addresses to keep
+          // Fill default values for pre-addressfield_address addresses to keep
           // Commerce Order from duplicating address.
           if (empty($fieldset['data'])) {
-            $fieldset['data'] = serialize(array_fill_keys($phone_elements, ''));
+            $fieldset['data'] = serialize(array_fill_keys($address3_elements, ''));
           }
 
           // Unserialize data, else skip if string
           if (($data = unserialize($fieldset['data'])) && is_array($data)) {
             // Store unserialized data values in additional fields
-            $phone_data = array_intersect_key($data, $phone_elements);
-            $entity->{$field_name}[$lang_code][$delta] = array_merge($fieldset, $phone_data);
+            $address3_data = array_intersect_key($data, $address3_elements);
+            $entity->{$field_name}[$lang_code][$delta] = array_merge($fieldset, $address3_data);
           }
         }
       }
@@ -151,7 +151,7 @@ function addressfield_address3_addressfield_types() {
 /**
  * Implements hook_token_info_alter().
  *
- * Adds in additional tokens for phone fields.
+ * Adds in additional tokens for address3 fields.
  */
 function addressfield_address3_token_info_alter(&$data) {
   $address_field = &$data['tokens']['address-field'];
@@ -165,7 +165,7 @@ function addressfield_address3_token_info_alter(&$data) {
 /**
  * Implements hook_tokens().
  *
- * Replace phone tokens with actual values from an address field.
+ * Replace address3 tokens with actual values from an address field.
  */
 function addressfield_address3_tokens($type, $tokens, $data = array(), $options = array()) {
   if (isset($options['language'])) {
@@ -228,7 +228,7 @@ function addressfield_address3_form_field_ui_field_edit_form_alter(&$form, $form
 
     $field = field_info_instance($entity_type, $field_name, $bundle);
     $settings = $field['widget']['settings'];
-    $form['instance']['widget']['settings']['phone_number_fields'] = array(
+    $form['instance']['widget']['settings']['address3_fields'] = array(
       '#type' => 'checkboxes',
       '#title' => t('Enable Address 3 field'),
       '#options' => array(0=>0,1=>1),
