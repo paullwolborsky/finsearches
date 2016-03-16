@@ -249,3 +249,25 @@ function fin_tasks_migration_contact_type($ct) {
   }
   return $return;
 }
+
+/**
+ * Quwue worker leaf function.
+ */
+function fin_tasks_migration_favorite_create($id) {
+  db_set_active('legacy');
+  $sql = "select * from finsearch_favorites  where FavoriteID = :id";
+  $result = db_query($sql, array(':id' => $id));
+  db_set_active();
+  foreach ($result as $row) {
+    $user_wuin = md5('users' . $row->uid);
+    if ($row->type === 'plan') {
+      $node_wuin = md5('tblfunds' . $row->fid);
+    }
+    else {
+      $node_wuin = md5('tblconsultantfirms' . $row->fid);
+    }
+    $user = fin_user_entity_existed($user_wuin);
+    $node = fin_user_entity_existed($node_wuin);
+    subscriptions_write_subscription('node', 'nid', $node->nid, -1, $user->uid, _subscriptions_get_setting('send_interval', $user), 1, 1);
+  }
+}
