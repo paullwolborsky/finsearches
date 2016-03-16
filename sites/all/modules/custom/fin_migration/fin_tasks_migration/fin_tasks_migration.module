@@ -1,0 +1,251 @@
+<?php
+/**
+ * @file
+ * A module to perform custom migration from one version of Drupal to another.
+ */
+
+/**
+ * Load user by id.
+ */
+function fin_tasks_migration_profile2_by_uid_load($uid, $type_name) {
+  if ($uid && is_numeric($uid) && ($account = user_load($uid))) {
+    $profile = profile2_load_by_user($account, $type_name);
+    if (!$profile) {
+      $profile = profile2_create(array('type' => $type_name, 'uid' => $uid));
+      $profile->setUser($account);
+      $profile->is_new = TRUE;
+    }
+    return $profile;
+  }
+  return FALSE;
+}
+
+/**
+ * Load entity by entity title, lable.
+ */
+function _fin_tasks_migration_get_entity_by_name($fieldname, $name, $bundle, $type) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', $type)
+    ->entityCondition('bundle', $bundle)
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('field_organization_name', 'value', $name, '=');
+  $result = $query->execute();
+
+  $id = FALSE;
+  if (isset($result['node'])) {
+    $ids = array_keys($result['node']);
+    if ($ids) {
+      $id = $ids[0];
+      return $id;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Utility function to get role map.
+ */
+function _fin_tasks_migration_get_new_roles() {
+  $roles = array(
+    'anonymous user' => array(1 => 'anonymous user'),
+    'authenticated user' => array(2 => 'authenticated user'),
+    'basic admin' => array(3 => 'administrator'),
+    'user admin' => array(4 => 'manager'),
+    'tasks enabled' => array(5 => 'editor'),
+    'access family offices' => array(9 => 'Visit Family Office'),
+  );
+  return $roles;
+}
+
+/**
+ * Utility function of duplication check.
+ */
+function fin_task_entity_existed($hash) {
+  $sql = "select * from field_data_field_wuin where field_wuin_value = :hash";
+  $result = db_query($sql, array(':hash' => $hash));
+  foreach ($result as $row) {
+    $entity =  entity_load_single($row->entity_type, intval($row->entity_id));
+    if ($entity) {
+      return $entity;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Special functions group.
+ */
+function _fin_tasks_migration_create() {
+  try {
+    $queue = DrupalQueue::get('fin_tasks_migration_import_tasks');
+    db_set_active('legacy');
+    $sql = "select TaskID from {tbltasks}";
+    $result = db_query($sql);
+    db_set_active();
+    foreach ($result as $row) {
+      $task = array(
+        'id' => $row->TaskID,
+      );
+      $queue->createItem($task);
+    }
+  }
+  catch (Exception $e) {
+    db_set_active();
+    watchdog('fin_tasks_migration_import_tasks', $e->getMessage(), array(), WATCHDOG_ERROR);
+  }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ *
+ * Provides an import queue processed on cron.
+ */
+function fin_tasks_migration_cron_queue_info() {
+  return array(
+    'fin_tasks_migration_import_tasks' => array(
+      'worker callback' => 'fin_tasks_migration_queue_process',
+      'time' => '3450',
+    ),
+  );
+}
+
+/**
+ * Worker callback for import news queue.
+ */
+function fin_tasks_migration_queue_process($item) {
+  $id = $item['id'];
+  fin_tasks_migration_manager_contact_create($id);
+}
+
+/**
+ * Utility function of duplication check.
+ */
+function fin_tasks_migration_tasks_existed($hash) {
+  $sql = "select * from mytinytodo_todos where uuid = :hash";
+  $result = db_query($sql, array(':hash' => $hash));
+  foreach ($result as $row) {
+    if (isset($row->id)) {
+      return $row->id;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Quwue worker.
+ */
+function fin_tasks_migration_manager_contact_create($id) {
+
+  // Returns the entity if it is already existed.
+  $field_wuin = md5('tbltasks' . $id);
+  $isexist = fin_tasks_migration_tasks_existed($field_wuin);
+  if ($isexist) {
+    return $isexist;
+  }
+  db_set_active('legacy');
+  $sql = "select t.*, f.ContactName from tbltasks t left join tblfundcontacts f on t.ContactID = f.FundContactID  where TaskID = :id";
+  $result = db_query($sql, array(':id' => $id));
+  db_set_active();
+  foreach ($result as $row) {
+    if (isset($row->UserID)) {
+      $wuin = md5('users' . $row->UserID);
+      $new_user = fin_user_entity_existed($wuin);
+      if (!$new_user) {
+        throw new Exception('The new user is not found.');
+      }
+    }
+    $wuin = '';
+    if (isset($row->ItemID)) {
+      if ($row->itemtype == 'MANAGERS') {
+        $wuin = md5('tblmanagerfirms' . $row->ItemID);
+      }
+      if ($row->itemtype == 'FUNDS') {
+        $wuin = md5('tblfunds' . $row->ItemID);
+      }
+      if ($row->itemtype == 'CONSULTANT') {
+        $wuin = md5('tblconsultantfirms' . $row->ItemID);
+      }
+      if (empty($wuin)) {
+        throw new Exception('Item TYPE is not found.');
+      }
+      $new_host_entity = fin_user_entity_existed($wuin);
+      if (!$new_host_entity) {
+        throw new Exception('The host node is not found.');
+      }
+    }
+    $transaction = db_transaction();
+    try {
+      $field_id = mytinytodo_get_field_id('node', $new_host_entity->nid, array('field_id' => 394));
+      $listid = db_insert('mytinytodo_lists')
+        ->fields(array(
+          'uuid' => $field_wuin,
+          'field_id' => $field_id,
+          'name' => substr($row->Subject, 0, 50),
+          'd_created' => strtotime($row->CreationTime),
+          'd_edited' => time(),
+         ))
+        ->execute();
+      db_insert('mytinytodo_todos')
+        ->fields(array(
+          'uuid' => $field_wuin,
+          'uid' => $new_user->uid,
+          'list_id' => $listid,
+          'title' => $row->Subject,
+          'd_created' => strtotime($row->CreationTime),
+          'd_edited' => time(),
+          'compl' => $row->IsComplete,
+          'tags_ids' => '',
+          'r_note' => $row->ReminderText,
+          'tags' => "Default tag ",
+          'note' => $row->Text,
+          'r_date' => strtotime($row->ReminderDate),
+          'c_type' => fin_tasks_migration_contact_type($row->ContactMethod),
+          'c_contact' => empty($row->ContactName) ? '0' : $row->ContactName,
+          'c_date' => substr($row->ContactDate, 0, 10),
+          'r_email' => $row->ReminderEmail,
+          'prio' => rand(-1, 2),
+         ))
+        ->execute();
+      return TRUE;
+    }
+    catch (Exception $e) {
+      $transaction->rollback('mytinytodo_todos');
+      watchdog_exception('fin_tasks_migration', $e);
+      throw $e;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Load user by id.
+ */
+function fin_tasks_migration_contact_type($ct) {
+  if (strpos($ct, 'phone') !== FALSE) {
+    $return = '{"phone":1,';
+  }
+  else {
+    $return = '{"phone":0,';
+  }
+  if (strpos($ct, 'vm') !== FALSE) {
+    $return .= '"voicemail":1,';
+  }
+  else {
+    $return .= '"voicemail":0,';
+  }
+  if (strpos($ct, 'email') !== FALSE) {
+    $return .= '"email":1,';
+  }
+  else {
+    $return .= '"email":0,';
+  }
+  if (strpos($ct, 'other') !== FALSE) {
+    $return .= '"other":1,"reason":"';
+    $return .= $ct;
+    $return .= '"}';
+  }
+  else {
+    $return .= '"other":0,"reason":""}';
+  }
+  return $return;
+}

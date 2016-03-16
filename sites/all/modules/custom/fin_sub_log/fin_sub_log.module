@@ -1,0 +1,52 @@
+<?php
+/**
+ * @file
+ * This file contains code for subscription logs
+ * Allows us to filter views by subscription notice
+ *
+ *Written by John W. Johnson
+ *3-10-2016
+ */
+
+
+function fin_sub_log_node_presave($node) {
+  if (!empty($node->subscriptions_notify) && $node->subscriptions_notify == 1 && !empty($node->nid)) {
+    $time = time();
+    //Even if there are thousands of people subscribed to this entity, we just want ONE of them.
+    $recipient_sql = "SELECT recipient_uid FROM subscriptions WHERE value = " . $node->nid . " ORDER BY sid DESC LIMIT 1";
+    $recipient_result = db_query($recipient_sql)->fetchObject();
+    $recipient_uid = !empty($recipient_result->recipient_uid)?$recipient_result->recipient_uid:false;
+    if (!$recipient_uid) {
+      return;
+    }
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'subscription_log_entry')
+    ->fieldCondition('field_subscribed', 'target_id', $node->nid, '=');
+    $log_result = $query->execute();
+    if (!empty($log_result['node'])) {
+      $elements = array_values($log_result['node']);
+      $element = array_pop($elements);
+      $log_entry = node_load($element->nid);
+      $log_entry->changed = $time;
+      $lang = $log_entry->language;
+      $log_entry->field_recipient[$lang][0]['uid'] = $recipient_uid;
+      $log_entry = node_submit($log_entry);
+      node_save($log_entry);
+    } else {
+      $values = array(
+        'type' => 'subscription_log_entry',
+        'uid' => $node->uid,
+        'status' => 1,
+        'comment' => 0,
+        'promote' => 0,
+      );
+      $log_entry = entity_create('node', $values);
+      $entry_wrapper = entity_metadata_wrapper('node', $log_entry);
+      $entry_wrapper->title->set('sub_log_entry-' . $node->nid);
+      $entry_wrapper->field_recipient->set(intval($recipient_uid));
+      $entry_wrapper->field_subscribed->set(intval($node->nid));
+      $entry_wrapper->save();
+    }
+  }
+}

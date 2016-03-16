@@ -1,0 +1,8 @@
+name = fs_f_fc_bt_managers_terminated
+core = 7.x
+package = Custom
+features[features_api][] = api:2
+features[field_instance][] = field_collection_item-field_managers_terminated-field_amount
+features[field_instance][] = field_collection_item-field_managers_terminated-field_geographic_tr
+features[field_instance][] = field_collection_item-field_managers_terminated-field_major_minor_style_tr
+features[field_instance][] = field_collection_item-field_managers_terminated-field_manager_firm_er

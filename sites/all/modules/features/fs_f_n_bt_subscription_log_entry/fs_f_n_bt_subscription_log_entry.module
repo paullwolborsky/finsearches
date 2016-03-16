@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the fs_f_n_bt_subscription_log_entry feature.
+ */
+
+include_once 'fs_f_n_bt_subscription_log_entry.features.inc';

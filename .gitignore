@@ -1,5 +1,5 @@
 # Ignore configuration files that may contain sensitive information.
-sites/*/settings*.php
+sites/*/settings.*.php
 
 # Ignore paths that contain user-generated content.
 sites/*/files
@@ -20,3 +20,7 @@ sites/all/themes/corposs/Gemfile.lock
 sites/all/themes/fubik/.ruby-gemset
 sites/all/themes/fubik/.ruby-version
 sites/all/themes/fubik/.sass-cache/
+*.css.map
+
+#Ignore vagrant files
+.vagrant

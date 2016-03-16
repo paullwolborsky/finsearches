@@ -1,0 +1,12 @@
+name = fs_f_fc_bt_consultant_roster_fc
+core = 7.x
+package = Custom
+dependencies[] = entityreference
+dependencies[] = features
+dependencies[] = fs_f_base
+dependencies[] = options
+dependencies[] = taxonomy
+features[features_api][] = api:2
+features[field_instance][] = field_collection_item-field_consultant_roster_fc-field_consultant_contact_er
+features[field_instance][] = field_collection_item-field_consultant_roster_fc-field_consultant_firm_er
+features[field_instance][] = field_collection_item-field_consultant_roster_fc-field_consultant_type_tr
