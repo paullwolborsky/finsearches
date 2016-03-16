@@ -6,6 +6,7 @@
  *Import other sheets
  **/
 @import "_modals.scss";
+@import "pages/_advanced_search.scss";
 
 /*** Color Variables ***/
 
@@ -157,25 +158,6 @@ span.fieldset-legend {
     margin: 5px 0 0 0;
 }.field-name-plan-closed-mandates-bf .block-views {
     margin: 5px 0 0 0;
-}
-.block-facetapi {
-    h3.block-title {
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .content {
-        display: none;
-        &.open {
-            display: block;
-        }
-        .item-list {
-            margin: 0 0 4px 0
-        }
-    }
-    select {
-        max-width: 100%;
-    }
 }
 
 /*** Labels ***/
