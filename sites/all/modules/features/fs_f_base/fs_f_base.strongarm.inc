@@ -286,6 +286,24 @@ function fs_f_base_strongarm() {
             'visible' => FALSE,
           ),
         ),
+        'consultants_hired_entity_view_1' => array(
+          'default' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
+        ),
+        'mandate_managers_hired_entity_view_1' => array(
+          'default' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
+        ),
+        'mandate_plan_info_entity_view_1' => array(
+          'default' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
+        ),
       ),
     ),
   );

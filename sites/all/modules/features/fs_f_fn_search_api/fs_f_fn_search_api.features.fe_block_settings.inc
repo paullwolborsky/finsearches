@@ -236,6 +236,38 @@ function fs_f_fn_search_api_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['facetapi-LlXmtelmeJoU4kr1esoWjHgEE1010a20'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'LlXmtelmeJoU4kr1esoWjHgEE1010a20',
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => 'advanced-search*',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => 'left_sidebar',
+        'status' => 1,
+        'theme' => 'corposs',
+        'weight' => -43,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Plan',
+    'visibility' => 1,
+  );
+
   $export['facetapi-Lwvgp6spBxvRZV3Q19NutXKMT3LX16se'] = array(
     'cache' => -1,
     'custom' => 0,

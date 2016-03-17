@@ -33,8 +33,7 @@ function fs_f_n_bt_mandate_ds_layout_settings_info() {
         21 => 'field_attribute_tr',
       ),
       'above_right' => array(
-        2 => 'mandate_plan_info_entity_view_1',
-        21 => 'mandate_plan_info_bf',
+        2 => 'mandate_plan_info_bf',
         22 => 'field_traits_tr',
         23 => 'group_traits',
       ),
@@ -49,7 +48,6 @@ function fs_f_n_bt_mandate_ds_layout_settings_info() {
         8 => 'mandate_managers_terminated_bf',
         9 => 'mandate_manager_finalists_bf',
         10 => 'mandate_managers_onwatch_bf',
-        11 => 'mandate_managers_hired_entity_view_1',
       ),
       'footer' => array(
         11 => 'mandate_comments_bf',
@@ -59,8 +57,6 @@ function fs_f_n_bt_mandate_ds_layout_settings_info() {
     'fields' => array(
       'group_mandate_info' => 'above_left',
       'group_rfp' => 'above_left',
-      'mandate_plan_info_entity_view_1' => 'above_right',
-      'mandate_managers_hired_entity_view_1' => 'below_right',
       'mandate_plan_info_bf' => 'above_right',
       'mandate_consultants_hired_bf' => 'below_left',
       'mandate_consultant_terminated_bf' => 'below_left',
