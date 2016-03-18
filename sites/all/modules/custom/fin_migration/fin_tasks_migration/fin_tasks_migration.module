@@ -75,6 +75,29 @@ function fin_task_entity_existed($hash) {
 /**
  * Special functions group.
  */
+function _fin_tasks_migration_subscription_create() {
+  try {
+    $queue = DrupalQueue::get('fin_tasks_migration_import_subscriptions');
+    db_set_active('legacy');
+    $sql = "select FavoriteID from {finsearch_favorites}";
+    $result = db_query($sql);
+    db_set_active();
+    foreach ($result as $row) {
+      $task = array(
+        'id' => $row->FavoriteID,
+      );
+      $queue->createItem($task);
+    }
+  }
+  catch (Exception $e) {
+    db_set_active();
+    watchdog('fin_tasks_migration_import_tasks', $e->getMessage(), array(), WATCHDOG_ERROR);
+  }
+}
+
+/**
+ * Special functions group.
+ */
 function _fin_tasks_migration_create() {
   try {
     $queue = DrupalQueue::get('fin_tasks_migration_import_tasks');
@@ -102,11 +125,23 @@ function _fin_tasks_migration_create() {
  */
 function fin_tasks_migration_cron_queue_info() {
   return array(
+    'fin_tasks_migration_import_subscriptions' => array(
+      'worker callback' => 'fin_subscriptions_migration_queue_process',
+      'time' => '3450',
+    ),
     'fin_tasks_migration_import_tasks' => array(
       'worker callback' => 'fin_tasks_migration_queue_process',
       'time' => '3450',
     ),
   );
+}
+
+/**
+ * Worker callback for import news queue.
+ */
+function fin_subscriptions_migration_queue_process($item) {
+  $id = $item['id'];
+  fin_tasks_migration_favorite_create($id);
 }
 
 /**
@@ -268,6 +303,11 @@ function fin_tasks_migration_favorite_create($id) {
     }
     $user = fin_user_entity_existed($user_wuin);
     $node = fin_user_entity_existed($node_wuin);
-    subscriptions_write_subscription('node', 'nid', $node->nid, -1, $user->uid, _subscriptions_get_setting('send_interval', $user), 1, 1);
+    if(is_object($user) & is_object($node)) {
+      subscriptions_write_subscription('node', 'nid', $node->nid, -1, $user->uid, _subscriptions_get_setting('send_interval', $user), 1, 1);
+    }
+    else {
+      throw new Exception('The subscription can not be create due to missing node.');
+    }
   }
 }
