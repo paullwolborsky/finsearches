@@ -207,9 +207,16 @@ h2.title {
 }
 
 /*** Content ***/
+body.boxed {
+    background: #1368a6; /* Old browsers */
+    background: -moz-linear-gradient(top,  #1368a6 0%, #000000 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #1368a6 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #1368a6 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
 .page-node-3702, .page-node-3704, .page-node-3705, .page-node-3706, .page-node-3707, .page-node-3710, .page-node-6806, .page-node-3711 {
     #page-title {
-        display: none;
+        display: none; // Removes titles from these site pages
     }
 }
 body {
