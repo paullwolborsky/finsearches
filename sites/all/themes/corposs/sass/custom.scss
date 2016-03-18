@@ -81,6 +81,9 @@ $shadow: #666666;
         ul.menu ul.menu li, .dexp-dropdown ul.menu .dexp-menu-mega li {
             background: $fin-blue;
         }
+        ul.menu ul.menu li.first, ul.menu .dexp-menu-mega li.first {
+            border-top: solid 1px $header;
+        }
         ul.menu ul.menu li a.active {
             background: $fin-blue;
             color: $white;
@@ -102,6 +105,8 @@ $shadow: #666666;
         border-top: none;
     }
 }
+
+
 
 /*** Sections ***/
 #section-top-bar {
