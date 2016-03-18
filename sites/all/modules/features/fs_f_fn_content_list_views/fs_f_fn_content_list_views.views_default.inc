@@ -1058,11 +1058,12 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_plan_er']['settings'] = array(
     'link' => 1,
   );
-  /* Field: Content: Plan Type */
+  /* Field: Content: Latest Plan Types */
   $handler->display->display_options['fields']['field_plan_type_tr']['id'] = 'field_plan_type_tr';
   $handler->display->display_options['fields']['field_plan_type_tr']['table'] = 'field_data_field_plan_type_tr';
   $handler->display->display_options['fields']['field_plan_type_tr']['field'] = 'field_plan_type_tr';
   $handler->display->display_options['fields']['field_plan_type_tr']['relationship'] = 'field_plan_er_target_id';
+  $handler->display->display_options['fields']['field_plan_type_tr']['label'] = 'Plan Type';
   $handler->display->display_options['fields']['field_plan_type_tr']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_plan_type_tr']['element_label_colon'] = FALSE;
   /* Field: Field: Job Title */
@@ -1234,7 +1235,7 @@ function fs_f_fn_content_list_views_views_default_views() {
     8 => 0,
     9 => 0,
   );
-  /* Filter criterion: Content: Plan Type (field_plan_type_tr) */
+  /* Filter criterion: Content: Latest Plan Types (field_plan_type_tr) */
   $handler->display->display_options['filters']['field_plan_type_tr_tid']['id'] = 'field_plan_type_tr_tid';
   $handler->display->display_options['filters']['field_plan_type_tr_tid']['table'] = 'field_data_field_plan_type_tr';
   $handler->display->display_options['filters']['field_plan_type_tr_tid']['field'] = 'field_plan_type_tr_tid';
