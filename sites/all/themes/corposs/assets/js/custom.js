@@ -48,6 +48,7 @@
       
       //Add collapsible fielsets to exposed filters
       //$('.view-content-lists .view-filters .views-exposed-form').unwrap('div')
+      /*
       $('.view-content-lists .view-filters .views-exposed-form', context).wrap("<fieldset class='collapsible'></fieldset>")
       $('.view-content-lists .view-filters .views-exposed-form', context).before("<legend><span class='fieldset-legend'><a class='fieldset-title' href='#'>Filters</a></span></legend>");
       $('.view-content-lists .view-filters .views-exposed-form', context).wrap("<div class='fieldset-wrapper'></div>");
@@ -61,6 +62,7 @@
       $('.view-content-lists .views-field-field-tasks .tasks .close').click(function(){
         $(this).parents('div.tasks').hide();
       });
+      */
       
       //Make links work in recent content view
       $('.view-display-id-recent_content_sidebar .view-content .views-row .field-content a').click(function(){

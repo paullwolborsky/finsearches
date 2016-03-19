@@ -70,12 +70,15 @@ function fs_f_fn_search_api_default_search_api_index() {
       "cron_limit" : "100",
       "fields" : {
         "field_account_size" : { "type" : "integer" },
+        "field_address:administrative_area" : { "type" : "string" },
+        "field_address:country" : { "type" : "string" },
         "field_asset_allocation_history" : {
           "type" : "list\\u003Cinteger\\u003E",
           "entity_type" : "field_collection_item"
         },
         "field_consultant_firm_er" : { "type" : "integer", "entity_type" : "node" },
         "field_currency_tr" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_date" : { "type" : "date" },
         "field_geographic_tr" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_major_minor_style_tr" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_mandate_status_tr" : { "type" : "integer", "entity_type" : "taxonomy_term" },
