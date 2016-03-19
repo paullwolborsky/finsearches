@@ -31,7 +31,7 @@ function fs_f_fn_extra_views_default_fe_block_settings() {
         'region' => 'right_sidebar',
         'status' => 1,
         'theme' => 'corposs',
-        'weight' => 0,
+        'weight' => -49,
       ),
       'mix_and_match' => array(
         'region' => '',

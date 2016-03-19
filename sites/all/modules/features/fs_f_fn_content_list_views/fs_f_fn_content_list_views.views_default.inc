@@ -25,6 +25,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['title'] = '<none>';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['link_display'] = 'views_data_export_2';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -1036,6 +1037,11 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['relationships']['field_job_history_value']['table'] = 'field_data_field_job_history';
   $handler->display->display_options['relationships']['field_job_history_value']['field'] = 'field_job_history_value';
   $handler->display->display_options['relationships']['field_job_history_value']['delta'] = '-1';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_plan_er_target_id']['id'] = 'field_plan_er_target_id';
+  $handler->display->display_options['relationships']['field_plan_er_target_id']['table'] = 'field_data_field_plan_er';
+  $handler->display->display_options['relationships']['field_plan_er_target_id']['field'] = 'field_plan_er_target_id';
+  $handler->display->display_options['relationships']['field_plan_er_target_id']['relationship'] = 'field_job_history_value';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Name */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
@@ -1053,12 +1059,37 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_plan_er']['settings'] = array(
     'link' => 1,
   );
+  /* Field: Content: Latest Plan Types */
+  $handler->display->display_options['fields']['field_plan_type_tr']['id'] = 'field_plan_type_tr';
+  $handler->display->display_options['fields']['field_plan_type_tr']['table'] = 'field_data_field_plan_type_tr';
+  $handler->display->display_options['fields']['field_plan_type_tr']['field'] = 'field_plan_type_tr';
+  $handler->display->display_options['fields']['field_plan_type_tr']['relationship'] = 'field_plan_er_target_id';
+  $handler->display->display_options['fields']['field_plan_type_tr']['label'] = 'Plan Type';
+  $handler->display->display_options['fields']['field_plan_type_tr']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_plan_type_tr']['element_label_colon'] = FALSE;
   /* Field: Field: Job Title */
   $handler->display->display_options['fields']['field_job_title']['id'] = 'field_job_title';
   $handler->display->display_options['fields']['field_job_title']['table'] = 'field_data_field_job_title';
   $handler->display->display_options['fields']['field_job_title']['field'] = 'field_job_title';
   $handler->display->display_options['fields']['field_job_title']['relationship'] = 'field_job_history_value';
   $handler->display->display_options['fields']['field_job_title']['element_label_colon'] = FALSE;
+  /* Field: Field: Address - Locality (i.e. City) */
+  $handler->display->display_options['fields']['field_address_locality']['id'] = 'field_address_locality';
+  $handler->display->display_options['fields']['field_address_locality']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address_locality']['field'] = 'field_address_locality';
+  $handler->display->display_options['fields']['field_address_locality']['relationship'] = 'field_job_history_value';
+  $handler->display->display_options['fields']['field_address_locality']['label'] = 'City';
+  $handler->display->display_options['fields']['field_address_locality']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_address_locality']['element_label_colon'] = FALSE;
+  /* Field: Field: Address - Administrative area (i.e. State / Province) */
+  $handler->display->display_options['fields']['field_address_administrative_area']['id'] = 'field_address_administrative_area';
+  $handler->display->display_options['fields']['field_address_administrative_area']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address_administrative_area']['field'] = 'field_address_administrative_area';
+  $handler->display->display_options['fields']['field_address_administrative_area']['relationship'] = 'field_job_history_value';
+  $handler->display->display_options['fields']['field_address_administrative_area']['label'] = '';
+  $handler->display->display_options['fields']['field_address_administrative_area']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_address_administrative_area']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_address_administrative_area']['display_name'] = 1;
   /* Field: Field: Address with phone number */
   $handler->display->display_options['fields']['field_address_data']['id'] = 'field_address_data';
   $handler->display->display_options['fields']['field_address_data']['table'] = 'field_data_field_address';
@@ -1159,20 +1190,19 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['title_field_value_selective']['selective_display_field'] = 'title_field';
   $handler->display->display_options['filters']['title_field_value_selective']['selective_items_limit'] = '100';
-  /* Filter criterion: Job Title (field_job_title) (selective) */
-  $handler->display->display_options['filters']['field_job_title_value_selective']['id'] = 'field_job_title_value_selective';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['table'] = 'field_data_field_job_title';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['field'] = 'field_job_title_value_selective';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['ui_name'] = 'Job Title (field_job_title) (selective)';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['group'] = 1;
-  $handler->display->display_options['filters']['field_job_title_value_selective']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['label'] = 'Job Title';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['identifier'] = 'field_job_title_value_selective';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['remember_roles'] = array(
+  /* Filter criterion: Field: Address - Locality (i.e. City) */
+  $handler->display->display_options['filters']['field_address_locality']['id'] = 'field_address_locality';
+  $handler->display->display_options['filters']['field_address_locality']['table'] = 'field_data_field_address';
+  $handler->display->display_options['filters']['field_address_locality']['field'] = 'field_address_locality';
+  $handler->display->display_options['filters']['field_address_locality']['relationship'] = 'field_job_history_value';
+  $handler->display->display_options['filters']['field_address_locality']['group'] = 1;
+  $handler->display->display_options['filters']['field_address_locality']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_address_locality']['expose']['operator_id'] = 'field_address_locality_op';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['label'] = 'City';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['operator'] = 'field_address_locality_op';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['identifier'] = 'field_address_locality';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_address_locality']['expose']['remember_roles'] = array(
     2 => '2',
     3 => 0,
     4 => 0,
@@ -1183,22 +1213,19 @@ function fs_f_fn_content_list_views_views_default_views() {
     8 => 0,
     9 => 0,
   );
-  $handler->display->display_options['filters']['field_job_title_value_selective']['selective_display_field'] = 'field_job_title';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['selective_items_limit'] = '100';
-  /* Filter criterion: Email (field_email) (selective) */
-  $handler->display->display_options['filters']['field_email_email_selective']['id'] = 'field_email_email_selective';
-  $handler->display->display_options['filters']['field_email_email_selective']['table'] = 'field_data_field_email';
-  $handler->display->display_options['filters']['field_email_email_selective']['field'] = 'field_email_email_selective';
-  $handler->display->display_options['filters']['field_email_email_selective']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['filters']['field_email_email_selective']['ui_name'] = 'Email (field_email) (selective)';
-  $handler->display->display_options['filters']['field_email_email_selective']['group'] = 1;
-  $handler->display->display_options['filters']['field_email_email_selective']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['label'] = 'Email';
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['identifier'] = 'field_email_email_selective';
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['remember_roles'] = array(
+  /* Filter criterion: Field: Address - Administrative area (i.e. State / Province) */
+  $handler->display->display_options['filters']['field_address_administrative_area']['id'] = 'field_address_administrative_area';
+  $handler->display->display_options['filters']['field_address_administrative_area']['table'] = 'field_data_field_address';
+  $handler->display->display_options['filters']['field_address_administrative_area']['field'] = 'field_address_administrative_area';
+  $handler->display->display_options['filters']['field_address_administrative_area']['relationship'] = 'field_job_history_value';
+  $handler->display->display_options['filters']['field_address_administrative_area']['group'] = 1;
+  $handler->display->display_options['filters']['field_address_administrative_area']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['operator_id'] = 'field_address_administrative_area_op';
+  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['label'] = 'State';
+  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['operator'] = 'field_address_administrative_area_op';
+  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['identifier'] = 'field_address_administrative_area';
+  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['remember_roles'] = array(
     2 => '2',
     3 => 0,
     4 => 0,
@@ -1209,22 +1236,20 @@ function fs_f_fn_content_list_views_views_default_views() {
     8 => 0,
     9 => 0,
   );
-  $handler->display->display_options['filters']['field_email_email_selective']['selective_display_field'] = 'field_email';
-  $handler->display->display_options['filters']['field_email_email_selective']['selective_items_limit'] = '100';
-  /* Filter criterion: Plan (field_plan_er) (selective) */
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['id'] = 'field_plan_er_target_id_selective';
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['table'] = 'field_data_field_plan_er';
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['field'] = 'field_plan_er_target_id_selective';
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['ui_name'] = 'Plan (field_plan_er) (selective)';
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['group'] = 1;
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['expose']['label'] = 'Plan';
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['expose']['identifier'] = 'field_plan_er_target_id_selective';
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['expose']['remember_roles'] = array(
+  /* Filter criterion: Content: Latest Plan Types (field_plan_type_tr) */
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['id'] = 'field_plan_type_tr_tid';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['table'] = 'field_data_field_plan_type_tr';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['field'] = 'field_plan_type_tr_tid';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['relationship'] = 'field_plan_er_target_id';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['operator_id'] = 'field_plan_type_tr_tid_op';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['label'] = 'Plan Type';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['operator'] = 'field_plan_type_tr_tid_op';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['identifier'] = 'field_plan_type_tr_tid';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['remember_roles'] = array(
     2 => '2',
     3 => 0,
     4 => 0,
@@ -1235,8 +1260,8 @@ function fs_f_fn_content_list_views_views_default_views() {
     8 => 0,
     9 => 0,
   );
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['selective_display_field'] = 'field_plan_er';
-  $handler->display->display_options['filters']['field_plan_er_target_id_selective']['selective_items_limit'] = '100';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['vocabulary'] = 'plan_types';
 
   /* Display: Mandates */
   $handler = $view->new_display('block', 'Mandates', 'mandates_list');
@@ -1594,7 +1619,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
   $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'advanced_input';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'views_aggregator';
+  $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
     'field_date' => 'field_date',
@@ -1607,10 +1632,10 @@ function fs_f_fn_content_list_views_views_default_views() {
     'field_account_size' => 'field_account_size',
     'field_consultant_firm_er' => 'field_consultant_firm_er',
     'view_node' => 'view_node',
-    'edit_node' => 'view_node',
-    'delete_node' => 'view_node',
+    'edit_node' => 'edit_node',
+    'delete_node' => 'delete_node',
   );
-  $handler->display->display_options['style_options']['default'] = 'field_date';
+  $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'title' => array(
       'sortable' => 1,
@@ -1618,45 +1643,20 @@ function fs_f_fn_content_list_views_views_default_views() {
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 1,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-        'views_aggregator_group_and_compress' => 'views_aggregator_group_and_compress',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'field_date' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'desc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
-    ),
-    'field_mandate_status_tr' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
+    ),
+    'field_mandate_status_tr' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
     'field_plan_er' => array(
       'sortable' => 1,
@@ -1664,44 +1664,20 @@ function fs_f_fn_content_list_views_views_default_views() {
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'field_geographic_tr' => array(
-      'sortable' => 1,
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'name_1' => array(
-      'sortable' => 1,
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'name' => array(
       'sortable' => 1,
@@ -1709,29 +1685,13 @@ function fs_f_fn_content_list_views_views_default_views() {
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'field_attribute_tr' => array(
-      'sortable' => 1,
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'field_account_size' => array(
       'sortable' => 1,
@@ -1739,78 +1699,30 @@ function fs_f_fn_content_list_views_views_default_views() {
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'field_consultant_firm_er' => array(
-      'sortable' => 1,
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'view_node' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => 'views-align-center',
+      'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'edit_node' => array(
-      'align' => 'views-align-center',
+      'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'delete_node' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
   );
-  $handler->display->display_options['style_options']['column_aggregation']['totals_per_page'] = '1';
-  $handler->display->display_options['style_options']['column_aggregation']['totals_row_position'] = array(
-    1 => 0,
-    2 => '2',
-  );
-  $handler->display->display_options['style_options']['column_aggregation']['precision'] = '2';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
@@ -1921,11 +1833,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['name']['exclude'] = TRUE;
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
-  /* Field: Field: Attribute */
-  $handler->display->display_options['fields']['field_attribute_tr']['id'] = 'field_attribute_tr';
-  $handler->display->display_options['fields']['field_attribute_tr']['table'] = 'field_data_field_attribute_tr';
-  $handler->display->display_options['fields']['field_attribute_tr']['field'] = 'field_attribute_tr';
-  $handler->display->display_options['fields']['field_attribute_tr']['element_label_colon'] = FALSE;
   /* Field: Content: Account Size */
   $handler->display->display_options['fields']['field_account_size']['id'] = 'field_account_size';
   $handler->display->display_options['fields']['field_account_size']['table'] = 'field_data_field_account_size';
@@ -2068,9 +1975,11 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['filters']['field_date_value']['group'] = 1;
   $handler->display->display_options['filters']['field_date_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_date_value']['expose']['operator_id'] = 'field_date_value_op';
-  $handler->display->display_options['filters']['field_date_value']['expose']['label'] = 'Date';
+  $handler->display->display_options['filters']['field_date_value']['expose']['label'] = 'Date (field_date)';
   $handler->display->display_options['filters']['field_date_value']['expose']['operator'] = 'field_date_value_op';
   $handler->display->display_options['filters']['field_date_value']['expose']['identifier'] = 'field_date_value';
+  $handler->display->display_options['filters']['field_date_value']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_date_value']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_date_value']['expose']['remember_roles'] = array(
     2 => '2',
     3 => 0,
@@ -2082,26 +1991,224 @@ function fs_f_fn_content_list_views_views_default_views() {
     8 => 0,
     9 => 0,
   );
-  $handler->display->display_options['filters']['field_date_value']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['field_date_value']['year_range'] = '-5:+0';
+  $handler->display->display_options['filters']['field_date_value']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_date_value']['group_info']['label'] = 'Date';
+  $handler->display->display_options['filters']['field_date_value']['group_info']['identifier'] = 'field_date_value';
+  $handler->display->display_options['filters']['field_date_value']['group_info']['remember'] = 1;
+  $handler->display->display_options['filters']['field_date_value']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Today',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    2 => array(
+      'title' => 'This week',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => '2016-03-18 11:32',
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => '2016-03-18 00:00',
+          'default_date' => '12AM today',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => '2016-03-18 11:32',
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    3 => array(
+      'title' => 'This month',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => '2016-03-18 11:32',
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => '2016-03-18 00:00',
+          'default_date' => 'first day of this week',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => '2016-03-18 11:32',
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    4 => array(
+      'title' => 'Year to date',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => '2016-03-18 11:32',
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => '2016-03-18 00:00',
+          'default_date' => 'first day of this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => '2016-03-18 11:32',
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    5 => array(
+      'title' => 'Last 12 months',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => '2016-03-18 11:32',
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => '2016-03-18 00:00',
+          'default_date' => '-12 months',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => '2016-03-18 11:32',
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    6 => array(
+      'title' => '1st quarter this year',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'first day of January this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'last day of March this year',
+        ),
+      ),
+    ),
+    7 => array(
+      'title' => '2nd quarter this year',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'first day of April this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'last day of June this year',
+        ),
+      ),
+    ),
+    8 => array(
+      'title' => '3rd quarter this year',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'first day of July this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'last day of September this year',
+        ),
+      ),
+    ),
+    9 => array(
+      'title' => '4th quarter this year',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'first day of October this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'last day of December this year',
+        ),
+      ),
+    ),
+  );
+  $handler->display->display_options['filters']['field_date_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_date_value']['default_date'] = '12AM today';
+  $handler->display->display_options['filters']['field_date_value']['default_to_date'] = 'now';
+  $handler->display->display_options['filters']['field_date_value']['year_range'] = '-10:+1';
   /* Filter criterion: Content: Account Size (field_account_size) */
   $handler->display->display_options['filters']['field_account_size_value']['id'] = 'field_account_size_value';
   $handler->display->display_options['filters']['field_account_size_value']['table'] = 'field_data_field_account_size';
   $handler->display->display_options['filters']['field_account_size_value']['field'] = 'field_account_size_value';
   $handler->display->display_options['filters']['field_account_size_value']['operator'] = 'between';
   $handler->display->display_options['filters']['field_account_size_value']['value']['min'] = '0';
-  $handler->display->display_options['filters']['field_account_size_value']['value']['max'] = '99000000';
+  $handler->display->display_options['filters']['field_account_size_value']['value']['max'] = '9999999999';
   $handler->display->display_options['filters']['field_account_size_value']['group'] = 1;
   $handler->display->display_options['filters']['field_account_size_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_account_size_value']['expose']['operator_id'] = 'field_account_size_value_op';
   $handler->display->display_options['filters']['field_account_size_value']['expose']['label'] = 'Account Size';
   $handler->display->display_options['filters']['field_account_size_value']['expose']['operator'] = 'field_account_size_value_op';
   $handler->display->display_options['filters']['field_account_size_value']['expose']['identifier'] = 'field_account_size_value';
+  $handler->display->display_options['filters']['field_account_size_value']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['field_account_size_value']['expose']['remember_roles'] = array(
     2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
+    3 => '3',
+    4 => '4',
+    5 => '5',
     1 => 0,
     6 => 0,
     7 => 0,
@@ -2160,40 +2267,368 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['name_selective']['selective_display_field'] = 'name';
   $handler->display->display_options['filters']['name_selective']['selective_items_limit'] = '100';
-  /* Filter criterion: Attribute (field_attribute_tr) (selective) */
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['id'] = 'field_attribute_tr_tid_selective';
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['table'] = 'field_data_field_attribute_tr';
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['field'] = 'field_attribute_tr_tid_selective';
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['ui_name'] = 'Attribute (field_attribute_tr) (selective)';
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['label'] = 'Attribute';
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['identifier'] = 'field_attribute_tr_tid_selective';
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['expose']['remember_roles'] = array(
-    2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    1 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-  );
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_display_field'] = 'field_attribute_tr';
-  $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_items_limit'] = '100';
 
   /* Display: Mandates - Export */
-  $handler = $view->new_display('views_data_export', 'Mandates - Export', 'mandates_export');
-  $handler->display->display_options['defaults']['link_display'] = FALSE;
-  $handler->display->display_options['link_display'] = 'mandates_export';
-  $handler->display->display_options['pager']['type'] = 'some';
+  $handler = $view->new_display('views_data_export', 'Mandates - Export', 'views_data_export_2');
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
+  $handler->display->display_options['exposed_form']['options']['bef'] = array(
+    'general' => array(
+      'allow_secondary' => 0,
+      'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_mandate_status_tr_tid_1' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'title' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_geographic_tr_tid' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => 1,
+        'bef_select_all_none_nested' => 0,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_consultant_firm_er_target_id' => array(
+      'bef_format' => 'default',
+      'slider_options' => array(
+        'bef_slider_min' => '0',
+        'bef_slider_max' => '99999',
+        'bef_slider_step' => '1',
+        'bef_slider_animate' => '',
+        'bef_slider_orientation' => 'horizontal',
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'bef_filter_description' => NULL,
+        'any_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_major_minor_style_tr_tid' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_select_all_none_nested' => 1,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_account_size_value' => array(
+      'bef_format' => 'bef_slider',
+      'slider_options' => array(
+        'bef_slider_min' => '0',
+        'bef_slider_max' => '9999',
+        'bef_slider_step' => '1',
+        'bef_slider_animate' => 'normal',
+        'bef_slider_orientation' => 'horizontal',
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'bef_filter_description' => NULL,
+        'any_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
+    'bef_filter_description' => NULL,
+    'any_label' => NULL,
+    'filter_rewrite_values' => NULL,
+  );
+  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
+  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'advanced_input';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
   $handler->display->display_options['style_options']['provide_file'] = 1;
-  $handler->display->display_options['style_options']['filename'] = 'FIN-Searches-Plans-Export.csv';
-  $handler->display->display_options['style_options']['parent_sort'] = 0;
+  $handler->display->display_options['style_options']['filename'] = 'mandates_export.csv';
+  $handler->display->display_options['style_options']['parent_sort'] = 1;
   $handler->display->display_options['style_options']['quote'] = 1;
   $handler->display->display_options['style_options']['trim'] = 0;
   $handler->display->display_options['style_options']['replace_newlines'] = 0;
@@ -2227,7 +2662,6 @@ function fs_f_fn_content_list_views_views_default_views() {
     'blog_categories' => 0,
     'client_types' => 0,
     'consultant_types' => 0,
-    'content_type_shortcodes' => 0,
     'currencies' => 0,
     'databases_used' => 0,
     'gallery_categories' => 0,
@@ -2242,13 +2676,13 @@ function fs_f_fn_content_list_views_views_default_views() {
     'plan_types' => 0,
     'portfolio_category' => 0,
     'tags' => 0,
-    'traits' => 0,
   );
   /* Relationship: Taxonomy term: Parent term */
   $handler->display->display_options['relationships']['parent']['id'] = 'parent';
   $handler->display->display_options['relationships']['parent']['table'] = 'taxonomy_term_hierarchy';
   $handler->display->display_options['relationships']['parent']['field'] = 'parent';
   $handler->display->display_options['relationships']['parent']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['relationships']['parent']['required'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -2256,10 +2690,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Mandate';
   $handler->display->display_options['fields']['title']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Field: Field: Date */
   $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
@@ -2279,14 +2710,14 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_mandate_status_tr']['table'] = 'field_data_field_mandate_status_tr';
   $handler->display->display_options['fields']['field_mandate_status_tr']['field'] = 'field_mandate_status_tr';
   $handler->display->display_options['fields']['field_mandate_status_tr']['label'] = 'Status';
-  $handler->display->display_options['fields']['field_mandate_status_tr']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_mandate_status_tr']['element_label_colon'] = FALSE;
   /* Field: Field: Plan */
   $handler->display->display_options['fields']['field_plan_er']['id'] = 'field_plan_er';
   $handler->display->display_options['fields']['field_plan_er']['table'] = 'field_data_field_plan_er';
   $handler->display->display_options['fields']['field_plan_er']['field'] = 'field_plan_er';
   $handler->display->display_options['fields']['field_plan_er']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_plan_er']['settings'] = array(
-    'link' => 0,
+    'link' => 1,
   );
   /* Field: Field: Geographic */
   $handler->display->display_options['fields']['field_geographic_tr']['id'] = 'field_geographic_tr';
@@ -2294,24 +2725,27 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_tr']['field'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['element_label_colon'] = FALSE;
   /* Field: Taxonomy term: Name */
-  $handler->display->display_options['fields']['name']['id'] = 'name';
-  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'parent';
-  $handler->display->display_options['fields']['name']['label'] = 'Major Style';
-  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
-  /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name_1']['id'] = 'name_1';
   $handler->display->display_options['fields']['name_1']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name_1']['field'] = 'name';
-  $handler->display->display_options['fields']['name_1']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['fields']['name_1']['label'] = 'Minor Style';
+  $handler->display->display_options['fields']['name_1']['relationship'] = 'parent';
+  $handler->display->display_options['fields']['name_1']['label'] = '';
+  $handler->display->display_options['fields']['name_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['name_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_1']['link_to_taxonomy'] = TRUE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
   /* Field: Content: Account Size */
   $handler->display->display_options['fields']['field_account_size']['id'] = 'field_account_size';
   $handler->display->display_options['fields']['field_account_size']['table'] = 'field_data_field_account_size';
   $handler->display->display_options['fields']['field_account_size']['field'] = 'field_account_size';
-  $handler->display->display_options['fields']['field_account_size']['label'] = 'Size';
   $handler->display->display_options['fields']['field_account_size']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_account_size']['settings'] = array(
     'thousand_separator' => ',',
@@ -2323,17 +2757,33 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_consultant_firm_er']['id'] = 'field_consultant_firm_er';
   $handler->display->display_options['fields']['field_consultant_firm_er']['table'] = 'field_data_field_consultant_firm_er';
   $handler->display->display_options['fields']['field_consultant_firm_er']['field'] = 'field_consultant_firm_er';
-  $handler->display->display_options['fields']['field_consultant_firm_er']['relationship'] = 'field_consultants_hired_value';
-  $handler->display->display_options['fields']['field_consultant_firm_er']['label'] = 'Consultant';
   $handler->display->display_options['fields']['field_consultant_firm_er']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_consultant_firm_er']['settings'] = array(
-    'link' => 0,
+    'link' => 1,
   );
-  $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Name (title_field) */
-  $handler->display->display_options['sorts']['title_field_value']['id'] = 'title_field_value';
-  $handler->display->display_options['sorts']['title_field_value']['table'] = 'field_data_title_field';
-  $handler->display->display_options['sorts']['title_field_value']['field'] = 'title_field_value';
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = '<i class="fa fa-eye" title=\'View\'></i>';
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
+  /* Field: Content: Delete link */
+  $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
+  $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -2350,7 +2800,383 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'mandate' => 'mandate',
   );
-  $handler->display->display_options['path'] = 'export/mandates';
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Mandate Status (field_mandate_status_tr) (selective) */
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['id'] = 'field_mandate_status_tr_tid_selective';
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['table'] = 'field_data_field_mandate_status_tr';
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['field'] = 'field_mandate_status_tr_tid_selective';
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['ui_name'] = 'Mandate Status (field_mandate_status_tr) (selective)';
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['group'] = 1;
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['expose']['label'] = 'Status';
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['expose']['identifier'] = 'field_mandate_status_tr_tid_selective';
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['selective_display_field'] = 'field_mandate_status_tr';
+  $handler->display->display_options['filters']['field_mandate_status_tr_tid_selective']['selective_items_limit'] = '100';
+  /* Filter criterion: Consultant Firm (field_consultant_firm_er) (selective) */
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['id'] = 'field_consultant_firm_er_target_id_selective';
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['table'] = 'field_data_field_consultant_firm_er';
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['field'] = 'field_consultant_firm_er_target_id_selective';
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['ui_name'] = 'Consultant Firm (field_consultant_firm_er) (selective)';
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['group'] = 1;
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['expose']['label'] = 'Consultant Firm';
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['expose']['identifier'] = 'field_consultant_firm_er_target_id_selective';
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['selective_display_field'] = 'field_consultant_firm_er';
+  $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['selective_items_limit'] = '100';
+  /* Filter criterion: Geographic (field_geographic_tr) (selective) */
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['id'] = 'field_geographic_tr_tid_selective';
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['table'] = 'field_data_field_geographic_tr';
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['field'] = 'field_geographic_tr_tid_selective';
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['ui_name'] = 'Geographic (field_geographic_tr) (selective)';
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['group'] = 1;
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['expose']['label'] = 'Geographic';
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['expose']['identifier'] = 'field_geographic_tr_tid_selective';
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['selective_display_field'] = 'field_geographic_tr';
+  $handler->display->display_options['filters']['field_geographic_tr_tid_selective']['selective_items_limit'] = '100';
+  /* Filter criterion: Field: Date (field_date) */
+  $handler->display->display_options['filters']['field_date_value']['id'] = 'field_date_value';
+  $handler->display->display_options['filters']['field_date_value']['table'] = 'field_data_field_date';
+  $handler->display->display_options['filters']['field_date_value']['field'] = 'field_date_value';
+  $handler->display->display_options['filters']['field_date_value']['operator'] = 'between';
+  $handler->display->display_options['filters']['field_date_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_date_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_date_value']['expose']['operator_id'] = 'field_date_value_op';
+  $handler->display->display_options['filters']['field_date_value']['expose']['label'] = 'Date (field_date)';
+  $handler->display->display_options['filters']['field_date_value']['expose']['operator'] = 'field_date_value_op';
+  $handler->display->display_options['filters']['field_date_value']['expose']['identifier'] = 'field_date_value';
+  $handler->display->display_options['filters']['field_date_value']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_date_value']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_date_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['field_date_value']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_date_value']['group_info']['label'] = 'Date';
+  $handler->display->display_options['filters']['field_date_value']['group_info']['identifier'] = 'field_date_value';
+  $handler->display->display_options['filters']['field_date_value']['group_info']['remember'] = 1;
+  $handler->display->display_options['filters']['field_date_value']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Today',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    2 => array(
+      'title' => 'This week',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => '2016-03-18 11:32',
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => '2016-03-18 00:00',
+          'default_date' => '12AM today',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => '2016-03-18 11:32',
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    3 => array(
+      'title' => 'This month',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => '2016-03-18 11:32',
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => '2016-03-18 00:00',
+          'default_date' => 'first day of this week',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => '2016-03-18 11:32',
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    4 => array(
+      'title' => 'Year to date',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => '2016-03-18 11:32',
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => '2016-03-18 00:00',
+          'default_date' => 'first day of this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => '2016-03-18 11:32',
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    5 => array(
+      'title' => 'Last 12 months',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => '2016-03-18 11:32',
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => '2016-03-18 00:00',
+          'default_date' => '-12 months',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => '2016-03-18 11:32',
+          'default_to_date' => 'now',
+        ),
+      ),
+    ),
+    6 => array(
+      'title' => '1st quarter this year',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'first day of January this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'last day of March this year',
+        ),
+      ),
+    ),
+    7 => array(
+      'title' => '2nd quarter this year',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'first day of April this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'last day of June this year',
+        ),
+      ),
+    ),
+    8 => array(
+      'title' => '3rd quarter this year',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'first day of July this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'last day of September this year',
+        ),
+      ),
+    ),
+    9 => array(
+      'title' => '4th quarter this year',
+      'operator' => 'between',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => '12AM today',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'first day of October this year',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'relative',
+          'max' => NULL,
+          'default_to_date' => 'last day of December this year',
+        ),
+      ),
+    ),
+  );
+  $handler->display->display_options['filters']['field_date_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_date_value']['default_date'] = '12AM today';
+  $handler->display->display_options['filters']['field_date_value']['default_to_date'] = 'now';
+  $handler->display->display_options['filters']['field_date_value']['year_range'] = '-10:+1';
+  /* Filter criterion: Content: Account Size (field_account_size) */
+  $handler->display->display_options['filters']['field_account_size_value']['id'] = 'field_account_size_value';
+  $handler->display->display_options['filters']['field_account_size_value']['table'] = 'field_data_field_account_size';
+  $handler->display->display_options['filters']['field_account_size_value']['field'] = 'field_account_size_value';
+  $handler->display->display_options['filters']['field_account_size_value']['operator'] = 'between';
+  $handler->display->display_options['filters']['field_account_size_value']['value']['min'] = '0';
+  $handler->display->display_options['filters']['field_account_size_value']['value']['max'] = '9999999999';
+  $handler->display->display_options['filters']['field_account_size_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_account_size_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_account_size_value']['expose']['operator_id'] = 'field_account_size_value_op';
+  $handler->display->display_options['filters']['field_account_size_value']['expose']['label'] = 'Account Size';
+  $handler->display->display_options['filters']['field_account_size_value']['expose']['operator'] = 'field_account_size_value_op';
+  $handler->display->display_options['filters']['field_account_size_value']['expose']['identifier'] = 'field_account_size_value';
+  $handler->display->display_options['filters']['field_account_size_value']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_account_size_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => '3',
+    4 => '4',
+    5 => '5',
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  /* Filter criterion: Major (selective) */
+  $handler->display->display_options['filters']['name_selective_1']['id'] = 'name_selective_1';
+  $handler->display->display_options['filters']['name_selective_1']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['name_selective_1']['field'] = 'name_selective';
+  $handler->display->display_options['filters']['name_selective_1']['relationship'] = 'parent';
+  $handler->display->display_options['filters']['name_selective_1']['ui_name'] = 'Major (selective)';
+  $handler->display->display_options['filters']['name_selective_1']['group'] = 1;
+  $handler->display->display_options['filters']['name_selective_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['name_selective_1']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['name_selective_1']['expose']['label'] = 'Major Style';
+  $handler->display->display_options['filters']['name_selective_1']['expose']['identifier'] = 'major_selective';
+  $handler->display->display_options['filters']['name_selective_1']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['name_selective_1']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['name_selective_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['name_selective_1']['selective_display_field'] = 'name_1';
+  $handler->display->display_options['filters']['name_selective_1']['selective_items_limit'] = '100';
+  /* Filter criterion: Minor (selective) */
+  $handler->display->display_options['filters']['name_selective']['id'] = 'name_selective';
+  $handler->display->display_options['filters']['name_selective']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['name_selective']['field'] = 'name_selective';
+  $handler->display->display_options['filters']['name_selective']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['filters']['name_selective']['ui_name'] = 'Minor (selective)';
+  $handler->display->display_options['filters']['name_selective']['group'] = 1;
+  $handler->display->display_options['filters']['name_selective']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['name_selective']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['name_selective']['expose']['label'] = 'Minor Style';
+  $handler->display->display_options['filters']['name_selective']['expose']['identifier'] = 'minor_selective';
+  $handler->display->display_options['filters']['name_selective']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['name_selective']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['name_selective']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['name_selective']['selective_display_field'] = 'name';
+  $handler->display->display_options['filters']['name_selective']['selective_items_limit'] = '100';
+  $handler->display->display_options['path'] = 'export/mandates.csv';
   $handler->display->display_options['displays'] = array(
     'mandates_list' => 'mandates_list',
     'default' => 0,
@@ -2362,7 +3188,10 @@ function fs_f_fn_content_list_views_views_default_views() {
     'manager_firms_list' => 0,
     'manager_contacts_list' => 0,
     'news_list' => 0,
+    'mandates_fin_daily' => 0,
   );
+  $handler->display->display_options['use_batch'] = 'batch';
+  $handler->display->display_options['segment_size'] = '100';
 
   /* Display: RFPs */
   $handler = $view->new_display('block', 'RFPs', 'rfps_list');
@@ -2495,6 +3324,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_rfp_date']['id'] = 'field_rfp_date';
   $handler->display->display_options['fields']['field_rfp_date']['table'] = 'field_data_field_rfp_date';
   $handler->display->display_options['fields']['field_rfp_date']['field'] = 'field_rfp_date';
+  $handler->display->display_options['fields']['field_rfp_date']['label'] = 'Due Date';
   $handler->display->display_options['fields']['field_rfp_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_rfp_date']['settings'] = array(
     'format_type' => 'short',
@@ -2511,14 +3341,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_rfp_link']['field'] = 'field_rfp_link';
   $handler->display->display_options['fields']['field_rfp_link']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_rfp_link']['click_sort_column'] = 'url';
-  /* Field: Content: Name */
-  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
-  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['relationship'] = 'field_plan_er_target_id';
-  $handler->display->display_options['fields']['title_field']['label'] = 'Plan';
-  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   /* Field: Field: Geographic */
   $handler->display->display_options['fields']['field_geographic_tr']['id'] = 'field_geographic_tr';
   $handler->display->display_options['fields']['field_geographic_tr']['table'] = 'field_data_field_geographic_tr';
@@ -2544,10 +3366,13 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_account_size']['id'] = 'field_account_size';
   $handler->display->display_options['fields']['field_account_size']['table'] = 'field_data_field_account_size';
   $handler->display->display_options['fields']['field_account_size']['field'] = 'field_account_size';
+  $handler->display->display_options['fields']['field_account_size']['label'] = 'Mandate Size';
   $handler->display->display_options['fields']['field_account_size']['alter']['text'] = '$[field_account_size] (m)';
   $handler->display->display_options['fields']['field_account_size']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_account_size']['settings'] = array(
     'thousand_separator' => ',',
+    'decimal_separator' => '.',
+    'scale' => '2',
     'prefix_suffix' => 0,
   );
   /* Field: Content: Link */
@@ -2599,9 +3424,10 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['filters']['field_rfp_date_value']['group'] = 1;
   $handler->display->display_options['filters']['field_rfp_date_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_rfp_date_value']['expose']['operator_id'] = 'field_rfp_date_value_op';
-  $handler->display->display_options['filters']['field_rfp_date_value']['expose']['label'] = 'RFP Date';
+  $handler->display->display_options['filters']['field_rfp_date_value']['expose']['label'] = 'RFP Due Date';
   $handler->display->display_options['filters']['field_rfp_date_value']['expose']['operator'] = 'field_rfp_date_value_op';
   $handler->display->display_options['filters']['field_rfp_date_value']['expose']['identifier'] = 'field_rfp_date_value';
+  $handler->display->display_options['filters']['field_rfp_date_value']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['field_rfp_date_value']['expose']['remember_roles'] = array(
     2 => '2',
     3 => 0,
@@ -2615,27 +3441,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_rfp_date_value']['form_type'] = 'date_popup';
   $handler->display->display_options['filters']['field_rfp_date_value']['year_range'] = '-5:+0';
-  /* Filter criterion: Field: Plan (field_plan_er) */
-  $handler->display->display_options['filters']['field_plan_er_target_id']['id'] = 'field_plan_er_target_id';
-  $handler->display->display_options['filters']['field_plan_er_target_id']['table'] = 'field_data_field_plan_er';
-  $handler->display->display_options['filters']['field_plan_er_target_id']['field'] = 'field_plan_er_target_id';
-  $handler->display->display_options['filters']['field_plan_er_target_id']['group'] = 1;
-  $handler->display->display_options['filters']['field_plan_er_target_id']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_plan_er_target_id']['expose']['operator_id'] = 'field_plan_er_target_id_op';
-  $handler->display->display_options['filters']['field_plan_er_target_id']['expose']['label'] = 'Plan';
-  $handler->display->display_options['filters']['field_plan_er_target_id']['expose']['operator'] = 'field_plan_er_target_id_op';
-  $handler->display->display_options['filters']['field_plan_er_target_id']['expose']['identifier'] = 'field_plan_er_target_id';
-  $handler->display->display_options['filters']['field_plan_er_target_id']['expose']['remember_roles'] = array(
-    2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    1 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-  );
   /* Filter criterion: Field: Geographic (field_geographic_tr) */
   $handler->display->display_options['filters']['field_geographic_tr_tid']['id'] = 'field_geographic_tr_tid';
   $handler->display->display_options['filters']['field_geographic_tr_tid']['table'] = 'field_data_field_geographic_tr';
@@ -2690,12 +3495,14 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['filters']['field_account_size_value']['id'] = 'field_account_size_value';
   $handler->display->display_options['filters']['field_account_size_value']['table'] = 'field_data_field_account_size';
   $handler->display->display_options['filters']['field_account_size_value']['field'] = 'field_account_size_value';
+  $handler->display->display_options['filters']['field_account_size_value']['operator'] = 'between';
   $handler->display->display_options['filters']['field_account_size_value']['group'] = 1;
   $handler->display->display_options['filters']['field_account_size_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_account_size_value']['expose']['operator_id'] = 'field_account_size_value_op';
-  $handler->display->display_options['filters']['field_account_size_value']['expose']['label'] = 'Account Size';
+  $handler->display->display_options['filters']['field_account_size_value']['expose']['label'] = 'Mandate Size';
   $handler->display->display_options['filters']['field_account_size_value']['expose']['operator'] = 'field_account_size_value_op';
   $handler->display->display_options['filters']['field_account_size_value']['expose']['identifier'] = 'field_account_size_value';
+  $handler->display->display_options['filters']['field_account_size_value']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['field_account_size_value']['expose']['remember_roles'] = array(
     2 => '2',
     3 => 0,
@@ -3078,12 +3885,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['title']['relationship'] = 'field_consultant_firm_er_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Firm';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Field: Job Title */
-  $handler->display->display_options['fields']['field_job_title']['id'] = 'field_job_title';
-  $handler->display->display_options['fields']['field_job_title']['table'] = 'field_data_field_job_title';
-  $handler->display->display_options['fields']['field_job_title']['field'] = 'field_job_title';
-  $handler->display->display_options['fields']['field_job_title']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['fields']['field_job_title']['element_label_colon'] = FALSE;
   /* Field: Field: Address with phone number */
   $handler->display->display_options['fields']['field_address_data']['id'] = 'field_address_data';
   $handler->display->display_options['fields']['field_address_data']['table'] = 'field_data_field_address';
@@ -3102,12 +3903,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_data_2']['alter']['text'] = ' x[field_address_data_2]';
   $handler->display->display_options['fields']['field_address_data_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_address_data_2']['selected_phone_type'] = TRUE;
-  /* Field: Field: Email */
-  $handler->display->display_options['fields']['field_email']['id'] = 'field_email';
-  $handler->display->display_options['fields']['field_email']['table'] = 'field_data_field_email';
-  $handler->display->display_options['fields']['field_email']['field'] = 'field_email';
-  $handler->display->display_options['fields']['field_email']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['fields']['field_email']['element_label_colon'] = FALSE;
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -3201,58 +3996,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['title_selective']['selective_display_field'] = 'title';
   $handler->display->display_options['filters']['title_selective']['selective_items_limit'] = '100';
-  /* Filter criterion: Email (field_email) (selective) */
-  $handler->display->display_options['filters']['field_email_email_selective']['id'] = 'field_email_email_selective';
-  $handler->display->display_options['filters']['field_email_email_selective']['table'] = 'field_data_field_email';
-  $handler->display->display_options['filters']['field_email_email_selective']['field'] = 'field_email_email_selective';
-  $handler->display->display_options['filters']['field_email_email_selective']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['filters']['field_email_email_selective']['ui_name'] = 'Email (field_email) (selective)';
-  $handler->display->display_options['filters']['field_email_email_selective']['group'] = 1;
-  $handler->display->display_options['filters']['field_email_email_selective']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['label'] = 'Email';
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['identifier'] = 'field_email_email_selective';
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_email_email_selective']['expose']['remember_roles'] = array(
-    2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    1 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-  );
-  $handler->display->display_options['filters']['field_email_email_selective']['selective_display_field'] = 'field_email';
-  $handler->display->display_options['filters']['field_email_email_selective']['selective_items_limit'] = '100';
-  /* Filter criterion: Job Title (field_job_title) (selective) */
-  $handler->display->display_options['filters']['field_job_title_value_selective']['id'] = 'field_job_title_value_selective';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['table'] = 'field_data_field_job_title';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['field'] = 'field_job_title_value_selective';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['ui_name'] = 'Job Title (field_job_title) (selective)';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['group'] = 1;
-  $handler->display->display_options['filters']['field_job_title_value_selective']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['label'] = 'Job Title';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['identifier'] = 'field_job_title_value_selective';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_job_title_value_selective']['expose']['remember_roles'] = array(
-    2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    1 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-  );
-  $handler->display->display_options['filters']['field_job_title_value_selective']['selective_display_field'] = 'field_job_title';
-  $handler->display->display_options['filters']['field_job_title_value_selective']['selective_items_limit'] = '100';
 
   /* Display: Managers */
   $handler = $view->new_display('block', 'Managers', 'manager_firms_list');
