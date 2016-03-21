@@ -20,6 +20,7 @@ $blue-black: #000033;
 $dark-blue: #003366;
 $text: #666666;
 $header: #000000;
+$white: #ffffff; // Cuz you just need white sometimes
 
 /* Borders */
 $border-blue: #689afd;
@@ -59,11 +60,53 @@ $shadow: #666666;
     .container {
         background-color: $header;
     }
+    .dexp-dropdown {
+        ul.menu ul.menu li, ul.menu .dexp-menu-mega li {
+            border-top: 1px solid $header;
+        }
+        ul.menu ul.menu li a, ul.menu ul.menu li span.nolink, ul.menu .dexp-menu-mega li a, ul.menu .dexp-menu-mega li span.nolink {
+            color: $white;
+            font-weight: bold;
+        }
+        ul.menu ul.menu li span.nolink:hover, ul.menu ul.menu li span.nolink.active, ul.menu .dexp-menu-mega li a:hover, ul.menu .dexp-menu-mega li a.active, ul.menu .dexp-menu-mega li span.nolink:hover, ul.menu .dexp-menu-mega li span.nolink.active {
+            background-color: $header;
+            color: $white;
+        }
+        ul.menu li a:hover {
+            background-color: $fin-blue;
+        }
+        ul.menu li a.active, {
+            background-color: $fin-blue;
+        }
+        ul.menu ul.menu li, .dexp-dropdown ul.menu .dexp-menu-mega li {
+            background: $fin-blue;
+        }
+        ul.menu ul.menu li.first, ul.menu .dexp-menu-mega li.first {
+            border-top: solid 1px $header;
+        }
+        ul.menu ul.menu li a.active {
+            background: $fin-blue;
+            color: $white;
+        }
+        ul.menu ul.menu li a:hover {
+            background: $header;
+            color: $white;
+        }
+    }
     .dexp-dropdown > ul > li {
-        border-left: 1px solid $fin-navy;
-        border-right: 1px solid $fin-navy;
+        border-left: 1px solid $fin-blue;
+        border-right: 1px solid $fin-blue;
+    }
+    .dexp-dropdown > ul > li > a, .dexp-dropdown > ul > li > span.nolink {
+        border-bottom-style: none;
+        font-weight: bold;
+    }
+    .dexp-dropdown > ul li > ul, .dexp-dropdown > ul li > .dexp-menu-mega {
+        border-top: none;
     }
 }
+
+
 
 /*** Sections ***/
 #section-top-bar {
@@ -94,6 +137,9 @@ $shadow: #666666;
     .btn {
         background: $dark-button;
     }
+}
+#section-main-content {
+    padding: 0 0 30px 0;
 }
 .ds-header li.comment-add {
     display: none;
@@ -166,6 +212,18 @@ h2.title {
 }
 
 /*** Content ***/
+body.boxed {
+    background: #1368a6; /* Old browsers */
+    background: -moz-linear-gradient(top,  #1368a6 0%, #000000 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #1368a6 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #1368a6 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+.page-node-3702, .page-node-3704, .page-node-3705, .page-node-3706, .page-node-3707, .page-node-3710, .page-node-6806, .page-node-3711 {
+    #page-title {
+        display: none; // Removes titles from these site pages
+    }
+}
 body {
     font-family: "Lato Regular Web" !important;
 }
