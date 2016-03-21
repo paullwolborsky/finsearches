@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the fs_f_fn_entityforms feature.
+ */
+
+include_once 'fs_f_fn_entityforms.features.inc';
