@@ -5,6 +5,15 @@
  */
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function fs_f_fn_entityforms_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "ds" && $api == "ds") {
+    return array("version" => "1");
+  }
+}
+
+/**
  * Implements hook_default_entity_rule_setting().
  */
 function fs_f_fn_entityforms_default_entity_rule_setting() {
@@ -48,7 +57,7 @@ function fs_f_fn_entityforms_default_entityform_type() {
       "delete_confirm_msg" : "",
       "page_title_view" : "",
       "preview_page" : 0,
-      "submission_page_title" : "Than You",
+      "submission_page_title" : "Thank You",
       "submission_text" : {
         "value" : "\\u003Cp\\u003EThank you for contacting us! We\\u0027ll review your message and respond as soon as we\\u0027re able. Have a nice day.\\u003C\\/p\\u003E\\r\\n",
         "format" : "advanced_input"
