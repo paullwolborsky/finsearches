@@ -2,9 +2,17 @@ name = fs_f_fn_themekey
 description = Theme settings via ThemeKey
 core = 7.x
 package = Custom
+dependencies[] = features
+dependencies[] = subscriptions
 dependencies[] = themekey
 dependencies[] = themekey_features
 features[features_api][] = api:2
 features[themekey_features_rule_chain][] = drupal:path = user/%/shortcuts >>> corposs
 features[themekey_features_rule_chain][] = drupal:path = user/%/subscriptions >>> corposs
 features[themekey_features_rule_chain][] = themekey_compat:module_system_triggers_theme = static >>> triggered
+features[user_permission][] = administer user subscriptions
+features[user_permission][] = bulk-administer user subscriptions
+features[user_permission][] = subscribe to all content types
+features[user_permission][] = subscribe to content
+features[user_permission][] = subscribe to content types
+features[user_permission][] = suspend own subscriptions

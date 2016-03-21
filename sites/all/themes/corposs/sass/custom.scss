@@ -605,7 +605,7 @@ body.node-type-plan {
   margin: 0 0 30px 0;
 }
 .group-left, .group-middle, .group-right, .group-footer {
-  background: #e7efff;
+  background: $form-item-active-blue;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -653,7 +653,7 @@ span.fieldset-legend a {
 #edit-autosub {
     margin: 15px 0 0 0;
 }
-#edit-submit, #edit-save-settings, #edit-reset {
+#edit-submit, #edit-save-settings, #edit-save-notifications, #edit-reset {
     background-color: $fin-blue;
     padding: 4px 6px;
     margin: 0 10px;

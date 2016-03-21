@@ -927,7 +927,7 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 
 /* line 607, ../../sass/custom.scss */
 .group-left, .group-middle, .group-right, .group-footer {
-  background: #e7efff;
+  background: #d4e2fe;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -991,7 +991,7 @@ span.fieldset-legend a {
 }
 
 /* line 656, ../../sass/custom.scss */
-#edit-submit, #edit-save-settings, #edit-reset {
+#edit-submit, #edit-save-settings, #edit-save-notifications, #edit-reset {
   background-color: #1368a6;
   padding: 4px 6px;
   margin: 0 10px;
