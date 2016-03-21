@@ -1,6 +1,15 @@
 name = fs_f_fc_bt_mandate_comments_fc
 core = 7.x
 package = Custom
+dependencies[] = ctools
+dependencies[] = date
+dependencies[] = ds
+dependencies[] = entityreference
+dependencies[] = features
+dependencies[] = fs_f_base
+dependencies[] = text
+features[ctools][] = ds:ds:1
+features[ds_layout_settings][] = field_collection_item|field_mandate_comments_fc|form
 features[features_api][] = api:2
 features[field_base][] = field_author_er
 features[field_base][] = field_comment

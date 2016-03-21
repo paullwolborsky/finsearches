@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the fs_f_fc_bt_mandate_comments_fc feature.
  */
+
+include_once 'fs_f_fc_bt_mandate_comments_fc.features.inc';

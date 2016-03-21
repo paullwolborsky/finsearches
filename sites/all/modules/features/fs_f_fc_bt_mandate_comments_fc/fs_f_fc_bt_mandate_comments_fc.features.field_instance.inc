@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * fs_f_fc_bt_mandate_comments_fc.features.field_instance.inc
@@ -10,7 +9,7 @@
  */
 function fs_f_fc_bt_mandate_comments_fc_field_default_field_instances() {
   $field_instances = array();
-  
+
   // Exported field_instance:
   // 'field_collection_item-field_mandate_comments_fc-field_author_er'
   $field_instances['field_collection_item-field_mandate_comments_fc-field_author_er'] = array(
@@ -276,12 +275,13 @@ function fs_f_fc_bt_mandate_comments_fc_field_default_field_instances() {
       'weight' => 2,
     ),
   );
-  
-    t('Mandate');
-  t('Mandate Comments');
-  t('Mandate Notes');
-  t('Mandate Number');
-  t('Mandate Status');
-  
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Author');
+  t('Comment');
+  t('Date');
+  t('Subject');
+
   return $field_instances;
 }

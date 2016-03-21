@@ -19,7 +19,6 @@ features[views_view][] = consultants_hired
 features[views_view][] = extra_views
 features[views_view][] = foia_history
 features[views_view][] = manager_roster
-features[views_view][] = mandate_managers_hired
 features[views_view][] = mandate_plan_info
 features[views_view][] = views_search
 features_exclude[dependencies][ctools] = ctools
