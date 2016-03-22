@@ -104,7 +104,7 @@ function fin_modals_menu() {
     'title' => 'Shortcuts',
     'access arguments' => array('administer shortcuts'), 
     'menu_name' => 'main-menu',
-    'wieght' => 0,
+    'weight' => 0,
     'page callback' => 'fin_modals_menu_callbacks',
   );
   $items['resources/subscriptions']  = array(
@@ -112,7 +112,7 @@ function fin_modals_menu() {
     'title' => 'Subscriptions',
     'access arguments' => array('subscribe to content'), 
     'menu_name' => 'main-menu',
-    'wieght' => 1,
+    'weight' => 1,
     'page callback' => 'fin_modals_menu_callbacks',
   );
   $items['resources/saved-searches']  = array(
@@ -120,7 +120,15 @@ function fin_modals_menu() {
     'title' => "Saved Searches",
     'access arguments' => array('use search_api_saved_searches'), 
     'menu_name' => 'main-menu',
-    'wieght' => 2,
+    'weight' => 2,
+    'page callback' => 'fin_modals_menu_callbacks',
+  );
+  $items['resources/saved-filters']  = array(
+    'type' => MENU_NORMAL_ITEM,
+    'title' => "Saved Filters",
+    'access callback' => 'user_is_logged_in',
+    'menu_name' => 'main-menu',
+    'weight' => 3,
     'page callback' => 'fin_modals_menu_callbacks',
   );
   $items['resources/imce']  = array(
@@ -128,7 +136,7 @@ function fin_modals_menu() {
     'title' => "File Browser",
     'access callback' => 'user_is_logged_in',
     'menu_name' => 'main-menu',
-    'wieght' => 3,
+    'weight' => 4,
     'page callback' => 'fin_modals_menu_callbacks',
   );
   return $items;
@@ -140,6 +148,7 @@ function fin_modals_menu_alter(&$items) {
   $items['user/%user/messages']['type'] = MENU_CALLBACK;
   $items['user/%user/subscriptions']['type'] = MENU_CALLBACK;
   $items['user/%user/saved-searches']['type'] = MENU_CALLBACK;
+  $items['user/%user/saved-filters']['type'] = MENU_CALLBACK;
   $items['user/%user/imce']['type'] = MENU_CALLBACK;
 }
 
@@ -151,6 +160,8 @@ function fin_modals_menu_callbacks() {
     drupal_goto("user/" . $user->uid . "/subscriptions");
   } elseif (arg(1) == 'saved-searches') {
     drupal_goto("user/" . $user->uid . "/saved-searches");
+  } elseif (arg(1) == 'saved-filters') {
+    drupal_goto("user/" . $user->uid . "/saved-filters");
   } elseif (arg(1) == 'imce') {
     drupal_goto("user/" . $user->uid . "/imce");
   } else {
