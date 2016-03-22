@@ -557,7 +557,8 @@ body.node-type-plan {
 .view.collapsiblock h2 {
     padding: 4px 0 4px 15px;
     font-size: 21px;
-    background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);
+    /*background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);*/
+    background: #000;
     color: #fff;
     text-transform: uppercase;
     font-weight: 400;
@@ -605,7 +606,7 @@ body.node-type-plan {
   margin: 0 0 30px 0;
 }
 .group-left, .group-middle, .group-right, .group-footer {
-  background: #e7efff;
+  background: $form-item-active-blue;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -653,7 +654,7 @@ span.fieldset-legend a {
 #edit-autosub {
     margin: 15px 0 0 0;
 }
-#edit-submit, #edit-save-settings, #edit-reset {
+#edit-submit, #edit-save-settings, #edit-save-notifications, #edit-reset {
     background-color: $fin-blue;
     padding: 4px 6px;
     margin: 0 10px;

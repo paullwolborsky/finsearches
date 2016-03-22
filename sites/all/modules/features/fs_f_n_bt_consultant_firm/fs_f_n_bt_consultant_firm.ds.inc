@@ -37,11 +37,6 @@ function fs_f_n_bt_consultant_firm_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'consultant_plans_bf' => array(
-      'weight' => '11',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
     'modal_contact_link' => array(
       'weight' => '8',
       'label' => 'hidden',

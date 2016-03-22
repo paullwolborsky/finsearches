@@ -37,3 +37,64 @@ function fin_mod_hierarchical_select_ajax_commands_alter(&$commands, &$context) 
   $output = theme('status_messages') . drupal_render($context['element']);
   $commands[0]['output'] = $output;
 }
+
+/**
+ * Implements hook_block_view_MODULE_DELTA_alter()
+ */
+function fin_mod_block_view_user_online_alter(&$data, $block = array()) {
+  global $user;
+
+
+
+  if (user_access('access content')) {
+    // Count users active within the defined period.
+    $interval = REQUEST_TIME - variable_get('user_block_seconds_online', 900);
+
+    // Perform database queries to gather online user lists. We use s.timestamp
+    // rather than u.access because it is much faster.
+    $authenticated_count = db_query(<<<QUERY_END
+
+SELECT COUNT(DISTINCT s.uid)
+FROM {sessions} s
+INNER JOIN {field_data_field_pf_organization_er} org
+  ON s.uid = org.entity_id
+
+INNER JOIN {field_data_field_pf_organization_er} my_org
+  ON org.field_pf_organization_er_target_id = my_org.field_pf_organization_er_target_id
+
+WHERE s.timestamp >= :timestamp
+AND s.uid > 0
+AND my_org.entity_id = :user_uid
+QUERY_END
+      , array(':timestamp' => $interval, ':user_uid' => $user->uid))->fetchField();
+
+    $output = '<p>' . format_plural($authenticated_count, 'There is currently 1 user online.', 'There are currently @count users online.') . '</p>';
+
+    // Display a list of currently online users.
+    $max_users = variable_get('user_block_max_list_count', 10);
+    if ($authenticated_count && $max_users) {
+      $items = db_query_range(<<<QUERY_END
+SELECT u.uid, u.name, MAX(s.timestamp) AS max_timestamp
+FROM {users} u
+INNER JOIN {sessions} s ON u.uid = s.uid
+
+INNER JOIN {field_data_field_pf_organization_er} org
+  ON s.uid = org.entity_id
+
+INNER JOIN {field_data_field_pf_organization_er} my_org
+  ON org.field_pf_organization_er_target_id = my_org.field_pf_organization_er_target_id
+
+WHERE s.timestamp >= :interval
+AND s.uid > 0
+AND my_org.entity_id = :user_uid
+GROUP BY u.uid, u.name
+ORDER BY max_timestamp DESC
+QUERY_END
+        , 0, $max_users, array(':interval' => $interval, ':user_uid' => $user->uid))->fetchAll();
+      $output .= theme('user_list', array('users' => $items));
+    }
+
+    $data['subject'] = t('Who\'s online');
+    $data['content'] = $output;
+  }
+}

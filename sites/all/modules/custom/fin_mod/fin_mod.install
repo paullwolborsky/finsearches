@@ -42,3 +42,10 @@ function fin_mod_update_7002(&$sandbox) {
     field_delete_field($field);
   }
 }
+
+/**
+ * Removes the UR field for Mandate.
+ */
+function fin_mod_update_7003(&$sandbox) {
+  field_delete_field('field_author_ur');
+}
