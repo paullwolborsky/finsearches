@@ -7,118 +7,198 @@
 /**
  *Override styles for modal windows
  */
+/* line 5, ../../sass/_modals.scss */
 div#modalContent.modal-default .ctools-modal-content {
   width: auto !important;
-  height: 100% !important; }
-  div#modalContent.modal-default .ctools-modal-content form.node-contact-form .field-name-body ul.tips {
-    display: none; }
+  height: 100% !important;
+}
+/* line 12, ../../sass/_modals.scss */
+div#modalContent.modal-default .ctools-modal-content form.node-contact-form .field-name-body ul.tips {
+  display: none;
+}
 
 /*** Modal Links ***/
+/* line 21, ../../sass/_modals.scss */
 .field-name-modal-contact-link, .field-name-modal-mandate-link {
-  margin: -30px 0 0 0; }
+  margin: -30px 0 0 0;
+}
 
 /*** Modal styles
  *Duplicated from Admin theme (Fubik)
  */
+/* line 31, ../../sass/_modals.scss */
 #modalContent #contact-node-form .ds-above-left, #modalContent #contact-node-form .ds-above-right {
-  width: 33.3%; }
+  width: 33.3%;
+}
+/* line 34, ../../sass/_modals.scss */
 #modalContent #contact-node-form .text-summary-wrapper {
-  display: none; }
+  display: none;
+}
+/* line 39, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea label {
-  float: none; }
+  float: none;
+}
+/* line 42, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper {
   margin-left: 0;
-  margin-right: 0; }
-  #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_72, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_75, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_85, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_93, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_98 {
-    display: none; }
+  margin-right: 0;
+}
+/* line 46, ../../sass/_modals.scss */
+#modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_72, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_75, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_85, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_93, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_98 {
+  display: none;
+}
+/* line 54, ../../sass/_modals.scss */
 #modalContent #contact-node-form tr .form-item {
-  white-space: normal; }
+  white-space: normal;
+}
+/* line 60, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .date-float {
   clear: both;
-  float: none; }
+  float: none;
+}
+/* line 64, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
   width: 150px;
   float: left;
-  clear: none; }
-  #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper input, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper input {
-    width: 100px; }
+  clear: none;
+}
+/* line 68, ../../sass/_modals.scss */
+#modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper input, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper input {
+  width: 100px;
+}
+/* line 72, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
-  width: 200px; }
-  #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper label {
-    width: 40px;
-    clear: none; }
+  width: 200px;
+}
+/* line 74, ../../sass/_modals.scss */
+#modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper label {
+  width: 40px;
+  clear: none;
+}
+/* line 84, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-address .addressfield-container-inline .form-item {
-  float: none; }
+  float: none;
+}
+/* line 90, ../../sass/_modals.scss */
 #modalContent #contact-node-form .form-type-link-field label {
-  float: none; }
+  float: none;
+}
+/* line 95, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-consultant-job-type label {
-  float: none; }
+  float: none;
+}
+/* line 102, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form .ds-above-left, #modalContent form#mandate-node-form .ds-above-right, #modalContent form#mandate-node-form .ds-below-left, #modalContent form#mandate-node-form .ds-below-right {
-  width: 33.3%; }
+  width: 33.3%;
+}
+/* line 105, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form .ds-above-left, #modalContent form#mandate-node-form .ds-below-left, #modalContent form#mandate-node-form .ds-above-middle, #modalContent form#mandate-node-form .ds-below-middle {
-  padding: 0 20px 0 0; }
+  padding: 0 20px 0 0;
+}
+/* line 108, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form table {
-  width: 100%; }
+  width: 100%;
+}
+/* line 112, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.form-wrapper label {
   float: none;
-  display: block; }
+  display: block;
+}
+/* line 118, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.field-widget-field-collection-embed .form-select {
-  display: block; }
+  display: block;
+}
+/* line 121, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.field-widget-field-collection-embed .chosen-container {
   width: 100% !important;
-  display: block; }
+  display: block;
+}
+/* line 128, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-left, #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-right {
   float: none;
   display: block;
-  width: 100%; }
-  #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-left .chosen-container, #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-right .chosen-container {
-    display: block !important; }
+  width: 100%;
+}
+/* line 132, ../../sass/_modals.scss */
+#modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-left .chosen-container, #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-right .chosen-container {
+  display: block !important;
+}
+/* line 137, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.field-name-field-managers-hired .description {
-  white-space: normal; }
+  white-space: normal;
+}
+/* line 141, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form input.form-autocomplete {
   width: 100%;
   max-width: 100%;
-  display: block; }
+  display: block;
+}
+/* line 149, ../../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .ds-above-left {
   width: 49%;
-  margin: 0 1% 0 0; }
+  margin: 0 1% 0 0;
+}
+/* line 153, ../../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .ds-above-right {
   width: 49%;
-  margin: 0 0 0 1%; }
+  margin: 0 0 0 1%;
+}
+/* line 159, ../../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .field-name-field-website .form-item label {
-  float: none; }
+  float: none;
+}
+/* line 164, ../../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .vertical-tabs {
-  margin: 0; }
+  margin: 0;
+}
+/* line 170, ../../sass/_modals.scss */
 #modalContent #manager-firm-node-form .ds-above-left, #modalContent #manager-firm-node-form .ds-above-middle, #modalContent #manager-firm-node-form .ds-above-right {
   width: 32%;
-  margin: 0 .5%; }
+  margin: 0 .5%;
+}
+/* line 174, ../../sass/_modals.scss */
 #modalContent #manager-firm-node-form .form-item {
   margin: 0;
-  width: 95%; }
-  #modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
-    width: 98%; }
+  width: 95%;
+}
+/* line 177, ../../sass/_modals.scss */
+#modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
+  width: 98%;
+}
 
 /**
  *Styles for search page
  *
  */
+/* line 8, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-facetapi .block-title, body.page-advanced-search .region-left-sidebar .block-current-search .block-title {
   text-transform: capitalize;
   background-color: #DEDEDE;
   padding: 3px 0;
   margin: 0 0 3px 0;
   font-weight: normal;
-  font-size: 16px; }
+  font-size: 16px;
+}
+/* line 16, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-facetapi .content, body.page-advanced-search .region-left-sidebar .block-current-search .content {
-  display: none; }
-  body.page-advanced-search .region-left-sidebar .block-facetapi .content.open, body.page-advanced-search .region-left-sidebar .block-current-search .content.open {
-    display: block; }
-  body.page-advanced-search .region-left-sidebar .block-facetapi .content .item-list, body.page-advanced-search .region-left-sidebar .block-current-search .content .item-list {
-    margin: 0 0 4px 0; }
+  display: none;
+}
+/* line 18, ../../sass/pages/_advanced_search.scss */
+body.page-advanced-search .region-left-sidebar .block-facetapi .content.open, body.page-advanced-search .region-left-sidebar .block-current-search .content.open {
+  display: block;
+}
+/* line 21, ../../sass/pages/_advanced_search.scss */
+body.page-advanced-search .region-left-sidebar .block-facetapi .content .item-list, body.page-advanced-search .region-left-sidebar .block-current-search .content .item-list {
+  margin: 0 0 4px 0;
+}
+/* line 25, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-facetapi select, body.page-advanced-search .region-left-sidebar .block-current-search select {
-  max-width: 100%; }
+  max-width: 100%;
+}
+/* line 30, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-current-search .content {
-  display: block; }
+  display: block;
+}
 
 /*** Color Variables ***/
 /* FIN */
@@ -129,343 +209,538 @@ body.page-advanced-search .region-left-sidebar .block-current-search .content {
 /* Text */
 /* Misc */
 /*** Addressfield country fix ***/
+/* line 52, ../../sass/custom.scss */
 .field-type-addressfield .country {
   margin: 0;
-  display: block; }
+  display: block;
+}
 
 /*** Menu ***/
+/* line 60, ../../sass/custom.scss */
 #section-header .container {
-  background-color: #000000; }
+  background-color: black;
+}
+/* line 64, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li {
-  border-top: 1px solid #000000; }
+  border-top: 1px solid black;
+}
+/* line 67, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li a, #section-header .dexp-dropdown ul.menu ul.menu li span.nolink, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li a, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li span.nolink {
-  color: #ffffff;
-  font-weight: bold; }
+  color: white;
+  font-weight: bold;
+}
+/* line 71, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li span.nolink:hover, #section-header .dexp-dropdown ul.menu ul.menu li span.nolink.active, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li a:hover, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li a.active, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li span.nolink:hover, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li span.nolink.active {
-  background-color: #000000;
-  color: #ffffff; }
+  background-color: black;
+  color: white;
+}
+/* line 75, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu li a:hover {
-  background-color: #1368a6; }
+  background-color: #1368a6;
+}
+/* line 78, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu li a.active {
-  background-color: #1368a6; }
+  background-color: #1368a6;
+}
+/* line 81, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li, #section-header .dexp-dropdown .dexp-dropdown ul.menu .dexp-menu-mega li {
-  background: #1368a6; }
+  background: #1368a6;
+}
+/* line 84, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li.first, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li.first {
-  border-top: solid 1px #000000; }
+  border-top: solid 1px black;
+}
+/* line 87, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li a.active {
   background: #1368a6;
-  color: #ffffff; }
+  color: white;
+}
+/* line 91, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li a:hover {
-  background: #000000;
-  color: #ffffff; }
+  background: black;
+  color: white;
+}
+/* line 96, ../../sass/custom.scss */
 #section-header .dexp-dropdown > ul > li {
   border-left: none;
-  border-right: none; }
+  border-right: none;
+}
+/* line 100, ../../sass/custom.scss */
 #section-header .dexp-dropdown > ul > li > a, #section-header .dexp-dropdown > ul > li > span.nolink {
   border-bottom-style: none;
-  font-weight: bold; }
+  font-weight: bold;
+}
+/* line 104, ../../sass/custom.scss */
 #section-header .dexp-dropdown > ul li > ul, #section-header .dexp-dropdown > ul li > .dexp-menu-mega {
-  border-top: none; }
+  border-top: none;
+}
 
 /*** Sections ***/
+/* line 112, ../../sass/custom.scss */
 #section-top-bar {
-  padding: 5px; }
-  #section-top-bar .region-top-right .block {
-    float: none;
-    text-align: right; }
-  #section-top-bar .region-top-right .block-search-api-page div.form-type-textfield {
-    display: inline-block;
-    vertical-align: top; }
-  #section-top-bar .region-top-right .block-search-api-page input.btn-primary {
-    display: inline-block;
-    vertical-align: top;
-    margin: 15px 0 0 0; }
-  #section-top-bar .region-top-right .block-search-api-page .btn.form-submit {
-    background: #1368a6; }
+  padding: 5px;
+}
+/* line 115, ../../sass/custom.scss */
+#section-top-bar .region-top-right .block {
+  float: none;
+  text-align: right;
+}
+/* line 120, ../../sass/custom.scss */
+#section-top-bar .region-top-right .block-search-api-page div.form-type-textfield {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 124, ../../sass/custom.scss */
+#section-top-bar .region-top-right .block-search-api-page input.btn-primary {
+  display: inline-block;
+  vertical-align: top;
+  margin: 15px 0 0 0;
+}
+/* line 129, ../../sass/custom.scss */
+#section-top-bar .region-top-right .block-search-api-page .btn.form-submit {
+  background: #1368a6;
+}
 
+/* line 135, ../../sass/custom.scss */
 #section-header {
-  background: #000000; }
-  #section-header .btn {
-    background: #1368a6; }
+  background: black;
+}
+/* line 137, ../../sass/custom.scss */
+#section-header .btn {
+  background: #1368a6;
+}
 
+/* line 141, ../../sass/custom.scss */
 #section-main-content {
-  padding: 0 0 30px 0; }
+  padding: 0 0 30px 0;
+}
 
+/* line 144, ../../sass/custom.scss */
 .ds-header li.comment-add {
-  display: none; }
+  display: none;
+}
 
 /*** Blocks ***/
+/* line 149, ../../sass/custom.scss */
 h3.block-title {
   font-size: 21px;
   padding: 2px 0;
   position: relative;
   margin: 0;
-  background: #000000; }
-  h3.block-title a {
-    background: none; }
+  background: black;
+}
+/* line 152, ../../sass/custom.scss */
+h3.block-title a {
+  background: none;
+}
 
+/* line 160, ../../sass/custom.scss */
 #block-system-main div.field-type-ds {
-  margin: 0 0 25px 0; }
-  #block-system-main div.field-type-ds.field-name-modal-contact-link, #block-system-main div.field-type-ds.field-name-modal-mandate-link, #block-system-main div.field-type-ds.field-name-modal-plan-link {
-    margin-top: -23px;
-    margin-bottom: 25px; }
+  margin: 0 0 25px 0;
+}
+/* line 165, ../../sass/custom.scss */
+#block-system-main div.field-type-ds.field-name-modal-contact-link, #block-system-main div.field-type-ds.field-name-modal-mandate-link, #block-system-main div.field-type-ds.field-name-modal-plan-link {
+  margin-top: -23px;
+  margin-bottom: 25px;
+}
 
+/* line 171, ../../sass/custom.scss */
 span.fieldset-legend {
-  text-transform: uppercase; }
+  text-transform: uppercase;
+}
 
+/* line 174, ../../sass/custom.scss */
 .collapsiblock a {
-  color: #ffffff;
-  margin: 0 0 0 5px; }
+  color: white;
+  margin: 0 0 0 5px;
+}
 
+/* line 178, ../../sass/custom.scss */
 .block-views {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
+/* line 183, ../../sass/custom.scss */
 #block-views-a9706a0c2bd6ed2ad2a9fb0317b34834 {
-  margin: 30px 0 0 0; }
+  margin: 30px 0 0 0;
+}
 
+/* line 186, ../../sass/custom.scss */
 #block-user-online .content {
   background: #e7efff;
-  padding: 10px; }
+  padding: 10px;
+}
 
+/* line 190, ../../sass/custom.scss */
 .item-list ul {
-  text-align: left; }
+  text-align: left;
+}
 
+/* line 193, ../../sass/custom.scss */
 .field-name-plan-new-leads-mandates-bf .block-views {
-  margin: 5px 0 0 0; }
+  margin: 5px 0 0 0;
+}
 
+/* line 195, ../../sass/custom.scss */
 .field-name-plan-ongoing-mandates-bf .block-views {
-  margin: 5px 0 0 0; }
+  margin: 5px 0 0 0;
+}
 
+/* line 197, ../../sass/custom.scss */
 .field-name-plan-completed-mandates-bf .block-views {
-  margin: 5px 0 0 0; }
+  margin: 5px 0 0 0;
+}
 
+/* line 199, ../../sass/custom.scss */
 .field-name-plan-closed-mandates-bf .block-views {
-  margin: 5px 0 0 0; }
+  margin: 5px 0 0 0;
+}
 
 /*** Labels ***/
+/* line 204, ../../sass/custom.scss */
 h2.title {
-  margin: 30px 0 0 0; }
+  margin: 30px 0 0 0;
+}
 
 /*** Content ***/
+/* line 209, ../../sass/custom.scss */
 body.boxed {
   background: #1368a6;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #1368a6 0%, #000000 100%);
+  background: -moz-linear-gradient(top, #1368a6 0%, black 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #1368a6 0%, #000000 100%);
+  background: -webkit-linear-gradient(top, #1368a6 0%, black 100%);
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #000000 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#000000',GradientType=0 );
-  /* IE6-9 */ }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#000000',GradientType=0 );
+  /* IE6-9 */
+}
 
+/* line 217, ../../sass/custom.scss */
 .page-node-3702 #page-title, .page-node-3704 #page-title, .page-node-3705 #page-title, .page-node-3706 #page-title, .page-node-3707 #page-title, .page-node-3710 #page-title, .page-node-6806 #page-title, .page-node-3711 #page-title {
-  display: none; }
+  display: none;
+}
 
+/* line 221, ../../sass/custom.scss */
 body {
-  font-family: "Lato Regular Web" !important; }
+  font-family: "Lato Regular Web" !important;
+}
 
+/* line 224, ../../sass/custom.scss */
 .content legend {
   /*    margin-top: 10px;
-      margin-bottom: 10px; */ }
+      margin-bottom: 10px; */
+}
 
+/* line 228, ../../sass/custom.scss */
 .field-name-field-photo .field-item {
-  text-align: center; }
+  text-align: center;
+}
 
 /*** Display Suite ***/
+/* line 233, ../../sass/custom.scss */
 .ds-header {
-  padding: 0 0 30px 0; }
+  padding: 0 0 30px 0;
+}
 
+/* line 238, ../../sass/custom.scss */
 #block-system-main h3.block-title {
   padding: 4px 0 4px 15px;
-  font-size: 21px; }
+  font-size: 21px;
+}
 
+/* line 243, ../../sass/custom.scss */
 .ds-above-left, .ds-above-right, .group-mandates {
   padding: 0 10px 10px 0;
-  margin-bottom: 15px; }
-  .ds-above-left .fieldset-wrapper,
-  .ds-above-left .content, .ds-above-right .fieldset-wrapper,
-  .ds-above-right .content, .group-mandates .fieldset-wrapper,
-  .group-mandates .content {
-    padding: 0 0 10px 10px; }
-  .ds-above-left .field-group-fieldset,
-  .ds-above-left .field-name-mandate-plan-info-bf, .ds-above-right .field-group-fieldset,
-  .ds-above-right .field-name-mandate-plan-info-bf, .group-mandates .field-group-fieldset,
-  .group-mandates .field-name-mandate-plan-info-bf {
-    background: #e7efff; }
-    .ds-above-left .field-group-fieldset .field-label,
-    .ds-above-left .field-group-fieldset .field-content strong,
-    .ds-above-left .field-name-mandate-plan-info-bf .field-label,
-    .ds-above-left .field-name-mandate-plan-info-bf .field-content strong, .ds-above-right .field-group-fieldset .field-label,
-    .ds-above-right .field-group-fieldset .field-content strong,
-    .ds-above-right .field-name-mandate-plan-info-bf .field-label,
-    .ds-above-right .field-name-mandate-plan-info-bf .field-content strong, .group-mandates .field-group-fieldset .field-label,
-    .group-mandates .field-group-fieldset .field-content strong,
-    .group-mandates .field-name-mandate-plan-info-bf .field-label,
-    .group-mandates .field-name-mandate-plan-info-bf .field-content strong {
-      padding-right: 0.25em; }
-    .ds-above-left .field-group-fieldset legend,
-    .ds-above-left .field-name-mandate-plan-info-bf legend, .ds-above-right .field-group-fieldset legend,
-    .ds-above-right .field-name-mandate-plan-info-bf legend, .group-mandates .field-group-fieldset legend,
-    .group-mandates .field-name-mandate-plan-info-bf legend {
-      padding: 5px 0;
-      background: #000000; }
-      .ds-above-left .field-group-fieldset legend .btn,
-      .ds-above-left .field-name-mandate-plan-info-bf legend .btn, .ds-above-right .field-group-fieldset legend .btn,
-      .ds-above-right .field-name-mandate-plan-info-bf legend .btn, .group-mandates .field-group-fieldset legend .btn,
-      .group-mandates .field-name-mandate-plan-info-bf legend .btn {
-        background: #1368a6; }
-      .ds-above-left .field-group-fieldset legend span.fieldset-legend,
-      .ds-above-left .field-name-mandate-plan-info-bf legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend,
-      .ds-above-right .field-name-mandate-plan-info-bf legend span.fieldset-legend, .group-mandates .field-group-fieldset legend span.fieldset-legend,
-      .group-mandates .field-name-mandate-plan-info-bf legend span.fieldset-legend {
-        color: #ffffff;
-        background: none;
-        padding: 4px 0 4px 20px;
-        font-size: 21px; }
-        .ds-above-left .field-group-fieldset legend span.fieldset-legend a.fieldset-title,
-        .ds-above-left .field-name-mandate-plan-info-bf legend span.fieldset-legend a.fieldset-title, .ds-above-right .field-group-fieldset legend span.fieldset-legend a.fieldset-title,
-        .ds-above-right .field-name-mandate-plan-info-bf legend span.fieldset-legend a.fieldset-title, .group-mandates .field-group-fieldset legend span.fieldset-legend a.fieldset-title,
-        .group-mandates .field-name-mandate-plan-info-bf legend span.fieldset-legend a.fieldset-title {
-          margin: 10px 0; }
+  margin-bottom: 15px;
+}
+/* line 247, ../../sass/custom.scss */
+.ds-above-left .fieldset-wrapper,
+.ds-above-left .content, .ds-above-right .fieldset-wrapper,
+.ds-above-right .content, .group-mandates .fieldset-wrapper,
+.group-mandates .content {
+  padding: 0 0 10px 10px;
+}
+/* line 251, ../../sass/custom.scss */
+.ds-above-left .field-group-fieldset,
+.ds-above-left .field-name-mandate-plan-info-bf, .ds-above-right .field-group-fieldset,
+.ds-above-right .field-name-mandate-plan-info-bf, .group-mandates .field-group-fieldset,
+.group-mandates .field-name-mandate-plan-info-bf {
+  background: #e7efff;
+}
+/* line 254, ../../sass/custom.scss */
+.ds-above-left .field-group-fieldset .field-label,
+.ds-above-left .field-group-fieldset .field-content strong,
+.ds-above-left .field-name-mandate-plan-info-bf .field-label,
+.ds-above-left .field-name-mandate-plan-info-bf .field-content strong, .ds-above-right .field-group-fieldset .field-label,
+.ds-above-right .field-group-fieldset .field-content strong,
+.ds-above-right .field-name-mandate-plan-info-bf .field-label,
+.ds-above-right .field-name-mandate-plan-info-bf .field-content strong, .group-mandates .field-group-fieldset .field-label,
+.group-mandates .field-group-fieldset .field-content strong,
+.group-mandates .field-name-mandate-plan-info-bf .field-label,
+.group-mandates .field-name-mandate-plan-info-bf .field-content strong {
+  padding-right: 0.25em;
+}
+/* line 257, ../../sass/custom.scss */
+.ds-above-left .field-group-fieldset legend,
+.ds-above-left .field-name-mandate-plan-info-bf legend, .ds-above-right .field-group-fieldset legend,
+.ds-above-right .field-name-mandate-plan-info-bf legend, .group-mandates .field-group-fieldset legend,
+.group-mandates .field-name-mandate-plan-info-bf legend {
+  padding: 5px 0;
+  background: black;
+}
+/* line 260, ../../sass/custom.scss */
+.ds-above-left .field-group-fieldset legend .btn,
+.ds-above-left .field-name-mandate-plan-info-bf legend .btn, .ds-above-right .field-group-fieldset legend .btn,
+.ds-above-right .field-name-mandate-plan-info-bf legend .btn, .group-mandates .field-group-fieldset legend .btn,
+.group-mandates .field-name-mandate-plan-info-bf legend .btn {
+  background: #1368a6;
+}
+/* line 263, ../../sass/custom.scss */
+.ds-above-left .field-group-fieldset legend span.fieldset-legend,
+.ds-above-left .field-name-mandate-plan-info-bf legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend,
+.ds-above-right .field-name-mandate-plan-info-bf legend span.fieldset-legend, .group-mandates .field-group-fieldset legend span.fieldset-legend,
+.group-mandates .field-name-mandate-plan-info-bf legend span.fieldset-legend {
+  color: white;
+  background: none;
+  padding: 4px 0 4px 20px;
+  font-size: 21px;
+}
+/* line 268, ../../sass/custom.scss */
+.ds-above-left .field-group-fieldset legend span.fieldset-legend a.fieldset-title,
+.ds-above-left .field-name-mandate-plan-info-bf legend span.fieldset-legend a.fieldset-title, .ds-above-right .field-group-fieldset legend span.fieldset-legend a.fieldset-title,
+.ds-above-right .field-name-mandate-plan-info-bf legend span.fieldset-legend a.fieldset-title, .group-mandates .field-group-fieldset legend span.fieldset-legend a.fieldset-title,
+.group-mandates .field-name-mandate-plan-info-bf legend span.fieldset-legend a.fieldset-title {
+  margin: 10px 0;
+}
 
+/* line 275, ../../sass/custom.scss */
 .ds-middle legend {
-  background: #000000;
-  padding: 5px 0; }
+  background: black;
+  padding: 5px 0;
+}
 
+/* line 279, ../../sass/custom.scss */
 .ds-above-right {
-  padding: 0 0 10px 10px; }
+  padding: 0 0 10px 10px;
+}
 
+/* line 282, ../../sass/custom.scss */
 .ds-below-left, .ds-below-right {
-  padding: 0 10px 25px 0; }
+  padding: 0 10px 25px 0;
+}
 
+/* line 285, ../../sass/custom.scss */
 .ds-below-right {
-  padding: 0 0 25px 10px; }
+  padding: 0 0 25px 10px;
+}
 
+/* line 288, ../../sass/custom.scss */
 .ds-footer {
-  padding: 0 0 0 0; }
+  padding: 0 0 0 0;
+}
 
+/* line 293, ../../sass/custom.scss */
 ul.links {
   float: right;
-  margin: 0; }
+  margin: 0;
+}
 
 /*** Views ***/
 /**  Recent content block **/
+/* line 302, ../../sass/custom.scss */
 .view-id-extra_views .views-accordion-header .field-content {
   font-family: "Lato Regular Web" !important;
-  font-size: 14px; }
+  font-size: 14px;
+}
+/* line 308, ../../sass/custom.scss */
 .view-id-extra_views .ui-accordion-content .recent-actions {
   display: inline-block;
-  margin: 0 10px 0 0; }
+  margin: 0 10px 0 0;
+}
+/* line 313, ../../sass/custom.scss */
 .view-id-extra_views .item-list {
-  margin: 5px 0 4px 0; }
+  margin: 5px 0 4px 0;
+}
 
+/* line 318, ../../sass/custom.scss */
 .view-views-search .view-content {
-  display: none; }
+  display: none;
+}
+/* line 321, ../../sass/custom.scss */
 .view-views-search .pager {
-  display: none; }
+  display: none;
+}
 
+/* line 326, ../../sass/custom.scss */
 .views-submit-button button.my-views-filter-reset {
   position: relative;
   top: 11px;
-  left: 10px; }
+  left: 10px;
+}
 
+/* line 333, ../../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
   width: 70px;
-  padding: 0; }
+  padding: 0;
+}
+/* line 337, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment {
-  padding: 0; }
-  .view-comment-views td.views-field-edit-comment a {
-    margin: 0; }
-  .view-comment-views td.views-field-edit-comment div.magical-modal-link {
-    display: inline-block;
-    margin: 0 5px 0 0; }
+  padding: 0;
+}
+/* line 339, ../../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment a {
+  margin: 0;
+}
+/* line 342, ../../sass/custom.scss */
+.view-comment-views td.views-field-edit-comment div.magical-modal-link {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
 
+/* line 348, ../../sass/custom.scss */
 .view-filters {
   background-color: #d4e2fe;
-  color: #1368a6; }
-  .view-filters .btn {
-    background: #1368a6; }
-    .view-filters .btn :hover {
-      background: #142a45; }
-  .view-filters legend {
-    padding: 10px 0;
-    background: #000000; }
-    .view-filters legend .btn {
-      background: #1368a6; }
-  .view-filters .views-exposed-form .views-exposed-widget {
-    width: 31%;
-    padding: 5px 20px 5px 10px; }
+  color: #1368a6;
+}
+/* line 351, ../../sass/custom.scss */
+.view-filters .btn {
+  background: #1368a6;
+}
+/* line 353, ../../sass/custom.scss */
+.view-filters .btn :hover {
+  background: #142a45;
+}
+/* line 357, ../../sass/custom.scss */
+.view-filters legend {
+  padding: 10px 0;
+  background: black;
+}
+/* line 360, ../../sass/custom.scss */
+.view-filters legend .btn {
+  background: #1368a6;
+}
+/* line 364, ../../sass/custom.scss */
+.view-filters .views-exposed-form .views-exposed-widget {
+  width: 31%;
+  padding: 5px 20px 5px 10px;
+}
 
+/* line 369, ../../sass/custom.scss */
 span.fieldset-legend {
   padding: 0;
-  margin: 0; }
-  span.fieldset-legend a {
-    color: #ffffff; }
+  margin: 0;
+}
+/* line 374, ../../sass/custom.scss */
+span.fieldset-legend a {
+  color: white;
+}
 
 /*** Tables ***/
+/* line 383, ../../sass/custom.scss */
 table.views-table {
-  width: 100%; }
+  width: 100%;
+}
 
+/* line 386, ../../sass/custom.scss */
 tbody {
-  border-top: none; }
+  border-top: none;
+}
 
+/* line 389, ../../sass/custom.scss */
 th {
-  border-bottom: none; }
+  border-bottom: none;
+}
 
+/* line 392, ../../sass/custom.scss */
 th.views-field {
-  padding: 0 5px; }
+  padding: 0 5px;
+}
 
+/* line 395, ../../sass/custom.scss */
 td.views-field {
-  padding: 0 5px; }
+  padding: 0 5px;
+}
 
+/* line 398, ../../sass/custom.scss */
 td.views-field-field-cover-image img {
-  max-width: none !important; }
+  max-width: none !important;
+}
 
+/* line 401, ../../sass/custom.scss */
 tr.odd {
   background-color: #e7efff;
-  border: none; }
+  border: none;
+}
 
+/* line 405, ../../sass/custom.scss */
 tr.even {
-  background-color: #ffffff;
-  border: none; }
+  background-color: white;
+  border: none;
+}
 
+/* line 409, ../../sass/custom.scss */
 tr.odd td.active, tr.even td.active {
-  background-color: #d4e2fe; }
+  background-color: #d4e2fe;
+}
 
+/* line 413, ../../sass/custom.scss */
 #privatemsg-list-form .privatemsg-list {
-  width: 100%; }
+  width: 100%;
+}
 
+/* line 416, ../../sass/custom.scss */
 .privatemsg-list td {
-  padding: 0 5px; }
+  padding: 0 5px;
+}
 
+/* line 419, ../../sass/custom.scss */
 .privatemsg-list th {
-  padding: 0 5px; }
+  padding: 0 5px;
+}
 
+/* line 422, ../../sass/custom.scss */
 .privatemsg-list tr.odd {
   background-color: #e7efff;
-  border: 1px solid #ffffff; }
+  border: 1px solid white;
+}
 
+/* line 426, ../../sass/custom.scss */
 .privatemsg-list tr.even {
-  background-color: #ffffff;
-  border: 1px solid #ffffff; }
+  background-color: white;
+  border: 1px solid white;
+}
 
+/* line 430, ../../sass/custom.scss */
 .privatemsg-list tr.odd td.active, tr.even td.active {
-  background-color: #d4e2fe; }
+  background-color: #d4e2fe;
+}
 
+/* line 433, ../../sass/custom.scss */
 .privatemsg-list .form-checkbox {
-  margin-top: -1px; }
+  margin-top: -1px;
+}
 
+/* line 436, ../../sass/custom.scss */
 #privatemsg-list span.fieldset-legend a {
-  color: #aaa; }
+  color: #aaa;
+}
 
+/* line 441, ../../sass/custom.scss */
 .view-content-lists th.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views th.views-field-edit-node, .view-reference-views td.views-field-view-node {
-  width: 70px; }
+  width: 70px;
+}
+/* line 444, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views td.views-field-edit-node, .view-reference-views td.views-field-view-node {
-  padding: 0; }
-  .view-content-lists td.views-field-edit-node a, .view-content-lists td.views-field-view-node a, .view-reference-views td.views-field-edit-node a, .view-reference-views td.views-field-view-node a {
-    margin: 0 5px; }
+  padding: 0;
+}
+/* line 446, ../../sass/custom.scss */
+.view-content-lists td.views-field-edit-node a, .view-content-lists td.views-field-view-node a, .view-reference-views td.views-field-edit-node a, .view-reference-views td.views-field-view-node a {
+  margin: 0 5px;
+}
+/* line 451, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks, .view-reference-views td.views-field-field-tasks .tasks {
   display: block;
   position: absolute;
@@ -476,75 +751,121 @@ tr.odd td.active, tr.even td.active {
   padding: 5px;
   top: 60px;
   background-color: #FFF;
-  z-index: 10; }
-  .view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
-    display: none; }
-  .view-content-lists td.views-field-field-tasks .tasks .close, .view-reference-views td.views-field-field-tasks .tasks .close {
-    position: absolute;
-    top: 0;
-    right: 0; }
+  z-index: 10;
+}
+/* line 462, ../../sass/custom.scss */
+.view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
+  display: none;
+}
+/* line 465, ../../sass/custom.scss */
+.view-content-lists td.views-field-field-tasks .tasks .close, .view-reference-views td.views-field-field-tasks .tasks .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 /*** Accordion **/
+/* line 475, ../../sass/custom.scss */
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   background: #e7efff;
-  border: none; }
+  border: none;
+}
 
+/* line 480, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-header .ui-accordion-header-icon {
-  left: 0.1em; }
+  left: 0.1em;
+}
+/* line 483, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-icons {
-  padding-left: 1.8em; }
+  padding-left: 1.8em;
+}
+/* line 486, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-icons {
-  padding-left: 1.4em; }
+  padding-left: 1.4em;
+}
+/* line 489, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-content {
-  padding: 0.5em 1em; }
+  padding: 0.5em 1em;
+}
 
+/* line 493, ../../sass/custom.scss */
 .ui-corner-all {
-  border-radius: 0; }
+  border-radius: 0;
+}
 
+/* line 496, ../../sass/custom.scss */
 .ui-widget-content {
-  border: none; }
+  border: none;
+}
 
 /*** Widgets ***/
+/* line 504, ../../sass/custom.scss */
 .view-views-search .view-content {
-  display: none; }
+  display: none;
+}
+/* line 507, ../../sass/custom.scss */
 .view-views-search .pager {
-  display: none; }
+  display: none;
+}
 
 /*** Nodes ***/
+/* line 513, ../../sass/custom.scss */
 legend {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+}
 
+/* line 518, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy {
-  width: 60%; }
-  body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart {
-    height: 300px;
-    width: 100%; }
-    body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content {
-      height: 100%; }
-      body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart {
-        height: 100%; }
-        body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart #aa-chart {
-          height: 100%; }
+  width: 60%;
+}
+/* line 520, ../../sass/custom.scss */
+body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart {
+  height: 300px;
+  width: 100%;
+}
+/* line 523, ../../sass/custom.scss */
+body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content {
+  height: 100%;
+}
+/* line 525, ../../sass/custom.scss */
+body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart {
+  height: 100%;
+}
+/* line 527, ../../sass/custom.scss */
+body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart #aa-chart {
+  height: 100%;
+}
+/* line 534, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-left.thirty {
-  width: 40%; }
+  width: 40%;
+}
 
+/* line 539, ../../sass/custom.scss */
 .breadcrumb {
-  background-color: #fff; }
+  background-color: #fff;
+}
 
+/* line 542, ../../sass/custom.scss */
 .view-filters label {
   text-align: center;
-  width: 100%; }
+  width: 100%;
+}
 
+/* line 547, ../../sass/custom.scss */
 .view-filters .views-table .collapsiblock a {
   background: none;
   color: #1368a6;
-  display: inline; }
+  display: inline;
+}
 
+/* line 552, ../../sass/custom.scss */
 .page-node .collapsiblock .views-table a:not(.contextual-links-trigger) {
   background: none;
   color: #1368a6;
-  display: inline; }
+  display: inline;
+}
 
+/* line 557, ../../sass/custom.scss */
 .view.collapsiblock h2 {
   padding: 4px 0 4px 15px;
   font-size: 21px;
@@ -552,95 +873,148 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
   background: #000;
   color: #fff;
   text-transform: uppercase;
-  font-weight: 400; }
+  font-weight: 400;
+}
 
+/* line 568, ../../sass/custom.scss */
 .ds-middle .view.collapsiblock, .ds-below-left .view.collapsiblock, .ds-footer .view.collapsiblock {
-  background-color: #fff; }
+  background-color: #fff;
+}
 
+/* line 573, ../../sass/custom.scss */
 .view.collapsiblock {
   background-color: #e7f5ff;
-  color: #000; }
-  .view.collapsiblock a {
-    display: inline;
-    background: transparent url(images/gear-select.png) no-repeat 2px 0;
-    color: #1368a6; }
+  color: #000;
+}
+/* line 576, ../../sass/custom.scss */
+.view.collapsiblock a {
+  display: inline;
+  background: transparent url(images/gear-select.png) no-repeat 2px 0;
+  color: #1368a6;
+}
 
+/* line 582, ../../sass/custom.scss */
 .view.collapsiblock .views-row {
-  padding: 5px 0 10px 10px; }
+  padding: 5px 0 10px 10px;
+}
 
+/* line 587, ../../sass/custom.scss */
 .ds-below-left h2.title, .ds-middle h2.title {
-  margin-top: 0px; }
+  margin-top: 0px;
+}
 
+/* line 592, ../../sass/custom.scss */
 .view-filters #edit-field-date-value-wrapper label {
-  margin-left: -20px; }
+  margin-left: -20px;
+}
 
+/* line 595, ../../sass/custom.scss */
 .page-node ul.links {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+}
 
+/* line 598, ../../sass/custom.scss */
 .view-foia-history {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+}
 
 /*** Entityforms ***/
+/* line 603, ../../sass/custom.scss */
 #fin-info-1, #fin-info-2, #fin-info-3 {
   width: 33%;
   float: left;
-  margin: 0 0 30px 0; }
+  margin: 0 0 30px 0;
+}
 
+/* line 608, ../../sass/custom.scss */
 .group-left, .group-middle, .group-right, .group-footer {
   background: #d4e2fe;
   padding-left: 10px;
-  padding-right: 10px; }
+  padding-right: 10px;
+}
 
+/* line 613, ../../sass/custom.scss */
 .group-footer {
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+}
 
 /*** Resources UI ***/
+/* line 618, ../../sass/custom.scss */
 #block-subscriptions-ui-0 {
-  background: #000000; }
-  #block-subscriptions-ui-0 .btn {
-    background: #1368a6; }
+  background: black;
+}
+/* line 620, ../../sass/custom.scss */
+#block-subscriptions-ui-0 .btn {
+  background: #1368a6;
+}
 
+/* line 624, ../../sass/custom.scss */
 .block-subscriptions-ui {
-  padding: 0 !important; }
-  .block-subscriptions-ui #subscribe {
-    height: auto; }
-    .block-subscriptions-ui #subscribe legend {
-      border-bottom: none;
-      margin: 0;
-      padding: 4px 0 4px 5px;
-      background: #000000; }
-      .block-subscriptions-ui #subscribe legend .fieldset-legend {
-        background: none;
-        background-image: none;
-        padding: 0; }
-    .block-subscriptions-ui #subscribe .fieldset-wrapper {
-      background: #e7efff;
-      padding: 10px; }
+  padding: 0 !important;
+}
+/* line 626, ../../sass/custom.scss */
+.block-subscriptions-ui #subscribe {
+  height: auto;
+}
+/* line 628, ../../sass/custom.scss */
+.block-subscriptions-ui #subscribe legend {
+  border-bottom: none;
+  margin: 0;
+  padding: 4px 0 4px 5px;
+  background: black;
+}
+/* line 633, ../../sass/custom.scss */
+.block-subscriptions-ui #subscribe legend .fieldset-legend {
+  background: none;
+  background-image: none;
+  padding: 0;
+}
+/* line 639, ../../sass/custom.scss */
+.block-subscriptions-ui #subscribe .fieldset-wrapper {
+  background: #e7efff;
+  padding: 10px;
+}
 
+/* line 646, ../../sass/custom.scss */
 #subscriptions-page-user-overview td, #subscriptions-page-user-overview th, #subscriptions-page-form td, #subscriptions-page-form th, .page-user-saved-searches td, .page-user-saved-searches th {
-  padding: 5px; }
+  padding: 5px;
+}
 
+/* line 650, ../../sass/custom.scss */
 span.fieldset-legend a {
-  background-color: #000000;
-  padding: 4px 6px; }
+  background-color: black;
+  padding: 4px 6px;
+}
 
+/* line 654, ../../sass/custom.scss */
 #edit-autosub {
-  margin: 15px 0 0 0; }
+  margin: 15px 0 0 0;
+}
 
+/* line 657, ../../sass/custom.scss */
 #edit-submit, #edit-save-settings, #edit-save-notifications, #edit-reset {
   background-color: #1368a6;
   padding: 4px 6px;
-  margin: 0 10px; }
+  margin: 0 10px;
+}
 
+/* line 663, ../../sass/custom.scss */
 #user-tasks-table table {
-  width: 100%; }
-  #user-tasks-table table thead th {
-    padding: 0 5px; }
-  #user-tasks-table table td {
-    padding: 0 5px; }
-  #user-tasks-table table td:nth-child(5) {
-    min-width: 90px; }
-  #user-tasks-table table td:nth-child(7) {
-    text-align: center; }
-
-/*# sourceMappingURL=custom.css.map */
+  width: 100%;
+}
+/* line 666, ../../sass/custom.scss */
+#user-tasks-table table thead th {
+  padding: 0 5px;
+}
+/* line 670, ../../sass/custom.scss */
+#user-tasks-table table td {
+  padding: 0 5px;
+}
+/* line 673, ../../sass/custom.scss */
+#user-tasks-table table td:nth-child(5) {
+  min-width: 90px;
+}
+/* line 679, ../../sass/custom.scss */
+#user-tasks-table table td:nth-child(7) {
+  text-align: center;
+}
