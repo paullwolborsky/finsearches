@@ -91,6 +91,14 @@ function fin_modals_menu() {
     'type' => MENU_CALLBACK,
     'theme callback' => '_fin_modals_theme',
   );
+  //Different link needed for different themes
+  $items['modal-front/%/tasks/%ctools_js'] = array(
+    'page callback' => 'fin_modals_task_callback',
+    'page arguments' => array(1,3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'theme callback' => '_fin_modals_theme',
+  );
 
   $items['modal/%/comment/%ctools_js/%'] = array(
     'page callback' => 'fin_modals_edit_callback',
