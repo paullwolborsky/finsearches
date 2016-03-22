@@ -108,12 +108,10 @@ function fs_f_fn_content_list_views_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* No results behavior: Global: Unfiltered text */
-  $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
-  $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
-  $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area_text_custom']['content'] = 'There are no plans at this time.';
+  /* Header: Global: Save */
+  $handler->display->display_options['header']['views_save']['id'] = 'views_save';
+  $handler->display->display_options['header']['views_save']['table'] = 'views';
+  $handler->display->display_options['header']['views_save']['field'] = 'views_save';
   /* Relationship: Content: Job History (field_job_history) */
   $handler->display->display_options['relationships']['field_job_history_value']['id'] = 'field_job_history_value';
   $handler->display->display_options['relationships']['field_job_history_value']['table'] = 'field_data_field_job_history';
@@ -612,6 +610,11 @@ function fs_f_fn_content_list_views_views_default_views() {
   ctools_modal_add_js();
 ?>';
   $handler->display->display_options['header']['area']['format'] = 'php_code';
+  /* Header: Global: Save */
+  $handler->display->display_options['header']['views_save']['id'] = 'views_save';
+  $handler->display->display_options['header']['views_save']['table'] = 'views';
+  $handler->display->display_options['header']['views_save']['field'] = 'views_save';
+  $handler->display->display_options['header']['views_save']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Plan Size (field_plan_size_history) */
   $handler->display->display_options['relationships']['field_plan_size_history_value']['id'] = 'field_plan_size_history_value';
@@ -844,6 +847,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   /* Display: Plan Alpha Pager */
   $handler = $view->new_display('attachment', 'Plan Alpha Pager', 'attachment_1');
   $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
@@ -918,6 +922,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['style_options']['newline_token'] = '1';
   $handler->display->display_options['style_options']['header'] = 1;
   $handler->display->display_options['style_options']['keep_html'] = 0;
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Plan Size (field_plan_size_history) */
   $handler->display->display_options['relationships']['field_plan_size_history_value']['id'] = 'field_plan_size_history_value';
@@ -1115,13 +1120,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'There are no plan contacts at this time.';
-  $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Job History (field_job_history) */
   $handler->display->display_options['relationships']['field_job_history_value']['id'] = 'field_job_history_value';
@@ -1371,6 +1369,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   /* Display: Plan Contacts Alpha Pager */
   $handler = $view->new_display('attachment', 'Plan Contacts Alpha Pager', 'attachment_2');
   $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Job History (field_job_history) */
   $handler->display->display_options['relationships']['field_job_history_value']['id'] = 'field_job_history_value';
@@ -1890,6 +1889,11 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Save */
+  $handler->display->display_options['header']['views_save']['id'] = 'views_save';
+  $handler->display->display_options['header']['views_save']['table'] = 'views';
+  $handler->display->display_options['header']['views_save']['field'] = 'views_save';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
@@ -2236,7 +2240,7 @@ function fs_f_fn_content_list_views_views_default_views() {
         'min_group' => array(
           'min_choose_input_type' => 'relative',
           'min' => '2016-03-18 00:00',
-          'default_date' => 'first day of this year',
+          'default_date' => 'first day of January this year',
         ),
         'max_group' => array(
           'max_choose_input_type' => 'relative',
@@ -2800,6 +2804,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['style_options']['newline_token'] = '1';
   $handler->display->display_options['style_options']['header'] = 1;
   $handler->display->display_options['style_options']['keep_html'] = 0;
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
@@ -4524,13 +4529,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'There are no manager firms at this time.';
-  $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Taxonomy terms on node */
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
@@ -4722,6 +4720,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   /* Display: Managers Alpha Pager */
   $handler = $view->new_display('attachment', 'Managers Alpha Pager', 'attachment_4');
   $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
@@ -4798,6 +4797,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['style_options']['newline_token'] = '1';
   $handler->display->display_options['style_options']['header'] = 1;
   $handler->display->display_options['style_options']['keep_html'] = 0;
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
@@ -4965,13 +4965,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'There are no manager contacts at this time.';
-  $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Job History (field_job_history) */
   $handler->display->display_options['relationships']['field_job_history_value']['id'] = 'field_job_history_value';
@@ -5174,6 +5167,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   /* Display: Manager Contacts Alpha Pager */
   $handler = $view->new_display('attachment', 'Manager Contacts Alpha Pager', 'attachment_3');
   $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -5299,13 +5293,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'There is no news at this time.';
-  $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Source Site (field_source_site) */
   $handler->display->display_options['relationships']['field_source_site_value']['id'] = 'field_source_site_value';
@@ -5431,6 +5418,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   /* Display: News Alpha Pager */
   $handler = $view->new_display('attachment', 'News Alpha Pager', 'attachment_6');
   $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
@@ -5570,13 +5558,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'There are no consultant firms at this time.';
-  $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['id'] = 'field_consultant_firm_er_target_id';
@@ -5769,6 +5750,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   /* Display: Consultants Alpha Pager */
   $handler = $view->new_display('attachment', 'Consultants Alpha Pager', 'attachment_5');
   $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['id'] = 'field_consultant_firm_er_target_id';
@@ -5925,13 +5907,6 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'There are no consultant contacts at this time.';
-  $handler->display->display_options['empty']['area']['format'] = 'advanced_input';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Job History (field_job_history) */
   $handler->display->display_options['relationships']['field_job_history_value']['id'] = 'field_job_history_value';
@@ -6088,6 +6063,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   /* Display: Consultant Contacts Alpha Pager */
   $handler = $view->new_display('attachment', 'Consultant Contacts Alpha Pager', 'attachment_7');
   $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Job History (field_job_history) */
   $handler->display->display_options['relationships']['field_job_history_value']['id'] = 'field_job_history_value';
