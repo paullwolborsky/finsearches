@@ -631,12 +631,21 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['relationships']['reverse_field_plan_er_node']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_plan_er_node']['field'] = 'reverse_field_plan_er_node';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nid']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['nid']['empty_zero'] = TRUE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = 'Tasks';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div id="magical-modal-link"><a class="ctools-use-modal" href=\'/modal/[nid]/tasks/nojs\' title=\'Tasks\'><i class="fa fa-list-alt"></i></a></div>';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div id="magical-modal-link"><a class="ctools-use-modal ctools-modal-fin-modals-contact-style" href=\'/modal-front/[nid]/tasks/nojs\' title=\'Tasks\'><i class="fa fa-list-alt"></i></a></div>';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -4528,6 +4537,21 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Save */
+  $handler->display->display_options['header']['views_save']['id'] = 'views_save';
+  $handler->display->display_options['header']['views_save']['table'] = 'views';
+  $handler->display->display_options['header']['views_save']['field'] = 'views_save';
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['label'] = 'Ctools code';
+  $handler->display->display_options['header']['area']['content'] = '<?php
+  ctools_include(\'modal\');
+  ctools_modal_add_js();
+?>';
+  $handler->display->display_options['header']['area']['format'] = 'php_code';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Taxonomy terms on node */
@@ -4567,12 +4591,19 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['relationships']['parent']['field'] = 'parent';
   $handler->display->display_options['relationships']['parent']['relationship'] = 'term_node_tid';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = 'Tasks';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div id="magical-modal-link"><a class="ctools-use-modal" href=\'/modal/[nid]/tasks/nojs\'><i class="fa fa-list-alt"></i></a></div>';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div id="magical-modal-link"><a class="ctools-use-modal ctools-modal-fin-modals-contact-style" href=\'/modal-front/[nid]/tasks/nojs\' title=\'Tasks\'><i class="fa fa-list-alt"></i></a></div>';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -5557,6 +5588,21 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Save */
+  $handler->display->display_options['header']['views_save']['id'] = 'views_save';
+  $handler->display->display_options['header']['views_save']['table'] = 'views';
+  $handler->display->display_options['header']['views_save']['field'] = 'views_save';
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['label'] = 'ctools code';
+  $handler->display->display_options['header']['area']['content'] = '<?php
+  ctools_include(\'modal\');
+  ctools_modal_add_js();
+?>';
+  $handler->display->display_options['header']['area']['format'] = 'php_code';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Entity Reference: Referenced Entity */
@@ -5564,12 +5610,20 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['table'] = 'field_data_field_consultant_firm_er';
   $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['field'] = 'field_consultant_firm_er_target_id';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['relationship'] = 'field_consultant_firm_er_target_id';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = 'Tasks';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div id="magical-modal-link"><a class="ctools-use-modal" href=\'/modal/[nid]/tasks/nojs\'><i class="fa fa-list-alt"></i></a></div>';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div id="magical-modal-link"><a class="ctools-use-modal ctools-modal-fin-modals-contact-style" href=\'/modal-front/[nid]/tasks/nojs\' title=\'Tasks\'><i class="fa fa-list-alt"></i></a></div>';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
