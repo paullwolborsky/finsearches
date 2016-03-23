@@ -260,18 +260,8 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'field_collection',
-        'settings' => array(
-          'add' => 'Add',
-          'delete' => 'Delete',
-          'description' => TRUE,
-          'edit' => 'Edit',
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-          'view_mode' => 'full',
-        ),
-        'type' => 'field_collection_view',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 65,
       ),
       'teaser' => array(
@@ -405,7 +395,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'email_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -428,7 +418,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -469,7 +459,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     ),
   );
 
-   // Exported field_instance: 'node-plan-field_manager_roster_fc'
+  // Exported field_instance: 'node-plan-field_manager_roster_fc'
   $field_instances['node-plan-field_manager_roster_fc'] = array(
     'bundle' => 'plan',
     'default_value' => NULL,
@@ -478,18 +468,8 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'field_collection',
-        'settings' => array(
-          'add' => 'Add',
-          'delete' => 'Delete',
-          'description' => TRUE,
-          'edit' => 'Edit',
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-          'view_mode' => 'full',
-        ),
-        'type' => 'field_collection_view',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 66,
       ),
       'teaser' => array(
@@ -570,7 +550,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'link_default',
-        'weight' => 8,
+        'weight' => 63,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -632,7 +612,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'hs_taxonomy_term_reference_hierarchical_text',
-        'weight' => 7,
+        'weight' => 62,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -671,7 +651,6 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'title',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 52,
@@ -871,7 +850,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 2,
+        'weight' => 60,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -995,7 +974,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 4,
+        'weight' => 61,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1083,7 +1062,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'link_label',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1124,7 +1103,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 

@@ -45,6 +45,42 @@ function fs_f_fn_contexts_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'consultant-sidebar-map';
+  $context->description = 'Renders a map for consultant nodes in the right sidebar.';
+  $context->tag = 'group';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'consultant_firm' => 'consultant_firm',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_consultant_node' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_consultant_node',
+          'region' => 'right_sidebar',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Renders a map for consultant nodes in the right sidebar.');
+  t('group');
+  $export['consultant-sidebar-map'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'consultants';
   $context->description = '';
   $context->tag = 'page';
@@ -141,6 +177,42 @@ function fs_f_fn_contexts_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'manager-sidebar-map';
+  $context->description = 'Renders a map for manager nodes in the right sidebar.';
+  $context->tag = 'group';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'manager_firm' => 'manager_firm',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_manager_node' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_manager_node',
+          'region' => 'right_sidebar',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Renders a map for manager nodes in the right sidebar.');
+  t('group');
+  $export['manager-sidebar-map'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'managers';
   $context->description = '';
   $context->tag = 'page';
@@ -205,6 +277,102 @@ function fs_f_fn_contexts_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'map-consultant';
+  $context->description = '';
+  $context->tag = 'page';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'consultant-map' => 'consultant-map',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_consultant' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_consultant',
+          'region' => 'content',
+          'weight' => '-8',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('page');
+  $export['map-consultant'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'map-manager';
+  $context->description = '';
+  $context->tag = 'page';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'manager-map' => 'manager-map',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_manager' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_manager',
+          'region' => 'content',
+          'weight' => '-9',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('page');
+  $export['map-manager'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'map-plan';
+  $context->description = '';
+  $context->tag = 'page';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'plan-map' => 'plan-map',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_plan' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_plan',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('page');
+  $export['map-plan'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'news';
   $context->description = '';
   $context->tag = 'page';
@@ -265,6 +433,42 @@ function fs_f_fn_contexts_context_default_contexts() {
   // Included for use with string extractors like potx.
   t('page');
   $export['plan-contacts'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'plan-sidebar-map';
+  $context->description = 'Renders a map for plan nodes in the right sidebar.';
+  $context->tag = 'group';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'plan' => 'plan',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_plan_node' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_plan_node',
+          'region' => 'right_sidebar',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Renders a map for plan nodes in the right sidebar.');
+  t('group');
+  $export['plan-sidebar-map'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
@@ -477,7 +681,7 @@ function fs_f_fn_contexts_context_default_contexts() {
   $context->api_version = 3;
   $context->name = 'sidebar-right-lists';
   $context->description = 'Renders the sidebar for list-level pages.';
-  $context->tag = 'global';
+  $context->tag = 'group';
   $context->conditions = array(
     'node' => array(
       'values' => array(
@@ -521,7 +725,7 @@ function fs_f_fn_contexts_context_default_contexts() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Renders the sidebar for list-level pages.');
-  t('global');
+  t('group');
   $export['sidebar-right-lists'] = $context;
 
   $context = new stdClass();
