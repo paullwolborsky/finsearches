@@ -640,27 +640,14 @@ function fs_f_fn_contexts_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
-      'diff_standard' => array(
-        'custom_settings' => FALSE,
-      ),
-      'print' => array(
-        'custom_settings' => FALSE,
-      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '7',
+          'weight' => '6',
         ),
       ),
-      'display' => array(
-        'subscriptions_ui' => array(
-          'default' => array(
-            'weight' => '100',
-            'visible' => FALSE,
-          ),
-        ),
-      ),
+      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__office'] = $strongarm;
