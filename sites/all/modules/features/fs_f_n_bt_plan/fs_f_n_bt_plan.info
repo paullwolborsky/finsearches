@@ -65,7 +65,6 @@ features[field_instance][] = node-plan-field_content_type_shortcode_tr
 features[field_instance][] = node-plan-field_currency_tr
 features[field_instance][] = node-plan-field_email
 features[field_instance][] = node-plan-field_foia_history
-features[field_instance][] = node-plan-field_location
 features[field_instance][] = node-plan-field_manager_roster_fc
 features[field_instance][] = node-plan-field_original_id
 features[field_instance][] = node-plan-field_placement_policy_link

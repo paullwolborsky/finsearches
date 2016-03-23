@@ -20,7 +20,6 @@ features[field_instance][] = node-office-body
 features[field_instance][] = node-office-field_address
 features[field_instance][] = node-office-field_consultant_firm_er
 features[field_instance][] = node-office-field_email
-features[field_instance][] = node-office-field_location
 features[field_instance][] = node-office-field_office_type_tr
 features[field_instance][] = node-office-title_field
 features[taxonomy][] = office_types

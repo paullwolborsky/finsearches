@@ -35,7 +35,6 @@ features[field_instance][] = node-manager_firm-body
 features[field_instance][] = node-manager_firm-field_address
 features[field_instance][] = node-manager_firm-field_content_type_shortcode_tr
 features[field_instance][] = node-manager_firm-field_email
-features[field_instance][] = node-manager_firm-field_location
 features[field_instance][] = node-manager_firm-field_manager_notes_ev
 features[field_instance][] = node-manager_firm-field_manager_of_managers
 features[field_instance][] = node-manager_firm-field_serialized_comment

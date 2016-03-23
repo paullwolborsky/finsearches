@@ -573,7 +573,7 @@ function fs_f_fn_contexts_context_default_contexts() {
   $context->api_version = 3;
   $context->name = 'sidebar-right-lists';
   $context->description = 'Renders the sidebar for list-level pages.';
-  $context->tag = 'global';
+  $context->tag = 'group';
   $context->conditions = array(
     'node' => array(
       'values' => array(
@@ -617,7 +617,7 @@ function fs_f_fn_contexts_context_default_contexts() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Renders the sidebar for list-level pages.');
-  t('global');
+  t('group');
   $export['sidebar-right-lists'] = $context;
 
   $context = new stdClass();
