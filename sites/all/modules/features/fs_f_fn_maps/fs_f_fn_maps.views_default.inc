@@ -69,7 +69,7 @@ function fs_f_fn_maps_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Location */
+  /* Field: : field_location */
   $handler->display->display_options['fields']['field_location']['id'] = 'field_location';
   $handler->display->display_options['fields']['field_location']['table'] = 'field_data_field_location';
   $handler->display->display_options['fields']['field_location']['field'] = 'field_location';
@@ -170,7 +170,7 @@ function fs_f_fn_maps_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Location */
+  /* Field: : field_location */
   $handler->display->display_options['fields']['field_location']['id'] = 'field_location';
   $handler->display->display_options['fields']['field_location']['table'] = 'field_data_field_location';
   $handler->display->display_options['fields']['field_location']['field'] = 'field_location';
