@@ -32,6 +32,61 @@ function drupalexp_form_system_theme_settings_alter(&$form, &$form_state, $form_
     drupalexp_layout_settings_form_alter($form);
     drupalexp_preset_settings_form_alter($form);
     drupalexp_basic_settings_form_alter($form);
+    $form['breadcrumb'] = array(
+      '#type'          => 'fieldset',
+      '#title'         => t('Breadcrumb settings'),
+    );
+    $form['breadcrumb']['yourthemename_breadcrumb'] = array(
+      '#type'          => 'select',
+      '#title'         => t('Display breadcrumb'),
+      '#default_value' => theme_get_setting('yourthemename_breadcrumb'),
+      '#options'       => array(
+          'yes'   => t('Yes'),
+          'admin' => t('Only in admin section'),
+          'no'    => t('No'),
+        ),
+    );
+    $form['breadcrumb']['breadcrumb_options'] = array(
+      '#type' => 'container',
+      '#states' => array(
+        'invisible' => array(
+          ':input[name="yourthemename_breadcrumb"]' => array('value' => 'no'),
+        ),
+      ),
+    );
+    $form['breadcrumb']['breadcrumb_options']['yourthemename_breadcrumb_separator'] = array(
+      '#type'          => 'textfield',
+      '#title'         => t('Breadcrumb separator'),
+      '#description'   => t('Text only. DonÕt forget to include spaces.'),
+      '#default_value' => theme_get_setting('yourthemename_breadcrumb_separator'),
+      '#size'          => 5,
+      '#maxlength'     => 10,
+    );
+    $form['breadcrumb']['breadcrumb_options']['yourthemename_breadcrumb_home'] = array(
+      '#type'          => 'checkbox',
+      '#title'         => t('Show home page link in breadcrumb'),
+      '#default_value' => theme_get_setting('yourthemename_breadcrumb_home'),
+    );
+    $form['breadcrumb']['breadcrumb_options']['yourthemename_breadcrumb_trailing'] = array(
+      '#type'          => 'checkbox',
+      '#title'         => t('Append a separator to the end of the breadcrumb'),
+      '#default_value' => theme_get_setting('yourthemename_breadcrumb_trailing'),
+      '#description'   => t('Useful when the breadcrumb is placed just before the title.'),
+      '#states' => array(
+        'disabled' => array(
+          ':input[name="yourthemename_breadcrumb_title"]' => array('checked' => TRUE),
+        ),
+        'unchecked' => array(
+          ':input[name="yourthemename_breadcrumb_title"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+    $form['breadcrumb']['breadcrumb_options']['yourthemename_breadcrumb_title'] = array(
+      '#type'          => 'checkbox',
+      '#title'         => t('Append the content title to the end of the breadcrumb'),
+      '#default_value' => theme_get_setting('yourthemename_breadcrumb_title'),
+      '#description'   => t('Useful when the breadcrumb is not placed just before the title.'),
+    );
     $form['#submit'][] = 'drupalexp_form_system_theme_settings_submit';
     $form['#validate'][] = 'drupalexp_form_system_theme_settings_validate';
 }

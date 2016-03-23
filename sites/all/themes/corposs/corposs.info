@@ -86,3 +86,8 @@ scripts[] = assets/js/corposs.js
 scripts[] = assets/js/custom.js
 
 settings[drupalexp_default_preset] = '0'
+settings[corposs_breadcrumb]           = yes
+settings[corposs_breadcrumb_separator] = ' Ý '
+settings[corposs_breadcrumb_home]      = 1
+settings[corposs_breadcrumb_trailing]  = 1
+settings[corposs_breadcrumb_title]     = 0

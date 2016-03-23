@@ -356,11 +356,11 @@ class date_views_filter_handler_simple extends views_handler_filter_date {
     module_load_include('inc', 'date_api', 'date_api_elements');
     switch ($prefix) {
       case 'min':
-        $label = t('Start date');
+        $label = t('From');
         $relative_label = t('Relative start date');
         break;
       case 'max':
-        $label = t('End date');
+        $label = t('To');
         $relative_label = t('Relative end date');
         break;
       default:

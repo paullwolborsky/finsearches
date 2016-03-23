@@ -444,6 +444,8 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
         $form['field_sub_manager_firms_er']['und']['#suffix'] = $managers_hired_link;
         $form['field_manager_of_managers']['und']['#suffix'] = ctools_modal_text_button('Create New Manager Contact', $href. '/contact/' . $form['#node']->nid . '/field_manager_of_managers', 'Create New ManagerContact', 'ctools-modal-fin-modals-contact-style');
 
+      }elseif($form_id == 'consultant_firm_node_form') {
+        //$form['field_main_office_ev']['und'][0]['#suffix'] = ctools_modal_text_button('Create New Office', $href. '/office/' . $form['#node']->nid . '/field_main_office_ev', 'Create New Office', 'ctools-modal-fin-modals-contact-style');
       } elseif($form_id == 'comment_form') {
         if (!empty($form_state['ajax']) && $form_state['ajax']) {
           $comment = $form_state['comment'];
