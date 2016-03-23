@@ -3258,6 +3258,7 @@ advanced-search/*',
 
   $export['views-map_views-map_consultant_node'] = array(
     'cache' => -1,
+    'custom' => 0,
     'delta' => 'map_views-map_consultant_node',
     'module' => 'views',
     'node_types' => array(),
@@ -3283,6 +3284,8 @@ advanced-search/*',
         'weight' => 0,
       ),
     ),
+    'title' => '',
+    'visibility' => 0,
   );
 
   $export['views-map_views-map_manager'] = array(
@@ -3319,6 +3322,7 @@ advanced-search/*',
 
   $export['views-map_views-map_manager_node'] = array(
     'cache' => -1,
+    'custom' => 0,
     'delta' => 'map_views-map_manager_node',
     'module' => 'views',
     'node_types' => array(),
@@ -3344,6 +3348,8 @@ advanced-search/*',
         'weight' => 0,
       ),
     ),
+    'title' => '',
+    'visibility' => 0,
   );
 
   $export['views-map_views-map_plan'] = array(
@@ -3380,6 +3386,7 @@ advanced-search/*',
 
   $export['views-map_views-map_plan_node'] = array(
     'cache' => -1,
+    'custom' => 0,
     'delta' => 'map_views-map_plan_node',
     'module' => 'views',
     'node_types' => array(),
@@ -3405,6 +3412,8 @@ advanced-search/*',
         'weight' => 0,
       ),
     ),
+    'title' => '',
+    'visibility' => 0,
   );
 
   $export['views-reference_views-block_1'] = array(

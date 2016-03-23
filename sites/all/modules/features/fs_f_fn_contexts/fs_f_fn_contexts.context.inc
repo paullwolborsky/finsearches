@@ -45,6 +45,42 @@ function fs_f_fn_contexts_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'consultant-sidebar-map';
+  $context->description = 'Renders a map for consultant nodes in the right sidebar.';
+  $context->tag = 'group';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'consultant_firm' => 'consultant_firm',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_consultant_node' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_consultant_node',
+          'region' => 'right_sidebar',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Renders a map for consultant nodes in the right sidebar.');
+  t('group');
+  $export['consultant-sidebar-map'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'consultants';
   $context->description = '';
   $context->tag = 'page';
@@ -137,6 +173,42 @@ function fs_f_fn_contexts_context_default_contexts() {
   // Included for use with string extractors like potx.
   t('page');
   $export['manager-contacts'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'manager-sidebar-map';
+  $context->description = 'Renders a map for manager nodes in the right sidebar.';
+  $context->tag = 'group';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'manager_firm' => 'manager_firm',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_manager_node' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_manager_node',
+          'region' => 'right_sidebar',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Renders a map for manager nodes in the right sidebar.');
+  t('group');
+  $export['manager-sidebar-map'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
@@ -361,6 +433,42 @@ function fs_f_fn_contexts_context_default_contexts() {
   // Included for use with string extractors like potx.
   t('page');
   $export['plan-contacts'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'plan-sidebar-map';
+  $context->description = 'Renders a map for plan nodes in the right sidebar.';
+  $context->tag = 'group';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'plan' => 'plan',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_plan_node' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_plan_node',
+          'region' => 'right_sidebar',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Renders a map for plan nodes in the right sidebar.');
+  t('group');
+  $export['plan-sidebar-map'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
