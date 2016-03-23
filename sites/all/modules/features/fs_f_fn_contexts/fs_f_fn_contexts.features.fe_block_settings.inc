@@ -908,6 +908,134 @@ function fs_f_fn_contexts_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['ip_geoloc-address_lookup'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'address_lookup',
+    'module' => 'ip_geoloc',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['ip_geoloc-current_visitor_map'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'current_visitor_map',
+    'module' => 'ip_geoloc',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['ip_geoloc-geocode_address'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'geocode_address',
+    'module' => 'ip_geoloc',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['ip_geoloc-recent_visitors_map'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'recent_visitors_map',
+    'module' => 'ip_geoloc',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   $export['logintoboggan-logintoboggan_logged_in'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -2328,6 +2456,38 @@ advanced-search/*',
     'visibility' => 1,
   );
 
+  $export['views-a9706a0c2bd6ed2ad2a9fb0317b34834'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'a9706a0c2bd6ed2ad2a9fb0317b34834',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => 'right_sidebar',
+        'status' => 1,
+        'theme' => 'corposs',
+        'weight' => -51,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   $export['views-af36729b47054d890b13c7ec7cd184d1'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -3036,6 +3196,102 @@ advanced-search/*',
     'cache' => -1,
     'custom' => 0,
     'delta' => 'fdecc7f145fe211631b1b2b9245cfb8d',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['views-map_views-map_consultant'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'map_views-map_consultant',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['views-map_views-map_manager'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'map_views-map_manager',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['views-map_views-map_plan'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'map_views-map_plan',
     'module' => 'views',
     'node_types' => array(),
     'pages' => '',

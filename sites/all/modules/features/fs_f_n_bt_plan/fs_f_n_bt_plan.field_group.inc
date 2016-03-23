@@ -111,6 +111,7 @@ function fs_f_n_bt_plan_field_group_info() {
       0 => 'field_address',
       1 => 'field_website',
       2 => 'field_email',
+      3 => 'field_location',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -255,8 +256,9 @@ function fs_f_n_bt_plan_field_group_info() {
       1 => 'field_plan_type_tr',
       2 => 'field_status_tr',
       3 => 'field_placement_policy_tr',
-      4 => 'reference_views_eva_foia_required',
-      5 => 'reference_views_eva_plan_size',
+      4 => 'field_acronym',
+      5 => 'reference_views_eva_foia_required',
+      6 => 'reference_views_eva_plan_size',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

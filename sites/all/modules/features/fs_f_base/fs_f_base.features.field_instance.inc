@@ -994,13 +994,8 @@ function fs_f_base_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
-        'type' => 'text_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 20,
       ),
       'teaser' => array(
@@ -1060,7 +1055,7 @@ function fs_f_base_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -1073,13 +1068,8 @@ function fs_f_base_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
-        'type' => 'text_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 19,
       ),
       'teaser' => array(
@@ -1152,13 +1142,8 @@ function fs_f_base_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
-        'type' => 'text_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 68,
       ),
       'teaser' => array(
@@ -1231,13 +1216,8 @@ function fs_f_base_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
-        'type' => 'text_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 67,
       ),
       'teaser' => array(
@@ -2157,11 +2137,11 @@ function fs_f_base_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Account Type');
-  t('Mandate');
   t('Consultant Contact Type');
-  t('Traits');
+  t('Mandate');
   t('Old Major Style');
   t('Old Minor Style');
+  t('Traits');
   t('legendid');
   t('wuin');
 

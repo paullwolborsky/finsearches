@@ -260,18 +260,8 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'field_collection',
-        'settings' => array(
-          'add' => 'Add',
-          'delete' => 'Delete',
-          'description' => TRUE,
-          'edit' => 'Edit',
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-          'view_mode' => 'full',
-        ),
-        'type' => 'field_collection_view',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 65,
       ),
       'teaser' => array(
@@ -405,7 +395,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'email_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -428,7 +418,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -469,7 +459,64 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     ),
   );
 
-   // Exported field_instance: 'node-plan-field_manager_roster_fc'
+  // Exported field_instance: 'node-plan-field_location'
+  $field_instances['node-plan-field_location'] = array(
+    'bundle' => 'plan',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_location',
+    'label' => 'Location',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'geocoder',
+      'settings' => array(
+        'delta_handling' => 'default',
+        'geocoder_field' => 'field_address',
+        'geocoder_handler' => 'google',
+        'handler_settings' => array(
+          'google' => array(
+            'all_results' => 0,
+            'biasing' => array(
+              'bounds' => '',
+              'components' => '',
+              'region' => '',
+            ),
+            'geometry_type' => 'point',
+            'reject_results' => array(
+              'APPROXIMATE' => 0,
+              'GEOMETRIC_CENTER' => 0,
+              'RANGE_INTERPOLATED' => 0,
+              'ROOFTOP' => 0,
+            ),
+          ),
+        ),
+      ),
+      'type' => 'geocoder',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-plan-field_manager_roster_fc'
   $field_instances['node-plan-field_manager_roster_fc'] = array(
     'bundle' => 'plan',
     'default_value' => NULL,
@@ -478,18 +525,8 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'field_collection',
-        'settings' => array(
-          'add' => 'Add',
-          'delete' => 'Delete',
-          'description' => TRUE,
-          'edit' => 'Edit',
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-          'view_mode' => 'full',
-        ),
-        'type' => 'field_collection_view',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 66,
       ),
       'teaser' => array(
@@ -570,7 +607,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'link_default',
-        'weight' => 8,
+        'weight' => 63,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -632,7 +669,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'hs_taxonomy_term_reference_hierarchical_text',
-        'weight' => 7,
+        'weight' => 62,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -671,7 +708,6 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'title',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 52,
@@ -871,7 +907,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 2,
+        'weight' => 60,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -995,7 +1031,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 4,
+        'weight' => 61,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1083,7 +1119,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'link_label',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1124,7 +1160,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -1213,6 +1249,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
   t('Distribute 100 percentage points among these allocation options. Of course, the total should add up to be 100%.');
   t('Email');
   t('FOIA History');
+  t('Location');
   t('Manager Roster');
   t('Original ID');
   t('Placement Policy');

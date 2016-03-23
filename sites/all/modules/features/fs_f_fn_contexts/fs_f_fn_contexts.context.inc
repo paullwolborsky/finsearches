@@ -205,6 +205,102 @@ function fs_f_fn_contexts_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'map-consultant';
+  $context->description = '';
+  $context->tag = 'page';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'consultant-map' => 'consultant-map',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_consultant' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_consultant',
+          'region' => 'content',
+          'weight' => '-8',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('page');
+  $export['map-consultant'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'map-manager';
+  $context->description = '';
+  $context->tag = 'page';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'manager-map' => 'manager-map',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_manager' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_manager',
+          'region' => 'content',
+          'weight' => '-9',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('page');
+  $export['map-manager'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'map-plan';
+  $context->description = '';
+  $context->tag = 'page';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'plan-map' => 'plan-map',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-map_views-map_plan' => array(
+          'module' => 'views',
+          'delta' => 'map_views-map_plan',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('page');
+  $export['map-plan'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'news';
   $context->description = '';
   $context->tag = 'page';

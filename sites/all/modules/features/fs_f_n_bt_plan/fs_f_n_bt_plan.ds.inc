@@ -17,16 +17,6 @@ function fs_f_n_bt_plan_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'plan';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'modal_contact_link' => array(
-      'weight' => '6',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'modal_mandate_link' => array(
-      'weight' => '14',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
     'plan_asset_allocation_bf' => array(
       'weight' => '15',
       'label' => 'hidden',
@@ -87,6 +77,16 @@ function fs_f_n_bt_plan_ds_field_settings_info() {
     ),
     'plan_related_news_bf' => array(
       'weight' => '17',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'modal_contact_link' => array(
+      'weight' => '6',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'modal_mandate_link' => array(
+      'weight' => '14',
       'label' => 'hidden',
       'format' => 'default',
     ),
