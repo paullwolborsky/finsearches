@@ -76,70 +76,6 @@ function fs_f_fn_contexts_default_fe_block_settings() {
     'visibility' => 0,
   );
 
-  $export['block-resources_saved_searches'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'machine_name' => 'resources_saved_searches',
-    'module' => 'block',
-    'node_types' => array(),
-    'pages' => 'resources',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'corposs',
-        'weight' => 0,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => 'Saved Searches',
-    'visibility' => 1,
-  );
-
-  $export['block-resources_subscriptions'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'machine_name' => 'resources_subscriptions',
-    'module' => 'block',
-    'node_types' => array(),
-    'pages' => 'resources',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'corposs',
-        'weight' => 0,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => 'Subscriptions',
-    'visibility' => 1,
-  );
-
   $export['block-site_name'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -3606,38 +3542,6 @@ advanced-search/*',
     ),
     'title' => '',
     'visibility' => 0,
-  );
-
-  $export['views-saved_views-block_1'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'saved_views-block_1',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => 'resources',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'corposs',
-        'weight' => 0,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => 'Saved Content Filters',
-    'visibility' => 1,
   );
 
   $export['views-user_views-organization_members'] = array(

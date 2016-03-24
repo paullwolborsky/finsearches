@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * fs_f_n_bt_contact.features.field_base.inc
@@ -10,7 +9,7 @@
  */
 function fs_f_n_bt_contact_field_default_field_bases() {
   $field_bases = array();
-  
+
   // Exported field_base: 'field_job_history'
   $field_bases['field_job_history'] = array(
     'active' => 1,
@@ -30,8 +29,8 @@ function fs_f_n_bt_contact_field_default_field_bases() {
     'translatable' => 0,
     'type' => 'paragraphs',
   );
-  
-    // Exported field_base: 'field_migration_notes'
+
+  // Exported field_base: 'field_migration_notes'
   $field_bases['field_migration_notes'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -54,8 +53,8 @@ function fs_f_n_bt_contact_field_default_field_bases() {
     'translatable' => 0,
     'type' => 'text_long',
   );
-  
-   // Exported field_base: 'field_photo'
+
+  // Exported field_base: 'field_photo'
   $field_bases['field_photo'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -80,8 +79,8 @@ function fs_f_n_bt_contact_field_default_field_bases() {
     'translatable' => 0,
     'type' => 'image',
   );
-  
-    // Exported field_base: 'field_plan_type_tr'
+
+  // Exported field_base: 'field_plan_type_tr'
   $field_bases['field_plan_type_tr'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -110,6 +109,6 @@ function fs_f_n_bt_contact_field_default_field_bases() {
     'translatable' => 0,
     'type' => 'taxonomy_term_reference',
   );
-  
+
   return $field_bases;
 }
