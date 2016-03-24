@@ -224,8 +224,12 @@ h2.title {
 .field-name-field-photo .field-item {
     text-align: center;
 }
+.chosen-container {
+    text-align: center;
+}
 .chosen-container-multi .chosen-choices {
     border: 1px solid $border-blue;
+    max-width: 300px;
 }
 .btn.form-submit {
     background: $dark-button;
@@ -406,7 +410,7 @@ fieldset.collapsible .fieldset-legend {
     margin-top: 10px;
 }
 
-/*** Exposed Filters ***/
+/********** Exposed Filters **********/
 html.js fieldset.collapsible .fieldset-legend {
     padding-left: 0;
 }

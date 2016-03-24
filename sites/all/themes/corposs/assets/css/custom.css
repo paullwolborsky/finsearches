@@ -7,18 +7,15 @@
 /**
  *Override styles for modal windows
  */
-/* line 5, ../../sass/_modals.scss */
 div#modalContent.modal-default .ctools-modal-content {
   width: auto !important;
   height: 100% !important;
 }
-/* line 12, ../../sass/_modals.scss */
 div#modalContent.modal-default .ctools-modal-content form.node-contact-form .field-name-body ul.tips {
   display: none;
 }
 
 /*** Modal Links ***/
-/* line 21, ../../sass/_modals.scss */
 .field-name-modal-contact-link, .field-name-modal-mandate-link {
   margin: -30px 0 0 0;
 }
@@ -26,142 +23,111 @@ div#modalContent.modal-default .ctools-modal-content form.node-contact-form .fie
 /*** Modal styles
  *Duplicated from Admin theme (Fubik)
  */
-/* line 31, ../../sass/_modals.scss */
 #modalContent #contact-node-form .ds-above-left, #modalContent #contact-node-form .ds-above-right {
   width: 33.3%;
 }
-/* line 34, ../../sass/_modals.scss */
 #modalContent #contact-node-form .text-summary-wrapper {
   display: none;
 }
-/* line 39, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea label {
   float: none;
 }
-/* line 42, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper {
   margin-left: 0;
   margin-right: 0;
 }
-/* line 46, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_72, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_75, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_85, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_93, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_98 {
   display: none;
 }
-/* line 54, ../../sass/_modals.scss */
 #modalContent #contact-node-form tr .form-item {
   white-space: normal;
 }
-/* line 60, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .date-float {
   clear: both;
   float: none;
 }
-/* line 64, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
   width: 150px;
   float: left;
   clear: none;
 }
-/* line 68, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper input, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper input {
   width: 100px;
 }
-/* line 72, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
   width: 200px;
 }
-/* line 74, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper label {
   width: 40px;
   clear: none;
 }
-/* line 84, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-address .addressfield-container-inline .form-item {
   float: none;
 }
-/* line 90, ../../sass/_modals.scss */
 #modalContent #contact-node-form .form-type-link-field label {
   float: none;
 }
-/* line 95, ../../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-consultant-job-type label {
   float: none;
 }
-/* line 102, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form .ds-above-left, #modalContent form#mandate-node-form .ds-above-right, #modalContent form#mandate-node-form .ds-below-left, #modalContent form#mandate-node-form .ds-below-right {
   width: 33.3%;
 }
-/* line 105, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form .ds-above-left, #modalContent form#mandate-node-form .ds-below-left, #modalContent form#mandate-node-form .ds-above-middle, #modalContent form#mandate-node-form .ds-below-middle {
   padding: 0 20px 0 0;
 }
-/* line 108, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form table {
   width: 100%;
 }
-/* line 112, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.form-wrapper label {
   float: none;
   display: block;
 }
-/* line 118, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.field-widget-field-collection-embed .form-select {
   display: block;
 }
-/* line 121, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.field-widget-field-collection-embed .chosen-container {
   width: 100% !important;
   display: block;
 }
-/* line 128, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-left, #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-right {
   float: none;
   display: block;
   width: 100%;
 }
-/* line 132, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-left .chosen-container, #modalContent form#mandate-node-form div.field-name-field-managers-hired .ds-2col-stacked-fluid .group-right .chosen-container {
   display: block !important;
 }
-/* line 137, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form div.field-name-field-managers-hired .description {
   white-space: normal;
 }
-/* line 141, ../../sass/_modals.scss */
 #modalContent form#mandate-node-form input.form-autocomplete {
   width: 100%;
   max-width: 100%;
   display: block;
 }
-/* line 149, ../../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .ds-above-left {
   width: 49%;
   margin: 0 1% 0 0;
 }
-/* line 153, ../../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .ds-above-right {
   width: 49%;
   margin: 0 0 0 1%;
 }
-/* line 159, ../../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .field-name-field-website .form-item label {
   float: none;
 }
-/* line 164, ../../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .vertical-tabs {
   margin: 0;
 }
-/* line 170, ../../sass/_modals.scss */
 #modalContent #manager-firm-node-form .ds-above-left, #modalContent #manager-firm-node-form .ds-above-middle, #modalContent #manager-firm-node-form .ds-above-right {
   width: 32%;
   margin: 0 .5%;
 }
-/* line 174, ../../sass/_modals.scss */
 #modalContent #manager-firm-node-form .form-item {
   margin: 0;
   width: 95%;
 }
-/* line 177, ../../sass/_modals.scss */
 #modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
   width: 98%;
 }
@@ -170,7 +136,6 @@ div#modalContent.modal-default .ctools-modal-content form.node-contact-form .fie
  *Styles for search page
  *
  */
-/* line 8, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-facetapi .block-title, body.page-advanced-search .region-left-sidebar .block-current-search .block-title {
   text-transform: capitalize;
   background-color: #DEDEDE;
@@ -179,23 +144,18 @@ body.page-advanced-search .region-left-sidebar .block-facetapi .block-title, bod
   font-weight: normal;
   font-size: 16px;
 }
-/* line 16, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-facetapi .content, body.page-advanced-search .region-left-sidebar .block-current-search .content {
   display: none;
 }
-/* line 18, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-facetapi .content.open, body.page-advanced-search .region-left-sidebar .block-current-search .content.open {
   display: block;
 }
-/* line 21, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-facetapi .content .item-list, body.page-advanced-search .region-left-sidebar .block-current-search .content .item-list {
   margin: 0 0 4px 0;
 }
-/* line 25, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-facetapi select, body.page-advanced-search .region-left-sidebar .block-current-search select {
   max-width: 100%;
 }
-/* line 30, ../../sass/pages/_advanced_search.scss */
 body.page-advanced-search .region-left-sidebar .block-current-search .content {
   display: block;
 }
@@ -209,119 +169,95 @@ body.page-advanced-search .region-left-sidebar .block-current-search .content {
 /* Text */
 /* Misc */
 /********** Addressfield country fix **********/
-/* line 52, ../../sass/custom.scss */
 .field-type-addressfield .country {
   margin: 0;
   display: block;
 }
 
 /********** Menu **********/
-/* line 60, ../../sass/custom.scss */
 #section-header .container {
   background-color: black;
 }
-/* line 64, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li {
   border-top: 1px solid black;
 }
-/* line 67, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li a, #section-header .dexp-dropdown ul.menu ul.menu li span.nolink, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li a, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li span.nolink {
   color: white;
   font-weight: bold;
 }
-/* line 71, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li span.nolink:hover, #section-header .dexp-dropdown ul.menu ul.menu li span.nolink.active, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li a:hover, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li a.active, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li span.nolink:hover, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li span.nolink.active {
   background-color: black;
   color: white;
 }
-/* line 75, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu li a:hover {
   background-color: #1368a6;
 }
-/* line 78, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu li a.active {
   background-color: #1368a6;
 }
-/* line 81, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li, #section-header .dexp-dropdown .dexp-dropdown ul.menu .dexp-menu-mega li {
   background: #1368a6;
 }
-/* line 84, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li.first, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li.first {
   border-top: solid 1px black;
 }
-/* line 87, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li a.active {
   background: #1368a6;
   color: white;
 }
-/* line 91, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li a:hover {
   background: black;
   color: white;
 }
-/* line 96, ../../sass/custom.scss */
 #section-header .dexp-dropdown > ul > li {
   border-left: none;
   border-right: none;
 }
-/* line 100, ../../sass/custom.scss */
 #section-header .dexp-dropdown > ul > li > a, #section-header .dexp-dropdown > ul > li > span.nolink {
   border-bottom-style: none;
   font-weight: bold;
 }
-/* line 104, ../../sass/custom.scss */
 #section-header .dexp-dropdown > ul li > ul, #section-header .dexp-dropdown > ul li > .dexp-menu-mega {
   border-top: none;
 }
 
 /********** Sections **********/
-/* line 110, ../../sass/custom.scss */
 #section-top-bar {
   padding: 5px;
 }
-/* line 113, ../../sass/custom.scss */
 #section-top-bar .region-top-right .block {
   float: none;
   text-align: right;
 }
-/* line 118, ../../sass/custom.scss */
 #section-top-bar .region-top-right .block-search-api-page div.form-type-textfield {
   display: inline-block;
   vertical-align: top;
 }
-/* line 122, ../../sass/custom.scss */
 #section-top-bar .region-top-right .block-search-api-page input.btn-primary {
   display: inline-block;
   vertical-align: top;
   margin: 15px 0 0 0;
 }
-/* line 127, ../../sass/custom.scss */
 #section-top-bar .region-top-right .block-search-api-page .btn.form-submit {
   background: #1368a6;
 }
 
-/* line 133, ../../sass/custom.scss */
 #section-header {
   background: black;
 }
-/* line 135, ../../sass/custom.scss */
 #section-header .btn {
   background: #1368a6;
 }
 
-/* line 139, ../../sass/custom.scss */
 #section-main-content {
   padding: 0 0 30px 0;
 }
 
-/* line 142, ../../sass/custom.scss */
 .ds-header li.comment-add {
   display: none;
 }
 
 /********** Blocks **********/
-/* line 147, ../../sass/custom.scss */
 h3.block-title {
   font-size: 21px;
   padding: 2px 0;
@@ -329,76 +265,62 @@ h3.block-title {
   margin: 0;
   background: black;
 }
-/* line 150, ../../sass/custom.scss */
 h3.block-title a {
   background: none;
 }
 
-/* line 158, ../../sass/custom.scss */
 #block-system-main div.field-type-ds {
   margin: 0 0 25px 0;
 }
-/* line 163, ../../sass/custom.scss */
 #block-system-main div.field-type-ds.field-name-modal-contact-link, #block-system-main div.field-type-ds.field-name-modal-mandate-link, #block-system-main div.field-type-ds.field-name-modal-plan-link {
   margin-top: -23px;
   margin-bottom: 25px;
 }
 
-/* line 169, ../../sass/custom.scss */
 span.fieldset-legend {
   text-transform: uppercase;
 }
 
-/* line 172, ../../sass/custom.scss */
 .collapsiblock a {
   color: white;
   margin: 0 0 0 5px;
 }
 
-/* line 176, ../../sass/custom.scss */
 .block-views {
   margin: 0;
   padding: 0;
 }
 
-/* line 181, ../../sass/custom.scss */
 #block-views-a9706a0c2bd6ed2ad2a9fb0317b34834 {
   margin: 30px 0 0 0;
 }
 
-/* line 184, ../../sass/custom.scss */
 #block-user-online .content {
   background: #e7efff;
   padding: 10px;
 }
 
-/* line 188, ../../sass/custom.scss */
 .item-list ul {
   text-align: left;
 }
 
-/* line 191, ../../sass/custom.scss */
 .field-name-plan-new-leads-mandates-bf .block-views {
   margin: 5px 0 0 0;
 }
 
-/* line 193, ../../sass/custom.scss */
 .field-name-plan-ongoing-mandates-bf .block-views {
   margin: 5px 0 0 0;
 }
 
-/* line 195, ../../sass/custom.scss */
 .field-name-plan-completed-mandates-bf .block-views {
   margin: 5px 0 0 0;
 }
 
-/* line 197, ../../sass/custom.scss */
 .field-name-plan-closed-mandates-bf .block-views {
   margin: 5px 0 0 0;
 }
 
 /********** Content **********/
-/* line 202, ../../sass/custom.scss */
 body.boxed {
   background: #1368a6;
   /* Old browsers */
@@ -412,74 +334,66 @@ body.boxed {
   /* IE6-9 */
 }
 
-/* line 210, ../../sass/custom.scss */
 .page-node-3702 #page-title, .page-node-3704 #page-title, .page-node-3705 #page-title, .page-node-3706 #page-title, .page-node-3707 #page-title, .page-node-3710 #page-title, .page-node-6806 #page-title, .page-node-3711 #page-title {
   display: none;
 }
 
-/* line 214, ../../sass/custom.scss */
 body {
   font-family: "Lato Regular Web" !important;
 }
 
-/* line 217, ../../sass/custom.scss */
 h2.title {
   margin: 30px 0 0 0;
 }
 
-/* line 220, ../../sass/custom.scss */
 .content legend {
   /*    margin-top: 10px;
       margin-bottom: 10px; */
 }
 
-/* line 224, ../../sass/custom.scss */
 .field-name-field-photo .field-item {
   text-align: center;
 }
 
-/* line 227, ../../sass/custom.scss */
-.chosen-container-multi .chosen-choices {
-  border: 1px solid #689afd;
+.chosen-container {
+  text-align: center;
 }
 
-/* line 230, ../../sass/custom.scss */
+.chosen-container-multi .chosen-choices {
+  border: 1px solid #689afd;
+  max-width: 300px;
+}
+
 .btn.form-submit {
   background: #1368a6;
 }
 
 /********** Display Suite **********/
-/* line 235, ../../sass/custom.scss */
 .ds-header {
   padding: 0 0 30px 0;
 }
 
-/* line 240, ../../sass/custom.scss */
 #block-system-main h3.block-title {
   padding: 4px 0 4px 15px;
   font-size: 21px;
 }
 
-/* line 245, ../../sass/custom.scss */
 .ds-above-left, .ds-above-right, .group-mandates {
   padding: 0 10px 10px 0;
   margin-bottom: 15px;
 }
-/* line 249, ../../sass/custom.scss */
 .ds-above-left .fieldset-wrapper,
 .ds-above-left .content, .ds-above-right .fieldset-wrapper,
 .ds-above-right .content, .group-mandates .fieldset-wrapper,
 .group-mandates .content {
   padding: 0 0 10px 10px;
 }
-/* line 253, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset,
 .ds-above-left .field-name-mandate-plan-info-bf, .ds-above-right .field-group-fieldset,
 .ds-above-right .field-name-mandate-plan-info-bf, .group-mandates .field-group-fieldset,
 .group-mandates .field-name-mandate-plan-info-bf {
   background: #e7efff;
 }
-/* line 256, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset .field-label,
 .ds-above-left .field-group-fieldset .field-content strong,
 .ds-above-left .field-name-mandate-plan-info-bf .field-label,
@@ -492,7 +406,6 @@ h2.title {
 .group-mandates .field-name-mandate-plan-info-bf .field-content strong {
   padding-right: 0.25em;
 }
-/* line 259, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend,
 .ds-above-left .field-name-mandate-plan-info-bf legend, .ds-above-right .field-group-fieldset legend,
 .ds-above-right .field-name-mandate-plan-info-bf legend, .group-mandates .field-group-fieldset legend,
@@ -500,14 +413,12 @@ h2.title {
   padding: 5px 0;
   background: black;
 }
-/* line 262, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend .btn,
 .ds-above-left .field-name-mandate-plan-info-bf legend .btn, .ds-above-right .field-group-fieldset legend .btn,
 .ds-above-right .field-name-mandate-plan-info-bf legend .btn, .group-mandates .field-group-fieldset legend .btn,
 .group-mandates .field-name-mandate-plan-info-bf legend .btn {
   background: #1368a6;
 }
-/* line 265, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend span.fieldset-legend,
 .ds-above-left .field-name-mandate-plan-info-bf legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend,
 .ds-above-right .field-name-mandate-plan-info-bf legend span.fieldset-legend, .group-mandates .field-group-fieldset legend span.fieldset-legend,
@@ -517,7 +428,6 @@ h2.title {
   padding: 4px 0 4px 20px;
   font-size: 21px;
 }
-/* line 270, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend span.fieldset-legend a.fieldset-title,
 .ds-above-left .field-name-mandate-plan-info-bf legend span.fieldset-legend a.fieldset-title, .ds-above-right .field-group-fieldset legend span.fieldset-legend a.fieldset-title,
 .ds-above-right .field-name-mandate-plan-info-bf legend span.fieldset-legend a.fieldset-title, .group-mandates .field-group-fieldset legend span.fieldset-legend a.fieldset-title,
@@ -525,117 +435,94 @@ h2.title {
   margin: 10px 0;
 }
 
-/* line 277, ../../sass/custom.scss */
 .ds-middle legend {
   background: black;
   padding: 5px 0;
 }
 
-/* line 281, ../../sass/custom.scss */
 .ds-above-right {
   padding: 0 0 10px 10px;
 }
 
-/* line 284, ../../sass/custom.scss */
 .ds-below-left, .ds-below-right {
   padding: 0 10px 25px 0;
 }
 
-/* line 288, ../../sass/custom.scss */
 .ds-below-left h2.title, .ds-middle h2.title {
   margin-top: 0px;
 }
 
-/* line 292, ../../sass/custom.scss */
 .ds-below-right {
   padding: 0 0 25px 10px;
 }
 
-/* line 295, ../../sass/custom.scss */
 .ds-footer {
   padding: 0 0 0 0;
 }
 
-/* line 300, ../../sass/custom.scss */
 ul.links {
   float: right;
   margin: 0;
 }
 
 /********** Views **********/
-/* line 308, ../../sass/custom.scss */
 .view-id-extra_views .views-accordion-header .field-content {
   font-family: "Lato Regular Web" !important;
   font-size: 14px;
 }
-/* line 314, ../../sass/custom.scss */
 .view-id-extra_views .ui-accordion-content .recent-actions {
   display: inline-block;
   margin: 0 10px 0 0;
 }
-/* line 319, ../../sass/custom.scss */
 .view-id-extra_views .item-list {
   margin: 5px 0 4px 0;
 }
 
-/* line 324, ../../sass/custom.scss */
 .view-views-search .view-content {
   display: none;
 }
-/* line 327, ../../sass/custom.scss */
 .view-views-search .pager {
   display: none;
 }
 
-/* line 332, ../../sass/custom.scss */
 .views-submit-button button.my-views-filter-reset {
   position: relative;
   top: 11px;
   left: 10px;
 }
 
-/* line 339, ../../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 343, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 345, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 348, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 354, ../../sass/custom.scss */
 span.fieldset-legend {
   padding: 0;
   margin: 0;
 }
-/* line 359, ../../sass/custom.scss */
 span.fieldset-legend a {
   color: white;
 }
 
-/* line 367, ../../sass/custom.scss */
 .view-content-lists th.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views th.views-field-edit-node, .view-reference-views td.views-field-view-node {
   width: 70px;
 }
-/* line 370, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views td.views-field-edit-node, .view-reference-views td.views-field-view-node {
   padding: 0;
 }
-/* line 372, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node a, .view-content-lists td.views-field-view-node a, .view-reference-views td.views-field-edit-node a, .view-reference-views td.views-field-view-node a {
   margin: 0 5px;
 }
-/* line 377, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks, .view-reference-views td.views-field-field-tasks .tasks {
   display: block;
   position: absolute;
@@ -648,39 +535,32 @@ span.fieldset-legend a {
   background-color: #FFF;
   z-index: 10;
 }
-/* line 388, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
   display: none;
 }
-/* line 391, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks .close, .view-reference-views td.views-field-field-tasks .tasks .close {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-/* line 399, ../../sass/custom.scss */
 .attachment-after {
   text-align: center;
 }
 
-/* line 402, ../../sass/custom.scss */
 .view-display-id-attachment_1 {
   display: inline-block;
 }
 
-/* line 405, ../../sass/custom.scss */
 .view-footer {
   margin-top: 10px;
 }
 
-/*** Exposed Filters ***/
-/* line 410, ../../sass/custom.scss */
+/********** Exposed Filters **********/
 html.js fieldset.collapsible .fieldset-legend {
   padding-left: 0;
 }
 
-/* line 413, ../../sass/custom.scss */
 .view-filters {
   background-color: #e7efff;
   color: #1368a6;
@@ -689,24 +569,19 @@ html.js fieldset.collapsible .fieldset-legend {
       padding: 5px;
   } */
 }
-/* line 416, ../../sass/custom.scss */
 .view-filters .btn {
   background: #1368a6;
 }
-/* line 418, ../../sass/custom.scss */
 .view-filters .btn :hover {
   background: #142a45;
 }
-/* line 422, ../../sass/custom.scss */
 .view-filters legend {
   padding: 5px;
   background: black;
 }
-/* line 425, ../../sass/custom.scss */
 .view-filters legend .btn {
   background: #1368a6;
 }
-/* line 429, ../../sass/custom.scss */
 .view-filters button.form-reset {
   vertical-align: bottom;
   background: #1368a6;
@@ -714,100 +589,81 @@ html.js fieldset.collapsible .fieldset-legend {
   padding: 4px 6px;
   margin-left: 10px;
 }
-/* line 440, ../../sass/custom.scss */
 .view-filters .views-exposed-form .views-exposed-widget {
   padding: 0;
 }
-/* line 442, ../../sass/custom.scss */
 .view-filters .views-exposed-form .views-exposed-widget .form-submit {
   margin-top: 0;
 }
 
-/* line 447, ../../sass/custom.scss */
 .views-ef-fieldset-container .form-item {
   display: block;
 }
 
-/* line 450, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list {
   /* fieldset {
       margin: 10px;
   } */
 }
-/* line 454, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-root {
   margin: 0;
 }
-/* line 456, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-root .fieldset-wrapper {
   text-align: center;
 }
-/* line 460, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list .views-submit-button {
   display: none;
 }
 
-/* line 468, ../../sass/custom.scss */
 #edit-container-container-2 {
   display: inline-block;
   text-align: center;
   margin: 10px auto;
 }
 
-/* line 473, ../../sass/custom.scss */
 #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
   width: auto;
   float: left;
   background: #d4e2fe;
 }
-/* line 478, ../../sass/custom.scss */
 #edit-container-container-3 legend, #edit-container-container-4 legend, #edit-container-container-5 legend {
   border: solid 1px black;
   color: #ccc;
 }
-/* line 482, ../../sass/custom.scss */
 #edit-container-container-3 .fieldset-wrapper, #edit-container-container-4 .fieldset-wrapper, #edit-container-container-5 .fieldset-wrapper {
   padding: 0 10px 10px 10px;
 }
-/* line 485, ../../sass/custom.scss */
 #edit-container-container-3 .form-item label, #edit-container-container-4 .form-item label, #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
 
-/* line 490, ../../sass/custom.scss */
 #edit-container-container-3 {
   margin: 0 10px 10px 0;
 }
 
-/* line 493, ../../sass/custom.scss */
 #edit-container-container-4 {
   margin-bottom: 0 0 10px 0;
 }
 
-/* line 496, ../../sass/custom.scss */
 #edit-container-container-5 {
   margin: 0 0 10px 10px;
 }
-/* line 498, ../../sass/custom.scss */
 #edit-container-container-5 .form-item-field-plan-size-value-min, #edit-container-container-5 .form-item-field-plan-size-value-max {
   float: left;
   margin: 10px 0 0 0;
 }
-/* line 501, ../../sass/custom.scss */
 #edit-container-container-5 .form-item-field-plan-size-value-min label, #edit-container-container-5 .form-item-field-plan-size-value-max label {
   width: auto;
   margin: 0 5px;
   padding-bottom: 3px;
 }
-/* line 507, ../../sass/custom.scss */
 #edit-container-container-5 #edit-field-plan-size-value-min, #edit-container-container-5 #edit-field-plan-size-value-max {
   width: 60px;
   height: 22px;
   border: #999999;
 }
 
-/* line 513, ../../sass/custom.scss */
 #edit-container-container-6 {
   width: 100%;
   margin: 0;
@@ -815,155 +671,125 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 /********** Tables **********/
-/* line 522, ../../sass/custom.scss */
 table.views-table {
   width: 100%;
 }
 
-/* line 525, ../../sass/custom.scss */
 tbody {
   border-top: none;
 }
 
-/* line 528, ../../sass/custom.scss */
 th {
   border-bottom: none;
 }
 
-/* line 531, ../../sass/custom.scss */
 th.views-field {
   padding: 0 5px;
 }
 
-/* line 534, ../../sass/custom.scss */
 td.views-field {
   padding: 0 5px;
 }
 
-/* line 537, ../../sass/custom.scss */
 td.views-field-field-cover-image img {
   max-width: none !important;
 }
 
-/* line 540, ../../sass/custom.scss */
 tr.odd {
   background-color: #e7efff;
   border: none;
 }
 
-/* line 544, ../../sass/custom.scss */
 tr.even {
   background-color: white;
   border: none;
 }
 
-/* line 548, ../../sass/custom.scss */
 tr.odd td.active, tr.even td.active {
   background-color: #d4e2fe;
 }
 
 /********** Accordion **********/
-/* line 553, ../../sass/custom.scss */
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   background: #e7efff;
   border: none;
 }
 
-/* line 558, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-header .ui-accordion-header-icon {
   left: 0.1em;
 }
-/* line 561, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-icons {
   padding-left: 1.8em;
 }
-/* line 564, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-icons {
   padding-left: 1.4em;
 }
-/* line 567, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-content {
   padding: 0.5em 1em;
 }
 
-/* line 571, ../../sass/custom.scss */
 .ui-corner-all {
   border-radius: 0;
 }
 
-/* line 574, ../../sass/custom.scss */
 .ui-widget-content {
   border: none;
 }
 
 /********** Widgets **********/
-/* line 580, ../../sass/custom.scss */
 .view-views-search .view-content {
   display: none;
 }
-/* line 583, ../../sass/custom.scss */
 .view-views-search .pager {
   display: none;
 }
 
 /********** Nodes **********/
-/* line 589, ../../sass/custom.scss */
 legend {
   margin-bottom: 0;
 }
 
-/* line 594, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy {
   width: 60%;
 }
-/* line 596, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart {
   height: 300px;
   width: 100%;
 }
-/* line 599, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content {
   height: 100%;
 }
-/* line 601, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart {
   height: 100%;
 }
-/* line 603, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart #aa-chart {
   height: 100%;
 }
-/* line 610, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-left.thirty {
   width: 40%;
 }
 
-/* line 615, ../../sass/custom.scss */
 .breadcrumb {
   background-color: #fff;
 }
 
-/* line 618, ../../sass/custom.scss */
 .view-filters label {
   text-align: center;
   width: 100%;
 }
 
-/* line 623, ../../sass/custom.scss */
 .view-filters .views-table .collapsiblock a {
   background: none;
   color: #1368a6;
   display: inline;
 }
 
-/* line 628, ../../sass/custom.scss */
 .page-node .collapsiblock .views-table a:not(.contextual-links-trigger) {
   background: none;
   color: #1368a6;
   display: inline;
 }
 
-/* line 633, ../../sass/custom.scss */
 .view.collapsiblock h2 {
   padding: 4px 0 4px 15px;
   font-size: 21px;
@@ -974,181 +800,147 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
   font-weight: 400;
 }
 
-/* line 644, ../../sass/custom.scss */
 .ds-middle .view.collapsiblock, .ds-below-left .view.collapsiblock, .ds-footer .view.collapsiblock {
   background-color: #fff;
 }
 
-/* line 649, ../../sass/custom.scss */
 .view.collapsiblock {
   background-color: #e7f5ff;
   color: #000;
 }
-/* line 652, ../../sass/custom.scss */
 .view.collapsiblock a {
   display: inline;
   background: transparent url(images/gear-select.png) no-repeat 2px 0;
   color: #1368a6;
 }
 
-/* line 658, ../../sass/custom.scss */
 .view.collapsiblock .views-row {
   padding: 5px 0 10px 10px;
 }
 
-/* line 662, ../../sass/custom.scss */
 .view-filters #edit-field-date-value-wrapper label {
   margin-left: -20px;
 }
 
-/* line 665, ../../sass/custom.scss */
 .page-node ul.links {
   margin-bottom: 20px;
 }
 
-/* line 668, ../../sass/custom.scss */
 .view-foia-history {
   margin-bottom: 20px;
 }
 
 /********** Entityforms **********/
-/* line 673, ../../sass/custom.scss */
 #fin-info-1, #fin-info-2, #fin-info-3 {
   width: 33%;
   float: left;
   margin: 0 0 30px 0;
 }
 
-/* line 678, ../../sass/custom.scss */
 .group-left, .group-middle, .group-right, .group-footer {
   background: #d4e2fe;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* line 683, ../../sass/custom.scss */
 .group-footer {
   padding-bottom: 10px;
 }
 
 /********** Resources UI **********/
-/* line 688, ../../sass/custom.scss */
 #privatemsg-list-form .privatemsg-list {
   width: 100%;
 }
 
-/* line 691, ../../sass/custom.scss */
 .privatemsg-list td {
   padding: 0 5px;
 }
 
-/* line 694, ../../sass/custom.scss */
 .privatemsg-list th {
   padding: 0 5px;
 }
 
-/* line 697, ../../sass/custom.scss */
 .privatemsg-list tr.odd {
   background-color: #e7efff;
   border: 1px solid white;
 }
 
-/* line 701, ../../sass/custom.scss */
 .privatemsg-list tr.even {
   background-color: white;
   border: 1px solid white;
 }
 
-/* line 705, ../../sass/custom.scss */
 .privatemsg-list tr.odd td.active, tr.even td.active {
   background-color: #d4e2fe;
 }
 
-/* line 708, ../../sass/custom.scss */
 .privatemsg-list .form-checkbox {
   margin-top: -1px;
 }
 
-/* line 711, ../../sass/custom.scss */
 #privatemsg-list span.fieldset-legend a {
   color: #aaa;
 }
 
-/* line 714, ../../sass/custom.scss */
 #block-subscriptions-ui-0 {
   background: black;
 }
-/* line 716, ../../sass/custom.scss */
 #block-subscriptions-ui-0 .btn {
   background: #1368a6;
 }
 
-/* line 720, ../../sass/custom.scss */
 .block-subscriptions-ui {
   padding: 0 !important;
 }
-/* line 722, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe {
   height: auto;
 }
-/* line 724, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe legend {
   border-bottom: none;
   margin: 0;
   padding: 4px 0 4px 5px;
   background: black;
 }
-/* line 729, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe legend .fieldset-legend {
   background: none;
   background-image: none;
   padding: 0;
 }
-/* line 735, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe .fieldset-wrapper {
   background: #e7efff;
   padding: 10px;
 }
 
-/* line 742, ../../sass/custom.scss */
 #subscriptions-page-user-overview td, #subscriptions-page-user-overview th, #subscriptions-page-form td, #subscriptions-page-form th, .page-user-saved-searches td, .page-user-saved-searches th {
   padding: 5px;
 }
 
-/* line 746, ../../sass/custom.scss */
 span.fieldset-legend a {
   background-color: black;
 }
 
-/* line 749, ../../sass/custom.scss */
 #edit-autosub {
   margin: 15px 0 0 0;
 }
 
-/* line 752, ../../sass/custom.scss */
 #edit-submit, #edit-save-settings, #edit-save-notifications, #edit-reset {
   background-color: #1368a6;
   padding: 4px 6px;
   margin: 0 10px;
 }
 
-/* line 758, ../../sass/custom.scss */
 #user-tasks-table table {
   width: 100%;
 }
-/* line 761, ../../sass/custom.scss */
 #user-tasks-table table thead th {
   padding: 0 5px;
 }
-/* line 765, ../../sass/custom.scss */
 #user-tasks-table table td {
   padding: 0 5px;
 }
-/* line 768, ../../sass/custom.scss */
 #user-tasks-table table td:nth-child(5) {
   min-width: 90px;
 }
-/* line 774, ../../sass/custom.scss */
 #user-tasks-table table td:nth-child(7) {
   text-align: center;
 }
