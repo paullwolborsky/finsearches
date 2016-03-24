@@ -531,6 +531,7 @@ html.js fieldset.collapsible .fieldset-legend {
     }
     #edit-container-container-5, #edit-container-container-6, #edit-container-container-7 {
         width: auto;
+        max-width: 25%;
         float: left;
         //padding: 5px;
         background: $form-item-active-blue;
