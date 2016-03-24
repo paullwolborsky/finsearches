@@ -139,6 +139,14 @@ function fin_modals_menu() {
     'weight' => 3,
     'page callback' => 'fin_modals_menu_callbacks',
   );
+  $items['ajax/entity-delete/%/%'] = array(
+    'page callback' => 'fin_modals_entity_delete',
+    'page arguments' => array(2,3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'theme callback' => '_fin_modals_theme',
+  );
+
   $items['resources/imce']  = array(
     'type' => MENU_NORMAL_ITEM,
     'title' => "File Browser",
@@ -177,6 +185,18 @@ function fin_modals_menu_callbacks() {
   }
 }
 
+/**
+ * Entiry actions
+ *  Used now just for saved filter delete
+ */
+function fin_modals_entity_delete ($entity_type = NULL, $entity_id = NULL) {
+  $destination = !empty($_GET['destionation'])?$_GET['destionation']:'/';
+  if (!$entity_type || !$entity_id) {
+    return;
+  }
+  entity_delete($entity_type, $entity_id);
+  drupal_goto($destination);
+}
 
 /**
  *NEW comment form
@@ -445,7 +465,7 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
         $form['field_manager_of_managers']['und']['#suffix'] = ctools_modal_text_button('Create New Manager Contact', $href. '/contact/' . $form['#node']->nid . '/field_manager_of_managers', 'Create New ManagerContact', 'ctools-modal-fin-modals-contact-style');
 
       }elseif($form_id == 'consultant_firm_node_form') {
-        //$form['field_main_office_ev']['und'][0]['#suffix'] = ctools_modal_text_button('Create New Office', $href. '/office/' . $form['#node']->nid . '/field_main_office_ev', 'Create New Office', 'ctools-modal-fin-modals-contact-style');
+        $form['field_main_office_ev']['und'][0]['#suffix'] = ctools_modal_text_button('Create New Office', $href. '/office/' . $form['#node']->nid . '/field_main_office_ev', 'Create New Office', 'ctools-modal-fin-modals-contact-style');
       } elseif($form_id == 'comment_form') {
         if (!empty($form_state['ajax']) && $form_state['ajax']) {
           $comment = $form_state['comment'];
