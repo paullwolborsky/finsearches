@@ -180,23 +180,11 @@ function fs_f_fn_content_list_views_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'field_plan_size_value' => array(
-      'bef_format' => 'bef_slider',
-      'slider_options' => array(
-        'bef_slider_min' => '0',
-        'bef_slider_max' => '99999999',
-        'bef_slider_step' => '1',
-        'bef_slider_animate' => 'normal',
-        'bef_slider_orientation' => 'horizontal',
-        'secondary_label' => NULL,
-        'collapsible_label' => NULL,
-        'combine_rewrite' => NULL,
-        'reset_label' => NULL,
-        'bef_filter_description' => NULL,
-        'any_label' => NULL,
-        'filter_rewrite_values' => NULL,
-      ),
+    'title_selective' => array(
+      'bef_format' => 'default',
       'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_collapsible' => 0,
         'is_secondary' => 0,
         'any_label' => '',
         'bef_filter_description' => '',
@@ -242,7 +230,7 @@ function fs_f_fn_content_list_views_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'title_selective' => array(
+    'field_plan_type_tr_tid' => array(
       'bef_format' => 'default',
       'more_options' => array(
         'bef_select_all_none' => 0,
@@ -253,6 +241,7 @@ function fs_f_fn_content_list_views_views_default_views() {
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
+            1 => 'vocabulary',
             'secondary_label' => NULL,
             'collapsible_label' => NULL,
             'combine_rewrite' => NULL,
@@ -347,6 +336,68 @@ function fs_f_fn_content_list_views_views_default_views() {
       'more_options' => array(
         'bef_select_all_none' => 0,
         'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_plan_size_value' => array(
+      'bef_format' => 'bef_slider',
+      'slider_options' => array(
+        'bef_slider_min' => '0',
+        'bef_slider_max' => '99999999',
+        'bef_slider_step' => '1',
+        'bef_slider_animate' => 'normal',
+        'bef_slider_orientation' => 'horizontal',
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'bef_filter_description' => NULL,
+        'any_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'more_options' => array(
         'is_secondary' => 0,
         'any_label' => '',
         'bef_filter_description' => '',
@@ -610,11 +661,13 @@ function fs_f_fn_content_list_views_views_default_views() {
   ctools_modal_add_js();
 ?>';
   $handler->display->display_options['header']['area']['format'] = 'php_code';
-  /* Header: Global: Save */
-  $handler->display->display_options['header']['views_save']['id'] = 'views_save';
-  $handler->display->display_options['header']['views_save']['table'] = 'views';
-  $handler->display->display_options['header']['views_save']['field'] = 'views_save';
-  $handler->display->display_options['header']['views_save']['format'] = 'advanced_input';
+  $handler->display->display_options['defaults']['footer'] = FALSE;
+  /* Footer: Global: Save */
+  $handler->display->display_options['footer']['views_save']['id'] = 'views_save';
+  $handler->display->display_options['footer']['views_save']['table'] = 'views';
+  $handler->display->display_options['footer']['views_save']['field'] = 'views_save';
+  $handler->display->display_options['footer']['views_save']['format'] = 'advanced_input';
+  $handler->display->display_options['footer']['views_save']['button_text'] = 'Save View';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Plan Size (field_plan_size_history) */
   $handler->display->display_options['relationships']['field_plan_size_history_value']['id'] = 'field_plan_size_history_value';
@@ -646,14 +699,21 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = 'Tasks';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div id="magical-modal-link"><a class="ctools-use-modal ctools-modal-fin-modals-contact-style" href=\'/modal-front/[nid]/tasks/nojs\' title=\'Tasks\'><i class="fa fa-list-alt"></i></a></div>';
-  /* Field: Content: Title */
+  /* Field: Title (selective) */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['ui_name'] = 'Title (selective)';
   $handler->display->display_options['fields']['title']['label'] = 'Plan';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Plan Type */
+  $handler->display->display_options['fields']['field_plan_type_tr']['id'] = 'field_plan_type_tr';
+  $handler->display->display_options['fields']['field_plan_type_tr']['table'] = 'field_data_field_plan_type_tr';
+  $handler->display->display_options['fields']['field_plan_type_tr']['field'] = 'field_plan_type_tr';
+  $handler->display->display_options['fields']['field_plan_type_tr']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_plan_type_tr']['element_label_colon'] = FALSE;
   /* Field: Field: Plan Size */
   $handler->display->display_options['fields']['field_plan_size']['id'] = 'field_plan_size';
   $handler->display->display_options['fields']['field_plan_size']['table'] = 'field_data_field_plan_size';
@@ -753,30 +813,6 @@ function fs_f_fn_content_list_views_views_default_views() {
     'plan' => 'plan',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Field: Plan Size (field_plan_size) */
-  $handler->display->display_options['filters']['field_plan_size_value']['id'] = 'field_plan_size_value';
-  $handler->display->display_options['filters']['field_plan_size_value']['table'] = 'field_data_field_plan_size';
-  $handler->display->display_options['filters']['field_plan_size_value']['field'] = 'field_plan_size_value';
-  $handler->display->display_options['filters']['field_plan_size_value']['relationship'] = 'field_plan_size_history_value';
-  $handler->display->display_options['filters']['field_plan_size_value']['operator'] = 'between';
-  $handler->display->display_options['filters']['field_plan_size_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_plan_size_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_plan_size_value']['expose']['operator_id'] = 'field_plan_size_value_op';
-  $handler->display->display_options['filters']['field_plan_size_value']['expose']['label'] = 'Plan Size';
-  $handler->display->display_options['filters']['field_plan_size_value']['expose']['operator'] = 'field_plan_size_value_op';
-  $handler->display->display_options['filters']['field_plan_size_value']['expose']['identifier'] = 'field_plan_size_value';
-  $handler->display->display_options['filters']['field_plan_size_value']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_plan_size_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    1 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-  );
   /* Filter criterion: Title (selective) */
   $handler->display->display_options['filters']['title_selective']['id'] = 'title_selective';
   $handler->display->display_options['filters']['title_selective']['table'] = 'node_revision';
@@ -802,6 +838,31 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['title_selective']['selective_display_field'] = 'title';
   $handler->display->display_options['filters']['title_selective']['selective_items_limit'] = '100';
+  /* Filter criterion: Content: Plan Type (field_plan_type_tr) */
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['id'] = 'field_plan_type_tr_tid';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['table'] = 'field_data_field_plan_type_tr';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['field'] = 'field_plan_type_tr_tid';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['operator_id'] = 'field_plan_type_tr_tid_op';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['label'] = 'Plan Type';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['operator'] = 'field_plan_type_tr_tid_op';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['identifier'] = 'field_plan_type_tr_tid';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_plan_type_tr_tid']['vocabulary'] = 'plan_types';
   /* Filter criterion: Address - Locality (i.e. City) (selective) */
   $handler->display->display_options['filters']['field_address_locality_selective']['id'] = 'field_address_locality_selective';
   $handler->display->display_options['filters']['field_address_locality_selective']['table'] = 'field_data_field_address';
@@ -852,6 +913,30 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_address_administrative_area_selective']['selective_display_field'] = 'field_address_administrative_area';
   $handler->display->display_options['filters']['field_address_administrative_area_selective']['selective_items_limit'] = '100';
+  /* Filter criterion: Field: Plan Size (field_plan_size) */
+  $handler->display->display_options['filters']['field_plan_size_value']['id'] = 'field_plan_size_value';
+  $handler->display->display_options['filters']['field_plan_size_value']['table'] = 'field_data_field_plan_size';
+  $handler->display->display_options['filters']['field_plan_size_value']['field'] = 'field_plan_size_value';
+  $handler->display->display_options['filters']['field_plan_size_value']['relationship'] = 'field_plan_size_history_value';
+  $handler->display->display_options['filters']['field_plan_size_value']['operator'] = 'between';
+  $handler->display->display_options['filters']['field_plan_size_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_plan_size_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_plan_size_value']['expose']['operator_id'] = 'field_plan_size_value_op';
+  $handler->display->display_options['filters']['field_plan_size_value']['expose']['label'] = 'Plan Size';
+  $handler->display->display_options['filters']['field_plan_size_value']['expose']['operator'] = 'field_plan_size_value_op';
+  $handler->display->display_options['filters']['field_plan_size_value']['expose']['identifier'] = 'field_plan_size_value';
+  $handler->display->display_options['filters']['field_plan_size_value']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_plan_size_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    1 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
 
   /* Display: Plan Alpha Pager */
   $handler = $view->new_display('attachment', 'Plan Alpha Pager', 'attachment_1');

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * fs_f_n_bt_contact.features.field_instance.inc
@@ -10,8 +9,8 @@
  */
 function fs_f_n_bt_contact_field_default_field_instances() {
   $field_instances = array();
-  
-   // Exported field_instance: 'node-contact-body'
+
+  // Exported field_instance: 'node-contact-body'
   $field_instances['node-contact-body'] = array(
     'bundle' => 'contact',
     'default_value' => NULL,
@@ -959,47 +958,6 @@ function fs_f_n_bt_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact-field_plan_type_tr'
-  $field_instances['node-contact-field_plan_type_tr'] = array(
-    'bundle' => 'contact',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 37,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_plan_type_tr',
-    'label' => 'Latest Plan Types',
-    'options_limit' => FALSE,
-    'options_limit_empty_behaviour' => 0,
-    'options_limit_fields' => array(),
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 14,
-    ),
-  );
-
   // Exported field_instance: 'node-contact-field_website'
   $field_instances['node-contact-field_website'] = array(
     'bundle' => 'contact',
@@ -1132,33 +1090,12 @@ function fs_f_n_bt_contact_field_default_field_instances() {
       'weight' => 0,
     ),
   );
-  
+
   // Translatables
   // Included for use with string extractors like potx.
-  t('Account Size');
-  t('Address');
-  t('Amount');
-  t('Attribute');
-  t('Author');
   t('Bio');
-  t('Body');
-  t('Comment');
-  t('Consultant Contact');
-  t('Consultant Firm');
-  t('Consultant Firm Finalists');
-  t('Consultant Firms On Watch');
-  t('Consultant Firms Terminated');
-  t('Consultant Office');
-  t('Consultant Type');
   t('Content Type Shortcode');
-  t('Currency');
-  t('Date');
-  t('Email');
-  t('Employment Date');
-  t('Geographic');
   t('Job History');
-  t('Job Title');
-  t('Job Type');
   t('Lateset Major Minor');
   t('Latest Address');
   t('Latest Consultant Firm');
@@ -1169,38 +1106,12 @@ function fs_f_n_bt_contact_field_default_field_instances() {
   t('Latest Manager Firm');
   t('Latest Mandate');
   t('Latest Plan Size');
-  t('Latest Plan Types');
   t('Latest Plans');
   t('Latest Website');
-  t('Lead Plan Contact?');
-  t('Major/Minor Style');
-  t('Major/Minor Styles');
-  t('Manager Firm');
-  t('Manager Firm Finalists');
-  t('Manager Firms Hired');
-  t('Manager Firms On Watch');
-  t('Manager Firms Terminated');
-  t('Mandate');
-  t('Mandate Comments');
-  t('Mandate Notes');
-  t('Mandate Number');
-  t('Mandate Status');
   t('Migration Notes');
   t('Name');
   t('Non-user field for any important details involved in the Great Migration.');
-  t('Old Mandate ID');
   t('Photo');
-  t('Plan');
-  t('Plan Size');
-  t('RFP Date');
-  t('RFP Link');
-  t('Serialized Comment');
-  t('Status');
-  t('Subject');
-  t('This is the mandate ID from the old D5 site.');
-  t('Title');
-  t('Total Amount');
-  t('Website');
-  
+
   return $field_instances;
 }
