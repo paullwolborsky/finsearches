@@ -651,7 +651,7 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 #views-exposed-form-content-lists-plans-list #edit-container-container-5 #edit-field-plan-size-value-min, #views-exposed-form-content-lists-plans-list #edit-container-container-5 #edit-field-plan-size-value-max {
   width: 60px;
-  height: 22px;
+  height: 24px;
   border: #999999;
 }
 #views-exposed-form-content-lists-plans-list #edit-container-container-6 {
@@ -671,7 +671,6 @@ html.js fieldset.collapsible .fieldset-legend {
   display: none;
 }
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-4 {
-  width: auto;
   max-width: 90%;
   display: inline-block;
   text-align: center;
@@ -702,6 +701,9 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 {
   margin: 0 0 10px 10px;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 .form-text {
+  height: 24px;
 }
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-8 {
   width: 100%;

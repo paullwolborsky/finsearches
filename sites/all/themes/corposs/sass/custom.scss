@@ -503,7 +503,7 @@ html.js fieldset.collapsible .fieldset-legend {
         }
         #edit-field-plan-size-value-min, #edit-field-plan-size-value-max {
             width: 60px;
-            height: 22px;
+            height: 24px;
             border: #999999;
         }
     }
@@ -525,7 +525,6 @@ html.js fieldset.collapsible .fieldset-legend {
         display: none;
     }
     #edit-container-container-4 {
-        width: auto;
         max-width: 90%;
         display: inline-block;
         text-align: center;
@@ -557,6 +556,9 @@ html.js fieldset.collapsible .fieldset-legend {
     }
     #edit-container-container-7 {
         margin: 0 0 10px 10px;
+        .form-text {
+            height: 24px;
+        }
     }
     #edit-container-container-8 {
         width: 100%;
