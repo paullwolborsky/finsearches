@@ -225,11 +225,11 @@ h2.title {
     text-align: center;
 }
 .chosen-container {
-    text-align: center;
+    max-width: 250px;
 }
 .chosen-container-multi .chosen-choices {
     border: 1px solid $border-blue;
-    max-width: 300px;
+    max-width: 250px;
 }
 .btn.form-submit {
     background: $dark-button;
