@@ -483,13 +483,8 @@ function fs_f_base_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
-        'type' => 'text_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 77,
       ),
       'teaser' => array(
@@ -757,13 +752,8 @@ function fs_f_base_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
-        'type' => 'text_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 76,
       ),
       'teaser' => array(
@@ -2138,6 +2128,7 @@ function fs_f_base_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Account Type');
   t('Consultant Contact Type');
+  t('Latest Plan Types');
   t('Mandate');
   t('Old Major Style');
   t('Old Minor Style');
