@@ -670,6 +670,41 @@ html.js fieldset.collapsible .fieldset-legend {
 #views-exposed-form-content-lists-plan-contacts-list .views-submit-button {
   display: none;
 }
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-4 {
+  display: inline-block;
+  text-align: center;
+  margin: 10px auto;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 {
+  width: auto;
+  float: left;
+  background: #d4e2fe;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5 legend, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6 legend, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 legend {
+  border: solid 1px black;
+  color: #ccc;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5 .fieldset-wrapper, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6 .fieldset-wrapper, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 .fieldset-wrapper {
+  padding: 0 10px 10px 10px;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5 .form-item label, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6 .form-item label, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 .form-item label {
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5 {
+  margin: 0 10px 10px 0;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6 {
+  margin-bottom: 0 0 10px 0;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 {
+  margin: 0 0 10px 10px;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-container-8 {
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
 
 /********** Tables **********/
 table.views-table {

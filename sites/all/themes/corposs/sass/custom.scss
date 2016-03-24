@@ -524,6 +524,42 @@ html.js fieldset.collapsible .fieldset-legend {
     .views-submit-button {
         display: none;
     }
+    #edit-container-container-4 {
+        display: inline-block;
+        text-align: center;
+        margin: 10px auto;
+    }
+    #edit-container-container-5, #edit-container-container-6, #edit-container-container-7 {
+        width: auto;
+        float: left;
+        //padding: 5px;
+        background: $form-item-active-blue;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px 10px 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-5 {
+        margin: 0 10px 10px 0;
+    }
+    #edit-container-container-6 {
+        margin-bottom: 0 0 10px 0;
+    }
+    #edit-container-container-7 {
+        margin: 0 0 10px 10px;
+    }
+    #edit-container-container-8 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
 }
 
 
