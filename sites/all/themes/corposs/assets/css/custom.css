@@ -671,6 +671,8 @@ html.js fieldset.collapsible .fieldset-legend {
   display: none;
 }
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-4 {
+  width: auto;
+  max-width: 99%;
   display: inline-block;
   text-align: center;
   margin: 10px auto;
