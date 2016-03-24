@@ -601,11 +601,6 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 /*** Plans List Filters ***/
-#views-exposed-form-content-lists-plans-list {
-  /* fieldset {
-      margin: 10px;
-  } */
-}
 #views-exposed-form-content-lists-plans-list #edit-container-root {
   margin: 0;
 }
@@ -663,6 +658,17 @@ html.js fieldset.collapsible .fieldset-legend {
   width: 100%;
   margin: 0;
   position: relative;
+}
+
+/*** Plans Contacts List Filters ***/
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-root {
+  margin: 0;
+}
+#views-exposed-form-content-lists-plan-contacts-list #edit-container-root .fieldset-wrapper {
+  text-align: center;
+}
+#views-exposed-form-content-lists-plan-contacts-list .views-submit-button {
+  display: none;
 }
 
 /********** Tables **********/

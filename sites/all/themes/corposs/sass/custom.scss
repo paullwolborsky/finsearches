@@ -453,9 +453,6 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 /*** Plans List Filters ***/
 #views-exposed-form-content-lists-plans-list {
-    /* fieldset {
-        margin: 10px;
-    } */
     #edit-container-root {
         margin: 0;
         .fieldset-wrapper {
@@ -464,9 +461,6 @@ html.js fieldset.collapsible .fieldset-legend {
     }
     .views-submit-button {
         display: none;
-    }
-    #edit-filters-wrapper {
-
     }
     #edit-container-container-2 {
         display: inline-block;
@@ -519,7 +513,18 @@ html.js fieldset.collapsible .fieldset-legend {
         position: relative;
     }
 }
-
+/*** Plans Contacts List Filters ***/
+#views-exposed-form-content-lists-plan-contacts-list {
+    #edit-container-root {
+        margin: 0;
+        .fieldset-wrapper {
+            text-align: center;
+        }
+    }
+    .views-submit-button {
+        display: none;
+    }
+}
 
 
 
