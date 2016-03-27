@@ -1,5 +1,13 @@
 <?php
 
+function corposs_preprocess_page(&$vars) {
+	$request = explode("/", request_uri());
+	if ($request[1] == 'mandates' && empty($request[2])) {
+		$path = drupal_get_path('theme', 'corposs');
+		drupal_add_js($path . '/assets/js/mandate-filters.js', array('type'=>'file', 'group' => JS_THEME, 'weight' => 20));	
+	}
+}
+
 function corposs_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   // Determine if we are to display the breadcrumb.
