@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the fs_f_fn_resources feature.
- */
-
-include_once 'fs_f_fn_resources.features.inc';
