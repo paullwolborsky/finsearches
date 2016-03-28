@@ -149,3 +149,62 @@ function fin_utils_form_contact_node_form_alter(&$form, &$form_state, $form_id) 
   $form['field_job_history']['und']['add_more']['type']['#title'] = 'Select Job Type';
   $form['field_job_history']['und']['add_more']['add_more']['#value'] = 'Add New Job';
 }
+
+/*
+ *Impliments hook_block_info
+ */
+function fin_utils_block_info() {
+	$blocks['saved_searches'] = array(
+    'info' => t('Resources Saved Searches'),
+    'cache' => DRUPAL_NO_CACHE,
+	);
+	$blocks['saved_filters'] = array(
+    'info' => t('Resources Saved Filters'),
+    'cache' => DRUPAL_NO_CACHE,
+	);
+	$blocks['subscriptions'] = array(
+    'info' => t('Resources Subscriptions'),
+    'cache' => DRUPAL_NO_CACHE,
+	);
+	$blocks['messages'] = array(
+    'info' => t('Resources Messages'),
+    'cache' => DRUPAL_NO_CACHE,
+	);
+	return $blocks;
+}
+
+/**
+ *Impliments hook_block_view
+ */
+function fin_utils_block_view($delta) {
+	global $user;
+  $block = array();
+  switch ($delta) {
+		case 'saved_searches':
+			$block['subject'] = "Saved Searches";
+			module_load_include('inc', 'search_api_saved_searches', 'search_api_saved_searches.pages');
+			$out = search_api_saved_searches_user_listing($user);
+			$block['content'] = drupal_render($out);
+			$block['content'] .= "<div class='resources-link'>" . l('Go to Saved Searches page','user/' . $user->uid . '/saved-searches',array()) . "</div>";
+			break;
+		case 'saved_filters':
+			$block['subject'] = "Saved Filters";
+			$block['content'] = views_embed_view('saved_views', 'block_1', $user->uid); 
+			break;
+		case 'subscriptions':
+			$block['subject'] = "Subscriptions";
+			module_load_include('inc', 'subscriptions', 'subscriptions.admin');
+			$out = subscriptions_content_page_node(array(), $user->uid);
+			$block['content'] = drupal_render($out);
+			$block['content'] .= "<div class='resources-link'>" . l('Go to Subscriptions page','user/' . $user->uid . '/subscriptions/node',array()) . "</div>";
+			break;
+		case 'messages':
+			$block['subject'] = "Messages";
+			module_load_include('inc', 'privatemsg', 'privatemsg.pages');
+			$out = privatemsg_list_page('list', $user->uid);
+			$block['content'] = drupal_render($out);
+			$block['content'] .= "<div class='resources-link'>" . l('Go to Messages page','messages',array()) . "</div>";
+			break;
+	}
+	return $block;
+}
