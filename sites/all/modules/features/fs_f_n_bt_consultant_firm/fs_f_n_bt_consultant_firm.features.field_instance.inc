@@ -52,7 +52,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 10,
+      'weight' => 7,
     ),
   );
 
@@ -189,7 +189,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
       'module' => 'embeddedviewfield',
       'settings' => array(),
       'type' => 'embeddedviewfield_select',
-      'weight' => 7,
+      'weight' => 5,
     ),
   );
 
@@ -236,7 +236,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'apply_chosen' => 0,
       ),
       'type' => 'options_select',
-      'weight' => 12,
+      'weight' => 6,
     ),
   );
 
@@ -415,7 +415,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
       'module' => 'mytinytodo',
       'settings' => array(),
       'type' => 'mytinytodo_widget',
-      'weight' => 11,
+      'weight' => 9,
     ),
   );
 

@@ -19,28 +19,26 @@ function fs_f_fc_bt_mandate_comments_fc_ds_layout_settings_info() {
   $ds_layout->layout = 'ds_3col_stacked_equal_width';
   $ds_layout->settings = array(
     'regions' => array(
+      'left' => array(
+        0 => 'field_subject',
+      ),
       'middle' => array(
-        0 => 'field_author_er',
+        1 => 'field_author_ur',
       ),
       'right' => array(
-        1 => 'field_date',
-      ),
-      'hidden' => array(
-        2 => 'field_author_ur',
-        5 => '_add_existing_field',
-      ),
-      'left' => array(
-        3 => 'field_subject',
+        2 => 'field_date',
       ),
       'footer' => array(
-        4 => 'field_comment',
+        3 => 'field_comment',
+      ),
+      'hidden' => array(
+        4 => '_add_existing_field',
       ),
     ),
     'fields' => array(
-      'field_author_er' => 'middle',
-      'field_date' => 'right',
-      'field_author_ur' => 'hidden',
       'field_subject' => 'left',
+      'field_author_ur' => 'middle',
+      'field_date' => 'right',
       'field_comment' => 'footer',
       '_add_existing_field' => 'hidden',
     ),
