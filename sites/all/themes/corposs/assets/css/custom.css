@@ -601,60 +601,60 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 /*** Plans List Filters ***/
-#views-exposed-form-content-lists-plans-list #edit-container-root {
+#views-exposed-form-content-lists-plans-list #edit-container-root, #views-exposed-form-content-lists-mandates-list #edit-container-root {
   margin: 0;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-root .fieldset-wrapper {
+#views-exposed-form-content-lists-plans-list #edit-container-root .fieldset-wrapper, #views-exposed-form-content-lists-mandates-list #edit-container-root .fieldset-wrapper {
   text-align: center;
 }
-#views-exposed-form-content-lists-plans-list .views-submit-button {
+#views-exposed-form-content-lists-plans-list .views-submit-button, #views-exposed-form-content-lists-mandates-list .views-submit-button {
   display: none;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-2 {
+#views-exposed-form-content-lists-plans-list #edit-container-container-2, #views-exposed-form-content-lists-mandates-list #edit-container-container-2 {
   display: inline-block;
   text-align: center;
   margin: 10px auto;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-3, #views-exposed-form-content-lists-plans-list #edit-container-container-4, #views-exposed-form-content-lists-plans-list #edit-container-container-5 {
+#views-exposed-form-content-lists-plans-list #edit-container-container-3, #views-exposed-form-content-lists-plans-list #edit-container-container-4, #views-exposed-form-content-lists-plans-list #edit-container-container-5, #views-exposed-form-content-lists-mandates-list #edit-container-container-3, #views-exposed-form-content-lists-mandates-list #edit-container-container-4, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 {
   width: auto;
   float: left;
   background: #d4e2fe;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-3 legend, #views-exposed-form-content-lists-plans-list #edit-container-container-4 legend, #views-exposed-form-content-lists-plans-list #edit-container-container-5 legend {
+#views-exposed-form-content-lists-plans-list #edit-container-container-3 legend, #views-exposed-form-content-lists-plans-list #edit-container-container-4 legend, #views-exposed-form-content-lists-plans-list #edit-container-container-5 legend, #views-exposed-form-content-lists-mandates-list #edit-container-container-3 legend, #views-exposed-form-content-lists-mandates-list #edit-container-container-4 legend, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 legend {
   border: solid 1px black;
   color: #ccc;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-content-lists-plans-list #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .fieldset-wrapper {
+#views-exposed-form-content-lists-plans-list #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-content-lists-plans-list #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .fieldset-wrapper, #views-exposed-form-content-lists-mandates-list #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-content-lists-mandates-list #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 .fieldset-wrapper {
   padding: 0 10px 10px 10px;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-plans-list #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item label {
+#views-exposed-form-content-lists-plans-list #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-plans-list #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item label, #views-exposed-form-content-lists-mandates-list #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-mandates-list #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-3 {
+#views-exposed-form-content-lists-plans-list #edit-container-container-3, #views-exposed-form-content-lists-mandates-list #edit-container-container-3 {
   margin: 0 10px 10px 0;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-4 {
+#views-exposed-form-content-lists-plans-list #edit-container-container-4, #views-exposed-form-content-lists-mandates-list #edit-container-container-4 {
   margin-bottom: 0 0 10px 0;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-5 {
+#views-exposed-form-content-lists-plans-list #edit-container-container-5, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 {
   margin: 0 0 10px 10px;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item-field-plan-size-value-min, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item-field-plan-size-value-max {
+#views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item-field-plan-size-value-min, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item-field-plan-size-value-max, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 .form-item-field-plan-size-value-min, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 .form-item-field-plan-size-value-max {
   float: left;
   margin: 10px 0 0 0;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item-field-plan-size-value-min label, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item-field-plan-size-value-max label {
+#views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item-field-plan-size-value-min label, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item-field-plan-size-value-max label, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 .form-item-field-plan-size-value-min label, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 .form-item-field-plan-size-value-max label {
   width: auto;
   margin: 0 5px;
   padding-bottom: 3px;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-5 #edit-field-plan-size-value-min, #views-exposed-form-content-lists-plans-list #edit-container-container-5 #edit-field-plan-size-value-max {
+#views-exposed-form-content-lists-plans-list #edit-container-container-5 #edit-field-plan-size-value-min, #views-exposed-form-content-lists-plans-list #edit-container-container-5 #edit-field-plan-size-value-max, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 #edit-field-plan-size-value-min, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 #edit-field-plan-size-value-max {
   width: 60px;
   height: 24px;
   border: #999999;
 }
-#views-exposed-form-content-lists-plans-list #edit-container-container-6 {
+#views-exposed-form-content-lists-plans-list #edit-container-container-6, #views-exposed-form-content-lists-mandates-list #edit-container-container-6 {
   width: 100%;
   margin: 0;
   position: relative;
