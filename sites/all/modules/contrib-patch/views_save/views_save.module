@@ -721,12 +721,12 @@ function views_save_form(array $form, array &$form_state, view $view, array $opt
   $form['#attached']['css'][] = drupal_get_path('module', 'views_save') . '/views_save.css';
   $form['#attached']['js'][] = drupal_get_path('module', 'views_save') . '/views_save.js';
   $form['#attributes']['class'][] = 'views-save-form';
-  $js_settings['views_save']['modal_title'] = t('Save view');
+  $js_settings['views_save']['modal_title'] = t('Save Search');
   $js_settings['views_save']['modal_settings'] = array(
     'modalSize' => array(
       'type' => 'fixed',
-      'width' => 250,
-      'height' => 170,
+      'width' => 350,
+      'height' => 250,
     ),
     'modalOptions' => array(
       'opacity' => 0.85,
