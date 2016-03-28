@@ -1,0 +1,15 @@
+name = fs_f_fn_resources
+description = Resource page views and blocks
+core = 7.x
+package = Custom
+dependencies[] = fe_block
+dependencies[] = fin_utils
+dependencies[] = views
+dependencies[] = views_save
+features[ctools][] = views:views_default:3.0
+features[fe_block_settings][] = fin_utils-messages
+features[fe_block_settings][] = fin_utils-saved_filters
+features[fe_block_settings][] = fin_utils-saved_searches
+features[fe_block_settings][] = fin_utils-subscriptions
+features[features_api][] = api:2
+features_exclude[dependencies][ctools] = ctools
