@@ -2616,6 +2616,38 @@ advanced-search/*',
     'visibility' => 0,
   );
 
+  $export['views-cdb9a3807eef93e1e5c5af3aed3b69fa'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'cdb9a3807eef93e1e5c5af3aed3b69fa',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   $export['views-cfe90d84f185d84a5edf29887535fcb7'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -3388,6 +3420,38 @@ advanced-search/*',
     'cache' => -1,
     'custom' => 0,
     'delta' => 'reference_views-block_1',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['views-reference_views-block_3'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'reference_views-block_3',
     'module' => 'views',
     'node_types' => array(),
     'pages' => '',
