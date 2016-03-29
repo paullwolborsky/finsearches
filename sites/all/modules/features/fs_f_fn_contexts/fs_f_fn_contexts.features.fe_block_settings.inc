@@ -780,38 +780,6 @@ function fs_f_fn_contexts_default_fe_block_settings() {
     'visibility' => 1,
   );
 
-  $export['facetapi-LlXmtelmeJoU4kr1esoWjHgEE1010a20'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'LlXmtelmeJoU4kr1esoWjHgEE1010a20',
-    'module' => 'facetapi',
-    'node_types' => array(),
-    'pages' => 'advanced-search*',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'corposs',
-        'weight' => -43,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => 'Plan',
-    'visibility' => 1,
-  );
-
   $export['facetapi-Lwvgp6spBxvRZV3Q19NutXKMT3LX16se'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -1880,38 +1848,6 @@ advanced-search/*',
     'visibility' => 0,
   );
 
-  $export['views-02a6a486d0b43130d46ad7d8bf9d0d37'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => '02a6a486d0b43130d46ad7d8bf9d0d37',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'corposs',
-        'weight' => 0,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
-  );
-
   $export['views-03b217148f7d9983c8c8b56659be0104'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -2040,6 +1976,38 @@ advanced-search/*',
     'visibility' => 0,
   );
 
+  $export['views-2c0a989e7686a640893dfde964d709c8'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => '2c0a989e7686a640893dfde964d709c8',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => 'consultants',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => -45,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
   $export['views-2eaf5bc44a340433173f5ed0fdb180f1'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -2136,13 +2104,13 @@ advanced-search/*',
     'visibility' => 0,
   );
 
-  $export['views-4996c8489e7173d042b418a6a1d0ab58'] = array(
+  $export['views-42a80c75f5d750e3990a8dcfbb7c3319'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => '4996c8489e7173d042b418a6a1d0ab58',
+    'delta' => '42a80c75f5d750e3990a8dcfbb7c3319',
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'managers',
     'roles' => array(),
     'themes' => array(
       'adaptivetheme' => array(
@@ -2155,7 +2123,7 @@ advanced-search/*',
         'region' => '',
         'status' => 0,
         'theme' => 'corposs',
-        'weight' => 0,
+        'weight' => -43,
       ),
       'mix_and_match' => array(
         'region' => '',
@@ -2165,7 +2133,7 @@ advanced-search/*',
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['views-4a42fa41960927911eb298089298779b'] = array(
@@ -2204,70 +2172,6 @@ advanced-search/*',
     'cache' => -1,
     'custom' => 0,
     'delta' => '5ee1998437f2eb438da4e34a48ff4bae',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'corposs',
-        'weight' => 0,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
-  );
-
-  $export['views-6c29a0c1d4a8df5960f8759e0c35e155'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => '6c29a0c1d4a8df5960f8759e0c35e155',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => 'consultants',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'corposs',
-        'weight' => -45,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 1,
-  );
-
-  $export['views-7cd5e56bdc27f8d54f79592285887e5a'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => '7cd5e56bdc27f8d54f79592285887e5a',
     'module' => 'views',
     'node_types' => array(),
     'pages' => '',
@@ -2456,10 +2360,10 @@ advanced-search/*',
     'visibility' => 0,
   );
 
-  $export['views-9ef10e7620f3637ebf3e50cd499cc210'] = array(
+  $export['views-a64c8bd700384b6f16546e220ba84bd1'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => '9ef10e7620f3637ebf3e50cd499cc210',
+    'delta' => 'a64c8bd700384b6f16546e220ba84bd1',
     'module' => 'views',
     'node_types' => array(),
     'pages' => 'plan-contacts',
@@ -2520,6 +2424,38 @@ advanced-search/*',
     'visibility' => 0,
   );
 
+  $export['views-a6f16bcc92a7f0b49fc4e3cb2df719d6'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'a6f16bcc92a7f0b49fc4e3cb2df719d6',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => 'consultant-contacts',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => -44,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
   $export['views-a9706a0c2bd6ed2ad2a9fb0317b34834'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -2536,8 +2472,8 @@ advanced-search/*',
         'weight' => 0,
       ),
       'corposs' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'right_sidebar',
+        'status' => 1,
         'theme' => 'corposs',
         'weight' => -51,
       ),
@@ -2646,38 +2582,6 @@ advanced-search/*',
     ),
     'title' => '',
     'visibility' => 0,
-  );
-
-  $export['views-be2a7c6e5ffd9cc94be4999e22f9280e'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'be2a7c6e5ffd9cc94be4999e22f9280e',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => 'managers',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'corposs',
-        'weight' => -43,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 1,
   );
 
   $export['views-c5af89d110514d04d5998e1a7a0c7bf5'] = array(
@@ -2872,10 +2776,10 @@ advanced-search/*',
     'visibility' => 0,
   );
 
-  $export['views-content_lists-mandates_list_old'] = array(
+  $export['views-content_lists-mandates_list'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'content_lists-mandates_list_old',
+    'delta' => 'content_lists-mandates_list',
     'module' => 'views',
     'node_types' => array(),
     'pages' => 'mandates',
@@ -2904,10 +2808,10 @@ advanced-search/*',
     'visibility' => 1,
   );
 
-  $export['views-content_lists-news_list_old'] = array(
+  $export['views-content_lists-news_list'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'content_lists-news_list_old',
+    'delta' => 'content_lists-news_list',
     'module' => 'views',
     'node_types' => array(),
     'pages' => 'news',
@@ -2936,10 +2840,10 @@ advanced-search/*',
     'visibility' => 1,
   );
 
-  $export['views-content_lists-plans_list_old'] = array(
+  $export['views-content_lists-plans_list'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'content_lists-plans_list_old',
+    'delta' => 'content_lists-plans_list',
     'module' => 'views',
     'node_types' => array(),
     'pages' => 'plans',
@@ -2968,10 +2872,10 @@ advanced-search/*',
     'visibility' => 1,
   );
 
-  $export['views-content_lists-rfps_list_old'] = array(
+  $export['views-content_lists-rfps_list'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'content_lists-rfps_list_old',
+    'delta' => 'content_lists-rfps_list',
     'module' => 'views',
     'node_types' => array(),
     'pages' => 'rfps',
@@ -3160,38 +3064,6 @@ advanced-search/*',
     'visibility' => 0,
   );
 
-  $export['views-e27bd979274bde3303f8ce121e69ce77'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'e27bd979274bde3303f8ce121e69ce77',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => 'consultant-contacts',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'corposs',
-        'weight' => -44,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 1,
-  );
-
   $export['views-eb767bd5382348a512b0ac4eee218bbb'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -3318,38 +3190,6 @@ advanced-search/*',
     ),
     'title' => '',
     'visibility' => 1,
-  );
-
-  $export['views-fcaa5acc2805f151aa83f53e028b381e'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'fcaa5acc2805f151aa83f53e028b381e',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'corposs',
-        'weight' => 0,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
   );
 
   $export['views-fdecc7f145fe211631b1b2b9245cfb8d'] = array(
@@ -3608,38 +3448,6 @@ advanced-search/*',
     'visibility' => 0,
   );
 
-  $export['views-reference_views-block_2'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'reference_views-block_2',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'corposs',
-        'weight' => 0,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
-  );
-
   $export['views-reference_views-block_3'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -3708,38 +3516,6 @@ advanced-search/*',
     'cache' => -1,
     'custom' => 0,
     'delta' => 'reference_views-plan_contacts',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'adaptivetheme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'adaptivetheme',
-        'weight' => 0,
-      ),
-      'corposs' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'corposs',
-        'weight' => 0,
-      ),
-      'mix_and_match' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'mix_and_match',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
-  );
-
-  $export['views-saved_views-block_1'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'saved_views-block_1',
     'module' => 'views',
     'node_types' => array(),
     'pages' => '',
