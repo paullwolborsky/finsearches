@@ -393,7 +393,7 @@ function fs_f_fn_contexts_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '11',
         ),
       ),
       'display' => array(
@@ -640,14 +640,27 @@ function fs_f_fn_contexts_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'subscriptions_ui' => array(
+          'default' => array(
+            'weight' => '100',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__office'] = $strongarm;
