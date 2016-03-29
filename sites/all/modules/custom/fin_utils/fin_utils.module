@@ -181,14 +181,14 @@ function fin_utils_block_view($delta) {
   $block = array();
   switch ($delta) {
 		case 'saved_searches':
-			$block['subject'] = "Saved Searches";
+			$block['subject'] = "Advanced Saved Searches";
 			module_load_include('inc', 'search_api_saved_searches', 'search_api_saved_searches.pages');
 			$out = search_api_saved_searches_user_listing($user);
 			$block['content'] = drupal_render($out);
 			$block['content'] .= "<div class='resources-link'>" . l('Go to Saved Searches page','user/' . $user->uid . '/saved-searches',array()) . "</div>";
 			break;
 		case 'saved_filters':
-			$block['subject'] = "Saved Filters";
+			$block['subject'] = "Saved Searches";
 			$block['content'] = views_embed_view('saved_views', 'block_1', $user->uid); 
 			break;
 		case 'subscriptions':

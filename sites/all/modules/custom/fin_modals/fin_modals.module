@@ -131,6 +131,7 @@ function fin_modals_menu() {
     'weight' => 2,
     'page callback' => 'fin_modals_menu_callbacks',
   );
+  /*
   $items['resources/saved-filters']  = array(
     'type' => MENU_NORMAL_ITEM,
     'title' => "Saved Filters",
@@ -139,6 +140,7 @@ function fin_modals_menu() {
     'weight' => 3,
     'page callback' => 'fin_modals_menu_callbacks',
   );
+  */
   $items['ajax/entity-delete/%/%'] = array(
     'page callback' => 'fin_modals_entity_delete',
     'page arguments' => array(2,3),
@@ -164,7 +166,7 @@ function fin_modals_menu_alter(&$items) {
   $items['user/%user/messages']['type'] = MENU_CALLBACK;
   $items['user/%user/subscriptions']['type'] = MENU_CALLBACK;
   $items['user/%user/saved-searches']['type'] = MENU_CALLBACK;
-  $items['user/%user/saved-filters']['type'] = MENU_CALLBACK;
+  //$items['user/%user/saved-filters']['type'] = MENU_CALLBACK;
   $items['user/%user/imce']['type'] = MENU_CALLBACK;
 }
 
@@ -176,8 +178,8 @@ function fin_modals_menu_callbacks() {
     drupal_goto("user/" . $user->uid . "/subscriptions");
   } elseif (arg(1) == 'saved-searches') {
     drupal_goto("user/" . $user->uid . "/saved-searches");
-  } elseif (arg(1) == 'saved-filters') {
-    drupal_goto("user/" . $user->uid . "/saved-filters");
+  //} elseif (arg(1) == 'saved-filters') {
+  //  drupal_goto("user/" . $user->uid . "/saved-filters");
   } elseif (arg(1) == 'imce') {
     drupal_goto("user/" . $user->uid . "/imce");
   } else {
@@ -191,7 +193,7 @@ function fin_modals_menu_callbacks() {
  */
 function fin_modals_entity_delete ($entity_type = NULL, $entity_id = NULL) {
   $destination = !empty($_GET['destionation'])?$_GET['destionation']:'/';
-  if (!$entity_type || !$entity_id) {
+  if (!$entity_type || !$entity_id || is_object($entity_type)) {
     return;
   }
   entity_delete($entity_type, $entity_id);

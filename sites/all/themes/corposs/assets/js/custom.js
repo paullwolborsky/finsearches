@@ -75,6 +75,10 @@
         $('#edit-field-job-history-und-0-field-plan-er-und-0-target-id').focus();
         $('#edit-title-field-und-0-value').focus();
       }
+      
+      //Add a 'title' to the saved searches page
+      $('body.page-user-saved-searches #block-system-main').before('<h3 id="saved-searches-header" class="block-title collapsiblock"><span>Advanced Saved Searches</span></h3>');
+      $('body.page-user-saved-searches .action-links').hide();
     }
   };
 })(jQuery, Drupal);
