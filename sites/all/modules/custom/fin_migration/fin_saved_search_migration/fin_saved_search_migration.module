@@ -1,0 +1,407 @@
+<?php
+/**
+ * @file
+ * A module to perform custom migration from one version of Drupal to another.
+ */
+
+/**
+ * Utility function of duplication check.
+ */
+function fin_saved_search_migration_entity_id($hash) {
+  if (empty($hash)) {
+    return FALSE;
+  }
+  $sql = "select * from field_data_field_wuin where field_wuin_value = :hash";
+  $result = db_query($sql, array(':hash' => $hash));
+  foreach ($result as $row) {
+    $entity =  intval($row->entity_id);
+    return $entity;
+  }
+  return FALSE;
+}
+/**
+ * Utility function of duplication check.
+ */
+function fin_saved_search_migration_entity_existed($hash) {
+  if (empty($hash)) {
+    return FALSE;
+  }
+  $sql = "select * from field_data_field_wuin where field_wuin_value = :hash";
+  $result = db_query($sql, array(':hash' => $hash));
+  foreach ($result as $row) {
+    $entity =  entity_load_single($row->entity_type, intval($row->entity_id));
+    if ($entity) {
+      return $entity;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Utility function of extract status.
+ */
+function _fin_saved_search_migration_consultantfirm($clause) {
+  $pattern = '/m.ConsultantFirmID=\'(\d*)\'/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  $result = array();
+  foreach ($matches[1] as $key => $value) {
+    $wuin = md5('tblconsultantfirms' . $value[0]);
+    $f = fin_saved_search_migration_entity_id($wuin);
+    if ($f) {
+      $result[] = $f;
+    }
+  }
+  return $result;
+}
+
+/**
+ * Utility function of extract status.
+ */
+function _fin_saved_search_migration_geo($clause) {
+  $status_map = array(
+    '1' => '758',
+    '2' => '759',
+    '3' => '760',
+    '4' => '761',
+    '5' => '762',
+    '7' => '763',
+    '8' => '764',
+    '10' => '765',
+    '11' => '766',
+    '13' => '767',
+    '16' => '768',
+    '23' => '769',
+    '31' => '771',
+    '73' => '773',
+    '74' => '774',
+    '75' => '775',
+    '76' => '770',
+    '77' => '776',
+  );
+  $pattern = '/m.GeographicID=\'(\d*)\'/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  $result = array();
+  foreach ($matches[1] as $key => $value) {
+    $result[] = $status_map[$value[0]];
+  }
+  return $result;
+}
+
+/**
+ * Utility function of extract status.
+ */
+function _fin_saved_search_migration_minor($clause) {
+  $status_map = array(
+    '1' => 'Government Bonds',
+    '2' => 'Merger Arbitrage',
+    '128' => 'Russell 2000 Growth',
+    '135' => 'Medium Term',
+    '10' => 'Mid- to Large-Cap Growth',
+    '11' => 'All-Cap Core',
+    '14' => 'Micro- to Small-Cap',
+    '136' => 'Risk Parity',
+    '20' => 'Hedge Fund-of-Funds',
+    '21' => 'Private Equity Fund-of-Funds',
+    '23' => 'Portable Alpha',
+    '24' => 'Small- to Mid-Cap Core',
+    '25' => 'Russell 3000 Growth',
+    '27' => 'S&P 1000 Index',
+    '31' => 'Long/Short',
+    '32' => 'Fund-of-Funds',
+    '134' => 'Russell 3000 Value',
+    '35' => 'Infrastructure',
+    '133' => 'Russell 2000 Value',
+    '39' => 'Large-Cap Value',
+    '40' => 'Small-Cap Value',
+    '41' => 'Large-Cap Growth',
+    '42' => 'Small-Cap Growth',
+    '43' => 'Hedge Fund',
+    '44' => 'LBO',
+    '45' => 'Private Equity',
+    '46' => 'Core',
+    '47' => 'Russell 1000 Index',
+    '48' => 'S&P 500 Index',
+    '49' => 'Investment Grade',
+    '50' => 'High-Yield',
+    '51' => 'Mid-Cap Growth',
+    '52' => 'Mid-Cap Value',
+    '53' => 'Enhanced Index',
+    '54' => 'Venture Capital',
+    '130' => 'Corporate Bonds',
+    '56' => 'Timber',
+    '57' => 'REIT',
+    '58' => 'Large-Cap',
+    '59' => 'Mid-Cap',
+    '60' => 'Small-Cap',
+    '61' => 'All-Cap',
+    '62' => 'All-Cap Growth',
+    '63' => 'All-Cap Value',
+    '64' => 'Small- to Mid-Cap',
+    '65' => 'Micro-Cap',
+    '66' => 'Mid- to Large-Cap',
+    '67' => 'Value',
+    '68' => 'Growth',
+    '69' => 'Large-Cap Core',
+    '70' => 'Small-Cap Core',
+    '71' => 'Opportunistic',
+    '72' => 'Intermediate',
+    '73' => 'Real Return',
+    '74' => 'Convertibles',
+    '75' => 'Mezzanine',
+    '76' => 'Absolute Return',
+    '77' => 'Small- to Mid-Cap Value',
+    '138' => 'Stable Value',
+    '80' => 'Distressed Debt',
+    '81' => 'Energy',
+    '82' => 'Market-Neutral',
+    '83' => 'Mid-Cap Core',
+    '85' => 'Long Term',
+    '86' => 'Short Term',
+    '87' => 'Mortgage-Backed Securities',
+    '89' => 'S&P 400 Index',
+    '90' => 'Russell 3000 Index',
+    '91' => 'Treasury Inflation Protected Securities',
+    '143' => 'Target-Date Funds',
+    '93' => 'All Types',
+    '94' => 'Russell 2000 Index',
+    '95' => 'Mid- to Large-Cap Value',
+    '98' => 'Overlay',
+    '100' => 'Wilshire 4500 Index',
+    '101' => 'Derivatives/Futures',
+    '102' => 'Economically Targeted Investments',
+    '103' => 'Mission/Social Investments',
+    '104' => 'Tactical Asset Allocation',
+    '105' => 'Russell 1000 Growth',
+    '106' => 'Russell 1000 Value',
+    '137' => 'Covered Calls',
+    '108' => 'Small- to Mid-Cap Growth',
+    '132' => 'MLPs',
+    '113' => 'Manager-of-Managers',
+    '114' => 'Core-Plus',
+    '115' => 'CDO',
+    '119' => '130/30',
+    '120' => 'Liability Driven Investments',
+    '122' => 'Inflation Linked Assets',
+    '123' => 'Natural Resource',
+    '131' => 'Bank Loan',
+    '125' => 'Wilshire 5000',
+    '126' => 'Activist Investment',
+    '127' => 'Credit',
+    '139' => 'Discretionary/Outsourced CIO',
+    '140' => 'Agriculture/Farmland',
+    '141' => 'Unconstrained',
+    '142' => 'Smart Beta',
+  );
+
+  $pattern = '/m.MinorStyleID=\'(\d*)\'/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  $result = array('tid' => array(), 'name' => array());
+  foreach ($matches[1] as $key => $value) {
+    $mid = fin_saved_search_utility_get_taxonomy_by_name_level($status_map[$value[0]], 'major_minor_styles', array());
+    if ($mid) {
+      $result['tid'][] = $mid[0];
+      $result['name'][] = $status_map[$value[0]];
+    }
+  }
+  return $result;
+}
+
+/**
+ * Utility function of extract status.
+ */
+function _fin_saved_search_migration_major($clause) {
+  $status_map = array(
+   '1' => 'All Types',
+   '5' => 'Transition Management',
+   '6' => 'Active Equity',
+   '7' => 'Active Fixed-Income',
+   '8' => 'Alternative',
+   '9' => 'Asset Study',
+   '10' => 'Passive Equity',
+   '11' => 'Passive Fixed-Income',
+   '12' => 'Real Estate',
+   '17' => 'Consultant',
+   '18' => 'Active Balanced',
+   '19' => 'Cash',
+   '20' => 'Multi Asset',
+   '21' => 'Passive Balanced',
+   '30' => 'Term Asset-Backed Securities Loan Facility (TALF)',
+   '23' => 'Emerging Manager',
+   '26' => 'Commodities',
+   '27' => 'Currency',
+   '28' => 'Real Assets',
+   '31' => 'Public-Private Investment Program',
+   '32' => 'Undefined',
+   '33' => 'Bundled',
+  );
+  $pattern = '/m.MajorStyleID=\'(\d*)\'/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  $result = array('tid' => array(), 'name' => array());
+  foreach ($matches[1] as $key => $value) {
+    $mid = fin_saved_search_utility_get_taxonomy_by_name_level($status_map[$value[0]], 'major_minor_styles', array());
+    if ($mid) {
+      $result['tid'][] = $mid[0];
+      $result['name'][] = $status_map[$value[0]];
+    }
+  }
+  return $result;
+}
+
+/**
+ * Utility function of extract status.
+ */
+function _fin_saved_search_migration_mandatedate($clause) {
+  $pattern = '/MandateDate >= "(\d\d\d\d-\d\d-\d\d)"/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  $result = array();
+  foreach ($matches[1] as $key => $value) {
+    $result['start'] = $value[0];
+  }
+  $pattern = '/MandateDate <= "(\d\d\d\d-\d\d-\d\d)"/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  foreach ($matches[1] as $key => $value) {
+    $result['end'] = $value[0];
+  }
+  return $result;
+}
+
+/**
+ * Utility function of size.
+ */
+function _fin_saved_search_migration_msize_b($clause) {
+  $pattern = '/m.Size <= (\d*) /';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  foreach ($matches[1] as $key => $value) {
+    return $value[0];
+  }
+}
+
+/**
+ * Utility function of size.
+ */
+function _fin_saved_search_migration_msize_a($clause) {
+  $pattern = '/m.Size >= (\d*) /';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  foreach ($matches[1] as $key => $value) {
+    return $value[0];
+  }
+}
+
+/**
+ * Utility function of extract status.
+ */
+function _fin_saved_search_migration_status($clause) {
+  $status_map = array(
+    '4' => '808',
+    '5' => '807',
+    '6' => '805',
+    '7' => '806',
+    '8' => '809',
+  );
+  $pattern = '/m.StatusID=\'(\d)\'/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  $result = array();
+  foreach ($matches[1] as $key => $value) {
+    $result[] = $status_map[$value[0]];
+  }
+  return $result;
+}
+
+/**
+ * Queue worker.
+ */
+function fin_saved_search_migration_views_save_create($id) {
+  global $user;
+
+  // Returns the entity if it is already existed.
+  $field_wuin = md5('finsearch_search_mandates' . $id);
+  $isexist = fin_saved_search_migration_entity_existed($field_wuin);
+  if ($isexist) {
+    return $isexist;
+  }
+  db_set_active('legacy');
+  $sql = "select uid, SearchName, SearchClause, created from finsearch_search_mandates where SearchID = :id";
+  $result = db_query($sql, array(':id' => $id));
+  db_set_active();
+  $options = array();
+  $options['query'] = array(
+    'field_account_size_value' => array(
+      'min' => '',
+      'max' => '',
+    ),
+    'field_date_value' => 'All',
+  );
+    
+  foreach ($result as $row) {
+    $searchclause = trim($row->SearchClause);
+    $status = _fin_saved_search_migration_status($searchclause);
+    $consultfirm = _fin_saved_search_migration_consultantfirm($searchclause);
+    $geographic = _fin_saved_search_migration_geo($searchclause);
+    $major = _fin_saved_search_migration_major($searchclause);
+    $minor = _fin_saved_search_migration_minor($searchclause);
+    $msizea = _fin_saved_search_migration_msize_a($searchclause);
+    $msizeb = _fin_saved_search_migration_msize_b($searchclause);
+    $options['query']['field_mandate_status_tr_tid_selective'] = $status;
+    $options['query']['field_consultant_firm_er_target_id_selective'] = $consultfirm;
+    $options['query']['field_geographic_tr_tid_selective'] = $geographic;
+    $options['query']['major_selective'] = $major['name'];
+    $options['query']['minor_selective'] = $minor['name'];
+    $options['query']['field_account_size_value']['min'] = empty($msizea) ? 0 : $msizea;
+    $options['query']['field_account_size_value']['max'] = empty($msizeb) ? 999999 : $msizeb;
+    $uri = array(
+      'path' => 'node/3705',
+      'options' => $options,
+    );
+
+    $properties = array(
+      'uid' => '144',
+      'bundle' => 'default',
+      'view_path' => $uri,
+      'title' => $row->SearchName,
+      'status' => 0,
+      'created' => $row->created,
+      'changed' => REQUEST_TIME,
+    );
+    $save = entity_create('views_save', $properties);
+    $ret = $save->save();
+  }
+}
+
+/**
+ * Get taxonomy Term by name, and parent terms.
+ */
+function fin_saved_search_utility_get_taxonomy_by_name_level($tname, $vname, $ptermid = NULL) {
+
+  if (empty($tname)) {
+    return;
+  }
+
+  $program = taxonomy_get_term_by_name($tname, $vname);
+  $tids = array();
+  
+  if (empty($program)) {
+    return FALSE;
+  }
+  else {
+    foreach ($program as $termid => $term) {
+      if ($ptermid) {
+        $flag = TRUE;
+        $p = taxonomy_get_parents($termid);
+        if ($p) {
+          foreach ($p as $pid => $pv) {
+            foreach ($ptermid as $ptid) {
+              if ($ptid == $pid && $flag) {
+                $tids[] = $termid;
+                $flag = FALSE;
+              }
+            }
+          }
+        }
+      }
+      else {
+        $tids[] = $termid;
+      }
+    }
+  }
+  return $tids;
+}
