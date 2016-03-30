@@ -764,6 +764,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['title']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
   $handler->display->display_options['arguments']['title']['limit'] = '1';
   $handler->display->display_options['arguments']['title']['case'] = 'upper';
