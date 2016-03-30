@@ -69,3 +69,80 @@ function fin_mod_views_query_alter(&$view, &$query) {
     fin_mod_content_list($view, $query);
   }
 }
+
+/**
+ * 
+ */
+function fin_mod_views_pre_render(&$view) {
+  if ($view->current_display == 'consultant_plan_managers') {
+    $view = fin_mod_consultant_plan_manager_remove($view);
+  }
+}
+
+function fin_mod_consultant_plan_manager_remove(&$view) {
+  foreach ($view->result as $row => $result) {
+    if ($result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->vocabulary_machine_name == 'consultant_types') {
+      $consultant_type = $result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->name;
+      $major = $result->taxonomy_term_data_taxonomy_term_hierarchy_name;
+      $minor = $result->taxonomy_term_data_node_name;
+      switch ($consultant_type) {
+        case "General":
+          break;
+        case "Real Estate":
+          if ($major != 'Real Estate') {
+            unset($view->result[$row]);
+          }
+          break;
+        case "Private Equity":
+          if ($major != 'Private Equity') {
+            unset($view->result[$row]);
+          }
+          break;
+        case "Alternatives":
+          $alternatives = array(
+            'Real Estate',
+            'Private Equity',
+            'Hedge Funds',
+            'Real Assets',
+          );
+          if (!in_array($major, $alternatives)) {
+            unset($view->result[$row]);
+          }
+          break;
+        case "Hedge Funds":
+          if ($major != 'Hedge Fund') {
+            unset($view->result[$row]);
+          }
+          break;
+        case "Project-Basis":
+          break;
+        case "Timber":
+          if ($major != 'Real Assets' && $minor != 'Timber') {
+            unset($view->result[$row]);
+          }
+          break;
+        case "Infrastructure":
+          if ($major != 'Real Assets' && $minor != 'Infastructure') {
+            unset($view->result[$row]);
+          }
+          break;
+        case "Outsourced CIO":
+          break;
+        case "Public Equities":
+          $public_equities = array(
+            'Active Equity',
+            'Passive Equity',
+          );
+          if (!in_array($major, $public_equities)) {
+            unset($view->result[$row]);
+          }
+          break;
+        case "Real Assets":
+          if ($major != 'Real Assets') {
+            unset($view->result[$row]);
+          }
+          break;
+      }
+    }
+  }
+}
