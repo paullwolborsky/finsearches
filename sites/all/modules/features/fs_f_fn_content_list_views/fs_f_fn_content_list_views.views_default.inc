@@ -1734,7 +1734,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_plan_type_tr_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_plan_type_tr_tid']['vocabulary'] = 'plan_types';
-  $handler->display->display_options['path'] = 'plan-contacts';
+  $handler->display->display_options['path'] = 'plans/plan-contacts';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Plan Contacts';
   $handler->display->display_options['menu']['weight'] = '1';
@@ -4831,7 +4831,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_display_field'] = 'field_attribute_tr';
   $handler->display->display_options['filters']['field_attribute_tr_tid_selective']['selective_items_limit'] = '100';
-  $handler->display->display_options['path'] = 'rfps';
+  $handler->display->display_options['path'] = 'mandates/rfps';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'RFPs';
   $handler->display->display_options['menu']['weight'] = '2';
@@ -6544,7 +6544,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['selective_display_field'] = 'field_consultant_firm_er';
   $handler->display->display_options['filters']['field_consultant_firm_er_target_id_selective']['selective_items_limit'] = '100';
-  $handler->display->display_options['path'] = 'consultant-contacts';
+  $handler->display->display_options['path'] = 'consultants/consultant-contacts';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Consultant Contacts';
   $handler->display->display_options['menu']['weight'] = '1';
