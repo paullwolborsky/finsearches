@@ -31,7 +31,7 @@ function fs_f_fn_resources_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'corposs',
-        'weight' => -54,
+        'weight' => -55,
       ),
       'mix_and_match' => array(
         'region' => '',
@@ -64,7 +64,7 @@ user/*/saved-searches',
         'region' => 'content',
         'status' => 1,
         'theme' => 'corposs',
-        'weight' => -57,
+        'weight' => -58,
       ),
       'mix_and_match' => array(
         'region' => '',
@@ -96,7 +96,7 @@ user/*/saved-searches',
         'region' => 'content',
         'status' => 1,
         'theme' => 'corposs',
-        'weight' => -56,
+        'weight' => -57,
       ),
       'mix_and_match' => array(
         'region' => '',
@@ -128,7 +128,7 @@ user/*/saved-searches',
         'region' => 'content',
         'status' => 1,
         'theme' => 'corposs',
-        'weight' => -55,
+        'weight' => -56,
       ),
       'mix_and_match' => array(
         'region' => '',
@@ -139,6 +139,71 @@ user/*/saved-searches',
     ),
     'title' => '',
     'visibility' => 1,
+  );
+
+  $export['views-saved_filters-block_1'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'saved_filters-block_1',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['views-saved_filters-block_2'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'saved_filters-block_2',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => 'resources*
+user*',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => 'right_sidebar',
+        'status' => 1,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
   );
 
   return $export;

@@ -189,7 +189,7 @@ function fin_utils_block_view($delta) {
 			break;
 		case 'saved_filters':
 			$block['subject'] = "Saved Searches";
-			$block['content'] = views_embed_view('saved_views', 'block_1', $user->uid); 
+			$block['content'] = views_embed_view('saved_filters', 'block_1', $user->uid); 
 			break;
 		case 'subscriptions':
 			$block['subject'] = "Subscriptions";
