@@ -19,7 +19,7 @@ $background: #ffffff;
 $blue-black: #000033;
 $dark-blue: #003366;
 $text: #666666;
-$header: #000000;
+$header: $fin-navy;
 $white: #ffffff; // Cuz you just need white sometimes
 
 /* Borders */
@@ -413,6 +413,15 @@ html.js fieldset.collapsible .fieldset-legend {
 .view-filters {
     background-color: $form-background-blue;
     color: $fin-blue;
+    #edit-container-root {
+        margin: 0;
+        .fieldset-wrapper {
+            text-align: center;
+        }
+        span.fieldset-legend a {
+            text-transform: capitalize;
+        }
+    }
     .btn {
         background: $dark-button;
         :hover {
@@ -433,70 +442,100 @@ html.js fieldset.collapsible .fieldset-legend {
         padding: 4px 6px;
         margin-left: 10px;
     }
-    /* input[type="submit"], input[type="button"] {
-        color: $white;
-        padding: 5px;
-    } */
     .views-exposed-form .views-exposed-widget{
         padding: 0;
         .form-submit {
             margin-top: 0;
         }
     }
-}
-.views-ef-fieldset-container .form-item {
-    display: block;
-}
-#views-exposed-form-content-lists-plans-list {
-    /* fieldset {
-        margin: 10px;
-    } */
-    #edit-container-root {
-        margin: 0;
-        .fieldset-wrapper {
-            text-align: center;
-        }
+    .form-text {
+        height: 24px;
+        border: solid 1px $border-blue;
     }
     .views-submit-button {
         display: none;
     }
-    #edit-filters-wrapper {
-
+    .chosen-container {
+        max-width: 250px;
     }
-
 }
-#edit-container-container-2 {
+.view-filters .views-table .collapsiblock a {
+    background: none;
+    color: #1368a6;
+    display: inline; 
+}
+.view.collapsiblock h2 {
+    padding: 4px 0 4px 15px;
+    font-size: 21px;
+    /*background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);*/
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.view.collapsiblock {
+    background-color: #e7f5ff;
+    color: #000;
+    a {
+        display: inline;
+        background: transparent url(images/gear-select.png) no-repeat 2px 0;
+        color: #1368a6;
+    }
+}
+.view.collapsiblock .views-row {
+    padding: 5px 0 10px 10px;
+}
+.view-filters #edit-field-date-value-wrapper label {
+    margin-left: -20px;
+}
+.views-ef-fieldset-container .form-item {
+    display: block;
+}
+/*** Parent Lists ***/
+#views-exposed-form-content-lists-plans-list, #views-exposed-form-content-lists-consultants-list,
+ #views-exposed-form-content-lists-managers-list, #views-exposed-form-content-lists-news-list {
+    #edit-container-container-2 {
     display: inline-block;
+    max-width: 99%;
     text-align: center;
     margin: 10px auto;
-}
-#edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
-    width: auto;
-    float: left;
-    //padding: 5px;
-    background: $form-item-active-blue;
-    legend {
-        border: solid 1px $header;
-        color: #ccc;
     }
-    .fieldset-wrapper {
-        padding:  0 10px 10px 10px;
+    #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        width: 30%;
+        background: $form-item-active-blue;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px 10px 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
     }
-    .form-item label {
-        margin-bottom: 0;
-        margin-top: 5px; 
+    #edit-container-container-3 {
+        margin: 0 10px 10px 0;
     }
-}
-#edit-container-container-3 {
-    margin: 0 10px 10px 0;
-}
-#edit-container-container-4 {
-    margin-bottom: 0 0 10px 0;
-}
-#edit-container-container-5 {
-    margin: 0 0 10px 10px;
+    #edit-container-container-4 {
+        margin-bottom: 0 0 10px 0;
+    }
+    #edit-container-container-5 {
+        margin: 0 0 10px 10px;
+    }
+    #edit-container-container-6 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
     .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
-        float: left;
+        display: inline-block;
+        text-align: center;
+        height: 24px;
         margin: 10px 0 0 0;
         label {
             width: auto;
@@ -505,17 +544,238 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
     #edit-field-plan-size-value-min, #edit-field-plan-size-value-max {
-        width: 60px;
+        width: 64px;
         height: 22px;
-        border: #999999;
+        border: solid 1px $border-blue;
+    }
+    #edit-field-date-value-min-datepicker-popup-6, #edit-field-date-value-max-datepicker-popup-6, #edit-created-min, #edit-created-max {
+        display: inline-block;
+        text-align: center;
+        max-width: 90px;
+        margin: 0;
+    }
+    .form-type-date-popup label {
+        margin-top: 0 !important;
+    }
+    .form-item-created-min {
+        float: left;
     }
 }
-#edit-container-container-6 {
-    width: 100%;
-    margin: 0;
-    position: relative;
+#views-exposed-form-content-lists-plans-list {
+    #edit-container-container-5 {
+        .fieldset-wrapper {
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .fieldset-wrapper::before {
+            content: "Plan Size";
+            font-weight: bold;
+            display: block;
+            width: auto;
+            padding: 5px 0 0 0;
+        }
+    }
 }
-
+/*** Mandates List ***/
+#views-exposed-form-content-lists-mandates-list, {
+    #edit-container-container-2 {
+        display: inline-block;
+        max-width: 99%;
+        text-align: center;
+        margin: 10px auto;
+    }
+    #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        //width: 30%;
+        background: $form-item-active-blue;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px 10px 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-3 {
+        margin: 0 10px 10px 0;
+        width: 30%;
+    }
+    #edit-container-container-4 {
+        margin-bottom: 0 0 10px 0;
+        width: 30%;
+    }
+    #edit-container-container-5 {
+        margin: 0 0 10px 10px;
+        width: 30%;
+    }
+    #edit-container-container-6 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+    #edit-field-date-value-min-wrapper, #edit-field-date-value-max-wrapper {
+        width: 49%;
+        display: inline-block;
+        text-align: center;
+        padding: 0 10px;
+    }
+    #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
+        .form-item label {
+            margin-top: 0;
+        }
+    }
+    #edit_field_mandate_status_tr_tid_selective_chosen {
+        margin-bottom: 15px;
+    }
+    .form-item-field-mandate-status-tr-tid-selective::after {
+        content: "Date";
+        font-weight: bold;
+    }
+    #edit-field-date-value-min-datepicker-popup-6, #edit-field-date-value-max-datepicker-popup-6 {
+        display: inline-block;
+        text-align: center;
+        max-width: 90px;
+        margin: 0;
+    }
+    .form-item-field-address-administrative-area {
+        width: 25%;
+        display: inline-block;
+        text-align: center;
+        margin-right: 5px;
+        label {
+            display: block;
+    }
+    #edit-field-address-administrative-area {
+        width: 100%;
+        margin-bottom: 0;
+        height: 22px;
+    }
+}                                                                                   // Why is this here?!
+    .form-item-field-address-country {
+        width: 45%;
+        display: inline-block;
+        text-align: center;
+        margin-left: 5px;
+        label {
+            display: block;
+            margin-top: 0;
+        }
+        #edit_field_address_country_chosen {
+            max-width: 100%;
+        }
+    }
+    .form-item-field-plan-type-tr-tid {
+        label {
+            display: block;
+        }
+    }
+    .form-item-field-consultant-firm-er-target-id-selective {
+        label {
+            display: block;
+        }
+    }
+    .form-item-field-account-size-value-min, .form-item-field-account-size-value-max {
+        display: inline-block;
+        text-align: center;
+        height: 24px;
+        label {
+            width: auto;
+            margin: 0 5px;
+            padding-bottom: 3px;
+        }
+    }
+    #edit-field-account-size-value-min, #edit-field-account-size-value-max {
+        width: 64px;
+        height: 22px;
+        border: solid 1px $border-blue;
+    }
+    #edit-container-container-5 {
+        .fieldset-wrapper {
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .fieldset-wrapper::before {
+            content: "Mandate Size";
+            font-weight: bold;
+            display: block;
+            width: auto;
+            padding: 5px 0 0 0;
+        }
+    }
+    .form-item-field-geographic-tr-tid-selective, .form-item-major-style, .form-item-field-attribute-tr-tid-selective, .form-item-minor-style {
+        width: 48%;
+        display: inline-block;
+        text-align: center;
+        .chosen-container {
+            max-width: 100%;
+        }
+    }
+}
+#views-exposed-form-content-lists-news-list {
+    #edit-container-container-5 {
+        .fieldset-wrapper::before {
+            content: "Date";
+            font-weight: bold;
+            display: block;
+            width: auto;
+            padding: 5px 0 0 0;
+        }
+        #edit-created-max {
+            margin-left: 5px;
+        }
+        .form-item label {
+            margin-top: 0;
+        }
+    }
+}
+/*** Plan Contacts List ***/
+#views-exposed-form-content-lists-plan-contacts-list {
+    #edit-container-container-4 {
+        display: inline-block;
+        max-width: 99%;
+        text-align: center;
+        margin: 10px auto;
+    }
+    #edit-container-container-5, #edit-container-container-6, #edit-container-container-7 {
+        display: inline-block;;
+        text-align: center;
+        vertical-align: top;
+        width: 30%;
+        //padding: 5px;
+        background: $form-item-active-blue;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px 10px 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-5 {
+        margin: 0 10px 10px 0;
+    }
+    #edit-container-container-6 {
+        margin-bottom: 0 0 10px 0;
+    }
+    #edit-container-container-7 {
+        margin: 0 0 10px 10px;
+    }
+    #edit-container-container-8 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+}
 
 
 /********** Tables **********/
@@ -614,53 +874,14 @@ body.node-type-plan {
 }
 .breadcrumb {
     background-color: #fff; }
-
-.view-filters label {
-    text-align: center;
-    width: 100%;
-}
-
-.view-filters .views-table .collapsiblock a {
-    background: none;
-    color: #1368a6;
-    display: inline; }
-
 .page-node .collapsiblock .views-table a:not(.contextual-links-trigger) {
     background: none;
     color: #1368a6;
     display: inline; }
-
-.view.collapsiblock h2 {
-    padding: 4px 0 4px 15px;
-    font-size: 21px;
-    /*background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);*/
-    background: #000;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 400;
-}
-
 .ds-middle, .ds-below-left, .ds-footer {
     .view.collapsiblock {
         background-color: #fff;
     }
-}
-
-.view.collapsiblock {
-    background-color: #e7f5ff;
-    color: #000;
-    a {
-        display: inline;
-        background: transparent url(images/gear-select.png) no-repeat 2px 0;
-        color: #1368a6;
-    }
-}
-.view.collapsiblock .views-row {
-    padding: 5px 0 10px 10px;
-}
-
-.view-filters #edit-field-date-value-wrapper label {
-    margin-left: -20px;
 }
 .page-node ul.links {
     margin-bottom: 20px;
