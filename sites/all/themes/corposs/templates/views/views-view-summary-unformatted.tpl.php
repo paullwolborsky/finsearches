@@ -17,16 +17,13 @@
       $href = '/plans/all';
       break;
     case 'attachment_2':
-      $href = '/plan-contacts/all';
+      $href = '/plans/plan-contacts/all';
       break;
     case 'attachment_5':
       $href = '/consultants/all';
       break;
-    case 'attachment_5':
-      $href = '/plan-contacts/all';
-      break;
     case 'attachment_7':
-      $href = '/consultant-contacts/all';
+      $href = '/consultants/consultant-contacts/all';
       break;
     case 'attachment_4':
       $href = '/managers/all';
