@@ -1,7 +1,5 @@
 <?php
 /**
  * @file
- * Code for the fs_f_fn_contexts feature.
+ * Drupal needs this blank file.
  */
-
-include_once 'fs_f_fn_contexts.features.inc';
