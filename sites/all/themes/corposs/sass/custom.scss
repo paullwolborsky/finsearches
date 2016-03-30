@@ -493,7 +493,7 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 /*** Parent Lists ***/
 #views-exposed-form-content-lists-plans-list, #views-exposed-form-content-lists-consultants-list,
- #views-exposed-form-content-lists-managers-list, #views-exposed-form-content-lists-news-list {
+ #views-exposed-form-content-lists-managers-list, #views-exposed-form-content-lists-news-list, #views-exposed-form-content-lists-rfps-list {
     #edit-container-container-2 {
     display: inline-block;
     max-width: 99%;
@@ -717,6 +717,37 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
 }
+/*** RFPs List ***/
+#views-exposed-form-content-lists-rfps-list {
+    .form-item-field-account-size-value-min, .form-item-field-account-size-value-max {
+        display: inline-block;
+        text-align: center;
+        height: 24px;
+        label {
+            width: auto;
+            margin: 0 5px;
+            padding-bottom: 3px;
+        }
+    }
+    #edit-field-account-size-value-min, #edit-field-account-size-value-max {
+        width: 64px;
+        height: 22px;
+        border: solid 1px $border-blue;
+    }
+    #edit-container-container-3 {
+        .fieldset-wrapper {
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .fieldset-wrapper::before {
+            content: "Mandate Size";
+            font-weight: bold;
+            display: block;
+            width: auto;
+            padding: 5px 0 0 0;
+        }
+    }
+}
 #views-exposed-form-content-lists-news-list {
     #edit-container-container-5 {
         .fieldset-wrapper::before {
@@ -775,6 +806,48 @@ html.js fieldset.collapsible .fieldset-legend {
         margin: 0;
         position: relative;
     }
+}
+/*** Consultant Contacts List ***/
+#views-exposed-form-content-lists-consultant-contacts {
+    #edit-container-container-3 {
+    display: inline-block;
+    max-width: 99%;
+    text-align: center;
+    margin: 10px auto;
+    }
+    #edit-container-container-4, #edit-container-container-5, #edit-container-container-6 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        width: 30%;
+        background: $form-item-active-blue;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px 10px 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-4 {
+        margin: 0 10px 10px 0;
+    }
+    #edit-container-container-5 {
+        margin-bottom: 0 0 10px 0;
+    }
+    #edit-container-container-6 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+        background: none;
+        .fieldset-wrapper {
+            padding: 0;
+        }
+    }    
 }
 
 
