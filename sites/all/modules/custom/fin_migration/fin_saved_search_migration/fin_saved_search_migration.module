@@ -346,8 +346,8 @@ function fin_saved_search_migration_views_save_create($id) {
     $options['query']['field_geographic_tr_tid_selective'] = $geographic;
     $options['query']['major_selective'] = $major['name'];
     $options['query']['minor_selective'] = $minor['name'];
-    $options['query']['field_account_size_value']['min'] = $msizea;
-    $options['query']['field_account_size_value']['max'] = $msizeb;
+    $options['query']['field_account_size_value']['min'] = empty($msizea) ? 0 : $msizea;
+    $options['query']['field_account_size_value']['max'] = empty($msizeb) ? 999999 : $msizeb;
     $uri = array(
       'path' => 'node/3705',
       'options' => $options,
