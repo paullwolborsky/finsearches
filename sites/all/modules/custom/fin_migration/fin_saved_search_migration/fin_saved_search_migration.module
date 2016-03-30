@@ -250,6 +250,46 @@ function _fin_saved_search_migration_major($clause) {
 /**
  * Utility function of extract status.
  */
+function _fin_saved_search_migration_mandatedate($clause) {
+  $pattern = '/MandateDate >= "(\d\d\d\d-\d\d-\d\d)"/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  $result = array();
+  foreach ($matches[1] as $key => $value) {
+    $result['start'] = $value[0];
+  }
+  $pattern = '/MandateDate <= "(\d\d\d\d-\d\d-\d\d)"/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  foreach ($matches[1] as $key => $value) {
+    $result['end'] = $value[0];
+  }
+  return $result;
+}
+
+/**
+ * Utility function of size.
+ */
+function _fin_saved_search_migration_msize_b($clause) {
+  $pattern = '/m.Size <= (\d*) /';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  foreach ($matches[1] as $key => $value) {
+    return $value[0];
+  }
+}
+
+/**
+ * Utility function of size.
+ */
+function _fin_saved_search_migration_msize_a($clause) {
+  $pattern = '/m.Size >= (\d*) /';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  foreach ($matches[1] as $key => $value) {
+    return $value[0];
+  }
+}
+
+/**
+ * Utility function of extract status.
+ */
 function _fin_saved_search_migration_status($clause) {
   $status_map = array(
     '4' => '808',
@@ -299,11 +339,15 @@ function fin_saved_search_migration_views_save_create($id) {
     $geographic = _fin_saved_search_migration_geo($searchclause);
     $major = _fin_saved_search_migration_major($searchclause);
     $minor = _fin_saved_search_migration_minor($searchclause);
+    $msizea = _fin_saved_search_migration_msize_a($searchclause);
+    $msizeb = _fin_saved_search_migration_msize_b($searchclause);
     $options['query']['field_mandate_status_tr_tid_selective'] = $status;
     $options['query']['field_consultant_firm_er_target_id_selective'] = $consultfirm;
     $options['query']['field_geographic_tr_tid_selective'] = $geographic;
     $options['query']['major_selective'] = $major['name'];
     $options['query']['minor_selective'] = $minor['name'];
+    $options['query']['field_account_size_value']['min'] = $msizea;
+    $options['query']['field_account_size_value']['max'] = $msizeb;
     $uri = array(
       'path' => 'node/3705',
       'options' => $options,
