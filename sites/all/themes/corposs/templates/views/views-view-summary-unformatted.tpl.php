@@ -11,7 +11,6 @@
 
   $current_view = views_get_current_view();
   $current_display = $current_view->current_display;
-  dd($current_display, "Current Display");
   //Change "all" link based on current display
   switch ($current_display) {
     case 'attachment_1':
