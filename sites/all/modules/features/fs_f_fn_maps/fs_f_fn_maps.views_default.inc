@@ -113,96 +113,10 @@ function fs_f_fn_maps_views_default_views() {
     'office' => 'office',
   );
 
-  /* Display: Plan Map */
-  $handler = $view->new_display('block', 'Plan Map', 'map_plan');
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'plan' => 'plan',
-  );
-
-  /* Display: Consultant Map */
-  $handler = $view->new_display('block', 'Consultant Map', 'map_consultant');
-  $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['id'] = 'field_consultant_firm_er_target_id';
-  $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['table'] = 'field_data_field_consultant_firm_er';
-  $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['field'] = 'field_consultant_firm_er_target_id';
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['relationship'] = 'field_consultant_firm_er_target_id';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['text'] = '<strong>[title]</strong>';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Location */
-  $handler->display->display_options['fields']['field_location']['id'] = 'field_location';
-  $handler->display->display_options['fields']['field_location']['table'] = 'field_data_field_location';
-  $handler->display->display_options['fields']['field_location']['field'] = 'field_location';
-  $handler->display->display_options['fields']['field_location']['label'] = '';
-  $handler->display->display_options['fields']['field_location']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_location']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_location']['click_sort_column'] = 'geom';
-  $handler->display->display_options['fields']['field_location']['settings'] = array(
-    'data' => 'full',
-  );
-  /* Field: Field: Address */
-  $handler->display->display_options['fields']['field_address']['id'] = 'field_address';
-  $handler->display->display_options['fields']['field_address']['table'] = 'field_data_field_address';
-  $handler->display->display_options['fields']['field_address']['field'] = 'field_address';
-  $handler->display->display_options['fields']['field_address']['label'] = '';
-  $handler->display->display_options['fields']['field_address']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_address']['click_sort_column'] = 'country';
-  $handler->display->display_options['fields']['field_address']['settings'] = array(
-    'use_widget_handlers' => 1,
-    'format_handlers' => array(
-      'address' => 'address',
-    ),
-  );
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'office' => 'office',
-  );
-  /* Filter criterion: Content: Office Type (field_office_type_tr) */
-  $handler->display->display_options['filters']['field_office_type_tr_tid']['id'] = 'field_office_type_tr_tid';
-  $handler->display->display_options['filters']['field_office_type_tr_tid']['table'] = 'field_data_field_office_type_tr';
-  $handler->display->display_options['filters']['field_office_type_tr_tid']['field'] = 'field_office_type_tr_tid';
-  $handler->display->display_options['filters']['field_office_type_tr_tid']['value'] = array(
-    337 => '337',
-  );
-  $handler->display->display_options['filters']['field_office_type_tr_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_office_type_tr_tid']['vocabulary'] = 'office_types';
-
-  /* Display: Manager Map */
-  $handler = $view->new_display('block', 'Manager Map', 'map_manager');
+  /* Display: Organization Map */
+  $handler = $view->new_display('page', 'Organization Map', 'map_organization');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Organization Map';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -218,10 +132,19 @@ function fs_f_fn_maps_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'manager_firm' => 'manager_firm',
+    'office' => 'office',
+    'plan' => 'plan',
   );
+  $handler->display->display_options['path'] = 'search/organization-map';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Map';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
-  /* Display: Plan Node Map */
-  $handler = $view->new_display('block', 'Plan Node Map', 'map_plan_node');
+  /* Display: Manager Node Map */
+  $handler = $view->new_display('block', 'Manager Node Map', 'map_manager_node');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Map';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -316,7 +239,7 @@ function fs_f_fn_maps_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'plan' => 'plan',
+    'manager_firm' => 'manager_firm',
   );
 
   /* Display: Consultant Node Map */
@@ -434,8 +357,8 @@ function fs_f_fn_maps_views_default_views() {
   $handler->display->display_options['filters']['field_office_type_tr_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_office_type_tr_tid']['vocabulary'] = 'office_types';
 
-  /* Display: Manager Node Map */
-  $handler = $view->new_display('block', 'Manager Node Map', 'map_manager_node');
+  /* Display: Plan Node Map */
+  $handler = $view->new_display('block', 'Plan Node Map', 'map_plan_node');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Map';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -530,7 +453,7 @@ function fs_f_fn_maps_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'manager_firm' => 'manager_firm',
+    'plan' => 'plan',
   );
   $export['map_views'] = $view;
 
