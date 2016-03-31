@@ -974,6 +974,7 @@ html.js fieldset.collapsible .fieldset-legend {
         float: left;
         vertical-align: top;
         width: 30%;
+        margin: 0;
         background: $form-item-active-blue;
         legend {
             border: solid 1px $header;
@@ -992,6 +993,8 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         vertical-align: top;
         width: 50%;
+        min-width: 30%;
+        margin: 0;
         background: none;
     }
 }
