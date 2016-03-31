@@ -49,12 +49,43 @@ function fin_mod_mandate_plan_info(&$view) {
 }
 
 /**
+ * Replaces state name with state code
+ */
+function fin_mod_state_code($state) {
+  $administrative_areas = _addressfield_get_administrative_areas_defaults();
+  foreach ($administrative_areas as $country => $states) {
+    $states = array_flip($states);
+    $state_code = $states[$state];
+    if (isset($state_code)) {
+      return $state_code;
+    }
+  }
+  if(!isset($state_code)) {
+    return FALSE;
+  }
+}
+
+/**
  * Modifies content lists view.
  */
 function fin_mod_content_list(&$view, &$query) {
+  module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
+
   if (!empty($view->exposed_raw_input['field_address_administrative_area_selective'])) {
-    foreach ($query->where[1]['conditions'] as $key => $where) {
-      if ($where['field'] == 'field_data_field_office_type_tr.field_office_type_tr_tid') {
+    foreach ($query->where[2]['conditions'] as $key => &$where) {
+      if ($where['field'] == 'field_data_field_address.field_address_administrative_area') {
+        if (is_array($where['value'])) {
+          foreach ($where['value'] as $where_key => $value) {
+            $state = fin_mod_state_code($value);
+            if ($state != FALSE) {
+              $query->where[2]['conditions'][$key]['value'][$where_key] = $state;
+            }
+          }
+        }
+      }
+    }
+    foreach ($query->where[1]['conditions'] as $key => $where_office) {
+      if ($where_office['field'] == 'field_data_field_office_type_tr.field_office_type_tr_tid') {
         unset($query->where[1]['conditions'][$key]);
       }
     }
