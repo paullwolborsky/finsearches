@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * fs_f_pg_bt_consultant_contact.features.field_instance.inc
@@ -10,6 +9,7 @@
  */
 function fs_f_pg_bt_consultant_contact_field_default_field_instances() {
   $field_instances = array();
+
   // Exported field_instance: 'paragraphs_item-consultant_contact-field_address'
   $field_instances['paragraphs_item-consultant_contact-field_address'] = array(
     'bundle' => 'consultant_contact',
@@ -241,54 +241,6 @@ function fs_f_pg_bt_consultant_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'paragraphs_item-consultant_contact-field_consultant_type_tr'
-  $field_instances['paragraphs_item-consultant_contact-field_consultant_type_tr'] = array(
-    'bundle' => 'consultant_contact',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 9,
-      ),
-      'job_type' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 10,
-      ),
-      'paragraphs_editor_preview' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'paragraphs_item',
-    'field_name' => 'field_consultant_type_tr',
-    'label' => 'Consultant Type',
-    'options_limit' => FALSE,
-    'options_limit_empty_behaviour' => 0,
-    'options_limit_fields' => array(),
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 4,
-    ),
-  );
-
   // Exported field_instance: 'paragraphs_item-consultant_contact-field_email'
   $field_instances['paragraphs_item-consultant_contact-field_email'] = array(
     'bundle' => 'consultant_contact',
@@ -484,7 +436,7 @@ function fs_f_pg_bt_consultant_contact_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -542,7 +494,7 @@ function fs_f_pg_bt_consultant_contact_field_default_field_instances() {
         'apply_chosen' => 0,
       ),
       'type' => 'options_select',
-      'weight' => 11,
+      'weight' => 5,
     ),
   );
 
@@ -671,7 +623,6 @@ function fs_f_pg_bt_consultant_contact_field_default_field_instances() {
   t('Address');
   t('Consultant Firm');
   t('Consultant Office');
-  t('Consultant Type');
   t('Email');
   t('Employment Date');
   t('Job Title');
