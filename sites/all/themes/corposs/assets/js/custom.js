@@ -63,14 +63,24 @@
         $(this).parents('div.tasks').hide();
       });
       */
-      //Make links work in recent content view
+      
+      if (!$('.view-content-lists .view-filters .my-views-filter-submit #save-search-trigger').length) {
+        $('.view-content-lists .view-filters .my-views-filter-submit').append("<button id='save-search-trigger'>Save Search</button>");
+      }
+      //See views_save.js for hiding the trigger button after form submit
+      $('.view-content-lists .view-filters #save-search-trigger').click(function(){
+        $('#edit-save.views-save-button-save').trigger('click');
+        return false;
+      });
+      
+      //Make links work in recent content view 
       $('.view-display-id-recent_content_sidebar .view-content .views-row .field-content a').click(function(){
         window.location = jQuery(this).attr('href');
         return false;
       });
       
       //Trigger focus and blur on plan contact modals.
-      //I cannot believe this actually works.
+      //I can't believe this actually works.
       if ($('#modalContent').length) {
         $('#edit-field-job-history-und-0-field-plan-er-und-0-target-id').focus();
         $('#edit-title-field-und-0-value').focus();
