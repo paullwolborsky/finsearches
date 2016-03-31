@@ -139,7 +139,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -288,6 +288,57 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-plan-field_content_type_human_tr'
+  $field_instances['node-plan-field_content_type_human_tr'] = array(
+    'bundle' => 'plan',
+    'default_value' => array(
+      0 => array(
+        'tid' => 1048,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 69,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_content_type_human_tr',
+    'label' => 'Content Type Human',
+    'options_limit' => FALSE,
+    'options_limit_empty_behaviour' => 0,
+    'options_limit_fields' => array(),
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => 0,
+      ),
+      'type' => 'options_select',
+      'weight' => 21,
+    ),
+  );
+
   // Exported field_instance: 'node-plan-field_content_type_shortcode_tr'
   $field_instances['node-plan-field_content_type_shortcode_tr'] = array(
     'bundle' => 'plan',
@@ -330,7 +381,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'apply_chosen' => 0,
       ),
       'type' => 'options_select',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -375,7 +426,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -530,7 +581,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -707,7 +758,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 11,
     ),
   );
 
@@ -950,7 +1001,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -1042,7 +1093,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
       'module' => 'mytinytodo',
       'settings' => array(),
       'type' => 'mytinytodo_widget',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -1187,6 +1238,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
   t('Attribute');
   t('Body');
   t('Consultant Roster');
+  t('Content Type Human');
   t('Content Type Shortcode');
   t('Currency');
   t('Distribute 100 percentage points among these allocation options. Of course, the total should add up to be 100%.');

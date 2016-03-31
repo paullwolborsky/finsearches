@@ -52,7 +52,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -194,6 +194,57 @@ function fs_f_n_bt_office_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-office-field_content_type_human_tr'
+  $field_instances['node-office-field_content_type_human_tr'] = array(
+    'bundle' => 'office',
+    'default_value' => array(
+      0 => array(
+        'tid' => 1050,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 22,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_content_type_human_tr',
+    'label' => 'Content Type Human',
+    'options_limit' => FALSE,
+    'options_limit_empty_behaviour' => 0,
+    'options_limit_fields' => array(),
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => 0,
+      ),
+      'type' => 'options_select',
+      'weight' => 12,
+    ),
+  );
+
   // Exported field_instance: 'node-office-field_email'
   $field_instances['node-office-field_email'] = array(
     'bundle' => 'office',
@@ -233,7 +284,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -371,6 +422,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
   t('Address');
   t('Body');
   t('Consultant Firm');
+  t('Content Type Human');
   t('Email');
   t('Office Name');
   t('Office Type');

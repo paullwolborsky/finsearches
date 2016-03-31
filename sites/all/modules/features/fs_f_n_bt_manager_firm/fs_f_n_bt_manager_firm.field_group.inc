@@ -141,7 +141,7 @@ function fs_f_n_bt_manager_firm_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Manager Notes',
-    'weight' => '18',
+    'weight' => '3',
     'children' => array(
       0 => 'field_manager_notes_ev',
     ),

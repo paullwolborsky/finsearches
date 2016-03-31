@@ -314,7 +314,7 @@ function fs_f_n_bt_plan_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Plan Notes',
-    'weight' => '10',
+    'weight' => '9',
     'children' => array(
       0 => 'field_plan_notes_ev',
     ),

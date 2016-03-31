@@ -52,7 +52,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 
@@ -127,6 +127,57 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-manager_firm-field_content_type_human_tr'
+  $field_instances['node-manager_firm-field_content_type_human_tr'] = array(
+    'bundle' => 'manager_firm',
+    'default_value' => array(
+      0 => array(
+        'tid' => 1049,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 34,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_content_type_human_tr',
+    'label' => 'Content Type Human',
+    'options_limit' => FALSE,
+    'options_limit_empty_behaviour' => 0,
+    'options_limit_fields' => array(),
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => 0,
+      ),
+      'type' => 'options_select',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance:
   // 'node-manager_firm-field_content_type_shortcode_tr'
   $field_instances['node-manager_firm-field_content_type_shortcode_tr'] = array(
@@ -175,7 +226,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
         'apply_chosen' => 0,
       ),
       'type' => 'options_select',
-      'weight' => 18,
+      'weight' => 4,
     ),
   );
 
@@ -377,7 +428,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -536,7 +587,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
       'module' => 'mytinytodo',
       'settings' => array(),
       'type' => 'mytinytodo_widget',
-      'weight' => 15,
+      'weight' => 9,
     ),
   );
 
@@ -679,6 +730,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Address');
   t('Body');
+  t('Content Type Human');
   t('Content Type Shortcode');
   t('Email');
   t('Manager Notes');

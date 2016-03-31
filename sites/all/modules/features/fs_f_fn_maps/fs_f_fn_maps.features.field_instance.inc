@@ -132,7 +132,7 @@ function fs_f_fn_maps_field_default_field_instances() {
         ),
       ),
       'type' => 'geocoder',
-      'weight' => 4,
+      'weight' => 6,
     ),
   );
 
