@@ -1518,6 +1518,7 @@ function fs_f_fn_extra_views_views_default_views() {
   $handler->display->display_options['fields']['field_job_title']['relationship'] = 'reverse_field_plan_er_paragraphs_item';
   $handler->display->display_options['fields']['field_job_title']['element_type'] = 'span';
   $handler->display->display_options['fields']['field_job_title']['element_label_type'] = 'strong';
+  $handler->display->display_options['fields']['field_job_title']['hide_empty'] = TRUE;
   /* Field: Field: Address with phone number */
   $handler->display->display_options['fields']['field_address_data']['id'] = 'field_address_data';
   $handler->display->display_options['fields']['field_address_data']['table'] = 'field_data_field_address';
@@ -1526,6 +1527,7 @@ function fs_f_fn_extra_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_data']['label'] = '';
   $handler->display->display_options['fields']['field_address_data']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_address_data']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_address_data']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_address_data']['selected_phone_type'] = TRUE;
   /* Field: Field: Address with phone number */
   $handler->display->display_options['fields']['field_address_data_1']['id'] = 'field_address_data_1';
@@ -1543,6 +1545,7 @@ function fs_f_fn_extra_views_views_default_views() {
   $handler->display->display_options['fields']['field_email']['relationship'] = 'reverse_field_plan_er_paragraphs_item';
   $handler->display->display_options['fields']['field_email']['label'] = '';
   $handler->display->display_options['fields']['field_email']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_email']['hide_empty'] = TRUE;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -1576,14 +1579,6 @@ function fs_f_fn_extra_views_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'plan' => 'plan',
-  );
-  /* Filter criterion: Paragraphs item: Bundle */
-  $handler->display->display_options['filters']['bundle']['id'] = 'bundle';
-  $handler->display->display_options['filters']['bundle']['table'] = 'paragraphs_item';
-  $handler->display->display_options['filters']['bundle']['field'] = 'bundle';
-  $handler->display->display_options['filters']['bundle']['relationship'] = 'reverse_field_plan_er_paragraphs_item';
-  $handler->display->display_options['filters']['bundle']['value'] = array(
-    'plan_contact' => 'plan_contact',
   );
 
   /* Display: Mandate Plan EVA */
