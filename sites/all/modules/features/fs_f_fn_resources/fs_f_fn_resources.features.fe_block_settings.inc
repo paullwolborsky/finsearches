@@ -50,8 +50,7 @@ function fs_f_fn_resources_default_fe_block_settings() {
     'delta' => 'saved_filters',
     'module' => 'fin_utils',
     'node_types' => array(),
-    'pages' => 'resources
-user/*/saved-searches',
+    'pages' => 'resources',
     'roles' => array(),
     'themes' => array(
       'adaptivetheme' => array(
@@ -204,6 +203,38 @@ user*',
     ),
     'title' => '',
     'visibility' => 0,
+  );
+
+  $export['views-saved_filters-block_3'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'saved_filters-block_3',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => 'user/*/saved-searches',
+    'roles' => array(),
+    'themes' => array(
+      'adaptivetheme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'adaptivetheme',
+        'weight' => 0,
+      ),
+      'corposs' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'corposs',
+        'weight' => 0,
+      ),
+      'mix_and_match' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'mix_and_match',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
   );
 
   return $export;

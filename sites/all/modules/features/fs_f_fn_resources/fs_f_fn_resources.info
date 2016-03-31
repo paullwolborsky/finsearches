@@ -13,6 +13,7 @@ features[fe_block_settings][] = fin_utils-saved_searches
 features[fe_block_settings][] = fin_utils-subscriptions
 features[fe_block_settings][] = views-saved_filters-block_1
 features[fe_block_settings][] = views-saved_filters-block_2
+features[fe_block_settings][] = views-saved_filters-block_3
 features[features_api][] = api:2
 features[views_view][] = saved_filters
 features_exclude[dependencies][ctools] = ctools
