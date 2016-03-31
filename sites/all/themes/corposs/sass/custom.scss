@@ -146,6 +146,7 @@ $shadow: #666666;
 /********** Blocks **********/
 h3.block-title {
     font-size: 21px;
+    text-transform: capitalize;
     padding: 2px 0;
     a {
         background: none;
@@ -216,6 +217,9 @@ body {
 }
 h2.title {
     margin: 30px 0 0 0;
+}
+a.fieldset-title {
+    text-transform: capitalize;
 }
 .content legend {
 /*    margin-top: 10px;
@@ -985,8 +989,11 @@ tr.even {
     background-color: $form-item-even-blue;
     border: none;
 }
-tr.odd td.active, tr.even td.active {
-    background-color: $form-item-active-blue;
+tr.odd td.active {
+    background-color: $form-item-odd-blue;
+}
+tr.even td.active {
+    background-color: $white;   
 }
 
 /********** Accordion **********/
@@ -1103,8 +1110,10 @@ body.node-type-plan {
     background-color: $form-item-even-blue;
     border: 1px solid $background;
 }
-.privatemsg-list tr.odd td.active, tr.even td.active {
-    background-color: $form-item-active-blue;
+.privatemsg-list {
+    tr.odd td.active, tr.even td.active {
+        background-color: $form-item-active-blue;
+    }
 }
 .privatemsg-list .form-checkbox {
     margin-top: -1px;

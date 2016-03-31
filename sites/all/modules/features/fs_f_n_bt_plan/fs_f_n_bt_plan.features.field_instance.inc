@@ -151,7 +151,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'addressfield',
         'settings' => array(
           'format_handlers' => array(
@@ -163,7 +163,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 2,
+        'weight' => 66,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -441,7 +441,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'email_default',
-        'weight' => 4,
+        'weight' => 67,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1108,7 +1108,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
           ),
         ),
         'type' => 'link_label',
-        'weight' => 5,
+        'weight' => 68,
       ),
       'teaser' => array(
         'label' => 'above',

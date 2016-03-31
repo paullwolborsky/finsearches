@@ -398,6 +398,7 @@ function fs_f_fn_maps_views_default_views() {
     'filter_rewrite_values' => NULL,
   );
   $handler->display->display_options['exposed_form']['options']['input_required'] = 1;
+  $handler->display->display_options['exposed_form']['options']['text_input_required'] = 'Select any search filter and click on Apply to see results';
   $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'ip_geoloc_map';
