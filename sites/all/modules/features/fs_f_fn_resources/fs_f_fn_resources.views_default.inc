@@ -89,6 +89,12 @@ function fs_f_fn_resources_views_default_views() {
   $handler->display->display_options['fields']['created']['table'] = 'views_save';
   $handler->display->display_options['fields']['created']['field'] = 'created';
   $handler->display->display_options['fields']['created']['label'] = 'Created';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = 'Delete';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href=\'/ajax/entity-delete/views_save/[id]?destination=resources\'><i class="fa fa-trash" title=\'Delete\'></i></a>';
   /* Sort criterion: Saved view: Date created */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'views_save';
@@ -128,6 +134,43 @@ print l(\'Go to Saved Searches page\',\'user/\' . $user->uid . \'/saved-searches
 ?>';
   $handler->display->display_options['footer']['area']['format'] = 'php_code';
   $handler->display->display_options['block_description'] = 'Resources saved filters block';
+
+  /* Display: Saved Searches page block */
+  $handler = $view->new_display('block', 'Saved Searches page block', 'block_3');
+  $handler->display->display_options['defaults']['footer'] = FALSE;
+  /* Footer: Global: Text area */
+  $handler->display->display_options['footer']['area']['id'] = 'area';
+  $handler->display->display_options['footer']['area']['table'] = 'views';
+  $handler->display->display_options['footer']['area']['field'] = 'area';
+  $handler->display->display_options['footer']['area']['content'] = '<?php
+global $user;
+print l(\'Go to Saved Searches page\',\'user/\' . $user->uid . \'/saved-searches\',array());
+?>';
+  $handler->display->display_options['footer']['area']['format'] = 'php_code';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Saved view: ID */
+  $handler->display->display_options['fields']['id']['id'] = 'id';
+  $handler->display->display_options['fields']['id']['table'] = 'views_save';
+  $handler->display->display_options['fields']['id']['field'] = 'id';
+  $handler->display->display_options['fields']['id']['exclude'] = TRUE;
+  /* Field: Saved view: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'views_save';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = 'views-save/[id]';
+  /* Field: Saved view: Date created */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'views_save';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['label'] = 'Created';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = 'Delete';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href=\'/ajax/entity-delete/views_save/[id]?destination=user/%1/saved-searches\'><i class="fa fa-trash" title=\'Delete\'></i></a>';
+  $handler->display->display_options['block_description'] = 'Saved Searches saved filters block';
 
   /* Display: Sidebar Saved Filters */
   $handler = $view->new_display('block', 'Sidebar Saved Filters', 'block_2');

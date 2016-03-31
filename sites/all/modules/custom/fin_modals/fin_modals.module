@@ -131,16 +131,6 @@ function fin_modals_menu() {
     'weight' => 2,
     'page callback' => 'fin_modals_menu_callbacks',
   );
-  /*
-  $items['resources/saved-filters']  = array(
-    'type' => MENU_NORMAL_ITEM,
-    'title' => "Saved Filters",
-    'access callback' => 'user_is_logged_in',
-    'menu_name' => 'main-menu',
-    'weight' => 3,
-    'page callback' => 'fin_modals_menu_callbacks',
-  );
-  */
   $items['ajax/entity-delete/%/%'] = array(
     'page callback' => 'fin_modals_entity_delete',
     'page arguments' => array(2,3),

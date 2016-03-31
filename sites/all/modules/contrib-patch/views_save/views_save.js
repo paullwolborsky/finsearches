@@ -107,6 +107,7 @@
         $save_button.hide().after($content);
         Drupal.attachBehaviors($content, settings);
         Drupal.CTools.Modal.dismiss();
+        $('#save-search-trigger').hide();
       }
     }
 
