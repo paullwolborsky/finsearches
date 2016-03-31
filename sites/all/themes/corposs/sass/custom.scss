@@ -960,6 +960,33 @@ html.js fieldset.collapsible .fieldset-legend {
         float: left;
     }
 }
+/*** Consultant Node Contacts ***/
+#views-exposed-form-reference-views-consultant-contacts {
+    #edit-container-container-3 {
+        display: inline-block;
+        max-width: 99%;
+        text-align: center;
+        margin: 10px auto;
+    }
+    #edit-container-container-4, #edit-container-container-5 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        width: 30%;
+        background: $form-item-active-blue;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px 10px 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+}
 
 
 /********** Tables **********/
