@@ -100,6 +100,36 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_firm_info|node|consultant_firm|default';
+  $field_group->group_name = 'group_firm_info';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'consultant_firm';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Firm Info',
+    'weight' => '0',
+    'children' => array(
+      0 => 'field_email',
+      1 => 'field_website',
+      2 => 'field_status_tr',
+      3 => 'field_acronym',
+      4 => 'field_aua',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-firm-info field-group-fieldset',
+      ),
+    ),
+  );
+  $export['group_firm_info|node|consultant_firm|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_main_office|node|consultant_firm|form';
   $field_group->group_name = 'group_main_office';
   $field_group->entity_type = 'node';

@@ -250,7 +250,7 @@ function fs_f_n_bt_plan_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Plan Info',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
       0 => 'field_placement_policy_link',
       1 => 'field_plan_type_tr',

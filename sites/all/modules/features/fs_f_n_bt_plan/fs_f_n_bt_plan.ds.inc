@@ -18,7 +18,7 @@ function fs_f_n_bt_plan_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
     'plan_asset_allocation_bf' => array(
-      'weight' => '15',
+      'weight' => '9',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -36,7 +36,7 @@ function fs_f_n_bt_plan_ds_field_settings_info() {
       'format' => 'default',
     ),
     'plan_direct_consultants_bf' => array(
-      'weight' => '7',
+      'weight' => '6',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -46,7 +46,7 @@ function fs_f_n_bt_plan_ds_field_settings_info() {
       'format' => 'default',
     ),
     'plan_foia_history_bf' => array(
-      'weight' => '18',
+      'weight' => '12',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -60,8 +60,13 @@ function fs_f_n_bt_plan_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
+    'plan_node_map_bf' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'plan_notes_bf' => array(
-      'weight' => '19',
+      'weight' => '13',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -76,12 +81,12 @@ function fs_f_n_bt_plan_ds_field_settings_info() {
       'format' => 'default',
     ),
     'plan_related_news_bf' => array(
-      'weight' => '17',
+      'weight' => '11',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'modal_contact_link' => array(
-      'weight' => '6',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),

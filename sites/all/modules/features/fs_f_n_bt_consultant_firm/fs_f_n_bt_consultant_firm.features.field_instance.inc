@@ -76,7 +76,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
           'thousand_separator' => ',',
         ),
         'type' => 'number_decimal',
-        'weight' => 2,
+        'weight' => 73,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -256,7 +256,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
           ),
         ),
         'type' => 'email_default',
-        'weight' => 3,
+        'weight' => 74,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -347,7 +347,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
           ),
         ),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 0,
+        'weight' => 71,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -435,7 +435,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
           ),
         ),
         'type' => 'link_default',
-        'weight' => 4,
+        'weight' => 75,
       ),
       'teaser' => array(
         'label' => 'above',

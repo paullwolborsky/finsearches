@@ -700,7 +700,7 @@ function fs_f_fn_maps_views_default_views() {
   /* Display: Plan Node Map */
   $handler = $view->new_display('block', 'Plan Node Map', 'map_plan_node');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Map';
+  $handler->display->display_options['title'] = '<none>';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'ip_geoloc_map';
   $handler->display->display_options['style_options']['grouping'] = array(
@@ -799,7 +799,7 @@ function fs_f_fn_maps_views_default_views() {
   /* Display: Manager Node Map */
   $handler = $view->new_display('block', 'Manager Node Map', 'map_manager_node');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Map';
+  $handler->display->display_options['title'] = '<none>';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'ip_geoloc_map';
   $handler->display->display_options['style_options']['grouping'] = array(
@@ -898,7 +898,7 @@ function fs_f_fn_maps_views_default_views() {
   /* Display: Consultant Node Map */
   $handler = $view->new_display('block', 'Consultant Node Map', 'map_consultant_node');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Map';
+  $handler->display->display_options['title'] = '<none>';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'ip_geoloc_map';
   $handler->display->display_options['style_options']['grouping'] = array(

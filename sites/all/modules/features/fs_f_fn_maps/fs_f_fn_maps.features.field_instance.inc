@@ -18,15 +18,9 @@ function fs_f_fn_maps_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'geofield',
-        'settings' => array(
-          'data' => 'full',
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'geofield_wkt',
-        'weight' => 33,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 63,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -146,7 +140,7 @@ function fs_f_fn_maps_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 50,
       ),
       'teaser' => array(
         'label' => 'above',

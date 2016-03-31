@@ -108,7 +108,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 61,
+        'weight' => 62,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -225,7 +225,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 57,
+        'weight' => 58,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -262,7 +262,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 65,
+        'weight' => 66,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -301,14 +301,9 @@ function fs_f_n_bt_plan_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 69,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 72,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -354,7 +349,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 66,
+        'weight' => 69,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -400,7 +395,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 55,
+        'weight' => 56,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -484,7 +479,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 56,
+        'weight' => 57,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -521,7 +516,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 66,
+        'weight' => 68,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -558,7 +553,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 60,
+        'weight' => 61,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -704,7 +699,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 52,
+        'weight' => 55,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -779,7 +774,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 63,
+        'weight' => 64,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -822,7 +817,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 64,
+        'weight' => 65,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -859,7 +854,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 58,
+        'weight' => 59,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -943,7 +938,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 62,
+        'weight' => 63,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1071,7 +1066,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 65,
+        'weight' => 67,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1169,7 +1164,7 @@ function fs_f_n_bt_plan_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 59,
+        'weight' => 60,
       ),
       'teaser' => array(
         'label' => 'above',
