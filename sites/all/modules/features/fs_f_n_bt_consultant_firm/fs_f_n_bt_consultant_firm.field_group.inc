@@ -108,14 +108,8 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Firm Info',
-    'weight' => '0',
-    'children' => array(
-      0 => 'field_email',
-      1 => 'field_website',
-      2 => 'field_status_tr',
-      3 => 'field_acronym',
-      4 => 'field_aua',
-    ),
+    'weight' => '32',
+    'children' => array(),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'formatter' => 'collapsible',
