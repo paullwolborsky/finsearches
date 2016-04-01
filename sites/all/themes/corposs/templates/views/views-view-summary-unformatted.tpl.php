@@ -33,7 +33,7 @@
       break;
   }
 ?>
-<span class="views-summary views-summary-unformatted"><a href='<?php print $href ?>'>All</a></span>&nbsp;|&nbsp;
+<span class="views-summary views-summary-unformatted"><a href='<?php print $href ?>'>All</a></span>&nbsp;&nbsp;
 <?php foreach ($rows as $id => $row): ?>
   <?php print (!empty($options['inline']) ? '<span' : '<div') . ' class="views-summary views-summary-unformatted">'; ?>
     <?php if (!empty($row->separator)) { print $row->separator; } ?>

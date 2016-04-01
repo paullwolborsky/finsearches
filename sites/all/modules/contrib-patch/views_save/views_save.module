@@ -752,12 +752,14 @@ function views_save_form(array $form, array &$form_state, view $view, array $opt
   if ($query) {
     $uri['options']['query'] = $query;
   }
-
   // If we got here from an existing saved view, we want to edit it only if it
   // was created by the current user, or if the current user is an admin. (It
   // could also be a published view from another user.)
   if (!empty($_GET['views_save'])) {
     $save = views_save_load($_GET['views_save']);
+    if (!empty($save)) {
+      $save->view_path['path'] = $uri['path'];
+    }  
     if (!$save || ($save->uid != $user->uid && !user_access('administer views_save'))) {
       $save = NULL;
     }
@@ -774,6 +776,12 @@ function views_save_form(array $form, array &$form_state, view $view, array $opt
     );
     $save = entity_create('views_save', $properties);
   }
+  
+  $form['overwrite'] = array(
+    '#type' => 'checkbox',
+    '#title' => "Overwrite if existing?",
+    '#weight' => 20
+  );
   $form_state['entity'] = $save;
 
   if (!empty($options['help_text'])) {
@@ -785,6 +793,7 @@ function views_save_form(array $form, array &$form_state, view $view, array $opt
   }
   $form['title'] = array(
     '#type' => 'textfield',
+    '#title' => "Name",
     '#size' => 28,
     '#default_value' => $save->title,
   );
@@ -888,10 +897,16 @@ function views_save_form_submit($form, &$form_state) {
   // triggered by a normal create, but unsetting the ID won't have an effect.)
   $save = $form_state['entity'];
   if ($save->title != $form_state['values']['title']) {
+    if ($form_state['values']['overwrite']) {
+      unset($save->id);
+    }
     $save->title = $form_state['values']['title'];
-    unset($save->id);
+  } else {
+    if (!$form_state['values']['overwrite']) {
+      unset($save->id);
+    }
   }
-
+  
   // Key under which the view will be filed for an anonymous user. This serves
   // two purposes at once: it prevents single anonymous users from creating
   // saved views that would violate the (uid, bundle, title) unique constraint;
@@ -901,7 +916,7 @@ function views_save_form_submit($form, &$form_state) {
 
   // Check the unique constraint and overwrite old saved view if applicable.
   if (empty($save->id)) {
-    $sql = 'SELECT id, created FROM {views_save} WHERE uid = :uid AND bundle = :bundle AND title = :title';
+    $sql = 'SELECT id, created, title FROM {views_save} WHERE uid = :uid AND bundle = :bundle AND title = :title';
     $variables = array(
       ':uid' => $save->uid,
       ':bundle' => $save->bundle,
@@ -912,7 +927,14 @@ function views_save_form_submit($form, &$form_state) {
       // For anonymous users, we can only overwrite the previous saved view if
       // it was created by the same user.
       if ($save->uid || (!empty($_SESSION['views_save'][$session_key]) && $_SESSION['views_save'][$session_key] == $old)) {
-        $save->id = $old['id'];
+        if (!$form_state['values']['overwrite']) {
+          //Give us something to work with
+          $save->title = $form_state['values']['title'];
+          //Get a valid title
+          $save->title = _views_save_check_title($save);
+        } else {
+          $save->id = $old['id'];
+        }
         $save->created = $old['created'];
       }
       else {
@@ -933,7 +955,6 @@ function views_save_form_submit($form, &$form_state) {
   }
 
   field_attach_submit('views_save', $form_state['entity'], $form['fields'], $form_state);
-
   // Save the view. The entity is only new if we didn't set an ID at some point.
   unset($save->is_new);
   $ret = $save->save();
@@ -988,6 +1009,80 @@ function views_save_form_submit($form, &$form_state) {
   }
 }
 
+/**
+ *find the next available filename
+ */
+
+function _views_save_check_title($save) {
+  $last2 = substr($save->title, -2);
+  if (is_numeric($last2)) {
+    $core_name = substr($save->title, 0, -3);
+  } else {
+    $core_name =$save->title;
+  }
+  $sql = 'SELECT id, created, title FROM {views_save} WHERE uid = :uid AND bundle = :bundle AND title LIKE :title ORDER BY title DESC LIMIT 1';
+  $variables = array(
+    ':uid' => $save->uid,
+    ':bundle' => $save->bundle,
+    ':title' => db_like($core_name) . '%',
+  );
+  $match = db_query($sql, $variables)->fetchObject();
+  if (!empty($match->title)) {
+    $match_last2 = substr($match->title, -2);
+    if (is_numeric($match_last2)) {
+      $new = intval($match_last2);
+      $new++;
+      if ($new < 10) {
+        $new = "0" . $new;
+      }
+      $new_title = str_replace($match_last2, $new, $match->title);
+    } else {
+      $new_title = $save->title .= "-01";
+    }
+    return $new_title;
+  } else {
+    return $save->title;
+  }  
+}
+/*
+function _views_save_check_title($save, $initial = FALSE) {
+  if (!$initial) {
+    $sql = 'SELECT id, created, title FROM {views_save} WHERE uid = :uid AND bundle = :bundle AND title = :title';
+    $variables = array(
+      ':uid' => $save->uid,
+      ':bundle' => $save->bundle,
+      ':title' => $save->title,
+    );
+    $match = db_query($sql, $variables)->fetchAssoc();
+    if (empty($match->title)) {
+      return $save->title;
+    }
+  }
+  
+  //We already know there's a match
+  $last2 = substr($save->title, -2);
+  if (is_numeric($last2)) {
+    $new = intval($last2);
+    $new++;
+    if ($new < 10) {
+      $new = "0" . $new;
+    }
+    $save->title = str_replace($last2, $new, $save->title);
+    $titles = array();
+    foreach ($possibles as $possible) {
+      $titles[] = $possible['title'];
+    }
+    $save->title = str_replace($last2, $new, $save->title);
+    
+  } else {
+    $temp_title =$save->title .= "-01";
+  }
+  _views_save_check_title($save, FALSE);
+}
+
+function _views_save_check_available($test_name) {
+}
+*/
 /**
  * AJAX callback for views_save_form().
  */

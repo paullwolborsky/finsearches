@@ -112,6 +112,8 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['header']['views_save']['id'] = 'views_save';
   $handler->display->display_options['header']['views_save']['table'] = 'views';
   $handler->display->display_options['header']['views_save']['field'] = 'views_save';
+  $handler->display->display_options['header']['views_save']['format'] = 'advanced_input';
+  $handler->display->display_options['header']['views_save']['button_text'] = 'Save Search';
   /* Relationship: Content: Job History (field_job_history) */
   $handler->display->display_options['relationships']['field_job_history_value']['id'] = 'field_job_history_value';
   $handler->display->display_options['relationships']['field_job_history_value']['table'] = 'field_data_field_job_history';
@@ -745,6 +747,21 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'unformatted_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['count'] = FALSE;
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -898,6 +915,8 @@ function fs_f_fn_content_list_views_views_default_views() {
 
   /* Display: Plan Alpha Pager */
   $handler = $view->new_display('attachment', 'Plan Alpha Pager', 'attachment_1');
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'plans_list';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -911,23 +930,23 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Name (title_field) */
-  $handler->display->display_options['arguments']['title_field_value']['id'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['table'] = 'field_data_title_field';
-  $handler->display->display_options['arguments']['title_field_value']['field'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['default_action'] = 'summary';
-  $handler->display->display_options['arguments']['title_field_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['format'] = 'unformatted_summary';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['count'] = FALSE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['inline'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['separator'] = ' | ';
-  $handler->display->display_options['arguments']['title_field_value']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['glossary'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['limit'] = '1';
-  $handler->display->display_options['arguments']['title_field_value']['case'] = 'upper';
-  $handler->display->display_options['arguments']['title_field_value']['path_case'] = 'lower';
+  /* Contextual filter: Content revision: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node_revision';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_action'] = 'summary';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'unformatted_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['count'] = FALSE;
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['summary_options']['inline'] = TRUE;
+  $handler->display->display_options['arguments']['title']['summary_options']['separator'] = ' | ';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -1603,6 +1622,20 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -1744,6 +1777,8 @@ function fs_f_fn_content_list_views_views_default_views() {
 
   /* Display: Plan Contacts Alpha Pager */
   $handler = $view->new_display('attachment', 'Plan Contacts Alpha Pager', 'attachment_2');
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'plan_contacts_list';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -1768,23 +1803,23 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Name (title_field) */
-  $handler->display->display_options['arguments']['title_field_value']['id'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['table'] = 'field_data_title_field';
-  $handler->display->display_options['arguments']['title_field_value']['field'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['default_action'] = 'summary';
-  $handler->display->display_options['arguments']['title_field_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['format'] = 'unformatted_summary';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['count'] = FALSE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['inline'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['separator'] = ' | ';
-  $handler->display->display_options['arguments']['title_field_value']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['glossary'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['limit'] = '1';
-  $handler->display->display_options['arguments']['title_field_value']['case'] = 'upper';
-  $handler->display->display_options['arguments']['title_field_value']['path_case'] = 'lower';
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_action'] = 'summary';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'unformatted_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['count'] = FALSE;
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['summary_options']['inline'] = TRUE;
+  $handler->display->display_options['arguments']['title']['summary_options']['separator'] = ' | ';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['displays'] = array(
     'plan_contacts_list' => 'plan_contacts_list',
     'default' => 0,
@@ -2841,6 +2876,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -4687,6 +4723,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -5536,6 +5573,7 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -5904,6 +5942,8 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['header']['views_save']['id'] = 'views_save';
   $handler->display->display_options['header']['views_save']['table'] = 'views';
   $handler->display->display_options['header']['views_save']['field'] = 'views_save';
+  $handler->display->display_options['header']['views_save']['format'] = 'advanced_input';
+  $handler->display->display_options['header']['views_save']['button_text'] = 'Save Search';
   /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
@@ -5983,6 +6023,21 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['relationship'] = 'field_consultant_firm_er_target_id';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
@@ -6090,6 +6145,8 @@ function fs_f_fn_content_list_views_views_default_views() {
 
   /* Display: Consultants Alpha Pager */
   $handler = $view->new_display('attachment', 'Consultants Alpha Pager', 'attachment_5');
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'consultants_list';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -6098,33 +6155,30 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['table'] = 'field_data_field_consultant_firm_er';
   $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['field'] = 'field_consultant_firm_er_target_id';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Name */
-  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
-  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['relationship'] = 'field_consultant_firm_er_target_id';
-  $handler->display->display_options['fields']['title_field']['label'] = '';
-  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_consultant_firm_er_target_id';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Name (title_field) */
-  $handler->display->display_options['arguments']['title_field_value']['id'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['table'] = 'field_data_title_field';
-  $handler->display->display_options['arguments']['title_field_value']['field'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['relationship'] = 'field_consultant_firm_er_target_id';
-  $handler->display->display_options['arguments']['title_field_value']['default_action'] = 'summary';
-  $handler->display->display_options['arguments']['title_field_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['format'] = 'unformatted_summary';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['count'] = FALSE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['inline'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['separator'] = ' | ';
-  $handler->display->display_options['arguments']['title_field_value']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['glossary'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['limit'] = '1';
-  $handler->display->display_options['arguments']['title_field_value']['case'] = 'upper';
-  $handler->display->display_options['arguments']['title_field_value']['path_case'] = 'lower';
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['relationship'] = 'field_consultant_firm_er_target_id';
+  $handler->display->display_options['arguments']['title']['default_action'] = 'summary';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'unformatted_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['count'] = FALSE;
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['summary_options']['inline'] = TRUE;
+  $handler->display->display_options['arguments']['title']['summary_options']['separator'] = ' | ';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -6473,6 +6527,20 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -6559,6 +6627,8 @@ function fs_f_fn_content_list_views_views_default_views() {
 
   /* Display: Consultant Contacts Alpha Pager */
   $handler = $view->new_display('attachment', 'Consultant Contacts Alpha Pager', 'attachment_7');
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'consultant_contacts';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -6573,31 +6643,28 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['field'] = 'field_consultant_firm_er_target_id';
   $handler->display->display_options['relationships']['field_consultant_firm_er_target_id']['relationship'] = 'field_job_history_value';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Name */
-  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
-  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['label'] = '';
-  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Name (title_field) */
-  $handler->display->display_options['arguments']['title_field_value']['id'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['table'] = 'field_data_title_field';
-  $handler->display->display_options['arguments']['title_field_value']['field'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['default_action'] = 'summary';
-  $handler->display->display_options['arguments']['title_field_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['format'] = 'unformatted_summary';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['count'] = FALSE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['inline'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['separator'] = ' | ';
-  $handler->display->display_options['arguments']['title_field_value']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['glossary'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['limit'] = '1';
-  $handler->display->display_options['arguments']['title_field_value']['case'] = 'upper';
-  $handler->display->display_options['arguments']['title_field_value']['path_case'] = 'lower';
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_action'] = 'summary';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'unformatted_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['base_path'] = ' | ';
+  $handler->display->display_options['arguments']['title']['summary_options']['count'] = FALSE;
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['summary_options']['inline'] = TRUE;
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -6972,6 +7039,8 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['header']['views_save']['id'] = 'views_save';
   $handler->display->display_options['header']['views_save']['table'] = 'views';
   $handler->display->display_options['header']['views_save']['field'] = 'views_save';
+  $handler->display->display_options['header']['views_save']['format'] = 'advanced_input';
+  $handler->display->display_options['header']['views_save']['button_text'] = 'Save Search';
   /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
@@ -7082,6 +7151,20 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -7184,6 +7267,8 @@ function fs_f_fn_content_list_views_views_default_views() {
 
   /* Display: Managers Alpha Pager */
   $handler = $view->new_display('attachment', 'Managers Alpha Pager', 'attachment_4');
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'managers_list';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -7197,23 +7282,23 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Name (title_field) */
-  $handler->display->display_options['arguments']['title_field_value']['id'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['table'] = 'field_data_title_field';
-  $handler->display->display_options['arguments']['title_field_value']['field'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['default_action'] = 'summary';
-  $handler->display->display_options['arguments']['title_field_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['format'] = 'unformatted_summary';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['count'] = FALSE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['inline'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['separator'] = ' | ';
-  $handler->display->display_options['arguments']['title_field_value']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['glossary'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['limit'] = '1';
-  $handler->display->display_options['arguments']['title_field_value']['case'] = 'upper';
-  $handler->display->display_options['arguments']['title_field_value']['path_case'] = 'lower';
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_action'] = 'summary';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'unformatted_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['count'] = FALSE;
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['summary_options']['inline'] = TRUE;
+  $handler->display->display_options['arguments']['title']['summary_options']['separator'] = ' | ';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -8421,6 +8506,20 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -8581,6 +8680,8 @@ function fs_f_fn_content_list_views_views_default_views() {
 
   /* Display: News Alpha Pager */
   $handler = $view->new_display('attachment', 'News Alpha Pager', 'attachment_6');
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'news_list';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -8593,23 +8694,23 @@ function fs_f_fn_content_list_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Name (title_field) */
-  $handler->display->display_options['arguments']['title_field_value']['id'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['table'] = 'field_data_title_field';
-  $handler->display->display_options['arguments']['title_field_value']['field'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['default_action'] = 'summary';
-  $handler->display->display_options['arguments']['title_field_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['format'] = 'unformatted_summary';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['count'] = FALSE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['inline'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['separator'] = ' | ';
-  $handler->display->display_options['arguments']['title_field_value']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['glossary'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['limit'] = '1';
-  $handler->display->display_options['arguments']['title_field_value']['case'] = 'upper';
-  $handler->display->display_options['arguments']['title_field_value']['path_case'] = 'lower';
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_action'] = 'summary';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'unformatted_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['count'] = FALSE;
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['summary_options']['inline'] = TRUE;
+  $handler->display->display_options['arguments']['title']['summary_options']['separator'] = ' | ';
+  $handler->display->display_options['arguments']['title']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
+  $handler->display->display_options['arguments']['title']['limit'] = '1';
+  $handler->display->display_options['arguments']['title']['case'] = 'upper';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -9425,562 +9526,6 @@ function fs_f_fn_content_list_views_views_default_views() {
     8 => 0,
     9 => 0,
   );
-
-  /* Display: Plan Contacts - old */
-  $handler = $view->new_display('block', 'Plan Contacts - old', 'plan_contacts_list_old');
-  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
-  $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
-  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
-  $handler->display->display_options['exposed_form']['options']['bef'] = array(
-    'general' => array(
-      'allow_secondary' => 0,
-      'secondary_label' => 'Advanced options',
-      'collapsible_label' => NULL,
-      'combine_rewrite' => NULL,
-      'reset_label' => NULL,
-      'bef_filter_description' => NULL,
-      'any_label' => NULL,
-      'filter_rewrite_values' => NULL,
-    ),
-    'title_field_value_selective' => array(
-      'bef_format' => 'default',
-      'more_options' => array(
-        'bef_select_all_none' => 0,
-        'bef_collapsible' => 0,
-        'is_secondary' => 0,
-        'any_label' => '',
-        'bef_filter_description' => '',
-        'tokens' => array(
-          'available' => array(
-            0 => 'global_types',
-            'secondary_label' => NULL,
-            'collapsible_label' => NULL,
-            'combine_rewrite' => NULL,
-            'reset_label' => NULL,
-            'bef_filter_description' => NULL,
-            'any_label' => NULL,
-            'filter_rewrite_values' => NULL,
-          ),
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-          'filter_rewrite_values' => NULL,
-        ),
-        'rewrite' => array(
-          'filter_rewrite_values' => '',
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-        ),
-        'secondary_label' => NULL,
-        'collapsible_label' => NULL,
-        'combine_rewrite' => NULL,
-        'reset_label' => NULL,
-        'filter_rewrite_values' => NULL,
-      ),
-      'secondary_label' => NULL,
-      'collapsible_label' => NULL,
-      'combine_rewrite' => NULL,
-      'reset_label' => NULL,
-      'bef_filter_description' => NULL,
-      'any_label' => NULL,
-      'filter_rewrite_values' => NULL,
-    ),
-    'field_address_locality' => array(
-      'bef_format' => 'default',
-      'more_options' => array(
-        'is_secondary' => 0,
-        'any_label' => '',
-        'bef_filter_description' => '',
-        'tokens' => array(
-          'available' => array(
-            0 => 'global_types',
-            'secondary_label' => NULL,
-            'collapsible_label' => NULL,
-            'combine_rewrite' => NULL,
-            'reset_label' => NULL,
-            'bef_filter_description' => NULL,
-            'any_label' => NULL,
-            'filter_rewrite_values' => NULL,
-          ),
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-          'filter_rewrite_values' => NULL,
-        ),
-        'rewrite' => array(
-          'filter_rewrite_values' => '',
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-        ),
-        'secondary_label' => NULL,
-        'collapsible_label' => NULL,
-        'combine_rewrite' => NULL,
-        'reset_label' => NULL,
-        'filter_rewrite_values' => NULL,
-      ),
-      'secondary_label' => NULL,
-      'collapsible_label' => NULL,
-      'combine_rewrite' => NULL,
-      'reset_label' => NULL,
-      'bef_filter_description' => NULL,
-      'any_label' => NULL,
-      'filter_rewrite_values' => NULL,
-    ),
-    'field_address_administrative_area' => array(
-      'bef_format' => 'default',
-      'more_options' => array(
-        'is_secondary' => 0,
-        'any_label' => '',
-        'bef_filter_description' => '',
-        'tokens' => array(
-          'available' => array(
-            0 => 'global_types',
-            'secondary_label' => NULL,
-            'collapsible_label' => NULL,
-            'combine_rewrite' => NULL,
-            'reset_label' => NULL,
-            'bef_filter_description' => NULL,
-            'any_label' => NULL,
-            'filter_rewrite_values' => NULL,
-          ),
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-          'filter_rewrite_values' => NULL,
-        ),
-        'rewrite' => array(
-          'filter_rewrite_values' => '',
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-        ),
-        'secondary_label' => NULL,
-        'collapsible_label' => NULL,
-        'combine_rewrite' => NULL,
-        'reset_label' => NULL,
-        'filter_rewrite_values' => NULL,
-      ),
-      'secondary_label' => NULL,
-      'collapsible_label' => NULL,
-      'combine_rewrite' => NULL,
-      'reset_label' => NULL,
-      'bef_filter_description' => NULL,
-      'any_label' => NULL,
-      'filter_rewrite_values' => NULL,
-    ),
-    'field_plan_type_tr_tid' => array(
-      'bef_format' => 'default',
-      'more_options' => array(
-        'bef_select_all_none' => 0,
-        'bef_collapsible' => 0,
-        'is_secondary' => 0,
-        'any_label' => '',
-        'bef_filter_description' => '',
-        'tokens' => array(
-          'available' => array(
-            0 => 'global_types',
-            1 => 'vocabulary',
-            'secondary_label' => NULL,
-            'collapsible_label' => NULL,
-            'combine_rewrite' => NULL,
-            'reset_label' => NULL,
-            'bef_filter_description' => NULL,
-            'any_label' => NULL,
-            'filter_rewrite_values' => NULL,
-          ),
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-          'filter_rewrite_values' => NULL,
-        ),
-        'rewrite' => array(
-          'filter_rewrite_values' => '',
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-        ),
-        'secondary_label' => NULL,
-        'collapsible_label' => NULL,
-        'combine_rewrite' => NULL,
-        'reset_label' => NULL,
-        'filter_rewrite_values' => NULL,
-      ),
-      'secondary_label' => NULL,
-      'collapsible_label' => NULL,
-      'combine_rewrite' => NULL,
-      'reset_label' => NULL,
-      'bef_filter_description' => NULL,
-      'any_label' => NULL,
-      'filter_rewrite_values' => NULL,
-    ),
-    'secondary_label' => NULL,
-    'collapsible_label' => NULL,
-    'combine_rewrite' => NULL,
-    'reset_label' => NULL,
-    'bef_filter_description' => NULL,
-    'any_label' => NULL,
-    'filter_rewrite_values' => NULL,
-  );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'advanced_input';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'nid' => 'nid',
-    'title_field' => 'title_field',
-    'field_plan_er' => 'field_plan_er',
-    'field_job_title' => 'field_job_title',
-    'field_address_data' => 'field_address_data',
-    'field_address_data_2' => 'field_address_data',
-    'field_email' => 'field_email',
-    'edit_node' => 'edit_node',
-    'delete_node' => 'edit_node',
-  );
-  $handler->display->display_options['style_options']['default'] = 'title_field';
-  $handler->display->display_options['style_options']['info'] = array(
-    'nid' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'title_field' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_plan_er' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_job_title' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_address_data' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_address_data_2' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_email' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'edit_node' => array(
-      'align' => 'views-align-center',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'delete_node' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-  );
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['header'] = FALSE;
-  $handler->display->display_options['defaults']['footer'] = FALSE;
-  /* Footer: Global: Save */
-  $handler->display->display_options['footer']['views_save']['id'] = 'views_save';
-  $handler->display->display_options['footer']['views_save']['table'] = 'views';
-  $handler->display->display_options['footer']['views_save']['field'] = 'views_save';
-  $handler->display->display_options['footer']['views_save']['format'] = 'advanced_input';
-  $handler->display->display_options['footer']['views_save']['button_text'] = 'Save View';
-  $handler->display->display_options['defaults']['empty'] = FALSE;
-  $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: Job History (field_job_history) */
-  $handler->display->display_options['relationships']['field_job_history_value']['id'] = 'field_job_history_value';
-  $handler->display->display_options['relationships']['field_job_history_value']['table'] = 'field_data_field_job_history';
-  $handler->display->display_options['relationships']['field_job_history_value']['field'] = 'field_job_history_value';
-  $handler->display->display_options['relationships']['field_job_history_value']['delta'] = '-1';
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_plan_er_target_id']['id'] = 'field_plan_er_target_id';
-  $handler->display->display_options['relationships']['field_plan_er_target_id']['table'] = 'field_data_field_plan_er';
-  $handler->display->display_options['relationships']['field_plan_er_target_id']['field'] = 'field_plan_er_target_id';
-  $handler->display->display_options['relationships']['field_plan_er_target_id']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Name */
-  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
-  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['label'] = 'Contact';
-  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
-  /* Field: Field: Plan */
-  $handler->display->display_options['fields']['field_plan_er']['id'] = 'field_plan_er';
-  $handler->display->display_options['fields']['field_plan_er']['table'] = 'field_data_field_plan_er';
-  $handler->display->display_options['fields']['field_plan_er']['field'] = 'field_plan_er';
-  $handler->display->display_options['fields']['field_plan_er']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['fields']['field_plan_er']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_plan_er']['settings'] = array(
-    'link' => 1,
-  );
-  /* Field: Content: Latest Plan Types */
-  $handler->display->display_options['fields']['field_plan_type_tr']['id'] = 'field_plan_type_tr';
-  $handler->display->display_options['fields']['field_plan_type_tr']['table'] = 'field_data_field_plan_type_tr';
-  $handler->display->display_options['fields']['field_plan_type_tr']['field'] = 'field_plan_type_tr';
-  $handler->display->display_options['fields']['field_plan_type_tr']['relationship'] = 'field_plan_er_target_id';
-  $handler->display->display_options['fields']['field_plan_type_tr']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_plan_type_tr']['element_label_colon'] = FALSE;
-  /* Field: Field: Job Title */
-  $handler->display->display_options['fields']['field_job_title']['id'] = 'field_job_title';
-  $handler->display->display_options['fields']['field_job_title']['table'] = 'field_data_field_job_title';
-  $handler->display->display_options['fields']['field_job_title']['field'] = 'field_job_title';
-  $handler->display->display_options['fields']['field_job_title']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['fields']['field_job_title']['element_label_colon'] = FALSE;
-  /* Field: Field: Address - Locality (i.e. City) */
-  $handler->display->display_options['fields']['field_address_locality']['id'] = 'field_address_locality';
-  $handler->display->display_options['fields']['field_address_locality']['table'] = 'field_data_field_address';
-  $handler->display->display_options['fields']['field_address_locality']['field'] = 'field_address_locality';
-  $handler->display->display_options['fields']['field_address_locality']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['fields']['field_address_locality']['label'] = 'City';
-  $handler->display->display_options['fields']['field_address_locality']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_address_locality']['element_label_colon'] = FALSE;
-  /* Field: Field: Address - Administrative area (i.e. State / Province) */
-  $handler->display->display_options['fields']['field_address_administrative_area']['id'] = 'field_address_administrative_area';
-  $handler->display->display_options['fields']['field_address_administrative_area']['table'] = 'field_data_field_address';
-  $handler->display->display_options['fields']['field_address_administrative_area']['field'] = 'field_address_administrative_area';
-  $handler->display->display_options['fields']['field_address_administrative_area']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['fields']['field_address_administrative_area']['label'] = '';
-  $handler->display->display_options['fields']['field_address_administrative_area']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_address_administrative_area']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_address_administrative_area']['display_name'] = 1;
-  /* Field: Field: Address with phone number */
-  $handler->display->display_options['fields']['field_address_data']['id'] = 'field_address_data';
-  $handler->display->display_options['fields']['field_address_data']['table'] = 'field_data_field_address';
-  $handler->display->display_options['fields']['field_address_data']['field'] = 'field_address_data';
-  $handler->display->display_options['fields']['field_address_data']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['fields']['field_address_data']['label'] = 'Phone';
-  $handler->display->display_options['fields']['field_address_data']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_address_data']['selected_phone_type'] = TRUE;
-  /* Field: Field: Address with phone number */
-  $handler->display->display_options['fields']['field_address_data_2']['id'] = 'field_address_data_2';
-  $handler->display->display_options['fields']['field_address_data_2']['table'] = 'field_data_field_address';
-  $handler->display->display_options['fields']['field_address_data_2']['field'] = 'field_address_data';
-  $handler->display->display_options['fields']['field_address_data_2']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['fields']['field_address_data_2']['label'] = 'Extension';
-  $handler->display->display_options['fields']['field_address_data_2']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_address_data_2']['alter']['text'] = ' x[field_address_data_2]';
-  $handler->display->display_options['fields']['field_address_data_2']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_address_data_2']['selected_phone_type'] = TRUE;
-  /* Field: Field: Email */
-  $handler->display->display_options['fields']['field_email']['id'] = 'field_email';
-  $handler->display->display_options['fields']['field_email']['table'] = 'field_data_field_email';
-  $handler->display->display_options['fields']['field_email']['field'] = 'field_email';
-  $handler->display->display_options['fields']['field_email']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['fields']['field_email']['element_label_colon'] = FALSE;
-  /* Field: Content: Edit link */
-  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
-  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['edit_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['text'] = '<i class="fa fa-pencil" title=\'Edit\'></i>';
-  /* Field: Content: Delete link */
-  $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
-  $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
-  $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
-  $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['delete_node']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['text'] = '<i class="fa fa-trash" title=\'Delete\'></i>';
-  $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Name (title_field) */
-  $handler->display->display_options['arguments']['title_field_value']['id'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['table'] = 'field_data_title_field';
-  $handler->display->display_options['arguments']['title_field_value']['field'] = 'title_field_value';
-  $handler->display->display_options['arguments']['title_field_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['title_field_value']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['title_field_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['title_field_value']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['validate']['fail'] = 'empty';
-  $handler->display->display_options['arguments']['title_field_value']['glossary'] = TRUE;
-  $handler->display->display_options['arguments']['title_field_value']['limit'] = '1';
-  $handler->display->display_options['arguments']['title_field_value']['case'] = 'upper';
-  $handler->display->display_options['arguments']['title_field_value']['path_case'] = 'lower';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'contact' => 'contact',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Paragraphs item: Bundle */
-  $handler->display->display_options['filters']['bundle']['id'] = 'bundle';
-  $handler->display->display_options['filters']['bundle']['table'] = 'paragraphs_item';
-  $handler->display->display_options['filters']['bundle']['field'] = 'bundle';
-  $handler->display->display_options['filters']['bundle']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['filters']['bundle']['value'] = array(
-    'plan_contact' => 'plan_contact',
-  );
-  $handler->display->display_options['filters']['bundle']['group'] = 1;
-  /* Filter criterion: Paragraphs item: Lead Plan Contact? (field_lead_plan_contact) */
-  $handler->display->display_options['filters']['field_lead_plan_contact_value']['id'] = 'field_lead_plan_contact_value';
-  $handler->display->display_options['filters']['field_lead_plan_contact_value']['table'] = 'field_data_field_lead_plan_contact';
-  $handler->display->display_options['filters']['field_lead_plan_contact_value']['field'] = 'field_lead_plan_contact_value';
-  $handler->display->display_options['filters']['field_lead_plan_contact_value']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['filters']['field_lead_plan_contact_value']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_lead_plan_contact_value']['group'] = 1;
-  /* Filter criterion: Name (title_field) (selective) */
-  $handler->display->display_options['filters']['title_field_value_selective']['id'] = 'title_field_value_selective';
-  $handler->display->display_options['filters']['title_field_value_selective']['table'] = 'field_data_title_field';
-  $handler->display->display_options['filters']['title_field_value_selective']['field'] = 'title_field_value_selective';
-  $handler->display->display_options['filters']['title_field_value_selective']['ui_name'] = 'Name (title_field) (selective)';
-  $handler->display->display_options['filters']['title_field_value_selective']['group'] = 1;
-  $handler->display->display_options['filters']['title_field_value_selective']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['title_field_value_selective']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['title_field_value_selective']['expose']['label'] = 'Contact';
-  $handler->display->display_options['filters']['title_field_value_selective']['expose']['identifier'] = 'title_field_value_selective';
-  $handler->display->display_options['filters']['title_field_value_selective']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['title_field_value_selective']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['title_field_value_selective']['expose']['remember_roles'] = array(
-    2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    1 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-  );
-  $handler->display->display_options['filters']['title_field_value_selective']['selective_display_field'] = 'title_field';
-  $handler->display->display_options['filters']['title_field_value_selective']['selective_items_limit'] = '100';
-  /* Filter criterion: Field: Address - Locality (i.e. City) */
-  $handler->display->display_options['filters']['field_address_locality']['id'] = 'field_address_locality';
-  $handler->display->display_options['filters']['field_address_locality']['table'] = 'field_data_field_address';
-  $handler->display->display_options['filters']['field_address_locality']['field'] = 'field_address_locality';
-  $handler->display->display_options['filters']['field_address_locality']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['filters']['field_address_locality']['group'] = 1;
-  $handler->display->display_options['filters']['field_address_locality']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_address_locality']['expose']['operator_id'] = 'field_address_locality_op';
-  $handler->display->display_options['filters']['field_address_locality']['expose']['label'] = 'City';
-  $handler->display->display_options['filters']['field_address_locality']['expose']['operator'] = 'field_address_locality_op';
-  $handler->display->display_options['filters']['field_address_locality']['expose']['identifier'] = 'field_address_locality';
-  $handler->display->display_options['filters']['field_address_locality']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_address_locality']['expose']['remember_roles'] = array(
-    2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    1 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-  );
-  /* Filter criterion: Field: Address - Administrative area (i.e. State / Province) */
-  $handler->display->display_options['filters']['field_address_administrative_area']['id'] = 'field_address_administrative_area';
-  $handler->display->display_options['filters']['field_address_administrative_area']['table'] = 'field_data_field_address';
-  $handler->display->display_options['filters']['field_address_administrative_area']['field'] = 'field_address_administrative_area';
-  $handler->display->display_options['filters']['field_address_administrative_area']['relationship'] = 'field_job_history_value';
-  $handler->display->display_options['filters']['field_address_administrative_area']['group'] = 1;
-  $handler->display->display_options['filters']['field_address_administrative_area']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['operator_id'] = 'field_address_administrative_area_op';
-  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['label'] = 'State';
-  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['operator'] = 'field_address_administrative_area_op';
-  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['identifier'] = 'field_address_administrative_area';
-  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_address_administrative_area']['expose']['remember_roles'] = array(
-    2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    1 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-  );
-  /* Filter criterion: Content: Latest Plan Types (field_plan_type_tr) */
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['id'] = 'field_plan_type_tr_tid';
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['table'] = 'field_data_field_plan_type_tr';
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['field'] = 'field_plan_type_tr_tid';
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['relationship'] = 'field_plan_er_target_id';
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['operator_id'] = 'field_plan_type_tr_tid_op';
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['label'] = 'Plan Type';
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['operator'] = 'field_plan_type_tr_tid_op';
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['identifier'] = 'field_plan_type_tr_tid';
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    1 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-  );
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_plan_type_tr_tid']['vocabulary'] = 'plan_types';
 
   /* Display: Mandates - old */
   $handler = $view->new_display('block', 'Mandates - old', 'mandates_list_old');
