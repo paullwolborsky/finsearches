@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * fs_f_fc_inv_mgr_rsch.features.field_base.inc
+ * fs_f_fc_bt_inv_mgr_rsch.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function fs_f_fc_inv_mgr_rsch_field_default_field_bases() {
+function fs_f_fc_bt_inv_mgr_rsch_field_default_field_bases() {
   $field_bases = array();
 
   // Exported field_base: 'field_asset_class_tr'

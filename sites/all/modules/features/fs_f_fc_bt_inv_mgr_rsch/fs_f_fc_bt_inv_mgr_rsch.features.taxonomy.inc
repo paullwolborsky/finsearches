@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * fs_f_fc_inv_mgr_rsch.features.taxonomy.inc
+ * fs_f_fc_bt_inv_mgr_rsch.features.taxonomy.inc
  */
 
 /**
  * Implements hook_taxonomy_default_vocabularies().
  */
-function fs_f_fc_inv_mgr_rsch_taxonomy_default_vocabularies() {
+function fs_f_fc_bt_inv_mgr_rsch_taxonomy_default_vocabularies() {
   return array(
     'asset_classes' => array(
       'name' => 'Asset Classes',

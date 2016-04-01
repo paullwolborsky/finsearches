@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * fs_f_fc_inv_mgr_rsch.ds.inc
+ * fs_f_fc_bt_inv_mgr_rsch.ds.inc
  */
 
 /**
  * Implements hook_ds_layout_settings_info().
  */
-function fs_f_fc_inv_mgr_rsch_ds_layout_settings_info() {
+function fs_f_fc_bt_inv_mgr_rsch_ds_layout_settings_info() {
   $export = array();
 
   $ds_layout = new stdClass();

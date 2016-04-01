@@ -1,4 +1,4 @@
-name = fs_f_fc_inv_mgr_rsch
+name = fs_f_fc_bt_inv_mgr_rsch
 core = 7.x
 package = Custom
 dependencies[] = ctools

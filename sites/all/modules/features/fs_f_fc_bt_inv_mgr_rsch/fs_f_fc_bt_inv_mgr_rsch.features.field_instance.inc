@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * fs_f_fc_inv_mgr_rsch.features.field_instance.inc
+ * fs_f_fc_bt_inv_mgr_rsch.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function fs_f_fc_inv_mgr_rsch_field_default_field_instances() {
+function fs_f_fc_bt_inv_mgr_rsch_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:

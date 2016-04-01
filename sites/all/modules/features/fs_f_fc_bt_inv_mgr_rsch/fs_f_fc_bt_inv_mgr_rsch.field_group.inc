@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * fs_f_fc_inv_mgr_rsch.field_group.inc
+ * fs_f_fc_bt_inv_mgr_rsch.field_group.inc
  */
 
 /**
  * Implements hook_field_group_info().
  */
-function fs_f_fc_inv_mgr_rsch_field_group_info() {
+function fs_f_fc_bt_inv_mgr_rsch_field_group_info() {
   $export = array();
 
   $field_group = new stdClass();

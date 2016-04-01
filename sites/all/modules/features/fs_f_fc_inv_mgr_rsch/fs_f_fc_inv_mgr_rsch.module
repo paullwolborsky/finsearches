@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the fs_f_fc_inv_mgr_rsch feature.
- */
-
-include_once 'fs_f_fc_inv_mgr_rsch.features.inc';
