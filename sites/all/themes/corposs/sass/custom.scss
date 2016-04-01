@@ -967,6 +967,9 @@ html.js fieldset.collapsible .fieldset-legend {
         max-width: 99%;
         text-align: center;
         margin: 10px auto;
+        .fieldset-wrapper {
+            width:80%;
+        }
     }
     #edit-container-container-4 {
         display: inline-block;
@@ -990,7 +993,6 @@ html.js fieldset.collapsible .fieldset-legend {
     #edit-container-container-5 {
         display: inline-block;
         text-align: center;
-        float: left;
         vertical-align: top;
         width: 50%;
         min-width: 30%;
