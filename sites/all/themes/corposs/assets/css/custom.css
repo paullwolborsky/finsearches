@@ -1367,30 +1367,30 @@ html.js fieldset.collapsible .fieldset-legend {
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-4 {
   display: inline-block;
   text-align: center;
-  float: left;
   vertical-align: top;
   width: 30%;
   margin: 0;
   background: #d4e2fe;
 }
-/* line 979, ../../sass/custom.scss */
+/* line 978, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-4 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 983, ../../sass/custom.scss */
+/* line 982, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-4 .fieldset-wrapper {
   padding: 0 10px 10px 10px;
 }
-/* line 986, ../../sass/custom.scss */
+/* line 985, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-4 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 991, ../../sass/custom.scss */
+/* line 990, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-5 {
   display: inline-block;
   text-align: center;
+  float: left;
   vertical-align: top;
   width: 50%;
   min-width: 30%;
