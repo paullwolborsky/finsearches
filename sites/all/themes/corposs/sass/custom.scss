@@ -191,12 +191,25 @@ span.fieldset-legend {
 }
 .field-name-plan-new-leads-mandates-bf .block-views {
     margin: 5px 0 0 0;
-}.field-name-plan-ongoing-mandates-bf .block-views {
+}
+.field-name-plan-ongoing-mandates-bf .block-views {
     margin: 5px 0 0 0;
-}.field-name-plan-completed-mandates-bf .block-views {
+}
+.field-name-plan-completed-mandates-bf .block-views {
     margin: 5px 0 0 0;
-}.field-name-plan-closed-mandates-bf .block-views {
+}
+.field-name-plan-closed-mandates-bf .block-views {
     margin: 5px 0 0 0;
+}
+.field-name-consultant-main-office-bf {
+    .content {
+        background: $form-background-blue;
+    }
+}
+.node-type-plan, .node-type-manager-firm, .node-type-consultant-firm {    
+    .ds-above-right {
+        padding: 0;
+    }
 }
 
 /********** Content **********/
