@@ -961,18 +961,16 @@ html.js fieldset.collapsible .fieldset-legend {
     }
 }
 /*** Consultant Node Contacts ***/
-#views-exposed-form-reference-views-consultant-contacts {
+#views-exposed-form-reference-views-consultant-contacts, #views-exposed-form-reference-views-consultant-imr-contacts {
     #edit-container-container-3 {
         display: inline-block;
-        width: 90%;
+        width: 60%;
         text-align: center;
         margin: 10px auto;
-        .fieldset-wrapper {
     }
     #edit-container-container-4 {
         display: inline-block;
         text-align: center;
-        vertical-align: top;
         width: 30%;
         margin: 0;
         background: $form-item-active-blue;
@@ -991,8 +989,8 @@ html.js fieldset.collapsible .fieldset-legend {
     #edit-container-container-5 {
         display: inline-block;
         text-align: center;
-        vertical-align: top;
-        width: 50%;
+        vertical-align: middle;
+        width: 40%;
         min-width: 30%;
         margin: 0;
         background: none;
