@@ -10,6 +10,31 @@
 function fs_f_n_bt_manager_firm_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'field_acronym'
+  $field_bases['field_acronym'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_acronym',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_manager_notes_ev'
   $field_bases['field_manager_notes_ev'] = array(
     'active' => 1,
