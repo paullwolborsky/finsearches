@@ -83,7 +83,6 @@
           var total = 0;
           $currentBlock.find(".field-type-number-decimal input").each(function(){
             if ($(this).val() != 0) {
-              console.log(total);
               total = total + parseFloat($(this).val());
             }
           });

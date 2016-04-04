@@ -64,7 +64,6 @@
             endDate.setMonth(3);
             lastDay = endDate.setDate(0);
             endDate.setMonth(2);
-            console.log(endDate, "endDate");
             break;
           case '2nd Quarter':
             startDate.setMonth(3);
@@ -73,7 +72,6 @@
             endDate.setMonth(6);
             lastDay = endDate.setDate(0);
             endDate.setMonth(5);
-            console.log(endDate, "endDate");
             break;
           case '3rd Quarter':
             startDate.setMonth(6);
@@ -82,7 +80,6 @@
             endDate.setMonth(10);
             lastDay = endDate.setDate(0);
             endDate.setMonth(9);
-            console.log(endDate, "endDate");
             break;
           case '4th Quarter':
             startDate.setMonth(9);
@@ -91,11 +88,9 @@
             endDate.setMonth(12);
             lastDay = endDate.setDate(0);
             endDate.setMonth(11);
-            console.log(endDate, "endDate");
             break;
         }
         output = [getShortDateString(startDate), getShortDateString(endDate)];
-        console.log(output, "output");
         return output;
       }
       
