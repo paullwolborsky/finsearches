@@ -51,7 +51,7 @@ function fs_f_fc_bt_manager_roster_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 4,
+      'weight' => 2,
     ),
   );
 
@@ -133,7 +133,7 @@ function fs_f_fc_bt_manager_roster_field_default_field_instances() {
       'module' => 'hs_taxonomy',
       'settings' => array(),
       'type' => 'taxonomy_hs',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -195,12 +195,162 @@ function fs_f_fc_bt_manager_roster_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'field_collection_item-field_manager_roster_fc-field_old_major_style'
+  $field_instances['field_collection_item-field_manager_roster_fc-field_old_major_style'] = array(
+    'bundle' => 'field_manager_roster_fc',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_old_major_style',
+    'label' => 'Old Major Style',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'advanced_input' => 'advanced_input',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'advanced_input' => array(
+              'weight' => -10,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -8,
+            ),
+            'full_html' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => -6,
+            ),
+            'plain_text' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_manager_roster_fc-field_old_minor_style'
+  $field_instances['field_collection_item-field_manager_roster_fc-field_old_minor_style'] = array(
+    'bundle' => 'field_manager_roster_fc',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_old_minor_style',
+    'label' => 'Old Minor Style',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'advanced_input' => 'advanced_input',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'advanced_input' => array(
+              'weight' => -10,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -8,
+            ),
+            'full_html' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => -6,
+            ),
+            'plain_text' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 5,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Amount');
   t('Geographic');
   t('Major/Minor Style');
   t('Manager Firm');
+  t('Old Major Style');
+  t('Old Minor Style');
 
   return $field_instances;
 }

@@ -240,67 +240,49 @@ function fs_f_n_bt_consultant_firm_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
-  $ds_layout->id = 'node|consultant_firm|form';
+  $ds_layout->id = 'node|consultant_firm|default';
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'consultant_firm';
-  $ds_layout->view_mode = 'form';
+  $ds_layout->view_mode = 'default';
   $ds_layout->layout = 'two_column_bricks';
   $ds_layout->settings = array(
     'regions' => array(
       'above_left' => array(
-        0 => 'title_field',
-        1 => 'group_consultant_info',
-        3 => 'field_status_tr',
-        5 => 'field_acronym',
-        7 => 'field_email',
-        8 => 'field_website',
+        0 => 'consultant_main_office_bf',
+        1 => 'modal_office_link',
       ),
       'above_right' => array(
-        2 => 'group_aua',
-        4 => 'field_aua',
+        2 => 'consultant_node_map_bf',
       ),
-      'below_left' => array(
-        6 => 'group_main_office',
-        17 => 'field_main_office_ev',
-      ),
-      'below_right' => array(
-        9 => 'group_branch_offices',
-        12 => 'field_branch_offices_ev',
+      'middle' => array(
+        3 => 'consultant_branch_offices_bf',
       ),
       'footer' => array(
-        10 => 'field_consultant_contacts_embed',
-        11 => 'field_content_type_shortcode_tr',
-      ),
-      'hidden' => array(
-        13 => 'body',
-        14 => 'path',
-        15 => 'field_tasks',
-        16 => 'field_wuin',
-        18 => 'field_legendid',
-        19 => '_add_existing_field',
+        4 => 'modal_mandate_link',
+        5 => 'modal_plan_link',
+        6 => 'consultant_plan_managers_bf',
+        7 => 'consultant_plans_bf',
+        8 => 'consultant_mandate_managers_bf',
+        9 => 'consultant_contacts_bf',
+        10 => 'consultant_imr_contacts_bf',
+        11 => 'modal_contact_link',
+        12 => 'consultant_mandates_bf',
       ),
     ),
     'fields' => array(
-      'title_field' => 'above_left',
-      'group_consultant_info' => 'above_left',
-      'group_aua' => 'above_right',
-      'field_status_tr' => 'above_left',
-      'field_aua' => 'above_right',
-      'field_acronym' => 'above_left',
-      'group_main_office' => 'below_left',
-      'field_email' => 'above_left',
-      'field_website' => 'above_left',
-      'group_branch_offices' => 'below_right',
-      'field_consultant_contacts_embed' => 'footer',
-      'field_content_type_shortcode_tr' => 'footer',
-      'field_branch_offices_ev' => 'below_right',
-      'body' => 'hidden',
-      'path' => 'hidden',
-      'field_tasks' => 'hidden',
-      'field_wuin' => 'hidden',
-      'field_main_office_ev' => 'below_left',
-      'field_legendid' => 'hidden',
-      '_add_existing_field' => 'hidden',
+      'consultant_main_office_bf' => 'above_left',
+      'modal_office_link' => 'above_left',
+      'consultant_node_map_bf' => 'above_right',
+      'consultant_branch_offices_bf' => 'middle',
+      'modal_mandate_link' => 'footer',
+      'modal_plan_link' => 'footer',
+      'consultant_plan_managers_bf' => 'footer',
+      'consultant_plans_bf' => 'footer',
+      'consultant_mandate_managers_bf' => 'footer',
+      'consultant_contacts_bf' => 'footer',
+      'consultant_imr_contacts_bf' => 'footer',
+      'modal_contact_link' => 'footer',
+      'consultant_mandates_bf' => 'footer',
     ),
     'classes' => array(
       'layout_class' => array(
@@ -323,7 +305,7 @@ function fs_f_n_bt_consultant_firm_ds_layout_settings_info() {
     'layout_link_custom' => '',
     'layout_disable_css' => 0,
   );
-  $export['node|consultant_firm|form'] = $ds_layout;
+  $export['node|consultant_firm|default'] = $ds_layout;
 
   return $export;
 }

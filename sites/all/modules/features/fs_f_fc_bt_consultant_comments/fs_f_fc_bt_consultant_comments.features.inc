@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * fs_f_n_bt_manager_firm.features.inc
+ * fs_f_fc_bt_consultant_comments.features.inc
  */
 
 /**
  * Implements hook_ctools_plugin_api().
  */
-function fs_f_n_bt_manager_firm_ctools_plugin_api($module = NULL, $api = NULL) {
+function fs_f_fc_bt_consultant_comments_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "ds" && $api == "ds") {
     return array("version" => "1");
   }

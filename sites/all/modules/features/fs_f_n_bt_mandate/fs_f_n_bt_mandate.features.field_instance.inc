@@ -10,6 +10,51 @@
 function fs_f_n_bt_mandate_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance:
+  // 'field_collection_item-field_mandate_comments_fc-field_author_ur'
+  $field_instances['field_collection_item-field_mandate_comments_fc-field_author_ur'] = array(
+    'bundle' => 'field_mandate_comments_fc',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'user_reference',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'user_reference_default',
+        'weight' => 5,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_author_ur',
+    'label' => 'Author',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'user_reference',
+      'settings' => array(
+        'autocomplete_match' => 'contains',
+        'autocomplete_path' => 'user_reference/autocomplete',
+        'references_dialog_add' => 0,
+        'references_dialog_edit' => 0,
+        'references_dialog_search' => 0,
+        'references_dialog_search_view' => '',
+        'size' => 60,
+      ),
+      'type' => 'user_reference_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'node-mandate-body'
   $field_instances['node-mandate-body'] = array(
     'bundle' => 'mandate',
@@ -659,6 +704,80 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-mandate-field_legendid'
+  $field_instances['node-mandate-field_legendid'] = array(
+    'bundle' => 'mandate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 77,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_legendid',
+    'label' => 'legendid',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'advanced_input' => 'advanced_input',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'advanced_input' => array(
+              'weight' => -10,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -8,
+            ),
+            'full_html' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => -6,
+            ),
+            'plain_text' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 78,
+    ),
+  );
+
   // Exported field_instance: 'node-mandate-field_major_minor_style_tr'
   $field_instances['node-mandate-field_major_minor_style_tr'] = array(
     'bundle' => 'mandate',
@@ -1100,6 +1219,80 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-mandate-field_old_major_style'
+  $field_instances['node-mandate-field_old_major_style'] = array(
+    'bundle' => 'mandate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 78,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_old_major_style',
+    'label' => 'Old Major Style',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'advanced_input' => 'advanced_input',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'advanced_input' => array(
+              'weight' => -10,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -8,
+            ),
+            'full_html' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => -6,
+            ),
+            'plain_text' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 79,
+    ),
+  );
+
   // Exported field_instance: 'node-mandate-field_old_mandate_id'
   $field_instances['node-mandate-field_old_mandate_id'] = array(
     'bundle' => 'mandate',
@@ -1171,6 +1364,80 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 15,
+    ),
+  );
+
+  // Exported field_instance: 'node-mandate-field_old_minor_style'
+  $field_instances['node-mandate-field_old_minor_style'] = array(
+    'bundle' => 'mandate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 79,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_old_minor_style',
+    'label' => 'Old Minor Style',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'advanced_input' => 'advanced_input',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'advanced_input' => array(
+              'weight' => -10,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -8,
+            ),
+            'full_html' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => -6,
+            ),
+            'plain_text' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 80,
     ),
   );
 
@@ -1486,6 +1753,127 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-mandate-field_traits_tr'
+  $field_instances['node-mandate-field_traits_tr'] = array(
+    'bundle' => 'mandate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'ds',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+          'taxonomy_term_link' => TRUE,
+          'taxonomy_term_separator' => ', ',
+        ),
+        'type' => 'ds_taxonomy_separator',
+        'weight' => 75,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_traits_tr',
+    'label' => 'Traits',
+    'options_limit' => FALSE,
+    'options_limit_empty_behaviour' => 0,
+    'options_limit_fields' => array(),
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 74,
+    ),
+  );
+
+  // Exported field_instance: 'node-mandate-field_wuin'
+  $field_instances['node-mandate-field_wuin'] = array(
+    'bundle' => 'mandate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 76,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_wuin',
+    'label' => 'wuin',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'advanced_input' => 'advanced_input',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'advanced_input' => array(
+              'weight' => -10,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -8,
+            ),
+            'full_html' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => -6,
+            ),
+            'plain_text' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 76,
+    ),
+  );
+
   // Exported field_instance: 'node-mandate-title_field'
   $field_instances['node-mandate-title_field'] = array(
     'bundle' => 'mandate',
@@ -1568,6 +1956,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Account Size');
   t('Attribute');
+  t('Author');
   t('Body');
   t('Consultant Contact');
   t('Consultant Firm');
@@ -1588,7 +1977,9 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
   t('Mandate Notes');
   t('Mandate Number');
   t('Mandate Status');
+  t('Old Major Style');
   t('Old Mandate ID');
+  t('Old Minor Style');
   t('Plan');
   t('Plan Size');
   t('RFP Date');
@@ -1597,6 +1988,9 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
   t('This is the mandate ID from the old D5 site.');
   t('Title');
   t('Total Amount');
+  t('Traits');
+  t('legendid');
+  t('wuin');
 
   return $field_instances;
 }

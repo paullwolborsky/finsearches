@@ -10,6 +10,99 @@
 function fs_f_n_bt_manager_firm_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'comment-comment_node_manager_firm-comment_body'
+  $field_instances['comment-comment_node_manager_firm-comment_body'] = array(
+    'bundle' => 'comment_node_manager_firm',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'comment',
+    'field_name' => 'comment_body',
+    'label' => 'Comment',
+    'required' => TRUE,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'comment-comment_node_manager_firm-field_date'
+  $field_instances['comment-comment_node_manager_firm-field_date'] = array(
+    'bundle' => 'comment_node_manager_firm',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+          'show_remaining_days' => FALSE,
+          'show_repeat_rule' => 'show',
+        ),
+        'type' => 'date_default',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'comment',
+    'field_name' => 'field_date',
+    'label' => 'Date',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'display_all_day' => 0,
+        'increment' => 30,
+        'input_format' => 'm/d/Y - g:i:sa',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 1,
+        'repeat_collapsed' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'node-manager_firm-body'
   $field_instances['node-manager_firm-body'] = array(
     'bundle' => 'manager_firm',
@@ -53,6 +146,85 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
       ),
       'type' => 'text_textarea_with_summary',
       'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-manager_firm-field_acronym'
+  $field_instances['node-manager_firm-field_acronym'] = array(
+    'bundle' => 'manager_firm',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 30,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_acronym',
+    'label' => 'Acronym',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'advanced_input' => 'advanced_input',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'advanced_input' => array(
+              'weight' => -10,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -8,
+            ),
+            'full_html' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => -6,
+            ),
+            'plain_text' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
     ),
   );
 
@@ -260,6 +432,80 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
       ),
       'type' => 'email_textfield',
       'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-manager_firm-field_legendid'
+  $field_instances['node-manager_firm-field_legendid'] = array(
+    'bundle' => 'manager_firm',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 62,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_legendid',
+    'label' => 'legendid',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'advanced_input' => 'advanced_input',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'advanced_input' => array(
+              'weight' => -10,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -8,
+            ),
+            'full_html' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => -6,
+            ),
+            'plain_text' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 22,
     ),
   );
 
@@ -643,6 +889,80 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-manager_firm-field_wuin'
+  $field_instances['node-manager_firm-field_wuin'] = array(
+    'bundle' => 'manager_firm',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 61,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_wuin',
+    'label' => 'wuin',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'advanced_input' => 'advanced_input',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'advanced_input' => array(
+              'weight' => -10,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -8,
+            ),
+            'full_html' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => -6,
+            ),
+            'plain_text' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 20,
+    ),
+  );
+
   // Exported field_instance: 'node-manager_firm-title_field'
   $field_instances['node-manager_firm-title_field'] = array(
     'bundle' => 'manager_firm',
@@ -718,10 +1038,13 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Acronym');
   t('Address');
   t('Body');
+  t('Comment');
   t('Content Type Human');
   t('Content Type Shortcode');
+  t('Date');
   t('Email');
   t('Manager Notes');
   t('Manager of Managers?');
@@ -731,6 +1054,8 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
   t('Sub Manager Firms');
   t('Tasks');
   t('Website');
+  t('legendid');
+  t('wuin');
 
   return $field_instances;
 }
