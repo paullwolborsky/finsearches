@@ -21,8 +21,10 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'AUA',
-    'weight' => '6',
-    'children' => array(),
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_aua',
+    ),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'formatter' => 'collapsible',
@@ -46,7 +48,7 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Branch Offices',
-    'weight' => '2',
+    'weight' => '8',
     'children' => array(
       0 => 'field_branch_offices_ev',
     ),
@@ -81,7 +83,6 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
       2 => 'field_website',
       3 => 'field_status_tr',
       4 => 'field_acronym',
-      5 => 'field_aua',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -107,8 +108,13 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Firm Info',
-    'weight' => '32',
-    'children' => array(),
+    'weight' => '0',
+    'children' => array(
+      0 => 'field_email',
+      1 => 'field_website',
+      2 => 'field_acronym',
+      3 => 'field_aua',
+    ),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'formatter' => 'collapsible',
@@ -131,7 +137,7 @@ function fs_f_n_bt_consultant_firm_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Main Office',
-    'weight' => '1',
+    'weight' => '7',
     'children' => array(
       0 => 'field_main_office_ev',
     ),

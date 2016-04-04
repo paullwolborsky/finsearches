@@ -10,44 +10,6 @@
 function fs_f_n_bt_consultant_firm_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance:
-  // 'comment-comment_node_consultant_firm-comment_body'
-  $field_instances['comment-comment_node_consultant_firm-comment_body'] = array(
-    'bundle' => 'comment_node_consultant_firm',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'comment_body',
-    'label' => 'Comment',
-    'required' => TRUE,
-    'settings' => array(
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 0,
-    ),
-  );
-
   // Exported field_instance: 'node-consultant_firm-body'
   $field_instances['node-consultant_firm-body'] = array(
     'bundle' => 'consultant_firm',
@@ -90,81 +52,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 9,
-    ),
-  );
-
-  // Exported field_instance: 'node-consultant_firm-field_acronym'
-  $field_instances['node-consultant_firm-field_acronym'] = array(
-    'bundle' => 'consultant_firm',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 68,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'node',
-    'field_name' => 'field_acronym',
-    'label' => 'Acronym',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'advanced_input' => 'advanced_input',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'php_code' => 'php_code',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'advanced_input' => array(
-              'weight' => -10,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => -8,
-            ),
-            'full_html' => array(
-              'weight' => -9,
-            ),
-            'php_code' => array(
-              'weight' => -6,
-            ),
-            'plain_text' => array(
-              'weight' => -7,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 10,
     ),
   );
 
@@ -177,9 +65,18 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 69,
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => 1,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+          'scale' => 2,
+          'thousand_separator' => ',',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 73,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -205,7 +102,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 5,
+      'weight' => 2,
     ),
   );
 
@@ -215,7 +112,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
     'default_value' => array(
       0 => array(
         'view_name' => 'reference_views',
-        'display_name' => 'consultant_edit_branch_office',
+        'display_name' => 'consultant_branch_offices',
         'vargs' => '',
       ),
     ),
@@ -339,7 +236,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'apply_chosen' => 0,
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 12,
     ),
   );
 
@@ -352,9 +249,14 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 70,
+        'module' => 'email',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'email_default',
+        'weight' => 74,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -382,87 +284,13 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-consultant_firm-field_legendid'
-  $field_instances['node-consultant_firm-field_legendid'] = array(
-    'bundle' => 'consultant_firm',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 66,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'node',
-    'field_name' => 'field_legendid',
-    'label' => 'legendid',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'advanced_input' => 'advanced_input',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'php_code' => 'php_code',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'advanced_input' => array(
-              'weight' => -10,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => -8,
-            ),
-            'full_html' => array(
-              'weight' => -9,
-            ),
-            'php_code' => array(
-              'weight' => -6,
-            ),
-            'plain_text' => array(
-              'weight' => -7,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 12,
-    ),
-  );
-
   // Exported field_instance: 'node-consultant_firm-field_main_office_ev'
   $field_instances['node-consultant_firm-field_main_office_ev'] = array(
     'bundle' => 'consultant_firm',
     'default_value' => array(
       0 => array(
         'view_name' => 'reference_views',
-        'display_name' => 'consultant_edit_main_office',
+        'display_name' => 'consultant_main_office',
         'vargs' => '',
       ),
     ),
@@ -514,7 +342,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 67,
+        'weight' => 71,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -541,7 +369,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
         'apply_chosen' => 0,
       ),
       'type' => 'options_select',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
@@ -582,7 +410,7 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
       'module' => 'mytinytodo',
       'settings' => array(),
       'type' => 'mytinytodo_widget',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -595,9 +423,14 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 71,
+        'module' => 'link',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'link_default',
+        'weight' => 75,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -640,80 +473,6 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
       'settings' => array(),
       'type' => 'link_field',
       'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'node-consultant_firm-field_wuin'
-  $field_instances['node-consultant_firm-field_wuin'] = array(
-    'bundle' => 'consultant_firm',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 65,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'node',
-    'field_name' => 'field_wuin',
-    'label' => 'wuin',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'advanced_input' => 'advanced_input',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'php_code' => 'php_code',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'advanced_input' => array(
-              'weight' => -10,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => -8,
-            ),
-            'full_html' => array(
-              'weight' => -9,
-            ),
-            'php_code' => array(
-              'weight' => -6,
-            ),
-            'plain_text' => array(
-              'weight' => -7,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 11,
     ),
   );
 
@@ -793,10 +552,8 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('AUA');
-  t('Acronym');
   t('Body');
   t('Branch Offices');
-  t('Comment');
   t('Contacts');
   t('Content Type Shortcode');
   t('Email');
@@ -805,8 +562,6 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
   t('Status');
   t('Tasks');
   t('Website');
-  t('legendid');
-  t('wuin');
 
   return $field_instances;
 }
