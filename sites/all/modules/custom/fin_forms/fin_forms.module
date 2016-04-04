@@ -85,6 +85,11 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
                 'effect' => 'fade',
                 'event' => 'autocompleteSelect'
               );
+              $consultant_firm = $form['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
+              $options = fin_forms_get_offices($consultant_firm);
+              $form['field_job_history'][$lang][$key]['field_consultant_office_er'][$lang]['#options'] = $options;
+              $website = fin_forms_get_website($consultant_firm);
+              $form['field_job_history'][$lang][$key]['field_website'][$lang][0]['#value']['url'] = $website;
             }
             if (!empty($form_state['values']['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id'])) {
               $options = fin_forms_get_offices($form_state['values']['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id']);
