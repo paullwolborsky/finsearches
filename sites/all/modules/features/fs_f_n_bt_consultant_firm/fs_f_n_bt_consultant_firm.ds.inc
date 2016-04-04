@@ -18,67 +18,67 @@ function fs_f_n_bt_consultant_firm_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
     'consultant_branch_offices_bf' => array(
-      'weight' => '4',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'consultant_contacts_bf' => array(
-      'weight' => '10',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'consultant_imr_contacts_bf' => array(
-      'weight' => '11',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'consultant_main_office_bf' => array(
-      'weight' => '2',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'consultant_mandates_bf' => array(
-      'weight' => '13',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'consultant_mandate_managers_bf' => array(
-      'weight' => '9',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'consultant_node_map_bf' => array(
-      'weight' => '1',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'consultant_plans_bf' => array(
-      'weight' => '8',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'consultant_plan_managers_bf' => array(
-      'weight' => '7',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'modal_contact_link' => array(
-      'weight' => '12',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'modal_mandate_link' => array(
-      'weight' => '5',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'modal_office_link' => array(
       'weight' => '3',
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'modal_plan_link' => array(
+    'consultant_contacts_bf' => array(
+      'weight' => '9',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'consultant_imr_contacts_bf' => array(
+      'weight' => '10',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'consultant_main_office_bf' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'consultant_mandates_bf' => array(
+      'weight' => '12',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'consultant_mandate_managers_bf' => array(
+      'weight' => '8',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'consultant_node_map_bf' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'consultant_plans_bf' => array(
+      'weight' => '7',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'consultant_plan_managers_bf' => array(
       'weight' => '6',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'modal_contact_link' => array(
+      'weight' => '11',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'modal_mandate_link' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'modal_office_link' => array(
+      'weight' => '1',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'modal_plan_link' => array(
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -248,40 +248,32 @@ function fs_f_n_bt_consultant_firm_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'above_left' => array(
-        0 => 'group_firm_info',
-        14 => 'field_acronym',
-        15 => 'field_aua',
-        16 => 'field_email',
-        17 => 'field_website',
+        0 => 'consultant_main_office_bf',
+        1 => 'modal_office_link',
       ),
       'above_right' => array(
-        1 => 'consultant_node_map_bf',
+        2 => 'consultant_node_map_bf',
       ),
-      'below_left' => array(
-        2 => 'consultant_main_office_bf',
-        3 => 'modal_office_link',
-      ),
-      'below_right' => array(
-        4 => 'consultant_branch_offices_bf',
+      'middle' => array(
+        3 => 'consultant_branch_offices_bf',
       ),
       'footer' => array(
-        5 => 'modal_mandate_link',
-        6 => 'modal_plan_link',
-        7 => 'consultant_plan_managers_bf',
-        8 => 'consultant_plans_bf',
-        9 => 'consultant_mandate_managers_bf',
-        10 => 'consultant_contacts_bf',
-        11 => 'consultant_imr_contacts_bf',
-        12 => 'modal_contact_link',
-        13 => 'consultant_mandates_bf',
+        4 => 'modal_mandate_link',
+        5 => 'modal_plan_link',
+        6 => 'consultant_plan_managers_bf',
+        7 => 'consultant_plans_bf',
+        8 => 'consultant_mandate_managers_bf',
+        9 => 'consultant_contacts_bf',
+        10 => 'consultant_imr_contacts_bf',
+        11 => 'modal_contact_link',
+        12 => 'consultant_mandates_bf',
       ),
     ),
     'fields' => array(
-      'group_firm_info' => 'above_left',
+      'consultant_main_office_bf' => 'above_left',
+      'modal_office_link' => 'above_left',
       'consultant_node_map_bf' => 'above_right',
-      'consultant_main_office_bf' => 'below_left',
-      'modal_office_link' => 'below_left',
-      'consultant_branch_offices_bf' => 'below_right',
+      'consultant_branch_offices_bf' => 'middle',
       'modal_mandate_link' => 'footer',
       'modal_plan_link' => 'footer',
       'consultant_plan_managers_bf' => 'footer',
@@ -291,10 +283,6 @@ function fs_f_n_bt_consultant_firm_ds_layout_settings_info() {
       'consultant_imr_contacts_bf' => 'footer',
       'modal_contact_link' => 'footer',
       'consultant_mandates_bf' => 'footer',
-      'field_acronym' => 'above_left',
-      'field_aua' => 'above_left',
-      'field_email' => 'above_left',
-      'field_website' => 'above_left',
     ),
     'classes' => array(
       'layout_class' => array(
