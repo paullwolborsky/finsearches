@@ -249,14 +249,13 @@ a.fieldset-title {
 }
 
 /********** Display Suite **********/
-.ds-header {
-    padding: 0 0 30px 0;
-}
-
 #block-system-main {
     h3.block-title {
-        padding: 4px 0 4px 15px;
+        padding: 4px 0 4px 5px;
         font-size: 21px;
+    }
+    .field-group-fieldset legend {
+        padding-left: 10px;
     }
 }
 .ds-above-left, .ds-above-right, .group-mandates {
@@ -1051,7 +1050,88 @@ html.js fieldset.collapsible .fieldset-legend {
         background: none;
     }
 }
-
+/*** Manager - Mandate Assignments ***/
+#views-exposed-form-reference-views-manager-mandates {
+    #edit-container-container-2 {
+    display: inline-block;
+    max-width: 99%;
+    text-align: center;
+    margin: 10px auto;
+    }
+    #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        width: 30%;
+        background: $form-item-active-blue;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px 10px 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-3 {
+        margin: 0 10px 10px 0;
+    }
+    #edit-container-container-4 {
+        margin-bottom: 0 0 10px 0;
+    }
+    #edit-container-container-5 {
+        margin: 0 0 10px 10px;
+    }
+    #edit-container-container-6 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+}
+/*** Manager - Cliants ***/
+#views-exposed-form-reference-views-manager-plans {
+    #edit-container-container-2 {
+    display: inline-block;
+    max-width: 99%;
+    text-align: center;
+    margin: 10px auto;
+    }
+    #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        width: 30%;
+        background: $form-item-active-blue;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px 10px 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-3 {
+        margin: 0 10px 10px 0;
+    }
+    #edit-container-container-4 {
+        margin-bottom: 0 0 10px 0;
+    }
+    #edit-container-container-5 {
+        margin: 0 0 10px 10px;
+    }
+    #edit-container-container-6 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+}
 
 /********** Tables **********/
 table.views-table {
@@ -1166,6 +1246,51 @@ body.node-type-plan {
 }
 .view-foia-history {
     margin-bottom: 20px;
+}
+/*** Contacts ***/
+.node-type-contact {
+    .group-left {
+        width: 38%;
+        padding: 10px;
+    }
+    .group-middle {
+        width: 39%;
+        padding: 10px;
+        margin: 0 10px;
+    }
+    .group-right {
+        width: 20%;
+        padding: 0;
+        background: none;
+    }
+    .group-footer {
+        background: none;
+        padding-top: 30px;
+    }
+}
+/*** Mandates ***/
+.node-mandate {
+    .ds-above-left, .ds-below-left {
+        padding: 0 10px 0 0;
+        margin-bottom: 0;
+    }
+    .ds-above-right, .ds-below-right {
+        padding: 0 0 0 10px;
+        margin-bottom: 0;
+    }
+}
+/*** Consultant Firms ***/
+.node-consultant-firm {
+    .ds-above-left .field-type-ds {
+        margin: 0 !important;
+    }
+    .ds-above-right .field-type-ds {
+        margin: 0 !important;
+    }
+}
+/*** Office ***/
+.node-office .ds-above-right .content {
+    padding: 0;
 }
 
 /********** Entityforms **********/
