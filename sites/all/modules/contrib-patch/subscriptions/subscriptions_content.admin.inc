@@ -229,11 +229,11 @@ function _subscriptions_content_node_form(array $form, $uid) {
       '#value' => $defaults,
     );
     subscriptions_form_column_filter($form[0], $uid);
-    $form['note'] = array('#type' => 'item', '#description' => '<div>' . t('Note: Deactivated subscriptions will be removed from the list.') . '</div>' );
+    $form['note'] = array('#type' => 'item', '#description' => '<div>' . t('Note: Deactivated Followings will be removed from the list.') . '</div>' );
     $form['pager'] = array('#markup' => theme('pager', array('tags' => NULL, 'element' => 0, 'quantity' => 50)));
   }
   else {
-    $form = array(array('#markup' => t('There are no available subscribed pages.')));
+    $form = array(array('#markup' => t('You are not following any pages.')));
   }
   return $form;
 }

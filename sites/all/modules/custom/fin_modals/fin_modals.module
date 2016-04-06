@@ -117,7 +117,7 @@ function fin_modals_menu() {
   );
   $items['resources/subscriptions']  = array(
     'type' => MENU_NORMAL_ITEM,
-    'title' => 'Subscriptions',
+    'title' => 'Following',
     'access arguments' => array('subscribe to content'), 
     'menu_name' => 'main-menu',
     'weight' => 1,

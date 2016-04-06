@@ -109,7 +109,7 @@ function theme_subscriptions_form_table(array $variables) {
   $rows = array();
   drupal_add_js(drupal_get_path('module', 'subscriptions') . '/subscriptions_tableselect.js', array('preprocess' => FALSE));
   $columns['checkboxes']      = array('data' => '', 'width' => '1%', 'class' => 'subscriptions-table select-all');
-  $columns['labels']          = array('data' => t('Subscription'), 'width' => '18%');
+  $columns['labels']          = array('data' => t('Follow'), 'width' => '18%');
   if (isset($element['send_interval']) && $element['send_interval']['#access']) {
     $columns['send_interval'] = array('data' => t('Send interval'), 'width' => '20%');
   }
@@ -319,7 +319,7 @@ function subscriptions_page_form($form, &$form_state, $account, $stype) {
     //  $form = subscriptions_user_suspend_form($dummy_form_state, $account);
     //}
     $form['header'][] = array(
-      '#markup'        => t('Current subscriptions:'),
+      '#markup'        => t('Currently Following:'),
       '#weight'        => -2,
       );
   }
@@ -359,7 +359,8 @@ function subscriptions_page_form($form, &$form_state, $account, $stype) {
   //  'title' => t('!name Subscriptions', array('!name' => $user->name)),
   //  'href' => url('subscriptions/feed'),
   //));
-  drupal_set_title(empty($account->name) ? t('Subscriptions') : format_username($account));
+  //drupal_set_title(empty($account->name) ? t('Following') : format_username($account));
+  drupal_set_title(t('Following'));
   return $form;
 }
 
@@ -421,7 +422,8 @@ function subscriptions_page_user_overview(array $form, array &$form_state, $acco
     subscriptions_user_suspend_form($form, $form_state, $account);
   }
   $form = subscriptions_user_settings_form($form, $form_state, $account);
-  drupal_set_title($uid < 0 ? t('Subscriptions') : format_username($account));
+  //drupal_set_title($uid < 0 ? t('Subscriptions') : format_username($account));
+  drupal_set_title(t('Following'));
   return $form;
 }
 
@@ -616,24 +618,24 @@ function subscriptions_user_settings_form(array $form, array &$form_state, $acco
   }
   $form['settings']['autosub'] = array(
     '#type'          => 'fieldset',
-    '#title'         => t('Auto-subscribe'),
+    '#title'         => t('Auto-follow'),
     '#access'        => empty($account) || user_access('subscribe to content', $account),
   );
   $form['settings']['autosub']['autosub_post'] = array(
     '#type'          => 'checkbox',
-    '#title'         => t('Auto-subscribe to new content'),
+    '#title'         => t('Auto-follow new content'),
     '#default_value' => _subscriptions_get_setting('autosub_on_post', $account),
     '#description'   => t('Automatically subscribes you to items that you create.'),
   );
   $form['settings']['autosub']['autosub_update'] = array(
     '#type'          => 'checkbox',
-    '#title'         => t('Auto-subscribe to updated content'),
+    '#title'         => t('Auto-follow updated content'),
     '#default_value' => _subscriptions_get_setting('autosub_on_update', $account),
     '#description'   => t('Automatically subscribes you to items that you update (if you have that permission).'),
   );
   $form['settings']['autosub']['autosub_comment'] = array(
     '#type'          => 'checkbox',
-    '#title'         => t('Auto-subscribe to comments'),
+    '#title'         => t('Auto-follow comments'),
     '#default_value' => _subscriptions_get_setting('autosub_on_comment', $account),
     '#description'   => t('Automatically subscribes you to items that you comment on (or where you update a comment, if you have that permission).'),
     '#access'        => module_exists('comment') && ((empty($account) || user_access('post comments', $account) || user_access('post comments without approval', $account))),
@@ -642,7 +644,7 @@ function subscriptions_user_settings_form(array $form, array &$form_state, $acco
     '#type'          => 'checkbox',
     '#title'         => t('Notify poster of own posts'),
     '#default_value' => _subscriptions_get_setting('send_self', $account),
-    '#description'   => t("Sends you notifications about your own posts (if you're subscribed)."),
+    '#description'   => t("Sends you notifications about your own posts (if you're following)."),
   );
   $form['settings']['digest'] = array(
     '#type'          => 'checkbox',
@@ -680,7 +682,7 @@ function subscriptions_user_settings_form(array $form, array &$form_state, $acco
     '#description'   => t('Sends a notification when an item receives a comment or reply.'),
   );
   $form['settings']['preferences']['description'] = array(
-    '#markup'        => t('Any changes you make here will only apply to newly created subscriptions.'),
+    '#markup'        => t('Any changes you make here will only apply to newly created followings.'),
   );
   $form['settings']['visibility'] = array(
     '#type'          => 'fieldset',
@@ -691,7 +693,7 @@ function subscriptions_user_settings_form(array $form, array &$form_state, $acco
   );
   $form['settings']['visibility'][] = array(
     '#type'          => 'item',
-    '#description'   => t('The control(s) mentioned below appear(s) as one or more columns<br /> a) in the %Subscribe subform of node pages and<br /> b) on the sibling subtabs of this %Overview page.<br /> After you have set your %Preferences right above, you may want to hide the corresponding column(s), if you never change those values anyway.', array('%Subscribe' => $tr('Subscribe'), '%Overview' => $tr('Overview'), '%Preferences' => $tr('Preferences'))),
+    '#description'   => t('The control(s) mentioned below appear(s) as one or more columns<br /> a) in the %Subscribe subform of node pages and<br /> b) on the sibling subtabs of this %Overview page.<br /> After you have set your %Preferences right above, you may want to hide the corresponding column(s), if you never change those values anyway.', array('%Subscribe' => $tr('Follow'), '%Overview' => $tr('Overview'), '%Preferences' => $tr('Preferences'))),
   );
   $visibility_options = array(t('Visible'), t('Hidden'));
   if (empty($account)) {
