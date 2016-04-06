@@ -7,6 +7,52 @@ function fin_mod_views_pre_build(&$view) {
   if (isset($view->args) && $view->name == 'mandate_plan_info') {
     fin_mod_mandate_plan_info($view);
   }
+  if (isset($view->args) && $view->name == 'plan_direct_consultants') {
+    fin_mod_plan_direct_consultants($view);
+  }
+}
+
+/**
+ * Modifies plan_direct_consultants
+ */
+function fin_mod_plan_direct_consultants(&$view) {
+  $entity_ids = array();
+  foreach ($view->args as $entity_id) {
+    $entity_ids[] = $entity_id;
+  }
+  if (!empty($entity_ids)) {
+
+    $plan_contact_results = db_query("SELECT entity_id FROM field_data_field_plan_er WHERE field_plan_er_target_id IN (:entity_ids) AND bundle = 'plan_contact'", array("entity_ids" => $entity_ids))->fetchCol();
+
+    $plan_contacts = entity_load('paragraphs_item', $plan_contact_results);
+    $lead_contact_id = '';
+    foreach ($plan_contacts as $plan_contact) {
+      $plan_contact_wrapper = entity_metadata_wrapper('paragraphs_item', $plan_contact);
+      $lead_contact = $plan_contact_wrapper->field_lead_plan_contact->value();
+      if ($lead_contact == 1) {
+        $lead_contact_id = $plan_contact_wrapper->getIdentifier();
+      }
+    }
+    if (!empty($lead_contact_id)) {
+      $results = db_query('SELECT entity_id FROM field_data_field_job_history WHERE field_job_history_value IN (:entity_ids)', array("entity_ids" => $lead_contact_id))->fetchCol();
+
+      $contacts = entity_load('node', $results);
+
+      foreach ($contacts as $contact) {
+        $contact_wrapper = entity_metadata_wrapper('node', $contact);
+        $name = $contact_wrapper->title_field->value();
+        $email = $contact_wrapper->field_email->value();
+        $title = $contact_wrapper->field_job_title->value();
+        $phone = $contact_wrapper->field_address->phone_number->value();
+        $ext = $contact_wrapper->field_address->phone_number_extension->value();
+        $view->field['nothing']->options['alter']['text'] = $name;
+        $view->field['nothing_1']->options['alter']['text'] = $phone;
+        $view->field['nothing_2']->options['alter']['text'] = $email;
+        $view->field['nothing_3']->options['alter']['text'] = $title;
+        $view->field['nothing_4']->options['alter']['text'] = $ext;
+      }
+    }
+  }
 }
 
 /**
@@ -60,7 +106,7 @@ function fin_mod_state_code($state) {
       return $state_code;
     }
   }
-  if(!isset($state_code)) {
+  if (!isset($state_code)) {
     return FALSE;
   }
 }
