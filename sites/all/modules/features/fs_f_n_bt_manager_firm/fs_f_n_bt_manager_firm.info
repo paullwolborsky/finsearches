@@ -24,7 +24,6 @@ dependencies[] = taxonomy
 dependencies[] = text
 features[ctools][] = ds:ds:1
 features[ctools][] = field_group:field_group:1
-features[ds_field_settings][] = node|manager_firm|default
 features[ds_fields][] = manager_node_map_bf
 features[ds_fields][] = manager_notes_bf
 features[ds_fields][] = manager_plans_bf

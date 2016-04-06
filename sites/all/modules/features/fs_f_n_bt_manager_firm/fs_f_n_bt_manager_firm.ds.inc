@@ -5,45 +5,6 @@
  */
 
 /**
- * Implements hook_ds_field_settings_info().
- */
-function fs_f_n_bt_manager_firm_ds_field_settings_info() {
-  $export = array();
-
-  $ds_fieldsetting = new stdClass();
-  $ds_fieldsetting->api_version = 1;
-  $ds_fieldsetting->id = 'node|manager_firm|default';
-  $ds_fieldsetting->entity_type = 'node';
-  $ds_fieldsetting->bundle = 'manager_firm';
-  $ds_fieldsetting->view_mode = 'default';
-  $ds_fieldsetting->settings = array(
-    'manager_mandates_bf' => array(
-      'weight' => '2',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'manager_node_map_bf' => array(
-      'weight' => '0',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'manager_notes_bf' => array(
-      'weight' => '4',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'manager_plans_bf' => array(
-      'weight' => '3',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-  );
-  $export['node|manager_firm|default'] = $ds_fieldsetting;
-
-  return $export;
-}
-
-/**
  * Implements hook_ds_custom_fields_info().
  */
 function fs_f_n_bt_manager_firm_ds_custom_fields_info() {
