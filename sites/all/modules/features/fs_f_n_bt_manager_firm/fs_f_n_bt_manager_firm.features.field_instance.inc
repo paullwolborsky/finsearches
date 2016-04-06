@@ -165,7 +165,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 30,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -236,7 +236,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'addressfield',
         'settings' => array(
           'format_handlers' => array(
@@ -248,7 +248,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -408,7 +408,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
           ),
         ),
         'type' => 'email_default',
-        'weight' => 5,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -843,7 +843,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
           ),
         ),
         'type' => 'link_default',
-        'weight' => 6,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',

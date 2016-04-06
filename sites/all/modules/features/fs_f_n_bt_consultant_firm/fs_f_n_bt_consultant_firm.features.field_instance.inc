@@ -65,17 +65,8 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => 1,
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-          'scale' => 2,
-          'thousand_separator' => ',',
-        ),
-        'type' => 'number_decimal',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 73,
       ),
       'teaser' => array(
@@ -249,13 +240,8 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'email',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'email_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 74,
       ),
       'teaser' => array(
@@ -423,13 +409,8 @@ function fs_f_n_bt_consultant_firm_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'link',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'link_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 75,
       ),
       'teaser' => array(
