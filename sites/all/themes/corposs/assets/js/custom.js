@@ -11,21 +11,21 @@
       $('.block-facetapi .content ul li a.facetapi-active').parents('.block-facetapi .content').addClass('open');
       
       //Pie charts for plans
-      if ($('.pie-chart .views-field').length) {
+      if ($('.sidebar-pie-chart .views-field').length) {
         google.load("visualization", "1", {packages:["corechart"]});
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Label');
         data.addColumn('number', 'Value');
-        $('.pie-chart .views-field').each(function(){
+        $('.sidebar-pie-chart .views-field').each(function(){
           data.addRow([$(this).find('.views-label').html(), parseFloat($(this).find('.field-content').html())]);
         });
         var options = {
           is3D: false,
-          chartArea: {left:10,top:10, width: '100%', height:'90%'},
-          legend: {position: 'right',alignment:'top'},
+          chartArea: {left:0,top:10, width: '100%', height:'90%'},
+          legend: {position: 'none'},
           tooltip: {text:'percentage'}
         };
-        $('.pie-chart').html("<div id='aa-chart'></div>");
+        $('.sidebar-pie-chart').html("<div id='aa-chart'></div>");
         var chart = new google.visualization.PieChart(document.getElementById('aa-chart'));
         chart.draw(data, options);
       }
@@ -46,26 +46,9 @@
         }
       }
       
-      //Add collapsible fielsets to exposed filters
-      //$('.view-content-lists .view-filters .views-exposed-form').unwrap('div')
-      /*
-      $('.view-content-lists .view-filters .views-exposed-form', context).wrap("<fieldset class='collapsible'></fieldset>")
-      $('.view-content-lists .view-filters .views-exposed-form', context).before("<legend><span class='fieldset-legend'><a class='fieldset-title' href='#'>Filters</a></span></legend>");
-      $('.view-content-lists .view-filters .views-exposed-form', context).wrap("<div class='fieldset-wrapper'></div>");
-      $('.view-content-lists .view-filters fieldset legend a', context).click(function(){
-        $(this).parents('fieldset').toggleClass('collapsed');
-      });
-      $('.view-content-lists .views-field-field-tasks a.show-tasks').click(function(){
-        $(this).next('div.tasks').show();
-        return false;
-      });
-      $('.view-content-lists .views-field-field-tasks .tasks .close').click(function(){
-        $(this).parents('div.tasks').hide();
-      });
-      */
-      
-      if (!$('.view-content-lists .view-filters .my-views-filter-submit #save-search-trigger').length) {
-        $('.view-content-lists .view-filters .my-views-filter-submit').append("<button id='save-search-trigger'>Save Search</button>");
+      //Add save search trigger button
+      if (!$('.view-content-lists .view-filters .my-views-filter-submit').parent('.fieldset-wrapper').find('#save-search-trigger').length) {
+       $('.view-content-lists .view-filters .my-views-filter-submit').parent('.fieldset-wrapper').append("<button id='save-search-trigger'>Save Search</button>");
       }
       //See views_save.js for hiding the trigger button after form submit
       $('.view-content-lists .view-filters #save-search-trigger').click(function(){

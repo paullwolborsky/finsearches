@@ -37,6 +37,18 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
         'effect'    => 'fade',
         'event'     => 'autocompleteSelect',
       );
+      /*
+      if (!empty($form['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'])) {
+        $consultant_firm = $form['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
+        $options = fin_forms_get_contacts($consultant_firm);
+        dd($options, "Options if not empty");
+        $form['field_consultant_contact_er'][$lang]['#options'] = $options;
+      } else {
+        dd("Consultant firm is empty");
+        $options = array('_none' => "Select Consultant firm First");
+        $form['field_consultant_contact_er'][$lang]['#options'] = $options;
+      }
+      */
       if (!empty($form_state['values']['field_consultant_firm_er'][$lang][0]['target_id']) && empty($form_state['values']['field_consultant_firm_er'][$lang][0]['value'])) {
         $consultant_firm = $form_state['values']['field_consultant_firm_er'][$lang][0]['target_id'];
         $options = fin_forms_get_contacts($consultant_firm);
@@ -53,8 +65,11 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
           );
           if (!empty($hired['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
             $consultant_firm = $hired['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
-            $options = fin_forms_get_contacts($consultant_firm);
-            $hired['field_consultant_contact_er'][$lang]['#options'] = $options;
+            $hired_options = fin_forms_get_contacts($consultant_firm);
+            $hired['field_consultant_contact_er'][$lang]['#options'] = $hired_options;
+          } else {
+            $hired_options = array('_none' => "Select Consultant firm First");
+            $hired['field_consultant_contact_er'][$lang]['#options'] = $hired_options;
           }
         }
       }
@@ -69,6 +84,9 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
           if (!empty($terminated['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
             $terminated_firm = $terminated['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
             $terminated_options = fin_forms_get_contacts($terminated_firm);
+            $terminated['field_consultant_contact_er'][$lang]['#options'] = $terminated_options;
+          } else {
+            $terminated_options = array('_none' => "Select Consultant firm First");
             $terminated['field_consultant_contact_er'][$lang]['#options'] = $terminated_options;
           }
         }
@@ -114,6 +132,29 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
             $consultant_firm = $roster['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
             $options = fin_forms_get_contacts($consultant_firm);
             $roster['field_consultant_contact_er'][$lang]['#options'] = $options;
+          } else {
+            $options = array('_none' => "Select Consultant firm First");
+            $roster['field_consultant_contact_er'][$lang]['#options'] = $options;
+          }
+        }
+      }
+      break;
+    case 'consultant_firm_node_form':
+      foreach ($form['field_invest_mgr_research'][$lang] as $key => &$research) {
+        if (is_int($key)) {
+          $research['field_consultant_firm_er'][$lang][0]['target_id']['#ajax'] = array(
+            'callback'  => 'fin_forms_consultants_callback',
+            'method'    => 'replace',
+            'effect'    => 'fade',
+            'event'     => 'autocompleteSelect',
+          );
+          if (!empty($research['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
+            $consultant_firm = $research['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
+            $options = fin_forms_get_contacts($consultant_firm);
+            $research['field_consultant_contact_er'][$lang]['#options'] = $options;
+          } else {
+            $options = array('_none' => "Select Consultant firm First");
+            $research['field_consultant_contact_er'][$lang]['#options'] = $options;
           }
         }
       }
@@ -159,6 +200,15 @@ function fin_forms_consultants_callback (&$form, &$form_state = null) {
       '#type' => 'ajax',
       '#commands' => array(
         ajax_command_replace("#edit-field-consultant-contact-er", $new_consultants),
+      ),
+    );
+  } elseif($trigger_name == 'field_invest_mgr_research') {
+    $new_consultants =  render($form[$trigger_name][$lang][$key]['field_consultant_contact_er']);
+    $field_name = str_replace('_', '-', $form_state['triggering_element']['#parents'][0]);
+    return array(
+      '#type' => 'ajax',
+      '#commands' => array(
+        ajax_command_replace("#edit-" . $field_name . "-und-" . $key . "-field-consultant-contact-er", $new_consultants),
       ),
     );
   } else {
