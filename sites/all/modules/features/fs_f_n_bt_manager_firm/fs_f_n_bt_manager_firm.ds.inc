@@ -5,6 +5,45 @@
  */
 
 /**
+ * Implements hook_ds_field_settings_info().
+ */
+function fs_f_n_bt_manager_firm_ds_field_settings_info() {
+  $export = array();
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|manager_firm|default';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'manager_firm';
+  $ds_fieldsetting->view_mode = 'default';
+  $ds_fieldsetting->settings = array(
+    'manager_mandates_bf' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'manager_node_map_bf' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'manager_notes_bf' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'manager_plans_bf' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|manager_firm|default'] = $ds_fieldsetting;
+
+  return $export;
+}
+
+/**
  * Implements hook_ds_custom_fields_info().
  */
 function fs_f_n_bt_manager_firm_ds_custom_fields_info() {
@@ -77,22 +116,20 @@ function fs_f_n_bt_manager_firm_ds_layout_settings_info() {
         0 => 'group_firm_info',
         2 => 'group_contact_info',
         3 => 'field_status_tr',
+        5 => 'field_acronym',
         6 => 'field_address',
-        8 => 'field_email',
-        9 => 'field_website',
-        10 => 'field_acronym',
-        11 => 'reference_views_eva_major_style',
-        12 => 'reference_views_eva_minor_style',
+        9 => 'field_email',
+        10 => 'field_website',
       ),
       'above_right' => array(
         1 => 'manager_node_map_bf',
       ),
       'middle' => array(
         4 => 'manager_mandates_bf',
-        5 => 'manager_plans_bf',
+        7 => 'manager_plans_bf',
       ),
       'footer' => array(
-        7 => 'manager_notes_bf',
+        8 => 'manager_notes_bf',
       ),
     ),
     'fields' => array(
@@ -101,14 +138,12 @@ function fs_f_n_bt_manager_firm_ds_layout_settings_info() {
       'group_contact_info' => 'above_left',
       'field_status_tr' => 'above_left',
       'manager_mandates_bf' => 'middle',
-      'manager_plans_bf' => 'middle',
+      'field_acronym' => 'above_left',
       'field_address' => 'above_left',
+      'manager_plans_bf' => 'middle',
       'manager_notes_bf' => 'footer',
       'field_email' => 'above_left',
       'field_website' => 'above_left',
-      'field_acronym' => 'above_left',
-      'reference_views_eva_major_style' => 'above_left',
-      'reference_views_eva_minor_style' => 'above_left',
     ),
     'classes' => array(
       'layout_class' => array(

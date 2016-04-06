@@ -21,7 +21,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 59,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -76,7 +76,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 17,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -104,13 +104,13 @@ function fs_f_n_bt_office_field_default_field_instances() {
           'address3' => 'address3',
           'address' => 'address',
           'phone' => 'phone',
+          'address-optional' => 'address-optional',
           'address-hide-postal-code' => 0,
           'address-hide-street' => 0,
           'address-hide-country' => 0,
           'organisation' => 0,
           'name-full' => 0,
           'name-oneline' => 0,
-          'address-optional' => 0,
         ),
         'geolocation' => TRUE,
         'html5_geocode' => 1,
@@ -145,7 +145,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
           ),
         ),
         'type' => 'entityreference_label',
-        'weight' => 3,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -199,7 +199,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
     'bundle' => 'office',
     'default_value' => array(
       0 => array(
-        'tid' => 1050,
+        'tid' => 1048,
       ),
     ),
     'deleted' => 0,
@@ -207,14 +207,9 @@ function fs_f_n_bt_office_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 22,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 63,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -261,7 +256,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
           ),
         ),
         'type' => 'email_default',
-        'weight' => 6,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -308,7 +303,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
           ),
         ),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 18,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -350,7 +345,7 @@ function fs_f_n_bt_office_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 58,
       ),
       'teaser' => array(
         'label' => 'above',
