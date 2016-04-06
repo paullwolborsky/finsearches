@@ -192,11 +192,11 @@ function fin_utils_block_view($delta) {
 			$block['content'] = views_embed_view('saved_filters', 'block_1', $user->uid); 
 			break;
 		case 'subscriptions':
-			$block['subject'] = "Subscriptions";
+			$block['subject'] = "Following";
 			module_load_include('inc', 'subscriptions', 'subscriptions.admin');
 			$out = subscriptions_content_page_node(array(), $user->uid);
 			$block['content'] = drupal_render($out);
-			$block['content'] .= "<div class='resources-link'>" . l('Go to Subscriptions page','user/' . $user->uid . '/subscriptions/node',array()) . "</div>";
+			$block['content'] .= "<div class='resources-link'>" . l('Go to Follow page','user/' . $user->uid . '/subscriptions/node',array()) . "</div>";
 			break;
 		case 'messages':
 			$block['subject'] = "Messages";

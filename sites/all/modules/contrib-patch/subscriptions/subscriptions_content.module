@@ -123,7 +123,7 @@ function _subscriptions_content_node_options($account, $node) {
   $statics = variable_get('subscriptions_static_content_types', array());
   if (!in_array($node->type, $statics)) {
     $options['nid'][] = array(
-      'name' => t('Subscribe to this page'),
+      'name' => t('Follow this page'),
       'params' => array('module' => 'node', 'field' => 'nid', 'value' => $node->nid),
       'link' => 'node/' . $node->nid,
     );
@@ -145,13 +145,13 @@ function _subscriptions_content_node_options($account, $node) {
     $type_name = node_type_get_name($node->type);
     if ($type_name) {
       $options['type'][] = array(
-        'name' => t('To %type content', array('%type' => $type_name)) . $unlisted_tag,
+        'name' => t('Follow %type content', array('%type' => $type_name)) . $unlisted_tag,
         'params' => array('module' => 'node', 'field' => 'type', 'value' => $node->type),
         'link' => 'type/' . $node->type,
       );
       // Content type and author
       $options['type'][] = array(
-        'name' => t('To %type content by %name', array('%type' => $type_name, '%name' => format_username(user_load($node->uid)))) . $unlisted_tag,
+        'name' => t('Follow %type content by %name', array('%type' => $type_name, '%name' => format_username(user_load($node->uid)))) . $unlisted_tag,
         'params' => array('module' => 'node', 'field' => 'type', 'value' => $node->type, 'author_uid' => $node->uid),
         'link' => 'type/' . $node->type . '/' . $node->uid,
       );

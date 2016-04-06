@@ -93,7 +93,7 @@ function subscriptions_menu() {
     'access arguments' => array('administer site configuration'),
   );
   $items['user/%user/subscriptions'] = array(
-    'title' => 'Subscriptions',
+    'title' => 'Following',
     'file' => 'subscriptions.admin.inc',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('subscriptions_page_user_overview', 1),
