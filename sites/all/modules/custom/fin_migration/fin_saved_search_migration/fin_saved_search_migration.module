@@ -317,7 +317,6 @@ function _fin_saved_search_migration_plan_state($clause) {
   $pattern = '/f.StateID=\'(\d*)\'/';
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
-  dsm($matches);
   foreach ($matches[1] as $key => $value) {
     $result[] = banjia_get_state($value[0]);;
   }
@@ -732,33 +731,45 @@ function fin_saved_search_migration_get_taxonomy_by_name($tname, $vname, $parent
 
   $program = taxonomy_get_term_by_name($tname, $vname);
   $pr = reset($program);
-  if (empty($pr)) {
-    $vocab = taxonomy_vocabulary_machine_name_load($vname);
-    if (!$vocab) {
-      $vocab = new stdClass();
-      $vocab->name = $vname;
-      $vocab->machine_name = $vname;
-      $result = taxonomy_vocabulary_save($vocab);
-      if ($result != SAVED_NEW) {
-        watchdog('fin_saved_search_migration', 'Failed to create new vocabulary !vname', array('!vname' => $vname));
+//  if (!empty($pr)) {
+  foreach ($program as $pr) {
+    // If parent is set, we check and see if there is a term exist under the parent term.
+    $p = taxonomy_get_parents($pr->tid);
+    if ($parent) {
+      foreach ($p as $pid => $o) {
+        if ($pid == $parent) {
+          return $pr->tid;
+        }
       }
     }
-    $term = new stdClass();
-    $term->name = $tname;
-    if ($parent) {
-      $term->parent = $parent;
-    }
-    $term->vid = $vocab->vid;
-    $result = taxonomy_term_save($term);
-    if ($result == SAVED_NEW) {
-      return $term->tid;
-    }
     else {
-      return;
+      if (empty($p)) {
+        return $pr->tid;
+      }
     }
   }
+  $vocab = taxonomy_vocabulary_machine_name_load($vname);
+  if (!$vocab) {
+    $vocab = new stdClass();
+    $vocab->name = $vname;
+    $vocab->machine_name = $vname;
+    $result = taxonomy_vocabulary_save($vocab);
+    if ($result != SAVED_NEW) {
+      watchdog('fin_saved_search_migration', 'Failed to create new vocabulary !vname', array('!vname' => $vname));
+    }
+  }
+  $term = new stdClass();
+  $term->name = $tname;
+  if ($parent) {
+    $term->parent = $parent;
+  }
+  $term->vid = $vocab->vid;
+  $result = taxonomy_term_save($term);
+  if ($result == SAVED_NEW) {
+    return $term->tid;
+  }
   else {
-    return isset($pr->tid) ? $pr->tid : NULL;
+    return;
   }
 }
 
