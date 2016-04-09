@@ -91,6 +91,22 @@ function _fin_saved_search_migration_geo($clause) {
  * Utility function of extract status.
  */
 function _fin_saved_search_migration_minor($clause) {
+  $status_map = fin_saved_search_utility_get_old_minor_name();
+
+  $pattern = '/m.MinorStyleID=\'(\d*)\'/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  $result = array('tid' => array(), 'name' => array());
+  foreach ($matches[1] as $key => $value) {
+    $mid = fin_saved_search_utility_get_taxonomy_by_name_level($status_map[$value[0]], 'major_minor_styles', array());
+    if ($mid) {
+      $result['tid'][] = $mid[0];
+      $result['name'][] = $status_map[$value[0]];
+    }
+  }
+  return $result;
+}
+
+function fin_saved_search_utility_get_old_minor_name() {
   $status_map = array(
     '1' => 'Government Bonds',
     '2' => 'Merger Arbitrage',
@@ -192,24 +208,9 @@ function _fin_saved_search_migration_minor($clause) {
     '141' => 'Unconstrained',
     '142' => 'Smart Beta',
   );
-
-  $pattern = '/m.MinorStyleID=\'(\d*)\'/';
-  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
-  $result = array('tid' => array(), 'name' => array());
-  foreach ($matches[1] as $key => $value) {
-    $mid = fin_saved_search_utility_get_taxonomy_by_name_level($status_map[$value[0]], 'major_minor_styles', array());
-    if ($mid) {
-      $result['tid'][] = $mid[0];
-      $result['name'][] = $status_map[$value[0]];
-    }
-  }
-  return $result;
+  return $status_map;
 }
-
-/**
- * Utility function of extract status.
- */
-function _fin_saved_search_migration_major($clause) {
+function fin_saved_search_utility_get_old_major_name() {
   $status_map = array(
    '1' => 'All Types',
    '5' => 'Transition Management',
@@ -234,6 +235,14 @@ function _fin_saved_search_migration_major($clause) {
    '32' => 'Undefined',
    '33' => 'Bundled',
   );
+  return $status_map;
+}
+
+/**
+ * Utility function of extract status.
+ */
+function _fin_saved_search_migration_major($clause) {
+  $status_map = fin_saved_search_utility_get_old_major_name();
   $pattern = '/m.MajorStyleID=\'(\d*)\'/';
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array('tid' => array(), 'name' => array());
@@ -787,4 +796,88 @@ function fin_saved_search_migration_create_major_minor() {
       $r = fin_saved_search_migration_get_taxonomy_by_name($term[1], 'major_minor_styles', $parent);
     }
   }
+}
+
+/**
+ * Mapping function of Major Minor between D5 and D7
+ */
+function fin_saved_search_migration_new_major_minor(array $mm) {
+  // Returns if input data is invalid.
+  if (empty($mm) || !isset($mm['major']) || !isset($mm['minor'])) {
+    return;
+  }
+
+  $major = $mm['major'];
+  $minor = $mm['minor'];
+
+  $parent = fin_saved_search_migration_get_taxonomy_by_name($major, 'major_minor_styles');
+    if ($minor != '' && $minor != '#N/A') {
+      $r = fin_saved_search_migration_get_taxonomy_by_name($minor, 'major_minor_styles', $parent);
+      return $r;
+    }
+    else {
+      return $parent;
+    }
+}
+
+/**
+ * Maps term name from old to new for major minor taxonomy.
+ */
+function fin_saved_search_migration_new_major_minor_name_map($major, $minor) {
+  $original_minor = $minor;
+  if (empty($minor)) {
+    $minor = '#N/A';
+  }
+  db_set_active('legacy');
+  $sql = "select MajorStyle, MinorStyle from tblmajorminormap where OldMajorStyle = :major and OldMinorStyle = :minor order by MandateID desc limit 1";
+  $result = db_query($sql, array(':major' => $major, ':minor' => $minor));
+  db_set_active();
+  $majorminor = array();
+  foreach ($result as $row) {
+    $majorminor['major'] = trim($row->MajorStyle);
+    $majorminor['minor'] = trim($row->MinorStyle);
+    return $majorminor;
+  }
+  // Incase no match for both old term name, void second term and use the first term name.
+  if ($minor != '#N/A') {
+    $minor = '#N/A';
+    db_set_active('legacy');
+    $sql = "select MajorStyle, MinorStyle from tblmajorminormap where OldMajorStyle = :major and OldMinorStyle = :minor order by MandateID desc limit 1";
+    $result = db_query($sql, array(':major' => $major, ':minor' => $minor));
+    db_set_active();
+    $majorminor = array();
+    foreach ($result as $row) {
+      $majorminor['major'] = trim($row->MajorStyle);
+      $majorminor['minor'] = trim($row->MinorStyle);
+      watchdog('only_major_match', 'Maj:!major, Min:!minor is found in our old new term mapping. We do a sencond check with !major only, we got something this time.', array('!major' => $major, '!minor' => $original_minor));
+      return $majorminor;
+    }
+  }
+}
+
+/**
+ * Help function to find the term id with old major minor data.
+ */
+function fin_saved_search_migration_mmm($major, $minor) {
+  $newtermname = fin_saved_search_migration_new_major_minor_name_map($major, $minor);
+  if (empty($newtermname)) {
+    watchdog('no_major_minor_match', 'Failed to match major, minor: !major, !minor, no matched data exist in map table', array('!major' => $major, '!minor' => $minor), WATCHDOG_ERROR);
+    return;
+  }
+    
+  $tid = fin_saved_search_migration_new_major_minor($newtermname); 
+  return $tid;
+}
+
+/**
+ * Help function to find the term id with old major minor data.
+ *  fin_saved_search_utility_get_old_major_name() {
+ *  fin_saved_search_utility_get_old_minor_name() {
+ */
+function fin_saved_search_migration_mmm_id($major, $minor) {
+  $ma = fin_saved_search_utility_get_old_major_name();
+  $mi = fin_saved_search_utility_get_old_minor_name();
+  $major = $ma[$major];
+  $minor = $ma[$minor];
+  return fin_saved_search_migration_mmm($major, $minor);
 }
