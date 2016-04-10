@@ -90,6 +90,34 @@ function _fin_saved_search_migration_geo($clause) {
 /**
  * Utility function of extract status.
  */
+function _fin_saved_search_migration_major_minor($clause) {
+  $minor_old_id = array();
+  $major_old_id = array();
+  $result = array();
+  $pattern = '/m.MajorStyleID=\'(\d*)\'/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  foreach ($matches[1] as $key => $value) {
+    $major_old_id[] = $value[0];
+  }
+  $pattern = '/m.MinorStyleID=\'(\d*)\'/';
+  preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
+  foreach ($matches[1] as $key => $value) {
+    $minor_old_id[] = $value[0];
+  }
+  foreach ($major_old_id as $mold_id) {
+    foreach ($minor_old_id as $id) {
+      $ntid = fin_saved_search_migration_mmm_id($mold_id, $id, TRUE);
+      if ($ntid && !in_array($ntid, $result)) {
+        $result[] = $ntid;
+      }
+    }
+  }
+  return $result;
+}
+
+/**
+ * Utility function of extract status.
+ */
 function _fin_saved_search_migration_minor($clause) {
   $status_map = fin_saved_search_utility_get_old_minor_name();
 
@@ -433,6 +461,8 @@ function fin_saved_search_migration_views_save_create($id) {
     $geographic = _fin_saved_search_migration_geo($searchclause);
     $major = _fin_saved_search_migration_major($searchclause);
     $minor = _fin_saved_search_migration_minor($searchclause);
+    // New Major Minor Pending for implementation.
+    //$major_minor = _fin_saved_search_migration_major_minor($searchclause);
     $msizea = _fin_saved_search_migration_msize_a($searchclause);
     $msizeb = _fin_saved_search_migration_msize_b($searchclause);
     $mdate = _fin_saved_search_migration_mandatedate($searchclause);
@@ -732,7 +762,7 @@ function fin_saved_search_migration_major_minor() {
 /**
  * Get taxonomy Term by name, create one if it is not there.
  */
-function fin_saved_search_migration_get_taxonomy_by_name($tname, $vname, $parent = NULL) {
+function fin_saved_search_migration_get_taxonomy_by_name($tname, $vname, $parent = NULL, $precise = FALSE) {
 
   if (empty($tname)) {
     return;
@@ -823,7 +853,7 @@ function fin_saved_search_migration_new_major_minor(array $mm) {
 /**
  * Maps term name from old to new for major minor taxonomy.
  */
-function fin_saved_search_migration_new_major_minor_name_map($major, $minor) {
+function fin_saved_search_migration_new_major_minor_name_map($major, $minor, $precise = FALSE) {
   $original_minor = $minor;
   if (empty($minor)) {
     $minor = '#N/A';
@@ -839,7 +869,7 @@ function fin_saved_search_migration_new_major_minor_name_map($major, $minor) {
     return $majorminor;
   }
   // Incase no match for both old term name, void second term and use the first term name.
-  if ($minor != '#N/A') {
+  if ($minor != '#N/A' && !$precise) {
     $minor = '#N/A';
     db_set_active('legacy');
     $sql = "select MajorStyle, MinorStyle from tblmajorminormap where OldMajorStyle = :major and OldMinorStyle = :minor order by MandateID desc limit 1";
@@ -858,13 +888,14 @@ function fin_saved_search_migration_new_major_minor_name_map($major, $minor) {
 /**
  * Help function to find the term id with old major minor data.
  */
-function fin_saved_search_migration_mmm($major, $minor) {
-  $newtermname = fin_saved_search_migration_new_major_minor_name_map($major, $minor);
+function fin_saved_search_migration_mmm($major, $minor, $precise = FALSE) {
+  $newtermname = fin_saved_search_migration_new_major_minor_name_map($major, $minor, $precise);
   if (empty($newtermname)) {
     watchdog('no_major_minor_match', 'Failed to match major, minor: !major, !minor, no matched data exist in map table', array('!major' => $major, '!minor' => $minor), WATCHDOG_ERROR);
     return;
   }
     
+//dsm($newtermname, 'newtermname');
   $tid = fin_saved_search_migration_new_major_minor($newtermname); 
   return $tid;
 }
@@ -874,10 +905,10 @@ function fin_saved_search_migration_mmm($major, $minor) {
  *  fin_saved_search_utility_get_old_major_name() {
  *  fin_saved_search_utility_get_old_minor_name() {
  */
-function fin_saved_search_migration_mmm_id($major, $minor) {
+function fin_saved_search_migration_mmm_id($major, $minor, $precise = FALSE) {
   $ma = fin_saved_search_utility_get_old_major_name();
   $mi = fin_saved_search_utility_get_old_minor_name();
   $major = $ma[$major];
-  $minor = $ma[$minor];
-  return fin_saved_search_migration_mmm($major, $minor);
+  $minor = $mi[$minor];
+  return fin_saved_search_migration_mmm($major, $minor, $precise);
 }
