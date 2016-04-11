@@ -29,7 +29,7 @@ $border-blue: #689afd;
 $form-background-blue: #e7efff;
 $fieldset-background-blue: #bad0fd;
 $fieldset-label-background-blue: #689afd;
-$form-item-odd-blue: #e7efff;
+$form-item-odd-blue: #ededed;
 $form-item-even-blue: #ffffff;
 $form-item-active-blue: #d4e2fe;
 
@@ -179,8 +179,8 @@ span.fieldset-legend {
     margin:  0;
     padding: 0;
 }
-#block-views-a9706a0c2bd6ed2ad2a9fb0317b34834 {
-    margin: 30px 0 0 0;
+#block-views-a9706a0c2bd6ed2ad2a9fb0317b34834, #block-views-saved-filters-block-2 {
+    margin-bottom: 30px;
 }
 #block-user-online .content {
     background: $form-background-blue;
@@ -284,7 +284,7 @@ a.fieldset-title {
             span.fieldset-legend {
                 color: $background;
                 background: none;
-                padding: 4px 0 4px 20px;
+                padding: 4px 0 4px 0px;
                 font-size: 21px;
                 a.fieldset-title {
                     margin: 10px 0;
@@ -429,6 +429,11 @@ fieldset.collapsible .fieldset-legend {
 html.js fieldset.collapsible .fieldset-legend {
     padding-left: 0;
 }
+.view-header {
+    .btn {
+        display: none;
+    }
+}
 .view-filters {
     background-color: $form-background-blue;
     color: $fin-blue;
@@ -458,10 +463,16 @@ html.js fieldset.collapsible .fieldset-legend {
         vertical-align: bottom;
         background: $dark-button;
         color: $white;
-        padding: 4px 6px;
+        padding: 4px 16px;
         margin-left: 10px;
     }
-    .views-exposed-form .views-exposed-widget{
+    #save-search-trigger {
+        background: $dark-button;
+        padding: 4px 16px;
+        margin: 0 0 0 10px;
+        color: $white;
+    }
+    .views-exposed-form .views-exposed-widget {
         padding: 0;
         .form-submit {
             margin-top: 0;
@@ -868,6 +879,15 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }    
 }
+/*** Managers List ***/
+#views-exposed-form-content-lists-managers-list {
+    #edit-container-container-2 {
+        width: 99%;
+    }
+    .form-item label {
+        display: block;
+    }
+}
 /*** Map Search ***/
 #views-exposed-form-map-views-map-search {
     .form-text {
@@ -975,7 +995,7 @@ html.js fieldset.collapsible .fieldset-legend {
         float: left;
     }
 }
-/*** Plan Manager Roster **/
+/*** Plan - Manager Roster **/
 #views-exposed-form-reference-views-block-1 {
     #edit-container-container-2 {
         display: inline-block;
@@ -1017,7 +1037,7 @@ html.js fieldset.collapsible .fieldset-legend {
     }
 }
 
-/*** Consultant Node Contacts ***/
+/*** Consultant Node - Contacts ***/
 #views-exposed-form-reference-views-consultant-contacts, #views-exposed-form-reference-views-consultant-imr-contacts {
     #edit-container-container-3 {
         display: inline-block;
@@ -1094,7 +1114,7 @@ html.js fieldset.collapsible .fieldset-legend {
         position: relative;
     }
 }
-/*** Manager - Cliants ***/
+/*** Manager - Clients ***/
 #views-exposed-form-reference-views-manager-plans {
     #edit-container-container-2 {
     display: inline-block;
@@ -1133,6 +1153,34 @@ html.js fieldset.collapsible .fieldset-legend {
         width: 100%;
         margin: 0;
         position: relative;
+    }
+    .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
+        display: inline-block;
+        text-align: center;
+        height: 24px;
+        margin: 10px 0 0 0;
+        label {
+            width: auto;
+            margin: 0 5px;
+            padding-bottom: 3px;
+        }
+    }
+    #edit-field-plan-size-value-min, #edit-field-plan-size-value-max {
+        width: 64px;
+        height: 22px;
+        border: solid 1px $border-blue;
+    }
+    #edit-container-container-3 {
+        .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
+            margin: 0;
+        }
+        .form-item-title-selective::after {
+            content: "Plan Size";
+            font-weight: bold;
+            display: block;
+            width: auto;
+            padding: 5px 0 0 0;
+        }
     }
 }
 
@@ -1312,6 +1360,21 @@ body.node-type-plan {
 }
 
 /********** Resources UI **********/
+#block-fin-utils-saved-filters, #block-fin-utils-saved-searches, #block-fin-utils-subscriptions, #block-fin-utils-messages {
+    margin-bottom: 30px;
+}
+.page-node-6806 {
+    td, th {
+        padding: 0 10px;
+    }
+    input[type="radio"], input[type="checkbox"] {
+        vertical-align: middle;
+        margin: 0;
+    }
+    table.table-select-processed {
+
+    }
+}
 #privatemsg-list-form .privatemsg-list {
     width: 100%;
 }
@@ -1407,3 +1470,5 @@ span.fieldset-legend a {
         }
     }
 }
+
+/********** Advanced Search **********/
