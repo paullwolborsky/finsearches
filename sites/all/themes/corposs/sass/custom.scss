@@ -227,6 +227,7 @@ body.boxed {
 }
 body {
     font-family: "Lato Regular Web" !important;
+    color: #000000;
 }
 h2.title {
     margin: 30px 0 0 0;
@@ -425,7 +426,7 @@ fieldset.collapsible .fieldset-legend {
     margin-top: 10px;
 }
 
-/*** Exposed Filters ***/
+/********** Exposed Filters **********/
 html.js fieldset.collapsible .fieldset-legend {
     padding-left: 0;
 }
@@ -446,38 +447,6 @@ html.js fieldset.collapsible .fieldset-legend {
             text-transform: capitalize;
         }
     }
-    .btn {
-        background: $dark-button;
-        :hover {
-            background: $fin-navy; //Doesn't work, investigate
-        }
-    }
-    legend {
-        padding: 5px;
-        background: $header;
-        .btn {
-            background: $dark-button;
-        }
-    }
-    button.form-reset {
-        vertical-align: bottom;
-        background: $dark-button;
-        color: $white;
-        padding: 4px 16px;
-        margin-left: 10px;
-    }
-    #save-search-trigger {
-        background: $dark-button;
-        padding: 4px 16px;
-        margin: 0 0 0 10px;
-        color: $white;
-    }
-    .views-exposed-form .views-exposed-widget {
-        padding: 0;
-        .form-submit {
-            margin-top: 0;
-        }
-    }
     .form-text {
         height: 24px;
         border: solid 1px $border-blue;
@@ -486,7 +455,19 @@ html.js fieldset.collapsible .fieldset-legend {
         display: none;
     }
     .chosen-container {
-        max-width: 250px;
+        max-width: 220px;
+    }
+    ul.chosen-choices {
+        max-width: 220px;
+    }
+    .fieldset-wrapper{
+        label {
+            float: left;
+            padding-left: 5px;
+        }
+        .form-item label {
+
+        }
     }
 }
 .view-filters .views-table .collapsiblock a {
@@ -535,13 +516,13 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         vertical-align: top;
         width: 30%;
-        background: $form-item-active-blue;
+        padding:0 10px;
         legend {
             border: solid 1px $header;
             color: #ccc;
         }
         .fieldset-wrapper {
-            padding:  0 10px 10px 10px;
+            padding:  0 10px;
         }
         .form-item label {
             margin-bottom: 0;
@@ -566,16 +547,19 @@ html.js fieldset.collapsible .fieldset-legend {
         display: inline-block;
         text-align: center;
         height: 24px;
-        margin: 10px 0 0 0;
         label {
             width: auto;
             margin: 0 5px;
             padding-bottom: 3px;
         }
+        input[type="text"] {
+            padding: 0 6px;
+        }
     }
     #edit-field-plan-size-value-min, #edit-field-plan-size-value-max {
         width: 64px;
         height: 22px;
+        line-height: 22px;
         border: solid 1px $border-blue;
     }
     #edit-field-date-value-min-datepicker-popup-6, #edit-field-date-value-max-datepicker-popup-6, #edit-created-min, #edit-created-max {
@@ -591,6 +575,7 @@ html.js fieldset.collapsible .fieldset-legend {
         float: left;
     }
 }
+/*** Plans List ***/
 #views-exposed-form-content-lists-plans-list {
     #edit-container-container-5 {
         .fieldset-wrapper {
@@ -601,31 +586,29 @@ html.js fieldset.collapsible .fieldset-legend {
             content: "Plan Size";
             font-weight: bold;
             display: block;
-            width: auto;
-            padding: 5px 0 0 0;
+            text-align: left;
+            width: 100%;
+            padding: 5px 0 0 26px;
         }
+
     }
 }
 /*** Mandates List ***/
 #views-exposed-form-content-lists-mandates-list, {
     #edit-container-container-2 {
         display: inline-block;
-        max-width: 99%;
+        max-width: 97%;
         text-align: center;
         margin: 10px auto;
     }
     #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
         display: inline-block;
-        text-align: center;
         vertical-align: top;
+        padding: 0 10px;
         //width: 30%;
-        background: $form-item-active-blue;
         legend {
             border: solid 1px $header;
             color: #ccc;
-        }
-        .fieldset-wrapper {
-            padding:  0 10px 10px 10px;
         }
         .form-item label {
             margin-bottom: 0;
@@ -634,11 +617,17 @@ html.js fieldset.collapsible .fieldset-legend {
     }
     #edit-container-container-3 {
         margin: 0 10px 10px 0;
-        width: 30%;
+        width: 29%;
     }
     #edit-container-container-4 {
-        margin-bottom: 0 0 10px 0;
-        width: 30%;
+        margin-bottom: 0 10px 10px 0;
+        width: 27%;
+        .fieldset-wrapper {
+            text-align: center;
+        }
+        ul.chosen-choices {
+            width: 100%;
+        }
     }
     #edit-container-container-5 {
         margin: 0 0 10px 10px;
@@ -648,6 +637,22 @@ html.js fieldset.collapsible .fieldset-legend {
         width: 100%;
         margin: 0;
         position: relative;
+    }
+    #edit_field_mandate_status_tr_tid_selective_chosen {
+        margin-bottom: 15px;
+    }
+    .form-item-field-mandate-status-tr-tid-selective {
+        padding: 0 10px;
+        text-align: left;
+    }
+    .form-item-field-mandate-status-tr-tid-selective::after {
+        content: "Date";
+        font-weight: bold;
+        padding-left: 5px;
+    }
+    .form-item-field-mandate-status-tr-tid-selective label {
+        display: block;
+        float: none;
     }
     #edit-field-date-value-min-wrapper, #edit-field-date-value-max-wrapper {
         width: 49%;
@@ -660,21 +665,25 @@ html.js fieldset.collapsible .fieldset-legend {
             margin-top: 0;
         }
     }
-    #edit_field_mandate_status_tr_tid_selective_chosen {
-        margin-bottom: 15px;
-    }
-    .form-item-field-mandate-status-tr-tid-selective::after {
-        content: "Date";
-        font-weight: bold;
-    }
     #edit-field-date-value-min-datepicker-popup-6, #edit-field-date-value-max-datepicker-popup-6 {
         display: inline-block;
         text-align: center;
         max-width: 90px;
+        height: 22px;
+        line-height: 22px;
         margin: 0;
     }
+    .form-item-field-plan-type-tr-tid {
+        width: auto;
+        label {
+            display: block;
+            float: none;
+            text-align: left;
+            //padding-left: 40px;
+        }
+    }
     .form-item-field-address-administrative-area {
-        width: 25%;
+        width: 46%;
         display: inline-block;
         text-align: center;
         margin-right: 5px;
@@ -685,10 +694,11 @@ html.js fieldset.collapsible .fieldset-legend {
         width: 100%;
         margin-bottom: 0;
         height: 22px;
+        line-height: 22px;
     }
 }                                                                                   // Why is this here?!
     .form-item-field-address-country {
-        width: 45%;
+        width: 47%;
         display: inline-block;
         text-align: center;
         margin-left: 5px;
@@ -700,14 +710,10 @@ html.js fieldset.collapsible .fieldset-legend {
             max-width: 100%;
         }
     }
-    .form-item-field-plan-type-tr-tid {
-        label {
-            display: block;
-        }
-    }
     .form-item-field-consultant-firm-er-target-id-selective {
         label {
             display: block;
+            //padding-left: 40px;
         }
     }
     .form-item-field-account-size-value-min, .form-item-field-account-size-value-max {
@@ -723,6 +729,7 @@ html.js fieldset.collapsible .fieldset-legend {
     #edit-field-account-size-value-min, #edit-field-account-size-value-max {
         width: 64px;
         height: 22px;
+        line-height: 22px;
         border: solid 1px $border-blue;
     }
     #edit-container-container-5 {
@@ -735,8 +742,12 @@ html.js fieldset.collapsible .fieldset-legend {
             font-weight: bold;
             display: block;
             width: auto;
-            padding: 5px 0 0 0;
+            text-align: left;
+            padding: 5px 0 0 30px;
         }
+    }
+    #edit_field_geographic_tr_tid_selective_chosen, #form-item-field-attribute-tr-tid-selective, #edit_major_style_chosen, #form-item-field-attribute-tr-tid-selective {
+        width: 48%;
     }
     .form-item-field-geographic-tr-tid-selective, .form-item-major-style, .form-item-field-attribute-tr-tid-selective, .form-item-minor-style {
         width: 48%;
@@ -762,6 +773,7 @@ html.js fieldset.collapsible .fieldset-legend {
     #edit-field-account-size-value-min, #edit-field-account-size-value-max {
         width: 64px;
         height: 22px;
+        line-height: 22px;
         border: solid 1px $border-blue;
     }
     #edit-container-container-3 {
@@ -774,7 +786,8 @@ html.js fieldset.collapsible .fieldset-legend {
             font-weight: bold;
             display: block;
             width: auto;
-            padding: 5px 0 0 0;
+            text-align: left;
+            padding: 5px 0 0 30px;
         }
     }
 }
@@ -785,7 +798,11 @@ html.js fieldset.collapsible .fieldset-legend {
             font-weight: bold;
             display: block;
             width: auto;
+            text-align: left;
             padding: 5px 0 0 0;
+        }
+        #edit-created-min, #edit-created-max {
+            max-width: 84px;
         }
         #edit-created-max {
             margin-left: 5px;
@@ -808,14 +825,12 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         vertical-align: top;
         width: 30%;
-        //padding: 5px;
-        background: $form-item-active-blue;
         legend {
             border: solid 1px $header;
             color: #ccc;
         }
         .fieldset-wrapper {
-            padding:  0 10px 10px 10px;
+            padding:  0 10px;
         }
         .form-item label {
             margin-bottom: 0;
@@ -836,6 +851,12 @@ html.js fieldset.collapsible .fieldset-legend {
         margin: 0;
         position: relative;
     }
+    #edit_title_selective_chosen {
+        width: 220px !important;
+    }
+    .form-item-title-selective label {
+        padding-left: 10px;
+    }
 }
 /*** Consultant Contacts List ***/
 #views-exposed-form-content-lists-consultant-contacts {
@@ -850,13 +871,12 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         vertical-align: top;
         width: 30%;
-        background: $form-item-active-blue;
         legend {
             border: solid 1px $header;
             color: #ccc;
         }
         .fieldset-wrapper {
-            padding:  0 10px 10px 10px;
+            padding:  0 10px;
         }
         .form-item label {
             margin-bottom: 0;
@@ -865,6 +885,9 @@ html.js fieldset.collapsible .fieldset-legend {
     }
     #edit-container-container-4 {
         margin: 0 10px 10px 0;
+        .fieldset-wrapper label {
+            padding-left: 14px;
+        }
     }
     #edit-container-container-5 {
         margin-bottom: 0 0 10px 0;
@@ -877,7 +900,10 @@ html.js fieldset.collapsible .fieldset-legend {
         .fieldset-wrapper {
             padding: 0;
         }
-    }    
+    }
+    #edit_title_selective_chosen {
+        width: 200px;
+    }  
 }
 /*** Managers List ***/
 #views-exposed-form-content-lists-managers-list {
@@ -1183,6 +1209,37 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
 }
+
+/********** Buttons **********/
+    .btn {
+        background: $dark-button;
+        :hover {
+            background: $fin-navy; //Doesn't work, investigate
+        }
+    }
+    legend {
+        padding: 5px;
+        background: $header;
+    }
+    button.form-reset {
+        vertical-align: bottom;
+        background: $dark-button;
+        color: $white;
+        padding: 4px 16px;
+        margin-left: 10px;
+    }
+    #save-search-trigger {
+        background: $dark-button;
+        padding: 4px 16px;
+        margin: 0 0 0 10px;
+        color: $white;
+    }
+    .views-exposed-form .views-exposed-widget {
+        padding: 0;
+        .form-submit {
+            margin-top: 0;
+        }
+    }
 
 /********** Tables **********/
 table.views-table {
