@@ -1,0 +1,4 @@
+name = Fin Options
+description = Replacement for core Options module for specific entity reference fields
+package = Custom
+core = 7.x
