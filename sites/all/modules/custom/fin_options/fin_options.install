@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function fin_options_install() {
+  $sandbox = '';
+  fin_options_update_7001($sandbox);
+}
+
+/**
+ * Switches select list to fin select list.
+ */
+function fin_options_update_7001(&$sandbox) {
+  $entities = array(
+    'node' => array(
+      'mandate' => array(
+        'field_consultant_contact_er',
+      ),
+    ),
+    'field_collection_item' => array(
+      'field_consultants_terminated' => array(
+        'field_consultant_contact_er',
+      ),
+      'field_consultants_hired' => array(
+        'field_consultant_contact_er',
+      ),
+      'field_consultant_roster_fc' => array(
+        'field_consultant_contact_er',
+      ),
+    ),
+  );
+
+  foreach ($entities as $entity_type => $bundles) {
+    foreach ($bundles as $bundle => $fields) {
+      foreach ($fields as $field_name) {
+        $info = field_info_instance($entity_type, $field_name, $bundle);
+        $info['widget']['type'] = 'fin_options_select';
+        field_update_instance($info);
+      }
+    }
+  }
+}

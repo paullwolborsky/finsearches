@@ -107,3 +107,19 @@ function fin_mod_views_api() {
     'api' => 3,
   );
 }
+
+/**
+ * Implements hook_fin_options_list().
+ */
+function fin_mod_fin_options_list($field, $instance = NULL, $entity_type = NULL, $entity = NULL) {
+  
+}
+
+/**
+ * Implements hook_field_widget_info_alter().
+ */
+function fin_mod_field_widget_info_alter(&$info) {
+  if (module_exists('fin_options')) {
+    $info['fin_options_select']['field types'][] = 'entityreference';
+  }
+}
