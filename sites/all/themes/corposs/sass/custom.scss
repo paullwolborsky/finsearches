@@ -781,7 +781,7 @@ html.js fieldset.collapsible .fieldset-legend {
             padding: 0;
             margin-bottom: 10px;
         }
-        .fieldset-wrapper::before {
+        .form-item-field-plan-er-target-id-selective::after {
             content: "Mandate Size";
             font-weight: bold;
             display: block;
@@ -912,6 +912,53 @@ html.js fieldset.collapsible .fieldset-legend {
     }
     .form-item label {
         display: block;
+    }
+}
+/*** Manager of Managers List ***/
+#views-exposed-form-content-lists-manager-of-managers {
+    #edit-container-container-3 {
+    display: inline-block;
+    max-width: 99%;
+    text-align: center;
+    margin: 10px auto;
+    }
+    #edit-container-container-4, #edit-container-container-5, #edit-container-container-6 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        width: 30%;
+        padding:0 10px;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-4 {
+        margin: 0 10px 10px 0;
+    }
+    #edit-container-container-5 {
+        margin-bottom: 0 0 10px 0;
+    }
+    #edit-container-container-6 {
+        margin: 0 0 10px 10px;
+    }
+    #edit-container-container-7 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+    .form-item-field-address-locality-selective label {
+        padding-left: 15px;
+    }
+    .form-item-field-address-administrative-area-selective label {
+        padding-left: 15px;
     }
 }
 /*** Map Search ***/
