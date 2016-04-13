@@ -211,6 +211,13 @@ span.fieldset-legend {
         padding: 0;
     }
 }
+.node-type-manager-firm {
+    .group-firm-info {
+        .fieldset-legend {
+            text-transform: capitalize;
+        }
+    }
+}
 
 /********** Content **********/
 body.boxed {
@@ -424,6 +431,9 @@ fieldset.collapsible .fieldset-legend {
 }
 .view-footer {
     margin-top: 10px;
+}
+.column-phone {
+    min-width: 110px;
 }
 
 /********** Exposed Filters **********/
@@ -1121,7 +1131,7 @@ html.js fieldset.collapsible .fieldset-legend {
     #edit-container-container-4 {
         display: inline-block;
         text-align: center;
-        width: 30%;
+        width: 43%;
         margin: 0;
         background: $form-item-active-blue;
         legend {
@@ -1146,6 +1156,7 @@ html.js fieldset.collapsible .fieldset-legend {
         background: none;
     }
 }
+
 /*** Manager - Mandate Assignments ***/
 #views-exposed-form-reference-views-manager-mandates {
     #edit-container-container-2 {
