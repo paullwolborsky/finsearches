@@ -702,7 +702,7 @@ span.fieldset-legend a {
 
 /* line 435, ../../sass/custom.scss */
 .column-phone {
-  min-width: 110px;
+  min-width: 90px;
 }
 
 /********** Exposed Filters **********/
