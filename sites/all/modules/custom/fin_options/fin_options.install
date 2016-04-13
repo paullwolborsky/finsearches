@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * Implements hook_install().
+ */
+function fin_options_install() {
+  $sandbox = '';
+  fin_options_update_7001($sandbox);
+}
+
+/**
  * Switches select list to fin select list.
  */
 function fin_options_update_7001(&$sandbox) {
