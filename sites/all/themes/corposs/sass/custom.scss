@@ -1170,7 +1170,7 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         vertical-align: top;
         width: 30%;
-        background: $form-item-active-blue;
+        //background: $form-item-active-blue;
         legend {
             border: solid 1px $header;
             color: #ccc;
@@ -1196,6 +1196,41 @@ html.js fieldset.collapsible .fieldset-legend {
         width: 100%;
         margin: 0;
         position: relative;
+    }
+    #edit-field-date-value-min-wrapper, #edit-field-date-value-max-wrapper {
+        width: 49%;
+        display: inline-block;
+        text-align: center;
+        padding: 0 10px;
+    }
+    #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
+        .form-item label {
+            margin-top: 0;
+        }
+    }
+    #edit-field-date-value-min-datepicker-popup-7, #edit-field-date-value-max-datepicker-popup-7 {
+        display: inline-block;
+        text-align: center;
+        max-width: 90px;
+        height: 22px;
+        line-height: 22px;
+        margin: 0;
+    }
+    .form-item-field-account-size-value-min, .form-item-field-account-size-value-max {
+        display: inline-block;
+        text-align: center;
+        height: 24px;
+        label {
+            width: auto;
+            margin: 0 5px;
+            padding-bottom: 3px;
+        }
+    }
+    #edit-field-account-size-value-min, #edit-field-account-size-value-max {
+        width: 64px;
+        height: 22px;
+        line-height: 22px;
+        border: solid 1px $border-blue;
     }
 }
 /*** Manager - Clients ***/
