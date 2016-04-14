@@ -29,7 +29,7 @@ $border-blue: #689afd;
 $form-background-blue: #e7efff;
 $fieldset-background-blue: #bad0fd;
 $fieldset-label-background-blue: #689afd;
-$form-item-odd-blue: #ededed;
+$form-item-odd-blue: #dedede;
 $form-item-even-blue: #ffffff;
 $form-item-active-blue: #d4e2fe;
 
@@ -1211,7 +1211,7 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         vertical-align: top;
         width: 30%;
-        background: $form-item-active-blue;
+        //background: $form-item-active-blue;
         legend {
             border: solid 1px $header;
             color: #ccc;
@@ -1263,6 +1263,7 @@ html.js fieldset.collapsible .fieldset-legend {
             font-weight: bold;
             display: block;
             width: auto;
+            text-align: left;
             padding: 5px 0 0 0;
         }
     }
@@ -1581,6 +1582,21 @@ span.fieldset-legend a {
         td:nth-child(7) {
             //width: 20px;
             //padding: 0 2px;
+            text-align: center;
+        }
+    }
+}
+#block-fin-utils-messages {
+    #privatemsg-list-form{
+        .container-inline {
+            margin: 0 0 10px 0;
+        }
+        .btn-danger {
+            box-shadow: none;
+        }
+    }
+    table.privatemsg-list {
+        th.select-all {
             text-align: center;
         }
     }
