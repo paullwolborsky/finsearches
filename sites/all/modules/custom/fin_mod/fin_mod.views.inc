@@ -28,9 +28,12 @@ function fin_mod_plan_direct_consultants(&$view) {
     $lead_contact_id = '';
     foreach ($plan_contacts as $plan_contact) {
       $plan_contact_wrapper = entity_metadata_wrapper('paragraphs_item', $plan_contact);
-      $lead_contact = $plan_contact_wrapper->field_lead_plan_contact->value();
-      if ($lead_contact == 1) {
-        $lead_contact_id = $plan_contact_wrapper->getIdentifier();
+      // Condition check, skip if there is no lead plan contact.
+      if (isset($plan_contact_wrapper->field_lead_plan_contact->value)) {
+        $lead_contact = $plan_contact_wrapper->field_lead_plan_contact->value();
+        if ($lead_contact == 1) {
+          $lead_contact_id = $plan_contact_wrapper->getIdentifier();
+        }
       }
     }
     if (!empty($lead_contact_id)) {
@@ -80,7 +83,10 @@ function fin_mod_mandate_plan_info(&$view) {
       foreach ($pg_entities as $pg_entity) {
 
         $paragraph_wrapper = entity_metadata_wrapper('paragraphs_item', $pg_entity);
-        $lead_plan = $paragraph_wrapper->field_lead_plan_contact->value();
+        // Condition check, skip if there is no lead plan contact.
+        if (isset($plan_contact_wrapper->field_lead_plan_contact->value)) {
+          $lead_plan = $paragraph_wrapper->field_lead_plan_contact->value();
+        }
         if ($lead_plan == 1) {
           $id = $paragraph_wrapper->getIdentifier();
           $job_history = db_query('SELECT j.entity_id FROM field_data_field_job_history AS j WHERE j.field_job_history_value = :id', array('id' => $id))->fetchField();
