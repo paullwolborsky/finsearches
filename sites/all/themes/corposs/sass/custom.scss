@@ -1184,18 +1184,21 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
     #edit-container-container-3 {
-        margin: 0 10px 10px 0;
+        margin: 0 10px 0 0;
     }
     #edit-container-container-4 {
-        margin-bottom: 0 0 10px 0;
+        margin-bottom: 0 0 0 0;
     }
     #edit-container-container-5 {
-        margin: 0 0 10px 10px;
+        margin: 0 0 0 10px;
     }
     #edit-container-container-6 {
         width: 100%;
         margin: 0;
         position: relative;
+    }
+    .form-type-select label {
+        padding-left: 20px;
     }
     #edit-field-date-value-min-wrapper, #edit-field-date-value-max-wrapper {
         width: 49%;
@@ -1203,23 +1206,34 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         padding: 0 10px;
     }
-    #edit-field-date-value-min-wrapper::before {
+    .form-item-field-account-size-value-min::before {
         content: "Mandate Size";
         font-weight: bold;
         display: block;
         width: auto;
         text-align: left;
-        padding: 5px 0 0 30px;
+        padding: 5px 0 0 0;
     }
     #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
         .form-item label {
             margin-top: 0;
         }
     }
-    #edit-field-date-value-min-wrapper:before {
+    .form-item-field-mandate-status-tr-tid-selective {
+        text-align: left;
+        padding-left: 12px;
+        ul.chosen-choices {
+            margin-bottom: 10px;
+        }
+    }
+    .form-item-field-mandate-status-tr-tid-selective label {
+        padding-left: 5px;
+    }
+    .form-item-field-mandate-status-tr-tid-selective::after {
         content: "Date";
         font-weight: bold;
-        padding-left: 5px;
+        width: 100%;
+        padding: 0 0 0 5px;
     }
     #edit-field-date-value-min-datepicker-popup-7, #edit-field-date-value-max-datepicker-popup-7 {
         display: inline-block;
@@ -1240,11 +1254,31 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
     #edit-field-account-size-value-min, #edit-field-account-size-value-max {
-        width: 64px;
+        width: 84px;
         height: 22px;
         line-height: 22px;
         border: solid 1px $border-blue;
     }
+    .form-item-field-plan-er-target-id-selective label, .form-item-field-consultant-firm-er-target-id-selective label {
+        padding-left: 10px;
+    }
+    #edit_field_geographic_tr_tid_selective_chosen, #form-item-field-attribute-tr-tid-selective, #edit_major_style_chosen, #form-item-field-attribute-tr-tid-selective {
+        width: 48%;
+        .form-type-select label {
+            padding-left: 0;
+        }
+    }
+    .form-item-field-geographic-tr-tid-selective, .form-item-major-style, .form-item-field-attribute-tr-tid-selective, .form-item-minor-style {
+        width: 48%;
+        display: inline-block;
+        text-align: center;
+        .chosen-container {
+            max-width: 100%;
+        }
+    }
+    .form-item-field-geographic-tr-tid-selective label, .form-item-major-style label, .form-item-field-attribute-tr-tid-selective label, .form-item-minor-style label {
+        padding-left: 0;
+    } 
 }
 /*** Manager - Clients ***/
 #views-exposed-form-reference-views-manager-plans {
