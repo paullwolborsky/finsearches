@@ -1203,10 +1203,23 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         padding: 0 10px;
     }
+    #edit-field-date-value-min-wrapper::before {
+        content: "Mandate Size";
+        font-weight: bold;
+        display: block;
+        width: auto;
+        text-align: left;
+        padding: 5px 0 0 30px;
+    }
     #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
         .form-item label {
             margin-top: 0;
         }
+    }
+    #edit-field-date-value-min-wrapper:before {
+        content: "Date";
+        font-weight: bold;
+        padding-left: 5px;
     }
     #edit-field-date-value-min-datepicker-popup-7, #edit-field-date-value-max-datepicker-popup-7 {
         display: inline-block;
