@@ -28,9 +28,12 @@ function fin_mod_plan_direct_consultants(&$view) {
     $lead_contact_id = '';
     foreach ($plan_contacts as $plan_contact) {
       $plan_contact_wrapper = entity_metadata_wrapper('paragraphs_item', $plan_contact);
-      $lead_contact = $plan_contact_wrapper->field_lead_plan_contact->value();
-      if ($lead_contact == 1) {
-        $lead_contact_id = $plan_contact_wrapper->getIdentifier();
+      // Condition check, skip if there is no lead plan contact.
+      if (isset($plan_contact_wrapper->field_lead_plan_contact->value)) {
+        $lead_contact = $plan_contact_wrapper->field_lead_plan_contact->value();
+        if ($lead_contact == 1) {
+          $lead_contact_id = $plan_contact_wrapper->getIdentifier();
+        }
       }
     }
     if (!empty($lead_contact_id)) {
@@ -80,7 +83,10 @@ function fin_mod_mandate_plan_info(&$view) {
       foreach ($pg_entities as $pg_entity) {
 
         $paragraph_wrapper = entity_metadata_wrapper('paragraphs_item', $pg_entity);
-        $lead_plan = $paragraph_wrapper->field_lead_plan_contact->value();
+        // Condition check, skip if there is no lead plan contact.
+        if (isset($plan_contact_wrapper->field_lead_plan_contact->value)) {
+          $lead_plan = $paragraph_wrapper->field_lead_plan_contact->value();
+        }
         if ($lead_plan == 1) {
           $id = $paragraph_wrapper->getIdentifier();
           $job_history = db_query('SELECT j.entity_id FROM field_data_field_job_history AS j WHERE j.field_job_history_value = :id', array('id' => $id))->fetchField();
@@ -148,78 +154,133 @@ function fin_mod_views_query_alter(&$view, &$query) {
 }
 
 /**
- * 
+ * Implements hook_views_pre_render().
  */
 function fin_mod_views_pre_render(&$view) {
-  if ($view->current_display == 'consultant_plan_managers') {
+  if ($view->current_display == 'consultant_plan_managers' || $view->current_display == 'consultants_by_plan') {
     $view = fin_mod_consultant_plan_manager_remove($view);
   }
 }
 
 function fin_mod_consultant_plan_manager_remove(&$view) {
   foreach ($view->result as $row => $result) {
-    if ($result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->vocabulary_machine_name == 'consultant_types') {
-      $consultant_type = $result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->name;
-      $major = $result->taxonomy_term_data_taxonomy_term_hierarchy_name;
-      $minor = $result->taxonomy_term_data_node_name;
-      switch ($consultant_type) {
-        case "General":
-          break;
-        case "Real Estate":
-          if ($major != 'Real Estate') {
-            unset($view->result[$row]);
-          }
-          break;
-        case "Private Equity":
-          if ($major != 'Private Equity') {
-            unset($view->result[$row]);
-          }
-          break;
-        case "Alternatives":
-          $alternatives = array(
-            'Real Estate',
-            'Private Equity',
-            'Hedge Funds',
-            'Real Assets',
-          );
-          if (!in_array($major, $alternatives)) {
-            unset($view->result[$row]);
-          }
-          break;
-        case "Hedge Funds":
-          if ($major != 'Hedge Fund') {
-            unset($view->result[$row]);
-          }
-          break;
-        case "Project-Basis":
-          break;
-        case "Timber":
-          if ($major != 'Real Assets' && $minor != 'Timber') {
-            unset($view->result[$row]);
-          }
-          break;
-        case "Infrastructure":
-          if ($major != 'Real Assets' && $minor != 'Infastructure') {
-            unset($view->result[$row]);
-          }
-          break;
-        case "Outsourced CIO":
-          break;
-        case "Public Equities":
-          $public_equities = array(
-            'Active Equity',
-            'Passive Equity',
-          );
-          if (!in_array($major, $public_equities)) {
-            unset($view->result[$row]);
-          }
-          break;
-        case "Real Assets":
-          if ($major != 'Real Assets') {
-            unset($view->result[$row]);
-          }
-          break;
+    // refactor if this gets more complex than two or three.
+    if ($view->current_display == 'consultant_plan_managers') {
+      if ($result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->vocabulary_machine_name == 'consultant_types') {
+        $consultant_type = $result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->name;
+        $major = $result->taxonomy_term_data_taxonomy_term_hierarchy_name;
+        $minor = $result->taxonomy_term_data_node_name;
       }
     }
+    else if ($view->current_display == 'consultants_by_plan') {
+      $consultant_type = $result->taxonomy_term_data_field_data_field_consultant_type_tr_name;
+      $major = $result->taxonomy_term_data_field_data_field_major_minor_style_tr_nam;
+      $minor = $result->taxonomy_term_data_taxonomy_term_hierarchy_name;
+    }
+    switch ($consultant_type) {
+      case "General":
+        break;
+      case "Real Estate":
+        if ($major != 'Real Estate') {
+          unset($view->result[$row]);
+        }
+        break;
+      case "Private Equity":
+        if ($major != 'Private Equity') {
+          unset($view->result[$row]);
+        }
+        break;
+      case "Alternatives":
+        $alternatives = array(
+          'Real Estate',
+          'Private Equity',
+          'Hedge Funds',
+          'Real Assets',
+        );
+        if (!in_array($major, $alternatives)) {
+          unset($view->result[$row]);
+        }
+        break;
+      case "Hedge Funds":
+        if ($major != 'Hedge Fund') {
+          unset($view->result[$row]);
+        }
+        break;
+      case "Project-Basis":
+        break;
+      case "Timber":
+        if ($major != 'Real Assets' && $minor != 'Timber') {
+          unset($view->result[$row]);
+        }
+        break;
+      case "Infrastructure":
+        if ($major != 'Real Assets' && $minor != 'Infastructure') {
+          unset($view->result[$row]);
+        }
+        break;
+      case "Outsourced CIO":
+        break;
+      case "Public Equities":
+        $public_equities = array(
+          'Active Equity',
+          'Passive Equity',
+        );
+        if (!in_array($major, $public_equities)) {
+          unset($view->result[$row]);
+        }
+        break;
+      case "Real Assets":
+        if ($major != 'Real Assets') {
+          unset($view->result[$row]);
+        }
+        break;
+    }
   }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function fin_mod_views_data_alter(&$data) {
+  $data['taxonomy_term_hierarchy']['table']['group'] = t('Taxonomy term');
+
+  $data['term_hierarchy']['moved to'] = 'taxonomy_term_hierarchy';
+  $data['taxonomy_term_hierarchy']['table']['join'] = array(
+    'taxonomy_term_hierarchy' => array(
+      // links to self through left.parent = right.tid (going down in depth)
+      'field' => 'tid',
+      'left_field' => 'parent',
+    ),
+    'taxonomy_term_data' => array(
+      // links directly to taxonomy_term_data via tid
+      'left_field' => 'tid',
+      'field' => 'parent',
+    ),
+  );
+
+  // Provide a "default relationship" to keep older views from choking.
+  $data['taxonomy_term_hierarchy']['table']['default_relationship'] = array(
+    'node' => array(
+      'table' => 'node',
+      'field' => 'term_node_tid',
+    ),
+  );
+
+  $data['taxonomy_term_hierarchy']['child'] = array(
+    'title' => t('Child term'),
+    'help' => t('The child term of the term. This can produce duplicate entries.'),
+    'relationship' => array(
+      'base' => 'taxonomy_term_data',
+      'field' => 'tid',
+      'label' => t('Child'),
+    ),
+    'filter' => array(
+      'help' => t('Filter the results of "Taxonomy: Term" by the child pid.'),
+      'handler' => 'views_handler_filter_numeric',
+    ),
+    'argument' => array(
+      'help' => t('The child term of the term.'),
+      'handler' => 'views_handler_argument_taxonomy',
+    ),
+  );
 }

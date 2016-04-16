@@ -1,0 +1,176 @@
+<?php
+/**
+ * @file
+ * A module to perform custom migration from one version of Drupal to another.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function fin_content_delete_menu() {
+  $items = array();
+
+  $items['admin/content/fin_content_delete'] = array(
+    'title' => 'Delete Content in Batch',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fin_content_delete_form'),
+    'access arguments' => array('administer site configuration'),
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_form().
+ */
+function fin_content_delete_form() {
+  $form = array();
+  $form['fieldset1'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Nodes Delete'),
+  );
+  $form['fieldset2'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Field Collections Delete'),
+  );
+  $form['fieldset1']['submit_news'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All news'),
+    '#submit' => array('fin_content_delete_form_submit_news'),
+  );
+
+  $form['fieldset1']['submit_office'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All Office'),
+    '#submit' => array('fin_content_delete_form_submit_offices'),
+  );
+
+  $form['fieldset1']['submit_contact'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All Contacts'),
+    '#submit' => array('fin_content_delete_form_submit_contacts'),
+  );
+
+  $form['fieldset1']['submit_mandate'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All Mandates'),
+    '#submit' => array('fin_content_delete_form_submit_mandates'),
+  );
+
+  $form['fieldset1']['submit_manager_firm'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All manager firms'),
+    '#submit' => array('fin_content_delete_form_submit_manager_firms'),
+  );
+
+  $form['fieldset1']['submit_consultant_firm'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All consultant firms'),
+    '#submit' => array('fin_content_delete_form_submit_consultant_firms'),
+  );
+
+  $form['fieldset1']['submit_one'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All Plans'),
+    '#submit' => array('fin_content_delete_form_submit_plan'),
+  );
+
+
+  $form['fieldset2']['submit_field_collections'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All field collections'),
+    '#submit' => array('fin_content_delete_form_submit_fc'),
+  );
+  return $form;
+}
+
+function fin_content_delete_form_submit_manager_firms($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'manager_firm');
+}
+
+function fin_content_delete_form_submit_consultant_firms($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'consultant_firm');
+}
+
+function fin_content_delete_form_submit_news($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'news');
+}
+
+function fin_content_delete_form_submit_offices($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'office');
+}
+
+function fin_content_delete_form_submit_contacts($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'contact');
+}
+
+function fin_content_delete_form_submit_mandates($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'mandate');
+}
+
+function fin_content_delete_form_submit_plan($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'plan');
+}
+
+function fin_content_delete_form_submit_fc($form, &$form_state) {
+  $fc = entity_get_info('field_collection_item');
+  foreach ($fc['bundles'] as $name => $bunndle) {
+    fin_content_delete_all_bundle('field_collection_item', $name);
+  }
+}
+
+/**
+ * Put all node in to delete queue and process with batch.
+ */
+function fin_content_delete_all_bundle($entity_type, $bundle_type) {
+  $batch = array();
+  $einfo = entity_get_info($entity_type);
+  $keycolumn = $einfo['entity keys']['id'];
+  $entityQuery = new EntityFieldQuery();
+  $entities= $entityQuery->entityCondition('entity_type', $entity_type)
+    ->entityCondition('bundle', $bundle_type)
+    ->execute();
+  $count = 0;
+  $nids = array();
+  $nidss = array();
+  if (isset($entities[$entity_type])) {
+    $eids= array_keys($entities[$entity_type]);
+    foreach ($eids as $eid) {
+      $count++;
+      $nids[] = $eid;
+      if ($count > 99) {
+        $count = 0;
+        $nidss[] = $nids;
+        $nids = array();
+      }
+    }
+  }
+
+  if (!empty($nids)) {
+    $nidss[] = $nids;
+  }
+
+  if (!empty($nidss)) {
+    foreach ($nidss as $nids) {
+      $batch['operations'][] = array(
+        'entity_delete_multiple',
+        array($entity_type, $nids),
+      );
+    }
+  }
+  if (!empty($batch['operations'])) {
+    batch_set($batch);
+  }
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function fin_content_delete_form_submit($form, &$form_state) {
+  $batch = array(
+    'title' => t('Importing users data'),
+    'operations' => array(),
+    'finished' => '_fin_users_migration_done',
+  );
+  $state_user = fin_users_migration_user_batch_wrap($batch);
+  batch_set($batch);
+}
