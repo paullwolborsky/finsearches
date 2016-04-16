@@ -159,16 +159,16 @@ function fin_content_delete_all_bundle($entity_type, $bundle_type) {
     $nidss[] = $nids;
   }
 
+  $queue = DrupalQueue::get('fin_content_delete_queue');
+
   if (!empty($nidss)) {
     foreach ($nidss as $nids) {
-      $batch['operations'][] = array(
-        'entity_delete_multiple',
-        array($entity_type, $nids),
+      $task = array(
+        'type' => $entity_type,
+        'id' => $nids,
       );
+      $queue->createItem($task);
     }
-  }
-  if (!empty($batch['operations'])) {
-    batch_set($batch);
   }
 }
 
@@ -238,4 +238,20 @@ function fin_content_delete_entity_delete_multiple($entity_type, $nid) {
   catch (Exception $e) {
     watchdog("Plan Node Special treat", $e->getMessage(), array(), WATCHDOG_ERROR);
   }
+}
+
+function fin_content_delete_queue_process($item) {
+  $id = $item['id'];
+  $type = $item['type'];
+  entity_delete_multiple($type, $id);
+}
+
+
+function fin_content_delete_cron_queue_info() {
+  return array(
+    'fin_content_delete_queue' => array(
+      'worker callback' => 'fin_content_delete_queue_process',
+      'time' => '3450',
+    ),
+  );
 }
