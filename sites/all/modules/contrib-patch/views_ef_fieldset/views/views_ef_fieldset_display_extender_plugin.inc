@@ -119,6 +119,20 @@ class views_ef_fieldset_display_extender_plugin extends views_plugin_display_ext
       $exposed_fields[] = $reset_button;
     }
 
+    // Exposed items per page.
+    $view_pager = $this->display->get_option('pager');
+    if ($view_pager['options']['expose']['items_per_page']) {
+      $items_per_page = new Stdclass();
+      $items_per_page->handler_type = 'pager';
+      $items_per_page->options = array(
+        'id' => 'items_per_page',
+        'expose' => array(
+          'label' => 'Items per page',
+        )
+      );
+      $exposed_fields[] = $items_per_page;
+    }
+
     foreach ($exposed_fields as $exposed_field_index => $exposed_field) {
       $container = new StdClass();
       $container->field = 'container';

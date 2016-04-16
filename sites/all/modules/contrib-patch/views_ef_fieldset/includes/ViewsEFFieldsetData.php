@@ -143,6 +143,16 @@ class ViewsEFFieldsetData {
         }
       }
 
+      // If it's the items per page
+      if ($item['item']['type'] == 'pager') {
+        $field_name = $item['item']['id'];
+
+        if(isset($form[$field_name]) && is_array($form[$field_name])) {
+          $element[$field_name] = $form[$field_name];
+          $element[$field_name]['#weight'] = $item['item']['weight'];
+          unset($form[$field_name]);
+        }
+      }
       if (!empty($item['children']) && $item['item']['type'] == 'container') {
 
         $element['container-' . $item['item']['id']] = array(
