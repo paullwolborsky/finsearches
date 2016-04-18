@@ -46,6 +46,7 @@ features[ds_fields][] = plan_ongoing_mandates_bf
 features[ds_fields][] = plan_potential_leads_mandates_bf
 features[ds_fields][] = plan_related_news_bf
 features[features_api][] = api:2
+features[field_base][] = comment_body
 features[field_base][] = field_asset_allocation_history
 features[field_base][] = field_consultant_roster_fc
 features[field_base][] = field_content_type_human_tr
