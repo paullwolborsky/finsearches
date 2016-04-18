@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * fs_f_fc_bt_consultants_hired.features.field_instance.inc
+ * fs_f_fc_bt_consultants_terminated.features.field_instance.inc
  */
 
 /**
@@ -36,17 +36,12 @@ function fs_f_fc_bt_consultants_terminated_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_consultant_contact_er',
     'label' => 'Consultant Contact',
-    'options_limit' => 1,
+    'options_limit' => FALSE,
     'options_limit_empty_behaviour' => 0,
-    'options_limit_fields' => array(
-      'field_consultant_firm_er' => 'field_consultant_firm_er',
-    ),
+    'options_limit_fields' => array(),
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
-        'autofill' => array(
-          'status' => 0,
-        ),
         'prepopulate' => array(
           'status' => 0,
         ),
@@ -55,11 +50,14 @@ function fs_f_fc_bt_consultants_terminated_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
         'apply_chosen' => 1,
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 2,
     ),
   );
@@ -163,12 +161,12 @@ function fs_f_fc_bt_consultants_terminated_field_default_field_instances() {
       'weight' => 1,
     ),
   );
-  
-  t('Consultant Firms Hired');
-    t('Consultant Firm');
-  t('Consultant Firm Finalists');
-  t('Consultant Firms On Watch');
-  t('Consultant Firms Terminated');
-  
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Consultant Contact');
+  t('Consultant Firm');
+  t('Consultant Type');
+
   return $field_instances;
 }

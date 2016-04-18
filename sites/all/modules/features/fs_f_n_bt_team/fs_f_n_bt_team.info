@@ -1,0 +1,9 @@
+name = fs_f_n_bt_team
+core = 7.x
+package = Custom
+dependencies[] = entityreference
+dependencies[] = features
+dependencies[] = fs_f_base
+dependencies[] = options
+features[features_api][] = api:2
+features[field_instance][] = node-team-field_consultant_contact_er
