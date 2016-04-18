@@ -82,8 +82,15 @@ function fs_f_n_bt_manager_firm_ds_layout_settings_info() {
         9 => 'field_email',
         10 => 'field_website',
       ),
+      'footer' => array(
+        1 => 'manager_notes_bf',
+        9 => 'consultants_by_plan_entity_view_1',
+      ),
       'above_right' => array(
-        1 => 'manager_node_map_bf',
+        3 => 'group_contact_info',
+        6 => 'field_address',
+        7 => 'field_email',
+        8 => 'field_website',
       ),
       'middle' => array(
         4 => 'manager_mandates_bf',
@@ -95,9 +102,9 @@ function fs_f_n_bt_manager_firm_ds_layout_settings_info() {
     ),
     'fields' => array(
       'group_firm_info' => 'above_left',
-      'manager_node_map_bf' => 'above_right',
-      'group_contact_info' => 'above_left',
+      'manager_notes_bf' => 'footer',
       'field_status_tr' => 'above_left',
+      'group_contact_info' => 'above_right',
       'manager_mandates_bf' => 'middle',
       'field_acronym' => 'above_left',
       'field_address' => 'above_left',
