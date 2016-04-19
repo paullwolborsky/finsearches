@@ -446,7 +446,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 62,
+        'weight' => 32,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -900,7 +900,7 @@ function fs_f_n_bt_manager_firm_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 61,
+        'weight' => 31,
       ),
       'teaser' => array(
         'label' => 'above',
