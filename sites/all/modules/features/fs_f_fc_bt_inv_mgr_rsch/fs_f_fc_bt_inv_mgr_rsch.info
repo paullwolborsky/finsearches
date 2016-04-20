@@ -9,6 +9,7 @@ dependencies[] = field_collection
 dependencies[] = field_group
 dependencies[] = fs_f_base
 dependencies[] = fs_f_n_bt_consultant_firm
+dependencies[] = fs_f_n_bt_plan
 dependencies[] = link
 dependencies[] = options
 dependencies[] = taxonomy

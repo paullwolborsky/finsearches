@@ -846,7 +846,8 @@ function fin_saved_search_migration_new_major_minor(array $mm) {
       return $r;
     }
     else {
-      return $parent;
+      $r = fin_saved_search_migration_get_taxonomy_by_name('None', 'major_minor_styles', $parent);
+      return $r;
     }
 }
 

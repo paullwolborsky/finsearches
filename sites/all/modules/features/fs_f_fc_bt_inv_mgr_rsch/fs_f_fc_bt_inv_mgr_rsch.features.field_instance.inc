@@ -136,7 +136,7 @@ function fs_f_fc_bt_inv_mgr_rsch_field_default_field_instances() {
   // 'field_collection_item-field_invest_mgr_research-field_consultant_contact_er'
   $field_instances['field_collection_item-field_invest_mgr_research-field_consultant_contact_er'] = array(
     'bundle' => 'field_invest_mgr_research',
-    'default_value' => NULL,
+    'default_value' => array(),
     'default_value_function' => '',
     'deleted' => 0,
     'description' => '',
@@ -158,11 +158,9 @@ function fs_f_fc_bt_inv_mgr_rsch_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_consultant_contact_er',
     'label' => 'Consultant Contact',
-    'options_limit' => 1,
+    'options_limit' => FALSE,
     'options_limit_empty_behaviour' => 0,
-    'options_limit_fields' => array(
-      'field_consultant_firm_er' => 'field_consultant_firm_er',
-    ),
+    'options_limit_fields' => array(),
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -174,11 +172,14 @@ function fs_f_fc_bt_inv_mgr_rsch_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
         'apply_chosen' => 1,
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 1,
     ),
   );
@@ -423,19 +424,9 @@ function fs_f_fc_bt_inv_mgr_rsch_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'field_collection',
-        'settings' => array(
-          'add' => 'Add',
-          'delete' => 'Delete',
-          'description' => TRUE,
-          'edit' => 'Edit',
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-          'view_mode' => 'full',
-        ),
-        'type' => 'field_collection_view',
-        'weight' => 72,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 70,
       ),
       'teaser' => array(
         'label' => 'above',

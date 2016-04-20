@@ -10,51 +10,6 @@
 function fs_f_n_bt_mandate_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance:
-  // 'field_collection_item-field_mandate_comments_fc-field_author_ur'
-  $field_instances['field_collection_item-field_mandate_comments_fc-field_author_ur'] = array(
-    'bundle' => 'field_mandate_comments_fc',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'user_reference',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'user_reference_default',
-        'weight' => 5,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_author_ur',
-    'label' => 'Author',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'user_reference',
-      'settings' => array(
-        'autocomplete_match' => 'contains',
-        'autocomplete_path' => 'user_reference/autocomplete',
-        'references_dialog_add' => 0,
-        'references_dialog_edit' => 0,
-        'references_dialog_search' => 0,
-        'references_dialog_search_view' => '',
-        'size' => 60,
-      ),
-      'type' => 'user_reference_autocomplete',
-      'weight' => 1,
-    ),
-  );
-
   // Exported field_instance: 'node-mandate-body'
   $field_instances['node-mandate-body'] = array(
     'bundle' => 'mandate',
@@ -191,7 +146,7 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
   // Exported field_instance: 'node-mandate-field_consultant_contact_er'
   $field_instances['node-mandate-field_consultant_contact_er'] = array(
     'bundle' => 'mandate',
-    'default_value' => NULL,
+    'default_value' => array(),
     'default_value_function' => '',
     'deleted' => 0,
     'description' => '',
@@ -213,24 +168,14 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_consultant_contact_er',
     'label' => 'Consultant Contact',
-    'options_limit' => 1,
+    'options_limit' => 0,
     'options_limit_empty_behaviour' => 1,
     'options_limit_fields' => array(
       'body' => 0,
-      'field_consultant_firm_er' => 'field_consultant_firm_er',
-      'field_content_type_shortcode_tr' => 0,
-      'field_geographic_tr' => 0,
-      'field_major_minor_style_tr' => 0,
-      'field_plan_er' => 0,
-      'field_plan_size' => 0,
-      'title_field' => 0,
     ),
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
-        'autofill' => array(
-          'status' => 0,
-        ),
         'prepopulate' => array(
           'status' => 0,
         ),
@@ -239,11 +184,18 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
         'apply_chosen' => 1,
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'references_dialog_add' => 0,
+        'references_dialog_edit' => 0,
+        'references_dialog_search' => 0,
+        'references_dialog_search_view' => '',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'entityreference_autocomplete',
       'weight' => 71,
     ),
   );
@@ -1956,7 +1908,6 @@ function fs_f_n_bt_mandate_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Account Size');
   t('Attribute');
-  t('Author');
   t('Body');
   t('Consultant Contact');
   t('Consultant Firm');
