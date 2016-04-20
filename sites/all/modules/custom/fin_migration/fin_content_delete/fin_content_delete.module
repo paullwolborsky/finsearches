@@ -130,6 +130,28 @@ function fin_content_delete_form_submit_fc($form, &$form_state) {
 /**
  * Put all node in to delete queue and process with batch.
  */
+function fin_content_delete_set_leading_contact() {
+  $sql = "SELECT * FROM `field_data_field_plan_er` p inner join field_data_field_old_contact_creation_date d on d.entity_id = p.`entity_id` and d.`revision_id` = p.`revision_id` where p.bundle = 'plan_contact' order by field_plan_er_target_id, `field_old_contact_creation_date_value` desc;'";
+  $planres = db_query($sql)->fetchAll();
+dsm($planres);
+  $planid = 0;
+  $lead_eids = array();
+  $queue = DrupalQueue::get('fin_content_delete_lead_contact_queue');
+  foreach($planres as $planset) {
+    if ($planid != $planset->field_plan_er_target_id) {
+      $planid = $planset->field_plan_er_target_id;
+      $lead_eids[] = $planset->entity_id;
+      $task = array(
+        'id' => $planset->entity_id,
+      );
+      $queue->createItem($task);
+    }
+  }
+}
+
+/**
+ * Put all node in to delete queue and process with batch.
+ */
 function fin_content_delete_all_bundle($entity_type, $bundle_type) {
   $batch = array();
   $einfo = entity_get_info($entity_type);
@@ -246,12 +268,25 @@ function fin_content_delete_queue_process($item) {
   entity_delete_multiple($type, $id);
 }
 
+function fin_content_delete_lead_contact_queue_process($item) {
+  $id = $item['id'];
+  db_update('field_data_field_lead_plan_contact')
+    ->fields(array('field_lead_plan_contact_value' => 1,))
+    ->condition('entity_id', $id)
+    ->execute();
+}
+
 
 function fin_content_delete_cron_queue_info() {
-  return array(
+  $return = array(
+    'fin_content_delete_lead_contact_queue' => array(
+      'worker callback' => 'fin_content_delete_lead_contact_queue_process',
+      'time' => '3450',
+    ),
     'fin_content_delete_queue' => array(
       'worker callback' => 'fin_content_delete_queue_process',
       'time' => '3450',
     ),
   );
+  return $return;
 }
