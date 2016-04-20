@@ -143,7 +143,12 @@ $shadow: #666666;
     display: none;
 }
 .dexp-sticky {
-    background-color: none;
+    background-color: $fin-navy !important;
+}
+.page-node-95493 {
+    #page-title {
+        display: none;
+    }
 }
 
 /********** Blocks **********/
