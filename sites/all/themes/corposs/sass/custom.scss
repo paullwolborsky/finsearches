@@ -18,7 +18,7 @@ $fin-navy: #142a45;
 $background: #ffffff;
 $blue-black: #000033;
 $dark-blue: #003366;
-$text: #666666;
+$text: #000000;
 $header: $fin-navy;
 $white: #ffffff; // Cuz you just need white sometimes
 
@@ -171,7 +171,7 @@ span.fieldset-legend {
     text-transform: uppercase;  
 }
 .collapsiblock a {
-    color: $background;
+    color: $white;
     margin: 0 0 0 5px;
 }
 .block-views {
@@ -218,6 +218,59 @@ span.fieldset-legend {
         }
     }
 }
+.node-type-mandate {
+    h2.title {
+        margin: 0;
+        padding: 5px 0 5px 10px;
+        font-weight: normal;
+        font-size: 21px;
+        line-height: 21px;
+        background: $fin-navy;
+        color: $white;
+    }
+    .view-mandate-plan-info {
+        .view-content {
+            background: $form-background-blue;
+            padding: 5px;
+        }
+        .collapsiblock a {
+            color: #1368a6 !important;
+        }
+    }
+}
+
+/*** Deprecated Code for Mandates - Plan Info block ***/
+/*.view-filters .views-table .collapsiblock a {
+    background: none;
+    color: #1368a6;
+    display: inline; 
+}
+.view.collapsiblock h2 {
+    padding: 4px 0 4px 15px;
+    font-size: 21px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.view.collapsiblock {
+    background-color: #e7f5ff;
+    color: #000;
+    a {
+        display: inline;
+        background: transparent url(images/gear-select.png) no-repeat 2px 0;
+        color: #1368a6;
+    }
+}
+.view.collapsiblock .views-row {
+    padding: 5px 0 10px 10px;
+}
+.view-filters #edit-field-date-value-wrapper label {
+    margin-left: -20px;
+}
+.views-ef-fieldset-container .form-item {
+    display: block;
+}
 
 /********** Content **********/
 body.boxed {
@@ -258,6 +311,21 @@ a.fieldset-title {
 .btn.form-submit {
     background: $dark-button;
 }
+body.node-type-mandate {
+    #page-title {
+        display: none;
+    }
+    .breadcrumb {
+        span.even {
+            .delimiter {
+                display: none;              // Remove breadcrumb from mandates page -- Fix later
+            }
+        }
+        span.odd {
+            display: none;
+        }
+    }
+}
 
 /********** Display Suite **********/
 #block-system-main {
@@ -276,8 +344,7 @@ a.fieldset-title {
     .content {
         padding: 0 0 10px 10px;
     }
-    .field-group-fieldset,
-    .field-name-mandate-plan-info-bf{
+    .field-group-fieldset {
         background: $form-background-blue;
         .field-label,
         .field-content strong{
@@ -292,7 +359,7 @@ a.fieldset-title {
             span.fieldset-legend {
                 color: $background;
                 background: none;
-                padding: 4px 0 4px 0px;
+                //padding: 4px 0 4px 0px;
                 font-size: 21px;
                 a.fieldset-title {
                     margin: 10px 0;
@@ -480,38 +547,10 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
 }
-.view-filters .views-table .collapsiblock a {
-    background: none;
-    color: #1368a6;
-    display: inline; 
-}
-.view.collapsiblock h2 {
-    padding: 4px 0 4px 15px;
-    font-size: 21px;
-    /*background: linear-gradient(to bottom, #1368a6 0%, #142a45 100%);*/
-    background: #000;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 400;
-}
-.view.collapsiblock {
-    background-color: #e7f5ff;
-    color: #000;
-    a {
-        display: inline;
-        background: transparent url(images/gear-select.png) no-repeat 2px 0;
-        color: #1368a6;
-    }
-}
-.view.collapsiblock .views-row {
-    padding: 5px 0 10px 10px;
-}
-.view-filters #edit-field-date-value-wrapper label {
-    margin-left: -20px;
-}
-.views-ef-fieldset-container .form-item {
-    display: block;
-}
+
+
+
+
 /*** Parent Lists ***/
 #views-exposed-form-content-lists-plans-list, #views-exposed-form-content-lists-consultants-list,
  #views-exposed-form-content-lists-managers-list, #views-exposed-form-content-lists-news-list, #views-exposed-form-content-lists-rfps-list {
