@@ -15,7 +15,8 @@
  * @see quickedit_preprocess_node()
  */
 function quickedit_ctools_render_alter(&$info, &$page, &$context) {
-  if ($context['task']['task type'] == 'page') {
+  // Ignore task handlers that do not set any content, such as HTTP responses.
+  if (($context['task']['task type'] == 'page') && isset($info['content'])) {
     foreach ($context['contexts'] as $page_context) {
       if ($page_context->type[1] === 'entity') {
         $entity_id = $context['args'][0];
@@ -138,7 +139,7 @@ function panelizer_quickedit_render_field($entity_type, $entity, $field_name, $v
     // Immediately return the rendered title pseudo-field.
     $quickedit_id = "$entity_type/$entity_id/title/$langcode/$view_mode_id";
     $prefix = '<' . $title_element . ' data-quickedit-field-id="' . $quickedit_id .'">';
-    $suffix . '</' . $title_element . '>';
+    $suffix = '</' . $title_element . '>';
     if (isset($entity_url)) {
       $markup = $prefix . '<a href="' . $entity_url . '">' . $entity->title . '</a>' . $suffix;
     }

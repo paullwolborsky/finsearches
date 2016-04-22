@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * @file
  * Drupal hooks
@@ -23,6 +22,15 @@ function search_api_attachments_menu() {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function search_api_attachments_views_api() {
+  return array(
+    'api' => '3.0',
+  );
+}
+
+/**
  * Implements hook_search_api_alter_callback_info().
  */
 function search_api_attachments_search_api_alter_callback_info() {
@@ -35,10 +43,26 @@ function search_api_attachments_search_api_alter_callback_info() {
 }
 
 /**
- * default excluded file extensions
+ * Default excluded file extensions.
  */
 function search_api_attachments_default_excluded() {
-  $default = array('aif', 'art', 'avi', 'bmp', 'gif', 'ico', 'mov', 'oga', 'ogv', 'png', 'psd', 'ra', 'ram', 'rgb', 'flv');
+  $default = array(
+    'aif',
+    'art',
+    'avi',
+    'bmp',
+    'gif',
+    'ico',
+    'mov',
+    'oga',
+    'ogv',
+    'png',
+    'psd',
+    'ra',
+    'ram',
+    'rgb',
+    'flv',
+  );
   return $default;
 }
 
@@ -65,8 +89,8 @@ function search_api_attachments_file_delete($file) {
 }
 
 /**
-* Implements hook_flush_caches().
-*/
+ * Implements hook_flush_caches().
+ */
 function search_api_attachments_flush_caches() {
   if (!variable_get('search_api_attachments_preserve_cache', FALSE)) {
     return array('cache_search_api_attachments');

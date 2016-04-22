@@ -46,6 +46,12 @@ Download Apache Tika library: http://tika.apache.org/download.html
 Enter the full path on your server where you downloaded the jar
 e.g. /var/apache-tika/ and the name of the jar file e.g. tika-app-1.4.jar
 
+- Hidden settings
+
+search_api_attachments_java:
+  By changing this variable, you can set the path to your java executable. The
+  default is 'java'.
+
 EXTRACTION CONFIGURATION (Solr)
 -------------------------------
 This requires 1.0-RC5 or newer of the 'Search API Solr' module (namely for issue
@@ -75,19 +81,44 @@ And add the following line:
 
 Then restart Tomcat/Jetty.
 
+EXTRACTION CONFIGURATION (Pdftotext)
+-------------------------------
+Pdftotext is a command line utility tool included by default on many linux
+distributions. See the wikipedia page for more info:
+https://en.wikipedia.org/wiki/Pdftotext
+
+EXTRACTION CONFIGURATION (python Pdf2txt)
+-------------------------------
+On Debian 8
+
+Install Pdf2txt (tested with package version 20110515+dfsg-1 and python 2.7.9)
+> sudo apt-get install python-pdfminer
+
 SUBMODULES
 -------------------------------
+search_api_attachments_entityreference: More details in contrib folder.
 search_api_attachments_field_collections: More details in contrib folder.
+search_api_attachments_commerce_product_reference: More details in contrib folder.
 
 CACHING
 -------
 Extracting files content can take a long time and it may not be needed to do it
 again each time a node gets reindexed.
-search_api_attachments have a cahe bin where we store all the extracted files
+search_api_attachments have a cache bin where we store all the extracted files
 contents: this is the cache_search_api_attachments table.
 cache its are in the form of: 'cached_extraction_[fid]' where [fid] is the file
 id.
 When a file is deleted or updated, we drop its extracted stored cache.
-Whend the sidewide cache is deleted (drush cc all per example) we drop all the
+When the sidewide cache is deleted (drush cc all per example) we drop all the
 stored extracted files cache only if 'Preserve cached extractions across cache
  clears.' option is unchecked in the configuration form of the module.
+
+DEVELOPMENT
+-----------
+On the admin form of Search API attachements, you can enable the debug feature.
+It will add a lot of information in the watchdog while indexing.
+
+Hidden Features
+---------------
+This module suggests a Views filter to choose to search in attachments files too
+or not.
