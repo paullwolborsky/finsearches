@@ -8,7 +8,7 @@ Example:
 You have a node that has 2 fields :
 
  field_documents: a File field.
- field_references: an Entityreference field, that is containing some file fields:
+ field_references: a Entityreference field, that is containing some file fields:
    field_referenced_documents1: a File field.
    field_referenced_documents2: a File field.
 

@@ -14,9 +14,9 @@ test_dependencies[] = ckeditor
 
 files[] = quickedit.test
 
-; Information added by Drupal.org packaging script on 2015-10-21
-version = "7.x-1.4"
+; Information added by Drupal.org packaging script on 2016-04-18
+version = "7.x-1.5"
 core = "7.x"
 project = "quickedit"
-datestamp = "1445408341"
+datestamp = "1460972043"
 

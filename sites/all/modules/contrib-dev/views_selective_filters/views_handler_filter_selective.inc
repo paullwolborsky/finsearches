@@ -154,7 +154,7 @@ class views_handler_filter_selective extends views_handler_filter_in_operator {
       '#type' => 'select',
       '#description' => t('Choose wich field to use for display'),
       '#options' => $options,
-      '#default_value' => 'ASC',
+      '#default_value' => $this->options['selective_display_sort'],
     );
     $form['selective_items_limit'] = array(
       '#title' => t('Limit number of select items'),
@@ -290,6 +290,10 @@ class views_handler_filter_selective extends views_handler_filter_in_operator {
       // Remove any exposed form configuration. This showed up with BEF module!
       unset($display->display_options['exposed_form']);
       unset($display_default->display_options['exposed_form']);
+
+      // Also disable attachments.
+      $display->handler->definition['accept attachments'] = FALSE;
+      $display_default->handler->definition['accept attachments'] = FALSE;
 
       // If we are using fields from default or current display.
       if (isset($display->display_options['fields'])) {
