@@ -11,24 +11,28 @@
       $('.block-facetapi .content ul li a.facetapi-active').parents('.block-facetapi .content').addClass('open');
       
       //Pie charts for plans
-      if ($('.sidebar-pie-chart .views-field').length) {
-        google.load("visualization", "1", {packages:["corechart"]});
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Label');
-        data.addColumn('number', 'Value');
-        $('.sidebar-pie-chart .views-field').each(function(){
-          data.addRow([$(this).find('.views-label').html(), parseFloat($(this).find('.field-content').html())]);
-        });
-        var options = {
-          is3D: false,
-          chartArea: {left:0,top:10, width: '100%', height:'90%'},
-          legend: {position: 'none'},
-          tooltip: {text:'percentage'}
-        };
-        $('.sidebar-pie-chart').html("<div id='aa-chart'></div>");
-        var chart = new google.visualization.PieChart(document.getElementById('aa-chart'));
-        chart.draw(data, options);
-      }
+      $('.view-display-id-asset_allocation_chart .sidebar-pie-chart').once('map', function(){
+        if ($('.view-display-id-asset_allocation_chart .sidebar-pie-chart .views-field').length) {
+          google.load("visualization", "1", {packages:["corechart"]});
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Label');
+          data.addColumn('number', 'Value');
+          $('.sidebar-pie-chart .views-field').each(function(){
+            data.addRow([$(this).find('.views-label').html(), parseFloat($(this).find('.field-content').html())]);
+          });
+          var options = {
+            is3D: false,
+            chartArea: {left:0,top:10, width: '100%', height: '75%'},
+            legend: {position: 'right', alignmnet: 'center'},
+            tooltip: {text:'percentage'}
+          };
+          $('.sidebar-pie-chart').html("<div id='aa-chart'></div>");
+          var chart = new google.visualization.PieChart(document.getElementById('aa-chart'));
+          chart.draw(data, options);
+        } else {
+          $('.sidebar-pie-chart').html("<div id='aa-chart'>No Data</div>");
+        }
+      });
       
       //Hide search results until something happens
       if ($('.block-facetapi .content ul li a.facetapi-active').length) {
