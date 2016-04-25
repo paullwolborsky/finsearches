@@ -8,54 +8,30 @@ function fin_mod_views_pre_build(&$view) {
     fin_mod_mandate_plan_info($view);
   }
   if (isset($view->args) && $view->name == 'plan_direct_consultants') {
-    fin_mod_plan_direct_consultants($view);
+    fin_mod_plan_direct_consultants_pre($view);
   }
 }
 
 /**
+ * hook_views_pre_build for plan_direct_consultants
+ */
+function fin_mod_plan_direct_consultants_pre(&$view) {
+  // Short circuit if we are not on a node page
+  if (arg(0) != 'node') {
+    return;
+  }
+
+  // Display suite blocks are having trouble passing the context in properly.
+  $view->args[] = arg(1);
+
+  return;
+}
+/**
  * Modifies plan_direct_consultants
  */
-function fin_mod_plan_direct_consultants(&$view) {
-  $entity_ids = array();
-  foreach ($view->args as $entity_id) {
-    $entity_ids[] = $entity_id;
-  }
-  if (!empty($entity_ids)) {
-
-    $plan_contact_results = db_query("SELECT entity_id FROM field_data_field_plan_er WHERE field_plan_er_target_id IN (:entity_ids) AND bundle = 'plan_contact'", array("entity_ids" => $entity_ids))->fetchCol();
-
-    $plan_contacts = entity_load('paragraphs_item', $plan_contact_results);
-    $lead_contact_id = '';
-    foreach ($plan_contacts as $plan_contact) {
-      $plan_contact_wrapper = entity_metadata_wrapper('paragraphs_item', $plan_contact);
-      // Condition check, skip if there is no lead plan contact.
-      if (isset($plan_contact_wrapper->field_lead_plan_contact->value)) {
-        $lead_contact = $plan_contact_wrapper->field_lead_plan_contact->value();
-        if ($lead_contact == 1) {
-          $lead_contact_id = $plan_contact_wrapper->getIdentifier();
-        }
-      }
-    }
-    if (!empty($lead_contact_id)) {
-      $results = db_query('SELECT entity_id FROM field_data_field_job_history WHERE field_job_history_value IN (:entity_ids)', array("entity_ids" => $lead_contact_id))->fetchCol();
-
-      $contacts = entity_load('node', $results);
-
-      foreach ($contacts as $contact) {
-        $contact_wrapper = entity_metadata_wrapper('node', $contact);
-        $name = $contact_wrapper->title_field->value();
-        $email = $contact_wrapper->field_email->value();
-        $title = $contact_wrapper->field_job_title->value();
-        $phone = $contact_wrapper->field_address->phone_number->value();
-        $ext = $contact_wrapper->field_address->phone_number_extension->value();
-        $view->field['nothing']->options['alter']['text'] = $name;
-        $view->field['nothing_1']->options['alter']['text'] = $phone;
-        $view->field['nothing_2']->options['alter']['text'] = $email;
-        $view->field['nothing_3']->options['alter']['text'] = $title;
-        $view->field['nothing_4']->options['alter']['text'] = $ext;
-      }
-    }
-  }
+function fin_mod_plan_direct_consultants_query(&$view, &$query) {
+  $query->table_queue['node_field_data_field_consultant_firm_er']['join']->extra = 'node_field_data_field_consultant_firm_er.nid = field_consultant_roster_fc_field_collection_item.nid';
+  return;
 }
 
 /**
@@ -150,6 +126,9 @@ function fin_mod_content_list(&$view, &$query) {
 function fin_mod_views_query_alter(&$view, &$query) {
   if ($view->name == 'content_lists') {
     fin_mod_content_list($view, $query);
+  }
+  if (isset($view->args) && $view->name == 'plan_direct_consultants') {
+    fin_mod_plan_direct_consultants_query($view, $query);
   }
 }
 
