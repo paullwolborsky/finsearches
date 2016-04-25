@@ -223,7 +223,7 @@ function _addressfield_phone_render_address($format) {
   if (!empty($address['phone_number'])) {
     $format['phone_block']['phone_number'] = array(
       '#theme_wrappers' => array('addressfield_phone_container'),
-      '#title' => t('Phone'),
+      '#title' => t('Main Number'),
       '#type' => 'addressfield_container',
       '#attributes' => array('class' => array('phone-number')),
       '#tag' => 'div',
@@ -244,7 +244,7 @@ function _addressfield_phone_render_address($format) {
   if (!empty($address['mobile_number'])) {
     $format['phone_block']['mobile_number'] = array(
       '#theme_wrappers' => array('addressfield_phone_container'),
-      '#title' => t('Mobile Number'),
+      '#title' => t('Mobile'),
       '#type' => 'addressfield_container',
       '#size' => 15,
       '#attributes' => array('class' => array('phone-number')),
@@ -255,7 +255,7 @@ function _addressfield_phone_render_address($format) {
   if (!empty($address['fax_number'])) {
     $format['phone_block']['fax_number'] = array(
       '#theme_wrappers' => array('addressfield_phone_container'),
-      '#title' => t('Fax Number'),
+      '#title' => t('Fax'),
       '#type' => 'addressfield_container',
       '#size' => 15,
       '#attributes' => array('class' => array('phone-number')),

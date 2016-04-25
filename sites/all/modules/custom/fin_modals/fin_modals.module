@@ -444,7 +444,7 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
         $form['field_consultants_terminated']['und']['#suffix'] = "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', 'ctools-modal-fin-modals-contact-style') . "</div>";
     
       }elseif($form_id == "plan_node_form"){
-        $form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
+        //$form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
         $form['field_consultant_roster_fc']['und']['#suffix'] =
         "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', 'ctools-modal-fin-modals-contact-style') . "</div>";
         //$form['field_managers_hired']['und']['#suffix'] =  $managers_hired_link;
@@ -469,9 +469,9 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
           }
         }
       } elseif ($form_id == 'contact_node_form') {
-        $form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
+        //$form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
       } elseif ($form_id == 'office_node_form') {
-        $form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
+        //$form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
       }
     }
   }
