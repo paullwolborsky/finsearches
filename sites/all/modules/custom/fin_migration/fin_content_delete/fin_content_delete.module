@@ -288,6 +288,30 @@ function fin_content_delete_queue_process($item) {
 }
 
 function fin_content_delete_contact_roster_queue_process($item) {
+  $field_wuin = md5('tblfunds' . $item['FundID']);
+  $plan_id = fin_saved_search_migration_entity_id($field_wuin);
+  $plan = FALSE;
+  if ($plan_id) {
+    $plan = entity_load('node', array($plan_id));
+    if (is_array($plan)) {
+      $plan = reset($plan);
+    }
+  }
+  if (is_object($plan)) {
+    // Clean up the the old roster contact.
+    $ew = entity_metadata_wrapper('node', $plan);
+    $save = array();
+    foreach ($ew->field_consultant_roster_fc as $key => $roster) {
+      if (empty($roster->value()->field_wuin)) {
+        $save[] = $roster->item_id->value();
+      }
+    }
+    if (!empty($save)) {
+      entity_delete_multiple('field_collection_item', $save);
+    }
+  }
+  // return here as we just want to delete old consultant roster contact.
+  return;
   $new_field_wuin = md5('tblfundconsultants' . $item['ID']);
   $isexist = fin_saved_search_migration_entity_id($new_field_wuin);
   if ($isexist) {
@@ -314,15 +338,6 @@ function fin_content_delete_contact_roster_queue_process($item) {
     }
   }
   
-  $field_wuin = md5('tblfunds' . $item['FundID']);
-  $plan_id = fin_saved_search_migration_entity_id($field_wuin);
-  $plan = FALSE;
-  if ($plan_id) {
-    $plan = entity_load('node', array($plan_id));
-    if (is_array($plan)) {
-      $plan = reset($plan);
-    }
-  }
   if ($plan) {
     $collection = entity_create('field_collection_item', array('field_name' => 'field_consultant_roster_fc'));
     $collection->setHostEntity('node', $plan);
