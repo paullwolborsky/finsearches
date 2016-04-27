@@ -133,7 +133,6 @@ function fin_content_delete_form_submit_fc($form, &$form_state) {
 function fin_content_delete_set_leading_contact() {
   $sql = "SELECT * FROM `field_data_field_plan_er` p inner join field_data_field_old_contact_creation_date d on d.entity_id = p.`entity_id` and d.`revision_id` = p.`revision_id` where p.bundle = 'plan_contact' order by field_plan_er_target_id, `field_old_contact_creation_date_value` desc;'";
   $planres = db_query($sql)->fetchAll();
-dsm($planres);
   $planid = 0;
   $lead_eids = array();
   $queue = DrupalQueue::get('fin_content_delete_lead_contact_queue');
@@ -149,6 +148,26 @@ dsm($planres);
   }
 }
 
+function fin_content_delete_roster_queue() {
+  db_set_active('legacy');
+  $sql = "select * from tblfundconsultants t left join tblconsultanttypes b on t.ConsultantTypeID = b.ConsultantTypeID";
+  $result = db_query($sql);
+  db_set_active();
+  foreach ($result as $row) {
+    
+    $queue = DrupalQueue::get('fin_content_delete_contact_roster_queue');
+
+    $task = array(
+      'FundID' => $row->FundID,
+      'ConsultantFirmID' => $row->ConsultantFirmID,
+      'ConsultantContactID' => $row->ConsultantContactID,
+      'ConsultantTypeName' => $row->ConsultantTypeName,
+      'ID' => $row->FundConsultantID,
+    );
+    $queue->createItem($task);
+    return;
+  }
+}
 /**
  * Put all node in to delete queue and process with batch.
  */
@@ -268,6 +287,68 @@ function fin_content_delete_queue_process($item) {
   entity_delete_multiple($type, $id);
 }
 
+function fin_content_delete_contact_roster_queue_process($item) {
+  $new_field_wuin = md5('tblfundconsultants' . $item['ID']);
+  $isexist = fin_saved_search_migration_entity_id($new_field_wuin);
+  if ($isexist) {
+    return $isexist;
+  }
+  
+  $field_wuin = md5('tblconsultantfirms' . $item['ConsultantFirmID']);
+  $consultantfirm_id = fin_saved_search_migration_entity_id($field_wuin);
+  $consultantfirm = FALSE;
+  if ($consultantfirm_id) {
+    $consultantfirm = entity_load('node', array($consultantfirm_id));
+    if (is_array($consultantfirm)) {
+      $consultantfirm = reset($consultantfirm);
+    }
+  }
+  $contact = FALSE;
+  $field_wuin = md5('tblfundcontacts' . $item['ConsultantContactID']);
+  $plancontact_id = fin_saved_search_migration_entity_id($field_wuin);
+  if ($plancontact_id) {
+    $contact = entity_load('paragraphs_item', array($plancontact_id));
+    if (is_array($contact)) {
+      $contact = reset($contact);
+      $contact = $contact->hostEntity();
+    }
+  }
+  
+  $field_wuin = md5('tblfunds' . $item['FundID']);
+  $plan_id = fin_saved_search_migration_entity_id($field_wuin);
+  $plan = FALSE;
+  if ($plan_id) {
+    $plan = entity_load('node', array($plan_id));
+    if (is_array($plan)) {
+      $plan = reset($plan);
+    }
+  }
+  if ($plan) {
+    $collection = entity_create('field_collection_item', array('field_name' => 'field_consultant_roster_fc'));
+    $collection->setHostEntity('node', $plan);
+    $fc_wrapper = entity_metadata_wrapper('field_collection_item', $collection);
+    if ($consultantfirm) {
+      $fc_wrapper->field_consultant_firm_er = $consultantfirm;
+    }
+    if ($contact) {
+      $fc_wrapper->field_consultant_contact_er[] = $contact;
+    }
+    if ($item['ConsultantTypeName']) {
+      $consultanttype = fin_content_delete_utility_get_taxonomy_by_name($item['ConsultantTypeName'], 'consultant_types');
+      if ($consultanttype) {
+        $fc_wrapper->field_consultant_type_tr = $consultanttype;
+      }
+    }
+    $fc_wrapper->field_wuin = $new_field_wuin;
+    $fc_wrapper->field_legendid = $item['ID'];
+    $fc_wrapper->save();
+
+  }
+  else {
+    watchdog('fin_content_roster_queue', 'Following item is not imported due to missing entity' . print_r($item, TRUE), array(), WATCHDOG_ERROR);
+  }
+}
+
 function fin_content_delete_lead_contact_queue_process($item) {
   $id = $item['id'];
   db_update('field_data_field_lead_plan_contact')
@@ -279,6 +360,10 @@ function fin_content_delete_lead_contact_queue_process($item) {
 
 function fin_content_delete_cron_queue_info() {
   $return = array(
+    'fin_content_delete_contact_roster_queue' => array(
+      'worker callback' => 'fin_content_delete_contact_roster_queue_process',
+      'time' => '3450',
+    ),
     'fin_content_delete_lead_contact_queue' => array(
       'worker callback' => 'fin_content_delete_lead_contact_queue_process',
       'time' => '3450',
@@ -289,4 +374,67 @@ function fin_content_delete_cron_queue_info() {
     ),
   );
   return $return;
+}
+
+/**
+ * Get taxonomy Term by name, create one if it is not there.
+ */
+function fin_content_delete_utility_get_taxonomy_by_name($tname, $vname) {
+
+  if (empty($tname)) {
+    return;
+  }
+
+  $program = taxonomy_get_term_by_name($tname, $vname);
+  $pr = reset($program);
+  if (empty($pr)) {
+    $vocab = taxonomy_vocabulary_machine_name_load($vname);
+    if (!$vocab) {
+      $vocab = new stdClass();
+      $vocab->name = $vname;
+      $vocab->machine_name = $vname;
+      $result = taxonomy_vocabulary_save($vocab);
+      if ($result != SAVED_NEW) {
+        watchdog('banjia', 'Failed to create new vocabulary !vname', array('!vname' => $vname));
+      }
+    }
+    $term = new stdClass();
+    $term->name = $tname;
+    $term->vid = $vocab->vid;
+    $result = taxonomy_term_save($term);
+    if ($result == SAVED_NEW) {
+      return $term->tid;
+    }
+    else {
+      return;
+    }
+  }
+  else {
+    return isset($pr->tid) ? $pr->tid : NULL;
+  }
+}
+
+function fin_content_delete_roster_batch() {
+  $batch = array(
+    'title' => t('Consultant Roster data import'),
+    'operations' => array(),
+  );
+  db_set_active('legacy');
+  $sql = "select * from tblfundconsultants t left join tblconsultanttypes b on t.ConsultantTypeID = b.ConsultantTypeID";
+  $result = db_query($sql);
+  db_set_active();
+  foreach ($result as $row) {
+    $task = array(
+      'FundID' => $row->FundID,
+      'ConsultantFirmID' => $row->ConsultantFirmID,
+      'ConsultantContactID' => $row->ConsultantContactID,
+      'ConsultantTypeName' => $row->ConsultantTypeName,
+      'ID' => $row->FundConsultantID,
+    );
+    $batch['operations'][] = array(
+      'fin_content_delete_contact_roster_queue_process',
+      array($task),
+    );
+  }
+  batch_set($batch);
 }
