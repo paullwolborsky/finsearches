@@ -30,7 +30,7 @@
           var chart = new google.visualization.PieChart(document.getElementById('aa-chart'));
           chart.draw(data, options);
         } else {
-          $('.sidebar-pie-chart').html("<div id='aa-chart'>No Data</div>");
+          $('.sidebar-pie-chart').html("<div id='aa-chart'>No Asset Allocation data available</div>");
         }
       });
       
