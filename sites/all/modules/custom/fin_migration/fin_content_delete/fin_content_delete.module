@@ -303,7 +303,12 @@ function fin_content_delete_contact_roster_queue_process($item) {
     $save = array();
     foreach ($ew->field_consultant_roster_fc as $key => $roster) {
       if (empty($roster->value()->field_wuin)) {
-        $save[] = $roster->item_id->value();
+        if (is_object($roster->item_id)) {
+          $re = $roster->value();
+          if ($re) {
+             $save[] = $roster->item_id->value();
+          }
+        }
       }
     }
     if (!empty($save)) {
