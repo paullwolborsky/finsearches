@@ -30,7 +30,13 @@ function fin_mod_plan_direct_consultants_pre(&$view) {
  * Modifies plan_direct_consultants
  */
 function fin_mod_plan_direct_consultants_query(&$view, &$query) {
-  $query->table_queue['node_field_data_field_consultant_firm_er']['join']->extra = 'node_field_data_field_consultant_firm_er.nid = field_consultant_roster_fc_field_collection_item.nid';
+
+  // Force the view to use these two fields in the GROUP BY clause.
+  // If the view does not have aggregation enabled, views will ignore this.
+  $query->distinct = TRUE;
+  $query->add_groupby('field_collection_item.item_id');
+  $query->add_groupby('node_field_data_field_consultant_contact_er.nid');
+
   return;
 }
 
