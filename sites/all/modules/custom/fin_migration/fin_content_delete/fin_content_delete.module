@@ -130,6 +130,20 @@ function fin_content_delete_form_submit_fc($form, &$form_state) {
 /**
  * Put all node in to delete queue and process with batch.
  */
+function fin_content_delete_resave($entity_type, $id) {
+  $entity = entity_load($entity_type, array($id));
+  if (is_array($entity)) {
+    $entity = reset($entity);
+  }
+  if (is_object($entity)) {
+    $ew = entity_metadata_wrapper($entity_type, $entity);
+    $ew->save();
+  }
+}
+
+/**
+ * Put all node in to delete queue and process with batch.
+ */
 function fin_content_delete_set_leading_contact() {
   $sql = "SELECT * FROM `field_data_field_plan_er` p inner join field_data_field_old_contact_creation_date d on d.entity_id = p.`entity_id` and d.`revision_id` = p.`revision_id` where p.bundle = 'plan_contact' order by field_plan_er_target_id, `field_old_contact_creation_date_value` desc;'";
   $planres = db_query($sql)->fetchAll();
