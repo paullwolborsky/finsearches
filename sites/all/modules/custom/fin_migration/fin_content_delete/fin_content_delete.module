@@ -137,7 +137,11 @@ function fin_content_delete_resave($entity_type, $id) {
   }
   if (is_object($entity)) {
     $ew = entity_metadata_wrapper($entity_type, $entity);
-    $ew->save();
+    $location = $ew->field_location->value();
+    if (!$location) {
+      $ew->save();
+    }
+    
   }
 }
 
