@@ -103,10 +103,14 @@ function fin_mod_state_code($state) {
  * Modifies content lists view.
  */
 function fin_mod_content_list(&$view, &$query) {
-  module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
+  // Commented out code is meant for when the full state name is used in the
+  // exposed filter, and we need to translate it to state code.
 
-  if (!empty($view->exposed_raw_input['field_address_administrative_area_selective'])) {
-    foreach ($query->where[2]['conditions'] as $key => &$where) {
+  //module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
+
+  //if (!empty($view->exposed_raw_input['field_address_administrative_area_selective'])) {
+  if (!empty($view->exposed_raw_input['field_address_administrative_area'])) {
+    /*foreach ($query->where[2]['conditions'] as $key => &$where) {
       if ($where['field'] == 'field_data_field_address.field_address_administrative_area') {
         if (is_array($where['value'])) {
           foreach ($where['value'] as $where_key => $value) {
@@ -117,7 +121,7 @@ function fin_mod_content_list(&$view, &$query) {
           }
         }
       }
-    }
+    }*/
     foreach ($query->where[1]['conditions'] as $key => $where_office) {
       if ($where_office['field'] == 'field_data_field_office_type_tr.field_office_type_tr_tid') {
         unset($query->where[1]['conditions'][$key]);
