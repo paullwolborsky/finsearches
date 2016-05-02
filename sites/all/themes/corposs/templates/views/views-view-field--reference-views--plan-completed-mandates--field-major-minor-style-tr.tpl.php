@@ -27,7 +27,7 @@ if (isset($row->field_field_major_minor_style_tr[0]['raw']['tid'])) {
   $parent = taxonomy_get_parents($tid);
   $parent = reset($parent);
   if (is_object($parent) && isset($parent->name)) {
-    $output = l($parent->name, 'taxonomy/term/' . $parent->tid);
+    $output = $parent->name;
   }
 }
 ?>
