@@ -51,15 +51,23 @@
       }
       
       //Add save search trigger button
+      
+      $('.view-content-lists .view-filters .my-views-filter-submit').once('trigger', function(){
+        $contentToMove = $('.view-content-lists .view-header form');
+        $(this).parent('.fieldset-wrapper').append("<button id='save-search-trigger'>Save Search</button>");
+        $('.view-content-lists .view-filters #save-search-trigger').click(function(){
+          $('#edit-save.views-save-button-save').prepend($contentToMove);
+          $('#edit-save.views-save-button-save').trigger('click');
+          return false;
+        });
+      });
+      
+      /*
       if (!$('.view-content-lists .view-filters .my-views-filter-submit').parent('.fieldset-wrapper').find('#save-search-trigger').length) {
        $('.view-content-lists .view-filters .my-views-filter-submit').parent('.fieldset-wrapper').append("<button id='save-search-trigger'>Save Search</button>");
       }
       //See views_save.js for hiding the trigger button after form submit
-      $('.view-content-lists .view-filters #save-search-trigger').click(function(){
-        $('#edit-save.views-save-button-save').trigger('click');
-        return false;
-      });
-      
+      */
       //Make links work in recent content view 
       $('.view-display-id-recent_content_sidebar .view-content .views-row .field-content a').click(function(){
         window.location = jQuery(this).attr('href');

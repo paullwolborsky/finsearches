@@ -1044,45 +1044,7 @@ function _views_save_check_title($save) {
     return $save->title;
   }  
 }
-/*
-function _views_save_check_title($save, $initial = FALSE) {
-  if (!$initial) {
-    $sql = 'SELECT id, created, title FROM {views_save} WHERE uid = :uid AND bundle = :bundle AND title = :title';
-    $variables = array(
-      ':uid' => $save->uid,
-      ':bundle' => $save->bundle,
-      ':title' => $save->title,
-    );
-    $match = db_query($sql, $variables)->fetchAssoc();
-    if (empty($match->title)) {
-      return $save->title;
-    }
-  }
-  
-  //We already know there's a match
-  $last2 = substr($save->title, -2);
-  if (is_numeric($last2)) {
-    $new = intval($last2);
-    $new++;
-    if ($new < 10) {
-      $new = "0" . $new;
-    }
-    $save->title = str_replace($last2, $new, $save->title);
-    $titles = array();
-    foreach ($possibles as $possible) {
-      $titles[] = $possible['title'];
-    }
-    $save->title = str_replace($last2, $new, $save->title);
-    
-  } else {
-    $temp_title =$save->title .= "-01";
-  }
-  _views_save_check_title($save, FALSE);
-}
 
-function _views_save_check_available($test_name) {
-}
-*/
 /**
  * AJAX callback for views_save_form().
  */
@@ -1096,7 +1058,7 @@ function views_save_form_ajax_callback(array $form, array &$form_state) {
 function views_save_include_ctools_modal(array $form) {
   ctools_include('modal');
   ctools_modal_add_js();
-
+  
   return $form;
 }
 
