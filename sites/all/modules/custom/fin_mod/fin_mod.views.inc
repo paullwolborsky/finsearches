@@ -26,6 +26,7 @@ function fin_mod_plan_direct_consultants_pre(&$view) {
 
   return;
 }
+
 /**
  * Modifies plan_direct_consultants
  */
@@ -151,7 +152,31 @@ function fin_mod_views_pre_render(&$view) {
   }
 }
 
+function fin_mid_consultant_plan_manager_all_types($view) {
+  $general = TRUE;
+  $outsourced = TRUE;
+  foreach ($view->result as $row => $result) {
+    if ($view->current_display == 'consultant_plan_managers') {
+      $consultant_type = $result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->name;
+    }
+    else if ($view->current_display == 'consultants_by_plan') {
+      $consultant_type = $result->taxonomy_term_data_field_data_field_consultant_type_tr_name;
+    }
+    if($consultant_type == 'Project-Basis') {
+      continue;
+    }
+    else if ($consultant_type != 'General') {
+      $general = FALSE;
+    }
+    else if ($consultant_type != 'Outsourced CIO') {
+      $outsourced = FALSE;
+    }
+  }
+  return array('general' => $general, 'outsourced' => $outsourced);
+}
+
 function fin_mod_consultant_plan_manager_remove(&$view) {
+  $all_types = fin_mid_consultant_plan_manager_all_types($view);
   foreach ($view->result as $row => $result) {
     // refactor if this gets more complex than two or three.
     if ($view->current_display == 'consultant_plan_managers') {
@@ -159,71 +184,160 @@ function fin_mod_consultant_plan_manager_remove(&$view) {
         $consultant_type = $result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->name;
         $major = $result->taxonomy_term_data_taxonomy_term_hierarchy_name;
         $minor = $result->taxonomy_term_data_node_name;
+        fin_mod_consultant_plan_manager_remove_string($view, $consultant_type, $major, $minor, $all_types);
       }
     }
     else if ($view->current_display == 'consultants_by_plan') {
       $consultant_type = $result->taxonomy_term_data_field_data_field_consultant_type_tr_name;
-      $major = $result->taxonomy_term_data_field_data_field_major_minor_style_tr_nam;
-      $minor = $result->taxonomy_term_data_taxonomy_term_hierarchy_name;
+      $tid = $result->field_field_major_minor_style_tr[0]['raw']['tid'];
+      fin_mod_consultant_plan_manager_remove_tid($view, $row, $consultant_type, $tid, $all_types);
     }
-    switch ($consultant_type) {
-      case "General":
-        break;
-      case "Real Estate":
-        if ($major != 'Real Estate') {
-          unset($view->result[$row]);
-        }
-        break;
-      case "Private Equity":
-        if ($major != 'Private Equity') {
-          unset($view->result[$row]);
-        }
-        break;
-      case "Alternatives":
-        $alternatives = array(
-          'Real Estate',
-          'Private Equity',
-          'Hedge Funds',
-          'Real Assets',
-        );
-        if (!in_array($major, $alternatives)) {
-          unset($view->result[$row]);
-        }
-        break;
-      case "Hedge Funds":
-        if ($major != 'Hedge Fund') {
-          unset($view->result[$row]);
-        }
-        break;
-      case "Project-Basis":
-        break;
-      case "Timber":
-        if ($major != 'Real Assets' && $minor != 'Timber') {
-          unset($view->result[$row]);
-        }
-        break;
-      case "Infrastructure":
-        if ($major != 'Real Assets' && $minor != 'Infastructure') {
-          unset($view->result[$row]);
-        }
-        break;
-      case "Outsourced CIO":
-        break;
-      case "Public Equities":
-        $public_equities = array(
-          'Active Equity',
-          'Passive Equity',
-        );
-        if (!in_array($major, $public_equities)) {
-          unset($view->result[$row]);
-        }
-        break;
-      case "Real Assets":
-        if ($major != 'Real Assets') {
-          unset($view->result[$row]);
-        }
-        break;
-    }
+  }
+}
+
+/**
+ * Unsets unwanted results by tid
+ */
+function fin_mod_consultant_plan_manager_remove_tid(&$view, $row, $consultant_type, $tid, $all_types) {
+  switch ($consultant_type) {
+    case "General":
+      if ($all_types['general'] != TRUE) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Real Estate":
+      if ($tid != 881 && $tid != 950) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Private Equity":
+      if ($tid != 879 && $tid != 930) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Alternatives":
+      $alternatives = array(
+        881,
+        950,
+        879,
+        930,
+        874,
+        887,
+        1095,
+        880,
+        941,
+      );
+      if (!in_array($tid, $alternatives)) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Hedge Funds":
+      if ($tid != 874 && $tid != 887 && $tid != 1095) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Project-Basis":
+      unset($view->result[$row]);
+      break;
+    case "Timber":
+      if ($tid = !880 && $tid != 941 && $tid != 882 && $tid != 949) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Infrastructure":
+      if ($tid = !880 && $tid != 941 && $tid != 875 && $tid != 946) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Outsourced CIO":
+      if ($all_types['outsourced'] != TRUE) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Public Equities":
+      $public_equities = array(
+        815,
+        898,
+      );
+      if (!in_array($tid, $public_equities)) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Real Assets":
+      if ($tid = !880 && $tid != 941) {
+        unset($view->result[$row]);
+      }
+      break;
+  }
+}
+
+/**
+ * Unsets unwanted results by string.
+ */
+function fin_mod_consultant_plan_manager_remove_string(&$view, $row, $consultant_type, $major, $minor) {
+  switch ($consultant_type) {
+    case "General":
+      if ($all_types['general'] != TRUE) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Real Estate":
+      if ($major != 'Real Estate') {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Private Equity":
+      if ($major != 'Private Equity') {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Alternatives":
+      $alternatives = array(
+        'Real Estate',
+        'Private Equity',
+        'Hedge Funds',
+        'Real Assets',
+      );
+      if (!in_array($major, $alternatives)) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Hedge Funds":
+      if ($major != 'Hedge Fund') {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Project-Basis":
+      break;
+    case "Timber":
+      if ($major != 'Real Assets' && $minor != 'Timber') {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Infrastructure":
+      if ($major != 'Real Assets' && $minor != 'Infastructure') {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Outsourced CIO":
+      if ($all_types['outsourced'] != TRUE) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Public Equities":
+      $public_equities = array(
+        'Active Equity',
+        'Passive Equity',
+      );
+      if (!in_array($major, $public_equities)) {
+        unset($view->result[$row]);
+      }
+      break;
+    case "Real Assets":
+      if ($major != 'Real Assets') {
+        unset($view->result[$row]);
+      }
+      break;
   }
 }
 
@@ -273,3 +387,4 @@ function fin_mod_views_data_alter(&$data) {
     ),
   );
 }
+
