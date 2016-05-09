@@ -38,7 +38,7 @@ $dark-button: #1368a6;
 
 /* Text */
 $link: #003399;
-$link-hover: #0058ff;
+$link-hover: #428bca;
 $form-item-label: #000000;
 
 /* Misc */
@@ -122,10 +122,19 @@ $shadow: #666666;
             input.btn-primary {
                 display: inline-block;
                 vertical-align: top;
-                margin: 15px 0 0 0;
+                //margin: 15px 0 0 0;
             }
             .btn.form-submit {
                 background: $dark-button;
+            }
+        }
+        #block-search-api-page-solr-search-page {
+            .form-item-keys-1 {
+                margin-bottom: 0;
+                margin-top: 0;
+                #edit-keys-1 {
+                    width: 150px;
+                }
             }
         }
     }
@@ -152,10 +161,13 @@ $shadow: #666666;
 }
 
 /********** Blocks **********/
+legend {
+    font-size: 18px;
+}
 h3.block-title {
-    font-size: 21px;
+    font-size: 18px;
     text-transform: capitalize;
-    padding: 2px 0;
+    padding: 4px 0;
     a {
         background: none;
     }
@@ -166,7 +178,6 @@ h3.block-title {
 #block-system-main {
     div.field-type-ds {
         margin: 0 0 25px 0;
-
         &.field-name-modal-contact-link,
         &.field-name-modal-mandate-link,
         &.field-name-modal-plan-link{
@@ -190,6 +201,13 @@ span.fieldset-legend {
 #block-views-a9706a0c2bd6ed2ad2a9fb0317b34834, #block-views-saved-filters-block-2 {
     margin-bottom: 30px;
 }
+#block-views-fc10fe18968568e5efc680da7eb0b9a9 {
+    margin-bottom: 30px;
+    .view-plans-placement-policy {
+        background-color: $form-background-blue;
+        padding: 10px;
+    }
+}
 #block-user-online .content {
     background: $form-background-blue;
     padding: 10px;
@@ -197,17 +215,13 @@ span.fieldset-legend {
 .item-list ul {
     text-align: left;
 }
-.field-name-plan-new-leads-mandates-bf .block-views {
-    margin: 5px 0 0 0;
+.field-name-plan-potential-leads-mandates-bf, .field-name-plan-new-leads-mandates-bf, .field-name-plan-ongoing-mandates-bf, .field-name-plan-completed-mandates-bf, .field-name-plan-closed-mandates-bf {
+    margin: 0 !important;
 }
-.field-name-plan-ongoing-mandates-bf .block-views {
-    margin: 5px 0 0 0;
-}
-.field-name-plan-completed-mandates-bf .block-views {
-    margin: 5px 0 0 0;
-}
-.field-name-plan-closed-mandates-bf .block-views {
-    margin: 5px 0 0 0;
+.node-type-plan {
+    .field-name-modal-mandate-link {
+        margin-top: 0 !important;
+    }
 }
 .field-name-consultant-main-office-bf {
     .content {
@@ -338,19 +352,19 @@ body.node-type-mandate {
 /********** Display Suite **********/
 #block-system-main {
     h3.block-title {
-        padding: 4px 0 4px 5px;
-        font-size: 21px;
+        padding: 6px 0 6px 5px;
+        font-size: 18px;
     }
     .field-group-fieldset legend {
         padding-left: 10px;
     }
 }
-.ds-above-left, .ds-above-right, .group-mandates {
+.ds-above-left, .ds-above-right {
     padding: 0 10px 10px 0;
     margin-bottom: 15px;
     .fieldset-wrapper,
     .content {
-        padding: 0 0 10px 10px;
+        padding: 10px 0 10px 10px;
     }
     .field-group-fieldset {
         background: $form-background-blue;
@@ -368,7 +382,7 @@ body.node-type-mandate {
                 color: $background;
                 background: none;
                 //padding: 4px 0 4px 0px;
-                font-size: 21px;
+                font-size: 18px;
                 a.fieldset-title {
                     margin: 10px 0;
                 }
@@ -402,6 +416,47 @@ body.node-type-mandate {
 ul.links {
     float: right;
     margin: 0;
+}
+
+/*** Maps Blocks ***/
+.node-type-plan {
+    .group-plan-info {
+        height: 260px;
+    }
+    .field-name-plan-node-map-bf {
+        .content {
+            padding: 0 0 0 10px;
+        }
+    }
+}
+.node-type-consultant-firm {
+    .ds-above-left {
+        height: 220px;
+        margin-bottom: 50px;
+    }
+    .field-name-consultant-main-office-bf {
+        .field-items {
+            height: 220px;
+        }
+    }
+    .field-name-consultant-node-map-bf {
+        .content {
+            padding: 0 0 0 10px;
+        }
+    }
+}
+.node-type-office {
+
+}
+.node-type-manager-firm {
+    .group-firm-info {
+        height: 270px;
+    }
+    .field-name-manager-node-map-bf {
+        .content {
+            padding: 0 0 0 10px;
+        }
+    }
 }
 
 /********** Views **********/
@@ -510,7 +565,135 @@ fieldset.collapsible .fieldset-legend {
 .column-phone {
     min-width: 90px;
 }
-
+/*** Plan- Contacts View ***/
+.view-display-id-plan_lead_contact {
+    th.views-field-title {
+        width: 20%;
+    }
+    th.views-field-field-job-title {
+        width: 20%;
+    }
+    th.views-field-field-address-data {
+        width: 15%;
+    }
+    th.views-field-field-email {
+        width: 20%;
+    }
+    th.views-field-edit-node {
+        width: 5%;
+    }
+    .lead-contact {
+        display: inline-block;
+        margin-left: 5px;
+    }
+}
+.view-display-id-plan_inactive_contacts_att {
+    td.views-field-title a {
+        text-decoration: line-through;
+    }
+    td.views-field-title {
+        width: 17%;
+    }
+    td.views-field-field-job-title {
+        width: 18%;
+    }
+    td.views-field-field-address-data {
+        width: 13%;
+    }
+    td.views-field-field-email {
+        width: 20%;
+    }
+    td.views-field-edit-node {
+        width: 5%;
+    }
+}
+/*** Plan - Mandates Views ***/
+.node-type-plan {
+    .group-mandates{
+        display: block;
+        margin: 0 0 25px 0;
+    }
+    .ds-below-left, .ds-below-right {
+        padding: 0;
+    }
+}
+/*** News Views ***/
+.view-display-id-news_list {
+    h5 {
+        margin: 0;
+    }
+    .views-field-title-field {
+        padding: 5px;
+    }
+    td.views-field-field-cover-image {
+        padding: 10px;
+    }
+}
+.view-display-id-plan_related_news {
+    td.views-field-field-cover-image {
+        padding: 10px;
+    }
+}
+.view-display-id-consultant_related_news {
+    td.views-field-field-cover-image {
+        padding: 10px;
+    }
+}
+.view-display-id-manager_related_news {
+    td.views-field-field-cover-image {
+        padding: 10px;
+    }
+}
+/*** Consultant - Contacts View ***/
+.view-display-id-consultant_contacts {
+    td.views-field-title-field {
+        width: 15%;
+    }
+    td.views-field-field-job-title {
+        width: 15%;
+    }
+    td.views-field-field-job-title {
+        width: 15%;
+    }
+    td.views-field-field-consultant-office-er {
+        width: 15%;
+    }
+    td.views-field-field-address-data {
+        width: 15%;
+    }
+    td.views-field-field-email {
+        width: 15%;
+    }
+    td.views-field-edit-node {
+        width: 5%;
+    }
+}
+.view-display-id-consultant_inactive_contacts {
+    td.views-field-title {
+        width: 13%;
+        a {
+            text-decoration: line-through;
+        }
+    }
+    td.views-field-field-job-title {
+        width: 15%;
+    }
+    td.views-field-field-job-title {
+        width: 15%;
+    }
+    td.views-field-field-consultant-office-er {
+        width: 15%;
+    }
+    td.views-field-field-address-data {
+        width: 15%;
+    }
+    td.views-field-field-email {
+        width: 15%;
+    }
+    td.views-field-edit-node {
+        width: 5%;
+    }
+}
 /********** Exposed Filters **********/
 html.js fieldset.collapsible .fieldset-legend {
     padding-left: 0;
@@ -533,6 +716,7 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
     .form-text {
+        width: 220px;
         height: 24px;
         border: solid 1px $border-blue;
     }
@@ -547,21 +731,28 @@ html.js fieldset.collapsible .fieldset-legend {
     }
     .fieldset-wrapper{
         label {
-            float: left;
-            padding-left: 5px;
+            //float: left;
+            //padding-left: 5px;
         }
-        .form-item label {
-
-        }
+    }
+    .form-item {
+        display: block;
+    }
+    .form-item-items-per-page {
+        width: auto;
+        display: inline-block;
+        margin-right: 10px;
+    }
+    #edit-items-per-page {
+        border: solid 1px $border-blue;
+    }
+    #views-exposed-form-map-views-map-search .form-item label {
+        display: inline-block;
     }
 }
 
-
-
-
 /*** Parent Lists ***/
-#views-exposed-form-content-lists-plans-list, #views-exposed-form-content-lists-consultants-list,
- #views-exposed-form-content-lists-managers-list, #views-exposed-form-content-lists-news-list, #views-exposed-form-content-lists-rfps-list {
+#views-exposed-form-content-lists-managers-list, #views-exposed-form-content-lists-news-list, #views-exposed-form-content-lists-rfps-list {
     #edit-container-container-2 {
     display: inline-block;
     max-width: 99%;
@@ -572,8 +763,8 @@ html.js fieldset.collapsible .fieldset-legend {
         display: inline-block;
         text-align: center;
         vertical-align: top;
-        width: 30%;
-        padding:0 10px;
+        width: 26%;
+        //padding:0 10px;
         legend {
             border: solid 1px $header;
             color: #ccc;
@@ -600,7 +791,65 @@ html.js fieldset.collapsible .fieldset-legend {
         margin: 0;
         position: relative;
     }
-    .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
+}
+/*** Plans List ***/
+#views-exposed-form-content-lists-plans-list {
+    #edit-container-container-2 {
+    max-width: 99%;
+    text-align: center;
+    margin: 10px auto;
+    }
+    #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        width: 26%;
+        //padding:0 10px;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-3 {
+        margin: 0 10px 10px 0;
+        width: 26%;
+        #edit-title-field-value {
+            display: block;
+        }
+    }
+    #edit-container-container-4 {
+        margin-bottom: 0 0 10px 0;
+        width: 26%;
+    }
+    #edit-container-container-5 {
+        margin: 0 0 10px 10px;
+        width: 26%;
+        .fieldset-wrapper {
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .fieldset-wrapper::before {
+            content: "Plan Size";
+            font-weight: bold;
+            display: block;
+            //text-align: left;
+            width: 100%;
+            padding: 5px 0 0 0;
+        }
+    }
+    #edit-container-container-6 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+        .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
         display: inline-block;
         text-align: center;
         height: 24px;
@@ -629,25 +878,54 @@ html.js fieldset.collapsible .fieldset-legend {
         margin-top: 0 !important;
     }
     .form-item-created-min {
-        float: left;
+        //float: left;
     }
 }
-/*** Plans List ***/
-#views-exposed-form-content-lists-plans-list {
-    #edit-container-container-5 {
+/*** Plan Contacts List ***/
+#views-exposed-form-content-lists-plan-contacts-list {
+    #edit-container-container-4 {
+    display: inline-block;
+    max-width: 99%;
+    text-align: center;
+    margin: 10px auto;
+    }
+    #edit-container-container-5, #edit-container-container-6, #edit-container-container-7 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        width: 26%;
+        //padding:0 10px;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
         .fieldset-wrapper {
-            padding: 0;
-            margin-bottom: 10px;
+            padding:  0 10px;
         }
-        .fieldset-wrapper::before {
-            content: "Plan Size";
-            font-weight: bold;
-            display: block;
-            text-align: left;
-            width: 100%;
-            padding: 5px 0 0 26px;
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
         }
-
+    }
+    #edit-container-container-5 {
+        margin: 0 10px 10px 0;
+        #edit-title-field-value {
+            width: 220px;
+        }
+    }
+    #edit-container-container-6 {
+        margin-bottom: 0 0 10px 0;
+    }
+    #edit-container-container-7 {
+        margin: 0 0 10px 10px;
+    }
+    #edit-container-container-8 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+    .form-item-field-address-locality label{
+        display: block;
     }
 }
 /*** Mandates List ***/
@@ -695,21 +973,20 @@ html.js fieldset.collapsible .fieldset-legend {
         margin: 0;
         position: relative;
     }
-    #edit_field_mandate_status_tr_tid_selective_chosen {
+    #edit_field_mandate_status_tr_tid_chosen {
         margin-bottom: 15px;
     }
-    .form-item-field-mandate-status-tr-tid-selective {
+    .form-item-field-mandate-status-tr-tid {
         padding: 0 10px;
-        text-align: left;
+        //text-align: left;
     }
-    .form-item-field-mandate-status-tr-tid-selective::after {
+    .form-item-field-mandate-status-tr-tid::after {
         content: "Date";
         font-weight: bold;
-        padding-left: 5px;
     }
-    .form-item-field-mandate-status-tr-tid-selective label {
+    .form-item-field-mandate-status-tr-tid label {
         display: block;
-        float: none;
+        //float: none;
     }
     #edit-field-date-value-min-wrapper, #edit-field-date-value-max-wrapper {
         width: 49%;
@@ -722,10 +999,10 @@ html.js fieldset.collapsible .fieldset-legend {
             margin-top: 0;
         }
     }
-    #edit-field-date-value-min-datepicker-popup-6, #edit-field-date-value-max-datepicker-popup-6 {
+    #edit-field-date-value-min-datepicker-popup-0, #edit-field-date-value-max-datepicker-popup-0 {
         display: inline-block;
         text-align: center;
-        max-width: 90px;
+        width: 90px !important;
         height: 22px;
         line-height: 22px;
         margin: 0;
@@ -735,12 +1012,12 @@ html.js fieldset.collapsible .fieldset-legend {
         label {
             display: block;
             float: none;
-            text-align: left;
+            //text-align: left;
             //padding-left: 40px;
         }
     }
     .form-item-field-address-administrative-area {
-        width: 46%;
+        width: 25%;
         display: inline-block;
         text-align: center;
         margin-right: 5px;
@@ -755,7 +1032,7 @@ html.js fieldset.collapsible .fieldset-legend {
     }
 }                                                                                   // Why is this here?!
     .form-item-field-address-country {
-        width: 47%;
+        width: 52%;
         display: inline-block;
         text-align: center;
         margin-left: 5px;
@@ -767,11 +1044,15 @@ html.js fieldset.collapsible .fieldset-legend {
             max-width: 100%;
         }
     }
-    .form-item-field-consultant-firm-er-target-id-selective {
+    .form-item-title {
+        width: 220px;
         label {
             display: block;
             //padding-left: 40px;
         }
+    }
+    #edit-title {
+        width: 100%;
     }
     .form-item-field-account-size-value-min, .form-item-field-account-size-value-max {
         display: inline-block;
@@ -799,20 +1080,28 @@ html.js fieldset.collapsible .fieldset-legend {
             font-weight: bold;
             display: block;
             width: auto;
-            text-align: left;
-            padding: 5px 0 0 30px;
+            //text-align: left;
+            padding: 5px 0 0 0;
         }
     }
-    #edit_field_geographic_tr_tid_selective_chosen, #form-item-field-attribute-tr-tid-selective, #edit_major_style_chosen, #form-item-field-attribute-tr-tid-selective {
+    #edit_field_geographic_tr_tid_chosen, #form-item-field-attribute-tr-tid, #edit_major_style_chosen, #form-item-field-attribute-tr-tid {
         width: 48%;
     }
-    .form-item-field-geographic-tr-tid-selective, .form-item-major-style, .form-item-field-attribute-tr-tid-selective, .form-item-minor-style {
+    .form-item-field-geographic-tr-tid, .form-item-major-style, .form-item-field-attribute-tr-tid, .form-item-minor-style {
         width: 48%;
         display: inline-block;
         text-align: center;
         .chosen-container {
             max-width: 100%;
         }
+    }
+    ul.chosen-choices {
+        height: 24px;
+    }
+    #edit-field-major-minor-style-tr-tid-select-1 {
+        border: solid 1px $border-blue;
+        height: 24px;
+        padding: 0 0 2px 0;
     }
 }
 /*** RFPs List ***/
@@ -843,45 +1132,32 @@ html.js fieldset.collapsible .fieldset-legend {
             font-weight: bold;
             display: block;
             width: auto;
-            text-align: left;
-            padding: 5px 0 0 30px;
-        }
-    }
-}
-#views-exposed-form-content-lists-news-list {
-    #edit-container-container-5 {
-        .fieldset-wrapper::before {
-            content: "Date";
-            font-weight: bold;
-            display: block;
-            width: auto;
-            text-align: left;
+            //text-align: left;
             padding: 5px 0 0 0;
         }
-        #edit-created-min, #edit-created-max {
-            max-width: 84px;
-        }
-        #edit-created-max {
-            margin-left: 5px;
-        }
-        .form-item label {
-            margin-top: 0;
+    }
+    #edit-container-container-5 {
+        .shs-select {
+            border: solid 1px $border-blue;
+            height: 24px;
+            padding: 0 0 3px 0;
         }
     }
 }
-/*** Plan Contacts List ***/
-#views-exposed-form-content-lists-plan-contacts-list {
-    #edit-container-container-4 {
-        display: inline-block;
-        max-width: 99%;
-        text-align: center;
-        margin: 10px auto;
+/*** Consultants List ***/
+#views-exposed-form-content-lists-consultants-list {
+    #edit-container-container-2 {
+    display: inline-block;
+    width: 99%;
+    text-align: center;
+    margin: 10px auto;
     }
-    #edit-container-container-5, #edit-container-container-6, #edit-container-container-7 {
-        display: inline-block;;
+    #edit-container-container-3, #edit-container-container-4, #edit-container-container-6 {
+        display: inline-block;
         text-align: center;
         vertical-align: top;
-        width: 30%;
+        width: 26%;
+        //padding:0 10px;
         legend {
             border: solid 1px $header;
             color: #ccc;
@@ -894,25 +1170,19 @@ html.js fieldset.collapsible .fieldset-legend {
             margin-top: 5px; 
         }
     }
-    #edit-container-container-5 {
-        margin: 0 10px 10px 0;
+    #edit-container-container-3 {
+        margin: 0 5px 10px 0;
+    }
+    #edit-container-container-4 {
+        margin-bottom: 0 5px 10px 5px;
     }
     #edit-container-container-6 {
-        margin-bottom: 0 0 10px 0;
+        margin: 0 0 10px 5px;
     }
     #edit-container-container-7 {
-        margin: 0 0 10px 10px;
-    }
-    #edit-container-container-8 {
         width: 100%;
         margin: 0;
         position: relative;
-    }
-    #edit_title_selective_chosen {
-        width: 220px !important;
-    }
-    .form-item-title-selective label {
-        padding-left: 10px;
     }
 }
 /*** Consultant Contacts List ***/
@@ -941,15 +1211,18 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
     #edit-container-container-4 {
-        margin: 0 10px 10px 0;
+        margin: 0 10px 5px 0;
         .fieldset-wrapper label {
             padding-left: 14px;
         }
     }
     #edit-container-container-5 {
-        margin-bottom: 0 0 10px 0;
+        margin-bottom: 0 5px 10px 5px;
     }
     #edit-container-container-6 {
+        margin: 0 0 10px 5px;
+    }
+    #edit-container-container-7 {
         width: 100%;
         margin: 0;
         position: relative;
@@ -958,17 +1231,11 @@ html.js fieldset.collapsible .fieldset-legend {
             padding: 0;
         }
     }
-    #edit_title_selective_chosen {
-        width: 200px;
-    }  
 }
 /*** Managers List ***/
 #views-exposed-form-content-lists-managers-list {
     #edit-container-container-2 {
         width: 99%;
-    }
-    .form-item label {
-        display: block;
     }
 }
 /*** Manager of Managers List ***/
@@ -983,8 +1250,8 @@ html.js fieldset.collapsible .fieldset-legend {
         display: inline-block;
         text-align: center;
         vertical-align: top;
-        width: 30%;
-        padding:0 10px;
+        width: 27%;
+        //padding:0 10px;
         legend {
             border: solid 1px $header;
             color: #ccc;
@@ -1018,6 +1285,51 @@ html.js fieldset.collapsible .fieldset-legend {
         padding-left: 15px;
     }
 }
+/*** News List ***/
+#views-exposed-form-content-lists-news-list {
+    #edit-container-container-3 {
+        #edit-title-field-value {
+            width: 220px;
+        }
+    }
+    #edit-container-container-3 {
+        ul.chosen-choices {
+            width: 220px;
+        }
+    }
+    #edit-container-container-5 {
+        .fieldset-wrapper::before {
+            content: "Date";
+            font-weight: bold;
+            display: block;
+            width: auto;
+            //text-align: left;
+            padding: 5px 0 0 10px;
+        }
+    #edit-field-date-value-min-wrapper, #edit-field-date-value-max-wrapper {
+        width: 49%;
+        display: inline-block;
+        text-align: center;
+        padding: 0 10px;
+    }
+    #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
+        .form-item label {
+            margin-top: 0;
+        }
+    }
+    #edit-field-date-value-min-datepicker-popup-0, #edit-field-date-value-max-datepicker-popup-0 {
+        display: inline-block;
+        text-align: center;
+        max-width: 90px;
+        height: 22px;
+        line-height: 22px;
+        margin: 0;
+    }
+        .form-item label {
+            margin-top: 0;
+        }
+    }
+}
 /*** Map Search ***/
 #views-exposed-form-map-views-map-search {
     .form-text {
@@ -1037,7 +1349,7 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         vertical-align: top;
         //width: 30%;
-        background: $form-item-active-blue;
+        //background: $form-item-active-blue;
         legend {
             border: solid 1px $header;
             color: #ccc;
@@ -1113,10 +1425,15 @@ html.js fieldset.collapsible .fieldset-legend {
         display: inline-block;
         text-align: center;
         float: left;
+        width: 50%;
     }
     #edit-field-geofield-distance-unit {
         height: 24px;
         border: solid 1px $border-blue;
+    }
+    #edit_field_geofield_distance_unit_chosen {
+        display: inline-block;
+        width: 100% !important;
     }
     #edit-field-geofield-distance-origin {
         width: 95%;
@@ -1138,13 +1455,12 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         vertical-align: top;
         width: 30%;
-        background: $form-item-active-blue;
         legend {
             border: solid 1px $header;
             color: #ccc;
         }
         .fieldset-wrapper {
-            padding:  0 10px 10px 10px;
+            //padding:  0 10px 10px 10px;
         }
         .form-item label {
             margin-bottom: 0;
@@ -1165,10 +1481,53 @@ html.js fieldset.collapsible .fieldset-legend {
         margin: 0;
         position: relative;
     }
+    ul.chosen-choices {
+        height: 24px;
+    }
+    #edit-field-major-minor-style-tr-tid-select-1 {
+        border: solid 1px $border-blue;
+        height: 24px;
+        padding: 0 0 2px 0;
+    }
 }
 
-/*** Consultant Node - Contacts ***/
-#views-exposed-form-reference-views-consultant-contacts, #views-exposed-form-reference-views-consultant-imr-contacts {
+/*** Consultant - Contacts ***/
+#views-exposed-form-reference-views-consultant-contacts {
+    #edit-container-container-4 {
+        display: inline-block;
+        width: 60%;
+        text-align: center;
+        margin: 10px auto;
+    }
+    #edit-container-container-5 {
+        display: inline-block;
+        text-align: center;
+        width: 43%;
+        margin: 0;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .fieldset-wrapper {
+            padding:  0 10px 10px 10px;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-6 {
+        display: inline-block;
+        text-align: center;
+        vertical-align: bottom;
+        width: 40%;
+        min-width: 30%;
+        margin: 0;
+        background: none;
+    }
+}
+/*** Consultant - IMR Contacts ***/
+#views-exposed-form-reference-views-consultant-imr-contacts {
     #edit-container-container-3 {
         display: inline-block;
         width: 60%;
@@ -1180,7 +1539,6 @@ html.js fieldset.collapsible .fieldset-legend {
         text-align: center;
         width: 43%;
         margin: 0;
-        background: $form-item-active-blue;
         legend {
             border: solid 1px $header;
             color: #ccc;
@@ -1196,7 +1554,7 @@ html.js fieldset.collapsible .fieldset-legend {
     #edit-container-container-5 {
         display: inline-block;
         text-align: center;
-        vertical-align: middle;
+        vertical-align: bottom;
         width: 40%;
         min-width: 30%;
         margin: 0;
@@ -1258,7 +1616,7 @@ html.js fieldset.collapsible .fieldset-legend {
         font-weight: bold;
         display: block;
         width: auto;
-        text-align: left;
+        //text-align: left;
         padding: 5px 0 0 0;
     }
     #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
@@ -1266,23 +1624,26 @@ html.js fieldset.collapsible .fieldset-legend {
             margin-top: 0;
         }
     }
-    .form-item-field-mandate-status-tr-tid-selective {
-        text-align: left;
+    .form-item-field-mandate-status-tr-tid {
+        //text-align: left;
         padding-left: 12px;
         ul.chosen-choices {
             margin-bottom: 10px;
         }
     }
+    .form-item-field-mandate-status-tr-tid:after {
+
+    }
     .form-item-field-mandate-status-tr-tid-selective label {
         padding-left: 5px;
     }
-    .form-item-field-mandate-status-tr-tid-selective::after {
+    .form-item-field-mandate-status-tr-tid::after {
         content: "Date";
         font-weight: bold;
         width: 100%;
         padding: 0 0 0 5px;
     }
-    #edit-field-date-value-min-datepicker-popup-7, #edit-field-date-value-max-datepicker-popup-7 {
+    #edit-field-date-value-min-datepicker-popup-0, #edit-field-date-value-max-datepicker-popup-0 {
         display: inline-block;
         text-align: center;
         max-width: 90px;
@@ -1387,47 +1748,76 @@ html.js fieldset.collapsible .fieldset-legend {
         .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
             margin: 0;
         }
-        .form-item-title-selective::after {
+        .form-item-title::after {
             content: "Plan Size";
             font-weight: bold;
             display: block;
             width: auto;
-            text-align: left;
+            //text-align: left;
             padding: 5px 0 0 0;
         }
+    }
+    #edit-container-container-5 {
+        #edit-field-major-minor-style-tr-tid-select-1 {
+            border: solid 1px $border-blue;
+            height: 24px;
+            padding: 0 0 2px 0;
+        }
+    }
+}
+/*** Manager - Mandate Assignments ***/
+.view-display-id-manager_mandates {
+    #edit-field-major-minor-style-tr-tid-select-1 {
+        border: solid 1px $border-blue;
+        height: 24px;
+        padding: 0 0 2px 0;
     }
 }
 
 /********** Buttons **********/
-    .btn {
-        background: $dark-button;
-        :hover {
-            background: $fin-navy; //Doesn't work, investigate
-        }
+.btn {
+    background: $dark-button;
+    :hover {
+        background: $fin-navy; //Doesn't work, investigate
     }
-    legend {
-        padding: 5px;
-        background: $header;
-    }
-    button.form-reset {
-        vertical-align: bottom;
-        background: $dark-button;
-        color: $white;
-        padding: 4px 16px;
-        margin-left: 10px;
-    }
-    #save-search-trigger {
-        background: $dark-button;
-        padding: 4px 16px;
-        margin: 0 0 0 10px;
-        color: $white;
-    }
-    .views-exposed-form .views-exposed-widget {
+}
+legend {
+    padding: 5px;
+    background: $header;
+}
+button.form-reset {
+    vertical-align: bottom;
+    background: $dark-button;
+    color: $white;
+    padding: 4px 16px;
+    margin-left: 10px;
+}
+#save-search-trigger {
+    background: $dark-button;
+    vertical-align: middle;
+    padding: 4px 16px;
+    margin: 0 0 0 10px;
+    color: $white;
+}
+.views-exposed-form {
+    .views-exposed-widget {
         padding: 0;
         .form-submit {
             margin-top: 0;
         }
     }
+    #edit-items-per-page {
+        vertical-align: none;
+        margin-bottom: 0;
+    }
+    #edit-submit-content-lists {
+        margin-top: 0;
+        margin-left: 10px;
+    }
+    button.form-reset {
+        vertical-align: middle;
+    }
+}
 
 /********** Tables **********/
 table.views-table {
@@ -1543,6 +1933,13 @@ body.node-type-plan {
 .view-foia-history {
     margin-bottom: 20px;
 }
+/*** Plans ***/
+.field-name-plan-potential-leads-mandates-bf, .field-name-plan-new-leads-mandates-bf, .field-name-plan-ongoing-mandates-bf, .field-name-plan-completed-mandates-bf, .field-name-plan-closed-mandates-bf {
+    margin: 0;
+    .content {
+        padding: 0 0 0 10px;
+    }
+}
 /*** Contacts ***/
 .node-type-contact {
     .group-left {
@@ -1565,28 +1962,46 @@ body.node-type-plan {
     }
 }
 /*** Mandates ***/
-.node-mandate {
+.node-type-mandate {
     .ds-above-left, .ds-below-left {
         padding: 0 10px 0 0;
         margin-bottom: 0;
     }
     .ds-above-right, .ds-below-right {
-        padding: 0 0 0 10px;
+        padding: 0;
         margin-bottom: 0;
+    }
+    .group-mandate-info, .field-name-mandate-plan-info-bf {
+        height: 200px;
+        background: $form-background-blue;
     }
 }
 /*** Consultant Firms ***/
-.node-consultant-firm {
+.node-type-consultant-firm {
     .ds-above-left .field-type-ds {
         margin: 0 !important;
     }
     .ds-above-right .field-type-ds {
         margin: 0 !important;
     }
+    .field-name-consultant-main-office-bf {
+        background: $form-background-blue;
+    }
 }
 /*** Office ***/
 .node-office .ds-above-right .content {
     padding: 0;
+}
+/*** News ***/
+.node-type-news {
+    .field-label {
+        margin-right: 5px;
+    }
+    .field-name-field-manager-firm-er, .field-name-field-consultant-firm-er, .field-name-field-plan-er {
+        .field-label {
+            font-weight: normal;
+        }
+    }
 }
 
 /********** Entityforms **********/
@@ -1595,19 +2010,33 @@ body.node-type-plan {
   float: left;
   margin: 0 0 30px 0;
 }
-.group-left, .group-middle, .group-right, .group-footer {
-  background: $form-item-active-blue;
-  padding-left: 10px;
-  padding-right: 10px;
+.page-eform-submit {
+    .group-left, .group-middle, .group-right, .group-footer {
+    background: $form-item-active-blue;
+    padding-left: 10px;
+    padding-right: 10px;
+    }
 }
 .group-footer {
   padding-bottom: 10px;
 }
 
-/********** Resources UI **********/
-#block-fin-utils-saved-filters, #block-fin-utils-saved-searches, #block-fin-utils-subscriptions, #block-fin-utils-messages {
+/********** Resources **********/
+#block-fin-utils-saved-filters, #block-fin-utils-saved-searches, #block-fin-utils-subscriptions {
     margin-bottom: 30px;
 }
+#block-fin-utils-messages {
+    margin-bottom: 30px;
+    fieldset.collapsed {
+        height: auto;
+    }
+    .privatemsg-filter-actions {
+        input.form-submit {
+            margin-right: 10px;
+        }
+    }
+}
+/*** Resources Page ***/
 .page-node-6806 {
     td, th {
         padding: 0 10px;
@@ -1616,9 +2045,73 @@ body.node-type-plan {
         vertical-align: middle;
         margin: 0;
     }
-    table.table-select-processed {
+    #block-fin-utils-messages {
+        #edit-filter {
+            background-color: $form-background-blue;
+            margin: 0 10px 10px 10px;
+            .fieldset-wrapper {
+                padding: 0 10px;
+            }
+            .fieldset-legend {
+                a.fieldset-title {
+                    color: $white;
+                    &:hover {
+                        color: $link-hover;
+                    }
+                }
 
+            }
+            .form-item-search, .form-item-author {
+                display: inline-block;
+                margin: 10px;
+            }
+            #edit-actions--2 {
+                margin: 0 0 10px 0;
+            }
+        }
+        #privatemsg-list-form {
+            background-color: $white;
+        }
     }
+}
+/*** Messages Page ***/
+.page-messages {
+    #privatemsg-list-form {
+        .container-inline {
+            margin-bottom: 10px;
+        }
+    }
+    #privatemsg-list {
+        #edit-filter {
+            background-color: $form-background-blue;
+            legend {
+                background-color: $fin-navy;
+            }
+           .fieldset-wrapper {
+                padding: 0 10px;
+            }
+            a.fieldset-title {
+                margin-left: 5px;
+                color: $white;
+                &:hover {
+                    color: $link-hover;
+                }
+            }
+            .form-item-search, .form-item-author {
+                display: inline-block;
+                margin-left: 10px;
+            }
+            #edit-actions--2 {
+                margin: 0 0 10px 0;
+            }
+            #edit-submit--2 {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+.privatemsg-message-column {
+    float: none;
 }
 #privatemsg-list-form .privatemsg-list {
     width: 100%;
@@ -1648,8 +2141,20 @@ body.node-type-plan {
 #privatemsg-list span.fieldset-legend a {
     color: #aaa;
 }
+#subscriptions-ui-node-form {
+    .sticky-table {
+        margin-bottom: 5px;
+    }
+}
 #block-subscriptions-ui-0 {
     background: $header;
+    tr.odd, tr.even {
+        background-color: $form-background-blue;
+        #edit-subscriptions-1, #edit-subscriptions-2 {
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+    }
     .btn {
         background: $dark-button;
     }
@@ -1675,9 +2180,75 @@ body.node-type-plan {
     }
   }
 }
+#block-subscriptions-ui-0 {
+    margin-bottom: 15px;
+}
 #subscriptions-page-user-overview, #subscriptions-page-form, .page-user-saved-searches {
     td, th {
         padding: 5px;
+    }
+}
+.page-user-subscriptions {
+    fieldset.collapsible {
+        margin-bottom: 30px;
+    }
+    #edit-suspend {
+        span.fieldset-legend {
+            margin-left: 5px;
+        }
+        .fieldset-wrapper {
+            background: $form-background-blue;
+            padding: 10px 0;
+            .form-item-state {
+                margin-top: 0;
+                margin-left: 15px;
+            }
+        }
+    }
+    #edit-settings {
+        background: $form-background-blue;
+        span.fieldset-legend {
+            margin-left: 5px;
+        }
+        #edit-save-settings, #edit-reset {
+            margin-bottom: 10px;
+        }
+        .form-item-autosub-comment, .form-item-sendself, .form-item-send-comments, #edit-visibility {
+            display: none;
+        }
+        #edit-autosub {
+            display: none;
+            margin-left: 15px;
+            .fieldset-wrapper {
+                padding: 10px 10px 0 10px;
+            }
+            span.fieldset-legend {
+                margin-left: 5px;
+                color: $white;
+                text-transform: capitalize;
+            }
+        }
+        .form-item-digest {
+            margin-top: 15px 0 0 15px;
+            padding: 0 10px 10px 10px;
+        }
+        #edit-preferences {
+            margin: 0 15px;
+            span.fieldset-legend {
+                margin-left: 5px;
+                color: $white;
+                text-transform: capitalize;
+            }
+            .fieldset-wrapper {
+                padding: 10px;
+                .form-item-send-interval {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+    input[type="checkbox"] {
+        margin: 0 5px 0 0;
     }
 }
 span.fieldset-legend a {
@@ -1730,5 +2301,17 @@ span.fieldset-legend a {
         }
     }
 }
+.page-user-saved-searches {
+    #saved-searches-header {
+        color: $white;
+        padding-left: 10px;
+    }
+}
 
 /********** Advanced Search **********/
+
+
+/********** Chosen Widget Fix **********/
+.chosen-container {
+    width: 220px !important;
+}
