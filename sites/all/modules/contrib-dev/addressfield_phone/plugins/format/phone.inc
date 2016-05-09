@@ -55,7 +55,7 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
     }
     if (empty($settings) || !empty($settings['mobile'])) {
       $format['phone_block']['mobile_number'] = array(
-        '#title' => t('Mobile Number'),
+        '#title' => t('Mobile'),
         '#size' => 15,
         '#attributes' => array('class' => array('phone-number')),
         '#type' => 'textfield',
@@ -65,7 +65,7 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
     }
     if (empty($settings) || !empty($settings['fax'])) {
       $format['phone_block']['fax_number'] = array(
-        '#title' => t('Fax Number'),
+        '#title' => t('Fax'),
         '#size' => 15,
         '#attributes' => array('class' => array('phone-number')),
         '#type' => 'textfield',
