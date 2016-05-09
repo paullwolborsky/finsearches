@@ -122,7 +122,7 @@ $shadow: #666666;
             input.btn-primary {
                 display: inline-block;
                 vertical-align: top;
-                margin: 15px 0 0 0;
+                //margin: 15px 0 0 0;
             }
             .btn.form-submit {
                 background: $dark-button;
@@ -131,6 +131,7 @@ $shadow: #666666;
         #block-search-api-page-solr-search-page {
             .form-item-keys-1 {
                 margin-bottom: 0;
+                margin-top: 0;
                 #edit-keys-1 {
                     width: 150px;
                 }
