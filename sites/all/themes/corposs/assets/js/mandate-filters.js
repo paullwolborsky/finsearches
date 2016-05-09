@@ -7,7 +7,7 @@
       var now = new Date();
       currentMonth = now.getMonth()+1;
       html = "<div id='date-presets-wrapper'><select id='preset-dates'>";
-        html += "<option selected>Use Fields</option>";
+        html += "<option selected>Preset Dates</option>";
         html += "<option>Today</option>";
         html += "<option>This Week</option>";
         html += "<option>This Month</option>";
