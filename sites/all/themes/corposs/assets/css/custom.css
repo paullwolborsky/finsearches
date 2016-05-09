@@ -964,12 +964,10 @@ html.js fieldset.collapsible .fieldset-legend {
   padding-left: 0;
 }
 
-/* line 702, ../../sass/custom.scss */
 .view-header .btn {
   display: none;
 }
 
-/* line 706, ../../sass/custom.scss */
 .view-filters {
   background-color: #e7efff;
   color: #1368a6;

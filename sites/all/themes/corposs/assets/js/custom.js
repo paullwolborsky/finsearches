@@ -11,24 +11,28 @@
       $('.block-facetapi .content ul li a.facetapi-active').parents('.block-facetapi .content').addClass('open');
       
       //Pie charts for plans
-      if ($('.sidebar-pie-chart .views-field').length) {
-        google.load("visualization", "1", {packages:["corechart"]});
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Label');
-        data.addColumn('number', 'Value');
-        $('.sidebar-pie-chart .views-field').each(function(){
-          data.addRow([$(this).find('.views-label').html(), parseFloat($(this).find('.field-content').html())]);
-        });
-        var options = {
-          is3D: false,
-          chartArea: {left:0,top:10, width: '100%', height:'90%'},
-          legend: {position: 'none'},
-          tooltip: {text:'percentage'}
-        };
-        $('.sidebar-pie-chart').html("<div id='aa-chart'></div>");
-        var chart = new google.visualization.PieChart(document.getElementById('aa-chart'));
-        chart.draw(data, options);
-      }
+      $('.view-display-id-asset_allocation_chart .sidebar-pie-chart').once('map', function(){
+        if ($('.view-display-id-asset_allocation_chart .sidebar-pie-chart .views-field').length) {
+          google.load("visualization", "1", {packages:["corechart"]});
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Label');
+          data.addColumn('number', 'Value');
+          $('.sidebar-pie-chart .views-field').each(function(){
+            data.addRow([$(this).find('.views-label').html(), parseFloat($(this).find('.field-content').html())]);
+          });
+          var options = {
+            is3D: false,
+            chartArea: {left:0,top:10, width: '100%', height: '75%'},
+            legend: {position: 'right', alignmnet: 'center'},
+            tooltip: {text:'percentage'}
+          };
+          $('.sidebar-pie-chart').html("<div id='aa-chart'></div>");
+          var chart = new google.visualization.PieChart(document.getElementById('aa-chart'));
+          chart.draw(data, options);
+        } else {
+          $('.sidebar-pie-chart').html("<div id='aa-chart'>No Asset Allocation data available</div>");
+        }
+      });
       
       //Hide search results until something happens
       if ($('.block-facetapi .content ul li a.facetapi-active').length) {
@@ -47,15 +51,23 @@
       }
       
       //Add save search trigger button
+      
+      $('.view-content-lists .view-filters .my-views-filter-submit').once('trigger', function(){
+        $contentToMove = $('.view-content-lists .view-header form');
+        $(this).parent('.fieldset-wrapper').append("<button id='save-search-trigger'>Save Search</button>");
+        $('.view-content-lists .view-filters #save-search-trigger').click(function(){
+          $('#edit-save.views-save-button-save').prepend($contentToMove);
+          $('#edit-save.views-save-button-save').trigger('click');
+          return false;
+        });
+      });
+      
+      /*
       if (!$('.view-content-lists .view-filters .my-views-filter-submit').parent('.fieldset-wrapper').find('#save-search-trigger').length) {
        $('.view-content-lists .view-filters .my-views-filter-submit').parent('.fieldset-wrapper').append("<button id='save-search-trigger'>Save Search</button>");
       }
       //See views_save.js for hiding the trigger button after form submit
-      $('.view-content-lists .view-filters #save-search-trigger').click(function(){
-        $('#edit-save.views-save-button-save').trigger('click');
-        return false;
-      });
-      
+      */
       //Make links work in recent content view 
       $('.view-display-id-recent_content_sidebar .view-content .views-row .field-content a').click(function(){
         window.location = jQuery(this).attr('href');

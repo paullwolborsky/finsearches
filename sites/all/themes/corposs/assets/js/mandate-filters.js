@@ -2,12 +2,12 @@
  *js file for mandate custom date ranges
  */
 (function($, Drupal){
-  Drupal.behaviors.corposs = {
+  Drupal.behaviors.mandateFilters = {
     attach: function(context, settings) {
       var now = new Date();
       currentMonth = now.getMonth()+1;
-      html = "<select id='preset-dates'>";
-        html += "<option selected>Use Fields</option>";
+      html = "<div id='date-presets-wrapper'><select id='preset-dates'>";
+        html += "<option selected>Preset Dates</option>";
         html += "<option>Today</option>";
         html += "<option>This Week</option>";
         html += "<option>This Month</option>";
@@ -23,15 +23,24 @@
         if (currentMonth > 9) {
           html += "<option>4th Quarter</option>";
         }
-      html += "</select>";
-      if ($('#edit-field-date-value-wrapper #preset-dates').length == 0) {
-        $('#edit-field-date-value-wrapper').prepend(html);
+      html += "</select></div>";
+      if ($('#edit-field-date-value-max-wrapper').parent('.fieldset-wrapper').find('#preset-dates').length == 0) {
+        $wrapper = $('#edit-field-date-value-max-wrapper').parent('.fieldset-wrapper');
+        $wrapper.append(html);
+        $wrapper.find('#preset-dates').change(function(){
+          newDate = getDate($wrapper.find('#preset-dates option:selected').text())[0];
+          $('#edit-field-date-value-min input').val(newDate);
+          endDate = getDate($wrapper.find('#preset-dates option:selected').text())[1];
+          $('#edit-field-date-value-max input').val(endDate);
+        });
       } else {
-        $('#edit-field-date-value-wrapper #preset-dates').change(function(){
-          newDate = getDate($('#edit-field-date-value-wrapper #preset-dates option:selected').text())[0];
-          $('#edit-field-date-value-min input').val(newDate)
-          endDate = getDate($('#edit-field-date-value-wrapper #preset-dates option:selected').text())[1];
-          $('#edit-field-date-value-max input').val(endDate)
+        $wrapper = $('#edit-field-date-value-max-wrapper').parent('.fieldset-wrapper');
+        $wrapper.append(html);
+        $wrapper.find('#preset-dates').change(function(){
+          newDate = getDate($wrapper.find('#preset-dates option:selected').text())[0];
+          $('#edit-field-date-value-min input').val(newDate);
+          endDate = getDate($wrapper.find('#preset-dates option:selected').text())[1];
+          $('#edit-field-date-value-max input').val(endDate);
         });
       }
       function getDate() {
