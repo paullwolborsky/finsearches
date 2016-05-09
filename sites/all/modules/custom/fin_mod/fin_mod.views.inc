@@ -37,8 +37,6 @@ function fin_mod_plan_direct_consultants_query(&$view, &$query) {
   $query->distinct = TRUE;
   $query->add_groupby('field_collection_item.item_id');
   $query->add_groupby('node_field_data_field_consultant_contact_er.nid');
-
-  return;
 }
 
 /**
@@ -106,9 +104,7 @@ function fin_mod_state_code($state) {
 function fin_mod_content_list(&$view, &$query) {
   // Commented out code is meant for when the full state name is used in the
   // exposed filter, and we need to translate it to state code.
-
   //module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
-
   //if (!empty($view->exposed_raw_input['field_address_administrative_area_selective'])) {
   if (!empty($view->exposed_raw_input['field_address_administrative_area'])) {
     /*foreach ($query->where[2]['conditions'] as $key => &$where) {
@@ -142,7 +138,10 @@ function fin_mod_views_query_alter(&$view, &$query) {
     fin_mod_plan_direct_consultants_query($view, $query);
   }
   if ($view->current_display == 'consultant_plan_managers') {
-    $query->add_groupby('node_field_data_field_plan_er_nid, field_collection_item_field_data_field_manager_roster_fc__fi, field_collection_item_field_data_field_manager_roster_fc__fi_2');
+    $query->distinct = TRUE;
+    $query->add_groupby('node_field_data_field_plan_er_nid');
+    $query->add_groupby('field_collection_item_field_data_field_manager_roster_fc__fi');
+    $query->add_groupby('field_collection_item_field_data_field_manager_roster_fc__fi_2');
   }
 }
 
@@ -160,12 +159,16 @@ function fin_mid_consultant_plan_manager_all_types($view) {
   $outsourced = TRUE;
   foreach ($view->result as $row => $result) {
     if ($view->current_display == 'consultant_plan_managers') {
-      $consultant_type = $result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->name;
+      if (isset($result->field_field_consultant_type_tr)) {
+        $consultant_type = $result->field_field_consultant_type_tr[0]['raw']['taxonomy_term']->name;
+      }
     }
     else if ($view->current_display == 'consultants_by_plan') {
-      $consultant_type = $result->taxonomy_term_data_field_data_field_consultant_type_tr_name;
+      if (isset($result->taxonomy_term_data_field_data_field_consultant_type_tr_name)) {
+        $consultant_type = $result->taxonomy_term_data_field_data_field_consultant_type_tr_name;
+      }
     }
-    if ($consultant_type == 'Project-Basis') {
+    if (!isset($consultant_type) || $consultant_type == 'Project-Basis') {
       continue;
     }
     else if ($consultant_type != 'General') {
@@ -282,6 +285,7 @@ function fin_mod_consultant_plan_manager_remove_tid(&$view, $row, $consultant_ty
       unset($view->result[$row]);
       break;
   }
+  $view->result = array_slice($view->result, 0, 100, TRUE);
 }
 
 /**
@@ -400,4 +404,3 @@ function fin_mod_views_data_alter(&$data) {
     ),
   );
 }
-
