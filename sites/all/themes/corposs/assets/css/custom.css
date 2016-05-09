@@ -2513,288 +2513,323 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
   margin-right: 10px;
 }
 
-/* line 2039, ../../sass/custom.scss */
+/*** Resources Page ***/
+/* line 2040, ../../sass/custom.scss */
 .page-node-6806 td, .page-node-6806 th {
   padding: 0 10px;
 }
-/* line 2042, ../../sass/custom.scss */
+/* line 2043, ../../sass/custom.scss */
 .page-node-6806 input[type="radio"], .page-node-6806 input[type="checkbox"] {
   vertical-align: middle;
   margin: 0;
 }
+/* line 2048, ../../sass/custom.scss */
+.page-node-6806 #block-fin-utils-messages #edit-filter {
+  background-color: #e7efff;
+  margin: 0 10px 10px 10px;
+}
+/* line 2051, ../../sass/custom.scss */
+.page-node-6806 #block-fin-utils-messages #edit-filter .fieldset-wrapper {
+  padding: 0 10px;
+}
+/* line 2055, ../../sass/custom.scss */
+.page-node-6806 #block-fin-utils-messages #edit-filter .fieldset-legend a.fieldset-title {
+  color: white;
+}
+/* line 2057, ../../sass/custom.scss */
+.page-node-6806 #block-fin-utils-messages #edit-filter .fieldset-legend a.fieldset-title:hover {
+  color: #428bca;
+}
+/* line 2063, ../../sass/custom.scss */
+.page-node-6806 #block-fin-utils-messages #edit-filter .form-item-search, .page-node-6806 #block-fin-utils-messages #edit-filter .form-item-author {
+  display: inline-block;
+  margin: 10px;
+}
+/* line 2067, ../../sass/custom.scss */
+.page-node-6806 #block-fin-utils-messages #edit-filter #edit-actions--2 {
+  margin: 0 0 10px 0;
+}
+/* line 2071, ../../sass/custom.scss */
+.page-node-6806 #block-fin-utils-messages #privatemsg-list-form {
+  background-color: white;
+}
 
-/*** Messages ***/
-/* line 2053, ../../sass/custom.scss */
+/*** Messages Page ***/
+/* line 2079, ../../sass/custom.scss */
 .page-messages #privatemsg-list-form .container-inline {
   margin-bottom: 10px;
 }
-/* line 2058, ../../sass/custom.scss */
+/* line 2084, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter {
   background-color: #e7efff;
 }
-/* line 2060, ../../sass/custom.scss */
+/* line 2086, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter legend {
   background-color: #142a45;
 }
-/* line 2063, ../../sass/custom.scss */
+/* line 2089, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter .fieldset-wrapper {
   padding: 0 10px;
 }
-/* line 2066, ../../sass/custom.scss */
+/* line 2092, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter a.fieldset-title {
   margin-left: 5px;
   color: white;
 }
-/* line 2069, ../../sass/custom.scss */
+/* line 2095, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter a.fieldset-title:hover {
   color: #428bca;
 }
-/* line 2073, ../../sass/custom.scss */
+/* line 2099, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter .form-item-search, .page-messages #privatemsg-list #edit-filter .form-item-author {
   display: inline-block;
   margin-left: 10px;
 }
-/* line 2077, ../../sass/custom.scss */
+/* line 2103, ../../sass/custom.scss */
+.page-messages #privatemsg-list #edit-filter #edit-actions--2 {
+  margin: 0 0 10px 0;
+}
+/* line 2106, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter #edit-submit--2 {
   margin-right: 10px;
 }
 
-/* line 2083, ../../sass/custom.scss */
+/* line 2112, ../../sass/custom.scss */
 .privatemsg-message-column {
   float: none;
 }
 
-/* line 2086, ../../sass/custom.scss */
+/* line 2115, ../../sass/custom.scss */
 #privatemsg-list-form .privatemsg-list {
   width: 100%;
 }
 
-/* line 2089, ../../sass/custom.scss */
+/* line 2118, ../../sass/custom.scss */
 .privatemsg-list td {
   padding: 0 5px;
 }
 
-/* line 2092, ../../sass/custom.scss */
+/* line 2121, ../../sass/custom.scss */
 .privatemsg-list th {
   padding: 0 5px;
 }
 
-/* line 2095, ../../sass/custom.scss */
+/* line 2124, ../../sass/custom.scss */
 .privatemsg-list tr.odd {
   background-color: #dedede;
   border: 1px solid white;
 }
 
-/* line 2099, ../../sass/custom.scss */
+/* line 2128, ../../sass/custom.scss */
 .privatemsg-list tr.even {
   background-color: white;
   border: 1px solid white;
 }
 
-/* line 2104, ../../sass/custom.scss */
+/* line 2133, ../../sass/custom.scss */
 .privatemsg-list tr.odd td.active, .privatemsg-list tr.even td.active {
   background-color: #d4e2fe;
 }
 
-/* line 2108, ../../sass/custom.scss */
+/* line 2137, ../../sass/custom.scss */
 .privatemsg-list .form-checkbox {
   margin-top: -1px;
 }
 
-/* line 2111, ../../sass/custom.scss */
+/* line 2140, ../../sass/custom.scss */
 #privatemsg-list span.fieldset-legend a {
   color: #aaa;
 }
 
-/* line 2115, ../../sass/custom.scss */
+/* line 2144, ../../sass/custom.scss */
 #subscriptions-ui-node-form .sticky-table {
   margin-bottom: 5px;
 }
 
-/* line 2119, ../../sass/custom.scss */
+/* line 2148, ../../sass/custom.scss */
 #block-subscriptions-ui-0 {
   background: #142a45;
 }
-/* line 2121, ../../sass/custom.scss */
+/* line 2150, ../../sass/custom.scss */
 #block-subscriptions-ui-0 tr.odd, #block-subscriptions-ui-0 tr.even {
   background-color: #e7efff;
 }
-/* line 2123, ../../sass/custom.scss */
+/* line 2152, ../../sass/custom.scss */
 #block-subscriptions-ui-0 tr.odd #edit-subscriptions-1, #block-subscriptions-ui-0 tr.odd #edit-subscriptions-2, #block-subscriptions-ui-0 tr.even #edit-subscriptions-1, #block-subscriptions-ui-0 tr.even #edit-subscriptions-2 {
   margin: 0 5px;
   vertical-align: middle;
 }
-/* line 2128, ../../sass/custom.scss */
+/* line 2157, ../../sass/custom.scss */
 #block-subscriptions-ui-0 .btn {
   background: #1368a6;
 }
 
-/* line 2132, ../../sass/custom.scss */
+/* line 2161, ../../sass/custom.scss */
 .block-subscriptions-ui {
   padding: 0 !important;
 }
-/* line 2134, ../../sass/custom.scss */
+/* line 2163, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe {
   height: auto;
 }
-/* line 2136, ../../sass/custom.scss */
+/* line 2165, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe legend {
   border-bottom: none;
   margin: 0;
   padding: 4px 0 4px 5px;
   background: #142a45;
 }
-/* line 2141, ../../sass/custom.scss */
+/* line 2170, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe legend .fieldset-legend {
   background: none;
   background-image: none;
   padding: 0;
 }
-/* line 2147, ../../sass/custom.scss */
+/* line 2176, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe .fieldset-wrapper {
   background: #e7efff;
   padding: 10px;
 }
 
-/* line 2153, ../../sass/custom.scss */
+/* line 2182, ../../sass/custom.scss */
 #block-subscriptions-ui-0 {
   margin-bottom: 15px;
 }
 
-/* line 2157, ../../sass/custom.scss */
+/* line 2186, ../../sass/custom.scss */
 #subscriptions-page-user-overview td, #subscriptions-page-user-overview th, #subscriptions-page-form td, #subscriptions-page-form th, .page-user-saved-searches td, .page-user-saved-searches th {
   padding: 5px;
 }
 
-/* line 2162, ../../sass/custom.scss */
+/* line 2191, ../../sass/custom.scss */
 .page-user-subscriptions fieldset.collapsible {
   margin-bottom: 30px;
 }
-/* line 2166, ../../sass/custom.scss */
+/* line 2195, ../../sass/custom.scss */
 .page-user-subscriptions #edit-suspend span.fieldset-legend {
   margin-left: 5px;
 }
-/* line 2169, ../../sass/custom.scss */
+/* line 2198, ../../sass/custom.scss */
 .page-user-subscriptions #edit-suspend .fieldset-wrapper {
   background: #e7efff;
   padding: 10px 0;
 }
-/* line 2172, ../../sass/custom.scss */
+/* line 2201, ../../sass/custom.scss */
 .page-user-subscriptions #edit-suspend .fieldset-wrapper .form-item-state {
   margin-top: 0;
   margin-left: 15px;
 }
-/* line 2178, ../../sass/custom.scss */
+/* line 2207, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings {
   background: #e7efff;
 }
-/* line 2180, ../../sass/custom.scss */
+/* line 2209, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings span.fieldset-legend {
   margin-left: 5px;
 }
-/* line 2183, ../../sass/custom.scss */
+/* line 2212, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-save-settings, .page-user-subscriptions #edit-settings #edit-reset {
   margin-bottom: 10px;
 }
-/* line 2186, ../../sass/custom.scss */
+/* line 2215, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings .form-item-autosub-comment, .page-user-subscriptions #edit-settings .form-item-sendself, .page-user-subscriptions #edit-settings .form-item-send-comments, .page-user-subscriptions #edit-settings #edit-visibility {
   display: none;
 }
-/* line 2189, ../../sass/custom.scss */
+/* line 2218, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-autosub {
   display: none;
   margin-left: 15px;
 }
-/* line 2192, ../../sass/custom.scss */
+/* line 2221, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-autosub .fieldset-wrapper {
   padding: 10px 10px 0 10px;
 }
-/* line 2195, ../../sass/custom.scss */
+/* line 2224, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-autosub span.fieldset-legend {
   margin-left: 5px;
   color: white;
   text-transform: capitalize;
 }
-/* line 2201, ../../sass/custom.scss */
+/* line 2230, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings .form-item-digest {
   margin-top: 15px 0 0 15px;
   padding: 0 10px 10px 10px;
 }
-/* line 2205, ../../sass/custom.scss */
+/* line 2234, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-preferences {
   margin: 0 15px;
 }
-/* line 2207, ../../sass/custom.scss */
+/* line 2236, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-preferences span.fieldset-legend {
   margin-left: 5px;
   color: white;
   text-transform: capitalize;
 }
-/* line 2212, ../../sass/custom.scss */
+/* line 2241, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-preferences .fieldset-wrapper {
   padding: 10px;
 }
-/* line 2214, ../../sass/custom.scss */
+/* line 2243, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-preferences .fieldset-wrapper .form-item-send-interval {
   margin-top: 0;
 }
-/* line 2220, ../../sass/custom.scss */
+/* line 2249, ../../sass/custom.scss */
 .page-user-subscriptions input[type="checkbox"] {
   margin: 0 5px 0 0;
 }
 
-/* line 2224, ../../sass/custom.scss */
+/* line 2253, ../../sass/custom.scss */
 span.fieldset-legend a {
   background-color: #142a45;
 }
 
-/* line 2227, ../../sass/custom.scss */
+/* line 2256, ../../sass/custom.scss */
 #edit-autosub {
   margin: 15px 0 0 0;
 }
 
-/* line 2230, ../../sass/custom.scss */
+/* line 2259, ../../sass/custom.scss */
 #edit-submit, #edit-save-settings, #edit-save-notifications, #edit-reset {
   background-color: #1368a6;
   padding: 4px 6px;
   margin: 0 10px;
 }
 
-/* line 2236, ../../sass/custom.scss */
+/* line 2265, ../../sass/custom.scss */
 #user-tasks-table table {
   width: 100%;
 }
-/* line 2239, ../../sass/custom.scss */
+/* line 2268, ../../sass/custom.scss */
 #user-tasks-table table thead th {
   padding: 0 5px;
 }
-/* line 2243, ../../sass/custom.scss */
+/* line 2272, ../../sass/custom.scss */
 #user-tasks-table table td {
   padding: 0 5px;
 }
-/* line 2246, ../../sass/custom.scss */
+/* line 2275, ../../sass/custom.scss */
 #user-tasks-table table td:nth-child(5) {
   min-width: 90px;
 }
-/* line 2252, ../../sass/custom.scss */
+/* line 2281, ../../sass/custom.scss */
 #user-tasks-table table td:nth-child(7) {
   text-align: center;
 }
 
-/* line 2261, ../../sass/custom.scss */
+/* line 2290, ../../sass/custom.scss */
 #block-fin-utils-messages #privatemsg-list-form .container-inline {
   margin: 0 0 10px 0;
 }
-/* line 2264, ../../sass/custom.scss */
+/* line 2293, ../../sass/custom.scss */
 #block-fin-utils-messages #privatemsg-list-form .btn-danger {
   box-shadow: none;
 }
-/* line 2269, ../../sass/custom.scss */
+/* line 2298, ../../sass/custom.scss */
 #block-fin-utils-messages table.privatemsg-list th.select-all {
   text-align: center;
 }
 
-/* line 2275, ../../sass/custom.scss */
+/* line 2304, ../../sass/custom.scss */
 .page-user-saved-searches #saved-searches-header {
   color: white;
   padding-left: 10px;
@@ -2802,7 +2837,7 @@ span.fieldset-legend a {
 
 /********** Advanced Search **********/
 /********** Chosen Widget Fix **********/
-/* line 2285, ../../sass/custom.scss */
+/* line 2314, ../../sass/custom.scss */
 .chosen-container {
   width: 220px !important;
 }

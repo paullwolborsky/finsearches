@@ -2035,6 +2035,7 @@ body.node-type-plan {
         }
     }
 }
+/*** Resources Page ***/
 .page-node-6806 {
     td, th {
         padding: 0 10px;
@@ -2043,11 +2044,36 @@ body.node-type-plan {
         vertical-align: middle;
         margin: 0;
     }
-    table.table-select-processed {
+    #block-fin-utils-messages {
+        #edit-filter {
+            background-color: $form-background-blue;
+            margin: 0 10px 10px 10px;
+            .fieldset-wrapper {
+                padding: 0 10px;
+            }
+            .fieldset-legend {
+                a.fieldset-title {
+                    color: $white;
+                    &:hover {
+                        color: $link-hover;
+                    }
+                }
 
+            }
+            .form-item-search, .form-item-author {
+                display: inline-block;
+                margin: 10px;
+            }
+            #edit-actions--2 {
+                margin: 0 0 10px 0;
+            }
+        }
+        #privatemsg-list-form {
+            background-color: $white;
+        }
     }
 }
-/*** Messages ***/
+/*** Messages Page ***/
 .page-messages {
     #privatemsg-list-form {
         .container-inline {
@@ -2073,6 +2099,9 @@ body.node-type-plan {
             .form-item-search, .form-item-author {
                 display: inline-block;
                 margin-left: 10px;
+            }
+            #edit-actions--2 {
+                margin: 0 0 10px 0;
             }
             #edit-submit--2 {
                 margin-right: 10px;
