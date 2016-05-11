@@ -35,6 +35,12 @@
           });
         } else {
           $wrapper.append(html);
+          $wrapper.find('#preset-dates').change(function(){
+            newDate = getDate($wrapper.find('#preset-dates option:selected').text())[0];
+            $('#edit-field-date-value-min input').val(newDate);
+            endDate = getDate($wrapper.find('#preset-dates option:selected').text())[1];
+            $('#edit-field-date-value-max input').val(endDate);
+          });
         }
       });
       function getDate() {
