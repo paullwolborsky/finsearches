@@ -24,25 +24,19 @@
           html += "<option>4th Quarter</option>";
         }
       html += "</select></div>";
-      if ($('#edit-field-date-value-max-wrapper').parent('.fieldset-wrapper').find('#preset-dates').length == 0) {
+      $('#edit-field-date-value-max-wrapper').parent('.fieldset-wrapper').once('dates', function(){
         $wrapper = $('#edit-field-date-value-max-wrapper').parent('.fieldset-wrapper');
-        $wrapper.append(html);
-        $wrapper.find('#preset-dates').change(function(){
-          newDate = getDate($wrapper.find('#preset-dates option:selected').text())[0];
-          $('#edit-field-date-value-min input').val(newDate);
-          endDate = getDate($wrapper.find('#preset-dates option:selected').text())[1];
-          $('#edit-field-date-value-max input').val(endDate);
-        });
-      } else {
-        $wrapper = $('#edit-field-date-value-max-wrapper').parent('.fieldset-wrapper');
-        $wrapper.append(html);
-        $wrapper.find('#preset-dates').change(function(){
-          newDate = getDate($wrapper.find('#preset-dates option:selected').text())[0];
-          $('#edit-field-date-value-min input').val(newDate);
-          endDate = getDate($wrapper.find('#preset-dates option:selected').text())[1];
-          $('#edit-field-date-value-max input').val(endDate);
-        });
-      }
+        if ($('#edit-field-date-value-max-wrapper').parent('.fieldset-wrapper').find('#preset-dates').length) {
+          $wrapper.find('#preset-dates').change(function(){
+            newDate = getDate($wrapper.find('#preset-dates option:selected').text())[0];
+            $('#edit-field-date-value-min input').val(newDate);
+            endDate = getDate($wrapper.find('#preset-dates option:selected').text())[1];
+            $('#edit-field-date-value-max input').val(endDate);
+          });
+        } else {
+          $wrapper.append(html);
+        }
+      });
       function getDate() {
         start = arguments[0];
         end = arguments[1];
