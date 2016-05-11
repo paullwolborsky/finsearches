@@ -128,6 +128,20 @@ function fin_content_delete_form_submit_fc($form, &$form_state) {
 }
 
 /**
+ * Process with batch to save entity..
+ */
+function fin_content_delete_contact_resave($entity_type, $id) {
+  $entity = entity_load($entity_type, array($id));
+  if (is_array($entity)) {
+    $entity = reset($entity);
+  }
+  if (is_object($entity)) {
+    $ew = entity_metadata_wrapper($entity_type, $entity);
+    $ew->save();
+  }
+}
+
+/**
  * Put all node in to delete queue and process with batch.
  */
 function fin_content_delete_resave($entity_type, $id) {
