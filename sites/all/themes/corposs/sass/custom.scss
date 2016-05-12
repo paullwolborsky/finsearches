@@ -1260,6 +1260,51 @@ html.js fieldset.collapsible .fieldset-legend {
 /*** News List ***/
 #views-exposed-form-content-lists-page-1 {
     #edit-container-container-2 {
+        display: inline-block;
+        max-width: 97%;
+        text-align: center;
+        margin: 10px auto;
+    }
+    #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0 10px;
+        //width: 30%;
+        legend {
+            border: solid 1px $header;
+            color: #ccc;
+        }
+        .form-item label {
+            margin-bottom: 0;
+            margin-top: 5px; 
+        }
+    }
+    #edit-container-container-3 {
+        margin: 0 10px 10px 0;
+        width: 29%;
+    }
+    #edit-container-container-4 {
+        margin-bottom: 0 10px 10px 0;
+        width: 27%;
+        .fieldset-wrapper {
+            text-align: center;
+        }
+        ul.chosen-choices {
+            width: 100%;
+        }
+    }
+    #edit-container-container-5 {
+        margin: 0 0 10px 10px;
+        width: 30%;
+    }
+    #edit-container-container-6 {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+}
+
+/*    #edit-container-container-2 {
         #edit-title-field-value {
             width: 220px;
         }
@@ -1301,7 +1346,8 @@ html.js fieldset.collapsible .fieldset-legend {
             margin-top: 0;
         }
     }
-}
+} */
+
 /*** Map Search ***/
 #views-exposed-form-map-views-map-search {
     .form-text {
