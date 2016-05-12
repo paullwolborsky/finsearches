@@ -2185,6 +2185,9 @@ body.node-type-plan {
         input.form-checkbox {
             vertical-align: middle;
         }
+        input[type="checkbox"] {
+            margin: 0;
+        }
     }
 }
 
