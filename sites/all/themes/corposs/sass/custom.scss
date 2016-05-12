@@ -260,8 +260,10 @@ span.fieldset-legend {
         }
     }
 }
+
+/**** Asset Allocation Block ****/
 #block-views-e4fc768a8b33062e403168acc7227243 {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 /********** Content **********/
@@ -670,7 +672,7 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 .view-header {
     .btn {
-        //display: none;
+        display: none;
     }
 }
 .view-filters {
@@ -2018,13 +2020,13 @@ body.node-type-plan {
         width: 38%;
         padding: 10px;
     }
-    .group-middle {
+    /*.group-middle {
         width: 39%;
         padding: 10px;
         margin: 0 10px;
-    }
+    }  -- Deprecated when layout changed to 2-columns */ 
     .group-right {
-        width: 20%;
+        width: 50%;
         padding: 0;
         background: none;
     }
