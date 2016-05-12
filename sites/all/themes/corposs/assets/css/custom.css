@@ -1612,15 +1612,15 @@ html.js fieldset.collapsible .fieldset-legend {
 
 /*** News List ***/
 /* line 1263, ../../sass/custom.scss */
-#views-exposed-form-content-lists-news-list #edit-container-container-3 #edit-title-field-value {
+#views-exposed-form-content-lists-page-1 #edit-container-container-3 #edit-title-field-value {
   width: 220px;
 }
 /* line 1268, ../../sass/custom.scss */
-#views-exposed-form-content-lists-news-list #edit-container-container-3 ul.chosen-choices {
+#views-exposed-form-content-lists-page-1 #edit-container-container-3 ul.chosen-choices {
   width: 220px;
 }
 /* line 1273, ../../sass/custom.scss */
-#views-exposed-form-content-lists-news-list #edit-container-container-5 .fieldset-wrapper::before {
+#views-exposed-form-content-lists-page-1 #edit-container-container-5 .fieldset-wrapper::before {
   content: "Date";
   font-weight: bold;
   display: block;
@@ -1628,18 +1628,18 @@ html.js fieldset.collapsible .fieldset-legend {
   padding: 5px 0 0 10px;
 }
 /* line 1281, ../../sass/custom.scss */
-#views-exposed-form-content-lists-news-list #edit-container-container-5 #edit-field-date-value-min-wrapper, #views-exposed-form-content-lists-news-list #edit-container-container-5 #edit-field-date-value-max-wrapper {
+#views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-min-wrapper, #views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-max-wrapper {
   width: 49%;
   display: inline-block;
   text-align: center;
   padding: 0 10px;
 }
 /* line 1288, ../../sass/custom.scss */
-#views-exposed-form-content-lists-news-list #edit-container-container-5 #edit-field-date-value-min-inside-wrapper .form-item label, #views-exposed-form-content-lists-news-list #edit-container-container-5 #edit-field-date-value-max-inside-wrapper .form-item label {
+#views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-min-inside-wrapper .form-item label, #views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-max-inside-wrapper .form-item label {
   margin-top: 0;
 }
 /* line 1292, ../../sass/custom.scss */
-#views-exposed-form-content-lists-news-list #edit-container-container-5 #edit-field-date-value-min-datepicker-popup-0, #views-exposed-form-content-lists-news-list #edit-container-container-5 #edit-field-date-value-max-datepicker-popup-0 {
+#views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-min-datepicker-popup-0, #views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-max-datepicker-popup-0 {
   display: inline-block;
   text-align: center;
   max-width: 90px;
@@ -1648,7 +1648,7 @@ html.js fieldset.collapsible .fieldset-legend {
   margin: 0;
 }
 /* line 1300, ../../sass/custom.scss */
-#views-exposed-form-content-lists-news-list #edit-container-container-5 .form-item label {
+#views-exposed-form-content-lists-page-1 #edit-container-container-5 .form-item label {
   margin-top: 0;
 }
 
