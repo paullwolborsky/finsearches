@@ -1,0 +1,22 @@
+<?php
+/**
+ * @file
+ * A module to perform custom migration from one version of Drupal to another.
+ */
+
+/*
+ * Implementation of hook_views_query_alter().
+ */
+function fin_custom_views_query_alter(&$view, &$query) {
+  if ($view->name == 'reference_views' && $view->display_handler->display->id =='plan_lead_contact') {
+    // Completely replace current orderby
+    $orders = count($query->orderby);
+    if ($orders == 1) {
+     $view->query->add_table('field_data_field_status_tr', 'paragraphs_item_field_data_field_job_history');
+     $query->add_where(1,'paragraphs_item_field_data_field_job_history__field_data_field_status_tr.field_status_tr_tid', array(340, 341), 'IN');
+     $view->query->orderby[1] = $view->query->orderby[0];
+     $view->query->orderby[0]['field'] = "CASE WHEN paragraphs_item_field_data_field_job_history__field_data_field_status_tr.field_status_tr_tid = 340 THEN 1 ELSE 2 END";
+     $view->query->orderby[0]['direction'] = "ASC";
+    }
+  }
+}

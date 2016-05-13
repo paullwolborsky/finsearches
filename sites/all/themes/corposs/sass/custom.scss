@@ -558,6 +558,9 @@ fieldset.collapsible .fieldset-legend {
         display: inline-block;
         margin-left: 5px;
     }
+    td .plan_inactive_contact a{
+        text-decoration: line-through;
+    }
 }
 .view-display-id-plan_inactive_contacts_att {
     td.views-field-title a {
