@@ -957,6 +957,14 @@ function views_save_form_submit($form, &$form_state) {
   field_attach_submit('views_save', $form_state['entity'], $form['fields'], $form_state);
   // Save the view. The entity is only new if we didn't set an ID at some point.
   unset($save->is_new);
+  
+  //Save the view with the entity
+  $view_path = $save->view_path['path'];
+  $path_array = explode('/', $view_path);
+  $type = array_pop($path_array);
+  $type = str_replace('-', ' ', $type);
+  $type = ucfirst($type);
+  $save->field_ss_page['und'][0]['value'] = $type;
   $ret = $save->save();
 
   if (!empty($form_state['values']['path'])) {
