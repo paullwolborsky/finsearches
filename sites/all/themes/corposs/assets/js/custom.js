@@ -84,6 +84,12 @@
       //Add a 'title' to the saved searches page
       $('body.page-user-saved-searches #block-system-main').before('<h3 id="saved-searches-header" class="block-title collapsiblock"><span>Advanced Saved Searches</span></h3>');
       $('body.page-user-saved-searches .action-links').hide();
+      
+      //Add tooltips to resources blocks
+      $("#block-fin-utils-saved-filters h3.block-title").attr('title', "Saved Content Searches.");
+      $("#block-fin-utils-saved-searches h3.block-title").attr('title', "Saved Advanced Searches.");
+      $("#block-fin-utils-subscriptions h3.block-title").attr('title', "Pages you are following.");
+      $("#block-fin-utils-messages h3.block-title").attr('title', "Your Private Messages.");
     }
   };
 })(jQuery, Drupal);

@@ -46,7 +46,7 @@ function fin_mod_block_view_user_online_alter(&$data, $block = array()) {
   
   $profile = profile2_load_by_user($user->uid, 'main');
   $pid = 0;
-  if(isset($profile)) {
+  if(!empty($profile->pid)) {
     $pid = $profile->pid;
   }
 
