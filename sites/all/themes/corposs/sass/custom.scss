@@ -621,6 +621,9 @@ fieldset.collapsible .fieldset-legend {
 }
 /*** Consultant - Contacts View ***/
 .view-display-id-consultant_contacts {
+    td .plan_inactive_contact a{
+        text-decoration: line-through;
+    }
     td.views-field-title-field {
         width: 15%;
     }

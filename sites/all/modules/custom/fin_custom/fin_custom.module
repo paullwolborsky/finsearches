@@ -8,7 +8,7 @@
  * Implementation of hook_views_query_alter().
  */
 function fin_custom_views_query_alter(&$view, &$query) {
-  if ($view->name == 'reference_views' && $view->display_handler->display->id =='plan_lead_contact') {
+  if ($view->name == 'reference_views' && ($view->display_handler->display->id =='plan_lead_contact' || $view->display_handler->display->id =='consultant_contacts')) {
     // Completely replace current orderby
     $orders = count($query->orderby);
     if ($orders == 1) {
