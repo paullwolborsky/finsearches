@@ -78,7 +78,7 @@ function fin_custom_field_multiple_value_form($variables) {
       $items_alt[] = $items[$position];
     }
     foreach ($items_alt as $key => $item) {
-      if ($limit > 6) {
+      if ($limit > 25) {
         break;
       }
       $limit++;
@@ -86,7 +86,7 @@ function fin_custom_field_multiple_value_form($variables) {
       $delta_element = drupal_render($item['_weight']);
       $cells = array(
         array('data' => '', 'class' => array('field-multiple-drag')),
-        array('data' => $item['#delta'], 'class' => array('delta-order')),
+        //array('data' => $item['#delta'], 'class' => array('delta-order')),
         drupal_render($item),
         array('data' => $delta_element, 'class' => array('delta-order')),
       );
