@@ -4,11 +4,18 @@
  * A module to perform custom migration from one version of Drupal to another.
  */
 
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function fin_custom_theme_registry_alter(&$theme) {
+  $theme['field_multiple_value_form']['function'] = 'fin_custom_field_multiple_value_form';
+}
+
 /*
  * Implementation of hook_views_query_alter().
  */
 function fin_custom_views_query_alter(&$view, &$query) {
-  if ($view->name == 'reference_views' && $view->display_handler->display->id =='plan_lead_contact') {
+  if ($view->name == 'reference_views' && ($view->display_handler->display->id =='plan_lead_contact' || $view->display_handler->display->id =='consultant_contacts')) {
     // Completely replace current orderby
     $orders = count($query->orderby);
     if ($orders == 1) {
@@ -19,4 +26,90 @@ function fin_custom_views_query_alter(&$view, &$query) {
      $view->query->orderby[0]['direction'] = "ASC";
     }
   }
+}
+
+/**
+ * Over write theme_field_multiple_value_form().
+ */
+function fin_custom_field_multiple_value_form($variables) {
+  if ($variables['element']['#field_name'] != 'field_manager_roster_fc') {
+    return theme_field_multiple_value_form($variables);
+  }
+  $element = $variables['element'];
+  $output = '';
+
+  if ($element['#cardinality'] > 1 || $element['#cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
+    $table_id = drupal_html_id($element['#field_name'] . '_values');
+    $order_class = $element['#field_name'] . '-delta-order';
+    $required = !empty($element['#required']) ? theme('form_required_marker', $variables) : '';
+
+    $header = array(
+      array(
+        'data' => '<label>' . t('!title !required', array('!title' => $element['#title'], '!required' => $required)) . "</label>",
+        'colspan' => 3,
+        'class' => array('field-label'),
+      ),
+      t('Order'),
+    );
+    $rows = array();
+
+    // Sort items according to '_weight' (needed when the form comes back after
+    // preview or failed validation)
+    $items = array();
+    foreach (element_children($element) as $key) {
+      if ($key === 'add_more') {
+        $add_more_button = &$element[$key];
+      }
+      else {
+        $items[] = &$element[$key];
+      }
+    }
+    usort($items, '_field_sort_items_value_helper');
+
+    // Add the items as table rows.
+    $limit = 1;
+    $itemindex = array();
+    foreach ($items as $key => $item) {
+      $itemindex[$item['#delta']] = $key;
+    }
+    krsort($itemindex);
+    $items_alt = array();
+    foreach ($itemindex as $delta => $position) {
+      $items_alt[] = $items[$position];
+    }
+    foreach ($items_alt as $key => $item) {
+      if ($limit > 25) {
+        break;
+      }
+      $limit++;
+      $item['_weight']['#attributes']['class'] = array($order_class);
+      $delta_element = drupal_render($item['_weight']);
+      $cells = array(
+        array('data' => '', 'class' => array('field-multiple-drag')),
+        //array('data' => $item['#delta'], 'class' => array('delta-order')),
+        drupal_render($item),
+        array('data' => $delta_element, 'class' => array('delta-order')),
+      );
+      $rows[] = array(
+        'data' => $cells,
+        'class' => array('draggable'),
+      );
+    }
+    $rows_reverse = array_reverse($rows);
+
+    $output = '<div class="form-item">';
+    $output .= theme('table', array('header' => $header, 'rows' => $rows_reverse, 'attributes' => array('id' => $table_id, 'class' => array('field-multiple-table'))));
+    $output .= $element['#description'] ? '<div class="description">' . $element['#description'] . '</div>' : '';
+    $output .= '<div class="clearfix">' . drupal_render($add_more_button) . '</div>';
+    $output .= '</div>';
+
+    drupal_add_tabledrag($table_id, 'order', 'sibling', $order_class);
+  }
+  else {
+    foreach (element_children($element) as $key) {
+      $output .= drupal_render($element[$key]);
+    }
+  }
+
+  return $output;
 }
