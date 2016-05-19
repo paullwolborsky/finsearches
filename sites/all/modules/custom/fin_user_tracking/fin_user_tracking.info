@@ -1,0 +1,7 @@
+name = FIN User Tracking
+description = Blocks to display user activity
+core = 7.x
+package = Custom
+dependencies[] = visitors
+dependencies[] = statistics
+

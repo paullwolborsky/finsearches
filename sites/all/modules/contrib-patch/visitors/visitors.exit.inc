@@ -58,7 +58,8 @@ function visitors_get_ip() {
  *   string
  */
 function visitors_get_ip_str() {
-  return sprintf("%u", ip2long(visitors_get_ip()));
+  //return sprintf("%u", ip2long(visitors_get_ip()));
+  return visitors_get_ip();
 }
 
 /**
@@ -167,10 +168,9 @@ function visitors_exit() {
   global $user;
   $not_admin = !in_array('administrator', $user->roles);
   $log_admin = !variable_get('visitors_exclude_administer_users', 0);
-
   if ($log_admin || $not_admin) {
     $ip_str = visitors_get_ip_str();
-
+    
     $fields = array(
       'visitors_uid'            => $user->uid,
       'visitors_ip'             => $ip_str,
