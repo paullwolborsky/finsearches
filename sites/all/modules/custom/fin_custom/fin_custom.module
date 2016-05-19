@@ -53,7 +53,7 @@ function fin_custom_field_multiple_value_form($variables) {
     $header = array(
       array(
         'data' => '<label>' . t('!title !required', array('!title' => $element['#title'], '!required' => $required)) . "</label>",
-        'colspan' => 3,
+        'colspan' => 2,
         'class' => array('field-label'),
       ),
       t('Order'),
@@ -88,7 +88,7 @@ function fin_custom_field_multiple_value_form($variables) {
       $delta_element = drupal_render($item['_weight']);
       $cells = array(
         array('data' => '', 'class' => array('field-multiple-drag')),
-        array('data' => $item['#delta'], 'class' => array('delta-order')),
+        //array('data' => $item['#delta'], 'class' => array('delta-order')),
         drupal_render($item),
         array('data' => $delta_element, 'class' => array('delta-order')),
       );
