@@ -32,12 +32,19 @@ function fin_custom_views_query_alter(&$view, &$query) {
  * Over write theme_field_multiple_value_form().
  */
 function fin_custom_field_multiple_value_form($variables) {
+  global $pager_page_array, $pager_total, $base_url;
   if ($variables['element']['#field_name'] != 'field_manager_roster_fc') {
     return theme_field_multiple_value_form($variables);
   }
   $element = $variables['element'];
   $output = '';
 
+  if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    $url = $_SERVER['HTTP_REFERER'];
+    $u = drupal_parse_url($url);
+    $url = str_replace($base_url . '/', '', $u['path']);
+    $_GET['q'] = $url;
+  }
   if ($element['#cardinality'] > 1 || $element['#cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
     $table_id = drupal_html_id($element['#field_name'] . '_values');
     $order_class = $element['#field_name'] . '-delta-order';
@@ -46,7 +53,7 @@ function fin_custom_field_multiple_value_form($variables) {
     $header = array(
       array(
         'data' => '<label>' . t('!title !required', array('!title' => $element['#title'], '!required' => $required)) . "</label>",
-        'colspan' => 3,
+        'colspan' => 2,
         'class' => array('field-label'),
       ),
       t('Order'),
@@ -67,7 +74,6 @@ function fin_custom_field_multiple_value_form($variables) {
     usort($items, '_field_sort_items_value_helper');
 
     // Add the items as table rows.
-    $limit = 1;
     $itemindex = array();
     foreach ($items as $key => $item) {
       $itemindex[$item['#delta']] = $key;
@@ -78,10 +84,6 @@ function fin_custom_field_multiple_value_form($variables) {
       $items_alt[] = $items[$position];
     }
     foreach ($items_alt as $key => $item) {
-      if ($limit > 25) {
-        break;
-      }
-      $limit++;
       $item['_weight']['#attributes']['class'] = array($order_class);
       $delta_element = drupal_render($item['_weight']);
       $cells = array(
@@ -95,12 +97,14 @@ function fin_custom_field_multiple_value_form($variables) {
         'class' => array('draggable'),
       );
     }
-    $rows_reverse = array_reverse($rows);
-
+    $per_page = 10;
+    $current_page = pager_default_initialize(count($rows), $per_page, 0);
+    $chunks = array_chunk($rows, $per_page, TRUE);
     $output = '<div class="form-item">';
-    $output .= theme('table', array('header' => $header, 'rows' => $rows_reverse, 'attributes' => array('id' => $table_id, 'class' => array('field-multiple-table'))));
-    $output .= $element['#description'] ? '<div class="description">' . $element['#description'] . '</div>' : '';
     $output .= '<div class="clearfix">' . drupal_render($add_more_button) . '</div>';
+    $output .= theme('table', array('header' => $header, 'rows' => $chunks[$current_page], 'attributes' => array('id' => $table_id, 'class' => array('field-multiple-table'))));
+    $output .= theme('pager', array('quantity', count($rows)));
+    $output .= $element['#description'] ? '<div class="description">' . $element['#description'] . '</div>' : '';
     $output .= '</div>';
 
     drupal_add_tabledrag($table_id, 'order', 'sibling', $order_class);
@@ -110,6 +114,5 @@ function fin_custom_field_multiple_value_form($variables) {
       $output .= drupal_render($element[$key]);
     }
   }
-
   return $output;
 }
