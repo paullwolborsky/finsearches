@@ -2484,6 +2484,37 @@ span.fieldset-legend a {
     }
 }
 
+/********** User Pages **********/
+.page-user {
+    .ds-above-left {
+        width: 50%;
+    }
+    .ds-below-left, .ds-below-middle, .ds-below-right {
+        padding: 0;
+    }
+    .field-label {
+        margin-right: 5px;
+    }
+}
+.page-user-edit {
+    .form-item-mail {
+        margin: 0 20px 0 0;
+    }
+    .form-item-name, .form-item-mail {
+        display: none;
+    }
+    .form-item-pass::before {
+        content: "Change Password";
+        width: 100%;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    input[type="radio"], input[type="checkbox"] {
+        margin: 0 5px 0 0;
+        vertical-align: middle;
+    }
+}
+
 /********** Advanced Search **********/
 
 

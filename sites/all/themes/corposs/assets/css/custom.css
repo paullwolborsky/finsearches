@@ -226,13 +226,13 @@ body.page-advanced-search .region-left-sidebar .block-current-search .content {
 }
 /* line 67, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li a, #section-header .dexp-dropdown ul.menu ul.menu li span.nolink, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li a, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li span.nolink {
-  color: #ffffff;
+  color: white;
   font-weight: bold;
 }
 /* line 71, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li span.nolink:hover, #section-header .dexp-dropdown ul.menu ul.menu li span.nolink.active, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li a:hover, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li a.active, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li span.nolink:hover, #section-header .dexp-dropdown ul.menu .dexp-menu-mega li span.nolink.active {
   background-color: #142a45;
-  color: #ffffff;
+  color: white;
 }
 /* line 75, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu li a:hover {
@@ -253,12 +253,12 @@ body.page-advanced-search .region-left-sidebar .block-current-search .content {
 /* line 87, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li a.active {
   background: #1368a6;
-  color: #ffffff;
+  color: white;
 }
 /* line 91, ../../sass/custom.scss */
 #section-header .dexp-dropdown ul.menu ul.menu li a:hover {
   background: #142a45;
-  color: #ffffff;
+  color: white;
 }
 /* line 96, ../../sass/custom.scss */
 #section-header .dexp-dropdown > ul > li {
@@ -362,7 +362,7 @@ h3.block-title a {
 #block-system-main div.field-type-ds {
   margin: 0 0 25px 0;
 }
-/* line 181, ../../sass/custom.scss */
+/* line 183, ../../sass/custom.scss */
 #block-system-main div.field-type-ds.field-name-modal-contact-link, #block-system-main div.field-type-ds.field-name-modal-mandate-link, #block-system-main div.field-type-ds.field-name-modal-plan-link {
   margin-top: -23px;
   margin-bottom: 25px;
@@ -375,7 +375,7 @@ span.fieldset-legend {
 
 /* line 192, ../../sass/custom.scss */
 .collapsiblock a {
-  color: #ffffff;
+  color: white;
   margin: 0 0 0 5px;
 }
 
@@ -444,7 +444,7 @@ span.fieldset-legend {
   font-size: 21px;
   line-height: 21px;
   background: #142a45;
-  color: #ffffff;
+  color: white;
 }
 /* line 254, ../../sass/custom.scss */
 .node-type-mandate .view-mandate-plan-info .view-content {
@@ -467,13 +467,13 @@ span.fieldset-legend {
 body.boxed {
   background: #1368a6;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #1368a6 0%, #000000 100%);
+  background: -moz-linear-gradient(top, #1368a6 0%, black 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #1368a6 0%, #000000 100%);
+  background: -webkit-linear-gradient(top, #1368a6 0%, black 100%);
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #1368a6 0%, #000000 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1368a6', endColorstr='#000000',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1368a6', endColorstr='#000000',GradientType=0 );
   /* IE6-9 */
 }
 
@@ -553,7 +553,7 @@ body.node-type-mandate .breadcrumb span.odd {
   padding: 0 10px 10px 0;
   margin-bottom: 15px;
 }
-/* line 337, ../../sass/custom.scss */
+/* line 338, ../../sass/custom.scss */
 .ds-above-left .fieldset-wrapper,
 .ds-above-left .content, .ds-above-right .fieldset-wrapper,
 .ds-above-right .content {
@@ -563,7 +563,7 @@ body.node-type-mandate .breadcrumb span.odd {
 .ds-above-left .field-group-fieldset, .ds-above-right .field-group-fieldset {
   background: #e7efff;
 }
-/* line 343, ../../sass/custom.scss */
+/* line 344, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset .field-label,
 .ds-above-left .field-group-fieldset .field-content strong, .ds-above-right .field-group-fieldset .field-label,
 .ds-above-right .field-group-fieldset .field-content strong {
@@ -580,7 +580,7 @@ body.node-type-mandate .breadcrumb span.odd {
 }
 /* line 353, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend {
-  color: #ffffff;
+  color: white;
   background: none;
   font-size: 18px;
 }
@@ -717,7 +717,7 @@ span.fieldset-legend {
 }
 /* line 488, ../../sass/custom.scss */
 span.fieldset-legend a {
-  color: #ffffff;
+  color: white;
 }
 
 /* line 496, ../../sass/custom.scss */
@@ -2380,7 +2380,7 @@ legend {
 button.form-reset {
   vertical-align: bottom;
   background: #1368a6;
-  color: #ffffff;
+  color: white;
   padding: 4px 16px;
   margin-left: 10px;
 }
@@ -2391,7 +2391,7 @@ button.form-reset {
   vertical-align: middle;
   padding: 4px 16px;
   margin: 0 0 0 10px;
-  color: #ffffff;
+  color: white;
 }
 
 /* line 1961, ../../sass/custom.scss */
@@ -2456,7 +2456,7 @@ tr.odd {
 
 /* line 2003, ../../sass/custom.scss */
 tr.even {
-  background-color: #ffffff;
+  background-color: white;
   border: none;
 }
 
@@ -2467,7 +2467,7 @@ tr.odd td.active {
 
 /* line 2010, ../../sass/custom.scss */
 tr.even td.active {
-  background-color: #ffffff;
+  background-color: white;
 }
 
 /********** Accordion **********/
@@ -2734,7 +2734,7 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 }
 /* line 2232, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #edit-filter .fieldset-legend a.fieldset-title {
-  color: #ffffff;
+  color: white;
 }
 /* line 2234, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #edit-filter .fieldset-legend a.fieldset-title:hover {
@@ -2751,7 +2751,7 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 }
 /* line 2248, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #privatemsg-list-form {
-  background-color: #ffffff;
+  background-color: white;
 }
 
 /*** Messages Page ***/
@@ -2774,7 +2774,7 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 /* line 2269, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter a.fieldset-title {
   margin-left: 5px;
-  color: #ffffff;
+  color: white;
 }
 /* line 2272, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter a.fieldset-title:hover {
@@ -2817,13 +2817,13 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 /* line 2301, ../../sass/custom.scss */
 .privatemsg-list tr.odd {
   background-color: #dedede;
-  border: 1px solid #ffffff;
+  border: 1px solid white;
 }
 
 /* line 2305, ../../sass/custom.scss */
 .privatemsg-list tr.even {
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
+  background-color: white;
+  border: 1px solid white;
 }
 
 /* line 2310, ../../sass/custom.scss */
@@ -2947,7 +2947,7 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 /* line 2401, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-autosub span.fieldset-legend {
   margin-left: 5px;
-  color: #ffffff;
+  color: white;
   text-transform: capitalize;
 }
 /* line 2407, ../../sass/custom.scss */
@@ -2962,7 +2962,7 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
 /* line 2413, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-preferences span.fieldset-legend {
   margin-left: 5px;
-  color: #ffffff;
+  color: white;
   text-transform: capitalize;
 }
 /* line 2418, ../../sass/custom.scss */
@@ -3031,13 +3031,48 @@ span.fieldset-legend a {
 
 /* line 2481, ../../sass/custom.scss */
 .page-user-saved-searches #saved-searches-header {
-  color: #ffffff;
+  color: white;
   padding-left: 10px;
+}
+
+/********** User Pages **********/
+/* line 2489, ../../sass/custom.scss */
+.page-user .ds-above-left {
+  width: 50%;
+}
+/* line 2492, ../../sass/custom.scss */
+.page-user .ds-below-left, .page-user .ds-below-middle, .page-user .ds-below-right {
+  padding: 0;
+}
+/* line 2495, ../../sass/custom.scss */
+.page-user .field-label {
+  margin-right: 5px;
+}
+
+/* line 2500, ../../sass/custom.scss */
+.page-user-edit .form-item-mail {
+  margin: 0 20px 0 0;
+}
+/* line 2503, ../../sass/custom.scss */
+.page-user-edit .form-item-name, .page-user-edit .form-item-mail {
+  display: none;
+}
+/* line 2506, ../../sass/custom.scss */
+.page-user-edit .form-item-pass::before {
+  content: "Change Password";
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+}
+/* line 2512, ../../sass/custom.scss */
+.page-user-edit input[type="radio"], .page-user-edit input[type="checkbox"] {
+  margin: 0 5px 0 0;
+  vertical-align: middle;
 }
 
 /********** Advanced Search **********/
 /********** Chosen Widget Fix **********/
-/* line 2491, ../../sass/custom.scss */
+/* line 2522, ../../sass/custom.scss */
 .chosen-container {
   width: 220px !important;
 }
