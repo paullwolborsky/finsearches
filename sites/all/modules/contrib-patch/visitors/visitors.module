@@ -154,7 +154,7 @@ function visitors_menu() {
     'file' => 'visitors.admin.inc',
     'type' => MENU_NORMAL_ITEM,
   );
-
+/*
   $items['visitors/user_activity'] = array(
     'title' => 'User activity',
     'description' => 'View user activity report (hits, nodes, comments).',
@@ -163,7 +163,7 @@ function visitors_menu() {
     'file' => 'visitors.admin.inc',
     'type' => MENU_NORMAL_ITEM,
   );
-
+*/
   $items['visitors/referers'] = array(
     'title' => 'Referers',
     'description' => 'View referer list.',
