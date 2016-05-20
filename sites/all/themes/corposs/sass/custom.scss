@@ -2212,12 +2212,13 @@ body.node-type-plan {
     #block-views-testimonials-testimonials-home {
         .views-field-body {
             margin: 10px 10px 10px 20px;
+            quotes: "“" "”" "‘" "’";
         }
-        &::before {
-            content: &quot;;
+        &:before {
+            content: open-quote;
         }
-        &::after {
-            content: &quot;;
+        &:after {
+            content: close-quote;
         }
     }
 }
