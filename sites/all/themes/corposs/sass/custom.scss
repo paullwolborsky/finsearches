@@ -2209,6 +2209,17 @@ body.node-type-plan {
             }
         }
     }
+    #block-views-testimonials-testimonials-home {
+        .views-field-body {
+            margin: 10px 10px 10px 20px;
+        }
+        &::before {
+            content: &quot;
+        }
+        &::after {
+            content: &quot;
+        }
+    }
 }
 
 /********** Resources **********/
