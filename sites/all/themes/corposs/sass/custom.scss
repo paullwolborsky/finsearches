@@ -2202,10 +2202,10 @@ body.node-type-plan {
                 background: $dark-button;
                 padding: 10px 15px;
                 margin: 10px 0 0 0;
-            }
-            a:hover {
-                color: $link-hover;
-                background: $fin-blue;
+                &:hover {
+                    color: $link-hover;
+                    background: $fin-blue;
+                }
             }
         }
     }
