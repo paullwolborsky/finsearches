@@ -2195,6 +2195,32 @@ body.node-type-plan {
             margin: 0;
         }
     }
+    #block-block-5 {
+        .trial-button{
+            a {
+                color: $white;
+                background: $dark-button;
+                padding: 10px 15px;
+                margin: 10px 0 0 0;
+                &:hover {
+                    color: $link-hover;
+                    background: $fin-blue;
+                }
+            }
+        }
+    }
+    #block-views-testimonials-testimonials-home {
+        .views-field-body {
+            margin: 10px 10px 10px 20px;
+            quotes: "“" "”" "‘" "’";
+        }
+        &:before {
+            content: open-quote;
+        }
+        &:after {
+            content: close-quote;
+        }
+    }
 }
 
 /********** Resources **********/
@@ -2481,6 +2507,37 @@ span.fieldset-legend a {
     #saved-searches-header {
         color: $white;
         padding-left: 10px;
+    }
+}
+
+/********** User Pages **********/
+.page-user {
+    .ds-above-left {
+        width: 50%;
+    }
+    .ds-below-left, .ds-below-middle, .ds-below-right {
+        padding: 0;
+    }
+    .field-label {
+        margin-right: 5px;
+    }
+}
+.page-user-edit {
+    .form-item-mail {
+        margin: 0 20px 0 0;
+    }
+    .form-item-name, .form-item-mail {
+        display: none;
+    }
+    .form-item-pass::before {
+        content: "Change Password";
+        width: 100%;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    input[type="radio"], input[type="checkbox"] {
+        margin: 0 5px 0 0;
+        vertical-align: middle;
     }
 }
 
