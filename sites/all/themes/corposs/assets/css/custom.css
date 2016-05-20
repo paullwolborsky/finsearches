@@ -1,5 +1,5 @@
 /*
-Syntax error: Invalid CSS after "...      content: ": expected expression (e.g. 1px, bold), was "&quot;"
+Syntax error: Invalid CSS after "...      content: ": expected expression (e.g. 1px, bold), was "&quot;;"
         on line 2217 of D:/Sites/FIN/finsearches/dev/sites/all/themes/corposs/sass/custom.scss
 
 Backtrace:
@@ -85,4 +85,4 @@ c:\program files (x86)\scout\bin\compass:12:in `(root)'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"...      content: \": expected expression (e.g. 1px, bold), was \"&quot;\"\A         on line 2217 of D:/Sites/FIN/finsearches/dev/sites/all/themes/corposs/sass/custom.scss"; }
+  content: "Syntax error: Invalid CSS after \"...      content: \": expected expression (e.g. 1px, bold), was \"&quot;;\"\A         on line 2217 of D:/Sites/FIN/finsearches/dev/sites/all/themes/corposs/sass/custom.scss"; }
