@@ -42,4 +42,6 @@
   }
   $output = str_replace('task', $replace, $output);
 ?>
+<?php if (user_access('create tasks')): ?>
 <?php print $output; ?>
+<?php endif;?>

@@ -5,6 +5,7 @@
  * This file is for producing task lists by user
  * and for everyone for administration purposes
  *
+ *Also contains task permissionsadmin form
  *Written by John W. Johnson
  *2-3-2016
  */
@@ -28,7 +29,40 @@ function fin_tasks_menu() {
     'access arguments' => array('access content overview'),
     'page callback' => 'fin_tasks_user_list',
   );
+
+  $items['admin/config/financial-news'] = array(
+    'title' => 'Financial News',
+    'type' => MENU_NORMAL_ITEM,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fin_tasks_config_form'),
+    'access callback' => user_access('administer site configuration'),
+  );
+  $items['admin/config/financial-news/tasks'] = array(
+    'title' => 'Task Notifications',
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fin_tasks_cron_setup_form'),
+    'access callback' => user_access('administer site configuration'),
+  );
+
   return $items;
+}
+
+/**
+ * Implements hook_permission().
+ *
+ * Since the access to our new custom pages will be granted based on
+ * special permissions, we need to define what those permissions are here.
+ * This ensures that they are available to enable on the user role
+ * administration pages.
+ */
+function fin_tasks_permission() {
+  return array(
+    'create tasks' => array(
+      'title' => t('Create Tasks'),
+      'description' => t('Allow users to create tasks'),
+    ),
+  );
 }
 
 /**
@@ -100,3 +134,246 @@ function fin_tasks_user_list () {
   $out .= "</div>";
   return $out;
 }
+
+function fin_tasks_config_form ($form, &$form_state) {
+  $form['general'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('General Settings'),
+  );
+  return system_settings_form($form);
+}
+
+
+function fin_tasks_cron_setup_form ($form, &$form_state) {
+  $form = array();
+  $form['perms'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Task Permissions'),
+  );
+
+  $form['status'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Cron status information'),
+  );
+  $form['status']['intro'] = array(
+    '#markup' => '<div>' . t('Current status of Tasks notification cron.') . '</div>',
+  );
+  $form['status']['last'] = array(
+    '#markup' => '<div>' . t('Task Notifications will next execute the first time cron runs after %time',
+      array(
+        '%time' => date_iso8601(variable_get('fin_tasks_next_execution', time())),
+      )
+    ) . '</div>',
+  );
+
+  $form['cron-setup'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Cron setup for Task Notifications'),
+  );
+  $form['cron-setup']['fin_cron_log_notifications'] = array(
+    '#type' => 'checkbox',
+    '#title' => t("Log notifications"),
+    '#default_value' => variable_get('fin_cron_log_notifications', FALSE),
+  );
+  $form['cron-setup']['fin_tasks_send_time'] = array(
+    '#type' => 'select',
+    '#title' => t('Tasks Send time'),
+    '#description' => t('Time to send out emails. 24 hour format.'),
+    '#options' => drupal_map_assoc(array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)),
+    '#chosen' => false,
+    '#default_value' => variable_get('fin_tasks_send_time',0),
+  );
+  $form['cron-setup']['fin_tasks_cron_interval'] = array(
+    '#type' => 'select',
+    '#title' => t('Tasks cron interval'),
+    '#description' => t('Time after which Tasks cron will respond to a processing request.'),
+    '#default_value' => variable_get('fin_tasks_cron_interval', 60 * 60 * 24),
+    '#options' => array(
+      60 => t('1 minute'),
+      300 => t('5 minutes'),
+      3600 => t('1 hour'),
+      60 * 60 * 24 => t('1 day'),
+    ),
+  );
+
+
+  $form['run-cron'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Manual cron run'),
+  );
+  $form['run-cron']['cron_reset'] = array(
+    '#type' => 'checkbox',
+    '#title' => t("Run Task Notification cron regardless of whether interval has expired."),
+    '#default_value' => FALSE,
+  );
+  $form['run-cron']['cron_trigger'] = array(
+    '#type' => 'submit',
+    '#value' => t('Run cron now'),
+    '#submit' => array('fin_tasks_form_cron_run_submit'),
+  );
+  $form['run-cron']['cron_clear'] = array(
+    '#type' => 'submit',
+    '#value' => t('Clear Queue'),
+    '#submit' => array('fin_tasks_form_cron_clear_submit'),
+  );
+  
+  return system_settings_form($form);
+}
+
+/**
+ *Clear the last run time
+ */
+function fin_tasks_form_cron_clear_submit ($form, &$form_state) {
+  variable_set('fin_tasks_next_execution', strtotime('today'));
+  drupal_set_message(t('Tasks Notification queue cleared.'));
+}
+
+/**
+ * Allow user to directly execute cron, optionally forcing it.
+ */
+function fin_tasks_form_cron_run_submit($form, &$form_state) {
+  if (!empty($form_state['values']['cron_reset'])) {
+    variable_set('fin_tasks_next_execution', strtotime('tomorrow'));
+  }
+
+  if (drupal_cron_run()) {
+    drupal_set_message(t('Tasks Notification cron ran successfully.'));
+  }
+  else {
+    drupal_set_message(t('Tasks Notification cron run failed.'), 'error');
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function fin_tasks_cron() {
+  if(time() >= variable_get('fin_tasks_next_execution', 0) && date('G') == variable_get('fin_tasks_send_time',0)) {
+    $notifications = fin_tasks_send_notifications();
+    if (variable_get('fin_tasks_log_notifications')) {
+      drupal_set_message(t('Fin Tasks Notification sent %notifications at %time', array('%notifications' => $notifications, '%time' => date_iso8601(time(0)))));
+    }
+    variable_set('fin_tasks_next_execution', strtotime('tomorrow'));
+  }
+}
+
+/**
+ *This is the heart of the module.
+ *Scraps the database looking for notifications past due
+ *then sends those notifications to email formatter.
+ */
+function fin_tasks_send_notifications() {
+  $sql = "SELECT * from mytinytodo_todos WHERE r_date = :date AND compl != 1";
+  $today_at_midnight = strtotime('today');
+  $result = db_query($sql, array(':date' => $today_at_midnight));
+  while ($rec = $result->fetchObject()) {
+    fin_tasks_mail_send($rec);
+  }
+}
+
+/**
+ *Mail Section
+ */
+function fin_tasks_mail_send($task) {
+  $to = $task->r_email;
+  $from = variable_get('site_mail', 'admin@example.com');
+  
+  //Get all the info we need
+  $node_nid = db_query("SELECT entity_id from mytinytodo_fields f
+                      INNER JOIN mytinytodo_lists l ON f.id=l.field_id
+                      INNER JOIN mytinytodo_todos t ON l.id=t.list_id
+                      WHERE t.id = $task->id")->fetchObject()->entity_id;
+  $node = node_load($node_nid);
+  $params['node_url'] = drupal_get_path_alias('node/' . $node->nid);
+  $params['node_title'] = $node->title;
+  $site_link = $GLOBALS['base_url']; 
+  $params['message'] = "You have a task at <a href='" . $GLOBALS['base_url'] . "'>FIN Searches</a> that requires your attention.
+  Please go to <a href='" . drupal_get_path_alias('node/' . $node->nid) . "'>" . $GLOBALS['base_url'] . "/" . drupal_get_path_alias('node/' . $node->nid) . "</a> to view it and take action.<br />
+  Note: " . $task->r_note . "<br />";
+
+  $language = language_default();
+  $send = TRUE;
+  $result = drupal_mail('fin_tasks', 'task_notification', $to, $language, $params, $from, $send);
+  if ($result['result'] == TRUE) {
+    watchdog('Fin Tasks', "Mail sent!  Yay!", array(), WATCHDOG_NOTICE);
+  } else {
+    watchdog('Fin Tasks', "Mail failed!  Boo!", array(), WATCHDOG_NOTICE); 
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */ 
+function fin_tasks_mail($key, &$message, $params) {
+  global $user;
+
+  // Each message is associated with a language, which may or may not be the
+  // current user's selected language, depending on the type of e-mail being
+  // sent. This $options array is used later in the t() calls for subject
+  // and body to ensure the proper translation takes effect.
+  $options = array(
+    'langcode' => $message['language']->language,
+  );
+
+  switch ($key) {
+    // Send a simple message from the contact form.
+    case 'task_notification':
+      $message['headers']['Reply-to'] = '';
+      $message['subject'] = t('Task Reminder for @title', array('@site-name' => $params['node_title']), $options);
+      // Note that the message body is an array, not a string.
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function fin_tasks_cron_queue_info() {
+  $queues['fin_tasks_tasks'] = array(
+    'worker callback' => 'fin_tasks_tasks_worker',
+    'time' => 10,
+  );
+  return $queues;
+}
+
+/**
+ * Simple worker for our queues.
+ *
+ * @param object $item
+ *   Any object to be worked on.
+ */
+function fin_tasks_tasks_worker($item) {
+  fin_cron_queue_report_work(1, $item);
+}
+
+/**
+ * Simple reporter for the workers.
+ *
+ * @param int $worker
+ *   Worker number.
+ * @param object $item
+ *   The $item which was stored in the cron queue.
+ */
+function fin_tasks_queue_report_work($worker, $item) {
+  if (!empty($GLOBALS['fin_tasks_show_status_message'])) {
+    drupal_set_message(
+      t('Queue @worker worker processed item with sequence @sequence created at @time',
+        array(
+          '@worker' => $worker,
+          '@sequence' => $item->sequence,
+          '@time' => date_iso8601($item->created),
+        )
+      )
+    );
+  }
+  watchdog('Fin Tasks', 'Queue @worker worker processed item with sequence @sequence created at @time',
+    array(
+      '@worker' => $worker,
+      '@sequence' => $item->sequence,
+      '@time' => date_iso8601($item->created),
+    )
+  );
+}
+
+
