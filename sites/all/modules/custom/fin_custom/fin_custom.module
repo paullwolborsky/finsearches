@@ -137,5 +137,3 @@ function fin_custom_field_multiple_value_form($variables) {
   }
   return $output;
 }
-
-
