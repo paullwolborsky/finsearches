@@ -11,6 +11,17 @@ function fin_custom_theme_registry_alter(&$theme) {
   $theme['field_multiple_value_form']['function'] = 'fin_custom_field_multiple_value_form';
 }
 
+/**
+ * Implements hook_element_info_alter().
+ */
+function fin_custom_element_info_alter(&$type) {
+  $type['geofield_proximity']['#process'][] = 'fin_custom_geofield_proximity_element_process';
+}
+
+function fin_custom_geofield_proximity_element_process($element, &$form_state, $form) {
+  $element['origin']['#attributes']['placeholder'] = 'Enter city';
+  return $element;
+}
 /*
  * Implementation of hook_views_query_alter().
  */
@@ -25,6 +36,15 @@ function fin_custom_views_query_alter(&$view, &$query) {
      $view->query->orderby[0]['field'] = "CASE WHEN paragraphs_item_field_data_field_job_history__field_data_field_status_tr.field_status_tr_tid = 340 THEN 1 ELSE 2 END";
      $view->query->orderby[0]['direction'] = "ASC";
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function fin_custom_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#id'] === 'views-exposed-form-map-views-map-search') {
+    // place holder for future;
   }
 }
 
@@ -116,3 +136,5 @@ function fin_custom_field_multiple_value_form($variables) {
   }
   return $output;
 }
+
+
