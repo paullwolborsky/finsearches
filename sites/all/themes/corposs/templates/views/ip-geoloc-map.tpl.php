@@ -31,16 +31,18 @@
  *     used; applies only when $visitor_marker is set or $center_opiton == 2;
  *     if FALSE $center_latlng is used
  */
+dsm($view);
+$num = count($view->style_plugin->rendered_fields);
 ?>
 <div class="ip-geoloc-map view-based-map">
   <?php echo ip_geoloc_output_map_multi_location($locations, $div_id, $map_options,
           $map_style, $marker_color, $visitor_marker, $center_option, $center_latlng, $visitor_location_gps);
   ?>
 </div>
-<?php if ($view->current_display === 'map_search') : ?>
+<?php if ($view->current_display === 'map_search' && $num > 0) : ?>
 <div class="ip-geoloc-table">
-<table class="ip-geoloc-map-table">
-  <tr><th>Name</th><th>Address</th><th>Type</th></tr>
+<table class="ip-geoloc-map-table views-table cols-5">
+  <thead><tr><th class="views-field">Name</th><th class="views-field">Address</th class="views-field"><th>Type</th></tr></thead><tbody>
   <?php foreach ($view->style_plugin->rendered_fields as $key => $wrow) : ?>
   <tr>
     <td><?php print $wrow['title_field']; ?></td>
@@ -48,6 +50,6 @@
     <td><?php print $wrow['field_content_type_human_tr']; ?></td>
   </tr>
   <?php endforeach; ?>
-</table>
+</tbody></table>
 </div>
 <?php endif; ?>
