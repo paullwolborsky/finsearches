@@ -20,6 +20,7 @@ function fin_custom_element_info_alter(&$type) {
 
 function fin_custom_geofield_proximity_element_process($element, &$form_state, $form) {
   $element['origin']['#attributes']['placeholder'] = 'Enter city';
+  $element['unit']['#options'] = array(3959 => 'Miles');
   return $element;
 }
 /*
@@ -136,5 +137,3 @@ function fin_custom_field_multiple_value_form($variables) {
   }
   return $output;
 }
-
-
