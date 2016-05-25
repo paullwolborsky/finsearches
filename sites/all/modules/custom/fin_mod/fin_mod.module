@@ -119,17 +119,44 @@ function fin_mod_views_api() {
 }
 
 /**
- * Implements hook_fin_options_list().
- */
-function fin_mod_fin_options_list($field, $instance = NULL, $entity_type = NULL, $entity = NULL) {
-  
-}
-
-/**
  * Implements hook_field_widget_info_alter().
  */
 function fin_mod_field_widget_info_alter(&$info) {
   if (module_exists('fin_options')) {
     $info['fin_options_select']['field types'][] = 'entityreference';
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function fin_mod_node_presave($node) {
+  $general = FALSE;
+  $outsourced = FALSE;
+  $consultant = array();
+  if ($node->type == 'plan') {
+    // Maybe switch to entity_metadata_wrapper - was having trouble accessing
+    // FC values via it though
+    if (!empty($node->field_consultant_roster_fc)) {
+      foreach ($node->field_consultant_roster_fc['und'] as $fc) {
+        $term = taxonomy_term_load($fc['field_consultant_type_tr']['und'][0]['tid']);
+        if ($term->name == 'General') {
+          if (!empty($fc['field_consultant_firm_er'])) {
+            $consultant['general'] = $fc['field_consultant_firm_er']['und'][0];
+          }
+        }
+        else if ($term->name == 'Outsourced CIO') {
+          if (!empty($fc['field_consultant_firm_er'])) {
+            $consultant['outsourced'] = $fc['field_consultant_firm_er']['und'][0];
+          }
+        }
+      }
+      if (!empty($consultant['general'])) {
+        $node->field_consultant_roster_main_er['und'][0]['target_id'] = $consultant['general'];
+      }
+      else if (!empty($consultant['outsourced'])) {
+        $node->field_consultant_roster_main_er['und'][0]['target_id'] = $consultant['outsourced'];
+      }
+    }
   }
 }
