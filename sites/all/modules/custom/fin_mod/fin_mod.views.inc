@@ -88,9 +88,11 @@ function fin_mod_state_code($state) {
   $administrative_areas = _addressfield_get_administrative_areas_defaults();
   foreach ($administrative_areas as $country => $states) {
     $states = array_flip($states);
-    $state_code = $states[$state];
-    if (isset($state_code)) {
-      return $state_code;
+    if (array_key_exists($state, $states)) {
+      $state_code = $states[$state];
+      if (isset($state_code)) {
+        return $state_code;
+      }
     }
   }
   if (!isset($state_code)) {
@@ -102,8 +104,11 @@ function fin_mod_content_list_state(&$query, $where, $conditions_key, $key) {
   if ($where['operator'] == 'LIKE') {
     // removes and then readds %s - maybe regex better?
     $value = trim($where['value'], "%");
-    $state = fin_mod_state_code($value);
-    $query->where[$conditions_key]['conditions'][$key]['value'] = "%" . $state . "%";
+    // Should only translate state information that is not already in code form
+    if (strlen($value) > 2) {
+      $state = fin_mod_state_code($value);
+      $query->where[$conditions_key]['conditions'][$key]['value'] = "%" . $state . "%";
+    }
   }
 }
 
