@@ -34,9 +34,6 @@
   Drupal.behaviors.fubik = {
     attach: function(context, settings) {
 
-      //Get fancy with asset allocation
-      
-
       var $body = $('body', context);
       $('.view-display-id-eva_mandate_history_edit .view-content > table').wrap("<form action='" + window.location.href  + "' method='post' id='editableviews-entity-form-comment-views' accept-charset='UTF-8'></form>");
       

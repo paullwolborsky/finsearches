@@ -30,17 +30,17 @@
   INNER JOIN mytinytodo_todos mt ON ml.id=mt.list_id
   WHERE mt.uid=:uid AND entity_id=:nid ORDER BY mt.duedate DESC LIMIT 1";
   $result = db_query($task_sql, array(':uid' => $user->uid, ':nid' => $row->nid));
-  $replace = 'task';
+  $replace = 'fa-list-alt';
   if ($result) {
     while($task = $result->fetchObject()) {
       if (strtotime($task->duedate) < $now && $task->d_completed != '') {
-        $replace = 'task red';
+        $replace = 'fa-list-alt red';
       } elseif ($task->d_completed != '') {
-        $replace = 'task yellow';
+        $replace = 'fa-list-alt yellow';
       }
     }
   }
-  $output = str_replace('task', $replace, $output);
+  $output = str_replace('fa-list-alt', $replace, $output);
 ?>
 <?php if (user_access('create tasks')): ?>
 <?php print $output; ?>

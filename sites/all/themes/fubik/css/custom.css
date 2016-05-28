@@ -1100,100 +1100,110 @@ ul.links li {
 /**
  *Styles for modal windows
  */
-/* line 7, ../sass/_modals.scss */
+/* line 5, ../sass/_modals.scss */
+#modalContent .column-main {
+  width: 100%;
+  float: none;
+}
+/* line 9, ../sass/_modals.scss */
+#modalContent #contact-node-form {
+  width: 100%;
+  float: none;
+}
+/* line 12, ../sass/_modals.scss */
 #modalContent #contact-node-form .ds-above-left, #modalContent #contact-node-form .ds-above-right {
   width: 33.3%;
 }
-/* line 10, ../sass/_modals.scss */
+/* line 15, ../sass/_modals.scss */
 #modalContent #contact-node-form .text-summary-wrapper {
   display: none;
 }
-/* line 15, ../sass/_modals.scss */
+/* line 20, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea label {
   float: none;
 }
-/* line 18, ../sass/_modals.scss */
+/* line 23, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper {
   margin-left: 0;
   margin-right: 0;
 }
-/* line 22, ../sass/_modals.scss */
+/* line 27, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_72, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_75, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_85, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_93, #modalContent #contact-node-form .field-name-body .form-type-textarea .form-textarea-wrapper #cke_2_top #cke_98 {
   display: none;
 }
-/* line 30, ../sass/_modals.scss */
+/* line 35, ../sass/_modals.scss */
 #modalContent #contact-node-form tr .form-item {
   white-space: normal;
 }
-/* line 36, ../sass/_modals.scss */
+/* line 41, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .date-float {
   clear: both;
   float: none;
 }
-/* line 40, ../sass/_modals.scss */
+/* line 45, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
   width: 150px;
   float: left;
   clear: none;
 }
-/* line 44, ../sass/_modals.scss */
+/* line 49, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .start-date-wrapper input, #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper input {
   width: 100px;
 }
-/* line 48, ../sass/_modals.scss */
+/* line 53, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper {
   width: 200px;
 }
-/* line 50, ../sass/_modals.scss */
+/* line 55, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-employment-date .date-combo .end-date-wrapper label {
   width: 40px;
   clear: none;
 }
-/* line 60, ../sass/_modals.scss */
+/* line 65, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-address .addressfield-container-inline .form-item {
   float: none;
 }
-/* line 66, ../sass/_modals.scss */
+/* line 71, ../sass/_modals.scss */
 #modalContent #contact-node-form .form-type-link-field label {
   float: none;
 }
-/* line 71, ../sass/_modals.scss */
+/* line 76, ../sass/_modals.scss */
 #modalContent #contact-node-form .field-name-field-consultant-job-type label {
   float: none;
 }
-/* line 78, ../sass/_modals.scss */
+/* line 83, ../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .ds-above-left {
   width: 49%;
   margin: 0 1% 0 0;
 }
-/* line 82, ../sass/_modals.scss */
+/* line 87, ../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .ds-above-right {
   width: 49%;
   margin: 0 0 0 1%;
 }
-/* line 88, ../sass/_modals.scss */
+/* line 93, ../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .field-name-field-website .form-item label {
   float: none;
 }
-/* line 93, ../sass/_modals.scss */
+/* line 98, ../sass/_modals.scss */
 #modalContent #consultant-firm-node-form .vertical-tabs {
   margin: 0;
 }
-/* line 99, ../sass/_modals.scss */
+/* line 104, ../sass/_modals.scss */
 #modalContent #manager-firm-node-form .ds-above-left, #modalContent #manager-firm-node-form .ds-above-middle, #modalContent #manager-firm-node-form .ds-above-right {
   width: 32%;
   margin: 0 .5%;
 }
-/* line 103, ../sass/_modals.scss */
+/* line 108, ../sass/_modals.scss */
 #modalContent #manager-firm-node-form .form-item {
   margin: 0;
   width: 95%;
 }
-/* line 106, ../sass/_modals.scss */
+/* line 111, ../sass/_modals.scss */
 #modalContent #manager-firm-node-form .form-item input, #modalContent #manager-firm-node-form .form-item select {
   width: 98%;
 }
-/* line 111, ../sass/_modals.scss */
+/* line 116, ../sass/_modals.scss */
 #modalContent .node-action-block {
   display: none;
 }

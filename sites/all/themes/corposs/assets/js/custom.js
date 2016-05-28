@@ -75,11 +75,15 @@
       });
       
       //Trigger focus and blur on plan contact modals.
-      //I can't believe this actually works.
       if ($('#modalContent').length) {
         $('#edit-field-job-history-und-0-field-plan-er-und-0-target-id').focus();
         $('#edit-title-field-und-0-value').focus();
+        //refresh corposs pages when modal is dismisses (not saved).
+        $('#modalContent .close').click(function(){
+          location.reload();
+        });
       }
+      
       
       //Add a 'title' to the saved searches page
       $('body.page-user-saved-searches #block-system-main').before('<h3 id="saved-searches-header" class="block-title collapsiblock"><span>Advanced Saved Searches</span></h3>');

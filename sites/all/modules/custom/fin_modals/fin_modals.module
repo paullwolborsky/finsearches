@@ -51,7 +51,7 @@ function fin_modals_theme() {
 }
 
 function _fin_modals_theme($theme = 'fubik') {
-  return $theme;
+  return 'fubik';
 }
 /**
  * Implements hook_menu().
@@ -74,7 +74,7 @@ function fin_modals_menu() {
     'page arguments' => array(1),
     'access arguments' => array('access content'),
     'theme callback' => '_fin_modals_theme',
-    'theme arguments' => array('corposs'),
+    'theme arguments' => array('fubik'),
   );  
   $items['modal/%/comment/%ctools_js'] = array(
     'page callback' => 'fin_modals_new_callback',
@@ -488,7 +488,6 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
   ctools_include('ajax');
   ctools_include('modal');
 
-  // Create a blank node object here. You can also set values for your custom fields here as well.
   switch($node_type){
     case "mandate":
       $type =  "mandate";
@@ -585,7 +584,7 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
   $form_state['build_info']['args'] = array($node);
   $output = ctools_modal_form_wrapper($type . '_node_form', $form_state);
      
-  if (!empty($form_state['executed'])) {
+  if ($output === FALSE || !empty($form_state['executed'])) {
     $output = array();
     
     if(!empty($node->title)){
@@ -631,7 +630,6 @@ function fin_modals_node_add_modal_callback($js = FALSE) {
     } elseif ($node_type == 'office'){
       $commands[] = ctools_ajax_command_reload();
     }
-    
     print ajax_render($commands);
     exit;
   }
