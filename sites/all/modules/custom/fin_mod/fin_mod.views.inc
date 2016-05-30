@@ -88,9 +88,11 @@ function fin_mod_state_code($state) {
   $administrative_areas = _addressfield_get_administrative_areas_defaults();
   foreach ($administrative_areas as $country => $states) {
     $states = array_flip($states);
-    $state_code = $states[$state];
-    if (isset($state_code)) {
-      return $state_code;
+    if (array_key_exists($state, $states)) {
+      $state_code = $states[$state];
+      if (isset($state_code)) {
+        return $state_code;
+      }
     }
   }
   if (!isset($state_code)) {
@@ -98,30 +100,39 @@ function fin_mod_state_code($state) {
   }
 }
 
+function fin_mod_content_list_state(&$query, $where, $conditions_key, $key) {
+  if ($where['operator'] == 'LIKE') {
+    // removes and then readds %s - maybe regex better?
+    $value = trim($where['value'], "%");
+    // Should only translate state information that is not already in code form
+    if (strlen($value) > 2) {
+      $state = fin_mod_state_code($value);
+      $query->where[$conditions_key]['conditions'][$key]['value'] = "%" . $state . "%";
+    }
+  }
+}
+
+/**
+ * Unset Main Office requirement.
+ */
+function fin_mod_main_office_remove(&$query, $conditions_key, $key) {
+  unset($query->where[$conditions_key]['conditions'][$key]);
+}
+
 /**
  * Modifies content lists view.
  */
 function fin_mod_content_list(&$view, &$query) {
-  // Commented out code is meant for when the full state name is used in the
-  // exposed filter, and we need to translate it to state code.
-  //module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
-  //if (!empty($view->exposed_raw_input['field_address_administrative_area_selective'])) {
-  if (!empty($view->exposed_raw_input['field_address_administrative_area'])) {
-    /*foreach ($query->where[2]['conditions'] as $key => &$where) {
-      if ($where['field'] == 'field_data_field_address.field_address_administrative_area') {
-        if (is_array($where['value'])) {
-          foreach ($where['value'] as $where_key => $value) {
-            $state = fin_mod_state_code($value);
-            if ($state != FALSE) {
-              $query->where[2]['conditions'][$key]['value'][$where_key] = $state;
-            }
-          }
+  module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
+  if (!empty($view->exposed_raw_input['field_address_administrative_area']) || !empty($view->exposed_raw_input['field_address_locality'])) {
+    foreach ($query->where as $conditions_key => $conditions) {
+      foreach ($conditions['conditions'] as $key => &$where) {
+        if ($where['field'] == 'field_data_field_address.field_address_administrative_area') {
+          fin_mod_content_list_state($query, $where, $conditions_key, $key);
         }
-      }
-    }*/
-    foreach ($query->where[1]['conditions'] as $key => $where_office) {
-      if ($where_office['field'] == 'field_data_field_office_type_tr.field_office_type_tr_tid') {
-        unset($query->where[1]['conditions'][$key]);
+        if ($where['field'] == 'field_data_field_office_type_tr.field_office_type_tr_tid') {
+          fin_mod_main_office_remove($query, $conditions_key, $key);
+        }
       }
     }
   }
@@ -186,15 +197,23 @@ function fin_mod_consultant_plan_manager_remove(&$view) {
   foreach ($view->result as $row => $result) {
     // refactor if this gets more complex than two or three.
     if ($view->current_display == 'consultant_plan_managers') {
-      if ($result->field_field_consultant_type_tr_1[0]['raw']['taxonomy_term']->vocabulary_machine_name == 'consultant_types') {
-        $consultant_type = $result->field_field_consultant_type_tr_1[0]['raw']['taxonomy_term']->name;
+      if (isset($result->field_field_consultant_type_tr_1)) {
+        if ($result->field_field_consultant_type_tr_1[0]['raw']['taxonomy_term']->vocabulary_machine_name == 'consultant_types') {
+          $consultant_type = $result->field_field_consultant_type_tr_1[0]['raw']['taxonomy_term']->name;
+        }
       }
     }
     else if ($view->current_display == 'consultants_by_plan') {
-      $consultant_type = $result->taxonomy_term_data_field_data_field_consultant_type_tr_name;
+      if (isset($result->taxonomy_term_data_field_data_field_consultant_type_tr_name)) {
+        $consultant_type = $result->taxonomy_term_data_field_data_field_consultant_type_tr_name;
+      }
     }
-    $tid = $result->field_field_major_minor_style_tr[0]['raw']['tid'];
-    fin_mod_consultant_plan_manager_remove_tid($view, $row, $consultant_type, $tid, $all_types);
+    if (isset($result->field_field_major_minor_style_tr[0])) {
+      $tid = $result->field_field_major_minor_style_tr[0]['raw']['tid'];
+    }
+    if (isset($consultant_type) && isset($tid)) {
+      fin_mod_consultant_plan_manager_remove_tid($view, $row, $consultant_type, $tid, $all_types);
+    }
   }
   $view->result = array_slice($view->result, 0, 100, TRUE);
 }
