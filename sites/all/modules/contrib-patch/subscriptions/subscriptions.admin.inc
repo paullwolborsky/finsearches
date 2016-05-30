@@ -134,6 +134,9 @@ function theme_subscriptions_form_table(array $variables) {
   if (isset($element['extra_info'])) {
     $columns['extra_info']['data'] = $element['extra_info']['#title'];
   }
+  if (isset($element['type'])) {
+    $columns['type']['data'] = 'Type';
+  }
   $column_keys = array_keys($columns);
   unset($columns[end($column_keys)]['width']);  // let the last column grow
 
@@ -1125,6 +1128,11 @@ function subscriptions_form_helper(array &$form, array &$defaults, $author_uid, 
   if (isset($subscription['extra_info'])) {
     $form['extra_info'][$key][$author_uid] = array(
       '#markup' => $subscription['extra_info'],
+    );
+  }
+  if (isset($subscription['type'])) {
+    $form['type'][$key][$author_uid] = array(
+      '#markup' => ucwords(str_replace('-', ' ', $subscription['type'])),
     );
   }
 }

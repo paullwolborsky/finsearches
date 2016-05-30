@@ -126,7 +126,7 @@ function _subscriptions_content_node_form(array $form, $uid) {
     ->extend('PagerDefault')
     ->limit(50);
   $query
-    ->fields('n', array('nid', 'uid', 'title', 'status', 'changed'))
+    ->fields('n', array('nid', 'uid', 'title', 'status', 'changed', 'type'))
     ->join('subscriptions', 's', (db_driver() != 'pgsql' ? 'n.nid = s.value' : 'CAST(n.nid AS VARCHAR) = s.value'));
   $query
     ->fields('s', array('send_interval', 'author_uid', 'send_comments', 'send_updates'));
@@ -221,7 +221,6 @@ function _subscriptions_content_node_form(array $form, $uid) {
     }
   }
   unset($form[0]['author']);
-
   if (count(element_children($form[0]))) {
     $form[0]['extra_info']['#title'] = $tr($fields, array('@latest_activity' => 'Latest activity', '@authored' => 'authored', '@commented' => 'commented'));
     $form[0]['defaults'] = array(
