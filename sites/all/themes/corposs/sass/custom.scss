@@ -2013,6 +2013,16 @@ tr.odd td.active {
 tr.even td.active {
     background-color: $white;   
 }
+.node-type-plan {
+    #block-views-plan-mandates-plan-mandates {
+        td.views-field-view-node {
+            min-width: 70px;
+            a {
+                margin: 0 5px;
+            }
+        }
+    }
+}
 
 /********** Accordion **********/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
