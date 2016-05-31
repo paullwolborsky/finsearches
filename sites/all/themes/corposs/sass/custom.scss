@@ -1976,6 +1976,9 @@ button.form-reset {
         vertical-align: middle;
     }
 }
+.btn-danger {
+    box-shadow: none;
+}
 
 /********** Tables **********/
 table.views-table {
@@ -2342,6 +2345,16 @@ body.node-type-plan {
 }
 #privatemsg-list span.fieldset-legend a {
     color: #aaa;
+}
+.page-messages-sent {
+    .form-item-operation {
+        display: none;
+    }
+}
+.page-messages, .page-messages-sent {
+    .form-item-tag-add, #edit-tag-add-submit {
+        display: none;
+    }
 }
 #subscriptions-ui-node-form {
     .sticky-table {
