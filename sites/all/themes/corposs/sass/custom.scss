@@ -2355,6 +2355,9 @@ body.node-type-plan {
     .form-item-tag-add, #edit-tag-add-submit {
         display: none;
     }
+    th.select-all {
+        text-align: center;
+    }
 }
 #subscriptions-ui-node-form {
     .sticky-table {
