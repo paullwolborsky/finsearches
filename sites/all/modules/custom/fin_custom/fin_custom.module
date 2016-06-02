@@ -137,3 +137,48 @@ function fin_custom_field_multiple_value_form($variables) {
   }
   return $output;
 }
+
+/**
+ * Put all node in to delete queue and process with batch.
+ */
+function fin_custom_decouple_manager_roster($id, $update = TRUE, $check = FALSE) {
+  $entity = entity_load('field_collection_item', array($id));
+  if (is_array($entity)) {
+    $entity = reset($entity);
+  }
+  if (is_object($entity)) {
+    $ew = entity_metadata_wrapper('field_collection_item', $entity);
+    if ($ew->field_manager_firm_er->value()) {
+      $e = FALSE;
+      if ($check) {
+        $query = new EntityFieldQuery();
+        $entities = $query->entityCondition('entity_type', 'node')
+          ->propertyCondition('type', 'plan_manager_roster')
+          ->propertyCondition('title', $id)
+          ->range(0,1)
+          ->execute();
+
+        if (!empty($entities['node'])) {
+          if (!$update) {
+            return;
+          }
+          $e = node_load(array_shift(array_keys($entities['node'])));
+        }
+      }
+
+      if (!$e) {
+        $e = entity_create('node', array('type' => 'plan_manager_roster'));
+        $e->uid = 0;
+      }
+      $ewn = entity_metadata_wrapper('node', $e);
+      $ewn->title = $id;
+      $ewn->field_manager_firm_er = $ew->field_manager_firm_er->value();
+      $ewn->field_hosting_plan = $entity->hostEntity();
+      $ewn->field_geographic_tr = $ew->field_geographic_tr ->value();
+      $ewn->field_amount = $ew->field_amount->value();
+      $ewn->field_major_minor_style_tr = $ew->field_major_minor_style_tr->value();
+      $ewn->field_attribute_tr = $ew->field_attribute_tr->value();
+      $ewn->save();
+    }
+  }
+}
