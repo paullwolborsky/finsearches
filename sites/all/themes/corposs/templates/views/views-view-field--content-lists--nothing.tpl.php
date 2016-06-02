@@ -34,9 +34,9 @@
   if ($result) {
     while($task = $result->fetchObject()) {
       if (strtotime($task->duedate) < $now && $task->d_completed != '') {
-        $replace = 'fa-list-alt red';
+        $replace = 'fa-list-alt task-overdue';
       } elseif ($task->d_completed != '') {
-        $replace = 'fa-list-alt yellow';
+        $replace = 'fa-list-alt task-in-progress';
       }
     }
   }
