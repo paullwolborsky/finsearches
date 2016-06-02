@@ -222,6 +222,11 @@ span.fieldset-legend {
     .field-name-modal-mandate-link {
         margin-top: 0 !important;
     }
+    .group-plan-info {
+        .view-display-id-eva_plan_size {
+            margin-bottom: 15px;
+        }
+    }
 }
 .field-name-consultant-main-office-bf {
     .content {
@@ -1976,6 +1981,9 @@ button.form-reset {
         vertical-align: middle;
     }
 }
+.btn-danger {
+    box-shadow: none;
+}
 
 /********** Tables **********/
 table.views-table {
@@ -2009,6 +2017,16 @@ tr.odd td.active {
 }
 tr.even td.active {
     background-color: $white;   
+}
+.node-type-plan {
+    #block-views-plan-mandates-plan-mandates {
+        td.views-field-view-node {
+            min-width: 70px;
+            a {
+                margin: 0 5px;
+            }
+        }
+    }
 }
 
 /********** Accordion **********/
@@ -2163,24 +2181,50 @@ body.node-type-plan {
 }
 
 /********** Entityforms **********/
-#fin-info-1, #fin-info-2, #fin-info-3 {
-  width: 33%;
-  float: left;
-  margin: 0 0 30px 0;
-}
-.page-eform-submit {
+.page-eform-submit-contact-us {
+    #fin-info-1, #fin-info-2, #fin-info-3 {
+        width: 33%;
+        float: left;
+        margin: 0 0 30px 0;
+    }
     .group-left, .group-middle, .group-right, .group-footer {
-    background: $form-item-active-blue;
-    padding-left: 10px;
-    padding-right: 10px;
+        background: $form-item-active-blue;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .group-footer {
+      padding-bottom: 10px;
+    }
+    input[type="text"] {
+        width: 75%;
     }
 }
-.group-footer {
-  padding-bottom: 10px;
+.page-eform-submit-trial {
+    .entitytype-trial-form {
+        background: $form-item-active-blue;
+        padding: 15px;
+    }
+    .field-type-text, .field-type-telephone, .field-type-email {
+        width: 45%;
+        display: inline-block;
+    }
+    .field-name-field-form-organization {
+        input[type="text"] {
+            width: 80%;
+        }
+    }
 }
 
 /********** Home Page **********/
 .page-node-3702 {
+    #section-main-content {
+        padding: 0;
+    }
+    #section-shortcodes {
+        .content {
+            padding: 10px;
+        }
+    }
     #block-views-d63620fa1f60e86bc7bd5963a68ab4e6 {
         margin-bottom: 30px;
     }
@@ -2195,8 +2239,9 @@ body.node-type-plan {
             margin: 0;
         }
     }
-    #block-block-5 {
-        .trial-button{
+    #block-block-51 {
+        margin-bottom: 30px;
+        .trial-button {
             a {
                 color: $white;
                 background: $dark-button;
@@ -2209,17 +2254,58 @@ body.node-type-plan {
             }
         }
     }
+    #block-block-41 {
+        .content {
+            text-align: center;
+        }
+    }
+    #block-block-21 {
+        h3.block-title span {
+            text-transform: none;
+        }
+    }
+    #block-block-61 {
+        margin-bottom: 30px;
+        .content {
+            padding: 10px 10px 0 10px;
+            p {
+                margin: 0;
+            }
+        }
+    }
     #block-views-testimonials-testimonials-home {
         .views-field-body {
-            margin: 10px 10px 10px 20px;
-            quotes: "“" "”" "‘" "’";
+            float: left;
+            margin: 10px;
+            //quotes: "“" "”" "‘" "’";
+            .field-content {
+                float: left;
+            }
+            /*.field-content:before {
+                content: open-quote;
+                float: left;
+            }
+            .field-content:after {
+                content: close-quote;
+                float: left;
+            } */  
         }
-        &:before {
-            content: open-quote;
+        .views-field-field-client-organization {
+            margin: 0 10px;
         }
-        &:after {
-            content: close-quote;
-        }
+    }
+    .region-latestworks {
+        background: $form-background-blue;
+        padding: 10px 15px;
+    }
+    #fin-info-1, #fin-info-2, #fin-info-3 {
+        width: 33%;
+        float: left;
+        margin: 0 0 30px 0;
+    }
+    #contact-link {
+        width: 150px;
+        float: right;
     }
 }
 
@@ -2342,6 +2428,19 @@ body.node-type-plan {
 }
 #privatemsg-list span.fieldset-legend a {
     color: #aaa;
+}
+.page-messages-sent {
+    .form-item-operation {
+        display: none;
+    }
+}
+.page-messages, .page-messages-sent {
+    .form-item-tag-add, #edit-tag-add-submit {
+        display: none;
+    }
+    th.select-all {
+        text-align: center;
+    }
 }
 #subscriptions-ui-node-form {
     .sticky-table {

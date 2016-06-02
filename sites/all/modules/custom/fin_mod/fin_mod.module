@@ -5,6 +5,19 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function fin_mod_menu() {
+  $items['autocomplete/state-autocomplete'] = array(
+    'title' => 'State autocomplete',
+    'page callback' => 'fin_mod_state_autocomplete',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;
+}
+
+/**
  * Implements hook_form_alter
  */
 function fin_mod_form_alter(&$form, &$form_state, $form_id) {
@@ -12,6 +25,39 @@ function fin_mod_form_alter(&$form, &$form_state, $form_id) {
     global $user;
     $form['field_mandate_comments_fc']['und'][0]['field_author_er']['und']['#default_value'] = t($user->name . ' (' . $user->uid . ')');
   }
+  else if ($form_id == 'views_exposed_form') {
+    $form['field_address_administrative_area']['#autocomplete_path'] = 'autocomplete/state-autocomplete';
+  }
+}
+
+/**
+ * Filters state by string.
+ */
+function fin_mod_filter_states(&$states, $state) 
+{
+    foreach ($states as $state_codes => $state_names) {
+        if (stripos($state_names, $state) === FALSE) {
+            unset($states[$state_codes]);
+        }
+    }
+}
+
+/**
+ * Custom autocomplete function for States dropdown.
+ */
+function fin_mod_state_autocomplete($state = '') {
+  module_load_include("inc", "addressfield", "addressfield.administrative_areas");
+  $all_states = array();
+  // Set statically to save time.
+  $state_length = 10;
+  $countries = _addressfield_get_administrative_areas_defaults();
+  foreach($countries as $country => $states) {
+    fin_mod_filter_states($states, $state);
+    $all_states = array_merge($all_states, $states);
+  }
+  asort($all_states);
+  $all_states = array_slice($all_states, 0, $state_length);
+  drupal_json_output($all_states);
 }
 
 function fin_mod_theme_registry_alter(&$theme_registry) {
@@ -22,7 +68,7 @@ function fin_mod_theme_registry_alter(&$theme_registry) {
 
 function fin_mod_hierarchical_select_select($variables) {
   $element = $variables['element'];
-  if(isset($element['#options']['label_1']) && $element['#options']['label_1'] == '') {
+  if (isset($element['#options']['label_1']) && $element['#options']['label_1'] == '') {
     $element['#options']['label_1'] = '<none>';
   }
   element_set_attributes($element, array('id', 'name', 'size'));
@@ -43,10 +89,10 @@ function fin_mod_hierarchical_select_ajax_commands_alter(&$commands, &$context) 
  */
 function fin_mod_block_view_user_online_alter(&$data, $block = array()) {
   global $user;
-  
+
   $profile = profile2_load_by_user($user->uid, 'main');
   $pid = 0;
-  if(!empty($profile->pid)) {
+  if (!empty($profile->pid)) {
     $pid = $profile->pid;
   }
 
@@ -73,7 +119,7 @@ WHERE s.timestamp >= :timestamp
 AND s.uid > 0
 AND my_org.entity_id = :profile_id
 QUERY_END
-      , array(':timestamp' => $interval, ':profile_id' => $pid))->fetchField();
+        , array(':timestamp' => $interval, ':profile_id' => $pid))->fetchField();
 
     $output = '<p>' . format_plural($authenticated_count, 'There is currently 1 user online.', 'There are currently @count users online.') . '</p>';
 
@@ -100,7 +146,7 @@ AND my_org.entity_id = :profile_id
 GROUP BY u.uid, u.name
 ORDER BY max_timestamp DESC 
 QUERY_END
-        , 0, $max_users, array(':interval' => $interval, ':profile_id' => $pid))->fetchAll();
+          , 0, $max_users, array(':interval' => $interval, ':profile_id' => $pid))->fetchAll();
       $output .= theme('user_list', array('users' => $items));
     }
 
@@ -113,16 +159,9 @@ QUERY_END
  * Implements hook_views_api().
  */
 function fin_mod_views_api() {
-   return array(
+  return array(
     'api' => 3,
   );
-}
-
-/**
- * Implements hook_fin_options_list().
- */
-function fin_mod_fin_options_list($field, $instance = NULL, $entity_type = NULL, $entity = NULL) {
-  
 }
 
 /**
@@ -131,5 +170,39 @@ function fin_mod_fin_options_list($field, $instance = NULL, $entity_type = NULL,
 function fin_mod_field_widget_info_alter(&$info) {
   if (module_exists('fin_options')) {
     $info['fin_options_select']['field types'][] = 'entityreference';
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function fin_mod_node_presave($node) {
+  $general = FALSE;
+  $outsourced = FALSE;
+  $consultant = array();
+  if ($node->type == 'plan') {
+    // Maybe switch to entity_metadata_wrapper - was having trouble accessing
+    // FC values via it though
+    if (!empty($node->field_consultant_roster_fc)) {
+      foreach ($node->field_consultant_roster_fc['und'] as $fc) {
+        $term = taxonomy_term_load($fc['field_consultant_type_tr']['und'][0]['tid']);
+        if ($term->name == 'General') {
+          if (!empty($fc['field_consultant_firm_er'])) {
+            $consultant['general'] = $fc['field_consultant_firm_er']['und'][0];
+          }
+        }
+        else if ($term->name == 'Outsourced CIO') {
+          if (!empty($fc['field_consultant_firm_er'])) {
+            $consultant['outsourced'] = $fc['field_consultant_firm_er']['und'][0];
+          }
+        }
+      }
+      if (!empty($consultant['general'])) {
+        $node->field_consultant_roster_main_er['und'][0]['target_id'] = $consultant['general'];
+      }
+      else if (!empty($consultant['outsourced'])) {
+        $node->field_consultant_roster_main_er['und'][0]['target_id'] = $consultant['outsourced'];
+      }
+    }
   }
 }
