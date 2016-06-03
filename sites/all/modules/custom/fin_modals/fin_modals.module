@@ -92,7 +92,7 @@ function fin_modals_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'theme callback' => '_fin_modals_theme',
-    'theme arguments' => array('fubik'),
+    'theme arguments' => array('corposs'),
   );
 
   //FRONT END links
