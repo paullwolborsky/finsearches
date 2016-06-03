@@ -139,7 +139,7 @@ function fin_custom_field_multiple_value_form($variables) {
 }
 
 /**
- * Put all node in to delete queue and process with batch.
+ * As part of function base to later possible structure alter and architure change.
  */
 function fin_custom_decouple_manager_roster($id, $update = TRUE, $check = FALSE) {
   $entity = entity_load('field_collection_item', array($id));
