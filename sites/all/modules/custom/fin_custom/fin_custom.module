@@ -172,12 +172,24 @@ function fin_custom_decouple_manager_roster($id, $update = TRUE, $check = FALSE)
       }
       $ewn = entity_metadata_wrapper('node', $e);
       $ewn->title = $id;
-      $ewn->field_manager_firm_er = $ew->field_manager_firm_er->value();
-      $ewn->field_hosting_plan = $entity->hostEntity();
-      $ewn->field_geographic_tr = $ew->field_geographic_tr ->value();
-      $ewn->field_amount = $ew->field_amount->value();
-      $ewn->field_major_minor_style_tr = $ew->field_major_minor_style_tr->value();
-      $ewn->field_attribute_tr = $ew->field_attribute_tr->value();
+      if ($ew->field_manager_firm_er->value()) {
+        $ewn->field_manager_firm_er = $ew->field_manager_firm_er->value();
+      }
+      if ($entity->hostEntity()) {
+        $ewn->field_hosting_plan = $entity->hostEntity();
+      }
+      if ($ew->field_geographic_tr ->value()) {
+        $ewn->field_geographic_tr = $ew->field_geographic_tr ->value();
+      }
+      if ($ew->field_amount->value()) {
+        $ewn->field_amount = $ew->field_amount->value();
+      }
+      if ($ew->field_major_minor_style_tr->value()) {
+        $ewn->field_major_minor_style_tr = $ew->field_major_minor_style_tr->value();
+      }
+      if ($ew->field_attribute_tr->value()) {
+        $ewn->field_attribute_tr = $ew->field_attribute_tr->value();
+      }
       $ewn->save();
     }
   }
