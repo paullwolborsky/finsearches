@@ -449,6 +449,7 @@ elseif(isset($_GET['addList']))
 		->fields(array(
 		  'uuid' => mytinytodo_generateUUID(),
 			'uid' => $user->uid,
+			'taskview' => 1,
 		  'field_id' => $field_id,
 		  'name' => $name,
 		  'ow' => $ow,
