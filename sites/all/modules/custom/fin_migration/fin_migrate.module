@@ -147,12 +147,57 @@ function fin_migrate_form() {
     '#value' => t('Clean Tem Names'),
     '#submit' => array('fin_migrate_form_submit_dopple2'),
   );
+  $form['fieldset5']['submit_postfix_plan_strip'] = array(
+    '#suffix' => ' | ',
+    '#type' => 'submit',
+    '#value' => t('Broken Plans Strip'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip'),
+  );
   $form['fieldset5']['submit_postfix_plan'] = array(
+    '#suffix' => '<br />',
     '#type' => 'submit',
     '#value' => t('Fix Broken Plans'),
     '#submit' => array('fin_migrate_form_submit_postfix_plan'),
   );
- 
+////////////////////
+  $form['fieldset5']['submit_postfix_plan_strip2'] = array(
+    '#type' => 'submit',
+    '#value' => t('Broken Plans Strip2'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip2'),
+  );
+  $form['fieldset5']['submit_postfix_plan2'] = array(
+    '#prefix' => ' | ',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('Fix Broken Plans2'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan2'),
+  );
+  $form['fieldset5']['submit_postfix_plan_strip3'] = array(
+    '#type' => 'submit',
+    '#value' => t('Broken Plans Strip3'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip3'),
+  );
+  $form['fieldset5']['submit_postfix_plan3'] = array(
+    '#prefix' => ' | ',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('Fix Broken Plans3'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan3'),
+  );
+  $form['fieldset5']['submit_postfix_plan_strip4'] = array(
+    '#type' => 'submit',
+    '#value' => t('Broken Plans Strip4'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip4'),
+  );
+  $form['fieldset5']['submit_postfix_plan4'] = array(
+    '#prefix' => ' | ',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('Fix Broken Plans4'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan4'),
+  );
+
+/////////////////// 
   return $form;
 }
 
@@ -1137,6 +1182,9 @@ function _fin_migrate_process_batch_step2($pseudonym, $dst, $table, $row, $map, 
 // temporary, I mistakenly deleted 18 plans
 if (!empty($nid)) {
     $node = node_load($nid);
+$message = "NODE LOAD: NID: ".$nid." | ".print_r($node,true);
+watchdog('DEBUGAA0', $message, array(), WATCHDOG_INFO);
+
     if (!$node) {
       $nid=0;
     }
@@ -2476,6 +2524,7 @@ if ($blankFldName=="FundSize") {
           //$flds = $sets['fields'];
           _fin_migrate_process_fields($fields, $rw, $fc_wrapper, $entity, $termMap, $pKeyName, $pKey, "collection");
 
+
           $rowid = 0;
           if ($rowidCheck) {
             $rowid = $rw->{$rowidFldName};
@@ -2542,8 +2591,8 @@ function _fin_migrate_process_field($handler, $dstFldName, $params, $inData, &$w
     $action = $handler;
 
 // PERFORMANCE turn this off
-//$message = "Action: ".$action." Field: ".$dstFldName." Val: ".print_r($val,true);
-//watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
+$message = "Action: ".$action." Field: ".$dstFldName." Val: ".print_r($val,true);
+watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
 
     switch ($action) {
       case 'node-title':
@@ -2875,9 +2924,16 @@ function _fin_migrate_process_field($handler, $dstFldName, $params, $inData, &$w
             $ptid = $parent->tid;
             //052016 by bills request
             //$wrapper-> field_major_minor_style_tr = array($ptid,$tid);
-            $wrapper-> field_major_minor_style_tr = array($tid);
-
             
+            if ($wrapper->field_major_minor_style_tr->validate(array($tid))) {
+                $wrapper-> field_major_minor_style_tr = array($tid);
+$message = "Wrapper assigned TID: ".$tid;
+watchdog('FIN_MIGRATE_MMM_TID', $message, array(), WATCHDOG_INFO);
+            }
+            else {
+              $message = "MINORTID-".$tid;
+              watchdog('INVALID_TAXONOMY', $message, array(), WATCHDOG_ERROR);
+            }
             //$wrapper->field_major_minor_style_tr = $tid;
             //$wrapper-> field_major_minor_style_tr[] = $ptid;
             //$wrapper-> field_major_minor_style_tr[] = $tid;
@@ -4679,9 +4735,9 @@ xxxxxxxxxxxxxxxxxx
                   'minor2term' => array(
                     'field_old_minor_style' => array('fldname'=>'MinorStyleID'),
                   ),
-                  //'majorminor' => array(
-                  //  'field_major_minor_style_tr' => array(),
-                  //), 
+                  'majorminor' => array(
+                    'field_major_minor_style_tr' => array(),
+                  ), 
                 ),
               ),
             ),              
@@ -6189,26 +6245,97 @@ function _fin_migrate_get_pics($type, &$arr);
   }
 }
 */
+function fin_migrate_form_submit_postfix_plan_strip($form, &$form_state) {
+  $nids = array(
+    376053
+  );
+//375946, 376187, 376402
+  _fin_migrate_do_plan_strip($nids);
+}
+function fin_migrate_form_submit_postfix_plan_strip2($form, &$form_state) {
+  $nids = array(
+    376402
+  );
+//375946, 376187, 376402
+  _fin_migrate_do_plan_strip($nids);
+}
+function fin_migrate_form_submit_postfix_plan_strip3($form, &$form_state) {
+  $nids = array(
+    375946
+  );
+//375946, 376187, 376402
+  _fin_migrate_do_plan_strip($nids);
+}
+function fin_migrate_form_submit_postfix_plan_strip4($form, &$form_state) {
+  $nids = array(
+    376187,
+  );
+//375946, 376187, 376402
+  _fin_migrate_do_plan_strip($nids);
+}
+function _fin_migrate_do_plan_strip($nids) {  
+  $bundle="field_manager_roster_fc";
+  $entity_type = "field_collection_item";
+  foreach ($nids as $nid) {
+    _fin_migrate_strip_collections($nid, $bundle, $entity_type);
+  }
+}
+
+/////////////////
 function fin_migrate_form_submit_postfix_plan($form, &$form_state) {
+
+   $nids = array(
+    376053,
+  );
+  //375946, 376053, 376187, 376402
+  
+  _fin_migrate_do_plan_fix($nids);
+}
+function fin_migrate_form_submit_postfix_plan2($form, &$form_state) {
+
+   $nids = array(
+    376402,
+  );
+  //375946, 376053, 376187, 376402
+  
+  _fin_migrate_do_plan_fix($nids);
+}
+function fin_migrate_form_submit_postfix_plan3($form, &$form_state) {
+
+   $nids = array(
+    375946,
+  );
+  //375946, 376053, 376187, 376402
+  
+  _fin_migrate_do_plan_fix($nids);
+}
+function fin_migrate_form_submit_postfix_plan4($form, &$form_state) {
+
+   $nids = array(
+    376187,
+  );
+  //375946, 376053, 376187, 376402
+  
+  _fin_migrate_do_plan_fix($nids);
+}
+function _fin_migrate_do_plan_fix($nids) {  
   $batch = array(
     'title' => t('Fix Broken Plans'),
     'operations' => array(),
     'finished' => '_fin_migrate_done',
   );
   
-  $nids = array(
-    375946, 376053, 376187, 376402
-  );
-
-  //375946, 376053, 376187, 376402
   // enter nodemap here
   //$nm_mgr_roster_fix
-  
+ 
+ /* 
   $bundle="field_manager_roster_fc";
   $entity_type = "field_collection_item";
   foreach ($nids as $nid) {
     _fin_migrate_strip_collections($nid, $bundle, $entity_type);
   }
+  */
+
   $mode = "postfix_plan";
   $state_node_step_2 = fin_migrate_do_step2x($batch, $nids, $mode);
   batch_set($batch);
@@ -6231,8 +6358,11 @@ function _fin_migrate_strip_collections($nid, $bundle, $entity_type) {
     }
   }
   $done = entity_delete_multiple($entity_type, $eids);
-  
-/*
+  $sql = "DELETE FROM {%tbl} WHERE entity_id in(%nids)";
+  $sql = str_replace("%tbl", $tbl, $sql);
+  $sql = str_replace("%nids", $nid, $sql);
+  $res = db_query($sql);
+/*  
   $entityQuery = new EntityFieldQuery();
   $entities= $entityQuery->entityCondition('entity_type', $entity_type)
       ->entityCondition('bundle', $bundle_type)

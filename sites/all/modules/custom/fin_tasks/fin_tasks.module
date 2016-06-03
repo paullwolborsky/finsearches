@@ -88,7 +88,6 @@ function fin_tasks_user_list () {
   $query->addField('n', 'title', 'node_title');
   $query->addField('n', 'type', 'node_type');
   $query->addField('l', 'name', 'list_name');
-  $query->condition('t.compl', '0', '=');
   $query->where("t.uid = " . $user->uid);
   $result = $query
       ->orderByHeader($header)
@@ -115,17 +114,23 @@ function fin_tasks_user_list () {
       $date = date('n-j-Y', strtotime($rec->duedate));
     }
     $path = drupal_get_path_alias('node/' . $rec->node_nid);
+    if (strlen($rec->note) > 100) {
+      $note = substr($rec->note, 0, 100) . "...";
+    }
     $rows[] = array($rec->title,
-                    $rec->list_name,
-                    "<a href='/" . $path . "' >" . $rec->node_title . "</a>",
-                    $type,
-                    $date,
-                    $rec->note,
-                    "<div><a class='ctools-use-modal' href='/modal/" . $rec->node_nid . "/tasks/nojs' title='Tasks'><i class='fa fa-list-alt'></i></a></div>"
-                  );
+      $rec->list_name,
+      "<a href='/" . $path . "' >" . $rec->node_title . "</a>",
+      $type,
+      $date,
+      $note,
+      "<div><a class='ctools-use-modal' href='/modal/" . $rec->node_nid . "/tasks/nojs' title='Tasks'><i class='fa fa-list-alt'></i></a></div>"
+    );
   }
-  
-  $out .= theme('table', array('header' => $header, 'rows' => $rows ));
+  if (count($rows) > 0) {
+    $out .= theme('table', array('header' => $header, 'rows' => $rows ));
+  } else {
+    $out .= "There are currenly no tasks.";
+  }
 
   $out .= "</div>";
   return $out;

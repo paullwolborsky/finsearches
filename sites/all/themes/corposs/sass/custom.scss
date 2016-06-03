@@ -222,6 +222,11 @@ span.fieldset-legend {
     .field-name-modal-mandate-link {
         margin-top: 0 !important;
     }
+    .group-plan-info {
+        .view-display-id-eva_plan_size {
+            margin-bottom: 15px;
+        }
+    }
 }
 .field-name-consultant-main-office-bf {
     .content {
@@ -672,6 +677,14 @@ fieldset.collapsible .fieldset-legend {
         width: 5%;
     }
 }
+/*** Consultants - Plan Assignments View ***/
+#block-views-02a6a486d0b43130d46ad7d8bf9d0d37 {
+    th.views-field-field-address-data {
+        min-width: 110px;
+    }
+}
+
+
 /********** Exposed Filters **********/
 html.js fieldset.collapsible .fieldset-legend {
     padding-left: 0;
@@ -1209,6 +1222,9 @@ html.js fieldset.collapsible .fieldset-legend {
             padding: 0;
         }
     }
+    .form-autocomplete {
+        width: inherit;
+    }
 }
 /*** Managers List ***/
 #views-exposed-form-content-lists-managers-list {
@@ -1685,9 +1701,6 @@ html.js fieldset.collapsible .fieldset-legend {
             border: solid 1px $header;
             color: #ccc;
         }
-        .fieldset-wrapper {
-            //padding:  0 10px 10px 10px;
-        }
         .form-item label {
             margin-bottom: 0;
             margin-top: 5px; 
@@ -1723,10 +1736,10 @@ html.js fieldset.collapsible .fieldset-legend {
 /*** Manager - Mandate Assignments ***/
 #views-exposed-form-reference-views-manager-mandates {
     #edit-container-container-2 {
-    display: inline-block;
-    max-width: 99%;
-    text-align: center;
-    margin: 10px auto;
+        display: inline-block;
+        max-width: 99%;
+        text-align: center;
+        margin: 10px auto;
     }
     #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
         display: inline-block;
@@ -1760,27 +1773,32 @@ html.js fieldset.collapsible .fieldset-legend {
         margin: 0;
         position: relative;
     }
-    .form-type-select label {
-        padding-left: 20px;
+    .form-text {
+        height: 22px;
     }
     #edit-field-date-value-min-wrapper, #edit-field-date-value-max-wrapper {
-        width: 49%;
+        width: 45%;
         display: inline-block;
         text-align: center;
-        padding: 0 10px;
     }
-    .form-item-field-account-size-value-min::before {
-        content: "Mandate Size";
-        font-weight: bold;
-        display: block;
-        width: auto;
-        //text-align: left;
-        padding: 5px 0 0 0;
+    #edit-field-date-value-max-wrapper {
+        float: right;
+    }
+    .container-inline-date > .form-item {
+        margin-right: 0;
     }
     #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
         .form-item label {
-            margin-top: 0;
+            margin: 0;
         }
+    }
+    #edit-field-date-value-min-datepicker-popup-0, #edit-field-date-value-max-datepicker-popup-0 {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        height: 22px;
+        line-height: 22px;
+        margin: 0;
     }
     .form-item-field-mandate-status-tr-tid {
         //text-align: left;
@@ -1788,9 +1806,6 @@ html.js fieldset.collapsible .fieldset-legend {
         ul.chosen-choices {
             margin-bottom: 10px;
         }
-    }
-    .form-item-field-mandate-status-tr-tid:after {
-
     }
     .form-item-field-mandate-status-tr-tid-selective label {
         padding-left: 5px;
@@ -1801,29 +1816,12 @@ html.js fieldset.collapsible .fieldset-legend {
         width: 100%;
         padding: 0 0 0 5px;
     }
-    #edit-field-date-value-min-datepicker-popup-0, #edit-field-date-value-max-datepicker-popup-0 {
-        display: inline-block;
-        text-align: center;
-        max-width: 90px;
+    #edit-field-major-minor-style-tr-tid-select-1 {
+        width: 95%;
         height: 22px;
-        line-height: 22px;
-        margin: 0;
-    }
-    .form-item-field-account-size-value-min, .form-item-field-account-size-value-max {
-        display: inline-block;
-        text-align: center;
-        height: 24px;
-        label {
-            width: auto;
-            margin: 0 5px;
-            padding-bottom: 3px;
-        }
-    }
-    #edit-field-account-size-value-min, #edit-field-account-size-value-max {
-        width: 84px;
-        height: 22px;
-        line-height: 22px;
+        margin: 0 5px;
         border: solid 1px $border-blue;
+        padding: 0 0 2px 0;
     }
     .form-item-field-plan-er-target-id-selective label, .form-item-field-consultant-firm-er-target-id-selective label {
         padding-left: 10px;
@@ -1842,10 +1840,60 @@ html.js fieldset.collapsible .fieldset-legend {
             max-width: 100%;
         }
     }
+    #edit-title-field-value {
+        margin-bottom: 0;
+    }
+    .form-item-title {
+        &:after {
+            content: "Mandate Size";
+            font-weight: bold;
+        }
+        .form-text {
+            margin-bottom: 6px;
+        }
+    }
     .form-item-field-geographic-tr-tid-selective label, .form-item-major-style label, .form-item-field-attribute-tr-tid-selective label, .form-item-minor-style label {
         padding-left: 0;
-    } 
+    }
+    .form-item-field-account-size-value-min, .form-item-field-account-size-value-max {
+        display: inline-block;
+        text-align: center;
+        height: 24px;
+    }
+    .form-item-field-account-size-value-min {
+        width: 40%;
+        float: left;
+        padding-left: 5px;
+    }
+    .form-item-field-account-size-value-max {
+        width: 60%;
+        float: right;
+        padding-right: 5px;
+        label {
+            display: inline-block;
+            float: left;
+            width: auto;
+            margin: 0 5px;
+            padding-bottom: 5px;
+        }
+    }
+    #edit-field-account-size-value-min, #edit-field-account-size-value-max {
+        display: inline-block;
+        height: 22px;
+        line-height: 22px;
+        border: solid 1px $border-blue;
+        text-align: center;
+    }
+    #edit-field-account-size-value-min {
+        float: left;
+        width: 95%;
+    }
+    #edit-field-account-size-value-max {
+        float: right;
+        width: 70%;
+    }
 }
+
 /*** Manager - Clients ***/
 #views-exposed-form-reference-views-manager-plans {
     #edit-container-container-2 {
@@ -1886,27 +1934,11 @@ html.js fieldset.collapsible .fieldset-legend {
         margin: 0;
         position: relative;
     }
-    .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
-        display: inline-block;
-        text-align: center;
-        height: 24px;
-        margin: 10px 0 0 0;
-        label {
-            width: auto;
-            margin: 0 5px;
-            padding-bottom: 3px;
-        }
-    }
-    #edit-field-plan-size-value-min, #edit-field-plan-size-value-max {
-        width: 64px;
+    .form-autocomplete {
         height: 22px;
-        border: solid 1px $border-blue;
     }
-    #edit-container-container-3 {
-        .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
-            margin: 0;
-        }
-        .form-item-title::after {
+    .form-item-title-field-value {
+        &:after {
             content: "Plan Size";
             font-weight: bold;
             display: block;
@@ -1915,19 +1947,48 @@ html.js fieldset.collapsible .fieldset-legend {
             padding: 5px 0 0 0;
         }
     }
-    #edit-container-container-5 {
-        #edit-field-major-minor-style-tr-tid-select-1 {
-            border: solid 1px $border-blue;
-            height: 24px;
-            padding: 0 0 2px 0;
+    #edit-title-field-value {
+        margin-bottom: 0;
+    }
+    .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
+        display: inline-block;
+        text-align: center;
+        height: 24px;
+        margin: 0;
+        label {
+            width: auto;
+            margin: 0 5px;
+            padding-bottom: 3px;
         }
     }
-}
-/*** Manager - Mandate Assignments ***/
-.view-display-id-manager_mandates {
-    #edit-field-major-minor-style-tr-tid-select-1 {
+    .form-item-field-plan-size-value-min {
+        width: 40%;
+        float: left;
+        padding-left: 5px;
+    }
+    .form-item-field-plan-size-value-max {
+        width: 60%;
+        float: right;
+        padding-right: 5px;
+    }
+    #edit-field-plan-size-value-min, #edit-field-plan-size-value-max {
+        height: 22px;
         border: solid 1px $border-blue;
-        height: 24px;
+        text-align: center;
+    }
+    #edit-field-plan-size-value-min {
+        float: left;
+        width: 100%;
+    }
+    #edit-field-plan-size-value-max {
+        float: right;
+        width: 70%;
+    }
+    #edit-field-major-minor-style-tr-tid-select-1 {
+        width: 95%;
+        height: 22px;
+        margin: 0 5px;
+        border: solid 1px $border-blue;
         padding: 0 0 2px 0;
     }
 }
@@ -2176,24 +2237,50 @@ body.node-type-plan {
 }
 
 /********** Entityforms **********/
-#fin-info-1, #fin-info-2, #fin-info-3 {
-  width: 33%;
-  float: left;
-  margin: 0 0 30px 0;
-}
-.page-eform-submit {
+.page-eform-submit-contact-us {
+    #fin-info-1, #fin-info-2, #fin-info-3 {
+        width: 33%;
+        float: left;
+        margin: 0 0 30px 0;
+    }
     .group-left, .group-middle, .group-right, .group-footer {
-    background: $form-item-active-blue;
-    padding-left: 10px;
-    padding-right: 10px;
+        background: $form-item-active-blue;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .group-footer {
+      padding-bottom: 10px;
+    }
+    input[type="text"] {
+        width: 75%;
     }
 }
-.group-footer {
-  padding-bottom: 10px;
+.page-eform-submit-trial {
+    .entitytype-trial-form {
+        background: $form-item-active-blue;
+        padding: 15px;
+    }
+    .field-type-text, .field-type-telephone, .field-type-email {
+        width: 45%;
+        display: inline-block;
+    }
+    .field-name-field-form-organization {
+        input[type="text"] {
+            width: 80%;
+        }
+    }
 }
 
 /********** Home Page **********/
 .page-node-3702 {
+    #section-main-content {
+        padding: 0;
+    }
+    #section-shortcodes {
+        .content {
+            padding: 10px;
+        }
+    }
     #block-views-d63620fa1f60e86bc7bd5963a68ab4e6 {
         margin-bottom: 30px;
     }
@@ -2208,8 +2295,9 @@ body.node-type-plan {
             margin: 0;
         }
     }
-    #block-block-5 {
-        .trial-button{
+    #block-block-51 {
+        margin-bottom: 30px;
+        .trial-button {
             a {
                 color: $white;
                 background: $dark-button;
@@ -2222,17 +2310,58 @@ body.node-type-plan {
             }
         }
     }
+    #block-block-41 {
+        .content {
+            text-align: center;
+        }
+    }
+    #block-block-21 {
+        h3.block-title span {
+            text-transform: none;
+        }
+    }
+    #block-block-61 {
+        margin-bottom: 30px;
+        .content {
+            padding: 10px 10px 0 10px;
+            p {
+                margin: 0;
+            }
+        }
+    }
     #block-views-testimonials-testimonials-home {
         .views-field-body {
-            margin: 10px 10px 10px 20px;
-            quotes: "“" "”" "‘" "’";
+            float: left;
+            margin: 10px;
+            //quotes: "“" "”" "‘" "’";
+            .field-content {
+                float: left;
+            }
+            /*.field-content:before {
+                content: open-quote;
+                float: left;
+            }
+            .field-content:after {
+                content: close-quote;
+                float: left;
+            } */  
         }
-        &:before {
-            content: open-quote;
+        .views-field-field-client-organization {
+            margin: 0 10px;
         }
-        &:after {
-            content: close-quote;
-        }
+    }
+    .region-latestworks {
+        background: $form-background-blue;
+        padding: 10px 15px;
+    }
+    #fin-info-1, #fin-info-2, #fin-info-3 {
+        width: 33%;
+        float: left;
+        margin: 0 0 30px 0;
+    }
+    #contact-link {
+        width: 150px;
+        float: right;
     }
 }
 
@@ -2513,6 +2642,12 @@ span.fieldset-legend a {
             text-align: center;
         }
     }
+}
+.task-overdue {
+    color: #ff0000;
+}
+.task-in-progress {
+    color: #339900;
 }
 #block-fin-utils-messages {
     #privatemsg-list-form{
