@@ -272,12 +272,12 @@ function fin_mod_consultant_plan_manager_remove_tid(&$view, $row, $consultant_ty
       unset($view->result[$row]);
       break;
     case "Timber":
-      if ($tid = !880 && $tid != 941 && $tid != 882 && $tid != 949 && $tid != 544 && $tid != 746 && $tid != 567 && $tid != 548) {
+      if ($tid != 880 && $tid != 941 && $tid != 882 && $tid != 949 && $tid != 544 && $tid != 746 && $tid != 567 && $tid != 548) {
         unset($view->result[$row]);
       }
       break;
     case "Infrastructure":
-      if ($tid = !880 && $tid != 941 && $tid != 875 && $tid != 946 && $tid != 545) {
+      if ($tid != 880 && $tid != 941 && $tid != 875 && $tid != 946 && $tid != 545) {
         unset($view->result[$row]);
       }
       break;
@@ -296,7 +296,7 @@ function fin_mod_consultant_plan_manager_remove_tid(&$view, $row, $consultant_ty
       }
       break;
     case "Real Assets":
-      if ($tid = !880 && $tid != 941 && $tid != 746 && $tid != 567 && $tid != 548) {
+      if ($tid != 880 && $tid != 941 && $tid != 746 && $tid != 567 && $tid != 548) {
         unset($view->result[$row]);
       }
       break;
