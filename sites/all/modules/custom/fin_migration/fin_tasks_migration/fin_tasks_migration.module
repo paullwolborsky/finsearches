@@ -215,9 +215,11 @@ function fin_tasks_migration_manager_contact_create($id) {
         ->fields(array(
           'uuid' => $field_wuin,
           'field_id' => $field_id,
-          'name' => substr($row->Subject, 0, 50),
+          'name' => 'Tasks',
           'd_created' => strtotime($row->CreationTime),
           'd_edited' => time(),
+          'taskview' => 1,
+          'uid' => $new_user->uid,
          ))
         ->execute();
       db_insert('mytinytodo_todos')
@@ -228,12 +230,14 @@ function fin_tasks_migration_manager_contact_create($id) {
           'title' => $row->Subject,
           'd_created' => strtotime($row->CreationTime),
           'd_edited' => time(),
+          'd_completed' => (is_null($row->CompletionDate)) ? 0 : strtotime($row->CompletionDate),
+          'duedate' => (is_null($row->CompletionDate)) ? '' : substr($row->CompletionDate, 0, 10),
           'compl' => $row->IsComplete,
           'tags_ids' => '',
           'r_note' => $row->ReminderText,
           'tags' => "Default tag ",
           'note' => $row->Text,
-          'r_date' => strtotime($row->ReminderDate),
+          'r_date' => (is_null($row->ReminderDate)) ? 0 : strtotime($row->ReminderDate),
           'c_type' => fin_tasks_migration_contact_type($row->ContactMethod),
           'c_contact' => empty($row->ContactName) ? '0' : $row->ContactName,
           'c_date' => substr($row->ContactDate, 0, 10),
