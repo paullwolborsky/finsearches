@@ -78,7 +78,7 @@ function fin_tasks_user_list () {
     array('data' => 'Actions'),
   );
 
-  $query =  db_select('mytinytodo_todos', 't')
+  $query =  db_select('mytinytodo_todos', 't')->extend('PagerDefault')
             ->extend('TableSort');
   $query->join('mytinytodo_lists', 'l', 't.list_id=l.id');
   $query->join('mytinytodo_fields', 'f', 'l.field_id=f.id');
@@ -90,6 +90,7 @@ function fin_tasks_user_list () {
   $query->addField('l', 'name', 'list_name');
   $query->where("t.uid = " . $user->uid);
   $result = $query
+      ->limit(25)
       ->orderByHeader($header)
       ->execute();
   
@@ -133,7 +134,13 @@ function fin_tasks_user_list () {
   }
 
   $out .= "</div>";
-  return $out;
+  $content = array();
+  $content[] = array(
+    '#type' => 'item',
+    '#markup' => $out,
+  );
+  $content['pager_pager'] = array('#theme' => 'pager');
+  return render($content);
 }
 
 function fin_tasks_config_form ($form, &$form_state) {
