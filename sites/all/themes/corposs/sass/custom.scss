@@ -159,13 +159,14 @@ $shadow: #666666;
         display: none;
     }
 }
-#section-clients {
-    background-repeat: $background;
-    .region-clients {
-        #block-block-62 {
-            .content {
-                font-size: 10px !important;
-            }
+#section-latest-works {
+    background: $background;
+    border-bottom: none;
+}
+.region-clients {
+    #block-block-62 {
+        .content {
+            font-size: 10px !important;
         }
     }
 }
