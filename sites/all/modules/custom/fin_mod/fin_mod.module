@@ -33,13 +33,12 @@ function fin_mod_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Filters state by string.
  */
-function fin_mod_filter_states(&$states, $state) 
-{
-    foreach ($states as $state_codes => $state_names) {
-        if (stripos($state_names, $state) === FALSE) {
-            unset($states[$state_codes]);
-        }
+function fin_mod_filter_states(&$states, $state) {
+  foreach ($states as $state_codes => $state_names) {
+    if (stripos($state_names, $state) === FALSE) {
+      unset($states[$state_codes]);
     }
+  }
 }
 
 /**
@@ -51,7 +50,7 @@ function fin_mod_state_autocomplete($state = '') {
   // Set statically to save time.
   $state_length = 10;
   $countries = _addressfield_get_administrative_areas_defaults();
-  foreach($countries as $country => $states) {
+  foreach ($countries as $country => $states) {
     fin_mod_filter_states($states, $state);
     $all_states = array_merge($all_states, $states);
   }
@@ -203,6 +202,56 @@ function fin_mod_node_presave($node) {
       else if (!empty($consultant['outsourced'])) {
         $node->field_consultant_roster_main_er['und'][0]['target_id'] = $consultant['outsourced'];
       }
+    }
+  }
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ */
+function fin_mod_query_node_access_alter($query) {
+  // Needed to remove conditions from the query object.
+  $conditions = &$query->conditions();
+  _fin_mod_subquery_modify($query, $conditions);
+}
+
+/**
+ * Modifies the subquery and if the EXISTS condition exists, switches it with
+ * our modified EXISTS OR IS NULL condition.
+ */
+function _fin_mod_subquery_modify(&$query, &$conditions) {
+  foreach ($conditions as $subquery_key => &$subquery) {
+    if (is_array($subquery)) {
+      foreach ($subquery as &$inside_subquery) {
+        if (is_object($inside_subquery)) {
+          $subquery_conditions = $inside_subquery->conditions();
+          foreach ($subquery_conditions as &$statement) {
+            if (is_array($statement)) {
+              $field = $statement['field'];
+              if ($subquery['operator'] == 'EXISTS') {
+                fin_mod_add_and_remove_condition($query, $conditions, $field, $inside_subquery, $subquery_key);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Does the actual removal of the condition and replacement with EXISTS OR IS
+ * NULL.
+ */
+function fin_mod_add_and_remove_condition(&$query, &$conditions, $field, $inside_subquery, $subquery_key) {
+  if (is_string($field) && (strpos($field, '=') !== false)) {
+    if ($field != 'node.nid = na.nid' && $field != 'n.nid = na.nid') {
+      unset($conditions[$subquery_key]);
+      $values = explode("=", $field);
+      foreach ($values as &$item) {
+        $item = trim($item);
+      }
+      $query->condition(db_or()->condition($inside_subquery, "EXISTS")->isNull($values[0]));
     }
   }
 }
