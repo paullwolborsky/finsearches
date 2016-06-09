@@ -159,6 +159,17 @@ $shadow: #666666;
         display: none;
     }
 }
+#section-latest-works {
+    background: $background;
+    border-bottom: none;
+}
+.region-clients {
+    #block-block-62 {
+        .content {
+            font-size: 10px !important;
+        }
+    }
+}
 
 /********** Blocks **********/
 legend {
@@ -2330,6 +2341,7 @@ body.node-type-plan {
         }
     }
     #block-views-testimonials-testimonials-home {
+        margin-bottom: 30px;
         .views-field-body {
             float: left;
             margin: 10px;
@@ -2348,6 +2360,41 @@ body.node-type-plan {
         }
         .views-field-field-client-organization {
             margin: 0 10px;
+        }
+        #views_slideshow_controls_text_testimonials-testimonials_home {
+            z-index: 100;
+            position: relative;
+            width: 100%;
+            margin-top: 10px;
+            #views_slideshow_controls_text_previous_testimonials-testimonials_home {
+                float: left;
+                a {
+                    display: block;
+                    background: url("../images/arrow-left.png") bottom;
+                    width: 25px;
+                    height: 25px;
+                    text-indent: -99999px;
+                }
+                a:hover {
+                    background: url("../images/arrow-left-hover.png") bottom;
+                }
+            }
+            #views_slideshow_controls_text_next_testimonials-testimonials_home {
+                float: right;
+                a {
+                    display: block;
+                    background: url("../images/arrow-right.png") bottom;
+                    width: 25px;
+                    height: 25px;
+                    text-indent: -99999px;
+                }
+                a:hover {
+                    background: url("../images/arrow-right-hover.png") bottom;
+                }
+            }
+            span#views_slideshow_controls_text_pause_testimonials-testimonials_home {
+                display: none;
+            }
         }
     }
     .region-latestworks {
