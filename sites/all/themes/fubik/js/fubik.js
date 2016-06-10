@@ -100,7 +100,10 @@
         Drupal.fubik.updateManaged(context);      
       });
       
-      
+      $('.view-id-user_management table td.views-field-metadata-property-editable-2 select').each(function(){
+        $(this).prop('multiple', true);
+        $(this).chosen('destroy').chosen();
+      });
     }
   };
 })(jQuery, Drupal);
