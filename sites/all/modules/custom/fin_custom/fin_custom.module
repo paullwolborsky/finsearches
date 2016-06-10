@@ -298,21 +298,32 @@ function fin_custom_item_add($field_name, $entity_type, $entity_id, $js = FALSE,
     // If the form is executed will need to dismiss the form and reload
     // the page.
     if ($form_state['executed']) {
-
-      $node = node_load($entity_id, NULL, FALSE);
       $commands = array();
 
-      $contact_view = views_embed_view('reference_views', 'eva_manager_roster_edit', $node->parent_nid);
-      $commands[] = ajax_command_replace('.view-id-reference_views.view-display-id-eva_manager_roster_edit', $contact_view);
+      // Load the new output.
+      $node = node_load($entity_id, NULL, FALSE);
+      // Render the newly saved field collection set.
+      $field_to_render = field_view_field('node',
+                                          $node,
+                                          str_replace('-', '_', $field_name),
+                                          'full');
 
-//      $commands[] = ajax_command_invoke('NULL', 'delay', array('10000'));
+      // Remove the prefix and suffix, which contain unneeded div's and
+      // actions links.
+      unset($field_to_render['#prefix']);
+      unset($field_to_render['#suffix']);
 
-      $commands[] = ctools_modal_command_dismiss();
+      $output = render($field_to_render);
+
+      // Replacing the field collection with updated output.
+      $commands[] = ajax_command_replace('#modal-content',
+                                         theme('status_messages'));
+      $commands[] = ajax_command_invoke('NULL', 'delay', array('10000'));
+      // Close the modal.
+      $commands[] = ctools_ajax_command_reload();
 
       $output = $commands;
     }
-
-    ajax_set_verification_header();
     // Render the output.
     // Note:  using ajax_render here, using drupal_json_render here caused
     // html 500 error
@@ -353,7 +364,15 @@ function fin_custom_field_collection_item_add(
     return MENU_NOT_FOUND;
   }
   $result = entity_load($entity_type, array($entity_id));
-$entity = reset($result); if (!$entity) { return MENU_NOT_FOUND; } // Ensure the given entity is of a bundle that has an instance of the field.  list($id, $rev_id, $bundle) = entity_extract_ids($entity_type, $entity); $instance = field_info_instance($entity_type, $field_name, $bundle); 
+
+  $entity = reset($result);
+  if (!$entity) {
+    return MENU_NOT_FOUND;
+  }
+  // Ensure the given entity is of a bundle that has an instance of the field.
+  list($id, $rev_id, $bundle) = entity_extract_ids($entity_type, $entity);
+  $instance = field_info_instance($entity_type, $field_name, $bundle);
+
   if (!$instance) {
     return MENU_NOT_FOUND;
   }
