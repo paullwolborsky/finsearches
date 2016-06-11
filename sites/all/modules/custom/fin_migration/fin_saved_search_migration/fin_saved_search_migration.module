@@ -82,7 +82,9 @@ function _fin_saved_search_migration_geo($clause) {
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
   foreach ($matches[1] as $key => $value) {
-    $result[] = $status_map[$value[0]];
+    if ($status_map[$value[0]]) {
+      $result[] = $status_map[$value[0]];
+    }
   }
   return $result;
 }
@@ -287,17 +289,24 @@ function _fin_saved_search_migration_major($clause) {
 /**
  * Utility function of extract status.
  */
+function _fin_saved_search_migration_datefix($dstr) {
+  $time = strtotime($dstr);
+  return date('m/d/Y', $time);
+}
+/**
+ * Utility function of extract status.
+ */
 function _fin_saved_search_migration_mandatedate($clause) {
   $pattern = '/MandateDate >= "(\d\d\d\d-\d\d-\d\d)"/';
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
   foreach ($matches[1] as $key => $value) {
-    $result['start'] = $value[0];
+    $result['start'] = _fin_saved_search_migration_datefix($value[0]);
   }
   $pattern = '/MandateDate <= "(\d\d\d\d-\d\d-\d\d)"/';
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   foreach ($matches[1] as $key => $value) {
-    $result['end'] = $value[0];
+    $result['end'] = _fin_saved_search_migration_datefix($value[0]);
   }
   return $result;
 }
@@ -460,35 +469,52 @@ function fin_saved_search_migration_views_save_create($id) {
   );
     
   foreach ($result as $row) {
+    $uid = $row->uid;
+    $user_wuin = md5('users' . $row->uid);
+    $user_result = fin_user_entity_existed($user_wuin);
+    $useruid = 144;
+    if (is_object($user_result)) {
+      if (isset($user_result->uid)) {
+        $useruid = $user_result->uid;
+      }
+    }
     $searchclause = trim($row->SearchClause);
     $status = _fin_saved_search_migration_status($searchclause);
     $consultfirm = _fin_saved_search_migration_consultantfirm($searchclause);
     $geographic = _fin_saved_search_migration_geo($searchclause);
-    $major = _fin_saved_search_migration_major($searchclause);
-    $minor = _fin_saved_search_migration_minor($searchclause);
+    //$major = _fin_saved_search_migration_major($searchclause);
+    //$minor = _fin_saved_search_migration_minor($searchclause);
     // New Major Minor Pending for implementation.
-    //$major_minor = _fin_saved_search_migration_major_minor($searchclause);
+    $major_minor = _fin_saved_search_migration_major_minor($searchclause);
     $msizea = _fin_saved_search_migration_msize_a($searchclause);
     $msizeb = _fin_saved_search_migration_msize_b($searchclause);
     $mdate = _fin_saved_search_migration_mandatedate($searchclause);
     $ptype = _fin_saved_search_migration_plan_type($searchclause);
     $pcountry = _fin_saved_search_migration_plan_country($searchclause);
     $pstates = _fin_saved_search_migration_plan_state($searchclause);
-    $options['query']['field_mandate_status_tr_tid_selective'] = $status;
-    $options['query']['field_consultant_firm_er_target_id_selective'] = $consultfirm;
-    $options['query']['field_geographic_tr_tid_selective'] = $geographic;
-    $options['query']['name_selective'] = $major['name'];
-    $options['query']['minore_name_selective'] = $minor['name'];
+    $options['query']['field_mandate_status_tr_tid'] = $status;
+    //$options['query']['title_field_value'] = $consultfirm;
+    if (is_array($consultfirm)) {
+      $luckone = $consultfirm[0];
+      $node = node_load($luckone);
+      $options['query']['title_field_value'] = $node->title;
+    }
+    $options['query']['field_geographic_tr_tid'] = $geographic;
+    if (is_array($major_minor)) {
+      $options['query']['field_major_minor_style_tr_tid'] = $major_minor[0];
+    }
+//    $options['query']['name_selective'] = $major['name'];
+//    $options['query']['minore_name_selective'] = $minor['name'];
     $options['query']['field_account_size_value']['min'] = empty($msizea) ? "0" : $msizea;
     $options['query']['field_account_size_value']['max'] = empty($msizeb) ? "999999999" : $msizeb;
     $options['query']['field_plan_type_tr_tid'] = $ptype;
     $options['query']['field_address_country'] = $pcountry;
     $options['query']['field_address_administrative_area'] = $pstates;
     if (isset($mdate['start'])) {
-      $options['query']['field_date_value']['min'] = $mdate['start'];
+      $options['query']['field_date_value']['min'] = array('date' => $mdate['start']);
     }
     if (isset($mdate['end'])) {
-      $options['query']['field_date_value']['max'] = $mdate['end'];
+      $options['query']['field_date_value']['max'] = array('date' => $mdate['end']);
     }
     $uri = array(
       'path' => 'mandates',
@@ -496,9 +522,18 @@ function fin_saved_search_migration_views_save_create($id) {
     );
 
     $properties = array(
-      'uid' => '144',
+      'uid' => $useruid,
       'bundle' => 'default',
       'view_path' => $uri,
+      'field_ss_page' => array (
+        'und' => array (
+          0 => array (
+            'value' => 'Mandates',
+            'format' => NULL,
+            'save_value' => 'Mandates',
+          ),
+        ),
+      ),
       'title' => $row->SearchName,
       'status' => 0,
       'created' => $row->created,
@@ -573,6 +608,15 @@ function fin_saved_search_migration_plan_views_save_create($id) {
   );
     
   foreach ($result as $row) {
+    $uid = $row->uid;
+    $user_wuin = md5('users' . $row->uid);
+    $user_result = fin_user_entity_existed($user_wuin);
+    $useruid = 144;
+    if (is_object($user_result)) {
+      if (isset($user_result->uid)) {
+        $useruid = $user_result->uid;
+      }
+    }
     $searchclause = trim($row->SearchClause);
     $msizea = _fin_saved_search_migration_psize_a($searchclause);
     $msizeb = _fin_saved_search_migration_psize_b($searchclause);
@@ -591,7 +635,7 @@ function fin_saved_search_migration_plan_views_save_create($id) {
     );
 
     $properties = array(
-      'uid' => '144',
+      'uid' => $useruid,
       'bundle' => 'default',
       'view_path' => $uri,
       'field_ss_page' => array (
