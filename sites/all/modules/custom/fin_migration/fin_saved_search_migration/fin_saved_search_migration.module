@@ -355,7 +355,7 @@ function _fin_saved_search_migration_plan_state($clause) {
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
   foreach ($matches[1] as $key => $value) {
-    $result[] = banjia_get_state($value[0]);;
+    $result[] = fin_saved_search_migration_get_state($value[0]);;
   }
   return $result;
 }
@@ -369,7 +369,7 @@ function _fin_saved_search_migration_plan_country($clause) {
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
   foreach ($matches[1] as $key => $value) {
-    $result[] = banjia_get_country_code($value[0]);;
+    $result[] = fin_saved_search_migration_get_country_code($value[0]);;
   }
   return $result;
 }
@@ -405,7 +405,9 @@ function _fin_saved_search_migration_plan_type($clause) {
   $result = array();
   foreach ($matches[1] as $key => $value) {
     $resultitem = fin_saved_search_utility_get_taxonomy_by_name_level($status_map[$value[0]], 'plan_types', array());;
-    $result[] = reset($resultitem);
+    if ($resultitem) {
+      $result[] = reset($resultitem);
+    }
   }
   return $result;
 }
@@ -552,11 +554,9 @@ function fin_saved_search_migration_plan_views_save_create($id) {
   // Returns the entity if it is already existed.
   $field_wuin = md5('finsearch_search_plan' . $id);
   $isexist = fin_saved_search_migration_entity_existed($field_wuin);
-  dsm(1);
   if ($isexist) {
     return $isexist;
   }
-  dsm(2);
   db_set_active('legacy');
   $sql = "select uid, SearchName, SearchClause, created from finsearch_saved_search where SearchID = :id";
   $result = db_query($sql, array(':id' => $id));
@@ -568,7 +568,6 @@ function fin_saved_search_migration_plan_views_save_create($id) {
       'max' => '',
     ),
   );
-  dsm($result);
     
   foreach ($result as $row) {
     $searchclause = trim($row->SearchClause);
@@ -915,4 +914,172 @@ function fin_saved_search_migration_mmm_id($major, $minor, $precise = FALSE) {
   $major = $ma[$major];
   $minor = $mi[$minor];
   return fin_saved_search_migration_mmm($major, $minor, $precise);
+}
+
+function fin_saved_search_migration_get_state($sid) {
+  $states = array (
+      '356'=>'AL',
+      '357'=>'AK',
+      '358'=>'AZ',
+      '359'=>'AR',
+      '360'=>'CA',
+      '361'=>'CO',
+      '362'=>'CT',
+      '363'=>'DE',
+      '364'=>'SD',
+      '365'=>'FL',
+      '366'=>'GA',
+      '367'=>'HI',
+      '368'=>'ID',
+      '369'=>'IL',
+      '370'=>'IN',
+      '371'=>'IA',
+      '372'=>'KS',
+      '373'=>'KY',
+      '374'=>'LA',
+      '375'=>'ME',
+      '376'=>'MD',
+      '377'=>'MA',
+      '378'=>'MI',
+      '379'=>'MN',
+      '380'=>'MS',
+      '381'=>'MO',
+      '382'=>'MT',
+      '383'=>'NE',
+      '384'=>'NV',
+      '385'=>'NH',
+      '386'=>'NJ',
+      '387'=>'NY',
+      '388'=>'NC',
+      '389'=>'ND',
+      '390'=>'OH',
+      '391'=>'OK',
+      '392'=>'OR',
+      '393'=>'PA',
+      '394'=>'RI',
+      '395'=>'SC',
+      '396'=>'TX',
+      '397'=>'UT',
+      '398'=>'VA',
+      '399'=>'WA',
+      '400'=>'WV',
+      '401'=>'WI',
+      '402'=>'WY',
+      '403'=>'NM',
+      '404'=>'TN',
+      '405'=>'VT',
+      '486'=>'ONT',
+      '487'=>'ALB',
+      '488'=>'NB',
+      '489'=>'PEI',
+      '490'=>'SA',
+      '491'=>'NS',
+      '492'=>'QE',
+      '493'=>'BC',
+      '494'=>'NL',
+      '1561'=>'DC',
+      '956955814'=>'PR',
+      '956955815'=>'MB',
+  );
+  if (isset($states[$sid])) {
+    return $states[$sid];
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Utility function get country code.
+ */
+function fin_saved_search_migration_get_country_code($cid) {
+  $countries = array(
+      '173'=>'AU',
+      '158'=>'AT',
+      '1870875315'=>'BS',
+      '555'=>'BH',
+      '165'=>'BE',
+      '1870875319'=>'BM',
+      '1870875300'=>'BA',
+      '1870875296'=>'BW',
+      '130'=>'BR',
+      '1870875320'=>'BN',
+      '1870875308'=>'BG',
+      '127'=>'CA',
+      '1870875318'=>'KY',
+      '1870875321'=>'GB',
+      '133'=>'CL',
+      '134'=>'CN',
+      '135'=>'CO',
+      '138'=>'CR',
+      '1870875299'=>'HR',
+      '141'=>'CU',
+      '8'=>'CY',
+      '143'=>'CZ',
+      '144'=>'DK',
+      '210'=>'FI',
+      '211'=>'FR',
+      '214'=>'DD',
+      '221'=>'GR',
+      '185'=>'GU',
+      '187'=>'HU',
+      '182'=>'IS',
+      '208'=>'IN',
+      '183'=>'ID',
+      '186'=>'IR',
+      '174'=>'IL',
+      '188'=>'IT',
+      '1870875305'=>'JM',
+      '191'=>'JP',
+      '192'=>'JO',
+      '1870875294'=>'KZ',
+      '1870875295'=>'KE',
+      '1870875297'=>'KW',
+      '1870875316'=>'LI',
+      '37'=>'LT',
+      '38'=>'LU',
+      '60'=>'MY',
+      '1870875327'=>'MT',
+      '1870875310'=>'MU',
+      '44'=>'MX',
+      '56'=>'MC',
+      '1870875312'=>'MZ',
+      '19'=>'NL',
+      '14'=>'NZ',
+      '1870875309'=>'NI',
+      '1870875325'=>'KP',
+      '1870875324'=>'MP',
+      '9'=>'NO',
+      '21'=>'PA',
+      '1870875306'=>'PG',
+      '1870875311'=>'PE',
+      '32'=>'PH',
+      '26'=>'PL',
+      '18'=>'PT',
+      '27'=>'PR',
+      '1870875298'=>'RO',
+      '1870875301'=>'RU',
+      '1870875322'=>'SA',
+      '63'=>'SG',
+      '101'=>'ZA',
+      '118'=>'KR',
+      '103'=>'SP',
+      '112'=>'SE',
+      '113'=>'CH',
+      '116'=>'TW',
+      '1870875302'=>'TZ',
+      '75'=>'TH',
+      '67'=>'TR',
+      '71'=>'UK',
+      '61'=>'US',
+      '1870875313'=>'AE',
+      '1870875293'=>'XX',
+      '55555'=>'VE',
+  );
+  if (isset($countries[$cid])) {
+    return $countries[$cid];
+  }
+  else {
+    return FALSE;
+  }
 }
