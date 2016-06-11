@@ -552,9 +552,11 @@ function fin_saved_search_migration_plan_views_save_create($id) {
   // Returns the entity if it is already existed.
   $field_wuin = md5('finsearch_search_plan' . $id);
   $isexist = fin_saved_search_migration_entity_existed($field_wuin);
+  dsm(1);
   if ($isexist) {
     return $isexist;
   }
+  dsm(2);
   db_set_active('legacy');
   $sql = "select uid, SearchName, SearchClause, created from finsearch_saved_search where SearchID = :id";
   $result = db_query($sql, array(':id' => $id));
@@ -566,6 +568,7 @@ function fin_saved_search_migration_plan_views_save_create($id) {
       'max' => '',
     ),
   );
+  dsm($result);
     
   foreach ($result as $row) {
     $searchclause = trim($row->SearchClause);
