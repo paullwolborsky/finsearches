@@ -355,7 +355,10 @@ function _fin_saved_search_migration_plan_state($clause) {
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
   foreach ($matches[1] as $key => $value) {
-    $result[] = fin_saved_search_migration_get_state($value[0]);;
+    $state = fin_saved_search_migration_get_state($value[0]); 
+    if ($state) {
+      $result[] = fin_saved_search_migration_get_state($value[0]);;
+    }
   }
   return $result;
 }
@@ -577,7 +580,9 @@ function fin_saved_search_migration_plan_views_save_create($id) {
     $ptype = _fin_saved_search_migration_plan_type($searchclause);
     $options['query']['field_plan_size_value']['min'] = empty($msizea) ? "0" : $msizea;
     $options['query']['field_plan_size_value']['max'] = empty($msizeb) ? "999999999" : $msizeb;
-    $options['query']['field_address_administrative_area_selective'] = $pstates;
+    if (is_array($pstates)) {
+      $options['query']['field_address_administrative_area'] = $pstates[0];
+    }
     $options['query']['field_plan_type_tr_tid'] = $ptype;
 
     $uri = array(
@@ -589,6 +594,15 @@ function fin_saved_search_migration_plan_views_save_create($id) {
       'uid' => '144',
       'bundle' => 'default',
       'view_path' => $uri,
+      'field_ss_page' => array (
+        'und' => array (
+          0 => array (
+            'value' => 'Plans',
+            'format' => NULL,
+            'save_value' => 'Plans',
+          ),
+        ),
+      ),
       'title' => $row->SearchName,
       'status' => 0,
       'created' => $row->created,
