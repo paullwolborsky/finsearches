@@ -233,11 +233,11 @@ function fin_custom_menu() {
       );
 
       // Edit / delete field collection.
-      $items[$edpath . '/%field_collection_item/%/%ctools_js/go'] = array(
+      $items[$edpath . '/%field_collection_item/%/%/%ctools_js/go'] = array(
         'page callback' => 'fin_custom_operator_callback',
         // %node / fieldname / %field_collection_item / action / js.
         'page arguments' =>
-        array($count - 1, $count, $count + 1, $count + 2, $count + 3),
+        array($count - 1, $count, $count + 1, $count + 2, $count + 3, $count + 4),
         // See note above.
         'access callback' => TRUE,
       );
@@ -269,6 +269,8 @@ function fin_custom_menu() {
  * @todo: Support optionally passing in the revision_id and langcode parameters.
  */
 function fin_custom_item_add($field_name, $entity_type, $entity_id, $js = FALSE, $revision_id = NULL, $langcode = NULL) {
+  global $pager_page_array, $pager_total, $base_url;
+  $page = 0;
   // Making sure certain functions for field_collection and field are available.
   module_load_include('pages.inc', 'field_collection');
   module_load_include('inc', 'field', 'field.info');
@@ -298,29 +300,25 @@ function fin_custom_item_add($field_name, $entity_type, $entity_id, $js = FALSE,
     // If the form is executed will need to dismiss the form and reload
     // the page.
     if ($form_state['executed']) {
+      if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        $url = $_SERVER['HTTP_REFERER'];
+        $u = drupal_parse_url($url);
+        $url = str_replace($base_url . '/', '', $u['path']);
+        $_GET['q'] = $url;
+      }
       $commands = array();
 
-      // Load the new output.
-      $node = node_load($entity_id, NULL, FALSE);
-      // Render the newly saved field collection set.
-      $field_to_render = field_view_field('node',
-                                          $node,
-                                          str_replace('-', '_', $field_name),
-                                          'full');
+      $view = views_get_view('reference_views');
+      $view->set_display('eva_manager_roster_edit');
+      $view->set_arguments(array($entity_id));
+      $view->set_current_page($page);
+      $view->pre_execute();
+      $view->execute();
+      //$contact_view = views_embed_view('reference_views', 'eva_manager_roster_edit');
+      $contact_view = $view->render();
+      $commands[] = ajax_command_replace('.view-id-reference_views.view-display-id-eva_manager_roster_edit', $contact_view);
 
-      // Remove the prefix and suffix, which contain unneeded div's and
-      // actions links.
-      unset($field_to_render['#prefix']);
-      unset($field_to_render['#suffix']);
-
-      $output = render($field_to_render);
-
-      // Replacing the field collection with updated output.
-      $commands[] = ajax_command_replace('#modal-content',
-                                         theme('status_messages'));
-      $commands[] = ajax_command_invoke('NULL', 'delay', array('10000'));
-      // Close the modal.
-      $commands[] = ctools_ajax_command_reload();
+      $commands[] = ctools_modal_command_dismiss();
 
       $output = $commands;
     }
@@ -434,7 +432,7 @@ function fin_custom_field_collection_item_add(
  */
 function fin_custom_operator_callback($node, $fieldname,
                                                    $field_collection_item,
-                                                   $action, $js = FALSE,
+                                                   $action, $page, $js = FALSE,
                                                    $revision_id = NULL,
                                                    $langcode = NULL) {
   global $pager_page_array, $pager_total, $base_url;
@@ -481,12 +479,23 @@ function fin_custom_operator_callback($node, $fieldname,
     }
 
     if ($form_state['executed']) {
+      if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        $url = $_SERVER['HTTP_REFERER'];
+        $u = drupal_parse_url($url);
+        $url = str_replace($base_url . '/', '', $u['path']);
+        $_GET['q'] = $url;
+      }
+
       $node = node_load($entity_id, NULL, FALSE);
       $commands = array();
-
-      $contact_view = views_embed_view('reference_views', 'eva_manager_roster_edit');
+      $view = views_get_view('reference_views');
+      $view->set_display('eva_manager_roster_edit');
+      $view->set_current_page($page);
+      $view->pre_execute();
+      $view->execute();
+      //$contact_view = views_embed_view('reference_views', 'eva_manager_roster_edit');
+      $contact_view = $view->render();
       $commands[] = ajax_command_replace('.view-id-reference_views.view-display-id-eva_manager_roster_edit', $contact_view);
-
       $commands[] = ctools_modal_command_dismiss();
       $output = $commands;
     }

@@ -1,3 +1,6 @@
+<?php
+$current_page = $view->get_current_page();
+?>
 <div class="<?php print $classes; ?>">
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
@@ -30,7 +33,7 @@
   <?php if ($pager): ?>
     <?php print $pager; ?>
   <?php endif; ?>
-  <a href='<?php print '/fin/field-manager-roster-fc/add/node/' . $view->args[0] . '/nojs/go' ?>' class='ctools-use-modal'>Add a new manager roster item</a>
+  <a href='<?php print '/fin/field-manager-roster-fc/add/node/' . $view->args[0] . '/nojs/go'; ?>' class='ctools-use-modal'>Add a new manager roster item</a>
 
   <?php if ($attachment_after): ?>
     <div class="attachment attachment-after">
