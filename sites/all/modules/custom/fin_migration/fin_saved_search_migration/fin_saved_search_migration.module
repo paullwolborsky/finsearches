@@ -1141,3 +1141,83 @@ function fin_saved_search_migration_get_country_code($cid) {
     return FALSE;
   }
 }
+
+/**
+ * Implements hook_cron_queue_info().
+ *
+ * Provides an import queue processed on cron.
+ */
+function fin_saved_search_migration_cron_queue_info() {
+  return array(
+    'fin_saved_search_migration_import_plan' => array(
+      'worker callback' => 'fin_saved_search_migration_plan_queue_process',
+      'time' => '3450',
+    ),
+    'fin_saved_search_migration_import_mandate' => array(
+      'worker callback' => 'fin_saved_search_migration_mandate_queue_process',
+      'time' => '3450',
+    ),
+  );
+}
+
+/**
+ * Worker callback for import plan saved search queue.
+ */
+function fin_saved_search_migration_mandate_queue_process($item) {
+  $id = $item['id'];
+  fin_saved_search_migration_views_save_create($id);
+}
+
+/**
+ * Worker callback for import plan saved search queue.
+ */
+function fin_saved_search_migration_plan_queue_process($item) {
+  $id = $item['id'];
+  fin_saved_search_migration_plan_views_save_create($id);
+}
+
+/**
+ * Special functions group.
+ */
+function fin_saved_search_migration_plan_create() {
+  try {
+    $queue = DrupalQueue::get('fin_saved_search_migration_import_plan');
+    db_set_active('legacy');
+    $sql = "select SearchID from {finsearch_saved_search}";
+    $result = db_query($sql);
+    db_set_active();
+    foreach ($result as $row) {
+      $task = array(
+        'id' => $row->SearchID,
+      );
+      $queue->createItem($task);
+    }
+  }
+  catch (Exception $e) {
+    db_set_active();
+    watchdog('fin_saved_search_migration_import_plan', $e->getMessage(), array(), WATCHDOG_ERROR);
+  }
+}
+
+/**
+ * Special functions group.
+ */
+function fin_saved_search_migration_mandate_create() {
+  try {
+    $queue = DrupalQueue::get('fin_saved_search_migration_import_mandate');
+    db_set_active('legacy');
+    $sql = "select SearchID from {finsearch_search_mandates}";
+    $result = db_query($sql);
+    db_set_active();
+    foreach ($result as $row) {
+      $task = array(
+        'id' => $row->SearchID,
+      );
+      $queue->createItem($task);
+    }
+  }
+  catch (Exception $e) {
+    db_set_active();
+    watchdog('fin_saved_search_migration_import_mandate', $e->getMessage(), array(), WATCHDOG_ERROR);
+  }
+}
