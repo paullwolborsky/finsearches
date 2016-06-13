@@ -101,8 +101,9 @@
       });
       
       $('.view-id-user_management table td.views-field-metadata-property-editable-2 select').each(function(){
-        $(this).prop('multiple', true);
-        $(this).chosen('destroy').chosen();
+        //$(this).chosen('destroy');
+        //$(this).prop('multiple', true);
+        $(this).css('height', 'auto');
       });
     }
   };
