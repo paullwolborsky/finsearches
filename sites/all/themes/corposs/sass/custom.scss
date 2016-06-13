@@ -1044,7 +1044,7 @@ html.js fieldset.collapsible .fieldset-legend {
         height: 22px;
         line-height: 22px;
     }
-}                                                                                   // Why is this here?!
+    }                                                                                   // Why is this here?!
     .form-item-field-address-country {
         width: 57%;
         display: inline-block;
@@ -1079,10 +1079,11 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
     #edit-field-account-size-value-min, #edit-field-account-size-value-max {
-        width: 64px;
+        width: 90px;
         height: 22px;
         line-height: 22px;
         border: solid 1px $border-blue;
+        text-align: center;
     }
     #edit-container-container-5 {
         .fieldset-wrapper {
@@ -1114,6 +1115,7 @@ html.js fieldset.collapsible .fieldset-legend {
     }
     #edit-field-major-minor-style-tr-tid-select-1 {
         border: solid 1px $border-blue;
+        width: 220px;
         height: 24px;
         padding: 0 0 2px 0;
     }
@@ -1131,31 +1133,41 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
     #edit-field-account-size-value-min, #edit-field-account-size-value-max {
-        width: 64px;
+        width: 89px;
         height: 22px;
         line-height: 22px;
         border: solid 1px $border-blue;
+        text-align: center;
     }
     #edit-container-container-3 {
         .fieldset-wrapper {
             padding: 0;
             margin-bottom: 10px;
         }
-        .form-item-field-plan-er-target-id-selective::after {
-            content: "Mandate Size";
-            font-weight: bold;
-            display: block;
-            width: auto;
-            //text-align: left;
-            padding: 5px 0 0 0;
-        }
     }
     #edit-container-container-5 {
-        .shs-select {
-            border: solid 1px $border-blue;
-            height: 24px;
-            padding: 0 0 3px 0;
+        .fieldset-wrapper {
+            padding: 0;
         }
+    }
+    .shs-select {
+        border: solid 1px $border-blue;
+        height: 24px;
+        padding: 0 0 3px 0;
+    }
+    .form-item-title-field-value::after {
+        content: "Mandate Size";
+        font-weight: bold;
+        display: block;
+        width: auto;
+        //text-align: left;
+        padding: 3px 0 0 0;
+    }
+    #edit-title-field-value {
+        margin-bottom: 0;
+    }
+    #edit-field-major-minor-style-tr-tid-select-1 {
+        width: 220px;
     }
 }
 /*** Consultants List ***/
