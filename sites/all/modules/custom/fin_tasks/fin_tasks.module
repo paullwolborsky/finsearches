@@ -64,8 +64,9 @@ function fin_tasks_permission() {
 /**
  *Produces task list for logged in user
  */
-function fin_tasks_user_list () {
+function fin_tasks_user_list ($limit = NULL) {
   global $user;
+  $m_limit = (isset($limit))?$limit:100;
   ctools_include('modal');
   ctools_modal_add_js();
   $header = array(
@@ -90,14 +91,17 @@ function fin_tasks_user_list () {
   $query->addField('l', 'name', 'list_name');
   $query->where("t.uid = " . $user->uid);
   $result = $query
-      ->limit(25)
+      ->limit($m_limit)
       ->orderByHeader($header)
       ->execute();
   
   $rows = array();
 
   $out = "<div id='user-tasks-table'>";
-  $out .= "<h1 class='header'>Tasks for " . $user->name . "</h1>"; 
+  //Assumption is the limit will only be set in a block where we don't want the title
+  if (!$limit) {
+    $out .= "<h1 class='header'>Tasks for " . $user->name . "</h1>";
+  }
   foreach ($result as $rec) {
     switch($rec->node_type) {
       case 'plan':
@@ -142,6 +146,42 @@ function fin_tasks_user_list () {
   $content['pager_pager'] = array('#theme' => 'pager');
   return render($content);
 }
+
+/*
+ *Impliments hook_block_info
+ */
+function fin_tasks_block_info() {
+	$blocks['resources_tasks'] = array(
+    'info' => t('Task list for Resource page'),
+    'cache' => DRUPAL_NO_CACHE,
+	);
+  return $blocks;
+}
+
+/*
+ *Impliments hook_block_view
+ */
+function fin_tasks_block_view($delta) {
+	global $user;
+  $block = array();
+  switch ($delta) {
+		case 'resources_tasks':
+      $block['subject'] = "Tasks";
+			$out = fin_tasks_user_list(10);
+			$block['content'] =$out;
+			$block['content'] .= "<div class='resources-link'>" . l('Go to Tasks page','resources/tasks', array()) . "</div>";
+      break;
+  }
+	return $block;
+}
+
+
+function fin_tasks_resource_page_tasks() {
+  global $user;
+  
+}
+
+
 
 function fin_tasks_config_form ($form, &$form_state) {
   $form['general'] = array(
