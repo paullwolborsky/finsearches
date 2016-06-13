@@ -82,7 +82,9 @@ function _fin_saved_search_migration_geo($clause) {
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
   foreach ($matches[1] as $key => $value) {
-    $result[] = $status_map[$value[0]];
+    if ($status_map[$value[0]]) {
+      $result[] = $status_map[$value[0]];
+    }
   }
   return $result;
 }
@@ -287,17 +289,24 @@ function _fin_saved_search_migration_major($clause) {
 /**
  * Utility function of extract status.
  */
+function _fin_saved_search_migration_datefix($dstr) {
+  $time = strtotime($dstr);
+  return date('m/d/Y', $time);
+}
+/**
+ * Utility function of extract status.
+ */
 function _fin_saved_search_migration_mandatedate($clause) {
   $pattern = '/MandateDate >= "(\d\d\d\d-\d\d-\d\d)"/';
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
   foreach ($matches[1] as $key => $value) {
-    $result['start'] = $value[0];
+    $result['start'] = _fin_saved_search_migration_datefix($value[0]);
   }
   $pattern = '/MandateDate <= "(\d\d\d\d-\d\d-\d\d)"/';
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   foreach ($matches[1] as $key => $value) {
-    $result['end'] = $value[0];
+    $result['end'] = _fin_saved_search_migration_datefix($value[0]);
   }
   return $result;
 }
@@ -355,7 +364,10 @@ function _fin_saved_search_migration_plan_state($clause) {
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
   foreach ($matches[1] as $key => $value) {
-    $result[] = banjia_get_state($value[0]);;
+    $state = fin_saved_search_migration_get_state($value[0]); 
+    if ($state) {
+      $result[] = fin_saved_search_migration_get_state($value[0]);;
+    }
   }
   return $result;
 }
@@ -369,7 +381,7 @@ function _fin_saved_search_migration_plan_country($clause) {
   preg_match_all($pattern, $clause, $matches, PREG_OFFSET_CAPTURE);
   $result = array();
   foreach ($matches[1] as $key => $value) {
-    $result[] = banjia_get_country_code($value[0]);;
+    $result[] = fin_saved_search_migration_get_country_code($value[0]);;
   }
   return $result;
 }
@@ -405,7 +417,9 @@ function _fin_saved_search_migration_plan_type($clause) {
   $result = array();
   foreach ($matches[1] as $key => $value) {
     $resultitem = fin_saved_search_utility_get_taxonomy_by_name_level($status_map[$value[0]], 'plan_types', array());;
-    $result[] = reset($resultitem);
+    if ($resultitem) {
+      $result[] = reset($resultitem);
+    }
   }
   return $result;
 }
@@ -455,35 +469,52 @@ function fin_saved_search_migration_views_save_create($id) {
   );
     
   foreach ($result as $row) {
+    $uid = $row->uid;
+    $user_wuin = md5('users' . $row->uid);
+    $user_result = fin_user_entity_existed($user_wuin);
+    $useruid = 144;
+    if (is_object($user_result)) {
+      if (isset($user_result->uid)) {
+        $useruid = $user_result->uid;
+      }
+    }
     $searchclause = trim($row->SearchClause);
     $status = _fin_saved_search_migration_status($searchclause);
     $consultfirm = _fin_saved_search_migration_consultantfirm($searchclause);
     $geographic = _fin_saved_search_migration_geo($searchclause);
-    $major = _fin_saved_search_migration_major($searchclause);
-    $minor = _fin_saved_search_migration_minor($searchclause);
+    //$major = _fin_saved_search_migration_major($searchclause);
+    //$minor = _fin_saved_search_migration_minor($searchclause);
     // New Major Minor Pending for implementation.
-    //$major_minor = _fin_saved_search_migration_major_minor($searchclause);
+    $major_minor = _fin_saved_search_migration_major_minor($searchclause);
     $msizea = _fin_saved_search_migration_msize_a($searchclause);
     $msizeb = _fin_saved_search_migration_msize_b($searchclause);
     $mdate = _fin_saved_search_migration_mandatedate($searchclause);
     $ptype = _fin_saved_search_migration_plan_type($searchclause);
     $pcountry = _fin_saved_search_migration_plan_country($searchclause);
     $pstates = _fin_saved_search_migration_plan_state($searchclause);
-    $options['query']['field_mandate_status_tr_tid_selective'] = $status;
-    $options['query']['field_consultant_firm_er_target_id_selective'] = $consultfirm;
-    $options['query']['field_geographic_tr_tid_selective'] = $geographic;
-    $options['query']['name_selective'] = $major['name'];
-    $options['query']['minore_name_selective'] = $minor['name'];
+    $options['query']['field_mandate_status_tr_tid'] = $status;
+    //$options['query']['title_field_value'] = $consultfirm;
+    if (is_array($consultfirm)) {
+      $luckone = $consultfirm[0];
+      $node = node_load($luckone);
+      $options['query']['title_field_value'] = $node->title;
+    }
+    $options['query']['field_geographic_tr_tid'] = $geographic;
+    if (is_array($major_minor)) {
+      $options['query']['field_major_minor_style_tr_tid'] = $major_minor[0];
+    }
+//    $options['query']['name_selective'] = $major['name'];
+//    $options['query']['minore_name_selective'] = $minor['name'];
     $options['query']['field_account_size_value']['min'] = empty($msizea) ? "0" : $msizea;
     $options['query']['field_account_size_value']['max'] = empty($msizeb) ? "999999999" : $msizeb;
     $options['query']['field_plan_type_tr_tid'] = $ptype;
     $options['query']['field_address_country'] = $pcountry;
     $options['query']['field_address_administrative_area'] = $pstates;
     if (isset($mdate['start'])) {
-      $options['query']['field_date_value']['min'] = $mdate['start'];
+      $options['query']['field_date_value']['min'] = array('date' => $mdate['start']);
     }
     if (isset($mdate['end'])) {
-      $options['query']['field_date_value']['max'] = $mdate['end'];
+      $options['query']['field_date_value']['max'] = array('date' => $mdate['end']);
     }
     $uri = array(
       'path' => 'mandates',
@@ -491,9 +522,18 @@ function fin_saved_search_migration_views_save_create($id) {
     );
 
     $properties = array(
-      'uid' => '144',
+      'uid' => $useruid,
       'bundle' => 'default',
       'view_path' => $uri,
+      'field_ss_page' => array (
+        'und' => array (
+          0 => array (
+            'value' => 'Mandates',
+            'format' => NULL,
+            'save_value' => 'Mandates',
+          ),
+        ),
+      ),
       'title' => $row->SearchName,
       'status' => 0,
       'created' => $row->created,
@@ -568,6 +608,15 @@ function fin_saved_search_migration_plan_views_save_create($id) {
   );
     
   foreach ($result as $row) {
+    $uid = $row->uid;
+    $user_wuin = md5('users' . $row->uid);
+    $user_result = fin_user_entity_existed($user_wuin);
+    $useruid = 144;
+    if (is_object($user_result)) {
+      if (isset($user_result->uid)) {
+        $useruid = $user_result->uid;
+      }
+    }
     $searchclause = trim($row->SearchClause);
     $msizea = _fin_saved_search_migration_psize_a($searchclause);
     $msizeb = _fin_saved_search_migration_psize_b($searchclause);
@@ -575,7 +624,9 @@ function fin_saved_search_migration_plan_views_save_create($id) {
     $ptype = _fin_saved_search_migration_plan_type($searchclause);
     $options['query']['field_plan_size_value']['min'] = empty($msizea) ? "0" : $msizea;
     $options['query']['field_plan_size_value']['max'] = empty($msizeb) ? "999999999" : $msizeb;
-    $options['query']['field_address_administrative_area_selective'] = $pstates;
+    if (is_array($pstates)) {
+      $options['query']['field_address_administrative_area'] = $pstates[0];
+    }
     $options['query']['field_plan_type_tr_tid'] = $ptype;
 
     $uri = array(
@@ -584,9 +635,18 @@ function fin_saved_search_migration_plan_views_save_create($id) {
     );
 
     $properties = array(
-      'uid' => '144',
+      'uid' => $useruid,
       'bundle' => 'default',
       'view_path' => $uri,
+      'field_ss_page' => array (
+        'und' => array (
+          0 => array (
+            'value' => 'Plans',
+            'format' => NULL,
+            'save_value' => 'Plans',
+          ),
+        ),
+      ),
       'title' => $row->SearchName,
       'status' => 0,
       'created' => $row->created,
@@ -912,4 +972,252 @@ function fin_saved_search_migration_mmm_id($major, $minor, $precise = FALSE) {
   $major = $ma[$major];
   $minor = $mi[$minor];
   return fin_saved_search_migration_mmm($major, $minor, $precise);
+}
+
+function fin_saved_search_migration_get_state($sid) {
+  $states = array (
+      '356'=>'AL',
+      '357'=>'AK',
+      '358'=>'AZ',
+      '359'=>'AR',
+      '360'=>'CA',
+      '361'=>'CO',
+      '362'=>'CT',
+      '363'=>'DE',
+      '364'=>'SD',
+      '365'=>'FL',
+      '366'=>'GA',
+      '367'=>'HI',
+      '368'=>'ID',
+      '369'=>'IL',
+      '370'=>'IN',
+      '371'=>'IA',
+      '372'=>'KS',
+      '373'=>'KY',
+      '374'=>'LA',
+      '375'=>'ME',
+      '376'=>'MD',
+      '377'=>'MA',
+      '378'=>'MI',
+      '379'=>'MN',
+      '380'=>'MS',
+      '381'=>'MO',
+      '382'=>'MT',
+      '383'=>'NE',
+      '384'=>'NV',
+      '385'=>'NH',
+      '386'=>'NJ',
+      '387'=>'NY',
+      '388'=>'NC',
+      '389'=>'ND',
+      '390'=>'OH',
+      '391'=>'OK',
+      '392'=>'OR',
+      '393'=>'PA',
+      '394'=>'RI',
+      '395'=>'SC',
+      '396'=>'TX',
+      '397'=>'UT',
+      '398'=>'VA',
+      '399'=>'WA',
+      '400'=>'WV',
+      '401'=>'WI',
+      '402'=>'WY',
+      '403'=>'NM',
+      '404'=>'TN',
+      '405'=>'VT',
+      '486'=>'ONT',
+      '487'=>'ALB',
+      '488'=>'NB',
+      '489'=>'PEI',
+      '490'=>'SA',
+      '491'=>'NS',
+      '492'=>'QE',
+      '493'=>'BC',
+      '494'=>'NL',
+      '1561'=>'DC',
+      '956955814'=>'PR',
+      '956955815'=>'MB',
+  );
+  if (isset($states[$sid])) {
+    return $states[$sid];
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Utility function get country code.
+ */
+function fin_saved_search_migration_get_country_code($cid) {
+  $countries = array(
+      '173'=>'AU',
+      '158'=>'AT',
+      '1870875315'=>'BS',
+      '555'=>'BH',
+      '165'=>'BE',
+      '1870875319'=>'BM',
+      '1870875300'=>'BA',
+      '1870875296'=>'BW',
+      '130'=>'BR',
+      '1870875320'=>'BN',
+      '1870875308'=>'BG',
+      '127'=>'CA',
+      '1870875318'=>'KY',
+      '1870875321'=>'GB',
+      '133'=>'CL',
+      '134'=>'CN',
+      '135'=>'CO',
+      '138'=>'CR',
+      '1870875299'=>'HR',
+      '141'=>'CU',
+      '8'=>'CY',
+      '143'=>'CZ',
+      '144'=>'DK',
+      '210'=>'FI',
+      '211'=>'FR',
+      '214'=>'DD',
+      '221'=>'GR',
+      '185'=>'GU',
+      '187'=>'HU',
+      '182'=>'IS',
+      '208'=>'IN',
+      '183'=>'ID',
+      '186'=>'IR',
+      '174'=>'IL',
+      '188'=>'IT',
+      '1870875305'=>'JM',
+      '191'=>'JP',
+      '192'=>'JO',
+      '1870875294'=>'KZ',
+      '1870875295'=>'KE',
+      '1870875297'=>'KW',
+      '1870875316'=>'LI',
+      '37'=>'LT',
+      '38'=>'LU',
+      '60'=>'MY',
+      '1870875327'=>'MT',
+      '1870875310'=>'MU',
+      '44'=>'MX',
+      '56'=>'MC',
+      '1870875312'=>'MZ',
+      '19'=>'NL',
+      '14'=>'NZ',
+      '1870875309'=>'NI',
+      '1870875325'=>'KP',
+      '1870875324'=>'MP',
+      '9'=>'NO',
+      '21'=>'PA',
+      '1870875306'=>'PG',
+      '1870875311'=>'PE',
+      '32'=>'PH',
+      '26'=>'PL',
+      '18'=>'PT',
+      '27'=>'PR',
+      '1870875298'=>'RO',
+      '1870875301'=>'RU',
+      '1870875322'=>'SA',
+      '63'=>'SG',
+      '101'=>'ZA',
+      '118'=>'KR',
+      '103'=>'SP',
+      '112'=>'SE',
+      '113'=>'CH',
+      '116'=>'TW',
+      '1870875302'=>'TZ',
+      '75'=>'TH',
+      '67'=>'TR',
+      '71'=>'UK',
+      '61'=>'US',
+      '1870875313'=>'AE',
+      '1870875293'=>'XX',
+      '55555'=>'VE',
+  );
+  if (isset($countries[$cid])) {
+    return $countries[$cid];
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ *
+ * Provides an import queue processed on cron.
+ */
+function fin_saved_search_migration_cron_queue_info() {
+  return array(
+    'fin_saved_search_migration_import_plan' => array(
+      'worker callback' => 'fin_saved_search_migration_plan_queue_process',
+      'time' => '3450',
+    ),
+    'fin_saved_search_migration_import_mandate' => array(
+      'worker callback' => 'fin_saved_search_migration_mandate_queue_process',
+      'time' => '3450',
+    ),
+  );
+}
+
+/**
+ * Worker callback for import plan saved search queue.
+ */
+function fin_saved_search_migration_mandate_queue_process($item) {
+  $id = $item['id'];
+  fin_saved_search_migration_views_save_create($id);
+}
+
+/**
+ * Worker callback for import plan saved search queue.
+ */
+function fin_saved_search_migration_plan_queue_process($item) {
+  $id = $item['id'];
+  fin_saved_search_migration_plan_views_save_create($id);
+}
+
+/**
+ * Special functions group.
+ */
+function fin_saved_search_migration_plan_create() {
+  try {
+    $queue = DrupalQueue::get('fin_saved_search_migration_import_plan');
+    db_set_active('legacy');
+    $sql = "select SearchID from {finsearch_saved_search}";
+    $result = db_query($sql);
+    db_set_active();
+    foreach ($result as $row) {
+      $task = array(
+        'id' => $row->SearchID,
+      );
+      $queue->createItem($task);
+    }
+  }
+  catch (Exception $e) {
+    db_set_active();
+    watchdog('fin_saved_search_migration_import_plan', $e->getMessage(), array(), WATCHDOG_ERROR);
+  }
+}
+
+/**
+ * Special functions group.
+ */
+function fin_saved_search_migration_mandate_create() {
+  try {
+    $queue = DrupalQueue::get('fin_saved_search_migration_import_mandate');
+    db_set_active('legacy');
+    $sql = "select SearchID from {finsearch_search_mandates}";
+    $result = db_query($sql);
+    db_set_active();
+    foreach ($result as $row) {
+      $task = array(
+        'id' => $row->SearchID,
+      );
+      $queue->createItem($task);
+    }
+  }
+  catch (Exception $e) {
+    db_set_active();
+    watchdog('fin_saved_search_migration_import_mandate', $e->getMessage(), array(), WATCHDOG_ERROR);
+  }
 }
