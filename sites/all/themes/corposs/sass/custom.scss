@@ -991,10 +991,14 @@ html.js fieldset.collapsible .fieldset-legend {
         //float: none;
     }
     #edit-field-date-value-min-wrapper, #edit-field-date-value-max-wrapper {
-        width: 49%;
+        width: 47%;
         display: inline-block;
         text-align: center;
-        padding: 0 10px;
+        float: left; 
+        //padding: 0 10px;
+    }
+    #edit-field-date-value-min-wrapper {
+        margin: 0 0 0 10px;
     }
     #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
         .form-item label {
@@ -1004,10 +1008,18 @@ html.js fieldset.collapsible .fieldset-legend {
     #edit-field-date-value-min-datepicker-popup-0, #edit-field-date-value-max-datepicker-popup-0 {
         display: inline-block;
         text-align: center;
-        width: 90px !important;
+        width: 105px !important;
         height: 22px;
         line-height: 22px;
         margin: 0;
+    }
+    .form-type-date-popup label {
+        display: block;
+    }
+    #preset-dates {
+        width: 218px;
+        height: 24px;
+        border: 1px solid $border-blue;
     }
     .form-item-field-plan-type-tr-tid {
         width: auto;
@@ -1019,7 +1031,7 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
     .form-item-field-address-administrative-area {
-        width: 25%;
+        width: 35%;
         display: inline-block;
         text-align: center;
         margin-right: 5px;
@@ -1034,7 +1046,7 @@ html.js fieldset.collapsible .fieldset-legend {
     }
 }                                                                                   // Why is this here?!
     .form-item-field-address-country {
-        width: 52%;
+        width: 57%;
         display: inline-block;
         text-align: center;
         margin-left: 5px;
@@ -1487,6 +1499,10 @@ html.js fieldset.collapsible .fieldset-legend {
             width: auto;
             display: block;
             text-align: center;
+            &:before {
+                content: "or";
+                margin-right: 10px;
+            }
         }
     }
     #edit-field-geofield-distance {
@@ -1523,6 +1539,16 @@ html.js fieldset.collapsible .fieldset-legend {
         display: inline-block;
         text-align: center;
         float: left;
+    }
+}
+/*** Map Search Table ***/
+.ip-geoloc-table {
+    margin: 30px 0 0 0;
+    td {
+        padding: 10px;
+    }
+    th.views-field {
+        padding: 0 10px;
     }
 }
 /*** Plan - Manager Roster **/
@@ -2715,6 +2741,11 @@ span.fieldset-legend a {
     #saved-searches-header {
         color: $white;
         padding-left: 10px;
+    }
+}
+.page-user-saved-searches {
+    #saved-searches-header, #block-system-main {
+        display: none;
     }
 }
 
