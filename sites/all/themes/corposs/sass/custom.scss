@@ -932,6 +932,9 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 /*** Mandates List ***/
 #views-exposed-form-content-lists-mandates-list, {
+    .fieldset-wrapper {
+        overflow: hidden;
+    }
     #edit-container-container-2 {
         display: inline-block;
         max-width: 97%;
@@ -941,8 +944,9 @@ html.js fieldset.collapsible .fieldset-legend {
     #edit-container-container-3, #edit-container-container-4, #edit-container-container-5 {
         display: inline-block;
         vertical-align: top;
-        padding: 0 10px;
-        //width: 30%;
+        width: 33%;
+        padding: 0 2%;
+        box-sizing: border-box;
         legend {
             border: solid 1px $header;
             color: #ccc;
@@ -952,13 +956,7 @@ html.js fieldset.collapsible .fieldset-legend {
             margin-top: 5px; 
         }
     }
-    #edit-container-container-3 {
-        margin: 0 10px 10px 0;
-        width: 29%;
-    }
     #edit-container-container-4 {
-        margin-bottom: 0 10px 10px 0;
-        width: 27%;
         .fieldset-wrapper {
             text-align: center;
         }
@@ -975,51 +973,58 @@ html.js fieldset.collapsible .fieldset-legend {
         margin: 0;
         position: relative;
     }
-    #edit_field_mandate_status_tr_tid_chosen {
-        margin-bottom: 15px;
-    }
     .form-item-field-mandate-status-tr-tid {
-        padding: 0 10px;
-        //text-align: left;
-    }
-    .form-item-field-mandate-status-tr-tid::after {
-        content: "Date";
-        font-weight: bold;
+        //padding: 0 10px;
+        padding:  0;
+        margin: 0 0 -20px 0;
+        #edit_field_mandate_status_tr_tid_chosen {
+            //margin-bottom: 15px;
+            margin: 0 0 4px 0;
+        }
+        &:after {
+            content: "Date";
+            font-weight: bold;
+        }
     }
     .form-item-field-mandate-status-tr-tid label {
         display: block;
         //float: none;
     }
     #edit-field-date-value-min-wrapper, #edit-field-date-value-max-wrapper {
-        width: 47%;
+        width: 50%;
         display: inline-block;
         text-align: center;
-        float: left; 
-        //padding: 0 10px;
-    }
-    #edit-field-date-value-min-wrapper {
-        margin: 0 0 0 10px;
-    }
-    #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
-        .form-item label {
-            margin-top: 0;
+        padding: 0 1% 0 0;
+        box-sizing: border-box;
+        #edit-field-date-value-min-inside-wrapper, #edit-field-date-value-max-inside-wrapper {
+            .form-item label {
+                margin-top: 0;
+            }
+        }
+        #edit-field-date-value-min-datepicker-popup-0, #edit-field-date-value-max-datepicker-popup-0 {
+            display: inline-block;
+            text-align: center;
+            //width: 105px !important;
+            height: 22px;
+            line-height: 22px;
+            margin: 0;
+            width: 100%;
         }
     }
-    #edit-field-date-value-min-datepicker-popup-0, #edit-field-date-value-max-datepicker-popup-0 {
-        display: inline-block;
-        text-align: center;
-        width: 105px !important;
-        height: 22px;
-        line-height: 22px;
-        margin: 0;
+    #edit-field-date-value-min-wrapper {
+        padding: 0 1% 0 3%;
     }
     .form-type-date-popup label {
         display: block;
     }
-    #preset-dates {
-        width: 218px;
-        height: 24px;
-        border: 1px solid $border-blue;
+    #date-presets-wrapper {
+        margin: 8px 0 0 0;
+        #preset-dates {
+            width: 92%;
+            height: 24px;
+            border: 1px solid $border-blue;
+            box-sizing: border-box;
+        }
     }
     .form-item-field-plan-type-tr-tid {
         width: auto;
@@ -1031,20 +1036,20 @@ html.js fieldset.collapsible .fieldset-legend {
         }
     }
     .form-item-field-address-administrative-area {
-        width: 35%;
+        width: 30%;
         display: inline-block;
         text-align: center;
         margin-right: 5px;
         label {
             display: block;
+        }
+        #edit-field-address-administrative-area {
+            width: 100%;
+            margin-bottom: 0;
+            height: 22px;
+            line-height: 22px;
+        }
     }
-    #edit-field-address-administrative-area {
-        width: 100%;
-        margin-bottom: 0;
-        height: 22px;
-        line-height: 22px;
-    }
-    }                                                                                   // Why is this here?!
     .form-item-field-address-country {
         width: 57%;
         display: inline-block;
@@ -1072,19 +1077,29 @@ html.js fieldset.collapsible .fieldset-legend {
         display: inline-block;
         text-align: center;
         height: 24px;
+        width: 35%;
+        float: left;
         label {
             width: auto;
             margin: 0 5px;
             padding-bottom: 3px;
         }
+        #edit-field-account-size-value-min, #edit-field-account-size-value-max {
+            width: 100%;
+            height: 22px;
+            line-height: 22px;
+            border: solid 1px $border-blue;
+            text-align: center;
+        }
     }
-    #edit-field-account-size-value-min, #edit-field-account-size-value-max {
-        width: 90px;
-        height: 22px;
-        line-height: 22px;
-        border: solid 1px $border-blue;
-        text-align: center;
+    .form-item-field-account-size-value-max {
+        width: 63%;
+        #edit-field-account-size-value-max {
+            width: 50%;
+            float: right;
+        }
     }
+    
     #edit-container-container-5 {
         .fieldset-wrapper {
             padding: 0;
@@ -1103,8 +1118,10 @@ html.js fieldset.collapsible .fieldset-legend {
         width: 48%;
     }
     .form-item-field-geographic-tr-tid, .form-item-major-style, .form-item-field-attribute-tr-tid, .form-item-minor-style {
-        width: 48%;
-        display: inline-block;
+        width: 50%;
+        //display: inline-block;
+        float: left;
+        padding: 0 1%;
         text-align: center;
         .chosen-container {
             max-width: 100%;
@@ -1115,7 +1132,7 @@ html.js fieldset.collapsible .fieldset-legend {
     }
     #edit-field-major-minor-style-tr-tid-select-1 {
         border: solid 1px $border-blue;
-        width: 220px;
+        width: 98%;
         height: 24px;
         padding: 0 0 2px 0;
     }
@@ -1126,18 +1143,27 @@ html.js fieldset.collapsible .fieldset-legend {
         display: inline-block;
         text-align: center;
         height: 24px;
+        width: 35%;
+        float: left;
         label {
             width: auto;
             margin: 0 5px;
             padding-bottom: 3px;
         }
+        #edit-field-account-size-value-min, #edit-field-account-size-value-max {
+            width: 89px;
+            height: 22px;
+            line-height: 22px;
+            border: solid 1px $border-blue;
+            text-align: center;
+        }
     }
-    #edit-field-account-size-value-min, #edit-field-account-size-value-max {
-        width: 89px;
-        height: 22px;
-        line-height: 22px;
-        border: solid 1px $border-blue;
-        text-align: center;
+    .form-item-field-account-size-value-max {
+        width: 63%;
+        #edit-field-account-size-value-max {
+            width: 50%;
+            float: right;
+        }
     }
     #edit-container-container-3 {
         .fieldset-wrapper {
