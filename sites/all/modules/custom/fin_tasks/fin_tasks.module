@@ -119,6 +119,7 @@ function fin_tasks_user_list ($limit = NULL) {
       $date = date('n-j-Y', strtotime($rec->duedate));
     }
     $path = drupal_get_path_alias('node/' . $rec->node_nid);
+    $note = $rec->note;
     if (strlen($rec->note) > 100) {
       $note = substr($rec->note, 0, 100) . "...";
     }
