@@ -3456,9 +3456,8 @@ span.fieldset-legend a {
   vertical-align: middle;
 }
 
-/********** Advanced Search **********/
 /********** Chosen Widget Fix **********/
-/* line 2854, ../../sass/custom.scss */
+/* line 2851, ../../sass/custom.scss */
 .chosen-container {
   width: 220px !important;
 }
