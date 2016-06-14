@@ -33,7 +33,7 @@ function _fin_forms_options_helper() {
  * Impliments hook_form_alter
  */
 function fin_forms_form_alter(&$form, &$form_state, $form_id) {
-  // Left comments in for removed portion.
+  //dd($form_id, "form id");
   $lang = !empty($form_state['values']['language']) ? $form_state['values']['language'] : 'und';
   switch ($form_id) {
     case 'mandate_node_form':
@@ -194,6 +194,12 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
         if (!user_has_role(3) && !user_has_role(4)) {
           $form['account']['mail']['#disabled'] = TRUE;
         }
+      }
+      break;
+    case 'editableviews_entity_form_user_management':
+      foreach ($form['user'] as $key=>$user_element) {
+        $form['user'][$key]['roles']['#multiple'] = true;
+        $form['user'][$key]['roles']['#chosen'] = false;
       }
       break;
   }
