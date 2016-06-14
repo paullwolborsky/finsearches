@@ -33,7 +33,14 @@ function fin_custom_views_query_alter(&$view, &$query) {
     if ($orders == 1) {
      $view->query->add_table('field_data_field_status_tr', 'paragraphs_item_field_data_field_job_history');
      $query->add_where(1,'paragraphs_item_field_data_field_job_history__field_data_field_status_tr.field_status_tr_tid', array(340, 341), 'IN');
-     $view->query->orderby[1] = $view->query->orderby[0];
+     if ($view->query->orderby[0]['field'] == 'node_title') {
+       $view->query->orderby[1]['field'] = 'paragraphs_item_field_data_field_job_history__field_data_field_lead_plan_contact.field_lead_plan_contact_value';
+       $view->query->orderby[1]['direction'] = "DESC";
+       $view->query->orderby[2] = $view->query->orderby[0];
+     }
+     else {
+       $view->query->orderby[1] = $view->query->orderby[0];
+     }
      $view->query->orderby[0]['field'] = "CASE WHEN paragraphs_item_field_data_field_job_history__field_data_field_status_tr.field_status_tr_tid = 340 THEN 1 ELSE 2 END";
      $view->query->orderby[0]['direction'] = "ASC";
     }
