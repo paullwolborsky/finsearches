@@ -18,7 +18,7 @@ if(isset($_GET['loadLists']))
 	$t = array();
 	$field_id = (int)$_GET['fid'];
 	$t['total'] = 0;
-	$q = $db->dq("SELECT * FROM {mytinytodo_lists} WHERE field_id = ? ORDER BY ow ASC, id ASC", array($field_id));
+	$q = $db->dq("SELECT * FROM {mytinytodo_lists} WHERE field_id = ? AND uid= ? ORDER BY ow ASC, id ASC", array($field_id, $user->uid));
 	while($r = $q->fetch_assoc($q))
 	{
 		$t['total']++;
@@ -132,6 +132,7 @@ elseif(isset($_GET['newTask']))
 	$id = db_insert('mytinytodo_todos')
 		->fields(array(
 		    'uuid' => mytinytodo_generateUUID(),
+				'uid'	=> $user->uid,
 		    'list_id' => $listId,
 		    'title' => $title,
 		    'd_created' => time(),
@@ -447,6 +448,8 @@ elseif(isset($_GET['addList']))
 	$id = db_insert('mytinytodo_lists')
 		->fields(array(
 		  'uuid' => mytinytodo_generateUUID(),
+			'uid' => $user->uid,
+			'taskview' => 1,
 		  'field_id' => $field_id,
 		  'name' => $name,
 		  'ow' => $ow,

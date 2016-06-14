@@ -1,0 +1,492 @@
+<?php
+/**
+ * @file
+ * A module to perform custom migration from one version of Drupal to another.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function fin_content_delete_menu() {
+  $items = array();
+
+  $items['admin/content/fin_content_delete'] = array(
+    'title' => 'Delete Content in Batch',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fin_content_delete_form'),
+    'access arguments' => array('administer site configuration'),
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_form().
+ */
+function fin_content_delete_form() {
+  $form = array();
+  $form['fieldset1'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Nodes Delete'),
+  );
+  $form['fieldset2'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Field Collections Delete'),
+  );
+  $form['fieldset1']['submit_news'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All news'),
+    '#submit' => array('fin_content_delete_form_submit_news'),
+  );
+
+  $form['fieldset1']['submit_office'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All Office'),
+    '#submit' => array('fin_content_delete_form_submit_offices'),
+  );
+
+  $form['fieldset1']['submit_contact'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All Contacts'),
+    '#submit' => array('fin_content_delete_form_submit_contacts'),
+  );
+
+  $form['fieldset1']['submit_mandate'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All Mandates'),
+    '#submit' => array('fin_content_delete_form_submit_mandates'),
+  );
+
+  $form['fieldset1']['submit_manager_firm'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All manager firms'),
+    '#submit' => array('fin_content_delete_form_submit_manager_firms'),
+  );
+
+  $form['fieldset1']['submit_consultant_firm'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All consultant firms'),
+    '#submit' => array('fin_content_delete_form_submit_consultant_firms'),
+  );
+
+  $form['fieldset1']['submit_one'] = array(
+    '#type' => 'submit',
+    '#value' => t('Unpublish All Plans'),
+    '#submit' => array('fin_content_delete_form_submit_plan'),
+  );
+
+  $form['fieldset1']['submit_plan'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All Plans B'),
+    '#submit' => array('fin_content_delete_form_submit_plan_b'),
+  );
+
+  $form['fieldset2']['submit_field_collections'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete All field collections'),
+    '#submit' => array('fin_content_delete_form_submit_fc'),
+  );
+  return $form;
+}
+
+function fin_content_delete_form_submit_manager_firms($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'manager_firm');
+}
+
+function fin_content_delete_form_submit_consultant_firms($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'consultant_firm');
+}
+
+function fin_content_delete_form_submit_news($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'news');
+}
+
+function fin_content_delete_form_submit_offices($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'office');
+}
+
+function fin_content_delete_form_submit_contacts($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'contact');
+}
+
+function fin_content_delete_form_submit_mandates($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'mandate');
+}
+
+function fin_content_delete_form_submit_plan($form, &$form_state) {
+  fin_content_delete_all_bundle_v2('node', 'plan');
+}
+
+function fin_content_delete_form_submit_plan_b($form, &$form_state) {
+  fin_content_delete_all_bundle('node', 'plan');
+}
+
+function fin_content_delete_form_submit_fc($form, &$form_state) {
+  $fc = entity_get_info('field_collection_item');
+  foreach ($fc['bundles'] as $name => $bunndle) {
+    fin_content_delete_all_bundle('field_collection_item', $name);
+  }
+}
+
+/**
+ * Process with batch to save entity..
+ */
+function fin_content_delete_contact_resave($entity_type, $id) {
+  $entity = entity_load($entity_type, array($id));
+  if (is_array($entity)) {
+    $entity = reset($entity);
+  }
+  if (is_object($entity)) {
+    $ew = entity_metadata_wrapper($entity_type, $entity);
+    $ew->save();
+  }
+}
+
+/**
+ * Put all node in to delete queue and process with batch.
+ */
+function fin_content_delete_resave($entity_type, $id) {
+  $entity = entity_load($entity_type, array($id));
+  if (is_array($entity)) {
+    $entity = reset($entity);
+  }
+  if (is_object($entity)) {
+    $ew = entity_metadata_wrapper($entity_type, $entity);
+    $location = $ew->field_location->value();
+    if (!$location) {
+      $ew->save();
+    }
+    
+  }
+}
+
+/**
+ * Put all node in to delete queue and process with batch.
+ */
+function fin_content_delete_set_leading_contact() {
+  $sql = "SELECT * FROM `field_data_field_plan_er` p inner join field_data_field_old_contact_creation_date d on d.entity_id = p.`entity_id` and d.`revision_id` = p.`revision_id` where p.bundle = 'plan_contact' order by field_plan_er_target_id, `field_old_contact_creation_date_value` desc;'";
+  $planres = db_query($sql)->fetchAll();
+  $planid = 0;
+  $lead_eids = array();
+  $queue = DrupalQueue::get('fin_content_delete_lead_contact_queue');
+  foreach($planres as $planset) {
+    if ($planid != $planset->field_plan_er_target_id) {
+      $planid = $planset->field_plan_er_target_id;
+      $lead_eids[] = $planset->entity_id;
+      $task = array(
+        'id' => $planset->entity_id,
+      );
+      $queue->createItem($task);
+    }
+  }
+}
+
+function fin_content_delete_roster_queue() {
+  db_set_active('legacy');
+  $sql = "select * from tblfundconsultants t left join tblconsultanttypes b on t.ConsultantTypeID = b.ConsultantTypeID";
+  $result = db_query($sql);
+  db_set_active();
+  foreach ($result as $row) {
+    
+    $queue = DrupalQueue::get('fin_content_delete_contact_roster_queue');
+
+    $task = array(
+      'FundID' => $row->FundID,
+      'ConsultantFirmID' => $row->ConsultantFirmID,
+      'ConsultantContactID' => $row->ConsultantContactID,
+      'ConsultantTypeName' => $row->ConsultantTypeName,
+      'ID' => $row->FundConsultantID,
+    );
+    $queue->createItem($task);
+    return;
+  }
+}
+/**
+ * Put all node in to delete queue and process with batch.
+ */
+function fin_content_delete_all_bundle($entity_type, $bundle_type) {
+  $batch = array();
+  $einfo = entity_get_info($entity_type);
+  $keycolumn = $einfo['entity keys']['id'];
+  $entityQuery = new EntityFieldQuery();
+  $entities= $entityQuery->entityCondition('entity_type', $entity_type)
+    ->entityCondition('bundle', $bundle_type)
+    ->execute();
+  $count = 0;
+  $nids = array();
+  $nidss = array();
+  if (isset($entities[$entity_type])) {
+    $eids= array_keys($entities[$entity_type]);
+    foreach ($eids as $eid) {
+      $count++;
+      $nids[] = $eid;
+      if ($count > 99) {
+      // PLW if ($count > 1) {
+        $count = 0;
+        $nidss[] = $nids;
+        $nids = array();
+      }
+    }
+  }
+
+  if (!empty($nids)) {
+    $nidss[] = $nids;
+  }
+
+  $queue = DrupalQueue::get('fin_content_delete_queue');
+
+  if (!empty($nidss)) {
+    foreach ($nidss as $nids) {
+      $task = array(
+        'type' => $entity_type,
+        'id' => $nids,
+      );
+      $queue->createItem($task);
+    }
+  }
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function fin_content_delete_form_submit($form, &$form_state) {
+  $batch = array(
+    'title' => t('Importing users data'),
+    'operations' => array(),
+    'finished' => '_fin_users_migration_done',
+  );
+  $state_user = fin_users_migration_user_batch_wrap($batch);
+  batch_set($batch);
+}
+
+function fin_content_delete_all_bundle_v2($entity_type, $bundle_type) {
+  $batch = array();
+  $einfo = entity_get_info($entity_type);
+  $keycolumn = $einfo['entity keys']['id'];
+  $entityQuery = new EntityFieldQuery();
+  $entities= $entityQuery->entityCondition('entity_type', $entity_type)
+    ->entityCondition('bundle', $bundle_type)
+    ->execute();
+  $count = 0;
+  $nids = array();
+  $nidss = array();
+  if (isset($entities[$entity_type])) {
+    $eids= array_keys($entities[$entity_type]);
+    foreach ($eids as $eid) {
+      $count++;
+      $nids[] = $eid;
+      if ($count > 9) {
+      // PLW if ($count > 1) {
+        $count = 0;
+        $nidss[] = $nids;
+        $nids = array();
+      }
+    }
+  }
+
+  if (!empty($nids)) {
+    $nidss[] = $nids;
+  }
+
+  if (!empty($nidss)) {
+    foreach ($nidss as $nids) {
+      $batch['operations'][] = array(
+        'fin_content_delete_entity_delete_multiple',
+        array($entity_type, $nids),
+      );
+    }
+  }
+  if (!empty($batch['operations'])) {
+    batch_set($batch);
+  }
+}
+
+function fin_content_delete_entity_delete_multiple($entity_type, $nid) {
+  try{
+    foreach ($nid as $id) {
+      $node = node_load($id);
+      $node->status = 0;
+      node_save($node);
+    }
+  }
+  catch (Exception $e) {
+    watchdog("Plan Node Special treat", $e->getMessage(), array(), WATCHDOG_ERROR);
+  }
+}
+
+function fin_content_delete_queue_process($item) {
+  $id = $item['id'];
+  $type = $item['type'];
+  entity_delete_multiple($type, $id);
+}
+
+function fin_content_delete_contact_roster_queue_process($item) {
+  $field_wuin = md5('tblfunds' . $item['FundID']);
+  $plan_id = fin_saved_search_migration_entity_id($field_wuin);
+  $plan = FALSE;
+  if ($plan_id) {
+    $plan = entity_load('node', array($plan_id));
+    if (is_array($plan)) {
+      $plan = reset($plan);
+    }
+  }
+  if (is_object($plan)) {
+    // Clean up the the old roster contact.
+    $ew = entity_metadata_wrapper('node', $plan);
+    $save = array();
+    foreach ($ew->field_consultant_roster_fc as $key => $roster) {
+      if (empty($roster->value()->field_wuin)) {
+        if (is_object($roster->item_id)) {
+          $re = $roster->value();
+          if ($re) {
+             $save[] = $roster->item_id->value();
+          }
+        }
+      }
+    }
+    if (!empty($save)) {
+      entity_delete_multiple('field_collection_item', $save);
+    }
+  }
+  // return here as we just want to delete old consultant roster contact.
+  return;
+  $new_field_wuin = md5('tblfundconsultants' . $item['ID']);
+  $isexist = fin_saved_search_migration_entity_id($new_field_wuin);
+  if ($isexist) {
+    return $isexist;
+  }
+  
+  $field_wuin = md5('tblconsultantfirms' . $item['ConsultantFirmID']);
+  $consultantfirm_id = fin_saved_search_migration_entity_id($field_wuin);
+  $consultantfirm = FALSE;
+  if ($consultantfirm_id) {
+    $consultantfirm = entity_load('node', array($consultantfirm_id));
+    if (is_array($consultantfirm)) {
+      $consultantfirm = reset($consultantfirm);
+    }
+  }
+  $contact = FALSE;
+  $field_wuin = md5('tblfundcontacts' . $item['ConsultantContactID']);
+  $plancontact_id = fin_saved_search_migration_entity_id($field_wuin);
+  if ($plancontact_id) {
+    $contact = entity_load('paragraphs_item', array($plancontact_id));
+    if (is_array($contact)) {
+      $contact = reset($contact);
+      $contact = $contact->hostEntity();
+    }
+  }
+  
+  if ($plan) {
+    $collection = entity_create('field_collection_item', array('field_name' => 'field_consultant_roster_fc'));
+    $collection->setHostEntity('node', $plan);
+    $fc_wrapper = entity_metadata_wrapper('field_collection_item', $collection);
+    if ($consultantfirm) {
+      $fc_wrapper->field_consultant_firm_er = $consultantfirm;
+    }
+    if ($contact) {
+      $fc_wrapper->field_consultant_contact_er[] = $contact;
+    }
+    if ($item['ConsultantTypeName']) {
+      $consultanttype = fin_content_delete_utility_get_taxonomy_by_name($item['ConsultantTypeName'], 'consultant_types');
+      if ($consultanttype) {
+        $fc_wrapper->field_consultant_type_tr = $consultanttype;
+      }
+    }
+    $fc_wrapper->field_wuin = $new_field_wuin;
+    $fc_wrapper->field_legendid = $item['ID'];
+    $fc_wrapper->save();
+
+  }
+  else {
+    watchdog('fin_content_roster_queue', 'Following item is not imported due to missing entity' . print_r($item, TRUE), array(), WATCHDOG_ERROR);
+  }
+}
+
+function fin_content_delete_lead_contact_queue_process($item) {
+  $id = $item['id'];
+  db_update('field_data_field_lead_plan_contact')
+    ->fields(array('field_lead_plan_contact_value' => 1,))
+    ->condition('entity_id', $id)
+    ->execute();
+}
+
+
+function fin_content_delete_cron_queue_info() {
+  $return = array(
+    'fin_content_delete_contact_roster_queue' => array(
+      'worker callback' => 'fin_content_delete_contact_roster_queue_process',
+      'time' => '3450',
+    ),
+    'fin_content_delete_lead_contact_queue' => array(
+      'worker callback' => 'fin_content_delete_lead_contact_queue_process',
+      'time' => '3450',
+    ),
+    'fin_content_delete_queue' => array(
+      'worker callback' => 'fin_content_delete_queue_process',
+      'time' => '3450',
+    ),
+  );
+  return $return;
+}
+
+/**
+ * Get taxonomy Term by name, create one if it is not there.
+ */
+function fin_content_delete_utility_get_taxonomy_by_name($tname, $vname) {
+
+  if (empty($tname)) {
+    return;
+  }
+
+  $program = taxonomy_get_term_by_name($tname, $vname);
+  $pr = reset($program);
+  if (empty($pr)) {
+    $vocab = taxonomy_vocabulary_machine_name_load($vname);
+    if (!$vocab) {
+      $vocab = new stdClass();
+      $vocab->name = $vname;
+      $vocab->machine_name = $vname;
+      $result = taxonomy_vocabulary_save($vocab);
+      if ($result != SAVED_NEW) {
+        watchdog('banjia', 'Failed to create new vocabulary !vname', array('!vname' => $vname));
+      }
+    }
+    $term = new stdClass();
+    $term->name = $tname;
+    $term->vid = $vocab->vid;
+    $result = taxonomy_term_save($term);
+    if ($result == SAVED_NEW) {
+      return $term->tid;
+    }
+    else {
+      return;
+    }
+  }
+  else {
+    return isset($pr->tid) ? $pr->tid : NULL;
+  }
+}
+
+function fin_content_delete_roster_batch() {
+  $batch = array(
+    'title' => t('Consultant Roster data import'),
+    'operations' => array(),
+  );
+  db_set_active('legacy');
+  $sql = "select * from tblfundconsultants t left join tblconsultanttypes b on t.ConsultantTypeID = b.ConsultantTypeID";
+  $result = db_query($sql);
+  db_set_active();
+  foreach ($result as $row) {
+    $task = array(
+      'FundID' => $row->FundID,
+      'ConsultantFirmID' => $row->ConsultantFirmID,
+      'ConsultantContactID' => $row->ConsultantContactID,
+      'ConsultantTypeName' => $row->ConsultantTypeName,
+      'ID' => $row->FundConsultantID,
+    );
+    $batch['operations'][] = array(
+      'fin_content_delete_contact_roster_queue_process',
+      array($task),
+    );
+  }
+  batch_set($batch);
+}

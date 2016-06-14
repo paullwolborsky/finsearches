@@ -82,10 +82,11 @@ function fs_f_n_bt_manager_firm_field_group_info() {
     'label' => 'Firm Info',
     'weight' => '0',
     'children' => array(
-      0 => 'field_status_tr',
-      1 => 'field_acronym',
-      2 => 'reference_views_eva_major_style',
-      3 => 'reference_views_eva_minor_style',
+      0 => 'field_email',
+      1 => 'field_website',
+      2 => 'field_status_tr',
+      3 => 'field_address',
+      4 => 'field_acronym',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -140,7 +141,7 @@ function fs_f_n_bt_manager_firm_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Manager Notes',
-    'weight' => '18',
+    'weight' => '3',
     'children' => array(
       0 => 'field_manager_notes_ev',
     ),

@@ -47,10 +47,10 @@ class addressfield_phone_handler_field_address_phone_nr extends views_handler_fi
    */
   public function render($values) {
     $phoneNrs = unserialize($this->get_value($values));
-    $phone_number = $phoneNrs['phone_number'];
-    $phone_number_extension = $phoneNrs['phone_number_extension'];
-    $mobile_number = $phoneNrs['mobile_number'];
-    $fax_number = $phoneNrs['fax_number'];
+    $phone_number = !empty($phoneNrs['phone_number'])?$phoneNrs['phone_number']:'';
+    $phone_number_extension = !empty($phoneNrs['phone_number_extension'])?$phoneNrs['phone_number_extension']:'';
+    $mobile_number = !empty($phoneNrs['mobile_number'])?$phoneNrs['mobile_number']:'';
+    $fax_number = !empty($phoneNrs['fax_number'])?$phoneNrs['fax_number']:'';
     switch ($this->options['selected_phone_type']) {
       case 1:
         return $phone_number;

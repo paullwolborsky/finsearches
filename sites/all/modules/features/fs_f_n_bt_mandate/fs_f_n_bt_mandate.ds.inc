@@ -5,6 +5,234 @@
  */
 
 /**
+ * Implements hook_ds_field_settings_info().
+ */
+function fs_f_n_bt_mandate_ds_field_settings_info() {
+  $export = array();
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|mandate|default';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'mandate';
+  $ds_fieldsetting->view_mode = 'default';
+  $ds_fieldsetting->settings = array(
+    'mandate_comments_bf' => array(
+      'weight' => '11',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'mandate_consultants_hired_bf' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'mandate_consultants_onwatch_bf' => array(
+      'weight' => '6',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'mandate_consultant_finalists_bf' => array(
+      'weight' => '5',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'mandate_consultant_terminated_bf' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'mandate_managers_hired_bf' => array(
+      'weight' => '7',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'mandate_managers_onwatch_bf' => array(
+      'weight' => '10',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'mandate_managers_terminated_bf' => array(
+      'weight' => '8',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'mandate_manager_finalists_bf' => array(
+      'weight' => '9',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'mandate_notes_bf' => array(
+      'weight' => '12',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|mandate|default'] = $ds_fieldsetting;
+
+  return $export;
+}
+
+/**
+ * Implements hook_ds_custom_fields_info().
+ */
+function fs_f_n_bt_mandate_ds_custom_fields_info() {
+  $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_consultant_finalists_bf';
+  $ds_field->label = 'Mandate Consultant Finalists BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|a66de16df439f6027c2fef3c8b726233',
+    'block_render' => '1',
+  );
+  $export['mandate_consultant_finalists_bf'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_consultant_terminated_bf';
+  $ds_field->label = 'Mandate Consultants Terminated BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|dd1dcf66630915cf9ba9e907488c9298',
+    'block_render' => '1',
+  );
+  $export['mandate_consultant_terminated_bf'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_consultants_hired_bf';
+  $ds_field->label = 'Mandate Consultants Hired BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|fcaa5acc2805f151aa83f53e028b381e',
+    'block_render' => '1',
+  );
+  $export['mandate_consultants_hired_bf'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_consultants_onwatch_bf';
+  $ds_field->label = 'Mandate  Consultants OnWatch BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|af36729b47054d890b13c7ec7cd184d1',
+    'block_render' => '1',
+  );
+  $export['mandate_consultants_onwatch_bf'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_manager_finalists_bf';
+  $ds_field->label = 'Mandate Manager Finalists BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|03b217148f7d9983c8c8b56659be0104',
+    'block_render' => '1',
+  );
+  $export['mandate_manager_finalists_bf'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_managers_hired_bf';
+  $ds_field->label = 'Mandate Managers Hired BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|b2128bbe8dbc346f40bcc1392b1b4f76',
+    'block_render' => '1',
+  );
+  $export['mandate_managers_hired_bf'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_managers_onwatch_bf';
+  $ds_field->label = 'Mandate Managers OnWatch BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|eb767bd5382348a512b0ac4eee218bbb',
+    'block_render' => '1',
+  );
+  $export['mandate_managers_onwatch_bf'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_managers_terminated_bf';
+  $ds_field->label = 'Mandate Managers Terminated BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|d7843be87a1f7f518b3ed59b4a53ef78',
+    'block_render' => '1',
+  );
+  $export['mandate_managers_terminated_bf'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_notes_bf';
+  $ds_field->label = 'Mandate Notes BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|comment_views-mandate_notes',
+    'block_render' => '1',
+  );
+  $export['mandate_notes_bf'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'mandate_plan_info_bf';
+  $ds_field->label = 'Mandate Plan Info BF';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|4996c8489e7173d042b418a6a1d0ab58',
+    'block_render' => '1',
+  );
+  $export['mandate_plan_info_bf'] = $ds_field;
+
+  return $export;
+}
+
+/**
  * Implements hook_ds_layout_settings_info().
  */
 function fs_f_n_bt_mandate_ds_layout_settings_info() {
@@ -22,7 +250,7 @@ function fs_f_n_bt_mandate_ds_layout_settings_info() {
       'above_left' => array(
         0 => 'group_mandate_info',
         1 => 'group_rfp',
-        12 => 'field_rfp_date',
+        13 => 'field_rfp_date',
         14 => 'field_rfp_link',
         15 => 'field_date',
         16 => 'field_mandate_status_tr',
@@ -32,32 +260,31 @@ function fs_f_n_bt_mandate_ds_layout_settings_info() {
         20 => 'reference_views_eva_minor_style',
         21 => 'field_attribute_tr',
       ),
+      'below_left' => array(
+        2 => 'mandate_consultants_hired_bf',
+        3 => 'mandate_consultant_terminated_bf',
+        4 => 'mandate_consultant_finalists_bf',
+        5 => 'mandate_consultants_onwatch_bf',
+      ),
+      'below_right' => array(
+        6 => 'mandate_managers_hired_bf',
+        7 => 'mandate_managers_terminated_bf',
+        8 => 'mandate_manager_finalists_bf',
+        9 => 'mandate_managers_onwatch_bf',
+      ),
       'above_right' => array(
-        2 => 'mandate_plan_info_bf',
+        10 => 'mandate_plan_info_entity_view_1',
         22 => 'field_traits_tr',
         23 => 'group_traits',
       ),
-      'below_left' => array(
-        3 => 'mandate_consultants_hired_bf',
-        4 => 'mandate_consultant_terminated_bf',
-        5 => 'mandate_consultant_finalists_bf',
-        6 => 'mandate_consultants_onwatch_bf',
-      ),
-      'below_right' => array(
-        7 => 'mandate_managers_hired_bf',
-        8 => 'mandate_managers_terminated_bf',
-        9 => 'mandate_manager_finalists_bf',
-        10 => 'mandate_managers_onwatch_bf',
-      ),
       'footer' => array(
         11 => 'mandate_comments_bf',
-        13 => 'mandate_notes_bf',
+        12 => 'mandate_notes_bf',
       ),
     ),
     'fields' => array(
       'group_mandate_info' => 'above_left',
       'group_rfp' => 'above_left',
-      'mandate_plan_info_bf' => 'above_right',
       'mandate_consultants_hired_bf' => 'below_left',
       'mandate_consultant_terminated_bf' => 'below_left',
       'mandate_consultant_finalists_bf' => 'below_left',
@@ -66,9 +293,10 @@ function fs_f_n_bt_mandate_ds_layout_settings_info() {
       'mandate_managers_terminated_bf' => 'below_right',
       'mandate_manager_finalists_bf' => 'below_right',
       'mandate_managers_onwatch_bf' => 'below_right',
+      'mandate_plan_info_entity_view_1' => 'above_right',
       'mandate_comments_bf' => 'footer',
-      'field_rfp_date' => 'above_left',
       'mandate_notes_bf' => 'footer',
+      'field_rfp_date' => 'above_left',
       'field_rfp_link' => 'above_left',
       'field_date' => 'above_left',
       'field_mandate_status_tr' => 'above_left',

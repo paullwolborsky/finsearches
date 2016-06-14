@@ -1,25 +1,47 @@
 <?php
+
 /**
  * @file
  * This file contains code for form alteration AJAX stuff
  * and also some replicate hooks
  *
- *Written by John W. Johnson
- *2-17-2016
+ * Written by John W. Johnson
+ * 2-17-2016
  */
 
- /**
-  *Impliments hook_form_alter
-  */
+/**
+ * Helper for form options overrides.
+ */
+function _fin_forms_options_helper() {
+  return array(
+    'field_consultants_terminated' => array(
+      'field_consultant_contact_er' => 'field_consultant_firm_er',
+    ),
+    'field_consultants_hired' => array(
+      'field_consultant_contact_er' => 'field_consultant_firm_er',
+    ),
+    'field_consultant_roster_fc' => array(
+      'field_consultant_contact_er' => 'field_consultant_firm_er',
+    ),
+    'mandate' => array(
+      'field_consultant_contact_er' => 'field_consultant_firm_er',
+    ),
+  );
+}
+
+/**
+ * Impliments hook_form_alter
+ */
 function fin_forms_form_alter(&$form, &$form_state, $form_id) {
-  $lang = !empty($form_state['values']['language'])?$form_state['values']['language']:'und';
+  //dd($form_id, "form id");
+  $lang = !empty($form_state['values']['language']) ? $form_state['values']['language'] : 'und';
   switch ($form_id) {
     case 'mandate_node_form':
       $form['field_plan_er'][$lang][0]['target_id']['#ajax'] = array(
-        'callback'  => 'fin_forms_plan_size_callback',
-        'wrapper'   => 'edit-field-plan-size',
-        'method'    => 'replace',
-        'effect'    => 'fade',
+        'callback' => 'fin_forms_plan_size_callback',
+        'wrapper' => 'edit-field-plan-size',
+        'method' => 'replace',
+        'effect' => 'fade',
       );
       if (!empty($form_state['values']['field_plan_er'][$lang][0]['target_id']) && empty($form_state['values']['field_plan_size'][$lang][0]['value'])) {
         $plan = node_load($form_state['values']['field_plan_er'][$lang][0]['target_id']);
@@ -30,47 +52,70 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
         $form['field_plan_size'][$lang][0]['value']['#value'] = $value;
         $form['field_plan_size'][$lang][0]['value']['#default_value'] = $value;
       }
-      
+
       $form['field_consultant_firm_er'][$lang][0]['target_id']['#ajax'] = array(
-        'callback'  => 'fin_forms_consultants_callback',
-        'method'    => 'replace',
-        'effect'    => 'fade',
-        'event'     => 'autocompleteSelect',
+        'callback' => 'fin_forms_consultants_callback',
+        'method' => 'replace',
+        'effect' => 'fade',
+        'event' => 'autocompleteSelect',
       );
+      /*
+      if (!empty($form['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'])) {
+        $consultant_firm = $form['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
+        $options = fin_forms_get_contacts($consultant_firm);
+        dd($options, "Options if not empty");
+        $form['field_consultant_contact_er'][$lang]['#options'] = $options;
+      } else {
+        dd("Consultant firm is empty");
+        $options = array('_none' => "Select Consultant firm First");
+        $form['field_consultant_contact_er'][$lang]['#options'] = $options;
+      }
+      */
       if (!empty($form_state['values']['field_consultant_firm_er'][$lang][0]['target_id']) && empty($form_state['values']['field_consultant_firm_er'][$lang][0]['value'])) {
         $consultant_firm = $form_state['values']['field_consultant_firm_er'][$lang][0]['target_id'];
-        $options = fin_forms_get_contacts($consultant_firm);
-        $form['field_consultant_contact_er'][$lang]['#options'] = $options;
+        //$options = fin_forms_get_contacts($consultant_firm);
+        //$form['field_consultant_contact_er'][$lang]['#options'] = $options;
       }
 
       foreach ($form['field_consultants_hired'][$lang] as $key => &$hired) {
         if (is_int($key)) {
           $hired['field_consultant_firm_er'][$lang][0]['target_id']['#ajax'] = array(
-            'callback'  => 'fin_forms_consultants_callback',
-            'method'    => 'replace',
-            'effect'    => 'fade',
-            'event'     => 'autocompleteSelect',
+            'callback' => 'fin_forms_consultants_callback',
+            'method' => 'replace',
+            'effect' => 'fade',
+            'event' => 'autocompleteSelect',
           );
-          if (!empty($hired['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
+          /* if (!empty($hired['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
             $consultant_firm = $hired['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
             $options = fin_forms_get_contacts($consultant_firm);
             $hired['field_consultant_contact_er'][$lang]['#options'] = $options;
+            }
+            $hired_options = fin_forms_get_contacts($consultant_firm);
+            $hired['field_consultant_contact_er'][$lang]['#options'] = $hired_options;
+          } else {
+            $hired_options = array('_none' => "Select Consultant firm First");
+            $hired['field_consultant_contact_er'][$lang]['#options'] = $hired_options;
           }
+*/
         }
       }
       foreach ($form['field_consultants_terminated'][$lang] as $key => &$terminated) {
         if (is_int($key)) {
           $terminated['field_consultant_firm_er'][$lang][0]['target_id']['#ajax'] = array(
-            'callback'  => 'fin_forms_consultants_callback',
-            'method'    => 'replace',
-            'effect'    => 'fade',
-            'event'     => 'autocompleteSelect',
+            'callback' => 'fin_forms_consultants_callback',
+            'method' => 'replace',
+            'effect' => 'fade',
+            'event' => 'autocompleteSelect',
           );
-          if (!empty($terminated['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
+          /* if (!empty($terminated['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
             $terminated_firm = $terminated['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
             $terminated_options = fin_forms_get_contacts($terminated_firm);
             $terminated['field_consultant_contact_er'][$lang]['#options'] = $terminated_options;
-          }
+            } 
+          } else {
+            $terminated_options = array('_none' => "Select Consultant firm First");
+            $terminated['field_consultant_contact_er'][$lang]['#options'] = $terminated_options;
+          }*/
         }
       }
       break;
@@ -85,6 +130,11 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
                 'effect' => 'fade',
                 'event' => 'autocompleteSelect'
               );
+              $consultant_firm = $form['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
+              $options = fin_forms_get_offices($consultant_firm);
+              $form['field_job_history'][$lang][$key]['field_consultant_office_er'][$lang]['#options'] = $options;
+              $website = fin_forms_get_website($consultant_firm);
+              $form['field_job_history'][$lang][$key]['field_website'][$lang][0]['#value']['url'] = $website;
             }
             if (!empty($form_state['values']['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id'])) {
               $options = fin_forms_get_offices($form_state['values']['field_job_history'][$lang][$key]['field_consultant_firm_er'][$lang][0]['target_id']);
@@ -100,34 +150,73 @@ function fin_forms_form_alter(&$form, &$form_state, $form_id) {
       foreach ($form['field_consultant_roster_fc'][$lang] as $key => &$roster) {
         if (is_int($key)) {
           $roster['field_consultant_firm_er'][$lang][0]['target_id']['#ajax'] = array(
+            'callback' => 'fin_forms_consultants_callback',
+            'method' => 'replace',
+            'effect' => 'fade',
+            'event' => 'autocompleteSelect',
+          );
+          /* if (!empty($roster['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
+            $consultant_firm = $roster['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
+            $options = fin_forms_get_contacts($consultant_firm);
+            $roster['field_consultant_contact_er'][$lang]['#options'] = $options;
+
+            } 
+          } else {
+            $options = array('_none' => "Select Consultant firm First");
+            $roster['field_consultant_contact_er'][$lang]['#options'] = $options;
+          }
+          */
+        }
+      }
+      break;
+    case 'consultant_firm_node_form':
+      foreach ($form['field_invest_mgr_research'][$lang] as $key => &$research) {
+        if (is_int($key)) {
+          $research['field_consultant_firm_er'][$lang][0]['target_id']['#ajax'] = array(
             'callback'  => 'fin_forms_consultants_callback',
             'method'    => 'replace',
             'effect'    => 'fade',
             'event'     => 'autocompleteSelect',
           );
-          if (!empty($roster['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
-            $consultant_firm = $roster['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
+          if (!empty($research['field_consultant_firm_er'][$lang][0]['target_id']['#default_value'])) {
+            $consultant_firm = $research['field_consultant_firm_er'][$lang][0]['target_id']['#entity']->field_consultant_firm_er[$lang][0]['target_id'];
             $options = fin_forms_get_contacts($consultant_firm);
-            $roster['field_consultant_contact_er'][$lang]['#options'] = $options;
+            $research['field_consultant_contact_er'][$lang]['#options'] = $options;
+          } else {
+            $options = array('_none' => "Select Consultant firm First");
+            $research['field_consultant_contact_er'][$lang]['#options'] = $options;
           }
         }
+      }
+      break;
+    case 'user_profile_form':
+      if ($form['#user_category'] == 'account') {
+        if (!user_has_role(3) && !user_has_role(4)) {
+          $form['account']['mail']['#disabled'] = TRUE;
+        }
+      }
+      break;
+    case 'editableviews_entity_form_user_management':
+      foreach ($form['user'] as $key=>$user_element) {
+        $form['user'][$key]['roles']['#multiple'] = true;
+        $form['user'][$key]['roles']['#chosen'] = false;
       }
       break;
   }
 }
 
 /**
- *AJAXcallback for updating mandate plan size from plan_er field
+ * AJAXcallback for updating mandate plan size from plan_er field
  */
-function fin_forms_plan_size_callback (&$form, &$form_state = null) {
+function fin_forms_plan_size_callback(&$form, &$form_state = null) {
   return $form['field_plan_size'];
 }
 
 /**
- *AJAX callback for option limiting offices
+ * AJAX callback for option limiting offices
  */
-function fin_forms_office_callback (&$form, &$form_state = null) {
-  $lang = !empty($form_state['values']['language'])?$form_state['values']['language']:'und';
+function fin_forms_office_callback(&$form, &$form_state = null) {
+  $lang = !empty($form_state['values']['language']) ? $form_state['values']['language'] : 'und';
   $key = $form_state['triggering_element']['#parents'][2];
   $new_office = render($form['field_job_history'][$lang][$key]['field_consultant_office_er']);
   $new_website = render($form['field_job_history'][$lang][$key]['field_website']);
@@ -143,22 +232,35 @@ function fin_forms_office_callback (&$form, &$form_state = null) {
 
 /**
  * Callback function for consultant Firm change
- **/
-function fin_forms_consultants_callback (&$form, &$form_state = null) {
-  $lang = !empty($form_state['values']['language'])?$form_state['values']['language']:'und';
+ * */
+function fin_forms_consultants_callback(&$form, &$form_state = null) {
+  $lang = !empty($form_state['values']['language']) ? $form_state['values']['language'] : 'und';
   $key = $form_state['triggering_element']['#parents'][2];
   $trigger_name = $form_state['triggering_element']['#parents'][0];
   if ($trigger_name == 'field_consultant_firm_er') {
-    $new_consultants = render($form['field_consultant_contact_er'][$lang]);
+    $form['field_consultant_contact_er']['#id'] = 'edit-field-consultant-contact-er';
+    $new_consultants = render($form['field_consultant_contact_er']);
     return array(
       '#type' => 'ajax',
       '#commands' => array(
         ajax_command_replace("#edit-field-consultant-contact-er", $new_consultants),
       ),
     );
+  }
+elseif($trigger_name == 'field_invest_mgr_research') {
+    $new_consultants =  render($form[$trigger_name][$lang][$key]['field_consultant_contact_er']);
+    $field_name = str_replace('_', '-', $form_state['triggering_element']['#parents'][0]);
+    return array(
+      '#type' => 'ajax',
+      '#commands' => array(
+        ajax_command_replace("#edit-" . $field_name . "-und-" . $key . "-field-consultant-contact-er", $new_consultants),
+      ),
+    );
   } else {
     $new_consultants =  render($form[$trigger_name][$lang][$key]['field_consultant_contact_er']);
     $field_name = str_replace('_', '-', $form_state['triggering_element']['#parents'][0]);
+    $form[$trigger_name][$lang][$key]['field_consultant_contact_er']['#id'] = "edit-" . $field_name . "-und-" . $key . "-field-consultant-contact-er";
+    $new_consultants = render($form[$trigger_name][$lang][$key]['field_consultant_contact_er']);
     return array(
       '#type' => 'ajax',
       '#commands' => array(
@@ -169,49 +271,138 @@ function fin_forms_consultants_callback (&$form, &$form_state = null) {
 }
 
 /**
- *Function to get the offices for a Consultant firm
- **/
-function fin_forms_get_offices ($firm_nid = NULL) {
+ * Function to get the offices for a Consultant firm
+ * */
+function fin_forms_get_offices($firm_nid = NULL) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
-  ->entityCondition('bundle', 'office')
-  ->fieldCondition('field_consultant_firm_er', 'target_id', $firm_nid, '=');
+      ->entityCondition('bundle', 'office')
+      ->fieldCondition('field_consultant_firm_er', 'target_id', $firm_nid, '=');
   $result = $query->execute();
-  $options = array('none'=>'-none-');
+  $options = array('none' => '-none-');
   if (!empty($result)) {
-    foreach ($result['node'] as $key=>$value) {
+    foreach ($result['node'] as $key => $value) {
       $office = node_load($value->nid);
-      $options[$value->nid] = $office->title_field[$office->language][0]['value']; 
+      $options[$value->nid] = $office->title_field[$office->language][0]['value'];
     }
   }
   return $options;
 }
 
 /**
- *Function to get the contacts for a consultant firm
- **/
+ * Function to get the contacts for a consultant firm
+ * */
 function fin_forms_get_contacts($firm_nid = NULL) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
-  ->entityCondition('bundle', 'contact')
-  ->fieldCondition('field_consultant_firm_er', 'target_id', $firm_nid, '=');
+      ->entityCondition('bundle', 'contact')
+      ->fieldCondition('field_consultant_firm_er', 'target_id', $firm_nid, '=');
   $result = $query->execute();
-  $options = array('_none'=>'-none-');
-  foreach ($result['node'] as $key=>$value) {
+  $options = array('_none' => '-none-');
+  foreach ($result['node'] as $key => $value) {
     $contact = node_load($value->nid);
-    $options[$value->nid] = $contact->title_field[$contact->language][0]['value']; 
+    $options[$value->nid] = $contact->title_field[$contact->language][0]['value'];
   }
-  return $options;
+  // Adds an extra array around the options, otherwise module_invoke_all()
+  // Removes the (correct) key.
+  return array($options);
 }
 
 /**
- *Function to get the website for a consultant firm
- **/
+ * Function to get the website for a consultant firm
+ * */
 function fin_forms_get_website($firm_nid = NULL) {
   $firm = node_load($firm_nid);
   if (!empty($firm->field_website[$firm->language][0]['url'])) {
     return $firm->field_website[$firm->language][0]['url'];
-  } else {
+  }
+  else {
     return '';
   }
+}
+
+/**
+ * Implements hook_fin_options_bypass().
+ */
+function fin_forms_fin_options_bypass($field, $instance, $entity_type, $entity, $form, $form_state) {
+  $helper = _fin_forms_options_helper();
+  foreach ($helper as $bundle => $field_name) {
+    if ($bundle == $instance['bundle']) {
+      $keys = array_keys($field_name);
+      $key = reset($keys);
+      $value = $field_name[$key];
+      if (isset($form_state['input'][$bundle]['und'][0][$value]['und'][0]['target_id'])) {
+        $nid = $form_state['input'][$bundle]['und'][0][$value]['und'][0]['target_id'];
+      }
+      else if (isset($form_state['node']->{$bundle}['und'][0]['value'])) {
+        // Checks to see if it is on the actual node rather than an entity that
+        // is referenced
+        $nid = fin_forms_return_nid_from_fc($form_state['node']->{$bundle}['und'][0]['value'], $value);
+      }
+      else if ($bundle == 'mandate') {
+        $nid = $form_state['node']->{$value}['und'][0]['target_id'];
+      }
+      if (isset($nid)) {
+        return array(FALSE);
+      }
+      else {
+        return array(TRUE);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_fin_options_list().
+ */
+function fin_forms_fin_options_list($field, $instance, $entity_type, $entity, $form, $form_state) {
+  $helper = _fin_forms_options_helper();
+  foreach ($helper as $bundle => $field_name) {
+    if ($bundle == $instance['bundle']) {
+      $keys = array_keys($field_name);
+      $key = reset($keys);
+      $value = $field_name[$key];
+      if (isset($form_state['input'][$bundle]['und'][0][$value]['und'][0]['target_id'])) {
+        $nid = fin_forms_regex($form_state['input'][$bundle]['und'][0][$value]['und'][0]['target_id']);
+      }
+      else if (isset($form_state['node']->{$bundle}['und'][0]['value'])) {
+        $nid = fin_forms_return_nid_from_fc($form_state['node']->{$bundle}['und'][0]['value'], $value);
+      }
+      else if (isset($form_state['input'][$value]['und'][0]['target_id'])) {
+        $nid = fin_forms_regex($form_state['input'][$value]['und'][0]['target_id']);
+      }
+      else if (isset($form_state['node']->{$value}['und'][0]['target_id'])) {
+        $nid = $form_state['node']->{$value}['und'][0]['target_id'];
+      }
+      else {
+        return array();
+      }
+      return fin_forms_get_contacts($nid);
+    }
+  }
+  return array();
+}
+
+/**
+ * Regex from entityreference to pull out nid.
+ */
+function fin_forms_regex($item) {
+  if (preg_match("/.+\((\d+)\)/", $item, $matches)) {
+    $nid = $matches[1];
+    return $nid;
+  }
+  else
+    return NULL;
+}
+
+/**
+ * Get NID from field collection.
+ */
+function fin_forms_return_nid_from_fc($fc_id, $value) {
+  $nid = NULL;
+  $fc = reset(entity_load('field_collection_item', array($fc_id)));
+  if (isset($fc->{$value}['und'][0]['target_id'])) {
+    $nid = $fc->{$value}['und'][0]['target_id'];
+  }
+  return $nid;
 }

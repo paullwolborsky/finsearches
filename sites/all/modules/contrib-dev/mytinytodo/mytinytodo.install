@@ -163,3 +163,11 @@ function mytinytodo_update_7002(&$sandbox) {
     // Rename the mytinytodo_todolist table to mytinytodo_todos
     db_rename_table('mytinytodo_todolist', 'mytinytodo_todos');
 }
+
+/** 
+ * Create new uid column in mytinytodo_lists
+ */
+function mytinytodo_update_7004(&$sandbox) {
+  $schema = mytinytodo_schema();
+  db_add_field('mytinytodo_lists', 'uid', array('type' => 'int', 'unsigned' => TRUE, 'not null' => FALSE, 'default' => 0));
+}

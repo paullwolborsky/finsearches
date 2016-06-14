@@ -829,7 +829,7 @@ function link_field_process($element, $form_state, $complete_form) {
     '#maxlength' => LINK_URL_MAX_LENGTH,
     '#title' => t('URL'),
     '#required' => ($element['#delta'] == 0 && $settings['url'] !== 'optional') ? $element['#required'] : FALSE,
-    '#default_value' => isset($element['#value']['url']) ? $element['#value']['url'] : NULL,
+    '#value' => isset($element['#value']['url']) ? $element['#value']['url'] : $instance['default_value'][0]['url'],
   );
   if ($settings['title'] !== 'none' && $settings['title'] !== 'value') {
     // Figure out the label of the title field.
@@ -849,7 +849,7 @@ function link_field_process($element, $form_state, $complete_form) {
       '#title' => $title_label,
       '#description' => t('The link title is limited to @maxlength characters maximum.', array('@maxlength' => $settings['title_maxlength'])),
       '#required' => ($settings['title'] == 'required' && (($element['#delta'] == 0 && $element['#required']) || !empty($element['#value']['url']))) ? TRUE : FALSE,
-      '#default_value' => isset($element['#value']['title']) ? $element['#value']['title'] : NULL,
+      '#value' => isset($element['#value']['title']) ? $element['#value']['title'] : $instance['default_value'][0]['title'],
     );
   }
 

@@ -174,6 +174,22 @@ class SearchApiAttachmentsAlterSettings extends SearchApiAbstractAlterCallback {
         if ($extraction_method == 'tika') {
           $extraction = $this->extract_tika($file);
         }
+        elseif ($extraction_method == 'python_pdf2txt') {
+          if (in_array($file['filemime'], $this->pdf_mimetypes())) {
+            $extraction = $this->extract_python_pdf2txt($file);
+          }
+          elseif (variable_get('search_api_attachments_debug', FALSE)) {
+            watchdog('search_api_attachments', 'The python_pdf2txt extraction method does not support %mime_type', array('%mime_type' => $file['filemime']), WATCHDOG_WARNING);
+          }
+        }
+        elseif ($extraction_method == 'pdftotext') {
+          if (in_array($file['filemime'], $this->pdf_mimetypes())) {
+            $extraction = $this->extract_pdftotext($file);
+          }
+          elseif (variable_get('search_api_attachments_debug', FALSE)) {
+            watchdog('search_api_attachments', 'The pdftotext extraction method does not support %mime_type', array('%mime_type' => $file['filemime']), WATCHDOG_WARNING);
+          }
+        }
         else {
           $extraction = $this->extract_solr($file);
         }
@@ -188,7 +204,9 @@ class SearchApiAttachmentsAlterSettings extends SearchApiAbstractAlterCallback {
     if ($extraction !== FALSE && isset($cid)) {
       cache_set($cid, $extraction, self::CACHE_TABLE);
     }
-
+    if (variable_get('search_api_attachments_debug', FALSE)) {
+      watchdog('search_api_attachments', "File: @filename\nExtraction: @extraction", array('@filename' => $file['uri'], '@extraction' => $extraction), WATCHDOG_DEBUG);
+    }
     return $extraction;
   }
 
@@ -203,7 +221,6 @@ class SearchApiAttachmentsAlterSettings extends SearchApiAbstractAlterCallback {
 
   protected function extract_exif($file) {
     $ret = '';
-    $size = getimagesize($this->get_realpath($file), $info);
     if (isset($info['APP13'])) {
       $iptc = iptcparse($info['APP13']);
       if (is_array($iptc)) {
@@ -237,7 +254,7 @@ class SearchApiAttachmentsAlterSettings extends SearchApiAbstractAlterCallback {
     // Force running the Tika jar headless.
     $param = ' -Djava.awt.headless=true ' . $param;
 
-    $cmd = escapeshellcmd('java') . $param . ' -jar ' . escapeshellarg($tika) . ' -t ' . escapeshellarg($filepath);
+    $cmd = variable_get('search_api_attachments_java', 'java') . $param . ' -jar ' . escapeshellarg($tika) . ' -t ' . escapeshellarg($filepath);
     if (strpos(ini_get('extension_dir'), 'MAMP/')) {
       $cmd = 'export DYLD_LIBRARY_PATH=""; ' . $cmd;
     }
@@ -248,11 +265,46 @@ class SearchApiAttachmentsAlterSettings extends SearchApiAbstractAlterCallback {
     return shell_exec($cmd);
   }
 
+  protected function extract_pdftotext($file) {
+    $filepath = $this->get_realpath($file);
+    // UTF-8 multibyte characters will be stripped by escapeshellargs() for the
+    // default C-locale.
+    // So temporarily set the locale to UTF-8 so that the filepath remains valid.
+    $backup_locale = setlocale(LC_CTYPE, '0');
+    setlocale(LC_CTYPE, 'en_US.UTF-8');
+    // Pdftotext descriptions states that '-' as text-file will send text to
+    // stdout.
+    $cmd = escapeshellcmd('pdftotext')  . ' ' . escapeshellarg($filepath) . ' -';
+    // Restore the locale.
+    setlocale(LC_CTYPE, $backup_locale);
+    // Support UTF-8 commands: http://www.php.net/manual/en/function.shell-exec.php#85095
+    shell_exec("LANG=en_US.utf-8");
+    return shell_exec($cmd);
+  }
+
+  protected function extract_python_pdf2txt($file) {
+    $filepath = $this->get_realpath($file);
+    // Restore the locale.
+    $pdf2txt_path = realpath(variable_get('search_api_attachments_python_pdf2txt_path', '/usr/bin'));
+    $pdf2txt = realpath($pdf2txt_path . '/' . variable_get('search_api_attachments_python_pdf2txt_script', 'pdf2txt'));
+    $cmd = escapeshellcmd('python') . ' ' . escapeshellarg($pdf2txt) . ' -C -t text ' . escapeshellarg($filepath);
+    // UTF-8 multibyte characters will be stripped by escapeshellargs() for the
+    // default C-locale.
+    // So temporarily set the locale to UTF-8 so that the filepath remains
+    // valid.
+    $backup_locale = setlocale(LC_CTYPE, '0');
+    setlocale(LC_CTYPE, $backup_locale);
+    // Support UTF-8 commands: http://www.php.net/manual/en/function.shell-exec.php#85095
+    shell_exec("LANG=en_US.utf-8");
+    return shell_exec($cmd);
+  }
+
   /**
    * Extract data using Solr (via the ExtractingRequestHandler) or using the
    * remote Tika servlet.
-   * @see  http://wiki.apache.org/solr/ExtractingRequestHandler.
-   * @see  http://wiki.apache.org/tika/TikaJAXRS.
+   *
+   * @see http://wiki.apache.org/solr/ExtractingRequestHandler
+   * @see http://wiki.apache.org/tika/TikaJAXRS
    */
   protected function extract_solr($file) {
     $extraction = FALSE;
@@ -369,4 +421,16 @@ class SearchApiAttachmentsAlterSettings extends SearchApiAbstractAlterCallback {
       return $wrapper->getExternalUrl();
     }
   }
+
+  protected function pdf_mimetypes() {
+    return array(
+      'application/pdf',
+      'application/x-pdf',
+      'application/acrobat',
+      'text/x-pdf',
+      'text/pdf',
+      'applications/vnd.pdf',
+    );
+  }
+
 }

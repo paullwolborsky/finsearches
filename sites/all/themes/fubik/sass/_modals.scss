@@ -2,8 +2,13 @@
  *Styles for modal windows
  */
 #modalContent {
-  //Contact form
+  .column-main {
+    width: 100%;
+    float: none;
+  }    
   #contact-node-form {
+    width: 100%;
+    float: none;
     .ds-above-left, .ds-above-right {
       width: 33.3%;
     }
@@ -110,6 +115,8 @@
   }
   .node-action-block {
     display: none;
+  }
+  #mandate-node-form {
   }
 }
 

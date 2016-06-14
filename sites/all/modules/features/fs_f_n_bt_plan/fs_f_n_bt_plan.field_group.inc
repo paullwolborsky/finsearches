@@ -250,15 +250,18 @@ function fs_f_n_bt_plan_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Plan Info',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
       0 => 'field_placement_policy_link',
       1 => 'field_plan_type_tr',
       2 => 'field_status_tr',
       3 => 'field_placement_policy_tr',
-      4 => 'field_acronym',
-      5 => 'reference_views_eva_foia_required',
-      6 => 'reference_views_eva_plan_size',
+      4 => 'field_address',
+      5 => 'field_website',
+      6 => 'field_email',
+      7 => 'field_acronym',
+      8 => 'reference_views_eva_foia_required',
+      9 => 'reference_views_eva_plan_size',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -314,7 +317,7 @@ function fs_f_n_bt_plan_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Plan Notes',
-    'weight' => '10',
+    'weight' => '9',
     'children' => array(
       0 => 'field_plan_notes_ev',
     ),

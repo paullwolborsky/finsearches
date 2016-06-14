@@ -34,9 +34,6 @@
   Drupal.behaviors.fubik = {
     attach: function(context, settings) {
 
-      //Get fancy with asset allocation
-      
-
       var $body = $('body', context);
       $('.view-display-id-eva_mandate_history_edit .view-content > table').wrap("<form action='" + window.location.href  + "' method='post' id='editableviews-entity-form-comment-views' accept-charset='UTF-8'></form>");
       
@@ -83,7 +80,6 @@
           var total = 0;
           $currentBlock.find(".field-type-number-decimal input").each(function(){
             if ($(this).val() != 0) {
-              console.log(total);
               total = total + parseFloat($(this).val());
             }
           });
@@ -104,7 +100,11 @@
         Drupal.fubik.updateManaged(context);      
       });
       
-      
+      $('.view-id-user_management table td.views-field-metadata-property-editable-2 select').each(function(){
+        //$(this).chosen('destroy');
+        //$(this).prop('multiple', true);
+        $(this).css('height', 'auto');
+      });
     }
   };
 })(jQuery, Drupal);

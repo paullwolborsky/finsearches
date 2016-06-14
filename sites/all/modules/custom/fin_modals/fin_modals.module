@@ -31,8 +31,8 @@ function fin_modals_popup_style() {
         'modalSize' => array(
           'type' => 'scale',
           'width' => .95,
-          'height' => .8,
-          'contentRight' => 25,
+          'height' => .9,
+          'contentRight' => 28,
         ),
       ),
     );
@@ -67,21 +67,23 @@ function fin_modals_menu() {
     'theme callback' => '_fin_modals_theme',
     'theme arguments' => array('fubik'),
   );
-  //FRONT END links
-  //Different link needed for different themes
-  $items['modal-front/%ctools_js/add'] = array(
-    'page callback' => 'fin_modals_node_add_modal_callback',
-    'page arguments' => array(1),
-    'access arguments' => array('access content'),
+
+  $items['modal/%/comment/%ctools_js/%'] = array(
+    'page callback' => 'fin_modals_edit_callback',
+    'page arguments' => array(1,3,4),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
     'theme callback' => '_fin_modals_theme',
-    'theme arguments' => array('corposs'),
-  );  
+    'theme arguments' => array('fubik'),
+  );
+  
   $items['modal/%/comment/%ctools_js'] = array(
     'page callback' => 'fin_modals_new_callback',
     'page arguments' => array(1,3),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'theme callback' => '_fin_modals_theme',
+    'theme arguments' => array('fubik'),
   );
 
   $items['modal/%/tasks/%ctools_js'] = array(
@@ -90,7 +92,17 @@ function fin_modals_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'theme callback' => '_fin_modals_theme',
+    'theme arguments' => array('corposs'),
   );
+
+  //FRONT END links
+  //Different link needed for different themes
+  $items['modal-front/%ctools_js/add'] = array(
+    'page callback' => 'fin_modals_node_add_modal_callback',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'theme callback' => '_fin_modals_theme',
+  );  
   //Different link needed for different themes
   $items['modal-front/%/tasks/%ctools_js'] = array(
     'page callback' => 'fin_modals_task_callback',
@@ -98,14 +110,7 @@ function fin_modals_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'theme callback' => '_fin_modals_theme',
-  );
-
-  $items['modal/%/comment/%ctools_js/%'] = array(
-    'page callback' => 'fin_modals_edit_callback',
-    'page arguments' => array(1,3,4),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-    'theme callback' => '_fin_modals_theme',
+    'theme arguments' => array('corposs'),
   );
   $items['resources/shortcuts']  = array(
     'type' =>  MENU_NORMAL_ITEM,
@@ -117,7 +122,7 @@ function fin_modals_menu() {
   );
   $items['resources/subscriptions']  = array(
     'type' => MENU_NORMAL_ITEM,
-    'title' => 'Subscriptions',
+    'title' => 'Following',
     'access arguments' => array('subscribe to content'), 
     'menu_name' => 'main-menu',
     'weight' => 1,
@@ -131,14 +136,14 @@ function fin_modals_menu() {
     'weight' => 2,
     'page callback' => 'fin_modals_menu_callbacks',
   );
-  $items['resources/saved-filters']  = array(
-    'type' => MENU_NORMAL_ITEM,
-    'title' => "Saved Filters",
-    'access callback' => 'user_is_logged_in',
-    'menu_name' => 'main-menu',
-    'weight' => 3,
-    'page callback' => 'fin_modals_menu_callbacks',
+  $items['ajax/entity-delete/%/%'] = array(
+    'page callback' => 'fin_modals_entity_delete',
+    'page arguments' => array(2,3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'theme callback' => '_fin_modals_theme',
   );
+
   $items['resources/imce']  = array(
     'type' => MENU_NORMAL_ITEM,
     'title' => "File Browser",
@@ -156,7 +161,7 @@ function fin_modals_menu_alter(&$items) {
   $items['user/%user/messages']['type'] = MENU_CALLBACK;
   $items['user/%user/subscriptions']['type'] = MENU_CALLBACK;
   $items['user/%user/saved-searches']['type'] = MENU_CALLBACK;
-  $items['user/%user/saved-filters']['type'] = MENU_CALLBACK;
+  //$items['user/%user/saved-filters']['type'] = MENU_CALLBACK;
   $items['user/%user/imce']['type'] = MENU_CALLBACK;
 }
 
@@ -168,8 +173,8 @@ function fin_modals_menu_callbacks() {
     drupal_goto("user/" . $user->uid . "/subscriptions");
   } elseif (arg(1) == 'saved-searches') {
     drupal_goto("user/" . $user->uid . "/saved-searches");
-  } elseif (arg(1) == 'saved-filters') {
-    drupal_goto("user/" . $user->uid . "/saved-filters");
+  //} elseif (arg(1) == 'saved-filters') {
+  //  drupal_goto("user/" . $user->uid . "/saved-filters");
   } elseif (arg(1) == 'imce') {
     drupal_goto("user/" . $user->uid . "/imce");
   } else {
@@ -177,6 +182,18 @@ function fin_modals_menu_callbacks() {
   }
 }
 
+/**
+ * Entiry actions
+ *  Used now just for saved filter delete
+ */
+function fin_modals_entity_delete ($entity_type = NULL, $entity_id = NULL) {
+  $destination = !empty($_GET['destionation'])?$_GET['destionation']:'/';
+  if (!$entity_type || !$entity_id || is_object($entity_type)) {
+    return;
+  }
+  entity_delete($entity_type, $entity_id);
+  drupal_goto($destination);
+}
 
 /**
  *NEW comment form
@@ -432,7 +449,7 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
         $form['field_consultants_terminated']['und']['#suffix'] = "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', 'ctools-modal-fin-modals-contact-style') . "</div>";
     
       }elseif($form_id == "plan_node_form"){
-        $form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
+        //$form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
         $form['field_consultant_roster_fc']['und']['#suffix'] =
         "<div class='modal-links'>" . ctools_modal_text_button('Create New Consultant Contact', $href. '/contact/' . $form['#node']->nid . '/field_consultants_hired', 'Create New Contact', 'ctools-modal-fin-modals-contact-style') . "</div>";
         //$form['field_managers_hired']['und']['#suffix'] =  $managers_hired_link;
@@ -445,7 +462,7 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
         $form['field_manager_of_managers']['und']['#suffix'] = ctools_modal_text_button('Create New Manager Contact', $href. '/contact/' . $form['#node']->nid . '/field_manager_of_managers', 'Create New ManagerContact', 'ctools-modal-fin-modals-contact-style');
 
       }elseif($form_id == 'consultant_firm_node_form') {
-        //$form['field_main_office_ev']['und'][0]['#suffix'] = ctools_modal_text_button('Create New Office', $href. '/office/' . $form['#node']->nid . '/field_main_office_ev', 'Create New Office', 'ctools-modal-fin-modals-contact-style');
+        $form['field_main_office_ev']['und'][0]['#suffix'] = ctools_modal_text_button('Create New Office', $href. '/office/' . $form['#node']->nid . '/field_main_office_ev', 'Create New Office', 'ctools-modal-fin-modals-contact-style');
       } elseif($form_id == 'comment_form') {
         if (!empty($form_state['ajax']) && $form_state['ajax']) {
           $comment = $form_state['comment'];
@@ -457,9 +474,9 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
           }
         }
       } elseif ($form_id == 'contact_node_form') {
-        $form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
+        //$form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
       } elseif ($form_id == 'office_node_form') {
-        $form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
+        //$form['field_address']['und'][0]['field_address']['widget']['phone_block']['phone_number']['phone_number']['#title'] = "Main Number";
       }
     }
   }

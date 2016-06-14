@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the fs_f_fc_bt_consultant_comments feature.
+ */
+
+include_once 'fs_f_fc_bt_consultant_comments.features.inc';
