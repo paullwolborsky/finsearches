@@ -80,7 +80,7 @@ function fs_f_base_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 18,
+      'weight' => 11,
     ),
   );
 
@@ -154,7 +154,7 @@ function fs_f_base_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 10,
     ),
   );
 
