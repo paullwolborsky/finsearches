@@ -37,7 +37,7 @@ function fin_users_migration_form() {
 function fin_users_migration_user_batch_wrap(&$batch) {
 
   db_set_active('legacy');
-  $sql = "select u.*, at.name as accounttype from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid where u.uid > 0";
+  $sql = "select u.*, at.name as accounttype, ex.expire_date as expire from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid left join account_expiry ex on u.uid = ex.uid where u.uid > 0";
   $result = db_query($sql);
   db_set_active();
   // Oids are all old keys in source table, noids keys we saved
@@ -211,14 +211,15 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     }
     $main_profile->field_pf_first_name[LANGUAGE_NONE][0]['value'] = $firstname;
     $main_profile->field_pf_last_name[LANGUAGE_NONE][0]['value'] = $lastname;
-//    $profilewrap = entity_metadata_wrapper('profile2', $main_profile);
+//    $main_profile->
     if ($organization_nid) {
  //     $profilewrap->field_pf_organization = $organization;
       $main_profile->field_pf_organization_er[LANGUAGE_NONE][0]['target_id'] = $organization_nid;
     }
- 
-    entity_save('profile2', $main_profile);
-//    $profilewrap->save();
+    $profilewrap = entity_metadata_wrapper('profile2', $main_profile);
+    $profilewrap->field_expire_date = $olduser['expire'];
+//    entity_save('profile2', $main_profile);
+    $profilewrap->save();
   }
   catch (Exception $e) {
     $message = t('Failed to %action profile for user %username ( %email ) from D5 Row: %data. Error: @msg',
