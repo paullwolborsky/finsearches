@@ -255,3 +255,258 @@ function fin_mod_add_and_remove_condition(&$query, &$conditions, $field, $inside
     }
   }
 }
+
+/**
+ * Implements hook_field_attach_view_alter().
+ */
+function fin_mod_field_attach_view_alter(&$build, $context) {
+  module_load_include("module", "ds");
+  $entity_type = $build['#entity_type'];
+  $bundle = $build['#bundle'];
+  $view_mode = $context['view_mode'];
+  $entity = $context['entity'];
+  $layout = ds_get_layout($entity_type, $bundle, $view_mode);
+
+  // Check on field/delta limit.
+  if (isset($layout['settings']['limit'])) {
+    foreach ($layout['settings']['limit'] as $field => $limit) {
+      if (isset($build[$field])) {
+        if ($limit === 'delta' && isset($entity->ds_delta) && isset($entity->ds_delta[$field])) {
+          $delta = $entity->ds_delta[$field];
+          foreach ($build[$field]['#items'] as $key => $item) {
+            if ($key != $delta) {
+              unset($build[$field][$key]);
+            }
+          }
+        }
+        else {
+          $count = count($build[$field]['#items']);
+          if ($count > $limit) {
+            $build[$field]['#items'] = array_slice($build[$field]['#items'], 0, $limit);
+          }
+        }
+      }
+    }
+  }
+
+  // Add Display Suite display fields.
+  $fields = ds_get_fields($entity_type);
+  $field_values = ds_get_field_settings($entity_type, $bundle, $layout['view_mode']);
+
+  foreach ($field_values as $key => $field) {
+
+    // Ignore if this field is not a DS field.
+    if (!isset($fields[$key])) {
+      continue;
+    }
+
+    $field = $fields[$key];
+    if (isset($field_values[$key]['format'])) {
+      $field['formatter'] = $field_values[$key]['format'];
+    }
+
+    if (isset($field_values[$key]['formatter_settings'])) {
+      $field['formatter_settings'] = $field_values[$key]['formatter_settings'];
+    }
+    $field_value = fin_mod_get_field_value($key, $field, $entity, $entity_type, $bundle, $view_mode, $build);
+    if($field_value == 'suppressed') {
+      unset($build[$key]);
+      return;
+    }
+ 
+    // Title label.
+    if ($key == 'title' && $entity_type == 'node') {
+      $node_type = node_type_get_type($entity);
+      $field['title'] = function_exists('i18n_node_translate_type') ? i18n_node_translate_type($node_type->type, 'title_label', $node_type->title_label) : $node_type->title_label;
+    }
+
+    if (!empty($field_value) || (string) $field_value === '0') {
+
+      // Special case for views.
+      if (!empty($build['render_code_fields'])) {
+        $build[$key] = $field_value;
+      }
+      else {
+        $build[$key] = array(
+          '#theme' => 'field',
+          '#field_type' => 'ds',
+          '#skip_edit' => TRUE,
+          '#title' => $field['title'],
+          '#weight' => isset($field_values[$key]['weight']) ? $field_values[$key]['weight'] : 0,
+          '#label_display' => isset($field_values[$key]['label']) ? $field_values[$key]['label'] : 'inline',
+          '#field_name' => $key,
+          '#bundle' => $bundle,
+          '#object' => $entity,
+          '#entity_type' => $entity_type,
+          '#view_mode' => $view_mode,
+          '#access' => (variable_get('ds_extras_field_permissions', FALSE) && function_exists('ds_extras_ds_field_access')) ? ds_extras_ds_field_access($key, $entity_type) : TRUE,
+          '#items' => array(
+            0 => array(
+              'value' => $field_value,
+            ),
+          ),
+          0 => array(
+            '#markup' => $field_value,
+          ),
+        );
+      }
+    }
+  }
+
+  $disable_css = FALSE;
+  if (!empty($layout['settings']['layout_disable_css'])) {
+    $disable_css = TRUE;
+  }
+
+  // Add path to css file for this layout and disable block regions if necessary.
+  if (!$disable_css && isset($layout['css']) && !isset($loaded_css[$layout['path'] . '/' . $layout['layout'] . '.css'])) {
+    // Register css file.
+    $loaded_css[$layout['path'] . '/' . $layout['layout'] . '.css'] = TRUE;
+    // Add css file.
+    if (isset($layout['module']) && $layout['module'] == 'panels') {
+      $build['#attached']['css'][] = $layout['path'] . '/' . $layout['panels']['css'];
+    }
+    else {
+      $build['#attached']['css'][] = $layout['path'] . '/' . $layout['layout'] . '.css';
+    }
+  }
+}
+
+/**
+ * Essentially overrides DS.
+ */
+function fin_mod_get_field_value($key, $field, $entity, $entity_type, $bundle, $view_mode, $build = array()) {
+
+  $field['field_name'] = $key;
+  $field['entity'] = $entity;
+  $field['entity_type'] = $entity_type;
+  $field['bundle'] = $bundle;
+  $field['view_mode'] = $view_mode;
+  $field['build'] = $build;
+
+  // Special case for ds_views which can handle custom fields now.
+  if ($field['field_type'] != DS_FIELD_TYPE_PREPROCESS && $entity_type == 'ds_views') {
+    $entity->preprocess_fields[] = $key;
+  }
+
+  switch ($field['field_type']) {
+
+    case DS_FIELD_TYPE_PREPROCESS:
+      $entity->preprocess_fields[] = $key;
+      break;
+
+    case DS_FIELD_TYPE_FUNCTION:
+      if (isset($field['file'])) {
+        include_once $field['file'];
+      }
+      return $field['function']($field);
+
+    case DS_FIELD_TYPE_THEME:
+      $format = (isset($field['formatter'])) ? $field['formatter'] : key($field['properties']['formatters']);
+      return theme($format, $field);
+
+    case DS_FIELD_TYPE_CODE:
+      return ds_render_code_field($field);
+
+    case DS_FIELD_TYPE_CTOOLS:
+      return ds_render_ctools_field($field);
+
+    case DS_FIELD_TYPE_BLOCK:
+      return fin_mod_render_block_field($field);
+  }
+}
+
+/**
+ * Essentially overrides DS.
+ */
+function fin_mod_render_block_field($field) {
+  // Invoke the block_view hook of the module.
+  list($module, $delta) = explode('|', $field['properties']['block']);
+  $block = module_invoke($module, 'block_view', $delta);
+
+  // Get contextual links.
+  $contextual_links = array();
+  $contextual = module_exists('contextual') && user_access('access contextual links');
+  if ($contextual) {
+    if (isset($block['content']) && is_array($block['content']) && isset($block['content']['#contextual_links'])) {
+      $contextual_links = $block['content']['#contextual_links'];
+    }
+  }
+
+  // Render the block content.
+  if (isset($block['content']) && is_array($block['content'])) {
+     if(!empty($block['content']['#views_contextual_links_info']['views_ui']['view']->fin_mod_suppress)) {
+      return 'suppressed';
+    }
+    $block['content'] = drupal_render($block['content']);
+  }
+
+  // Go through in case we have actual content.
+  if (!empty($block['content'])) {
+
+    // Make sure subject is set.
+    if (!isset($block['subject'])) {
+      $block['subject'] = '';
+    }
+
+    global $theme_key;
+    if (module_exists('block')) {
+      $full_block = db_query("SELECT * FROM {block} WHERE module = :module AND delta = :delta AND theme = :theme", array(':module' => $module, ':delta' => $delta, ':theme' => $theme_key))->fetchObject();
+    }
+    if (!empty($full_block)) {
+      if ($full_block->title == '<none>') {
+        $block['subject'] = '';
+      }
+      elseif (!empty($full_block->title)) {
+        $block['subject'] = $full_block->title;
+      }
+    }
+
+    // i18n support.
+    if (function_exists('i18n_block_block_view_alter')) {
+
+      // Check language visibility.
+      global $language;
+      static $block_languages = FALSE;
+      if (!$block_languages) {
+        $block_languages = array();
+        $result = db_query('SELECT module, delta, language FROM {i18n_block_language}');
+        foreach ($result as $record) {
+          $block_languages[$record->module][$record->delta][$record->language] = TRUE;
+        }
+      }
+      if (isset($block_languages[$module][$delta]) && !isset($block_languages[$module][$delta][$language->language])) {
+        return;
+      }
+
+      // Translate.
+      if (!empty($full_block->i18n_mode)) {
+        i18n_block_block_view_alter($block, $full_block);
+        if (!empty($block['title'])) {
+          $block['subject'] = $block['title'];
+        }
+      }
+    }
+
+    $block = (object) $block;
+    switch ($field['properties']['block_render']) {
+      case DS_BLOCK_TEMPLATE:
+        $block->region = NULL;
+        $block->module = $module;
+        $block->delta = $delta;
+        $elements = array('elements' => array('#block' => $block, '#children' => $block->content));
+        // Add contextual links.
+        if ($contextual) {
+          $elements['elements'] += array('#contextual_links' => array_merge($contextual_links, array('block' => array('admin/structure/block/manage', array($block->module, $block->delta)))));
+        }
+        return theme('block', $elements);
+        break;
+      case DS_BLOCK_TITLE_CONTENT:
+        return '<h2 class="block-title">' . $block->subject . '</h2>' . $block->content;
+        break;
+      case DS_BLOCK_CONTENT:
+        return $block->content;
+        break;
+    }
+  }
+}
