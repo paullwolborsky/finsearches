@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb">
+  <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href=''//fonts.googleapis.com/css?family=Roboto:500,400italic,100,300,700,100italic,300italic,400' rel='stylesheet' type='text/css'>
+    <link type="text/css" href="css/player.css?v=277" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="js/libs.js?v=277"></script>
+    <script src="js/player.js?v=277"></script>
+    <title>Home Page Charts - Created with VisMe</title>
+    <script>!window.jQuery && document.write('<script src="js/jquery.js"><\/script>')</script>
+  </head>
+  <body style="        background:#ffffff            ">
+    
+    <div id="wrapper">
+                          <div id="content">
+        <canvas></canvas>
+      </div>
+
+              <div class="bottom-controls">
+  <div id="controls-container">
+    <div id="thumbnails">
+    <div id="thumb-left" class="thumbs-arrows"></div>
+    <div id="thumb-right" class="thumbs-arrows"></div>
+    <div id="slide-container">
+      <div id="slide-panel"></div>
+    </div>
+  </div>
+  <div class="timeline-container">
+    <div id="time-viewed" style="width: 30%;"></div>
+    <div id="timeline"><!-- --></div>
+  </div>
+    <footer id ="controls-footer">
+    <div id="controls">
+              <div id="play" class="slide-nav"><a  class=""></a></div>
+        <div id="sound" class="slide-nav"><a  class=""></a></div>
+      
+      <div id="slide-controls">
+        <div id="prev-slide" class="slide-nav"><a ></a></div>
+        <div id="slides-counter">Slide <span>1</span> of <span>1</span></div>
+        <div id="next-slide" class="slide-nav"><a ></a></div>
+      </div>
+
+              <a  id="fullscreen" class="slide-nav"></a>
+                <a  id="logosmall" href="javascript:void(0);"><img src="/images/player/logo-small.svg" alt="visme.co"></a>
+          </div>
+  </footer>
+  </div>
+</div>
+          </div>
+    
+
+    <script type="text/template" id="slide-template">
+<section class="stage" id="<%= id %>" style="width: <%= width %>px; height:<%= height %>px;display: none; visibility: inherit; opacity: 0;">
+  <article style="width: <%= width %>px; height: <%= height %>px; background: #fff;position:absolute;"></article>
+  </section>
+</script>
+    <script type="text/template" id="slide-panel-template">
+  <div class="slide_zone">
+    <div class="slide" id="thumb-<%= id %>">
+      <div class="slide_mask" ></div>
+      <div class="section_wrap">
+        <section id="small-<%= id %>"></section>
+      </div>
+      <div class="slide_num">
+        <%= (order + 1) %>
+      </div>
+    </div>
+  </div>
+</script>
+
+  </div>
+    
+
+
+<script type='text/template' id='object'>
+
+<div class='el <% if (!_.isUndefined(object.link)) { %>linked<% } %>' id='<%= object.id %>'  data-type ='<%= object.type %>' style='
+    width:<%= object.width %>px;
+    height:<%= object.height %>px;
+    z-index:<%= object.order %>;
+    -ms-transform: translate(<%= object.x %>px, <%= object.y %>px) rotate(<%= object.rotation %>deg);
+    -webkit-transform: translate(<%= object.x %>px, <%= object.y %>px) rotate(<%= object.rotation %>deg);
+    transform: translate(<%= object.x %>px, <%= object.y %>px) rotate(<%= object.rotation %>deg);
+
+         display: none
+      '
+
+>
+
+  <%= template(object) %>
+
+<div class='drag-helper' style='width:<%= object.width %>px;height:<%= object.height %>px;'>
+
+  <div class='drag-inner' style='width:<%= object.width %>px;height:<%= object.height %>px;'><!-- --></div>
+</div>
+<% if (app.settings.get('project_type') == 'Download' && object.link && object.link.type == 'hyperlink' ) { %><a href="<%= object.link.target %>" target="_blank"
+style="
+    width:<%= object.width %>px;
+    height:<%= object.height %>px;
+    z-index:<%= object.order %>;
+    top: 0px;
+    left: 0px;
+    display:block;
+    float:left;
+    overflow: hidden;
+    position: absolute;
+"><!-- --></a><% } %>
+</div>
+<% if (app.settings.get('project_type') == 'Download' && object.link && object.link.type == 'hyperlink' ) { %><% } %>
+</script>
+
+
+
+<script type='text/template' id='image'><div class="crop_wrapper">
+  <img src="<%= usersDataStorage %><%= src %>">
+</div>
+
+<div id='qLoverlay' class="loader_code" style="" >
+    <div class='loader'  style="">
+        <div class="loader_wrap" style="">
+            <div class="container">
+                <div class="ring1">
+                    <div class="ring2">
+                        <div class="ring3"></div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="c_awesome">LOADING AWESOME</div>
+        </div>
+    </div>
+</div>
+</script>
+<script type='text/template' id='pdf'><div class="crop_wrapper">
+	<iframe src="https://docs.google.com/gview?url=<%= usersDataStorage %><%= src %>&embedded=true" 
+	style="width:100%; height:100%;" frameborder="0"></iframe>
+</div>
+
+<div id='qLoverlay' class="loader_code" style="" >
+    <div class='loader'  style="">
+        <div class="loader_wrap" style="">
+            <div class="container">
+                <div class="ring1">
+                    <div class="ring2">
+                        <div class="ring3"></div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="c_awesome">LOADING AWESOME</div>
+        </div>
+    </div>
+</div>
+</script>
+<script type='text/template' id='text'><div class = 'vm-text'
+     style = 'padding:<%= padding.vertical %>px <%= padding.horizontal %>px;
+              line-height: <%= lineHeight %>;
+              <% if (font.size) { %>
+              font-size: <%= font.size %>px;
+              <% } %>
+              font-family: <%= font.name %>;
+              text-align: <%= align %>;
+              <% if (border.style != "none") { %>
+                  border: <% border.size %>px <% border.style %> <% border.color %>;
+              <% } %>'
+><%= text %></div>
+</script>
+<script type='text/template' id='svg'>
+</script>
+
+<script type='text/template' id='audio'><audio controls>
+  <source src="<%= audioStorage %><%= hash %>.mp3" type="audio/mpeg">
+  <source src="<%= audioStorage %><%= hash %>.ogg" type="audio/ogg">
+</audio>
+</script>
+<script type='text/template' id='infogr-widget'><canvas></canvas>
+</script>
+<script type='text/template' id='clock'><div class="svg-wrapper">
+	<svg id="clock1" xmlns="http://www.w3.org/2000/svg" width="200px" height="200px" viewbox="0 0 200 200" style="display: none;" >
+		<image class="frame" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-frame.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-frame.svg" width="100%" height="100%"/>		
+		<image class="handle-hour" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-hour.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-hour.svg" width="100%" height="100%"/>
+		<image class="handle-minute" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-minute.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-minute.svg" width="100%" height="100%"/>
+		<image class="handle-second" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-second.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-second.svg" width="100%" height="100%"/>
+		<image class="center" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-center.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-center.svg" width="100%" height="100%"/>
+		<text  class="period" fill="#000" font-family="Verdana" font-size="12" x="65%" y="40%" width="100%" height="100%"></text>
+	</svg>
+	<svg id="clock2" xmlns="http://www.w3.org/2000/svg" width="200px" height="200px" viewbox="0 0 200 200" style="display: none;" >
+		<image class="frame" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock2-frame.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock2-frame.svg" width="100%" height="100%"/>		
+		<image class="handle-hour" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock2-hour.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock2-hour.svg" width="100%" height="100%"/>
+		<image class="handle-minute" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock2-minute.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock2-minute.svg" width="100%" height="100%"/>
+		<image class="handle-second" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock2-second.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock1-second.svg" width="100%" height="100%"/>
+		<text  class="period" fill="#fff" font-family="Verdana" font-size="10" x="55%" y="65%" width="100%" height="100%"></text>
+	</svg>
+	<svg id="clock3" xmlns="http://www.w3.org/2000/svg" width="200px" height="200px" viewbox="0 0 200 200" style="display: none;" >
+		<image class="frame" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock3-frame.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock3-frame.svg" width="100%" height="100%"/>		
+		<image class="frame" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock3-frame2.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/clocks/clock3-frame2.svg" width="100%" height="100%"/>
+		<text  class="time" fill="#a0a18a" font-family="Verdana" font-size="30" x="0" y="0" width="100%" height="100%"></text>
+		<text  class="period" fill="#a0a18a" font-family="Verdana" font-size="12" x="146" y="135" width="100%" height="100%"></text>
+	</svg>
+</div></script>
+<script type='text/template' id='countdown'><div class="svg-wrapper"> 
+	<svg id="countdown1" xmlns="http://www.w3.org/2000/svg" width="200px" height="200px" viewbox="0 0 200 200" style="display: none;" >
+		<circle class="bg" cx="100" cy="100" r="90" stroke="transparent" stroke-width="0" fill="#fff"/></circle>
+		<circle class="range" cx="100" cy="100" r="51" stroke="#ef8122" stroke-width="32" fill="transparent"/></circle>
+		<path class="bgValue" fill="#114e7d" d="m100,65c-19.3,0 -35,15.7 -35,35s15.7,35 35,35c19.3,0 35,-15.7 35,-35s-15.7,-35 -35,-35zm0,-65c-55.2,0 -100,44.8 -100,100s44.8,100 100,100c55.2,0 100,-44.8 100,-100s-44.8,-100 -100,-100zm84.5,108.1l-1.9,-0.2l-0.2,1.6l1.9,0.2c-0.3,2.4 -0.6,4.8 -1.1,7.2l-1.9,-0.4l-0.3,1.5l1.8,0.4c-0.5,2.4 -1.1,4.7 -1.9,7l-1.8,-0.6l-0.5,1.5l1.8,0.6c-0.8,2.3 -1.6,4.6 -2.6,6.8l-1.7,-0.8l-0.7,1.5l1.7,0.8c-1,2.2 -2.1,4.4 -3.3,6.5l-4.2,-2.4l-0.8,1.4l4.2,2.4c-1.2,2.1 -2.6,4.1 -4,6.1l-1.5,-1.1l-1,1.3l1.5,1.1c-1.4,1.9 -3,3.8 -4.6,5.6l-1.4,-1.3l-1.1,1.2l1.4,1.3c-1.6,1.8 -3.4,3.5 -5.1,5.1l-1.3,-1.4l-1.2,1.1l1.3,1.4c-1.8,1.6 -3.7,3.1 -5.6,4.6l-1.1,-1.5l-1.3,1l1.1,1.5c-2,1.4 -4,2.7 -6.1,4l-2.4,-4.2l-1.4,0.8l2.4,4.2c-2.1,1.2 -4.3,2.3 -6.5,3.3l-0.8,-1.7l-1.5,0.7l0.8,1.7c-2.2,1 -4.5,1.8 -6.8,2.6l-0.6,-1.8l-1.5,0.5l0.6,1.8c-2.3,0.7 -4.6,1.3 -7,1.9l-0.3,-1.9l-1.6,0.3l0.4,1.9c-2.4,0.5 -4.8,0.8 -7.2,1.1l-0.2,-1.9l-1.6,0.2l0.2,1.9c-2.4,0.2 -4.8,0.3 -7.3,0.4l0,-9.4l-1.6,0l0,9.4c-2.4,0 -4.9,-0.1 -7.3,-0.4l0.2,-1.9l-1.6,-0.2l-0.2,1.9c-2.4,-0.3 -4.8,-0.6 -7.2,-1.1l0.4,-1.9l-1.4,-0.3l-0.4,1.8c-2.4,-0.5 -4.7,-1.1 -7,-1.9l0.6,-1.8l-1.5,-0.5l-0.6,1.8c-2.3,-0.8 -4.6,-1.6 -6.8,-2.6l0.8,-1.7l-1.5,-0.7l-0.8,1.7c-2.2,-1 -4.4,-2.1 -6.5,-3.3l2.4,-4.2l-1.4,-0.8l-2.4,4.2c-2.1,-1.2 -4.1,-2.6 -6.1,-4l1.1,-1.5l-1.3,-1l-1.1,1.5c-1.9,-1.4 -3.8,-3 -5.6,-4.6l1.3,-1.4l-1.2,-1.1l-1.3,1.4c-1.8,-1.6 -3.5,-3.4 -5.1,-5.1l1.4,-1.3l-1.1,-1.2l-1.4,1.3c-1.6,-1.8 -3.1,-3.7 -4.6,-5.6l1.5,-1.1l-1,-1.3l-1.5,1.1c-1.4,-2 -2.7,-4 -4,-6.1l4.2,-2.4l-0.8,-1.4l-4.2,2.4c-1.2,-2.1 -2.3,-4.3 -3.3,-6.5l1.7,-0.8l-0.7,-1.5l-1.7,0.8c-1,-2.2 -1.8,-4.5 -2.6,-6.8l1.8,-0.6l-0.5,-1.5l-1.8,0.6c-0.7,-2.3 -1.3,-4.6 -1.9,-7l1.9,-0.3l-0.3,-1.6l-1.9,0.4c-0.5,-2.4 -0.8,-4.8 -1.1,-7.2l1.9,-0.2l-0.2,-1.6l-1.9,0.2c-0.2,-2.4 -0.3,-4.8 -0.4,-7.3l9.4,0l0,-1.6l-9.4,0c0,-2.4 0.1,-4.9 0.4,-7.3l1.9,0.2l0.2,-1.6l-1.9,-0.2c0.3,-2.4 0.6,-4.8 1.1,-7.2l1.9,0.4l0.3,-1.4l-1.8,-0.4c0.5,-2.4 1.1,-4.7 1.9,-7l1.8,0.6l0.5,-1.5l-1.9,-0.7c0.8,-2.3 1.6,-4.6 2.6,-6.8l1.7,0.8l0.7,-1.5l-1.7,-0.8c1,-2.2 2.1,-4.4 3.3,-6.5l4.2,2.4l0.8,-1.4l-4.2,-2.4c1.2,-2.1 2.6,-4.1 4,-6.1l1.5,1.1l1,-1.3l-1.5,-1.1c1.4,-1.9 3,-3.8 4.6,-5.6l1.4,1.3l1.1,-1.2l-1.4,-1.3c1.6,-1.8 3.4,-3.5 5.1,-5.1l1.3,1.4l1.2,-1.1l-1.3,-1.4c1.8,-1.6 3.7,-3.1 5.6,-4.6l1.1,1.5l1.3,-1l-1.1,-1.5c2,-1.4 4,-2.7 6.1,-4l2.4,4.2l1.4,-0.8l-2.4,-4.2c2.1,-1.2 4.3,-2.3 6.5,-3.3l0.8,1.7l1.5,-0.7l-0.8,-1.7c2.2,-1 4.5,-1.8 6.8,-2.6l0.6,1.8l1.5,-0.5l-0.7,-1.7c2.3,-0.7 4.6,-1.3 7,-1.9l0.5,1.9l1.6,-0.3l-0.4,-1.9c2.4,-0.5 4.8,-0.8 7.2,-1.1l0.2,1.9l1.6,-0.2l-0.2,-1.9c2.4,-0.2 4.8,-0.3 7.3,-0.4l0,9.4l1.6,0l0,-9.4c2.4,0 4.9,0.1 7.3,0.4l-0.2,1.9l1.6,0.2l0.2,-1.9c2.4,0.3 4.8,0.6 7.2,1.1l-0.4,1.9l1.4,0.3l0.4,-1.8c2.4,0.5 4.7,1.1 7,1.9l-0.6,1.8l1.5,0.5l0.6,-1.8c2.3,0.8 4.6,1.6 6.8,2.6l-0.8,1.7l1.5,0.7l0.8,-1.7c2.2,1 4.4,2.1 6.5,3.3l-2.4,4.2l1.4,0.8l2.4,-4.2c2.1,1.2 4.1,2.6 6.1,4l-1.1,1.5l1.3,1l1.1,-1.5c1.9,1.4 3.8,3 5.6,4.6l-1.3,1.4l1.2,1.1l1.3,-1.4c1.8,1.6 3.5,3.4 5.1,5.1l-1.4,1.3l1.1,1.2l1.4,-1.3c1.6,1.8 3.1,3.7 4.6,5.6l-1.5,1.1l1,1.3l1.5,-1.1c1.4,2 2.7,4 4,6.1l-4.2,2.4l0.8,1.4l4.2,-2.4c1.2,2.1 2.3,4.3 3.3,6.5l-1.7,0.8l0.7,1.5l1.7,-0.8c1,2.2 1.8,4.5 2.6,6.8l-1.8,0.6l0.5,1.5l1.8,-0.6c0.7,2.3 1.3,4.6 1.9,7l-1.9,0.3l0.3,1.6l1.9,-0.4c0.5,2.4 0.8,4.8 1.1,7.2l-1.9,0.2l0.2,1.6l1.9,-0.2c0.2,2.4 0.3,4.8 0.4,7.3l-9.4,0l0,1.6l9.4,0c-0.1,2.4 -0.2,4.8 -0.4,7.2z"/>
+		<text  class="value" fill="#fff" font-family="Verdana" font-size="34" x="78" y="105" width="100%" height="100%"></text>
+		<text  class="format" fill="#fff" font-family="Verdana" font-size="13" x="89" y="120" width="100%" height="100%"></text>
+	</svg>
+	<svg id="countdown2" xmlns="http://www.w3.org/2000/svg" width="200px" height="200px" viewbox="0 0 200 200" style="display: none;" >
+		<circle class="bg" cx="100" cy="100" r="90" stroke="transparent" stroke-width="0" fill="#fff"/></circle>
+		<circle class="range" cx="100" cy="100" r="70" stroke="#f69c81" stroke-width="38" fill="transparent"/></circle>
+		<circle class="bgValue" cx="100" cy="100" r="52" stroke="transparent" stroke-width="0" fill="#35c0c7"/></circle>
+		<image class="frame" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/counter/countdown2-frame.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/counter/countdown2-frame.svg" width="100%" height="100%"/>
+		<text  class="value" fill="#fff" font-family="Verdana" font-size="50" x="69" y="105" width="100%" height="100%"></text>
+		<text  class="format" fill="#fff" font-family="Verdana" font-size="30" x="75" y="135" width="100%" height="100%"></text>
+	</svg>
+	<svg id="countdown3" xmlns="http://www.w3.org/2000/svg" width="200px" height="200px" viewbox="0 0 200 200" style="display: none;" >
+		<circle class="bg" cx="100" cy="113" r="84" stroke="transparent" stroke-width="0" fill="#fff"/></circle>
+		<circle class="range" cx="87" cy="100" r="50" stroke="#29bfd0" stroke-width="40" fill="transparent"/></circle>
+		<image class="frame" xlink:href="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/counter/countdown3-frame.svg" src="https://dh7fnycu2r4y5.cloudfront.net/svgwidgets/counter/countdown3-frame.svg" width="100%" height="100%"/>
+		<circle class="bgValue" cx="100" cy="113" r="32" stroke="#828284" stroke-width="1" fill="#fff"/></circle>
+		<text  class="value" fill="#232323" font-family="Verdana" font-size="34" x="78" y="118" width="100%" height="100%"></text>
+		<text  class="format" fill="#232323" font-family="Verdana" font-size="13" x="89" y="133" width="100%" height="100%"></text>
+	</svg>
+</div></script>
+<script type="text/template" id="youtube-video"><iframe class="ytplayer<% if (mute) { %> muted<% } %>"
+  type="text/html"
+  width="<%= width %>"
+  height="<%= height %>"
+  src="<%= src %>"
+  frameborder="0"
+  allowfullscreen
+  id="ytv<%= id %>"
+  >
+</iframe>
+</script>
+<script type="text/template" id="vimeo-video"><iframe class="vplayer"
+  src="<%= src %>" 
+  width="WIDTH"
+  height="HEIGHT"
+  frameborder="0"
+  webkitallowfullscreen
+  mozallowfullscreen
+  allowfullscreen>
+</iframe>
+</script>
+<script type="text/template" id="visme-video"><video id="vismevid<%= id %>"
+        onended=""
+        class="video-js vjs-default-skin vjs-big-play-centered"
+        <% if (mute) { %>muted<% } %>
+        <% if (controls) { %>controls<% } %>
+        <% if (autoplay) { %>autoplay<% } %>
+        <% if (loop) { %>loop<% } %>
+        preload="none"
+        width="<%= width %>"
+        height="<%= height %>"
+   	    poster="<%= thumbnail %>">
+     <source src="<%= src %>" type="video/mp4"  />
+   	 <source src="<%= src %>" type="video/webm"  />
+   	 <source src="<%= src %>" type="video/ogg"  />
+   	 <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+</video>
+</script>
+<script type="text/template" id="video-thumb"><img src="<%= thumbnail %>" style="width:<%= width %>px;height:<%= height %>px">
+</script>
+<script type="text/template" id="iframe"><iframe src="<%= src %>" height="<%= height %>" width="<%= width %>"></iframe>
+</script>
+<script type="text/template" id="chart"><h3 align='center' class="chart-title"><%= title %></h3>
+<h5 align='center' class="chart-subtitle"><%= subtitle %></h5>
+<div class="ct-chart"></div>
+<div class="ct-legend"></div>
+</script>
+<script type="text/template" id="table"><div class = 'vm-table vm-text'
+     style = 'width: <%= width %>px; height: <%= height %>px;
+              padding:<%= padding.vertical %>px <%= padding.horizontal %>px;
+              line-height: <%= lineHeight %>;
+              <% if (font.size) { %>
+                font-size: <%= font.size %>px;
+              <% } %>
+              font-family: <%= font.name %>;
+              text-align: <%= align %>;
+              <% if (border.style != "none") { %>
+                  border: <% border.size %>px <% border.style %> <% border.color %>;
+              <% } %>'>
+
+  <table style="opacity: 1;" <% if (typeof(theme) !== "undefined" ) {  %>data-theme="<% theme %>"<% } %>>
+    <tr style="height: 50%;">
+      <td style="width: 16.666%;"><b class="visme-b">Date</b></td>
+      <td style="width: 16.666%;"><b class="visme-b">Item</b></td>
+      <td style="width: 16.666%;"><b class="visme-b">Units</b></td>
+      <td style="width: 16.666%;"><b class="visme-b">Quantity</b></td>
+      <td style="width: 16.666%;"><b class="visme-b">Cost</b></td>
+      <td style="width: 16.666%;"><b class="visme-b">Total</b></td>
+    </tr>
+    <tr style="height: 50%;">
+      <td>3/1/2016</td>
+      <td>Pencil</td>
+      <td>1</td>
+      <td>65</td>
+      <td>$1.99</td>
+      <td>$129.35</td>
+    </tr>
+  </table>
+</div>
+</script>
+<script type="text/template" id="group"><div class="group-object"></div>
+</script>
+    
+<script>
+      app.bootstrap('project_id', "1453312883" );
+          app.bootstrap('is_share', "0" );
+        app.bootstrap('is_responsive', "1" );
+        app.bootstrap('auto_advance', "1" );
+        app.bootstrap('is_profile_hidden', "1" );
+        app.bootstrap('background_music', "" );
+        app.bootstrap('is_loop_background_music', "0" );
+        app.bootstrap('is_comments', "0" );
+        app.bootstrap('is_control_bar', "1" );
+        app.bootstrap('is_autoplay_animation', "1" );
+        app.bootstrap('is_registration', "0" );
+        app.bootstrap('loop_presentation', "1" );
+        app.bootstrap('background', "background:#ffffff" );
+        app.bootstrap('screenshot', "http:\/\/d2txcgd90nunbk.cloudfront.net\/c2\/4a\/dd\/af\/32975c2b02ad383a40b05dda92fb266e.jpg" );
+        app.bootstrap('project_name', "Home Page Charts" );
+        app.bootstrap('project_date', 1465413287 );
+        app.bootstrap('project_data', "{\"width\":800,\"height\":800,\"colorPallete\":[{\"color\":\"#000000\"},{\"color\":\"#00b0d8\"},{\"color\":\"#152e4f\"},{\"color\":\"#1e4882\"},{\"color\":\"#26A65B\"},{\"color\":\"#2B2B2B\"},{\"color\":\"#2ca632\"},{\"color\":\"#4183D7\"},{\"color\":\"#435ca9\"},{\"color\":\"#46c72c\"},{\"color\":\"#4970ff\"},{\"color\":\"#56b83a\"},{\"color\":\"#57bcd8\"},{\"color\":\"#5bcbed\"},{\"color\":\"#5c7c7b\"},{\"color\":\"#623794\"},{\"color\":\"#6aa2eb\"},{\"color\":\"#6cb5b8\"},{\"color\":\"#85377e\"},{\"color\":\"#913D88\"},{\"color\":\"#93cdff\"},{\"color\":\"#CF000F\"},{\"color\":\"#E67E22\"},{\"color\":\"#a11c61\"},{\"color\":\"#b01b5c\"},{\"color\":\"#b8169a\"},{\"color\":\"#be1e2d\"},{\"color\":\"#e3dbf0\"},{\"color\":\"#f8ff6a\"},{\"color\":\"#f9ff42\"},{\"color\":\"#fafbff\"},{\"color\":\"#ff7504\"},{\"color\":\"#ffc105\"},{\"color\":\"#52c5ff\"},{\"color\":\"#88c2f5\"},{\"color\":\"#a5c6eb\"}],\"template\":\"custom\",\"slides\":[{\"id\":\"sl1\",\"name\":\"Slide 1\",\"type\":\"regular\",\"order\":0,\"width\":800,\"height\":800,\"hidden\":false,\"transition\":{\"effect\":\"fade\",\"duration\":\"10\",\"type\":\"timer\"},\"objects\":[{\"type\":\"chart\",\"height\":467.86743164062,\"width\":795.69702148438,\"chartType\":\"Line\",\"proportionLock\":false,\"id\":\"el10\",\"x\":34,\"y\":156,\"name\":\"chart\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"title\":\"\",\"subtitle\":\"\",\"chartData\":[[\"\",\"2011\",\"2012\",\"2013\",\"2014\",\"2015\",null,null,null,null,null,null,null],[\"\",\"2359\",\"2641\",\"3388\",\"3908\",\"4691\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null]],\"backgroundColor\":\"transparent\",\"titleColor\":\"#000000\",\"subtitleColor\":\"#000000\",\"labelsColor\":\"#7D7D7D\",\"seriesColors\":[\"#E67E22\",\"#CC3333\",\"#FFCC00\",\"#91C11B\",\"#4183D7\",\"#913D88\",\"#26A65B\",\"#D76585\",\"#2B2B2B\",\"#93D2EE\",\"#D3A87C\",\"#FBB64F\",\"#93D2EE\",\"#D3A87C\",\"#FBB64F\"],\"options\":{\"width\":795.69702148438,\"height\":448.86743164062,\"showLine\":true,\"showArea\":true,\"showLegend\":false,\"showValue\":true,\"horizontalBars\":true},\"order\":0},{\"type\":\"svg\",\"colors\":[\"#ff7504\"],\"patterns\":false,\"repeat\":false,\"id\":\"el192\",\"x\":-2,\"y\":630,\"width\":806.89945548307,\"height\":175.7729054937,\"name\":\"Line-24 copy\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"proportionLock\":false,\"svg\":{\"src\":\"\",\"width\":100,\"height\":8},\"thumbnail\":\"https:\\\/\\\/dh7fnycu2r4y5.cloudfront.net\\\/svgicons\\\/Lines\\\/Line-24.png\",\"order\":1,\"pattern\":100,\"svgHtml\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\\r\\n<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In  -->\\r\\n<!DOCTYPE svg PUBLIC \\\"-\\\/\\\/W3C\\\/\\\/DTD SVG 1.1\\\/\\\/EN\\\" \\\"http:\\\/\\\/www.w3.org\\\/Graphics\\\/SVG\\\/1.1\\\/DTD\\\/svg11.dtd\\\" [\\r\\n\\t<!ENTITY ns_flows \\\"http:\\\/\\\/ns.adobe.com\\\/Flows\\\/1.0\\\/\\\">\\r\\n]>\\r\\n<svg version=\\\"1.1\\\"\\r\\n\\t xmlns=\\\"http:\\\/\\\/www.w3.org\\\/2000\\\/svg\\\" xmlns:xlink=\\\"http:\\\/\\\/www.w3.org\\\/1999\\\/xlink\\\" xmlns:a=\\\"http:\\\/\\\/ns.adobe.com\\\/AdobeSVGViewerExtensions\\\/3.0\\\/\\\"\\r\\n\\t x=\\\"0px\\\" y=\\\"0px\\\" width=\\\"100px\\\" height=\\\"8px\\\" viewBox=\\\"0 0 100 8\\\" style=\\\"enable-background:new 0 0 100 8;\\\" xml:space=\\\"preserve\\\">\\r\\n<defs>\\r\\n<\\\/defs>\\r\\n<g id=\\\"repeat_1_\\\">\\r\\n<rect id=\\\"Color1\\\" style=\\\"fill:#5C7C7B;\\\" width=\\\"100.8\\\" height=\\\"8.2\\\"\\\/>\\r\\n<\\\/g>\\r\\n<\\\/svg>\\r\\n\"},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el14\",\"x\":34,\"y\":642,\"width\":721,\"height\":126,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#fafbff\\\" face=\\\"Titillium\\\" style=\\\"font-size: 30px;\\\"> Each year FINsearches focuses on&nbsp;<span style=\\\"line-height: 1.2; background-color: transparent;\\\">enhancing its internal capabilities&nbsp;<\\\/span><span style=\\\"line-height: 1.2; background-color: transparent;\\\">to&nbsp;<\\\/span><span style=\\\"line-height: 1.2; background-color: transparent;\\\">grab a larger share of the search&nbsp;<\\\/span><span style=\\\"line-height: 1.2; background-color: transparent;\\\">market.<\\\/span><\\\/font>\",\"order\":2},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Verdana\"],\"size\":34},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el30\",\"x\":-22,\"y\":24,\"width\":365,\"height\":92,\"name\":\"Title\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font face=\\\"Verdana\\\" style=\\\"font-size: 60px;\\\">&nbsp; Mandates<\\\/font>\",\"order\":3},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el31\",\"x\":25,\"y\":105,\"width\":305,\"height\":37,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#2b2b2b\\\" style=\\\"font-size: 14px;\\\" face=\\\"Titillium\\\">*Reported between 2011 and 2015<\\\/font>\",\"order\":4,\"text-shadow\":\"none\"},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el266\",\"x\":639,\"y\":152,\"width\":65,\"height\":39.198006779367,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":2,\"name\":\"Fade In\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#666666\\\" style=\\\"font-size: 16px;\\\"><b class=\\\"medium-b\\\"> 4,691<\\\/b><\\\/font>\",\"order\":5},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el267\",\"x\":490,\"y\":270,\"width\":66,\"height\":39,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":1.5,\"name\":\"Fade In\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#666666\\\" style=\\\"font-size: 16px;\\\"><b class=\\\"medium-b\\\"> 3,908<\\\/b><\\\/font>\",\"order\":6},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el268\",\"x\":343,\"y\":356,\"width\":65,\"height\":39,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":1,\"name\":\"Fade In\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#666666\\\" style=\\\"font-size: 16px;\\\"><b class=\\\"medium-b\\\"> 3,388<\\\/b><\\\/font>\",\"order\":7},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el269\",\"x\":208,\"y\":472,\"width\":66,\"height\":39,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0.5,\"name\":\"Fade In\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#666666\\\" style=\\\"font-size: 16px;\\\"><b class=\\\"medium-b\\\"> 2,641<\\\/b><\\\/font>\",\"order\":8}],\"background\":{\"type\":\"library-image\",\"url\":\"17d25e052f2eb40ecf759199620941d9.png\"}},{\"id\":\"sl15\",\"name\":\"Slide 2\",\"type\":\"regular\",\"order\":1,\"width\":800,\"height\":800,\"hidden\":false,\"transition\":{\"effect\":\"fade\",\"duration\":\"10\",\"type\":\"timer\"},\"objects\":[{\"type\":\"svg\",\"colors\":[\"#88c2f5\"],\"patterns\":false,\"repeat\":false,\"id\":\"el191\",\"x\":-1.0000259815356,\"y\":629.99997885709,\"width\":804.62704368449,\"height\":177.86255268802,\"name\":\"Line-24 copy\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"proportionLock\":false,\"svg\":{\"src\":\"\",\"width\":100,\"height\":8},\"thumbnail\":\"https:\\\/\\\/dh7fnycu2r4y5.cloudfront.net\\\/svgicons\\\/Lines\\\/Line-24.png\",\"order\":0,\"pattern\":100,\"svgHtml\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\\r\\n<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In  -->\\r\\n<!DOCTYPE svg PUBLIC \\\"-\\\/\\\/W3C\\\/\\\/DTD SVG 1.1\\\/\\\/EN\\\" \\\"http:\\\/\\\/www.w3.org\\\/Graphics\\\/SVG\\\/1.1\\\/DTD\\\/svg11.dtd\\\" [\\r\\n\\t<!ENTITY ns_flows \\\"http:\\\/\\\/ns.adobe.com\\\/Flows\\\/1.0\\\/\\\">\\r\\n]>\\r\\n<svg version=\\\"1.1\\\"\\r\\n\\t xmlns=\\\"http:\\\/\\\/www.w3.org\\\/2000\\\/svg\\\" xmlns:xlink=\\\"http:\\\/\\\/www.w3.org\\\/1999\\\/xlink\\\" xmlns:a=\\\"http:\\\/\\\/ns.adobe.com\\\/AdobeSVGViewerExtensions\\\/3.0\\\/\\\"\\r\\n\\t x=\\\"0px\\\" y=\\\"0px\\\" width=\\\"100px\\\" height=\\\"8px\\\" viewBox=\\\"0 0 100 8\\\" style=\\\"enable-background:new 0 0 100 8;\\\" xml:space=\\\"preserve\\\">\\r\\n<defs>\\r\\n<\\\/defs>\\r\\n<g id=\\\"repeat_1_\\\">\\r\\n<rect id=\\\"Color1\\\" style=\\\"fill:#5C7C7B;\\\" width=\\\"100.8\\\" height=\\\"8.2\\\"\\\/>\\r\\n<\\\/g>\\r\\n<\\\/svg>\\r\\n\"},{\"type\":\"chart\",\"height\":499.98860677083,\"width\":553.63639322917,\"chartType\":\"Pie\",\"proportionLock\":false,\"id\":\"el18\",\"x\":115,\"y\":135.0000406901,\"name\":\"chart\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"title\":\"\",\"subtitle\":\"\",\"chartData\":[[\"\",\"Defined Benefit Plans\",\"Nonprofits\",\"Other\",null,null,null,null,null,null,null],[\"Total\",\"4595\",\"4966\",\"714\",null,null,null,null,null,null,null],[\"\",\"\",\"\",\"\",null,null,null,null,null,null,null],[\"\",\"\",\"\",\"\",null,null,null,null,null,null,null],[\"\",\"\",\"\",\"\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null]],\"backgroundColor\":\"transparent\",\"titleColor\":\"#000000\",\"subtitleColor\":\"#000000\",\"labelsColor\":\"transparent\",\"seriesColors\":[\"#88c2f5\",\"#1e4882\",\"#000000\",\"#91C11B\",\"#4183D7\",\"#913D88\",\"#26A65B\",\"#D76585\",\"#2B2B2B\",\"#93D2EE\",\"#D3A87C\",\"#FBB64F\",\"#93D2EE\",\"#D3A87C\",\"#FBB64F\"],\"options\":{\"width\":553.63639322917,\"height\":479.98860677083,\"donut\":true,\"startAngle\":270,\"showValue\":false,\"showLegend\":false,\"showPercentage\":false,\"showCallOuts\":false},\"order\":1},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\",\"Verdana\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el26\",\"x\":34,\"y\":642,\"width\":800,\"height\":143.59976863533,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font face=\\\"Titillium\\\" style=\\\"font-size: 30px;\\\"><font color=\\\"#fafbff\\\">We have coverage for more than 10,<span style=\\\"line-height: 37.2px;\\\">0<\\\/span>00 institutional plans.&nbsp;<\\\/font><span style=\\\"color: rgb(250, 251, 255); line-height: 1.2; background-color: transparent;\\\">That allows your firm to focus on key clients and potential relationships.<\\\/span><\\\/font>\",\"order\":2},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el66\",\"x\":183,\"y\":387.0000406901,\"width\":131,\"height\":48,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font face=\\\"Titillium\\\" style=\\\"font-size: 24px;\\\"><font color=\\\"#fafbff\\\"> Other: 714<\\\/font><span id=\\\"selectionBoundary_1463514504730_6387421116871872\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span><\\\/font>\",\"order\":3},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":0},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el141\",\"x\":249,\"y\":237,\"width\":288,\"height\":44,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font face=\\\"Titillium\\\" style=\\\"font-size: 24px;\\\" color=\\\"#fafbff\\\"> Defined Benefit Plans: 4,595<\\\/font>\",\"order\":4,\"borderStyle\":\"none\"},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\",\"Verdana\"],\"size\":34},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el146\",\"x\":-29,\"y\":24,\"width\":229,\"height\":92,\"name\":\"Title\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<span id=\\\"selectionBoundary_1463432915625_37542235964185955\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span><b class=\\\"medium-b\\\"><font style=\\\"font-size: 48px;\\\" face=\\\"Verdana\\\">&nbsp; &nbsp;<\\\/font><\\\/b><font face=\\\"Verdana\\\" style=\\\"font-size: 60px;\\\">Plans<\\\/font><span id=\\\"selectionBoundary_1463432915625_11717241220467711\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span>\",\"order\":5},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el147\",\"x\":25,\"y\":105,\"width\":389,\"height\":53.115300016277,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#2b2b2b\\\" style=\\\"font-size: 14px;\\\" face=\\\"Titillium\\\">*Total plans over 10 million AUM as of April 2016<\\\/font>\",\"order\":6},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el142\",\"x\":293,\"y\":486,\"width\":200,\"height\":48,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font face=\\\"Titillium\\\" style=\\\"font-size: 24px;\\\" color=\\\"#fafbff\\\"> Nonprofits: 4,966<\\\/font>\",\"order\":7},{\"type\":\"infogrWidget\",\"colors\":[\"#E72E3A\"],\"textColor\":\"#000\",\"param1\":45,\"animParam1\":45,\"render\":\"digitaldial\",\"id\":\"el270\",\"x\":-698.61182386217,\"y\":505.71507568864,\"width\":178,\"height\":79,\"name\":\"Digital Dial\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"proportionLock\":true,\"iDigits\":4,\"numParam\":1000,\"order\":8}],\"background\":{\"type\":\"library-image\",\"hash\":\"00344f\",\"url\":\"17d25e052f2eb40ecf759199620941d9.png\",\"id\":\"526966\"}},{\"id\":\"sl22\",\"name\":\"Slide 3\",\"type\":\"regular\",\"order\":2,\"width\":800,\"height\":800,\"hidden\":false,\"transition\":{\"effect\":\"fade\",\"duration\":\"10\",\"type\":\"timer\"},\"objects\":[{\"type\":\"svg\",\"colors\":[\"#46c72c\",\"rgb(255, 255, 255)\"],\"patterns\":false,\"repeat\":false,\"id\":\"el99\",\"x\":92.999918619791,\"y\":215,\"width\":156.32194010417,\"height\":156.32194010417,\"name\":\"inf11\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"proportionLock\":true,\"svg\":{\"src\":\"\",\"width\":125,\"height\":125},\"thumbnail\":\"https:\\\/\\\/dh7fnycu2r4y5.cloudfront.net\\\/svgicons\\\/InfographicsReal\\\/inf11.png\",\"order\":0,\"pattern\":false,\"tempProportionLock\":true,\"svgHtml\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\\n<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\\n<svg version=\\\"1.1\\\" id=\\\"Layer_1\\\" xmlns=\\\"http:\\\/\\\/www.w3.org\\\/2000\\\/svg\\\" xmlns:xlink=\\\"http:\\\/\\\/www.w3.org\\\/1999\\\/xlink\\\" x=\\\"0px\\\" y=\\\"0px\\\"\\n\\t width=\\\"125px\\\" height=\\\"125px\\\" viewBox=\\\"0 0 125 125\\\" style=\\\"enable-background:new 0 0 125 125;\\\" xml:space=\\\"preserve\\\">\\n<style type=\\\"text\\\/css\\\">\\n\\t.st0{fill:#6CB5B8;}\\n\\t.st1{fill:#FFFFFF;}\\n<\\\/style>\\n<circle id=\\\"Color1\\\" class=\\\"st0\\\" cx=\\\"62.5\\\" cy=\\\"62.5\\\" r=\\\"62.5\\\"\\\/>\\n<path id=\\\"Color2\\\" class=\\\"st1\\\" d=\\\"M92.4,56.3c-0.8-0.5-1.9-0.5-2.7,0c-0.8,0.5-1.3,1.5-1.3,2.5l0.3,37H74.6l-0.4-29.1\\n\\tc0-1.6-1.2-2.8-2.7-2.8H53.9c-1.5,0-2.7,1.3-2.7,2.8v29.1l-15.4,0.1l0.2-37c0-0.8-0.3-1.6-0.9-2.2c-0.6-0.6-1.3-0.8-2.1-0.7\\n\\tc-1.4,0.2-2.4,1.4-2.4,2.8l-0.2,39.8c0,0.8,0.3,1.5,0.8,2c0.5,0.5,1.2,0.8,1.9,0.8l20.8-0.1c1.5,0,2.7-1.3,2.7-2.8v-29h12.3\\n\\tl0.4,29.1c0,1.6,1.2,2.8,2.7,2.8h19.4c0.7,0,1.4-0.3,1.9-0.9c0.5-0.5,0.8-1.3,0.8-2l-0.3-39.8C93.7,57.7,93.2,56.8,92.4,56.3z\\\"\\\/>\\n<path id=\\\"Color2_1_\\\" class=\\\"st1\\\" d=\\\"M109,62.7L64.9,16.4c-0.5-0.5-1.2-0.8-1.9-0.8c-0.7,0-1.4,0.3-1.9,0.8L16.1,62.7\\n\\tc-1.1,1.1-1.1,2.9-0.1,4c1,1.1,2.8,1.2,3.8,0.1L63,22.4l42.1,44.3c1.1,1.1,2.8,1.1,3.8,0C110,65.6,110,63.8,109,62.7z\\\"\\\/>\\n<\\\/svg>\\n\"},{\"type\":\"svg\",\"colors\":[\"#46c72c\"],\"patterns\":false,\"repeat\":false,\"id\":\"el100\",\"x\":108.21964518229,\"y\":412.9999593099,\"width\":128.17021354167,\"height\":131.32194010417,\"name\":\"inf12\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"proportionLock\":true,\"svg\":{\"src\":\"\",\"width\":122,\"height\":125},\"thumbnail\":\"https:\\\/\\\/dh7fnycu2r4y5.cloudfront.net\\\/svgicons\\\/InfographicsReal\\\/inf12.png\",\"order\":1,\"pattern\":false,\"tempProportionLock\":true,\"svgHtml\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\\n<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\\n<svg version=\\\"1.1\\\" id=\\\"Layer_1\\\" xmlns=\\\"http:\\\/\\\/www.w3.org\\\/2000\\\/svg\\\" xmlns:xlink=\\\"http:\\\/\\\/www.w3.org\\\/1999\\\/xlink\\\" x=\\\"0px\\\" y=\\\"0px\\\"\\n\\t width=\\\"122.4px\\\" height=\\\"125px\\\" viewBox=\\\"0 0 122.4 125\\\" style=\\\"enable-background:new 0 0 122.4 125;\\\" xml:space=\\\"preserve\\\">\\n<style type=\\\"text\\\/css\\\">\\n\\t.st0{fill:#6CB5B8;}\\n<\\\/style>\\n<circle id=\\\"Color1\\\" class=\\\"st0\\\" cx=\\\"61.2\\\" cy=\\\"33.8\\\" r=\\\"33.8\\\"\\\/>\\n<path id=\\\"Color1_1_\\\" class=\\\"st0\\\" d=\\\"M122,125c0.3-2.3,0.4-4.7,0.4-7.1c0-21.2-10.7-39.8-27.1-50.8C88.5,77,75.8,83.7,61.2,83.7\\n\\tS34,77,27.1,67.1C10.7,78.1,0,96.7,0,117.9c0,2.4,0.2,4.8,0.4,7.1H122z\\\"\\\/>\\n<\\\/svg>\\n\"},{\"type\":\"svg\",\"colors\":[\"rgb(51, 51, 51)\",\"rgb(237, 119, 119)\",\"rgb(233, 231, 209)\"],\"patterns\":false,\"repeat\":false,\"id\":\"el101\",\"x\":-536.39392089844,\"y\":50.363627115885,\"width\":100,\"height\":89,\"name\":\"Buildings6\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"proportionLock\":true,\"svg\":{\"src\":\"\",\"width\":100,\"height\":89},\"thumbnail\":\"https:\\\/\\\/dh7fnycu2r4y5.cloudfront.net\\\/svgicons\\\/Buildings\\\/Buildings6.png\",\"order\":2,\"pattern\":false,\"svgHtml\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\\r\\n<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\\r\\n<!DOCTYPE svg PUBLIC \\\"-\\\/\\\/W3C\\\/\\\/DTD SVG 1.1\\\/\\\/EN\\\" \\\"http:\\\/\\\/www.w3.org\\\/Graphics\\\/SVG\\\/1.1\\\/DTD\\\/svg11.dtd\\\">\\r\\n<svg version=\\\"1.1\\\" id=\\\"Layer_1\\\" xmlns=\\\"http:\\\/\\\/www.w3.org\\\/2000\\\/svg\\\" xmlns:xlink=\\\"http:\\\/\\\/www.w3.org\\\/1999\\\/xlink\\\" x=\\\"0px\\\" y=\\\"0px\\\"\\r\\n\\t width=\\\"100px\\\" height=\\\"89px\\\" viewBox=\\\"0 0 100 89\\\" style=\\\"enable-background:new 0 0 100 89;\\\" xml:space=\\\"preserve\\\">\\r\\n<polygon id=\\\"Color3\\\" style=\\\"fill-rule:evenodd;clip-rule:evenodd;fill:#E9E7D1;\\\" points=\\\"59.2,88.9 87,88.9 87,33.3 13,33.3 \\r\\n\\t13,88.9 40.7,88.9 40.7,59.2 59.2,59.2 \\\"\\\/>\\r\\n<polygon id=\\\"Color2\\\" style=\\\"fill-rule:evenodd;clip-rule:evenodd;fill:#ED7777;\\\" points=\\\"50,1.9 98.1,35.2 1.8,35.2 \\\"\\\/>\\r\\n<path id=\\\"Color1\\\" style=\\\"fill:#333333;\\\" d=\\\"M99,33.5L51,0.3c-0.6-0.4-1.5-0.4-2.1,0L0.8,33.7c-0.7,0.5-1,1.8-0.7,2.6\\r\\n\\tC0.3,37,1,38,1.8,38H13v51h28V60h18v29h28V38h11.1c0,0,0,0,0,0c1,0,1.8-1.3,1.8-2.3C100,34.9,99.6,33.8,99,33.5z M83,86H63V59.2\\r\\n\\tc0-2-1.7-3.2-3.7-3.2H40.7c-2,0-3.8,1.2-3.8,3.2V86H17V38h66V86z M87,34L87,34h-74l0,0H7.8L50,4.8L92.2,34H87z\\\"\\\/>\\r\\n<\\\/svg>\\r\\n\"},{\"type\":\"svg\",\"colors\":[\"rgb(51, 51, 51)\",\"rgb(71, 199, 209)\",\"rgb(234, 234, 234)\"],\"patterns\":false,\"repeat\":false,\"id\":\"el102\",\"x\":-695.04542541504,\"y\":79.212117513021,\"width\":78,\"height\":100,\"name\":\"Buildings4\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"proportionLock\":true,\"svg\":{\"src\":\"\",\"width\":78,\"height\":100},\"thumbnail\":\"https:\\\/\\\/dh7fnycu2r4y5.cloudfront.net\\\/svgicons\\\/Buildings\\\/Buildings4.png\",\"order\":3,\"pattern\":false,\"svgHtml\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\\r\\n<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\\r\\n<!DOCTYPE svg PUBLIC \\\"-\\\/\\\/W3C\\\/\\\/DTD SVG 1.1\\\/\\\/EN\\\" \\\"http:\\\/\\\/www.w3.org\\\/Graphics\\\/SVG\\\/1.1\\\/DTD\\\/svg11.dtd\\\">\\r\\n<svg version=\\\"1.1\\\" id=\\\"Layer_1\\\" xmlns=\\\"http:\\\/\\\/www.w3.org\\\/2000\\\/svg\\\" xmlns:xlink=\\\"http:\\\/\\\/www.w3.org\\\/1999\\\/xlink\\\" x=\\\"0px\\\" y=\\\"0px\\\"\\r\\n\\t width=\\\"78px\\\" height=\\\"100px\\\" viewBox=\\\"0 0 78 100\\\" style=\\\"enable-background:new 0 0 78 100;\\\" xml:space=\\\"preserve\\\">\\r\\n<rect id=\\\"Color2\\\" x=\\\"15.8\\\" y=\\\"1.3\\\" style=\\\"fill-rule:evenodd;clip-rule:evenodd;fill:#47C7D1;\\\" width=\\\"45.1\\\" height=\\\"55.8\\\"\\\/>\\r\\n<path id=\\\"Color3\\\" style=\\\"fill-rule:evenodd;clip-rule:evenodd;fill:#EAEAEA;\\\" d=\\\"M1.5,68.5c0-2.8,2.3-5.1,5.1-5.1h64.6\\r\\n\\tc2.8,0,5.1,2.3,5.1,5.1v22.1c0,2.8-2.3,5.1-5.1,5.1H6.6c-2.8,0-5.1-2.3-5.1-5.1V68.5z\\\"\\\/>\\r\\n<path id=\\\"Color1\\\" style=\\\"fill:#333333;\\\" d=\\\"M62,41.1L62,41.1V0H14v59h23.2l0,0h3.6l0,0H62V44.6l0,0V41.1z M59,41H41V4h18V41z M37,4\\r\\n\\tv37H18V4H37z M18,55V45h19v10H18z M59,55H41V45h18V55z M28,70h4v19h-4V70z M10,70h4v19h-4V70z M37,70h4v19h-4V70z M19,70h4v19h-4V70\\r\\n\\tz M46,70h4v19h-4V70z M55,70h4v19h-4V70z M72.9,63H5.1c-3,0-5.1,1.9-5.1,4.9v23.2c0,3,2.2,4.9,5.1,4.9H14v4h4v-4h42v4h4v-4h9\\r\\n\\tc3,0,5-1.9,5-4.9V67.9C78,64.9,75.9,63,72.9,63z M75,91.1c0,1-1,1.9-2,1.9H5.1c-1,0-2.1-0.9-2.1-1.9V67.9c0-1,1.1-1.9,2.1-1.9h67.8\\r\\n\\tc1,0,2,0.9,2,1.9V91.1z M64,70h4v19h-4V70z\\\"\\\/>\\r\\n<\\\/svg>\\r\\n\"},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Verdana\"],\"size\":34},\"padding\":{\"vertical\":7,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el103\",\"x\":-44,\"y\":27,\"width\":448,\"height\":85,\"name\":\"Title\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<span id=\\\"selectionBoundary_1463494962440_5004991658300035\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span><font face=\\\"Verdana\\\" style=\\\"font-size: 60px;\\\">&nbsp; &nbsp;Consultants<\\\/font><span id=\\\"selectionBoundary_1463494962440_17876052072536042\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span>\",\"order\":4},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el106\",\"x\":320.99991861979,\"y\":246.22790527344,\"width\":159,\"height\":92,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"Fade In\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#2b2b2b\\\" style=\\\"font-size: 60px;\\\"><b class=\\\"medium-b\\\"> 379<\\\/b><\\\/font>\",\"order\":5},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el107\",\"x\":322,\"y\":427,\"width\":205,\"height\":92,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":1,\"name\":\"Fade In\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#2b2b2b\\\" style=\\\"font-size: 60px;\\\"><b class=\\\"medium-b\\\"> 5,159<\\\/b><\\\/font>\",\"order\":6},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el109\",\"x\":321,\"y\":490.22794596354,\"width\":405,\"height\":78.321940104167,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<span id=\\\"selectionBoundary_1463428246368_12644194185624658\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span><font color=\\\"#2b2b2b\\\" style=\\\"font-size: 40px;\\\" face=\\\"Titillium\\\"> <span id=\\\"selectionBoundary_1463428587224_15357721116260437\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span><span id=\\\"selectionBoundary_1463428593615_8125501673294051\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span>Consultant Contacts<\\\/font><span id=\\\"selectionBoundary_1463428593615_04827155860544896\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span><span id=\\\"selectionBoundary_1463428587224_018031093327963488\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span><span id=\\\"selectionBoundary_1463428246368_603532527116782\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span>\",\"order\":7},{\"type\":\"svg\",\"colors\":[\"#46c72c\"],\"patterns\":false,\"repeat\":false,\"id\":\"el188\",\"x\":-1,\"y\":630,\"width\":803.35463188591,\"height\":176.04531729228,\"name\":\"Line-24 copy\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"proportionLock\":false,\"svg\":{\"src\":\"\",\"width\":100,\"height\":8},\"thumbnail\":\"https:\\\/\\\/dh7fnycu2r4y5.cloudfront.net\\\/svgicons\\\/Lines\\\/Line-24.png\",\"order\":8,\"pattern\":100,\"svgHtml\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\\r\\n<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In  -->\\r\\n<!DOCTYPE svg PUBLIC \\\"-\\\/\\\/W3C\\\/\\\/DTD SVG 1.1\\\/\\\/EN\\\" \\\"http:\\\/\\\/www.w3.org\\\/Graphics\\\/SVG\\\/1.1\\\/DTD\\\/svg11.dtd\\\" [\\r\\n\\t<!ENTITY ns_flows \\\"http:\\\/\\\/ns.adobe.com\\\/Flows\\\/1.0\\\/\\\">\\r\\n]>\\r\\n<svg version=\\\"1.1\\\"\\r\\n\\t xmlns=\\\"http:\\\/\\\/www.w3.org\\\/2000\\\/svg\\\" xmlns:xlink=\\\"http:\\\/\\\/www.w3.org\\\/1999\\\/xlink\\\" xmlns:a=\\\"http:\\\/\\\/ns.adobe.com\\\/AdobeSVGViewerExtensions\\\/3.0\\\/\\\"\\r\\n\\t x=\\\"0px\\\" y=\\\"0px\\\" width=\\\"100px\\\" height=\\\"8px\\\" viewBox=\\\"0 0 100 8\\\" style=\\\"enable-background:new 0 0 100 8;\\\" xml:space=\\\"preserve\\\">\\r\\n<defs>\\r\\n<\\\/defs>\\r\\n<g id=\\\"repeat_1_\\\">\\r\\n<rect id=\\\"Color1\\\" style=\\\"fill:#5C7C7B;\\\" width=\\\"100.8\\\" height=\\\"8.2\\\"\\\/>\\r\\n<\\\/g>\\r\\n<\\\/svg>\\r\\n\"},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el110\",\"x\":320.99991861979,\"y\":305.22786458333,\"width\":357,\"height\":67,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#2b2b2b\\\" style=\\\"font-size: 40px;\\\" face=\\\"Titillium\\\"> Consultant Firms<\\\/font>\",\"order\":9},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el112\",\"x\":34,\"y\":643,\"width\":774,\"height\":126,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#fafbff\\\" face=\\\"Titillium\\\" style=\\\"font-size: 30px;\\\"> <span id=\\\"selectionBoundary_1463428448437_06190066336499056\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span>Our unparalleled coverage of institutional consultants ensures that you not only gain unique insights into their investment&nbsp;recommendations&nbsp;but&nbsp;also into&nbsp;their&nbsp;staffs.<\\\/font><span id=\\\"selectionBoundary_1463428448437_07671158175351511\\\" class=\\\"rangySelectionBoundary\\\" style=\\\"line-height: 0; display: none;\\\">\\ufeff<\\\/span>\",\"order\":10},{\"type\":\"text\",\"font\":{\"name\":\"Trebuchet MS\",\"usedFonts\":[\"Titillium\"],\"size\":14},\"padding\":{\"vertical\":10,\"horizontal\":10},\"border\":{\"style\":\"none\",\"size\":1,\"color\":\"#000\"},\"align\":\"left\",\"lineHeight\":1.2,\"fixedWidth\":true,\"proportionLock\":false,\"borderRadius\":0,\"borderWidth\":1,\"backgroundColor\":\"transparent\",\"id\":\"el176\",\"x\":24,\"y\":103,\"width\":296,\"height\":37,\"name\":\"Body text\",\"lock\":false,\"rotation\":0,\"opacity\":100,\"animation\":{\"enter\":{\"delay\":0,\"name\":\"None\"},\"exit\":{\"delay\":0,\"name\":\"None\"}},\"text\":\"<font color=\\\"#2b2b2b\\\" style=\\\"font-size: 14px;\\\" face=\\\"Titillium\\\">&nbsp;*Consultant results as of April 2016<\\\/font>\",\"order\":11}],\"background\":{\"type\":\"solid\",\"hash\":\"ffffff\"}}]}" );
+        app.bootstrap('project_type', "infographic" );
+        app.bootstrap('project_version', "1778" );
+        app.bootstrap('visibility', " " );
+        app.bootstrap('customHeader', false );
+        app.bootstrap('editMode', "publish" );
+        app.bootstrap('session_id', "test" );
+        app.bootstrap('mode', "player" );
+        app.bootstrap('usersDataStorage', "images\/user\/" );
+        app.bootstrap('assetsStorage', "images\/" );
+        app.bootstrap('audioStorage', "https:\/\/s3.amazonaws.com\/vismestatic\/" );
+        app.bootstrap('permissions', ["sadface","editor:removeUpgrade","download:png","download:pdf","download:html","editor:publishRemoveBranding","publish:requiresRegistration","publish:customBackground","publish:socialShare","publish:comments","publish:password","asset:premiumSvgs","asset:premiumInfographics","asset:premiumTemplates","player:watermarkRemoveBranding","editor:removeUpgrade","asset:premiumAudio"] );
+        app.bootstrap('livereload', "0" );
+        app.bootstrap('Html5Download', true );
+        app.bootstrap('logo', "" );
+  $(function() {
+  app.init();
+});
+</script>
+  </body>
+</html>

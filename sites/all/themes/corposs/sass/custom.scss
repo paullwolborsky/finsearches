@@ -2335,15 +2335,43 @@ body.node-type-plan {
     .entitytype-trial-form {
         background: $form-item-active-blue;
         padding: 15px;
+        text-align: center;
+    }
+    .pre-instructions {
+        text-align: left;
+    }
+    input[type="text"], input[type="tel"] {
+        margin: 0 0 0 5px;
+        border: 1px solid $border-blue;
     }
     .field-type-text, .field-type-telephone, .field-type-email {
         width: 45%;
         display: inline-block;
     }
+    .ield-name-field-form-name {
+        input[type="text"] {
+            margin: 0 0 0 6px;
+        }
+    }
+    .field-name-field-form-job-title {
+        width: 50%;
+    }
     .field-name-field-form-organization {
         input[type="text"] {
             width: 80%;
+            margin: 0 0 0 3px;
         }
+    }
+    .field-name-field-form-phone {
+        width: 50%;
+        input[type="tel"] {
+            width: 82%;
+            margin: 0 0 0 7px;
+        }
+    }
+    .field-name-field-form-email {
+        width: 50%;
+        float: left;
     }
 }
 
@@ -2818,9 +2846,6 @@ span.fieldset-legend a {
         vertical-align: middle;
     }
 }
-
-/********** Advanced Search **********/
-
 
 /********** Chosen Widget Fix **********/
 .chosen-container {
