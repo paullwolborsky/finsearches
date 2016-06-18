@@ -156,46 +156,62 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
       $newpass  = 'U' . $newpass;
     }
 
-    db_update('users')->fields(array('pass' => $newpass))->condition('uid', $curuser->uid)->execute();
-  }
 
-  // Plw 0116 now take care of organization & profile2, extract bio data first.
-  $message = '';
-  $username = (string) $olduser['name'];
-  $email = (string) $olduser['mail'];
-  $lastname = isset($profile['profile_last_name']) ? $profile['profile_last_name'] : '';
-  $firstname = isset($profile['profile_first_name']) ? $profile['profile_first_name'] : '';
-  $companyname = isset($profile['profile_company']) ? $profile['profile_company'] : '';
+    // Plw 0116 now take care of organization & profile2, extract bio data first.
+    $message = '';
+    $username = (string) $olduser['name'];
+    $email = (string) $olduser['mail'];
+    $lastname = isset($profile['profile_last_name']) ? $profile['profile_last_name'] : '';
+    $firstname = isset($profile['profile_first_name']) ? $profile['profile_first_name'] : '';
+    $companyname = isset($profile['profile_company']) ? $profile['profile_company'] : '';
 
-  $organization_nid = 0;
-  if ($companyname) {
-    $organization_nid = _fin_users_migration_get_entity_by_name('field_organization_name', $companyname, 'organization', 'node');
-    if (!$organization_nid) {
-      try {
-        $organization = entity_create('node',
-          array('type' => 'organization', 'uid' => 1, 'status' => 1));
-        $organization->field_organization_name[LANGUAGE_NONE][0]['value'] = $companyname;
-        $organization->title = $companyname;
-        entity_save('node', $organization);
-        $organization_nid = $organization->nid;
-      }
-      catch (Exception $e) {
-        $message = t('Failed to create organization %company from D5 Row: %data. Error: @msg<br /><br />%data',
-           array(
-             '%username' => $username,
-             '%email' => $email,
-             '%data' => print_r($row, TRUE),
-             '@msg' => $e->getMessage(),
-           )
-         );
-      }
-      if ($message) {
-        watchdog('FIN_MIGRATE_ORGANIZATION', $message, array(), WATCHDOG_INFO);
-        $message = '';
+    $organization_nid = 0;
+    if ($companyname) {
+      $organization_nid = _fin_users_migration_get_entity_by_name('field_organization_name', $companyname, 'organization', 'node');
+      if (!$organization_nid) {
+        try {
+          $organization = entity_create('node',
+            array('type' => 'organization', 'uid' => 1, 'status' => 1));
+          $organization->field_organization_name[LANGUAGE_NONE][0]['value'] = $companyname;
+          $organization->title = $companyname;
+          entity_save('node', $organization);
+          if (isset($organization->nid)) {
+            $organization_nid = $organization->nid;
+          }
+          else {
+            $organization_nid = FALSE;
+          }
+        }
+        catch (Exception $e) {
+          $message = t('Failed to create organization %company from D5 Row: %data. Error: @msg<br /><br />%data',
+             array(
+               '%username' => $username,
+               '%email' => $email,
+               '%data' => print_r($row, TRUE),
+               '@msg' => $e->getMessage(),
+             )
+           );
+        }
+        if ($message) {
+          watchdog('FIN_MIGRATE_ORGANIZATION', $message, array(), WATCHDOG_INFO);
+          $message = '';
+        }
       }
     }
-  }
 
+    $user_wrapper = entity_metadata_wrapper('user', $curuser);
+    $user_wrapper->field_pf_first_name = $firstname;
+    $user_wrapper->field_pf_last_name = $lastname;
+    if ($organization_nid) {
+      $user_wrapper->field_pf_organization_er = $organization;
+    }
+    $user_wrapper->field_subscription->set(intval($olduser['expire']));
+    $user_wrapper->save();
+//    entity_save('profile2', $main_profile);
+    
+
+    db_update('users')->fields(array('pass' => $newpass))->condition('uid', $curuser->uid)->execute();
+  }
   $main_profile = fin_users_migration_profile2_by_uid_load($newuid, 'main');
   if (!$main_profile) {
     $main_profile = entity_create('profile2', array('type' => 'main', 'node'));
@@ -209,17 +225,7 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     if (!$main_profile->uid && $newuid) {
       $main_profile->uid = $newuid;
     }
-    $main_profile->field_pf_first_name[LANGUAGE_NONE][0]['value'] = $firstname;
-    $main_profile->field_pf_last_name[LANGUAGE_NONE][0]['value'] = $lastname;
-//    $main_profile->
-    if ($organization_nid) {
- //     $profilewrap->field_pf_organization = $organization;
-      $main_profile->field_pf_organization_er[LANGUAGE_NONE][0]['target_id'] = $organization_nid;
-    }
-    $profilewrap = entity_metadata_wrapper('profile2', $main_profile);
-    $profilewrap->field_expire_date->set(intval($olduser['expire']));
 //    entity_save('profile2', $main_profile);
-    $profilewrap->save();
   }
   catch (Exception $e) {
     $message = t('Failed to %action profile for user %username ( %email ) from D5 Row: %data. Error: @msg',
