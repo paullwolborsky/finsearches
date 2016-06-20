@@ -205,7 +205,10 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     if ($organization_nid) {
       $user_wrapper->field_pf_organization_er = $organization;
     }
-    $user_wrapper->field_subscription->set(intval($olduser['expire']));
+    $user_wrapper->field_subscription->set(array(
+      'value' => intval($olduser['created']),
+      'value2' => intval($olduser['expire']),
+    ));
     $user_wrapper->save();
 //    entity_save('profile2', $main_profile);
     
