@@ -83,12 +83,11 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
   }
   $curuser = user_load_by_mail($olduser['mail']);
   if ($curuser) {
+    /*
     $userwrap = entity_metadata_wrapper('user', $curuser);
-    $userwrap->field_account_type = $olduser['accounttype'];
     $userwrap->field_legendid = $olduser['uid'];
     $userwrap->field_wuin = md5('users' . $olduser['uid']);
     $userwrap->save();
-    /*
     $fields = array(
       'field_account_type' => array(LANGUAGE_NONE => array(array('value' => $olduser['accounttype']))),
       'field_legendid' => array(LANGUAGE_NONE => array(array('value' => $olduser['uid']))),
@@ -124,6 +123,11 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
   foreach ($result as $row) {
     $newroles = $newroles + $roles[$row->name];
   }
+  if (isset($olduser['accounttype'])) {
+    if (isset($roles[$olduser['accounttype']])) {
+      $newroles = $newroles + $roles[$olduser['accounttype']];
+    }
+  }
   $oldpass = (string) $olduser['pass'];
   $newpass = 'qapla';
   $noroles = FALSE;
@@ -135,7 +139,6 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     'init' => (string) $olduser['mail'],
     'created' => $olduser['created'],
     'login' => $olduser['login'],
-    'field_account_type' => array(LANGUAGE_NONE => array(array('value' => $olduser['accounttype']))),
     'field_legendid' => array(LANGUAGE_NONE => array(array('value' => $olduser['uid']))),
     'field_wuin' => array(LANGUAGE_NONE => array(array('value' => md5('users' . $olduser['uid'])))),
   );
@@ -212,36 +215,6 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     $user_wrapper->save();
 
     db_update('users')->fields(array('pass' => $newpass))->condition('uid', $curuser->uid)->execute();
-  }
-  $main_profile = fin_users_migration_profile2_by_uid_load($newuid, 'main');
-  if (!$main_profile) {
-    $main_profile = entity_create('profile2', array('type' => 'main', 'node'));
-  }
-  $action = 'Update';
-  if ($main_profile->uid) {
-    $action = 'Create';
-  }
-  try {
-
-    if (!$main_profile->uid && $newuid) {
-      $main_profile->uid = $newuid;
-    }
-//    entity_save('profile2', $main_profile);
-  }
-  catch (Exception $e) {
-    $message = t('Failed to %action profile for user %username ( %email ) from D5 Row: %data. Error: @msg',
-      array(
-        '%action' => $action,
-        '%username' => $username,
-        '%email' => $email,
-        '%data' => print_r($row, TRUE),
-        '@msg' => $e->getMessage(),
-      )
-    );
-  }
-  if ($message) {
-    watchdog('FIN_MIGRATE_PROFILE2', $message, array(), WATCHDOG_INFO);
-    $message = '';
   }
 }
 
@@ -382,10 +355,12 @@ function _fin_users_migration_get_new_roles() {
   $roles = array(
     'anonymous user' => array(1 => 'anonymous user'),
     'authenticated user' => array(2 => 'authenticated user'),
-    'basic admin' => array(3 => 'administrator'),
-    'user admin' => array(4 => 'manager'),
-    'tasks enabled' => array(5 => 'editor'),
+    'basic admin' => array(13 => 'Editor'),
+    'user admin' => array(4 => 'Manager'),
+    'tasks enabled' => array(10 => 'Tasks'),
     'access family offices' => array(9 => 'Visit Family Office'),
+    'trail' => array(6 => 'Trial Member'),
+    '2 week trial' => array(6 => 'Trial Member'),
   );
   return $roles;
 }
