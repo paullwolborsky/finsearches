@@ -37,7 +37,7 @@ function fin_users_migration_form() {
 function fin_users_migration_user_batch_wrap(&$batch) {
 
   db_set_active('legacy');
-  $sql = "select u.*, at.name as accounttype, ex.expiry_date as expire from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid left join account_expiry ex on u.uid = ex.uid where u.uid > 0 order by u.uid desc";
+  $sql = "select u.*, at.name as accounttype, ex.expiry_date as expire from users u left join accounttypes_users a on u.uid = a.uid left join accounttypes at on a.atid = at.atid left join account_expiry ex on u.uid = ex.uid where u.uid > 1  order by u.uid desc";
   $result = db_query($sql);
   db_set_active();
   // Oids are all old keys in source table, noids keys we saved
@@ -203,15 +203,13 @@ function _fin_users_migration_do_migrate_users(array $olduser, &$context) {
     $user_wrapper->field_pf_first_name = $firstname;
     $user_wrapper->field_pf_last_name = $lastname;
     if ($organization_nid) {
-      $user_wrapper->field_pf_organization_er = $organization;
+      $user_wrapper->field_pf_organization_er = $organization_nid;
     }
     $user_wrapper->field_subscription->set(array(
       'value' => date('Y-m-d', intval($olduser['created'])),
       'value2' => date('Y-m-d', intval($olduser['expire'])),
     ));
     $user_wrapper->save();
-//    entity_save('profile2', $main_profile);
-    
 
     db_update('users')->fields(array('pass' => $newpass))->condition('uid', $curuser->uid)->execute();
   }
