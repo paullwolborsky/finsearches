@@ -309,11 +309,11 @@ function fin_mod_field_attach_view_alter(&$build, $context) {
       $field['formatter_settings'] = $field_values[$key]['formatter_settings'];
     }
     $field_value = fin_mod_get_field_value($key, $field, $entity, $entity_type, $bundle, $view_mode, $build);
-    if($field_value == 'suppressed') {
+    if ($field_value == 'suppressed') {
       unset($build[$key]);
       return;
     }
- 
+
     // Title label.
     if ($key == 'title' && $entity_type == 'node') {
       $node_type = node_type_get_type($entity);
@@ -435,7 +435,7 @@ function fin_mod_render_block_field($field) {
 
   // Render the block content.
   if (isset($block['content']) && is_array($block['content'])) {
-     if(!empty($block['content']['#views_contextual_links_info']['views_ui']['view']->fin_mod_suppress)) {
+    if (!empty($block['content']['#views_contextual_links_info']['views_ui']['view']->fin_mod_suppress)) {
       return 'suppressed';
     }
     $block['content'] = drupal_render($block['content']);
@@ -509,4 +509,43 @@ function fin_mod_render_block_field($field) {
         break;
     }
   }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function fin_mod_entity_presave($entity, $type) {
+  if ($type == 'field_collection_item' && isset($entity->field_name) && $entity->field_name == 'field_consultant_roster_fc') {
+    $entity = fin_mod_fc_phone_add($entity, $type);
+  }
+}
+
+/**
+ * Adds phone number to hidden phone number field on Field Collection Item.
+ */
+function fin_mod_fc_phone_add($entity, $type) {
+  if (!empty($entity->field_consultant_contact_er)) {
+    $contact_nid = $entity->field_consultant_contact_er['und'][0]['target_id'];
+    $contact = node_load($contact_nid);
+    if (!empty($contact->field_address) && !empty($contact->field_address['und'][0]['phone_number'])) {
+      $phone = $contact->field_address['und'][0]['phone_number'];
+    }
+  }
+
+  if (!isset($phone)) {
+    $consultant_firm_nid = $entity->field_consultant_firm_er['und'][0]['target_id'];
+    // Main Office is 337. Currently this is hard-coded but we may want to change that.
+    $result = db_query("SELECT cf.entity_id FROM field_data_field_consultant_firm_er AS cf JOIN field_data_field_office_type_tr AS ot ON (cf.entity_id =  ot.entity_id) WHERE cf.bundle = 'office' AND ot.field_office_type_tr_tid = 337 AND cf.field_consultant_firm_er_target_id = :consultant_firm_nid", array("consultant_firm_nid" => $consultant_firm_nid))->fetchCol();
+    $office_nid = reset($result);
+    $office = node_load($office_nid);
+    if (isset($office) && !empty($office->field_office_type_tr) && $office->field_office_type_tr['und'][0]['tid'] == 337) {
+      if (!empty($office->field_address) && !empty($office->field_address['und'][0]['phone_number'])) {
+        $phone = $office->field_address['und'][0]['phone_number'];
+      }
+    }
+  }
+  if (isset($phone)) {
+    $entity->field_phone['und'][0]['value'] = $phone;
+  }
+  return $entity;
 }
