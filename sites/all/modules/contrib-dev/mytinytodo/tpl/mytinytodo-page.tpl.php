@@ -39,7 +39,7 @@
         Config::set('rtl', 1);
     }
     if (!is_int(Config::get('firstdayofweek')) || Config::get('firstdayofweek') < 0 || Config::get('firstdayofweek') > 6) {
-        Config::set('firstdayofweek', 1);
+        Config::set('firstdayofweek', 0);
     }
 
     if (!defined('TEMPLATEPATH')) {
@@ -112,7 +112,7 @@
 
     <div id="bar">
      <div id="msg"><span class="msg-text"></span><div class="msg-details"></div></div>
-     <div class="bar-menu">
+     <div class="bar-menu" style="display:none">
      <span class="menu-owner" style="display:none">
        <a href="#settings" id="settings"><?php _e('a_settings');?></a>
      </span>
@@ -173,7 +173,7 @@
     <span id="taskview" class="mtt-menu-button"><span class="btnstr"><?php _e('tasks');?></span> (<span id="total">0</span>) <span class="arrdown"></span></span>
     <span class="mtt-notes-showhide"><?php _e('notes');?> <a href="#" id="mtt-notes-show"><?php _e('notes_show');?></a> / <a href="#" id="mtt-notes-hide"><?php _e('notes_hide');?></a></span>
     <span id="mtt_filters"></span>
-    <span id="tagcloudbtn" class="mtt-menu-button"><?php _e('tagcloud');?> <span class="arrdown2"></span></span>
+    <span id="tagcloudbtn" class="mtt-menu-button" style="display:none;"><?php _e('tagcloud');?> <span class="arrdown2"></span></span>
     </h3>
 
     <div id="taskcontainer">
@@ -201,11 +201,11 @@
     <div class="form-row form-row-short">
      <span class="h"><?php _e('priority');?></span>
      <select name="prio">
-      <option value="2">+2</option><option value="1">+1</option><option value="0" selected="selected">&plusmn;0</option><option value="-1">&minus;1</option>
+      <option value="2">Emergency</option><option value="1">High</option><option value="0" selected="selected">Normal</option><option value="-1">Low</option>
      </select>
     </div>
     <div class="form-row form-row-short">
-     <span class="h"><?php _e('due');?> </span>
+     <span class="h"><?php _e('Reminder Date');?> </span>
      <input name="duedate" id="duedate" value="" class="in100" title="Y-M-D, M/D/Y, D.M.Y, M/D, D.M" autocomplete="off" />
     </div>
     <div class="form-row-short-end"></div>
@@ -229,19 +229,21 @@
     <div class="form-row-short-end"></div>
     <?php echo theme('mytinytodo_edit_note') ?>
     <?php echo theme('mytinytodo_edit_tags') ?>
+    <!--
     <div class="form-row form-row-short">
       <span class="h">Reminder on&nbsp;&nbsp;</span>
       <input name="reminderdate" id="reminderdate" value="" class="in100" title="Y-M-D, M/D/Y, D.M.Y, M/D, D.M" autocomplete="off" />
     </div>
     <div class="form-row form-row-short">
       <span class="h">to&nbsp;&nbsp;</span>
-      <input type='text' name='reminderemail' value='<?php print $user->mail; ?>'>
+      <input type='text' name='reminderemail' value='<?php //print $user->mail; ?>'>
     </div>
     <div class="form-row-short-end"></div>
     <div class="form-row">
       <div class="h">Reminder Note</div>
       <textarea name="remindernote" class="in500"></textarea>
     </div>
+    -->
     <div class="form-row form-bottom-buttons">
      <input type="submit" value="<?php _e('save');?>" /> 
      <input type="button" id="mtt_edit_cancel" class="mtt-back-button" value="<?php _e('cancel');?>" />

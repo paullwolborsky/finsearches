@@ -62,7 +62,7 @@ var mytinytodo = window.mytinytodo = _mtt = {
 		tagPreview: true,
 		tagPreviewDelay: 700, //milliseconds
 		saveShowNotes: false,
-		firstdayofweek: 1,
+		firstdayofweek: 0,
 		touchDevice: false
 	},
 
@@ -303,7 +303,8 @@ var mytinytodo = window.mytinytodo = _mtt = {
 			return false;
 		});
 		
-		$("#duedate, #contactdate, #reminderdate").datepicker({
+		//$("#duedate, #contactdate, #reminderdate").datepicker({
+		$("#duedate, #contactdate").datepicker({
 			dateFormat: _mtt.duedatepickerformat(),
 			firstDay: _mtt.options.firstdayofweek,
 			showOn: 'button',
@@ -1278,9 +1279,9 @@ function editTask(id)
 	form.tags.value = item.tags.split(',').join(', ');
 	form.duedate.value = item.duedate;
 	form.prio.value = item.prio;
-	form.reminderdate.value = item.reminderdate;
-	form.reminderemail.value = item.reminderemail;
-	form.remindernote.value = item.remindernote
+	//form.reminderdate.value = item.reminderdate;
+	//form.reminderemail.value = item.reminderemail;
+	//form.remindernote.value = item.remindernote
 	$('#taskedit-date .date-created>span').text(item.date);
 	if(item.compl) $('#taskedit-date .date-completed').show().find('span').text(item.dateCompleted);
 	else $('#taskedit-date .date-completed').hide();
@@ -1298,8 +1299,8 @@ function clearEditForm()
 	form.duedate.value = '';
 	form.prio.value = '0';
 	form.id.value = '';
-	form.reminderdate.value = '';
-	form.remindernote.value = '';
+	//form.reminderdate.value = '';
+	//form.remindernote.value = '';
 	toggleEditAllTags(0);
 };
 
@@ -1311,7 +1312,7 @@ function showEditForm(isAdd)
 		clearEditForm();
 		$('#page_taskedit').removeClass('mtt-inedit').addClass('mtt-inadd');
 		form.isadd.value = 1;
-		if(_mtt.options.autotag) form.tags.value = _mtt.filter.getTags();
+		//if(_mtt.options.autotag) form.tags.value = _mtt.filter.getTags();
 		if($('#task').val() != '')
 		{
 			_mtt.db.request('parseTaskStr', { list:curList.id, title:$('#task').val(), tag:_mtt.filter.getTags() }, function(json){
@@ -1355,9 +1356,9 @@ function saveTask(form)
 		note:form.note.value,
 		prio:form.prio.value,
 		tags:form.tags.value,
-		reminderdate: form.reminderdate.value,
-		reminderemail: form.reminderemail.value,
-		remindernote: form.remindernote.value,
+		//reminderdate: form.reminderdate.value,
+		//reminderemail: form.reminderemail.value,
+		//remindernote: form.remindernote.value,
 		duedate:form.duedate.value
 		},
 		function(json){
@@ -1499,9 +1500,9 @@ function submitFullTask(form)
 			note:form.note.value,
 			prio:form.prio.value,
 			tags:form.tags.value,
-			reminderdate: form.reminderdate.value,
-			reminderemail: form.reminderemail.value,
-			remindernote: form.remindernote.value,
+			//reminderdate: form.reminderdate.value,
+			//reminderemail: form.reminderemail.value,
+			//remindernote: form.remindernote.value,
 			duedate:form.duedate.value
 			}, function(json){
 		if(!parseInt(json.total)) return;
