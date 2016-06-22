@@ -30,7 +30,7 @@
   INNER JOIN mytinytodo_todos mt ON ml.id=mt.list_id
   WHERE mt.uid=:uid AND entity_id=:nid ORDER BY mt.duedate DESC LIMIT 1";
   $result = db_query($task_sql, array(':uid' => $user->uid, ':nid' => $row->nid));
-  $replace = 'fa-list-alt';
+  $replace = 'fa-plus';
   if ($result) {
     while($task = $result->fetchObject()) {
       if (strtotime($task->duedate) < $now && $task->d_completed != '') {
