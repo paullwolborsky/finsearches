@@ -11,7 +11,7 @@ function fin_mod_install() {
   _fin_mod_indexes();
 }
 
-function _fin_mod_indexes(){
+function _fin_mod_indexes() {
 
   $fields_to_index = array(
     'field_address' => array(
@@ -27,17 +27,17 @@ function _fin_mod_indexes(){
     'field_consultant_office_er' => array('field_consultant_office_er_target_id'),
     'field_job_title' => array('field_job_title_value'),
     'field_geographic_tr' => array('field_geographic_tr_tid'),
-
   );
 
   // Adding one index at a time to ensure they all get run at least once.
-  foreach ($fields_to_index as $field => $columns){
+  foreach ($fields_to_index as $field => $columns) {
     $table = _fin_mod_get_table($field);
-    
-    foreach ($columns as $column){
+
+    foreach ($columns as $column) {
       try {
         db_add_index($table, $column, array($column));
-      } catch (DatabaseSchemaObjectExistsException $e) {
+      }
+      catch (DatabaseSchemaObjectExistsException $e) {
         // Index already exists, moving on.
       }
     }
@@ -50,7 +50,6 @@ function _fin_mod_indexes(){
  *
  * @return string
  */
-
 function _fin_mod_get_table($field_name) {
   $field = field_info_field($field_name);
   return _field_sql_storage_tablename($field);
@@ -107,4 +106,16 @@ function fin_mod_update_7003(&$sandbox) {
  */
 function fin_mod_update_7004(&$sandbox) {
   _fin_mod_indexes();
+}
+
+/**
+ * Set the weight.
+ */
+function fin_mod_update_7005(&$sandbox) {
+  db_update("system")
+      ->fields(array(
+        "weight" => 15,
+      ))
+      ->condition("name", "fin_mod")
+      ->execute();
 }

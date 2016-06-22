@@ -423,3 +423,57 @@ function fin_mod_views_data_alter(&$data) {
     ),
   );
 }
+
+/**
+ * Designed to check if a view is empty.
+ */
+function fin_mod_view_result_empty_check($results) {
+  // Results are not truly empty in the fake empty view. This checks for common
+  // items that don't actually mean the view has items in it.
+  $empty = TRUE;
+  foreach ($results as $result) {
+    foreach ($result as $key => $item) {
+      if (!empty($item) && $key != 'nid' && $item != 'field_collection_item' && $key != 'field_data_title_field_node_entity_type') {
+        $empty = FALSE;
+      }
+    }
+  }
+  return $empty;
+}
+
+/**
+ * Designed to check if exposed filters are empty.
+ */
+function fin_mod_exposed_filter_empty_check($filters) {
+  $exposed_empty = TRUE;
+  foreach ($filters as $key => $value) {
+    if ((($key == 'field_major_minor_style_tr_tid' && $value != 'All') || (!empty($value) && $key != 'field_major_minor_style_tr_tid')) && $key != 'items_per_page') {
+      $exposed_empty = FALSE;
+    }
+  }
+  return $exposed_empty;
+}
+
+/**
+ * Implements hook_views_post_execute().
+ */
+function fin_mod_views_post_execute(&$view) {
+  // Checks the condition for one particular view. Can easily be expanded to
+  // all views if desired.
+  if ($view->current_display == 'block_1' && $view->name == 'reference_views') {
+    $empty = fin_mod_view_result_empty_check($view->result);
+    $exposed_empty = fin_mod_exposed_filter_empty_check($view->exposed_raw_input);
+    if ($empty == TRUE && $exposed_empty == TRUE) {
+      $view->result = array();
+      unset($view->exposed_raw_input);
+      unset($view->exposed_input);
+      unset($view->exposed_data);
+      unset($view->exposed_widgets);
+      $view->fin_mod_suppress = TRUE;
+      $view->empty['area']->options['empty'] = 0;
+    }
+    else if($empty == TRUE && $exposed_empty == FALSE) {
+      $view->result = array();
+    }
+  }
+}
