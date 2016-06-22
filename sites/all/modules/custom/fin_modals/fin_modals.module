@@ -35,6 +35,14 @@ function fin_modals_popup_style() {
           'contentRight' => 28,
         ),
       ),
+      'fin-modals-task-style' => array(
+        'modalSize' => array(
+          'type' => 'fixed',
+          'width' => 800,
+          'height' => 600,
+          'contentRight' => 28,
+        ),
+      ),
     );
     drupal_add_js($popup_style, 'setting'); 
   }
@@ -379,6 +387,7 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
   );
   if(in_array($form_id, $forms)) {
     if (empty($form['#node']->nid)) {
+      /*
       $form['field_serialized_comment']['#type'] = 'hidden';
       $form['field_mandate_history'] = array(
         '#type' => "fieldset",
@@ -426,9 +435,9 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
         '#rows' => 5,
         '#format' => 'advanced_input'
       );
-  
+    
       $form['#submit'][] = "fin_modals_special_submit_handler";
-      
+      */
     } else {
       
 
