@@ -181,9 +181,11 @@ elseif(isset($_GET['fullNewTask']))
 	$contact = trim(_post('contact'));
 	$contactdate =   parse_duedate(trim(_post('contactdate')));
 	$contacttypes = $_POST['contacttypes'];
-	$reminderdate = strtotime($_POST['reminderdate']);
-	$reminderemail = trim(_post('reminderemail'));
-	$remindernote = str_replace("\r\n", "\n", trim(_post('remindernote')));
+	//$reminderdate = strtotime($_POST['reminderdate']);
+	//$reminderemail = trim(_post('reminderemail'));
+	//$remindernote = str_replace("\r\n", "\n", trim(_post('remindernote')));
+	$reminderdate = $reminderemail = $remindernote = '';
+	
 	$tags = trim(_post('tags'));
 	if(Config::get('autotag')) $tags .= ','._post('tag');
 	$ow = 1 + (int)$db->sq("SELECT MAX(ow) FROM {mytinytodo_todos} WHERE list_id=$listId AND compl=0");
@@ -209,11 +211,11 @@ elseif(isset($_GET['fullNewTask']))
 			 'tags_ids' => '',
 			 'duedate' => $duedate))
 		->execute();
-
+/*
 	if ($reminderdate != '') {
 		$db->ex("UPDATE {mytinytodo_todos} SET r_date=?,r_email=?, r_note=? WHERE id=$id", array($reminderdate, $reminderemail, $remindernote));
 	}
-
+*/
 	if($tags != '')
 	{
 		$aTags = prepareTags($tags);
@@ -286,9 +288,11 @@ elseif(isset($_GET['editTask']))
 	$contact = trim(_post('contact'));
 	$contactdate =   parse_duedate(trim(_post('contactdate')));
 	$contacttypes = $_POST['contacttypes'];
-	$reminderdate = strtotime($_POST['reminderdate']);
-	$reminderemail = trim(_post('reminderemail'));
-	$remindernote = str_replace("\r\n", "\n", trim(_post('remindernote')));
+	//$reminderdate = strtotime($_POST['reminderdate']);
+	//$reminderemail = trim(_post('reminderemail'));
+	//$remindernote = str_replace("\r\n", "\n", trim(_post('remindernote')));
+	//$reminderdate = $reminderemail = $remindernote = '';
+
 	$note = str_replace("\r\n", "\n", trim(_post('note')));
 	$prio = (int)_post('prio');
 	if($prio < -1000000) $prio = -1000000;
@@ -326,11 +330,11 @@ elseif(isset($_GET['editTask']))
 			 'duedate' => $duedate))
 		->condition('id', $id, '=')
 		->execute();
-
+/*
 	if ($reminderdate != '') {
 		$db->ex("UPDATE {mytinytodo_todos} SET r_date=?,r_email=?, r_note=? WHERE id=$id", array($reminderdate, $reminderemail, $remindernote));
 	}
-	
+*/	
 	/*
 	$db->dq("UPDATE {mytinytodo_todos} SET title=?, c_contact=?, c_date=?, c_type=?, note=?,prio=?,tags=?,tags_ids=?,duedate=?,d_edited=? WHERE id=$id",
 			array($title, $contact, $contactdate, $contacttypes, $note, $prio, $tags, $tags_ids, $duedate, time()) );
@@ -632,9 +636,14 @@ function prepareTaskRow($r)
 	$lang = Lang::instance();
 	$dueA = prepare_duedate($r['duedate']);
 	$c_date = prepare_duedate($r['c_date']);
-	$reminderformat = Config::get('dateformat2');
-	$reminderdate = formatTime($reminderformat, $r['r_date']);
+	//$reminderformat = Config::get('dateformat2');
+	//$reminderdate = formatTime($reminderformat, $r['r_date']);
 	
+		//From query
+		//'reminderdate' => $reminderdate,
+		//'reminderemail' => $r['r_email'],
+		//'remindernote' => $r['r_note'],
+
 	$formatCreatedInline = $formatCompletedInline = Config::get('dateformatshort');
 	if(date('Y') != date('Y',$r['d_created'])) $formatCreatedInline = Config::get('dateformat2');
 	if($r['d_completed'] && date('Y') != date('Y',$r['d_completed'])) $formatCompletedInline = Config::get('dateformat2');
@@ -658,9 +667,6 @@ function prepareTaskRow($r)
 		'contact' => $r['c_contact'],
 		'contactdate' => $c_date['formatted'],
 		'contacttype' => $r['c_type'],
-		'reminderdate' => $reminderdate,
-		'reminderemail' => $r['r_email'],
-		'remindernote' => $r['r_note'],
 		'note' => nl2br(escapeTags($r['note'])),
 		'noteText' => (string)$r['note'],
 		'ow' => (int)$r['ow'],

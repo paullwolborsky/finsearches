@@ -50,7 +50,7 @@ function theme_mytinytodo_html($variables) {
     if ($lang->rtl())
         Config::set('rtl', 1);
     if (!is_int(Config::get('firstdayofweek')) || Config::get('firstdayofweek') < 0 || Config::get('firstdayofweek') > 6)
-        Config::set('firstdayofweek', 1);
+        Config::set('firstdayofweek', 0);
 
     if (!defined('TEMPLATEPATH'))
         define('TEMPLATEPATH', MTTPATH. 'themes/'.Config::get('template').'/');
@@ -428,7 +428,7 @@ function theme_mytinytodo_edit_note() {
 }
 
 function theme_mytinytodo_edit_tags() {
-    return '<div class="form-row"><div class="h">' . t('Tags') . '</div>
+    return '<div class="form-row" style="display:none;"><div class="h">' . t('Tags') . '</div>
       <table cellspacing="0" cellpadding="0" width="100%">
         <tr>
           <td><input type="text" name="tags" id="edittags" value="" class="in500" maxlength="250" /></td>
