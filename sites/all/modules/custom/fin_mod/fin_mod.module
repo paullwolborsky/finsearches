@@ -528,7 +528,16 @@ function fin_mod_fc_phone_add($entity, $type) {
     $contact_nid = $entity->field_consultant_contact_er['und'][0]['target_id'];
     $contact = node_load($contact_nid);
     if (!empty($contact->field_address) && !empty($contact->field_address['und'][0]['phone_number'])) {
+      $ext = '';
+      $data = unserialize($contact->field_address['und'][0]['data']);
+      if (isset($data['phone_number_extension'])) {
+        $ext = $data['phone_number_extension'];
+      }
       $phone = $contact->field_address['und'][0]['phone_number'];
+      if (!empty($ext)) {
+        $phone = $phone . ' ' . $ext;
+      }
+      ;
     }
   }
 
@@ -540,7 +549,15 @@ function fin_mod_fc_phone_add($entity, $type) {
     $office = node_load($office_nid);
     if (isset($office) && !empty($office->field_office_type_tr) && $office->field_office_type_tr['und'][0]['tid'] == 337) {
       if (!empty($office->field_address) && !empty($office->field_address['und'][0]['phone_number'])) {
+        $ext = '';
+        $data = unserialize($office->field_address['und'][0]['data']);
+        if (isset($data['phone_number_extension'])) {
+          $ext = $data['phone_number_extension'];
+        }
         $phone = $office->field_address['und'][0]['phone_number'];
+        if (!empty($ext)) {
+          $phone = $phone . ' ' . $ext;
+        }
       }
     }
   }
