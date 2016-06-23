@@ -845,7 +845,7 @@ span.fieldset-legend a {
 
 /* line 599, ../../sass/custom.scss */
 .column-phone {
-  min-width: 90px;
+  min-width: 110px;
 }
 
 /*** Plan- Contacts View ***/
@@ -3557,23 +3557,36 @@ form.node-contact-form table {
 }
 /* line 2939, ../../sass/custom.scss */
 form.node-contact-form tr.draggable {
-  width: 100%;
-  background-color: #bad0fd;
+  background-color: #e7efff;
   border: 1px solid #689afd;
+  /*.field-name-field-employment-date, .group-organization {
+      display: inline-block;
+      width: 40%;
+      margin: 0 20px;
+  }*/
 }
 /* line 2943, ../../sass/custom.scss */
+form.node-contact-form tr.draggable .field-group-fieldset {
+  background: #d4e2fe;
+}
+/* line 2945, ../../sass/custom.scss */
+form.node-contact-form tr.draggable .field-group-fieldset .fieldset-wrapper {
+  padding: 10px;
+}
+/* line 2949, ../../sass/custom.scss */
 form.node-contact-form tr.draggable span.fieldset-legend {
   color: white;
   text-transform: capitalize;
 }
-/* line 2947, ../../sass/custom.scss */
+/* line 2953, ../../sass/custom.scss */
 form.node-contact-form tr.draggable .field-name-field-status-tr, form.node-contact-form tr.draggable .field-name-field-lead-plan-contact {
-  display: inline-block;
-  margin: 10px;
+  /*//display: inline-block;
+  width: 40%;
+  margin: 10px;*/
 }
 
 /********** Chosen Widget Fix **********/
-/* line 2955, ../../sass/custom.scss */
+/* line 2967, ../../sass/custom.scss */
 .chosen-container {
   width: 220px !important;
 }
