@@ -276,6 +276,45 @@ span.fieldset-legend {
         }
     }
 }
+#block-views-f1bf9aa868429648d7b8139edfc76945 {
+    margin-bottom: 30px;
+    .view-display-id-consultant_imr_questionnaire {
+        background: $form-background-blue;
+        padding: 10px;
+    }
+}
+#block-views-80e1bff760f37aedf556005a04408c3b {
+    .view-display-id-consultant_imr_notes {
+        padding: 10px;
+    }
+}
+#block-fin-user-tracking-user-page-user-top-pages {
+    #edit-visitors-date-filter {
+        legend {
+            background: $form-background-blue;
+            border-width: 0;
+            span.fieldset-legend {
+                text-transform: capitalize;
+            }
+        }
+        .fieldset-wrapper {
+            background: $form-background-blue;
+            padding: 10px;
+        }
+    }
+    table.tableheader-processed {
+        width: 100%;
+        th {
+            padding: 0 5px;
+        }
+        td {
+            padding: 5px;
+        }
+    }
+}
+#block-views-user-views-organization-members {
+    margin-bottom: 30px;
+}
 
 /**** Asset Allocation Block ****/
 #block-views-e4fc768a8b33062e403168acc7227243 {
@@ -444,6 +483,13 @@ ul.links {
         .content {
             padding: 0 0 0 10px;
         }
+    }
+}
+#block-block-63 {
+    margin-bottom: 30px;
+    .content {
+        padding: 10px 0;
+        background-color: $form-background-blue;
     }
 }
 
@@ -692,6 +738,14 @@ fieldset.collapsible .fieldset-legend {
 #block-views-02a6a486d0b43130d46ad7d8bf9d0d37 {
     th.views-field-field-address-data {
         min-width: 110px;
+    }
+}
+/*** Managers - Sub Managers View ***/
+.view-display-id-manager_sub_managers {
+    td.views-field-edit-node {
+        a {
+            margin: 0 5px;
+        }
     }
 }
 
@@ -2844,6 +2898,56 @@ span.fieldset-legend a {
     input[type="radio"], input[type="checkbox"] {
         margin: 0 5px 0 0;
         vertical-align: middle;
+    }
+}
+
+/********** Edit Forms **********/
+/*** Mandate Edit ***/
+form.node-mandate-form {
+    .form-type-checkbox {
+        display: inline-block;
+        width: 20%;
+    }
+    input[type=checkbox] {
+        display: inline-block;
+        float: left;
+        margin: 4px 5px 0 5px;
+    }
+    .ds-above-left, .ds-above-middle, .ds-above-right {
+        .field-group-fieldset {
+            background: $fieldset-background-blue;
+        }
+        legend {
+            padding-left: 5px;
+        }
+    }
+    tr.draggable {
+        background-color: $fieldset-background-blue;
+    }
+    .ds-above-middle, .ds-above-right {
+        .form-item {
+            padding: 10px;
+            border: 1px solid $border-blue;
+        }
+    }
+}
+/*** Contact Edit ***/
+form.node-contact-form {
+    table {
+        width: 100%;
+    }
+    tr.draggable {
+        width: 100%;
+        background-color: $fieldset-background-blue;
+        border: 1px solid $border-blue;
+        span.fieldset-legend {
+            color: $white;
+            text-transform: capitalize;
+        }
+        .field-name-field-status-tr, .field-name-field-lead-plan-contact {
+            display: inline-block;
+            margin: 10px;
+        }
     }
 }
 
