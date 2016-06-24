@@ -20,24 +20,36 @@
 
 /*** Color Variables ***/
 
+/* FIN */
+$fin-blue: #1368a6;
+$fin-navy: #142a45;
+
 /* Page */
+$background: #ffffff;
 $blue-black: #000033;
 $dark-blue: #003366;
+$text: #000000;
+$header: $fin-navy;
+$white: #ffffff; // Cuz you just need white sometimes
 
 /* Borders */
 $border-blue: #689afd;
 
-/*Form Elements */
-$form-background-blue: #f0f5ff;
-$fieldset-background-blue: #dee6ff;
-$fieldset-label-background-blue: #94b8ff;
+/* Form Elements */
+$form-background-blue: #e7efff;
+$fieldset-background-blue: #bad0fd;
+$fieldset-inner-background-blue: #cdddff;
+$fieldset-label-background-blue: #689afd;
 $form-item-odd-blue: #e7efff;
 $form-item-even-blue: #d8e5ff;
 $form-item-active-blue: #cadcff;
 
+/* Buttons*/
+$dark-button: #1368a6;
+
 /* Text */
 $link: #003399;
-$link-hover: #0058ff;
+$link-hover: #428bca;
 $form-item-label: #000000;
 
 /* Misc */
@@ -120,15 +132,12 @@ table {
     text-transform: none;
     text-shadow: none;
   }
-  tr.odd td.active, table tr.even td.active {
-    background-color: $form-item-active-blue;
-  }
 }
-tr.odd {
+tr.odd, tr.odd td.active {
   background: $form-item-odd-blue !important;
   background-color: $form-item-odd-blue !important;
 }
-tr.even {
+tr.even, tr.even td.active {
   background-color: $form-item-even-blue !important;
   background: $form-item-even-blue !important;
 }
@@ -302,5 +311,55 @@ body.page-node-add-plan {
   }
   table.sticky-header {
     z-index: 10;
+  }
+}
+
+
+/********** Content Edit Forms **********/
+
+input.form-text, .form-select {
+  border: solid 1px $border-blue !important;
+}
+
+/*** Consultant Edit ***/
+.node-type-consultant-firm {
+  .field-name-field-acronym {
+    width: 47%;
+    display: inline-block;
+    float: left;
+    margin: 0 20px 0 0;
+  }
+  .field-name-field-status-tr {
+    display: inline-block;
+    float: left;
+    margin: 0 20px 0 0;
+  }
+  .field-name-field-aua {
+    display: inline-block;
+    float: none;
+  }
+  .field-name-field-email, .field-name-field-website {
+    width: 47%;
+    display: inline-block;
+    float: left;
+    margin: 0 20px 0 0;
+  }
+  .field-name-field-invest-mgr-research {
+    tr.odd {
+      background: $fieldset-inner-background-blue !important;
+    }
+    .group-left, .group-right {
+      width: 47%;
+      margin: 0 10px;
+    }
+  }
+  .field-name-field-consultant-comments-fc {
+    .group-left, .group-middle, .group-right {
+      width: 31%;
+      margin: 0 30px 0 0;
+    }
+  }
+  .form-item {
+    padding: 0;
   }
 }

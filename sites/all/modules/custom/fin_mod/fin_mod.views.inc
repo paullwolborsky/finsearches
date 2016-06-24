@@ -460,17 +460,13 @@ function fin_mod_exposed_filter_empty_check($filters) {
 function fin_mod_views_post_execute(&$view) {
   // Checks the condition for one particular view. Can easily be expanded to
   // all views if desired.
-  if ($view->current_display == 'block_1' && $view->name == 'reference_views') {
+  if (($view->current_display == 'block_1' && $view->name == 'reference_views')
+    || ($view->name == 'plan_mandates')
+  ) {
     $empty = fin_mod_view_result_empty_check($view->result);
     $exposed_empty = fin_mod_exposed_filter_empty_check($view->exposed_raw_input);
     if ($empty == TRUE && $exposed_empty == TRUE) {
-      $view->result = array();
-      unset($view->exposed_raw_input);
-      unset($view->exposed_input);
-      unset($view->exposed_data);
-      unset($view->exposed_widgets);
       $view->fin_mod_suppress = TRUE;
-      $view->empty['area']->options['empty'] = 0;
     }
     else if($empty == TRUE && $exposed_empty == FALSE) {
       $view->result = array();
