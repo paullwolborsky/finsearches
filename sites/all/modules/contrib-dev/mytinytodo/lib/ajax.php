@@ -457,9 +457,10 @@ elseif(isset($_GET['addList']))
 		  'field_id' => $field_id,
 		  'name' => $name,
 		  'ow' => $ow,
-                  'd_created' => time(),
+			'sorting' => 102,
+      'd_created' => time(),
 		  'd_edited' => time()))
-                ->execute();
+    ->execute();
 
 	$t['total'] = 1;
 	$r = $db->sqa("SELECT * FROM {mytinytodo_lists} WHERE id = $id");

@@ -61,6 +61,48 @@ function fin_tasks_permission() {
   );
 }
 
+/*
+ *Impliments hook_block_info
+ */
+function fin_tasks_block_info() {
+	$blocks['resources_tasks'] = array(
+    'info' => t('Task list for Resource page'),
+    'cache' => DRUPAL_NO_CACHE,
+	);
+	$blocks['node_tasks'] = array(
+    'info' => t('Task list for specific node and user'),
+    'cache' => DRUPAL_NO_CACHE,
+	);
+  return $blocks;
+}
+
+/*
+ *Impliments hook_block_view
+ */
+function fin_tasks_block_view($delta) {
+	global $user;
+  $block = array();
+  switch ($delta) {
+		case 'resources_tasks':
+      $block['subject'] = "Tasks";
+			$out = fin_tasks_user_list(10);
+			$block['content'] = $out;
+			$block['content'] .= "<div class='resources-link'>" . l('Go to Tasks page','resources/tasks', array()) . "</div>";
+      break;
+		case 'node_tasks':
+      if (arg(0) == 'node') {
+        $nid = arg(1);
+        $block['subject'] = "Tasks";
+        $out = fin_tasks_node_list(5);
+        $block['content'] = $out;
+        $block['content'] .= "<div class='center'><a class='ctools-use-modal ctools-modal-fin-modals-task-style' href='/modal-front/" . $nid . "/tasks/nojs' title='Tasks'>Open Tasks</a></div>";
+      }
+      break;
+  }
+	return $block;
+}
+
+
 /**
  *Produces task list for logged in user
  */
@@ -116,7 +158,11 @@ function fin_tasks_user_list ($limit = NULL) {
     }
     $date = '';
     if ($rec->duedate != '') {
-      $date = date('n-j-Y', strtotime($rec->duedate));
+      if ($rec->duedate < time()) {
+        $date = "<span class='task-overdue'>" . date('n-j-Y', strtotime($rec->duedate)) . "</soan>";
+      } else {
+        "<span>" . $date = date('n-j-Y', strtotime($rec->duedate)) . "<span>";
+      }
     }
     $path = drupal_get_path_alias('node/' . $rec->node_nid);
     $note = $rec->note;
@@ -129,7 +175,7 @@ function fin_tasks_user_list ($limit = NULL) {
       $type,
       $date,
       $note,
-      "<div><a class='ctools-use-modal' href='/modal/" . $rec->node_nid . "/tasks/nojs' title='Tasks'><i class='fa fa-list-alt'></i></a></div>"
+      "<div><a class='ctools-use-modal' href='/modal-front/" . $rec->node_nid . "/tasks/nojs' title='Tasks'><i class='fa fa-list-alt'></i></a></div>"
     );
   }
   if (count($rows) > 0) {
@@ -148,41 +194,80 @@ function fin_tasks_user_list ($limit = NULL) {
   return render($content);
 }
 
-/*
- *Impliments hook_block_info
+/**
+ *Produces task list for logged in user
  */
-function fin_tasks_block_info() {
-	$blocks['resources_tasks'] = array(
-    'info' => t('Task list for Resource page'),
-    'cache' => DRUPAL_NO_CACHE,
-	);
-  return $blocks;
-}
-
-/*
- *Impliments hook_block_view
- */
-function fin_tasks_block_view($delta) {
-	global $user;
-  $block = array();
-  switch ($delta) {
-		case 'resources_tasks':
-      $block['subject'] = "Tasks";
-			$out = fin_tasks_user_list(10);
-			$block['content'] =$out;
-			$block['content'] .= "<div class='resources-link'>" . l('Go to Tasks page','resources/tasks', array()) . "</div>";
-      break;
+function fin_tasks_node_list ($limit = NULL) {
+  if (arg(0) == 'node') {
+    $nid = arg(1);
+  } else {
+    return '';
   }
-	return $block;
-}
-
-
-function fin_tasks_resource_page_tasks() {
   global $user;
+  $m_limit = (isset($limit))?$limit:5;
+  ctools_include('modal');
+  ctools_modal_add_js();
+  $header = array(
+    array('data' => 'Task', 'field' => 'title', 'sort' => 'asc'),
+    array('data' => 'List', 'field' => 'list_name', 'sort' => 'asc'),
+    array('data' => 'Due', 'field' => 'duedate', 'sort' => 'desc'),
+  );
+
+  $query =  db_select('mytinytodo_todos', 't')->extend('PagerDefault')
+            ->extend('TableSort');
+  $query->join('mytinytodo_lists', 'l', 't.list_id=l.id');
+  $query->join('mytinytodo_fields', 'f', 'l.field_id=f.id');
+  $query->join('node', 'n', 'f.entity_id=n.nid');
+  $query->fields('t');
+  $query->addField('l', 'name', 'list_name');
+  $query->where("t.uid = " . $user->uid);
+  $query->where("n.nid = " . $nid);
+  $result = $query
+      ->limit($m_limit)
+      ->orderByHeader($header)
+      ->execute();
   
+  $rows = array();
+
+  $out = "<div id='user-tasks-table'>";
+  //Assumption is the limit will only be set in a block where we don't want the title
+  if (!$limit) {
+    $out .= "<h1 class='header'>Tasks for " . $user->name . "</h1>";
+  }
+  foreach ($result as $rec) {
+    $date = '';
+    if ($rec->duedate != '') {
+      if ($rec->duedate < time()) {
+        $date = "<span class='task-overdue'>" . date('n-j-Y', strtotime($rec->duedate)) . "</soan>";
+      } else {
+        "<span>" . $date = date('n-j-Y', strtotime($rec->duedate)) . "<span>";
+      }
+    }
+    $path = drupal_get_path_alias('node/' . $rec->node_nid);
+    if (strlen($rec->title) > 20) {
+      $title = substr($rec->title, 0, 20) . "...";
+    }
+    $rows[] = array(
+      $title,
+      $rec->list_name,
+      $date,
+    );
+  }
+  if (count($rows) > 0) {
+    $out .= theme('table', array('header' => $header, 'rows' => $rows ));
+  } else {
+    $out .= "There are currenly no tasks.";
+  }
+
+  $out .= "</div>";
+  $content = array();
+  $content[] = array(
+    '#type' => 'item',
+    '#markup' => $out,
+  );
+  $content['pager_pager'] = array('#theme' => 'pager');
+  return render($content);
 }
-
-
 
 function fin_tasks_config_form ($form, &$form_state) {
   $form['general'] = array(

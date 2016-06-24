@@ -112,7 +112,7 @@
 
     <div id="bar">
      <div id="msg"><span class="msg-text"></span><div class="msg-details"></div></div>
-     <div class="bar-menu" style="display:none">
+     <div class="bar-menu">
      <span class="menu-owner" style="display:none">
        <a href="#settings" id="settings"><?php _e('a_settings');?></a>
      </span>
@@ -125,7 +125,7 @@
 
     <div id="lists">
      <ul class="mtt-tabs"></ul>
-     <div class="mtt-tabs-add-button" title="<?php _e('list_new'); ?>"><span></span></div>
+     <div class="mtt-tabs-add-button" title="<?php _e('list_new'); ?>"><span>Create new list</span></div>
      <div id="tabs_buttons">
       <div class="mtt-tabs-select-button mtt-tabs-button" title="<?php _e('list_select'); ?>"><span></span></div>
      </div>
@@ -188,7 +188,7 @@
     <div><a href="#" class="mtt-back-button"><?php _e('go_back');?></a></div>
 
     <h3 class="mtt-inadd"><?php _e('add_task');?></h3>
-    <h3 class="mtt-inedit"><?php _e('edit_task');?>
+    <h3 class="mtt-inedit"><?php _e('edit_task');?><span id='mtt-inedit-completed' style='display:none;color:green;margin:0 0 0 15px;'>Completed</span>
      <div id="taskedit-date" class="mtt-inedit">
       (<span class="date-created" title="<?php _e('taskdate_created');?>"><span></span></span><span class="date-completed" title="<?php _e('taskdate_completed');?>"> &mdash; <span></span></span>)
      </div>
