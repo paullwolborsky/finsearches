@@ -461,7 +461,7 @@ function fin_mod_views_post_execute(&$view) {
   // Checks the condition for one particular view. Can easily be expanded to
   // all views if desired.
   if ($view->current_display == 'block_1' && $view->name == 'reference_views') {
-    $empty = fin_mod_view_result_empty_check($view->result);
+    /*$empty = fin_mod_view_result_empty_check($view->result);
     $exposed_empty = fin_mod_exposed_filter_empty_check($view->exposed_raw_input);
     if ($empty == TRUE && $exposed_empty == TRUE) {
       $view->result = array();
@@ -474,6 +474,6 @@ function fin_mod_views_post_execute(&$view) {
     }
     else if($empty == TRUE && $exposed_empty == FALSE) {
       $view->result = array();
-    }
+    }*/
   }
 }
