@@ -48,7 +48,7 @@ $num = count($view->style_plugin->rendered_fields);
     $row_class .= '"'
   ?>
   <tr <?php print $row_class; ?>>
-    <td><?php print $wrow['field_consultant_firm_er'] . '<br>'; ?><?php print $wrow['title_field']; ?><?php print (strpos($wrow['field_content_type_human_tr'],'Consultant Office') === FALSE) ? '' : ' Office'; ?></td>
+    <td><?php print $wrow['field_consultant_firm_er'] . '<br>'; ?><?php print (strpos($wrow['field_content_type_human_tr'],'Consultant Office') === FALSE) ? $wrow['title_field'] : strip_tags($wrow['title_field']) . ' Office'; ?></td>
     <td><?php print $wrow['field_address']; ?></td>
     <td><?php print $wrow['field_content_type_human_tr']; ?></td>
     <td><?php print $wrow['field_plan_size']; ?></td>
