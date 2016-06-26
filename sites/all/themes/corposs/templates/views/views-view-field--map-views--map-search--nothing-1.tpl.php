@@ -24,11 +24,11 @@
 if (empty($row->field_field_aua) && empty($row->field_field_plan_size)) {
   $output = 'n/a';
 }
-elseif (row->field_field_aua) {
-  $output = row->field_field_aua[0]['rendered']['#markup'];
+elseif ($row->field_field_aua) {
+  $output = $row->field_field_aua[0]['rendered']['#markup'] . ' (m)';
 }
-elseif (row->field_field_plan_size {
-  $output = row->field_field_plan_size[0]['rendered']['#markup'];
+elseif ($row->field_field_plan_size) {
+  $output = $row->field_field_plan_size[0]['rendered']['#markup'] . ' (m)';
 }
 
 ?>
