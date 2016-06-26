@@ -41,8 +41,15 @@ $num = count($view->style_plugin->rendered_fields);
 <?php if ($view->current_display === 'map_search' && $num > 0) : ?>
 <div class="ip-geoloc-table">
 <table class="ip-geoloc-map-table views-table cols-5">
-  <thead><tr><th class="views-field">Name</th><th class="views-field">Address</th class="views-field"><th>Type</th><th>Size</th></tr></thead><tbody>
+  <thead><tr><th class="views-field">Name</th><th class="views-field">Address</th class="views-field"><th>Type</th><th>Size</th><th>Plan Type</th></tr></thead><tbody>
   <?php foreach ($view->style_plugin->rendered_fields as $key => $wrow) : 
+    $rowu = $view->result[$key];
+    if ($rowu->field_field_plan_type_tr) {
+      $pt = $rowu->field_field_plan_type_tr[0]['rendered']['#markup'];
+    }
+    else {
+      $pt = 'n/a';
+    }
     $row_class = 'class = "';
     $row_class .= ($key % 2 == 0) ? 'odd' : 'even';
     $row_class .= '"'
@@ -52,6 +59,7 @@ $num = count($view->style_plugin->rendered_fields);
     <td><?php print $wrow['field_address']; ?></td>
     <td><?php print $wrow['field_content_type_human_tr']; ?></td>
     <td><?php print $wrow['nothing_1']; ?></td>
+    <td><?php print $pt; ?></td>
   </tr>
   <?php endforeach; ?>
 </tbody></table>
