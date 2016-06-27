@@ -112,13 +112,15 @@ function fin_tasks_user_list ($limit = NULL) {
   ctools_include('modal');
   ctools_modal_add_js();
   $header = array(
-    array('data' => 'Task', 'field' => 'title', 'sort' => 'asc'),
-    array('data' => 'List', 'field' => 'list_name', 'sort' => 'asc'),
-    array('data' => 'Content', 'field' => 'title', 'sort' => 'desc'),
+    array('data' => 'Task'),
+		array('data' => 'List', 'field' => 'list_name'),
+    array('data' => 'Item', 'field' => 'node_title', 'sort' => 'desc'),
     array('data' => 'Type', 'field' => 'node_type'),
-    array('data' => 'Due', 'field' => 'duedate', 'sort' => 'desc'),
-    array('data' => 'Note'),
-    array('data' => 'Actions'),
+    array('data' => 'Due', 'field' => 'duedate', 'sort' => 'asc'),
+    array('data' => 'Subject', 'field' => 'title', 'sort' => 'asc'),
+    array('data' => 'Contact', 'field' => 'c_date', 'sort' => 'desc'),
+    array('data' => 'Name', 'field' => 'c_contact', 'sort' => 'asc'),
+    //array('data' => 'Content', 'field' => 'node_title', 'sort' => 'desc'),
   );
 
   $query =  db_select('mytinytodo_todos', 't')->extend('PagerDefault')
@@ -145,6 +147,8 @@ function fin_tasks_user_list ($limit = NULL) {
     $out .= "<h1 class='header'>Tasks for " . $user->name . "</h1>";
   }
   foreach ($result as $rec) {
+		//dd($rec, "Record");
+		$path = $node_title = $date = $task_title = $node_title = $c_date = $c_contact = '';
     switch($rec->node_type) {
       case 'plan':
         $type = "Plan";
@@ -164,18 +168,43 @@ function fin_tasks_user_list ($limit = NULL) {
         "<span>" . $date = date('n-j-Y', strtotime($rec->duedate)) . "<span>";
       }
     }
+    if ($rec->c_date != '') {
+			$c_date = date('n-j-Y', strtotime($rec->c_date));
+		} else {
+			$c_date = '';
+		}
+		if (!$rec->c_contact) {
+			$rec->c_contact = '';
+		}
     $path = drupal_get_path_alias('node/' . $rec->node_nid);
-    $note = $rec->note;
     if (strlen($rec->note) > 100) {
       $note = substr($rec->note, 0, 100) . "...";
-    }
-    $rows[] = array($rec->title,
+    } else {
+			$note = $rec->note;
+		}
+		
+    if (strlen($rec->title) > 30) {
+      $task_title = substr($rec->title, 0, 30) . "...";
+    } else {
+			$task_title = $rec->title;
+		}
+		
+    if (strlen($rec->node_title) > 30) {
+      $node_title = substr($rec->node_title, 0, 30) . "...";
+    } else {
+			$node_title = $rec->node_title;
+		}
+		
+    $rows[] = array(
+      "<div><a class='ctools-use-modal' href='/modal-front/" . $rec->node_nid . "/tasks/nojs' title='Tasks'><i class='fa fa-list-alt'></i></a></div>",
       $rec->list_name,
-      "<a href='/" . $path . "' >" . $rec->node_title . "</a>",
+      "<a href='/" . $path . "' >" . $node_title . "</a>",
       $type,
+      //$note,
       $date,
-      $note,
-      "<div><a class='ctools-use-modal' href='/modal-front/" . $rec->node_nid . "/tasks/nojs' title='Tasks'><i class='fa fa-list-alt'></i></a></div>"
+			$task_title,
+			$c_date,
+			$rec->c_contact,
     );
   }
   if (count($rows) > 0) {
@@ -194,8 +223,9 @@ function fin_tasks_user_list ($limit = NULL) {
   return render($content);
 }
 
+
 /**
- *Produces task list for logged in user
+ *Produces task list for a specific node and the logged in user
  */
 function fin_tasks_node_list ($limit = NULL) {
   if (arg(0) == 'node') {
@@ -235,6 +265,7 @@ function fin_tasks_node_list ($limit = NULL) {
     $out .= "<h1 class='header'>Tasks for " . $user->name . "</h1>";
   }
   foreach ($result as $rec) {
+		$date = $title = '';
     $date = '';
     if ($rec->duedate != '') {
       if ($rec->duedate < time()) {
@@ -243,10 +274,11 @@ function fin_tasks_node_list ($limit = NULL) {
         "<span>" . $date = date('n-j-Y', strtotime($rec->duedate)) . "<span>";
       }
     }
-    $path = drupal_get_path_alias('node/' . $rec->node_nid);
     if (strlen($rec->title) > 20) {
       $title = substr($rec->title, 0, 20) . "...";
-    }
+    } else {
+			$title = $rec->title;
+		}
     $rows[] = array(
       $title,
       $rec->list_name,
