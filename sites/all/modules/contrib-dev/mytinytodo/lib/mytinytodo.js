@@ -224,21 +224,25 @@ var mytinytodo = window.mytinytodo = _mtt = {
 
 		$('#mtt-notes-show').click(function(){
 			toggleAllNotes(1);
-			t.blur();
+			if (t.blur !== undefined) {
+					t.blur();
+			}
 			return false;
 		});
 
 		$('#mtt-notes-hide').click(function(){
 			toggleAllNotes(0);
-			t.blur();
+			if (t.blur !== undefined) {
+					t.blur();
+			}
 			return false;
 		});
 
 		$('#taskviewcontainer li').click(function(){
-			if(t.id == 'view_tasks') setTaskview(0);
-			else if(t.id == 'view_past') setTaskview('past');
-			else if(t.id == 'view_today') setTaskview('today');
-			else if(t.id == 'view_soon') setTaskview('soon');
+			if(l.id == 'view_tasks') setTaskview(0);
+			else if(l.id == 'view_past') setTaskview('past');
+			else if(l.id == 'view_today') setTaskview('today');
+			else if(l.id == 'view_soon') setTaskview('soon');
 		});
 
 		
