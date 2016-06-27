@@ -1283,8 +1283,14 @@ function editTask(id)
 	//form.reminderemail.value = item.reminderemail;
 	//form.remindernote.value = item.remindernote
 	$('#taskedit-date .date-created>span').text(item.date);
-	if(item.compl) $('#taskedit-date .date-completed').show().find('span').text(item.dateCompleted);
-	else $('#taskedit-date .date-completed').hide();
+	if(item.compl) {
+		$('#taskedit-date .date-completed').show().find('span').text(item.dateCompleted);
+		$('#mtt-inedit-completed').show();
+	}	
+	else {
+		$('#taskedit-date .date-completed').hide();
+		$('#mtt-inedit-completed').hide();
+	}
 	toggleEditAllTags(0);
 	showEditForm();
 	return false;

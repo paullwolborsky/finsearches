@@ -183,7 +183,7 @@ function mytinytodo_init_js() {
   });
 })(jQuery);');
 }
-
+//firstdayofweek: ' . (int) Config::get('firstdayofweek') . ',
 /**
  * Implements hook_field_info().
  *
