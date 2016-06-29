@@ -145,6 +145,9 @@ function fin_mod_views_query_alter(&$view, &$query) {
   if ($view->name == 'content_lists') {
     fin_mod_content_list($view, $query);
   }
+  elseif ($view->name == 'manager_list'/* && $view->current_display == 'block_2' */) {
+    fin_mod_manager_list($view, $query);
+  }
   if (isset($view->args) && $view->name == 'plan_direct_consultants') {
     fin_mod_plan_direct_consultants_query($view, $query);
   }
@@ -154,6 +157,17 @@ function fin_mod_views_query_alter(&$view, &$query) {
     $query->add_groupby('field_collection_item_field_data_field_manager_roster_fc__fi');
     $query->add_groupby('field_collection_item_field_data_field_manager_roster_fc__fi_2');
   }
+}
+
+function fin_mod_manager_list(&$view, &$query) {
+  unset($query->where[2]['conditions']);
+  $db_or = db_or();
+  $db_and = db_and();
+  $db_and->condition("field_collection_item_field_data_field_manager_roster_fc__field_data_field_major_minor_style_tr.field_major_minor_style_tr_tid", 957, "!=");
+  $db_and->condition("field_data_field_plan_type_tr.field_plan_type_tr_tid", 1129);
+  $db_or->condition("field_data_field_plan_type_tr.field_plan_type_tr_tid", 1129, "!=");
+  $db_or->condition($db_and);
+  $query->add_where(2, $db_or);
 }
 
 /**
@@ -468,7 +482,7 @@ function fin_mod_views_post_execute(&$view) {
     if ($empty == TRUE && $exposed_empty == TRUE) {
       $view->fin_mod_suppress = TRUE;
     }
-    else if($empty == TRUE && $exposed_empty == FALSE) {
+    else if ($empty == TRUE && $exposed_empty == FALSE) {
       $view->result = array();
     }
   }
