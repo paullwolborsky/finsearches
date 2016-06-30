@@ -363,3 +363,13 @@ input.form-text, .form-select {
     padding: 0;
   }
 }
+/*** Contacts ***/
+.node-type-contact {
+    fieldset.group-left {
+        width: 49%;
+        float: left;
+    }
+    fieldset.group-organization {
+        width: 49%;
+    }
+}
