@@ -3497,23 +3497,41 @@ span.fieldset-legend a {
 .page-user .field-label {
   margin-right: 5px;
 }
-
 /* line 2886, ../../sass/custom.scss */
+.page-user .block-fin-user-tracking .content .form-wrapper {
+  margin: 0 0 15px 0;
+  background: #e7efff;
+}
+/* line 2889, ../../sass/custom.scss */
+.page-user .block-fin-user-tracking .content .form-wrapper legend {
+  background: #e7efff;
+  border-bottom: none;
+}
+/* line 2892, ../../sass/custom.scss */
+.page-user .block-fin-user-tracking .content .form-wrapper legend span.fieldset-legend {
+  text-transform: capitalize;
+}
+/* line 2896, ../../sass/custom.scss */
+.page-user .block-fin-user-tracking .content .form-wrapper .fieldset-wrapper {
+  padding: 10px;
+}
+
+/* line 2904, ../../sass/custom.scss */
 .page-user-edit .form-item-mail {
   margin: 0 20px 0 0;
 }
-/* line 2889, ../../sass/custom.scss */
+/* line 2907, ../../sass/custom.scss */
 .page-user-edit .form-item-name, .page-user-edit .form-item-mail {
   display: none;
 }
-/* line 2892, ../../sass/custom.scss */
+/* line 2910, ../../sass/custom.scss */
 .page-user-edit .form-item-pass::before {
   content: "Change Password";
   width: 100%;
   font-size: 18px;
   font-weight: bold;
 }
-/* line 2898, ../../sass/custom.scss */
+/* line 2916, ../../sass/custom.scss */
 .page-user-edit input[type="radio"], .page-user-edit input[type="checkbox"] {
   margin: 0 5px 0 0;
   vertical-align: middle;
@@ -3521,41 +3539,41 @@ span.fieldset-legend a {
 
 /********** Edit Forms **********/
 /*** Mandate Edit ***/
-/* line 2907, ../../sass/custom.scss */
+/* line 2925, ../../sass/custom.scss */
 form.node-mandate-form .form-type-checkbox {
   display: inline-block;
   width: 20%;
 }
-/* line 2911, ../../sass/custom.scss */
+/* line 2929, ../../sass/custom.scss */
 form.node-mandate-form input[type=checkbox] {
   display: inline-block;
   float: left;
   margin: 4px 5px 0 5px;
 }
-/* line 2917, ../../sass/custom.scss */
+/* line 2935, ../../sass/custom.scss */
 form.node-mandate-form .ds-above-left .field-group-fieldset, form.node-mandate-form .ds-above-middle .field-group-fieldset, form.node-mandate-form .ds-above-right .field-group-fieldset {
   background: #bad0fd;
 }
-/* line 2920, ../../sass/custom.scss */
+/* line 2938, ../../sass/custom.scss */
 form.node-mandate-form .ds-above-left legend, form.node-mandate-form .ds-above-middle legend, form.node-mandate-form .ds-above-right legend {
   padding-left: 5px;
 }
-/* line 2924, ../../sass/custom.scss */
+/* line 2942, ../../sass/custom.scss */
 form.node-mandate-form tr.draggable {
   background-color: #bad0fd;
 }
-/* line 2928, ../../sass/custom.scss */
+/* line 2946, ../../sass/custom.scss */
 form.node-mandate-form .ds-above-middle .form-item, form.node-mandate-form .ds-above-right .form-item {
   padding: 10px;
   border: 1px solid #689afd;
 }
 
 /*** Contact Edit ***/
-/* line 2936, ../../sass/custom.scss */
+/* line 2954, ../../sass/custom.scss */
 form.node-contact-form table {
   width: 100%;
 }
-/* line 2939, ../../sass/custom.scss */
+/* line 2957, ../../sass/custom.scss */
 form.node-contact-form tr.draggable {
   background-color: #e7efff;
   border: 1px solid #689afd;
@@ -3565,20 +3583,20 @@ form.node-contact-form tr.draggable {
       margin: 0 20px;
   }*/
 }
-/* line 2943, ../../sass/custom.scss */
+/* line 2961, ../../sass/custom.scss */
 form.node-contact-form tr.draggable .field-group-fieldset {
   background: #d4e2fe;
 }
-/* line 2945, ../../sass/custom.scss */
+/* line 2963, ../../sass/custom.scss */
 form.node-contact-form tr.draggable .field-group-fieldset .fieldset-wrapper {
   padding: 10px;
 }
-/* line 2949, ../../sass/custom.scss */
+/* line 2967, ../../sass/custom.scss */
 form.node-contact-form tr.draggable span.fieldset-legend {
   color: white;
   text-transform: capitalize;
 }
-/* line 2953, ../../sass/custom.scss */
+/* line 2971, ../../sass/custom.scss */
 form.node-contact-form tr.draggable .field-name-field-status-tr, form.node-contact-form tr.draggable .field-name-field-lead-plan-contact {
   /*//display: inline-block;
   width: 40%;
@@ -3586,7 +3604,7 @@ form.node-contact-form tr.draggable .field-name-field-status-tr, form.node-conta
 }
 
 /********** Chosen Widget Fix **********/
-/* line 2967, ../../sass/custom.scss */
+/* line 2985, ../../sass/custom.scss */
 .chosen-container {
   width: 220px !important;
 }

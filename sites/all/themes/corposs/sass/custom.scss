@@ -2881,6 +2881,24 @@ span.fieldset-legend a {
     .field-label {
         margin-right: 5px;
     }
+    .block-fin-user-tracking {
+        .content {
+            .form-wrapper{
+                margin: 0 0 15px 0;
+                background: $form-background-blue;
+                legend {
+                    background: $form-background-blue;
+                    border-bottom: none;
+                    span.fieldset-legend {
+                        text-transform: capitalize;
+                    }
+                }
+                .fieldset-wrapper {
+                    padding: 10px;
+                }
+            }
+        }
+    }
 }
 .page-user-edit {
     .form-item-mail {
