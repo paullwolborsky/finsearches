@@ -1,0 +1,4 @@
+name = "Fin Export"
+description = "Squirro Export code"
+package = "Custom"
+core = 7.x

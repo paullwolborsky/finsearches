@@ -1,0 +1,137 @@
+<?php
+
+/*
+ *Impliments hook_menu
+ */
+function fin_export_menu() {
+  global $user;
+  $items = array();
+  $items['admin/config/financial-news/export_test/%/%'] = array(
+    'title' => 'Test the export',
+    'page callback' => array('fin_export_export_test'),
+    'page arguments' => array(4,5),
+    'access callback' => user_access('administer site configuration'),
+    'type' => MENU_LOCAL_TASK,
+  );
+	return $items;
+}
+
+function fin_export_export_test ($name, $pass) {
+	//Get authentication
+	$service_url = 'http://192.168.0.100:93/rest/user/login.xml';
+	$post_data = array(
+		'username' => $name,
+		'password' => $pass,
+	);
+	$post_data = http_build_query($post_data, '', '&');
+	
+	$curl = curl_init($service_url);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	
+	curl_setopt($curl, CURLOPT_POST, true);
+	curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+	
+	curl_setopt($curl, CURLOPT_VERBOSE, true);
+	$response = curl_exec($curl);
+	curl_close($curl);
+	
+	$xml = new SimpleXMLElement($response);
+	$session_cookie = $xml->session_name .'='. $xml->sessid;
+	//print "SESSION_COOKIE: $session_cookie";
+	//file_put_contents('session_cookie.txt', $session_cookie);
+	
+	//Make the request to the view
+	//$export_url = 'http://192.168.0.100:93/rest/views/Data_export?display_id=services_plans&format_output=0&limit=5';
+	//$export_url = 'http://192.168.0.100:93/rest/views/content_lists?display_id=plans_list&format_output=0&limit=5';
+	$export_url = 'http://192.168.0.100:93/rest/plans?limit=5&format_output=1';
+	//$session_cookie = file_get_contents('session_cookie.txt');
+	
+	// set up the request
+	$export_curl = curl_init($export_url);
+	curl_setopt($export_curl, CURLOPT_RETURNTRANSFER, true);  // have curl_exec return a string
+	
+	curl_setopt($export_curl, CURLOPT_COOKIE, "$session_cookie"); // use the previously saved session
+	
+	// make the request
+	curl_setopt($export_curl, CURLOPT_VERBOSE, true); // output to command line
+	$export_response = curl_exec($export_curl);
+	dd($export_response, "Response from View");
+	curl_close($export_curl);
+	file_put_contents('plans_export.csv', $export_response);
+	print "RESPONSE:\n";
+	var_dump($export_response);
+}
+
+/**
+ * Implements hook_services_resources().
+ */
+function fin_exports_services_resources() {
+  $api = array(
+    'export' => array(
+      'operations' => array(
+        'plans' => array(
+          'help' => 'Export Plans Data',
+          'callback' => 'fin_export_plans',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'since',
+              'type' => 'int',
+              'description' => 'Posts from the last number of days',
+              'source' => array('param' => 'since'),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          )
+        )
+      )
+    )
+  );
+  return $api;
+}
+
+function fin_export_plans($since) {
+  $since = intval($since);
+  return fin_export_get_plans($since);
+}
+
+function fin_export_get_plans($since) {
+  $sql = "
+    SELECT
+    n.nid,
+    n.title,
+    n.created,
+    plan_type_td.tid as plan_type_id,
+    plan_type_td.name as plan_type_name,
+    fa.field_acronym_value as acronym,
+    ps.field_plan_size_history_value as plan_size,
+    plan_currency.field_currency_tr_tid as currency_id,
+    currency_td.name as currency_name,
+    plan_address.field_address_country AS plan_country,
+    plan_address.field_address_administrative_area AS plan_state,
+    plan_address.field_address_locality AS plan_city,
+    plan_address.field_address_thoroughfare AS plan_address1,
+    plan_address.field_address_premise AS plan_address2,
+    plan_address.field_address_sub_premise AS plan_address3,
+    plan_address.field_address_postal_code AS plan_zipcode,
+    plan_address.field_address_data AS plan_phones,
+    plan_email.field_email_email AS plan_email,
+    plan_website.field_website_url AS plan_website 
+    
+    FROM node n 
+    INNER JOIN taxonomy_index plan_type_ti ON n.nid=plan_type_ti.nid 
+    INNER JOIN taxonomy_term_data plan_type_td ON plan_type_ti.tid=plan_type_td.tid AND plan_type_td.vid=12 
+    LEFT JOIN field_data_field_acronym fa ON n.nid=fa.entity_id AND fa.bundle='plan' 
+    INNER JOIN field_data_field_plan_size_history ps ON n.nid=ps.entity_id AND ps.bundle='plan' AND ps.delta=1 
+    INNER JOIN field_data_field_currency_tr plan_currency ON n.nid=plan_currency.entity_id AND plan_currency.bundle='plan' 
+    INNER JOIN taxonomy_index currency_ti ON n.nid=currency_ti.nid 
+    INNER JOIN taxonomy_term_data currency_td ON currency_ti.tid=currency_td.tid AND currency_td.vid=11 
+    INNER JOIN field_data_field_address plan_address ON n.nid=plan_address.entity_id AND plan_address.bundle='plan' 
+    LEFT JOIN field_data_field_email plan_email ON n.nid=plan_email.entity_id AND plan_email.bundle='plan' 
+    INNER JOIN field_data_field_website plan_website ON n.nid=plan_website.entity_id AND plan_website.bundle='plan' 
+    WHERE n.nid=375847
+    ";
+    
+}

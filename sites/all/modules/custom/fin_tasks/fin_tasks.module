@@ -114,12 +114,12 @@ function fin_tasks_user_list ($limit = NULL) {
   $header = array(
     array('data' => 'Task'),
 		array('data' => 'List', 'field' => 'list_name'),
-    array('data' => 'Item', 'field' => 'node_title', 'sort' => 'desc'),
+    array('data' => 'Item', 'field' => 'node_title'),
     array('data' => 'Type', 'field' => 'node_type'),
     array('data' => 'Due', 'field' => 'duedate', 'sort' => 'asc'),
-    array('data' => 'Subject', 'field' => 'title', 'sort' => 'asc'),
-    array('data' => 'Contact', 'field' => 'c_date', 'sort' => 'desc'),
-    array('data' => 'Name', 'field' => 'c_contact', 'sort' => 'asc'),
+    array('data' => 'Subject', 'field' => 'title'),
+    array('data' => 'Last Contact', 'field' => 'c_date'),
+    array('data' => 'Contact Name', 'field' => 'c_contact'),
     //array('data' => 'Content', 'field' => 'node_title', 'sort' => 'desc'),
   );
 
@@ -196,7 +196,7 @@ function fin_tasks_user_list ($limit = NULL) {
 		}
 		
     $rows[] = array(
-      "<div><a class='ctools-use-modal' href='/modal-front/" . $rec->node_nid . "/tasks/nojs' title='Tasks'><i class='fa fa-list-alt'></i></a></div>",
+      "<div><a class='ctools-use-modal ctools-modal-fin-modals-task-style' href='/modal-front/" . $rec->node_nid . "/tasks/nojs' title='Tasks'><i class='fa fa-list-alt'></i></a></div>",
       $rec->list_name,
       "<a href='/" . $path . "' >" . $node_title . "</a>",
       $type,
@@ -238,9 +238,9 @@ function fin_tasks_node_list ($limit = NULL) {
   ctools_include('modal');
   ctools_modal_add_js();
   $header = array(
-    array('data' => 'Task', 'field' => 'title', 'sort' => 'asc'),
-    array('data' => 'List', 'field' => 'list_name', 'sort' => 'asc'),
-    array('data' => 'Due', 'field' => 'duedate', 'sort' => 'desc'),
+    array('data' => 'Task', 'field' => 'title'),
+    array('data' => 'List', 'field' => 'list_name'),
+    array('data' => 'Due', 'field' => 'duedate', 'sort' => 'asc'),
   );
 
   $query =  db_select('mytinytodo_todos', 't')->extend('PagerDefault')
