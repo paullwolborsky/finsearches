@@ -476,8 +476,11 @@ function fin_mod_exposed_filter_empty_check($filters) {
 function fin_mod_views_post_execute(&$view) {
   // Checks the condition for one particular view. Can easily be expanded to
   // all views if desired.
-  if (($view->current_display == 'block_1' && $view->name == 'reference_views')
+  if (($view->name == 'reference_views' && $view->current_display == 'block_1')
     || ($view->name == 'plan_mandates')
+    || ($view->name == 'manager_of_managers_views' && $view->current_display == 'manager_sub_managers')
+    || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_notes')
+    || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_questionnaire')
   ) {
     $empty = fin_mod_view_result_empty_check($view->result);
     $exposed_empty = fin_mod_exposed_filter_empty_check($view->exposed_raw_input);
