@@ -88,6 +88,8 @@ function fin_mod_state_code($state) {
   $administrative_areas = _addressfield_get_administrative_areas_defaults();
   foreach ($administrative_areas as $country => $states) {
     $states = array_flip($states);
+    // normalize state names
+    $state = ucfirst(strtolower($state));
     if (array_key_exists($state, $states)) {
       $state_code = $states[$state];
       if (isset($state_code)) {
@@ -127,10 +129,10 @@ function fin_mod_content_list(&$view, &$query) {
   if (!empty($view->exposed_raw_input['field_address_administrative_area']) || !empty($view->exposed_raw_input['field_address_locality'])) {
     foreach ($query->where as $conditions_key => $conditions) {
       foreach ($conditions['conditions'] as $key => &$where) {
-        if ($where['field'] == 'field_data_field_address.field_address_administrative_area') {
+        if(strpos($where['field'], 'field_data_field_address.field_address_administrative_area')) {
           fin_mod_content_list_state($query, $where, $conditions_key, $key);
         }
-        if ($where['field'] == 'field_data_field_office_type_tr.field_office_type_tr_tid') {
+        if (strpos($where['field'], 'field_data_field_office_type_tr.field_office_type_tr_tid')) {
           fin_mod_main_office_remove($query, $conditions_key, $key);
         }
       }
@@ -474,8 +476,11 @@ function fin_mod_exposed_filter_empty_check($filters) {
 function fin_mod_views_post_execute(&$view) {
   // Checks the condition for one particular view. Can easily be expanded to
   // all views if desired.
-  if (($view->current_display == 'block_1' && $view->name == 'reference_views')
+  if (($view->name == 'reference_views' && $view->current_display == 'block_1')
     || ($view->name == 'plan_mandates')
+    || ($view->name == 'manager_of_managers_views' && $view->current_display == 'manager_sub_managers')
+    || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_notes')
+    || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_questionnaire')
   ) {
     $empty = fin_mod_view_result_empty_check($view->result);
     $exposed_empty = fin_mod_exposed_filter_empty_check($view->exposed_raw_input);
