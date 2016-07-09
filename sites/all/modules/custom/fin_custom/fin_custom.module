@@ -220,11 +220,11 @@ function fin_custom_menu() {
       $edpath = implode('/', $edpathitems);
 
       // Add field collection.
-      $items[$apath . '/add/%/%/%ctools_js/go'] = array(
+      $items[$apath . '/add/%/%/%/%/%ctools_js/go'] = array(
         'page callback' => 'fin_custom_item_add',
         // Fieldname / node / nodeid / js.
         'page arguments' =>
-        array($count - 1, $count + 1, $count + 2, $count + 3),
+        array($count - 1, $count + 1, $count + 2, $count + 3, $count + 4, $count + 5),
         // Access callback is determined by access assigned to the node
         // type to which the field collection is attached; therefore no
         // access callback check is needed; display of links to add, edit
@@ -268,7 +268,7 @@ function fin_custom_menu() {
  *
  * @todo: Support optionally passing in the revision_id and langcode parameters.
  */
-function fin_custom_item_add($field_name, $entity_type, $entity_id, $js = FALSE, $revision_id = NULL, $langcode = NULL) {
+function fin_custom_item_add($field_name, $entity_type, $entity_id, $view_id, $display_id, $js = FALSE, $revision_id = NULL, $langcode = NULL) {
   global $pager_page_array, $pager_total, $base_url;
   $page = 0;
   // Making sure certain functions for field_collection and field are available.
@@ -308,15 +308,15 @@ function fin_custom_item_add($field_name, $entity_type, $entity_id, $js = FALSE,
       }
       $commands = array();
 
-      $view = views_get_view('reference_views');
-      $view->set_display('eva_manager_roster_edit');
+      $view = views_get_view($view_id);
+      $view->set_display($display_id);
       $view->set_arguments(array($entity_id));
       $view->set_current_page($page);
       $view->pre_execute();
       $view->execute();
       //$contact_view = views_embed_view('reference_views', 'eva_manager_roster_edit');
       $contact_view = $view->render();
-      $commands[] = ajax_command_replace('.view-id-reference_views.view-display-id-eva_manager_roster_edit', $contact_view);
+      $commands[] = ajax_command_replace('.view-id-' . $view_id . '.view-display-id-' . $display_id, $contact_view);
 
       $commands[] = ctools_modal_command_dismiss();
 
