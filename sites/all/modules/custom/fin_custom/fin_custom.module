@@ -511,3 +511,15 @@ function fin_custom_operator_callback($node, $fieldname,
                            field_collection_item_load($field_collection_item->item_id));
   }
 }
+
+/**
+ * Implements hook_user_delete($account).
+ */
+function fin_custom_user_delete($account) {
+  db_delete('mytinytodo_todos')
+    ->condition('uid', $account->uid)
+    ->execute();
+  db_delete('mytinytodo_lists')
+    ->condition('uid', $account->uid)
+    ->execute();
+}
