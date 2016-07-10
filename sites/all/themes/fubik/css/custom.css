@@ -1564,11 +1564,11 @@ input.form-text, .form-select {
 
 /*** Contacts ***/
 /* line 368, ../sass/custom.scss */
-.node-type-contact fieldset.group-left {
+.node-type-contact fieldset.group-left, .page-node-add-contact fieldset.group-left {
   width: 49%;
   float: left;
 }
 /* line 372, ../sass/custom.scss */
-.node-type-contact fieldset.group-organization {
+.node-type-contact fieldset.group-organization, .page-node-add-contact fieldset.group-organization {
   width: 49%;
 }
