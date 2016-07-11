@@ -481,6 +481,7 @@ function fin_mod_views_post_execute(&$view) {
     || ($view->name == 'manager_of_managers_views' && $view->current_display == 'manager_sub_managers')
     || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_notes')
     || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_questionnaire')
+    || ($view->name == 'reference_views' && $view->current_display == 'mandate_manager_finalists')
   ) {
     $empty = fin_mod_view_result_empty_check($view->result);
     $exposed_empty = fin_mod_exposed_filter_empty_check($view->exposed_raw_input);

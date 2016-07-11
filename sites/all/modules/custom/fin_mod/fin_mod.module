@@ -310,7 +310,7 @@ function fin_mod_add_and_remove_condition(&$query, &$conditions, $field, $inside
 /**
  * Implements hook_field_attach_view_alter().
  */
-/*
+
 function fin_mod_field_attach_view_alter(&$build, $context) {
   module_load_include("module", "ds");
   $entity_type = $build['#entity_type'];
@@ -423,7 +423,7 @@ function fin_mod_field_attach_view_alter(&$build, $context) {
     }
   }
 }
-*/
+
 /**
  * Essentially overrides DS.
  */
