@@ -6,101 +6,130 @@
 function fin_export_menu() {
   global $user;
   $items = array();
-  $items['admin/config/financial-news/export_test/%/%'] = array(
+  $items['admin/config/financial-news/export_test'] = array(
     'title' => 'Test the export',
     'page callback' => array('fin_export_export_test'),
-    'page arguments' => array(4,5),
-    'access callback' => user_access('administer site configuration'),
+    //'page arguments' => array(4),
+    //'access callback' => user_access('administer site configuration'),
+    'access callback' => true,
     'type' => MENU_LOCAL_TASK,
   );
 	return $items;
 }
 
-function fin_export_export_test ($name, $pass) {
+function fin_export_export_test ($name = null, $pass = null) {
 	//Get authentication
-	$service_url = 'http://192.168.0.100:93/rest/user/login.xml';
+	$login_url = 'http://192.168.0.100:93/rest/user/login';
+  $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
 	$post_data = array(
-		'username' => $name,
-		'password' => $pass,
+		'username' => 'codeelegance',
+		'password' => '76Duster',
 	);
-	$post_data = http_build_query($post_data, '', '&');
-	
-	$curl = curl_init($service_url);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	
-	curl_setopt($curl, CURLOPT_POST, true);
-	curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
-	
-	curl_setopt($curl, CURLOPT_VERBOSE, true);
-	$response = curl_exec($curl);
-	curl_close($curl);
-	
-	$xml = new SimpleXMLElement($response);
-	$session_cookie = $xml->session_name .'='. $xml->sessid;
-	//print "SESSION_COOKIE: $session_cookie";
-	//file_put_contents('session_cookie.txt', $session_cookie);
-	
-	//Make the request to the view
-	//$export_url = 'http://192.168.0.100:93/rest/views/Data_export?display_id=services_plans&format_output=0&limit=5';
-	//$export_url = 'http://192.168.0.100:93/rest/views/content_lists?display_id=plans_list&format_output=0&limit=5';
-	$export_url = 'http://192.168.0.100:93/rest/plans?limit=5&format_output=1';
-	//$session_cookie = file_get_contents('session_cookie.txt');
-	
-	// set up the request
-	$export_curl = curl_init($export_url);
-	curl_setopt($export_curl, CURLOPT_RETURNTRANSFER, true);  // have curl_exec return a string
-	
-	curl_setopt($export_curl, CURLOPT_COOKIE, "$session_cookie"); // use the previously saved session
-	
-	// make the request
-	curl_setopt($export_curl, CURLOPT_VERBOSE, true); // output to command line
-	$export_response = curl_exec($export_curl);
-	dd($export_response, "Response from View");
-	curl_close($export_curl);
-	file_put_contents('plans_export.csv', $export_response);
-	print "RESPONSE:\n";
-	var_dump($export_response);
+  $post_data = drupal_json_encode($post_data);
+  $options = array(
+    'headers' => array(
+      'Content-Type' => 'application/json',
+    ),
+    'method' => 'POST',
+    'data' => $post_data
+  );
+  
+  $response = drupal_http_request($login_url, $options);
+  $login = json_decode($response->data);
+  if ($response->code == 200) {
+    $restful_url = 'http://192.168.0.100:93/rest/plans';
+    $options['headers']['Cookie'] = $login->session_name . '=' . $login->sessid;
+    $options['method'] = 'GET';
+    $rest_response = drupal_http_request($restful_url, $options);
+    //dd($rest_response, "Rest Response");
+  }
 }
 
 /**
  * Implements hook_services_resources().
  */
-function fin_exports_services_resources() {
-  $api = array(
-    'export' => array(
-      'operations' => array(
-        'plans' => array(
-          'help' => 'Export Plans Data',
-          'callback' => 'fin_export_plans',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-          'args' => array(
-            array(
-              'name' => 'since',
-              'type' => 'int',
-              'description' => 'Posts from the last number of days',
-              'source' => array('param' => 'since'),
-              'optional' => TRUE,
-              'default' => '0',
-            ),
-          )
+function fin_export_services_resources() {
+  return array(
+    'plans' => array(
+      'retrieve' => array(
+        'help' => 'Export Plans Data',
+        'callback' => 'fin_export_plans',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
         )
+      ),
+      'index' => array(
+        'help' => 'Retrieves a listing of plans',
+        'callback' => 'fin_export_plans',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+        ),
+      )
+    ),
+    'managers' => array(
+      'retrieve' => array(
+        'help' => 'Export Manager Data',
+        'callback' => 'fin_export_plans',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+        )
+      ),
+      'index' => array(
+        'help' => 'Retrieves a listing of Managers',
+        'callback' => 'fin_export_managers',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+        ),
       )
     )
   );
-  return $api;
 }
 
-function fin_export_plans($since) {
-  $since = intval($since);
-  return fin_export_get_plans($since);
-}
-
-function fin_export_get_plans($since) {
+function fin_export_plans($since = 0) {
+	$last_pull = variable_get('squirro_plans_last_pull', 0);
   $sql = "
     SELECT
-    n.nid,
+    n.nid AS plan_id,
     n.title,
     n.created,
     plan_type_td.tid as plan_type_id,
@@ -116,22 +145,146 @@ function fin_export_get_plans($since) {
     plan_address.field_address_premise AS plan_address2,
     plan_address.field_address_sub_premise AS plan_address3,
     plan_address.field_address_postal_code AS plan_zipcode,
-    plan_address.field_address_data AS plan_phones,
+    plan_address.field_address_data AS raw_phones,
     plan_email.field_email_email AS plan_email,
-    plan_website.field_website_url AS plan_website 
-    
+    plan_website.field_website_url AS plan_website, 
+		fmn.nid AS primary_manager_id,
+		fmn.title AS primary_manager_name
+		
+		
     FROM node n 
     INNER JOIN taxonomy_index plan_type_ti ON n.nid=plan_type_ti.nid 
     INNER JOIN taxonomy_term_data plan_type_td ON plan_type_ti.tid=plan_type_td.tid AND plan_type_td.vid=12 
     LEFT JOIN field_data_field_acronym fa ON n.nid=fa.entity_id AND fa.bundle='plan' 
-    INNER JOIN field_data_field_plan_size_history ps ON n.nid=ps.entity_id AND ps.bundle='plan' AND ps.delta=1 
-    INNER JOIN field_data_field_currency_tr plan_currency ON n.nid=plan_currency.entity_id AND plan_currency.bundle='plan' 
-    INNER JOIN taxonomy_index currency_ti ON n.nid=currency_ti.nid 
+    LEFT JOIN field_data_field_plan_size_history ps ON n.nid=ps.entity_id AND ps.bundle='plan' AND ps.delta=0 
+    LEFT JOIN field_data_field_currency_tr plan_currency ON n.nid=plan_currency.entity_id AND plan_currency.bundle='plan' 
+    INNER JOIN taxonomy_index currency_ti ON plan_currency.entity_id=currency_ti.nid 
     INNER JOIN taxonomy_term_data currency_td ON currency_ti.tid=currency_td.tid AND currency_td.vid=11 
-    INNER JOIN field_data_field_address plan_address ON n.nid=plan_address.entity_id AND plan_address.bundle='plan' 
+    LEFT JOIN field_data_field_address plan_address ON n.nid=plan_address.entity_id AND plan_address.bundle='plan' 
     LEFT JOIN field_data_field_email plan_email ON n.nid=plan_email.entity_id AND plan_email.bundle='plan' 
-    INNER JOIN field_data_field_website plan_website ON n.nid=plan_website.entity_id AND plan_website.bundle='plan' 
-    WHERE n.nid=375847
-    ";
-    
+    LEFT JOIN field_data_field_website plan_website ON n.nid=plan_website.entity_id AND plan_website.bundle='plan'
+		
+		LEFT JOIN field_data_field_manager_roster_fc fmr ON n.nid=fmr.entity_id AND fmr.bundle='plan' AND fmr.delta=0
+		LEFT JOIN field_data_field_manager_firm_er fmf ON fmr.field_manager_roster_fc_value=fmf.entity_id AND fmf.bundle='field_manager_roster_fc'
+		LEFT JOIN node fmn ON fmf.field_manager_firm_er_target_id=fmn.nid AND fmn.type='manager_firm'
+		WHERE n.type='plan' ";
+	if ($since == 1) {
+		$sql .= "AND n.updated > " . $last_pull . " ";
+	}
+	$sql .= "ORDER BY n.nid ASC";
+  $result = db_query($sql);
+  $plans = array();
+  $index = 0;
+  while ($rec = $result->fetchAssoc()) {
+		$rec['plan_phones'] = unserialize($rec['raw_phones']);
+		unset($rec['plan_phones']['address3'], $rec['raw_phones']);
+		
+		//Get the contact data
+		$contacts_sql = "
+		SELECT
+		  cn.nid as contact_id,
+			lpc.field_lead_plan_contact_value AS lead,
+			jt.field_job_title_value AS job_title,
+			ed.field_employment_date_value AS employment_date,
+			tf.title_field_value AS name,
+			b.body_value AS bio
+			FROM field_data_field_plan_er per
+			INNER JOIN field_data_field_job_history jh ON per.entity_id=jh.field_job_history_value
+			INNER JOIN node cn ON jh.entity_id=cn.nid
+			LEFT JOIN field_data_field_lead_plan_contact lpc ON per.entity_id=lpc.entity_id
+			LEFT JOIN field_data_field_job_title jt ON per.entity_id=jt.entity_id
+			LEFT JOIN field_data_field_employment_date ed ON per.entity_id=ed.entity_id
+			INNER JOIN field_data_title_field tf ON cn.nid=tf.entity_id AND tf.bundle='contact'
+			INNER JOIN field_data_body b ON cn.nid=b.entity_id AND b.bundle='contact'
+			WHERE per.bundle='plan_contact' AND per.field_plan_er_target_id=" . $rec['plan_id'];
+
+		$contacts_result = db_query($contacts_sql);
+		$contacts = array();
+		$contact_index = 0;
+		while ($contact_rec = $contacts_result->fetchAssoc()) {
+			$contacts[$contact_rec['contact_id']] = $contact_rec;
+			$contact_index++;
+		}
+		$rec['contacts'] = 	$contacts;
+		
+		//Get the manager data
+		$managers_sql = "
+		SELECT
+			fmn.nid AS manager_id,
+			fmr.field_manager_roster_fc_value AS roster_id,
+			fmn.title AS manager_name,
+			m_amount.field_amount_value AS manager_amount,
+			fmn.created AS manager_created,
+			fa.field_acronym_value aS acronym,
+			mstd.tid AS status_id,
+			mstd.name aS manager_status,
+			manager_address.field_address_country AS manager_country,
+			manager_address.field_address_administrative_area AS manager_state,
+			manager_address.field_address_locality AS manager_city,
+			manager_address.field_address_thoroughfare AS manager_address1,
+			manager_address.field_address_premise AS manager_address2,
+			manager_address.field_address_sub_premise AS manager_address3,
+			manager_address.field_address_postal_code AS manager_zipcode,
+			manager_address.field_address_data AS raw_phones,
+			manager_email.field_email_email AS manager_email,
+			manager_website.field_website_url AS manager_website 
+			FROM field_data_field_manager_roster_fc fmr
+			LEFT JOIN field_data_field_amount m_amount ON fmr.field_manager_roster_fc_value=m_amount.entity_id AND m_amount.bundle='field_manager_roster_fc' 
+			INNER JOIN field_data_field_manager_firm_er fmf ON fmr.field_manager_roster_fc_value=fmf.entity_id AND fmf.bundle='field_manager_roster_fc'
+			INNER JOIN node fmn ON fmf.field_manager_firm_er_target_id=fmn.nid AND fmn.type='manager_firm'
+			INNER JOIN field_data_field_status_tr mstr ON fmn.nid=mstr.entity_id AND mstr.bundle='manager_firm'
+			INNER JOIN taxonomy_term_data mstd ON mstr.field_status_tr_tid=mstd.tid AND mstd.vid=5
+			LEFT JOIN field_data_field_acronym fa ON fmn.nid=fa.entity_id AND fa.bundle='manager_firm' 
+			LEFT JOIN field_data_field_address manager_address ON fmn.nid=manager_address.entity_id AND manager_address.bundle='manager_firm' 
+			LEFT JOIN field_data_field_email manager_email ON fmn.nid=manager_email.entity_id AND manager_email.bundle='manager_firm' 
+			LEFT JOIN field_data_field_website manager_website ON fmn.nid=manager_website.entity_id AND manager_website.bundle='manager_firm'
+			WHERE fmr.entity_id=" . $rec['plan_id'];
+		$managers_result = db_query($managers_sql);
+		$managers = array();
+		$manager_index = 0;
+		while ($manager_rec = $managers_result->fetchAssoc()) {
+			$manager_rec['manager_phones'] = unserialize($manager_rec['raw_phones']);
+			unset($manager_rec['manager_phones']['address3'], $manager_rec['raw_phones']);
+			$managers[$manager_rec['manager_id']] = $manager_rec;
+			$manager_index++;
+		}
+		$rec['managers'] = 	$managers;
+		
+		//Get the consultant data
+		$consultants_sql = "
+		SELECT
+			fcn.nid as consultant_id,
+			tf.title_field_value AS consultant_name,
+			fcn.created AS consultant_created,
+			fa.field_acronym_value AS acronym,
+			cstd.tid AS status_id,
+			cstd.name AS consultant_status,
+			consultant_email.field_email_email AS consultant_email,
+			consultant_website.field_website_url AS consultant_website 
+			FROM field_data_field_consultant_roster_fc fcr
+			INNER JOIN field_data_field_consultant_firm_er fcf ON fcr.field_consultant_roster_fc_value=fcf.entity_id AND fcf.bundle='field_consultant_roster_fc'
+			INNER JOIN node fcn ON fcf.field_consultant_firm_er_target_id=fcn.nid AND fcn.type='consultant_firm' 
+			LEFT JOIN field_data_field_status_tr cstr ON fcn.nid=cstr.entity_id AND cstr.bundle='consultant_firm'
+			INNER JOIN taxonomy_term_data cstd ON cstr.field_status_tr_tid=cstd.tid AND cstd.vid=5 
+			LEFT JOIN field_data_field_acronym fa ON fcn.nid=fa.entity_id AND fa.bundle='consultant_firm'
+			LEFT JOIN field_data_title_field tf ON fcn.nid=tf.entity_id AND tf.bundle='consultant_firm'
+			LEFT JOIN field_data_field_consultant_firm_er fcfo ON fcn.nid=fcfo.field_consultant_firm_er_target_id AND fcf.bundle='office'
+			LEFT JOIN field_data_field_email consultant_email ON fcn.nid=consultant_email.entity_id AND consultant_email.bundle='consultant_firm' 
+			LEFT JOIN field_data_field_website consultant_website ON fcn.nid=consultant_website.entity_id AND consultant_website.bundle='consultant_firm'
+			WHERE fcr.entity_id=" . $rec['plan_id'];
+		$consultants_result = db_query($consultants_sql);
+		$consultants = array();
+		$consultant_index = 0;
+		while ($consultant_rec = $consultants_result->fetchAssoc()) {
+			$consultants[$consultant_rec['consultant_id']] = $consultant_rec;
+			$consultant_index++;
+		}
+		$rec['consultants'] = 	$consultants;
+    $plans[$rec['plan_id']] = $rec;
+    $index++;
+  }
+	variable_set('squirro_plans_last_pull', time());
+	//dd($plans, "Plans");
+	dd($index, "Export count");
+  return drupal_json_encode($plans);
 }
