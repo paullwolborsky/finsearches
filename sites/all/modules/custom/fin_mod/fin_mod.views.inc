@@ -478,6 +478,7 @@ function fin_mod_views_post_execute(&$view) {
   // all views if desired.
   if (($view->name == 'reference_views' && $view->current_display == 'block_1')
     || ($view->name == 'plan_mandates')
+    || ($view->name == 'mandate_search_consultant')
     || ($view->name == 'manager_of_managers_views' && $view->current_display == 'manager_sub_managers')
     || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_notes')
     || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_questionnaire')
