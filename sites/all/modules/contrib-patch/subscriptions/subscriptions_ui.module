@@ -208,9 +208,12 @@ function subscriptions_ui_node_form($form, &$form_state, $node, $expand = NULL) 
       $index++;
     }
   }
-
+  foreach ($options as $key=>$option) {
+    if ($option == "Follow this page" && $default_subscriptions[$key-1] == 1) {
+      $options[$key] = "You are following this page";
+    }
+  }
   $form['params'] = array('#type' => 'value', '#value' => $params);
-
   $form['wrapper'] = array(
     '#type' => 'fieldset',
     '#title' => filter_xss(t('Follow') . (!empty($is_blocked) ? '&nbsp;' . SUBSCRIPTIONS_UNAVAILABLE : ''), array('span')),
@@ -253,6 +256,7 @@ function subscriptions_ui_node_form($form, &$form_state, $node, $expand = NULL) 
   );
   $form['account'] = array('#type' => 'value', '#value' => $account);
   $form['send_intervals'] = array('#type' => 'value', '#value' => $default_send_intervals);
+  dd($form, "form");
   return $form;
 }
 
@@ -317,7 +321,6 @@ function subscriptions_ui_node_form_submit(array $form, array &$form_state) {
 
   $recipient_uid = $form_state['values']['account']->uid;
   $default_send_intervals = $form_state['values']['send_intervals'];
-
   foreach ($form_state['values']['subscriptions'] as $index => $value) {
     $params = $form_state['values']['params'][$index];
     $args = array($params['module'], $params['field'], $params['value'], $params['author_uid'], $recipient_uid);

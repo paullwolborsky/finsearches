@@ -520,7 +520,7 @@ html.js #edit-view-displays-wrapper div.form-item-show-tagged-with input.form-au
   box-shadow: none;
   right: 0;
   top: 0;
-  background: url(../../rubik/images/buttons.png) no-repeat scroll -4000px 50% #444;
+  background: url(../../rubik/images/buttons.png) no-repeat scroll -4000px 50% #444444;
   border-radius: 5px 5px 5px 5px;
   display: block;
   height: 20px;
@@ -592,7 +592,7 @@ html.js #edit-view-displays-wrapper div.form-item-show-tagged-with input.form-au
   margin-right: 5px;
   box-shadow: 0 1px 1px #ddd;
   padding: 2px 10px 2px 25px;
-  background: url(../../rubik/images/buttons.png) no-repeat scroll -2401px 50% #fff;
+  background: url(../../rubik/images/buttons.png) no-repeat scroll -2401px 50% white;
   border-color: #ddd #ddd #ccc;
   border-style: solid;
   border-width: 1px;
@@ -1218,162 +1218,162 @@ ul.links li {
 /* Misc */
 /********** CSS Overrides **********/
 /*** Page Elements ***/
-/* line 62, ../sass/custom.scss */
+/* line 69, ../sass/custom.scss */
 body.tao {
   background: #003366;
 }
 
-/* line 65, ../sass/custom.scss */
+/* line 72, ../sass/custom.scss */
 #main-content, .block .block-content, .container-inline .fieldset-content, .fieldset-content {
   background: #e7efff;
 }
 
-/* line 68, ../sass/custom.scss */
+/* line 75, ../sass/custom.scss */
 #page-title {
   background: #689afd;
 }
-/* line 70, ../sass/custom.scss */
+/* line 77, ../sass/custom.scss */
 #page-title .page-title {
   text-shadow: none;
 }
 
-/* line 74, ../sass/custom.scss */
+/* line 81, ../sass/custom.scss */
 a {
   color: #003399;
 }
-/* line 76, ../sass/custom.scss */
+/* line 83, ../sass/custom.scss */
 a a:hover {
   color: #428bca;
 }
 
 /*** Form Elements ***/
-/* line 82, ../sass/custom.scss */
+/* line 89, ../sass/custom.scss */
 .fieldset {
-  border: 1px solid #689afd;
+  border: solid 1px #689afd;
   margin: 5px;
 }
-/* line 85, ../sass/custom.scss */
+/* line 92, ../sass/custom.scss */
 .fieldset .fieldset .fieldset-content {
   background: #e7efff none repeat scroll 0 0;
 }
-/* line 88, ../sass/custom.scss */
+/* line 95, ../sass/custom.scss */
 .fieldset #main-content, .fieldset .block .block-content, .fieldset .container-inline .fieldset-content, .fieldset .fieldset-content {
   background: #bad0fd none repeat scroll 0 0;
 }
 
-/* line 92, ../sass/custom.scss */
+/* line 99, ../sass/custom.scss */
 .collapsible .fieldset-legend {
   background: #689afd none repeat scroll 0 0;
   padding: 0 5px;
 }
 
-/* line 96, ../sass/custom.scss */
+/* line 103, ../sass/custom.scss */
 .item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
   background: #689afd;
 }
 
-/* line 99, ../sass/custom.scss */
+/* line 106, ../sass/custom.scss */
 .form-wrapper.form-actions {
   background: #689afd;
-  border: 1px solid #689afd;
+  border: solid 1px #689afd;
 }
 
-/* line 103, ../sass/custom.scss */
+/* line 110, ../sass/custom.scss */
 .block, .item-list, .help-items ul, .form-item, .confirmation ul, .admin-list, .node-type-list, .admin-panel {
   border-color: #689afd;
   margin: 0;
 }
 
-/* line 107, ../sass/custom.scss */
+/* line 114, ../sass/custom.scss */
 .vertical-tabs {
   background: #e7efff;
-  border: 1px solid #689afd;
+  border: solid 1px #689afd;
 }
 
-/* line 112, ../sass/custom.scss */
+/* line 119, ../sass/custom.scss */
 .vertical-tabs-list li a {
-  color: #000000;
+  color: black;
   text-shadow: none;
   border-bottom: 1px solid #689afd;
 }
-/* line 117, ../sass/custom.scss */
+/* line 124, ../sass/custom.scss */
 .vertical-tabs-list .selected a {
   background: #bad0fd none repeat scroll 0 0;
 }
 
-/* line 121, ../sass/custom.scss */
+/* line 128, ../sass/custom.scss */
 .form-item label {
-  color: #000000;
+  color: black;
   margin-left: 5px;
 }
 
 /*** Tables ***/
-/* line 127, ../sass/custom.scss */
+/* line 134, ../sass/custom.scss */
 table {
   background-color: #e7efff;
   border-color: #689afd;
 }
-/* line 130, ../sass/custom.scss */
+/* line 137, ../sass/custom.scss */
 table th {
   background: #689afd;
   text-transform: none;
   text-shadow: none;
 }
 
-/* line 136, ../sass/custom.scss */
+/* line 143, ../sass/custom.scss */
 tr.odd, tr.odd td.active {
   background: #e7efff !important;
   background-color: #e7efff !important;
 }
 
-/* line 140, ../sass/custom.scss */
+/* line 147, ../sass/custom.scss */
 tr.even, tr.even td.active {
   background-color: #d8e5ff !important;
   background: #d8e5ff !important;
 }
 
-/* line 145, ../sass/custom.scss */
+/* line 152, ../sass/custom.scss */
 .page-admin table tr.odd, .page-admin .page-admin table tr.odd td {
   background-color: #e7efff !important;
 }
-/* line 148, ../sass/custom.scss */
+/* line 155, ../sass/custom.scss */
 .page-admin table tr.even, .page-admin .page-admin table tr.even td {
   background-color: #d8e5ff !important;
 }
 
 /* Field Groups */
-/* line 154, ../sass/custom.scss */
+/* line 161, ../sass/custom.scss */
 .item-list h3, .block .block-title, .fieldset-title, .collapsible .fieldset-legend a {
   font-size: 14px;
   font-weight: bolder;
 }
 
 /* Fields */
-/* line 161, ../sass/custom.scss */
+/* line 168, ../sass/custom.scss */
 #edit-field-status-tr {
   display: inline-block;
   margin: 0 15px 0 0;
 }
 
 /* Buttons */
-/* line 167, ../sass/custom.scss */
+/* line 174, ../sass/custom.scss */
 .pager li.pager-current, .primary-tabs li.active {
   background-color: #e7efff;
 }
 
-/* line 170, ../sass/custom.scss */
+/* line 177, ../sass/custom.scss */
 input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
   box-shadow: 0 1px 1px #666666;
 }
 
 /*** Devel ***/
-/* line 175, ../sass/custom.scss */
+/* line 182, ../sass/custom.scss */
 .dev-query {
   color: #666666;
 }
 
 /* Window size indicator */
-/* line 183, ../sass/custom.scss */
+/* line 190, ../sass/custom.scss */
 #win-size {
   position: fixed;
   bottom: 0;
@@ -1386,36 +1386,36 @@ input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
   z-index: 1000;
 }
 
-/* line 196, ../sass/custom.scss */
+/* line 203, ../sass/custom.scss */
 #edit-callbacks-search-api-alter-add-hierarchy-settings-fields {
   height: auto;
 }
 
-/* line 200, ../sass/custom.scss */
+/* line 207, ../sass/custom.scss */
 #facetapi-facet-display-form .facetapi-more-text-setting {
   clear: both;
 }
 
-/* line 204, ../sass/custom.scss */
+/* line 211, ../sass/custom.scss */
 .form-actions {
   float: none;
 }
 
-/* line 209, ../sass/custom.scss */
+/* line 216, ../sass/custom.scss */
 #contact-node-form .field-type-image {
   position: relative;
 }
-/* line 211, ../sass/custom.scss */
+/* line 218, ../sass/custom.scss */
 #contact-node-form .field-type-image .preview {
   display: none;
 }
-/* line 214, ../sass/custom.scss */
+/* line 221, ../sass/custom.scss */
 #contact-node-form .field-type-image .remove {
   position: absolute;
   left: 150px;
   bottom: 0;
 }
-/* line 223, ../sass/custom.scss */
+/* line 230, ../sass/custom.scss */
 #contact-node-form .manualcrop-thumblist .manualcrop-preview .manualcrop-preview-cropped img {
   max-width: none;
 }
@@ -1423,59 +1423,60 @@ input.teaser-button, input.form-submit, a.button, .form-actions #edit-cancel {
 /*
  *Disable plan view fieldset on plan creation
  */
-/* line 240, ../sass/custom.scss */
+/* line 247, ../sass/custom.scss */
 body.page-node-add-plan .group-plan-contacts {
   display: none;
 }
 
-/* line 246, ../sass/custom.scss */
+/*** Edit Views ***/
+/* line 254, ../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 250, ../sass/custom.scss */
+/* line 258, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 252, ../sass/custom.scss */
+/* line 260, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 255, ../sass/custom.scss */
+/* line 263, ../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 262, ../sass/custom.scss */
+/* line 270, ../sass/custom.scss */
 .view-reference-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 266, ../sass/custom.scss */
+/* line 274, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 268, ../sass/custom.scss */
+/* line 276, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 271, ../sass/custom.scss */
+/* line 279, ../sass/custom.scss */
 .view-reference-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 278, ../sass/custom.scss */
+/* line 286, ../sass/custom.scss */
 #edit-field-placement-policy-tr {
   display: inline-block;
 }
 
-/* line 283, ../sass/custom.scss */
+/* line 291, ../sass/custom.scss */
 .page-node-edit .column-main, .page-node-add .column-main {
   width: 100%;
 }
-/* line 286, ../sass/custom.scss */
+/* line 294, ../sass/custom.scss */
 .page-node-edit .node-action-block, .page-node-add .node-action-block {
   width: 130px;
   position: fixed;
@@ -1486,89 +1487,348 @@ body.page-node-add-plan .group-plan-contacts {
   box-shadow: 4px 4px 5px 0px #000;
   z-index: 20;
 }
-/* line 295, ../sass/custom.scss */
+/* line 303, ../sass/custom.scss */
 .page-node-edit .node-action-block .action-wrapper, .page-node-add .node-action-block .action-wrapper {
   border-radius: 5px;
 }
-/* line 297, ../sass/custom.scss */
+/* line 305, ../sass/custom.scss */
 .page-node-edit .node-action-block .action-wrapper .form-wrapper, .page-node-add .node-action-block .action-wrapper .form-wrapper {
   border-radius: 5px;
   margin: 0;
   padding: 5px;
 }
-/* line 301, ../sass/custom.scss */
+/* line 309, ../sass/custom.scss */
 .page-node-edit .node-action-block .action-wrapper .form-wrapper .form-actions, .page-node-add .node-action-block .action-wrapper .form-wrapper .form-actions {
   border-radius: 5px;
   border: none;
   text-align: left;
 }
-/* line 305, ../sass/custom.scss */
+/* line 313, ../sass/custom.scss */
 .page-node-edit .node-action-block .action-wrapper .form-wrapper .form-actions input, .page-node-add .node-action-block .action-wrapper .form-wrapper .form-actions input {
   margin: 0 0 5px 0;
 }
-/* line 312, ../sass/custom.scss */
+/* line 320, ../sass/custom.scss */
 .page-node-edit table.sticky-header, .page-node-add table.sticky-header {
   z-index: 10;
 }
 
 /********** Content Edit Forms **********/
-/* line 320, ../sass/custom.scss */
-input.form-text, .form-select {
-  border: solid 1px #689afd !important;
+/*** Plan Edit ***/
+/* line 330, ../sass/custom.scss */
+.node-type-plan .form-text, .node-type-plan .form-textarea, .page-node-add-plan .form-text, .page-node-add-plan .form-textarea {
+  border: solid 1px #689afd;
+}
+/* line 333, ../sass/custom.scss */
+.node-type-plan li.pager-current span, .page-node-add-plan li.pager-current span {
+  color: #1368a6;
+  text-shadow: none;
+}
+/* line 338, ../sass/custom.scss */
+.node-type-plan .group-plan-info .form-select, .page-node-add-plan .group-plan-info .form-select {
+  border: solid 1px #689afd;
+}
+/* line 341, ../sass/custom.scss */
+.node-type-plan .group-plan-info .form-item-title, .page-node-add-plan .group-plan-info .form-item-title {
+  display: inline-block;
+  width: 70%;
+  margin-right: 15px;
+}
+/* line 346, ../sass/custom.scss */
+.node-type-plan .group-plan-info .field-name-field-acronym, .page-node-add-plan .group-plan-info .field-name-field-acronym {
+  display: inline-block;
+  width: 25%;
+}
+/* line 350, ../sass/custom.scss */
+.node-type-plan .group-plan-info .field-name-field-plan-type-tr, .page-node-add-plan .group-plan-info .field-name-field-plan-type-tr {
+  display: inline-block;
+  margin-right: 15px;
+}
+/* line 354, ../sass/custom.scss */
+.node-type-plan .group-plan-info .field-name-field-status-tr, .page-node-add-plan .group-plan-info .field-name-field-status-tr {
+  display: inline-block;
+}
+/* line 359, ../sass/custom.scss */
+.node-type-plan .group-consultant-roster .form-select, .page-node-add-plan .group-consultant-roster .form-select {
+  border: solid 1px #689afd;
+}
+/* line 364, ../sass/custom.scss */
+.node-type-plan .group-contact-info .locality-block, .page-node-add-plan .group-contact-info .locality-block {
+  width: 100%;
+}
+/* line 367, ../sass/custom.scss */
+.node-type-plan .group-contact-info .form-item-field-address-und-0-field-address-widget-administrative-area, .page-node-add-plan .group-contact-info .form-item-field-address-und-0-field-address-widget-administrative-area {
+  width: 45%;
+  margin-right: 10px;
+}
+/* line 371, ../sass/custom.scss */
+.node-type-plan .group-contact-info .form-item-field-address-und-0-field-address-widget-mobile-number, .page-node-add-plan .group-contact-info .form-item-field-address-und-0-field-address-widget-mobile-number {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 10px;
+}
+/* line 376, ../sass/custom.scss */
+.node-type-plan .group-contact-info .form-item-field-address-und-0-field-address-widget-fax-number, .page-node-add-plan .group-contact-info .form-item-field-address-und-0-field-address-widget-fax-number {
+  display: inline-block;
+}
+/* line 382, ../sass/custom.scss */
+.node-type-plan .group-asset-allocation-history .field-multiple-table td, .page-node-add-plan .group-asset-allocation-history .field-multiple-table td {
+  border: solid 1px #689afd;
+}
+/* line 386, ../sass/custom.scss */
+.node-type-plan .group-asset-allocation-history .field-type-number-decimal, .page-node-add-plan .group-asset-allocation-history .field-type-number-decimal {
+  width: 47% !important;
+}
+/* line 392, ../sass/custom.scss */
+.node-type-plan .group-foia-history .field-multiple-table td, .page-node-add-plan .group-foia-history .field-multiple-table td {
+  border: solid 1px #689afd;
+}
+/* line 397, ../sass/custom.scss */
+.node-type-plan .group-foia-history .field-name-field-foia-required .chosen-container, .page-node-add-plan .group-foia-history .field-name-field-foia-required .chosen-container {
+  width: 75px !important;
+}
+
+/*** Mandate Edit ***/
+/* line 406, ../sass/custom.scss */
+.node-type-mandate .form-text, .node-type-mandate #edit-field-major-minor-style-tr-und-hierarchical-select-selects-0, .node-type-mandate #edit-field-major-minor-style-tr-und-hierarchical-select-selects-1, .page-node-add-mandate .form-text, .page-node-add-mandate #edit-field-major-minor-style-tr-und-hierarchical-select-selects-0, .page-node-add-mandate #edit-field-major-minor-style-tr-und-hierarchical-select-selects-1 {
+  border: solid 1px #689afd;
+}
+/* line 409, ../sass/custom.scss */
+.node-type-mandate .group-mandate-info, .page-node-add-mandate .group-mandate-info {
+  vertical-align: top;
+}
+/* line 411, ../sass/custom.scss */
+.node-type-mandate .group-mandate-info .field-name-field-mandate-status-tr, .node-type-mandate .group-mandate-info .field-name-field-account-size, .node-type-mandate .group-mandate-info #entityreference-autofill-node-mandate---field_currency_tr, .node-type-mandate .group-mandate-info .field-name-field-geographic-tr, .page-node-add-mandate .group-mandate-info .field-name-field-mandate-status-tr, .page-node-add-mandate .group-mandate-info .field-name-field-account-size, .page-node-add-mandate .group-mandate-info #entityreference-autofill-node-mandate---field_currency_tr, .page-node-add-mandate .group-mandate-info .field-name-field-geographic-tr {
+  display: inline-block;
+  margin-right: 50px;
+}
+/* line 415, ../sass/custom.scss */
+.node-type-mandate .group-mandate-info #edit-field-major-minor-style-tr-und-hierarchical-select-selects-0, .node-type-mandate .group-mandate-info #edit-field-major-minor-style-tr-und-hierarchical-select-selects-1, .node-type-mandate .group-mandate-info .field-name-field-attribute-tr, .page-node-add-mandate .group-mandate-info #edit-field-major-minor-style-tr-und-hierarchical-select-selects-0, .page-node-add-mandate .group-mandate-info #edit-field-major-minor-style-tr-und-hierarchical-select-selects-1, .page-node-add-mandate .group-mandate-info .field-name-field-attribute-tr {
+  display: inline-block;
+}
+/* line 420, ../sass/custom.scss */
+.node-type-mandate .group-search-consultant .field-name-field-consultant-firm-er, .node-type-mandate .group-search-consultant .field-name-field-consultant-contact-er, .page-node-add-mandate .group-search-consultant .field-name-field-consultant-firm-er, .page-node-add-mandate .group-search-consultant .field-name-field-consultant-contact-er {
+  display: inline-block;
+  width: 47%;
+  margin-right: 15px;
+  vertical-align: top;
+}
+/* line 428, ../sass/custom.scss */
+.node-type-mandate .field-name-field-consultants-hired .group-left, .page-node-add-mandate .field-name-field-consultants-hired .group-left {
+  width: 25%;
+}
+/* line 430, ../sass/custom.scss */
+.node-type-mandate .field-name-field-consultants-hired .group-left #edit-field-consultants-hired-und-0-field-consultant-type-tr-und, .page-node-add-mandate .field-name-field-consultants-hired .group-left #edit-field-consultants-hired-und-0-field-consultant-type-tr-und {
+  border: solid 1px #689afd;
+}
+/* line 434, ../sass/custom.scss */
+.node-type-mandate .field-name-field-consultants-hired .group-right, .page-node-add-mandate .field-name-field-consultants-hired .group-right {
+  width: 70%;
+}
+/* line 439, ../sass/custom.scss */
+.node-type-mandate .field-name-field-consultants-terminated .group-left, .page-node-add-mandate .field-name-field-consultants-terminated .group-left {
+  width: 25%;
+}
+/* line 441, ../sass/custom.scss */
+.node-type-mandate .field-name-field-consultants-terminated .group-left #edit-field-consultants-terminated-und-0-field-consultant-type-tr-und, .page-node-add-mandate .field-name-field-consultants-terminated .group-left #edit-field-consultants-terminated-und-0-field-consultant-type-tr-und {
+  border: solid 1px #689afd;
+}
+/* line 445, ../sass/custom.scss */
+.node-type-mandate .field-name-field-consultants-terminated .group-right, .page-node-add-mandate .field-name-field-consultants-terminated .group-right {
+  width: 70%;
+}
+/* line 450, ../sass/custom.scss */
+.node-type-mandate .field-name-field-managers-terminated #edit-field-managers-terminated-und-0-field-geographic-tr-und, .page-node-add-mandate .field-name-field-managers-terminated #edit-field-managers-terminated-und-0-field-geographic-tr-und {
+  border: solid 1px #689afd;
+}
+/* line 454, ../sass/custom.scss */
+.node-type-mandate .group-left, .page-node-add-mandate .group-left {
+  width: 70%;
+  margin-right: 15px;
+}
+/* line 458, ../sass/custom.scss */
+.node-type-mandate .group-left .field-name-field-managers-hired .field-name-field-manager-firm-er, .page-node-add-mandate .group-left .field-name-field-managers-hired .field-name-field-manager-firm-er {
+  display: inline-block;
+  width: 100%;
+}
+/* line 464, ../sass/custom.scss */
+.node-type-mandate .group-right, .page-node-add-mandate .group-right {
+  width: 25%;
 }
 
 /*** Consultant Edit ***/
-/* line 326, ../sass/custom.scss */
-.node-type-consultant-firm .field-name-field-acronym {
+/* line 471, ../sass/custom.scss */
+.node-type-consultant-firm .form-text, .node-type-consultant-firm .form-textarea, .node-type-consultant-firm ul.chosen-choices, .page-node-add-consultant-firm .form-text, .page-node-add-consultant-firm .form-textarea, .page-node-add-consultant-firm ul.chosen-choices {
+  border: solid 1px #689afd;
+}
+/* line 474, ../sass/custom.scss */
+.node-type-consultant-firm .field-name-field-acronym, .page-node-add-consultant-firm .field-name-field-acronym {
   width: 47%;
   display: inline-block;
   float: left;
   margin: 0 20px 0 0;
 }
-/* line 332, ../sass/custom.scss */
-.node-type-consultant-firm .field-name-field-status-tr {
+/* line 480, ../sass/custom.scss */
+.node-type-consultant-firm .field-name-field-status-tr, .page-node-add-consultant-firm .field-name-field-status-tr {
   display: inline-block;
   float: left;
   margin: 0 20px 0 0;
 }
-/* line 337, ../sass/custom.scss */
-.node-type-consultant-firm .field-name-field-aua {
+/* line 485, ../sass/custom.scss */
+.node-type-consultant-firm .field-name-field-aua, .page-node-add-consultant-firm .field-name-field-aua {
   display: inline-block;
   float: none;
 }
-/* line 341, ../sass/custom.scss */
-.node-type-consultant-firm .field-name-field-email, .node-type-consultant-firm .field-name-field-website {
+/* line 489, ../sass/custom.scss */
+.node-type-consultant-firm .field-name-field-email, .node-type-consultant-firm .field-name-field-website, .page-node-add-consultant-firm .field-name-field-email, .page-node-add-consultant-firm .field-name-field-website {
   width: 47%;
   display: inline-block;
   float: left;
   margin: 0 20px 0 0;
 }
-/* line 348, ../sass/custom.scss */
-.node-type-consultant-firm .field-name-field-invest-mgr-research tr.odd {
+/* line 496, ../sass/custom.scss */
+.node-type-consultant-firm .field-name-field-invest-mgr-research tr.odd, .page-node-add-consultant-firm .field-name-field-invest-mgr-research tr.odd {
   background: #cdddff !important;
 }
-/* line 351, ../sass/custom.scss */
-.node-type-consultant-firm .field-name-field-invest-mgr-research .group-left, .node-type-consultant-firm .field-name-field-invest-mgr-research .group-right {
-  width: 47%;
+/* line 499, ../sass/custom.scss */
+.node-type-consultant-firm .field-name-field-invest-mgr-research .group-left, .node-type-consultant-firm .field-name-field-invest-mgr-research .group-right, .page-node-add-consultant-firm .field-name-field-invest-mgr-research .group-left, .page-node-add-consultant-firm .field-name-field-invest-mgr-research .group-right {
+  width: 46%;
   margin: 0 10px;
 }
-/* line 357, ../sass/custom.scss */
-.node-type-consultant-firm .field-name-field-consultant-comments-fc .group-left, .node-type-consultant-firm .field-name-field-consultant-comments-fc .group-middle, .node-type-consultant-firm .field-name-field-consultant-comments-fc .group-right {
+/* line 505, ../sass/custom.scss */
+.node-type-consultant-firm .field-name-field-consultant-comments-fc .group-left, .node-type-consultant-firm .field-name-field-consultant-comments-fc .group-middle, .node-type-consultant-firm .field-name-field-consultant-comments-fc .group-right, .page-node-add-consultant-firm .field-name-field-consultant-comments-fc .group-left, .page-node-add-consultant-firm .field-name-field-consultant-comments-fc .group-middle, .page-node-add-consultant-firm .field-name-field-consultant-comments-fc .group-right {
   width: 31%;
   margin: 0 30px 0 0;
 }
-/* line 362, ../sass/custom.scss */
-.node-type-consultant-firm .form-item {
+/* line 510, ../sass/custom.scss */
+.node-type-consultant-firm .form-item, .page-node-add-consultant-firm .form-item {
   padding: 0;
 }
 
-/*** Contacts ***/
-/* line 368, ../sass/custom.scss */
-.node-type-contact fieldset.group-left, .page-node-add-contact fieldset.group-left {
-  width: 49%;
-  float: left;
+/*** Manager Edit ***/
+/* line 517, ../sass/custom.scss */
+.node-type-manager-firm .form-text, .node-type-manager-firm .form-textarea, .page-node-add-manager-firm .form-text, .page-node-add-manager-firm .form-textarea {
+  border: solid 1px #689afd;
 }
-/* line 372, ../sass/custom.scss */
-.node-type-contact fieldset.group-organization, .page-node-add-contact fieldset.group-organization {
+/* line 521, ../sass/custom.scss */
+.node-type-manager-firm .group-info .field-name-field-acronym, .page-node-add-manager-firm .group-info .field-name-field-acronym {
+  display: inline-block;
+  width: 75%;
+  margin-right: 15px;
+}
+/* line 526, ../sass/custom.scss */
+.node-type-manager-firm .group-info .field-name-field-status-tr, .page-node-add-manager-firm .group-info .field-name-field-status-tr {
+  display: inline-block;
+  width: 20%;
+  margin: 0 !important;
+}
+/* line 530, ../sass/custom.scss */
+.node-type-manager-firm .group-info .field-name-field-status-tr .form-select, .page-node-add-manager-firm .group-info .field-name-field-status-tr .form-select {
+  border: solid 1px #689afd;
+}
+/* line 536, ../sass/custom.scss */
+.node-type-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-locality, .page-node-add-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-locality {
+  display: inline-block;
+}
+/* line 539, ../sass/custom.scss */
+.node-type-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-administrative-area, .page-node-add-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-administrative-area {
+  display: inline-block;
+  width: 30%;
+}
+/* line 542, ../sass/custom.scss */
+.node-type-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-administrative-area .chosen-drop, .page-node-add-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-administrative-area .chosen-drop {
+  width: 70%;
+}
+/* line 546, ../sass/custom.scss */
+.node-type-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-postal-code, .page-node-add-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-postal-code {
+  display: inline-block;
+  width: 15%;
+}
+/* line 550, ../sass/custom.scss */
+.node-type-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-mobile-number, .page-node-add-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-mobile-number {
+  display: inline-block;
+  margin-right: 10px;
+}
+/* line 554, ../sass/custom.scss */
+.node-type-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-fax-number, .page-node-add-manager-firm .group-contact-info .form-item-field-address-und-0-field-address-widget-fax-number {
+  display: inline-block;
+}
+/* line 557, ../sass/custom.scss */
+.node-type-manager-firm .group-contact-info a.chosen-single, .page-node-add-manager-firm .group-contact-info a.chosen-single {
+  width: 150px;
+}
+/* line 562, ../sass/custom.scss */
+.node-type-manager-firm .group-manager-of-managers #edit-field-manager-of-managers-und, .page-node-add-manager-firm .group-manager-of-managers #edit-field-manager-of-managers-und {
+  border: solid 1px #689afd;
+}
+/* line 566, ../sass/custom.scss */
+.node-type-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc #edit-field-sub-manager-firms-fc-und-0-field-geographic-tr-und, .node-type-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc #edit-field-sub-manager-firms-fc-und-0-field-attribute-tr-und, .page-node-add-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc #edit-field-sub-manager-firms-fc-und-0-field-geographic-tr-und, .page-node-add-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc #edit-field-sub-manager-firms-fc-und-0-field-attribute-tr-und {
+  border: solid 1px #689afd;
+}
+/* line 569, ../sass/custom.scss */
+.node-type-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc .chosen-container, .page-node-add-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc .chosen-container {
+  margin-right: 10px;
+}
+/* line 572, ../sass/custom.scss */
+.node-type-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc .field-name-field-attribute-tr, .page-node-add-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc .field-name-field-attribute-tr {
+  display: inline-block;
+  margin-right: 20px;
+}
+/* line 576, ../sass/custom.scss */
+.node-type-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc .field-name-field-amount, .page-node-add-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc .field-name-field-amount {
+  display: inline-block;
+}
+/* line 579, ../sass/custom.scss */
+.node-type-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc input.form-submit, .page-node-add-manager-firm .group-manager-of-managers .field-name-field-sub-manager-firms-fc input.form-submit {
+  display: block;
+}
+
+/*** Contact Edit ***/
+/* line 588, ../sass/custom.scss */
+.node-type-contact input.form-text, .page-node-add-contact input.form-text {
+  border: solid 1px #689afd;
+}
+/* line 591, ../sass/custom.scss */
+.node-type-contact .form-type-textarea, .page-node-add-contact .form-type-textarea {
+  border-color: #689afd;
+}
+/* line 595, ../sass/custom.scss */
+.node-type-contact #field-job-history-values thead, .page-node-add-contact #field-job-history-values thead {
+  display: none;
+}
+/* line 599, ../sass/custom.scss */
+.node-type-contact .group-left, .page-node-add-contact .group-left {
   width: 49%;
+  margin-right: 10px;
+}
+/* line 603, ../sass/custom.scss */
+.node-type-contact .group-right, .page-node-add-contact .group-right {
+  width: 49%;
+  margin-left: 10px;
+}
+/* line 607, ../sass/custom.scss */
+.node-type-contact tr.draggable, .page-node-add-contact tr.draggable {
+  text-align: center;
+  border: solid 1px #689afd;
+}
+/* line 611, ../sass/custom.scss */
+.node-type-contact tr.draggable td .form-wrapper, .page-node-add-contact tr.draggable td .form-wrapper {
+  text-align: left;
+}
+/* line 616, ../sass/custom.scss */
+.node-type-contact .group-job-info, .page-node-add-contact .group-job-info {
+  width: 48%;
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+}
+/* line 622, ../sass/custom.scss */
+.node-type-contact .group-organization, .page-node-add-contact .group-organization {
+  width: 48%;
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+}
+/* line 628, ../sass/custom.scss */
+.node-type-contact .form-actions, .page-node-add-contact .form-actions {
+  text-align: left;
 }
