@@ -520,7 +520,7 @@ html.js #edit-view-displays-wrapper div.form-item-show-tagged-with input.form-au
   box-shadow: none;
   right: 0;
   top: 0;
-  background: url(../../rubik/images/buttons.png) no-repeat scroll -4000px 50% #444;
+  background: url(../../rubik/images/buttons.png) no-repeat scroll -4000px 50% #444444;
   border-radius: 5px 5px 5px 5px;
   display: block;
   height: 20px;
@@ -592,7 +592,7 @@ html.js #edit-view-displays-wrapper div.form-item-show-tagged-with input.form-au
   margin-right: 5px;
   box-shadow: 0 1px 1px #ddd;
   padding: 2px 10px 2px 25px;
-  background: url(../../rubik/images/buttons.png) no-repeat scroll -2401px 50% #fff;
+  background: url(../../rubik/images/buttons.png) no-repeat scroll -2401px 50% white;
   border-color: #ddd #ddd #ccc;
   border-style: solid;
   border-width: 1px;
@@ -1292,7 +1292,7 @@ a a:hover {
 
 /* line 112, ../sass/custom.scss */
 .vertical-tabs-list li a {
-  color: #000000;
+  color: black;
   text-shadow: none;
   border-bottom: 1px solid #689afd;
 }
@@ -1303,7 +1303,7 @@ a a:hover {
 
 /* line 121, ../sass/custom.scss */
 .form-item label {
-  color: #000000;
+  color: black;
   margin-left: 5px;
 }
 
