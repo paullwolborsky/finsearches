@@ -239,10 +239,10 @@ var mytinytodo = window.mytinytodo = _mtt = {
 		});
 
 		$('#taskviewcontainer li').click(function(){
-			if(l.id == 'view_tasks') setTaskview(0);
-			else if(l.id == 'view_past') setTaskview('past');
-			else if(l.id == 'view_today') setTaskview('today');
-			else if(l.id == 'view_soon') setTaskview('soon');
+			if(this.id == 'view_tasks') setTaskview(0);
+			else if(this.id == 'view_past') setTaskview('past');
+			else if(this.id == 'view_today') setTaskview('today');
+			else if(this.id == 'view_soon') setTaskview('soon');
 		});
 
 		
