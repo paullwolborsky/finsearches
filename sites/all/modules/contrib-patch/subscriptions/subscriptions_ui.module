@@ -256,7 +256,6 @@ function subscriptions_ui_node_form($form, &$form_state, $node, $expand = NULL) 
   );
   $form['account'] = array('#type' => 'value', '#value' => $account);
   $form['send_intervals'] = array('#type' => 'value', '#value' => $default_send_intervals);
-  dd($form, "form");
   return $form;
 }
 
@@ -334,7 +333,7 @@ function subscriptions_ui_node_form_submit(array $form, array &$form_state) {
       subscriptions_delete($args['4'], $args['0'], $args['1'], $args['2'], $args['3']);
     }
   }
-  drupal_set_message(t('Your subscriptions have been updated.'));
+  drupal_set_message(t('Your following list has been updated.'));
   $form_state['redirect'] = str_replace('/subscribe', '', current_path());
 }
 
