@@ -14,7 +14,46 @@ function fin_mod_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK
   );
+  $items['autocomplete/city-autocomplete'] = array(
+    'title' => 'State autocomplete',
+    'page callback' => 'fin_mod_city_autocomplete',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
   return $items;
+}
+
+/**
+ * Fuzzy array key matcher. Disabled as I don't think we need it.
+ */
+/* function fin_mod_fuzzy_array_key_exists($key_match, $array) {
+  foreach($array as $key => $value) {
+  if(strpos($key, $key_match)) {
+  return TRUE;
+  }
+  }
+  return FALSE;
+  } */
+
+/**
+ * Recursively find field when BEF enabled.
+ */
+function fin_mod_bef_recursive(&$form, &$containers = NULL) {
+  if ($containers == NULL) {
+    $containers = &$form['filters']['children']['container-root'];
+  }
+
+  foreach ($containers as $container_key => &$container) {
+    if (is_array($container) && array_key_exists('field_address_administrative_area', $container)) {
+      $container['field_address_administrative_area']['#autocomplete_path'] = 'autocomplete/state-autocomplete';
+    }
+    if (is_array($container) && array_key_exists('field_address_locality', $container)) {
+      $container['field_address_locality']['#autocomplete_path'] = 'autocomplete/city-autocomplete';
+    }
+    if (strstr($container_key, "container")) {
+      fin_mod_bef_recursive($form, $container);
+    }
+  }
 }
 
 /**
@@ -26,23 +65,12 @@ function fin_mod_form_alter(&$form, &$form_state, $form_id) {
     $form['field_mandate_comments_fc']['und'][0]['field_author_er']['und']['#default_value'] = t($user->name . ' (' . $user->uid . ')');
   }
   else if ($form_id == 'views_exposed_form') {
-    $form['field_address_administrative_area']['#autocomplete_path'] = 'autocomplete/state-autocomplete';
+    fin_mod_bef_recursive($form);
   }
 }
 
 /**
- * Filters state by string.
- */
-function fin_mod_filter_states(&$states, $state) {
-  foreach ($states as $state_codes => $state_names) {
-    if (stripos($state_names, $state) === FALSE) {
-      unset($states[$state_codes]);
-    }
-  }
-}
-
-/**
- * Custom autocomplete function for States dropdown.
+ * Custom autocomplete function for states dropdown.
  */
 function fin_mod_state_autocomplete($state = '') {
   module_load_include("inc", "addressfield", "addressfield.administrative_areas");
@@ -51,12 +79,35 @@ function fin_mod_state_autocomplete($state = '') {
   $state_length = 10;
   $countries = _addressfield_get_administrative_areas_defaults();
   foreach ($countries as $country => $states) {
-    fin_mod_filter_states($states, $state);
+    fin_mod_filter_regions($states, $state);
     $all_states = array_merge($all_states, $states);
   }
   asort($all_states);
   $all_states = array_slice($all_states, 0, $state_length);
   drupal_json_output($all_states);
+}
+
+/**
+ * Filters regions by string.
+ */
+function fin_mod_filter_regions(&$all_regions, $region) {
+  foreach ($all_regions as $region_key => $region_name) {
+    if (stripos($region_name, $region) === FALSE) {
+      unset($all_regions[$region_key]);
+    }
+  }
+}
+
+/**
+ * Custom autocomplete function for city dropdown.
+ */
+function fin_mod_city_autocomplete($city = '') {
+  $all_cities = db_query("SELECT DISTINCT field_address_locality FROM field_data_field_address AS f")->fetchCol();
+  $city_length = 10;
+  fin_mod_filter_regions($all_cities, $city);
+  asort($all_cities);
+  $all_cities = array_slice($all_cities, 0, $city_length);
+  drupal_json_output($all_cities);
 }
 
 function fin_mod_theme_registry_alter(&$theme_registry) {
@@ -259,7 +310,7 @@ function fin_mod_add_and_remove_condition(&$query, &$conditions, $field, $inside
 /**
  * Implements hook_field_attach_view_alter().
  */
-/*
+
 function fin_mod_field_attach_view_alter(&$build, $context) {
   module_load_include("module", "ds");
   $entity_type = $build['#entity_type'];
@@ -372,7 +423,7 @@ function fin_mod_field_attach_view_alter(&$build, $context) {
     }
   }
 }
-*/
+
 /**
  * Essentially overrides DS.
  */
