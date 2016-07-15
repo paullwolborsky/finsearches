@@ -38,8 +38,8 @@ function fin_export_export_test ($name = null, $pass = null) {
   $login = json_decode($response->data);
   if ($response->code == 200) {
     //$restful_url = 'http://192.168.0.100:93/rest/plans';
-		//$restful_url = 'http://192.168.0.100:93/rest/managers';
-    $restful_url = 'http://192.168.0.100:93/rest/mandates';
+		$restful_url = 'http://192.168.0.100:93/rest/managers';
+    //$restful_url = 'http://192.168.0.100:93/rest/mandates';
     //$restful_url = 'http://192.168.0.100:93/rest/consultants';
     //$restful_url = 'http://192.168.0.100:93/rest/contacts';
     $options['headers']['Cookie'] = $login->session_name . '=' . $login->sessid;
@@ -92,7 +92,7 @@ function fin_export_services_resources() {
     'managers' => array(
       'retrieve' => array(
         'help' => 'Export Manager Data',
-        'callback' => 'fin_export_plans',
+        'callback' => 'fin_export_managers',
         'access callback' => 'user_access',
         'access arguments' => array('access content'),
         'access arguments append' => FALSE,
@@ -617,6 +617,71 @@ function fin_export_mandates($since = 0) {
 	variable_set('squirro_mandates_last_pull', time());
 	//dd($index, "Mandate export count");
   return drupal_json_encode($mandates);
+}
+
+function fin_export_managers($since=0) {
+	$last_pull = variable_get('squirro_managerss_last_pull', 0);
+	
+	$sql = "
+	SELECT
+	mn.nid as manager_id,
+	mn.title as manager_name,
+	ma.field_acronym_value AS manager_acronym,
+	mstr.field_status_tr_tid AS status_id,
+	mstd.name AS manager_status,
+	office_address.field_address_country AS office_country,
+	office_address.field_address_administrative_area AS office_state,
+	office_address.field_address_locality AS office_city,
+	office_address.field_address_thoroughfare AS office_address1,
+	office_address.field_address_premise AS office_address2,
+	office_address.field_address_sub_premise AS office_address3,
+	office_address.field_address_postal_code AS office_zipcode,
+	office_address.field_address_data AS raw_phones,
+	manager_email.field_email_email AS manager_email,
+	manager_website.field_website_url AS manager_website,
+	mom.field_manager_of_managers_value AS manager_of_managers	
+	FROM node mn
+	LEFT JOIN field_data_field_acronym ma ON mn.nid=ma.entity_id
+	LEFT JOIN field_data_field_status_tr mstr ON mn.nid=mstr.entity_id AND mstr.bundle='manager_firm'
+	LEFT JOIN taxonomy_term_data mstd ON mstr.field_status_tr_tid=mstd.tid
+	LEFT JOIN field_data_field_address office_address ON mn.nid=office_address.entity_id AND office_address.bundle='manager_firm'
+	LEFT JOIN field_data_field_email manager_email ON mn.nid=manager_email.entity_id AND manager_email.bundle='manager_firm' 
+	LEFT JOIN field_data_field_website manager_website ON mn.nid=manager_website.entity_id AND manager_website.bundle='manager_firm'
+	LEFT JOIN field_data_field_manager_of_managers mom ON mn.nid=mom.entity_id
+	WHERE mn.type='manager_firm' 
+	";
+	if ($since == 1) {
+		$sql .= "AND mn.updated > " . $last_pull . " ";
+	}
+	$sql .= "ORDER BY mn.nid ASC";
+
+  $result = db_query($sql);
+  $managers = array();
+	$index = 0;
+  while ($rec = $result->fetchAssoc()) {
+		if (!empty($rec['raw_phones'])) {
+			$rec['phones'] = unserialize($rec['raw_phones']);
+			unset($rec['phones']['address3'], $rec['raw_phones']);
+		}
+		$mf_sql = "
+		SELECT
+		sm.field_sub_manager_firms_fc_value AS managed_firm_id
+		FROM field_data_field_sub_manager_firms_fc sm
+		WHERE sm.entity_id=" . $rec['manager_id'] . " ORDER BY sm.field_sub_manager_firms_fc_value ASC	
+		";
+		$mf_result = db_query($mf_sql);
+		$mf = array();
+		while ($mf_rec = $mf_result->fetchAssoc()) {
+			$mf[] = $mf_rec;
+		}
+		$rec['managed_firms'] = 	$mf;
+		$managers[$rec['manager_id']] = $rec;
+    $index++;
+	};
+	variable_set('squirro_managers_last_pull', time());
+	//dd($managers, "Managers");
+	dd($index, "Manager export count");
+  return drupal_json_encode($managers);
 }
 
 function fin_export_consultants($since = 0) {
