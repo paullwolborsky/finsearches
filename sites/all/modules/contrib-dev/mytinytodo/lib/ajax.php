@@ -12,7 +12,6 @@ set_exception_handler('myExceptionHandler');
 global $user;
 
 $db = DBConnection::instance();
-//dd($_GET, "_GET In ajax.php");
 if(isset($_GET['loadLists']))
 {
 	$t = array();
@@ -292,6 +291,14 @@ elseif(isset($_GET['editTask']))
 	//$reminderemail = trim(_post('reminderemail'));
 	//$remindernote = str_replace("\r\n", "\n", trim(_post('remindernote')));
 	//$reminderdate = $reminderemail = $remindernote = '';
+
+	$compl = $_POST['completed'];
+	$listId = (int)$db->sq("SELECT list_id FROM {mytinytodo_todos} WHERE id=$id");
+	if($compl) 	$ow = 1 + (int)$db->sq("SELECT MAX(ow) FROM {mytinytodo_todos} WHERE list_id=$listId AND compl=1");
+	else $ow = 1 + (int)$db->sq("SELECT MAX(ow) FROM {mytinytodo_todos} WHERE list_id=$listId AND compl=0");
+	$dateCompleted = $compl ? time() : 0;
+	$db->dq("UPDATE {mytinytodo_todos} SET compl=$compl,ow=$ow,d_completed=?,d_edited=? WHERE id=$id", array($dateCompleted, time()) );
+	module_invoke_all('mytinytodo_completed_task', array('list' => $listId, 'task' => $id));
 
 	$note = str_replace("\r\n", "\n", trim(_post('note')));
 	$prio = (int)_post('prio');
