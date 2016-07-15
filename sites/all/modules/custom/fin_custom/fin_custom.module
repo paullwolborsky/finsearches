@@ -523,3 +523,18 @@ function fin_custom_user_delete($account) {
     ->condition('uid', $account->uid)
     ->execute();
 }
+
+/**
+ * Alters the the widget in some condition.
+ */
+function fin_custom_field_widget_properties_alter(&$widget, $context) {
+  if ($context['entity_type'] == 'node') {
+    if (!isset($context['entity']->nid)) {
+      if ($context['field']['field_name'] == 'field_manager_roster_fc') {
+        if ($widget['type'] == 'field_collection_hidden') {
+          $widget['type'] = 'field_collection_embed';
+        }
+      }
+    }
+  }
+}
