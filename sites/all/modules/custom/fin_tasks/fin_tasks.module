@@ -251,6 +251,7 @@ function fin_tasks_node_list ($limit = NULL) {
   $query->fields('t');
   $query->addField('l', 'name', 'list_name');
   $query->where("t.uid = " . $user->uid);
+	$query->where("t.compl != 1");
   $query->where("n.nid = " . $nid);
   $result = $query
       ->limit($m_limit)
@@ -268,10 +269,12 @@ function fin_tasks_node_list ($limit = NULL) {
 		$date = $title = '';
     $date = '';
     if ($rec->duedate != '') {
-      if ($rec->duedate < time()) {
-        $date = "<span class='task-overdue'>" . date('n-j-Y', strtotime($rec->duedate)) . "</soan>";
+			dd(strtotime($rec->duedate), "duedate");
+			dd(time(), "time");
+      if (strtotime($rec->duedate) < time()) {
+        $date = "<span class='task-overdue'>" . date('n-j-y', strtotime($rec->duedate)) . "</soan>";
       } else {
-        "<span>" . $date = date('n-j-Y', strtotime($rec->duedate)) . "<span>";
+        "<span>" . $date = date('n-j-y', strtotime($rec->duedate)) . "<span>";
       }
     }
     if (strlen($rec->title) > 20) {
@@ -288,7 +291,7 @@ function fin_tasks_node_list ($limit = NULL) {
   if (count($rows) > 0) {
     $out .= theme('table', array('header' => $header, 'rows' => $rows ));
   } else {
-    $out .= "There are currenly no tasks.";
+    $out .= "There are currenly no open tasks.";
   }
 
   $out .= "</div>";

@@ -954,10 +954,11 @@ function prepareList($row)
 
 function getUserListsSimple()
 {
+	global $user;
 	$db = DBConnection::instance();
 	$a = array();
 	$field_id = (int)$_GET['fid'];
-	$q = $db->dq("SELECT id, name FROM {mytinytodo_lists} WHERE field_id = ? ORDER BY id ASC", array($field_id));
+	$q = $db->dq("SELECT id, name FROM {mytinytodo_lists} WHERE field_id = ? AND uid = ? ORDER BY id ASC", array($field_id, $user->uid));
 	while($r = $q->fetch_row()) {
 		$a[$r[0]] = $r[1];
 	}
