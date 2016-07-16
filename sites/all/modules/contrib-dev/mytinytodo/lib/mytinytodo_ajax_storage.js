@@ -96,6 +96,7 @@ mytinytodoStorageAjax.prototype =
 				//reminderdate: params.reminderdate,
 				//reminderemail: params.reminderemail,
 				//remindernote: params.remindernote,
+				completed: params.completed,
 				note:params.note,
 				prio:params.prio,
 				tags:params.tags,

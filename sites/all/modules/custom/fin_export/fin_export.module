@@ -6,10 +6,10 @@
 function fin_export_menu() {
   global $user;
   $items = array();
-  $items['admin/config/financial-news/export_test'] = array(
+  $items['admin/config/financial-news/export_test/%'] = array(
     'title' => 'Test the export',
     'page callback' => array('fin_export_export_test'),
-    //'page arguments' => array(4),
+    'page arguments' => array(4),
     //'access callback' => user_access('administer site configuration'),
     'access callback' => true,
     'type' => MENU_LOCAL_TASK,
@@ -17,8 +17,11 @@ function fin_export_menu() {
 	return $items;
 }
 
-function fin_export_export_test ($name = null, $pass = null) {
+function fin_export_export_test ($endpoint = NULL) {
 	//Get authentication
+	if (!$endpoint) {
+		return "NO endpoint given";
+	}
 	$login_url = 'http://192.168.0.100:93/rest/user/login';
   $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
 	$post_data = array(
@@ -38,10 +41,11 @@ function fin_export_export_test ($name = null, $pass = null) {
   $login = json_decode($response->data);
   if ($response->code == 200) {
     //$restful_url = 'http://192.168.0.100:93/rest/plans';
-		$restful_url = 'http://192.168.0.100:93/rest/managers';
+		//$restful_url = 'http://192.168.0.100:93/rest/managers';
     //$restful_url = 'http://192.168.0.100:93/rest/mandates';
     //$restful_url = 'http://192.168.0.100:93/rest/consultants';
     //$restful_url = 'http://192.168.0.100:93/rest/contacts';
+    $restful_url = 'http://192.168.0.100:93/rest/' . $endpoint;
     $options['headers']['Cookie'] = $login->session_name . '=' . $login->sessid;
     $options['method'] = 'GET';
     $rest_response = drupal_http_request($restful_url, $options);
@@ -396,7 +400,7 @@ function fin_export_plans($since = 0) {
   }
 	variable_set('squirro_plans_last_pull', time());
 	//dd($plans, "Plans");
-	//dd($index, "Plan export count");
+	dd($index, "Plan export count");
   return drupal_json_encode($plans);
 }
 
@@ -615,7 +619,7 @@ function fin_export_mandates($since = 0) {
     $index++;
 	};
 	variable_set('squirro_mandates_last_pull', time());
-	//dd($index, "Mandate export count");
+	dd($index, "Mandate export count");
   return drupal_json_encode($mandates);
 }
 
@@ -745,7 +749,6 @@ function fin_export_consultants($since = 0) {
 		";
 		$office_result = db_query($office_sql);
 		$main_offices = $branch_offices = array();
-		$office_index = 0;
 		while ($office_rec = $office_result->fetchAssoc()) {
 			$office_rec['office_phones'] = unserialize($office_rec['raw_phones']);
 			unset($office_rec['office_phones']['address3'], $office_rec['raw_phones']);
@@ -754,15 +757,33 @@ function fin_export_consultants($since = 0) {
 			} else {
 				$branch_offices[$office_rec['office_id']] = $office_rec;
 			}
-			$office_index++;
 		}
 		$rec['main_office'] = 	$main_offices;
 		$rec['branch_offices'] = 	$branch_offices;
+		
+		$plan_sql = "
+		SELECT
+		pn.nid AS plan_id,
+		pn.title AS plan_title
+		FROM node pn
+		INNER JOIN field_data_field_consultant_roster_fc cr ON pn.nid=cr.entity_id
+		INNER JOIN field_data_field_consultant_firm_er fer ON cr.field_consultant_roster_fc_value=fer.entity_id AND fer.bundle='field_consultant_roster_fc'
+		WHERE fer.field_consultant_firm_er_target_id=" . $rec['consultant_id'] . " AND pn.type='plan'
+
+		";
+		$plan_result = db_query($plan_sql);
+		$plans = array();
+		while ($plan_rec = $plan_result->fetchAssoc()) {
+			$plans[$plan_rec['plan_id']] = $plan_rec;
+		}
+		$rec['plans'] = 	$plans;
+		
     $index++;
     $consultants[$rec['consultant_id']] = $rec;
 	}
 	variable_set('squirro_consultants_last_pull', time());
-	//dd($index, "Consultants export count");
+	//dd($consultants, "Consultants");
+	dd($index, "Consultants export count");
   return drupal_json_encode($consultants);	
 }
 
@@ -850,6 +871,6 @@ function fin_export_contacts($since = 0) {
 		$contacts[$rec['contact_id']] = $rec;
 	}
 	variable_set('squirro_contacts_last_pull', time());
-	//dd($index, "Contacts export count");
+	dd($index, "Contacts export count");
   return drupal_json_encode($contacts);	
 }

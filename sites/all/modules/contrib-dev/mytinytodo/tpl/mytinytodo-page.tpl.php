@@ -188,7 +188,7 @@
     <div><a href="#" class="mtt-back-button"><?php _e('go_back');?></a></div>
 
     <h3 class="mtt-inadd"><?php _e('add_task');?></h3>
-    <h3 class="mtt-inedit"><?php _e('edit_task');?><span id='mtt-inedit-completed' style='display:none;color:green;margin:0 0 0 15px;'>Completed</span>
+    <h3 class="mtt-inedit"><?php _e('edit_task');?>
      <div id="taskedit-date" class="mtt-inedit">
       (<span class="date-created" title="<?php _e('taskdate_created');?>"><span></span></span><span class="date-completed" title="<?php _e('taskdate_completed');?>"> &mdash; <span></span></span>)
      </div>
@@ -207,6 +207,7 @@
     <div class="form-row form-row-short">
      <span class="h"><?php _e('Reminder Date');?> </span>
      <input name="duedate" id="duedate" value="" class="in100" title="Y-M-D, M/D/Y, D.M.Y, M/D, D.M" autocomplete="off" />
+     <input type="checkbox" id="completed" value="" name="completed"><span class="h">Completed</span>
     </div>
     <div class="form-row-short-end"></div>
     <div class="form-row">
