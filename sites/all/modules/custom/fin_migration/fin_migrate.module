@@ -1,4 +1,5 @@
 <?php
+
 /*
 Had to fix fin_migrate, which had 13k 'consultant contacts w/consultant firm nodes
 delete from fin_migrate where nid in (select nid from node where type<>'contact') and contactname<>''
