@@ -65,6 +65,10 @@ function fin_migrate_form() {
     '#type' => 'fieldset',
     '#title' => t('PostFix'),
   );
+  $form['fieldset6'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('PostFix 2'),
+  );
   $form['fieldset1']['submit_import'] = array(
     '#type' => 'submit',
     '#value' => t('Start importing stuff'),
@@ -86,30 +90,29 @@ function fin_migrate_form() {
     '#submit' => array('fin_migrate_form_submit_import_step1c'),
   );
   $form['fieldset1']['step2']['submit_news'] = array(
+    '#suffix' => ' | ',    
     '#type' => 'submit',
     '#value' => t(' Step2 News '),
-    '#submit' => array('fin_migrate_form_submit_import_step2_basic'),
+    '#submit' => array('fin_migrate_form_submit_import_step2_news'),
   );
   $form['fieldset1']['step2']['submit_basic'] = array(
+    '#suffix' => ' | ',
     '#type' => 'submit',
-    '#value' => t(' Step2 Basics '),
+    '#value' => t(' Step2 Basics+MOM '),
     '#submit' => array('fin_migrate_form_submit_import_step2_basic'),
   );
   $form['fieldset1']['step2']['submit_sample'] = array(
+    '#suffix' => ' | ',    
     '#type' => 'submit',
     '#value' => t(' Step2 Sample '),
     '#submit' => array('fin_migrate_form_submit_import_step2_sample'),
   );
   $form['fieldset1']['step2']['submit_plan'] = array(
+    '#suffix' => ' | ',        
     '#type' => 'submit',
-    '#value' => t('Step1 C'),
+    '#value' => t('Step2 Plans'),
     '#submit' => array('fin_migrate_form_submit_import_step2_plan'),
   );
-  $form['fieldset1']['step2']['submit_plan'] = array(
-    '#type' => 'submit',
-    '#value' => t(' Step2 Plan '),
-    '#submit' => array('fin_migrate_form_submit_import_step2_mandate'),
-  );  
   $form['fieldset1']['step2']['submit_mandate'] = array(
     '#type' => 'submit',
     '#value' => t(' Step2 Mandate '),
@@ -120,13 +123,13 @@ function fin_migrate_form() {
     '#value' => t('Contacts'),
     '#submit' => array('fin_migrate_form_submit_import_contacts'),
   );
-
+/***
   $form['fieldset2']['Import_New_Major_Minors'] = array(
     '#type' => 'submit',
     '#value' => t('Import New Major/Minors'),
     '#submit' => array('fin_migrate_form_submit_import_mm'),
   );
-
+***/
   $form['fieldset2']['Import_New_Major_Minors'] = array(
     '#type' => 'submit',
     '#value' => t('Unmark NEWS'),
@@ -150,51 +153,195 @@ function fin_migrate_form() {
   $form['fieldset5']['submit_postfix_plan_strip'] = array(
     '#suffix' => ' | ',
     '#type' => 'submit',
-    '#value' => t('Broken Plans Strip'),
-    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip'),
+    '#value' => t('Strip Michigan'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip_michigan'),
   );
   $form['fieldset5']['submit_postfix_plan'] = array(
     '#suffix' => '<br />',
     '#type' => 'submit',
-    '#value' => t('Fix Broken Plans'),
-    '#submit' => array('fin_migrate_form_submit_postfix_plan'),
+    '#value' => t('Fix Michigan'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_michigan'),
   );
 ////////////////////
   $form['fieldset5']['submit_postfix_plan_strip2'] = array(
     '#type' => 'submit',
-    '#value' => t('Broken Plans Strip2'),
-    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip2'),
+    '#value' => t('Strip Florida'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip_florida'),
   );
   $form['fieldset5']['submit_postfix_plan2'] = array(
     '#prefix' => ' | ',
     '#suffix' => '<br />',
     '#type' => 'submit',
-    '#value' => t('Fix Broken Plans2'),
-    '#submit' => array('fin_migrate_form_submit_postfix_plan2'),
+    '#value' => t('fix Flroida'),
+    '#submit' => array('fin_migrate_form_submit_postfix_florida'),
   );
   $form['fieldset5']['submit_postfix_plan_strip3'] = array(
     '#type' => 'submit',
-    '#value' => t('Broken Plans Strip3'),
-    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip3'),
+    '#value' => t('Strip Texas'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip_texas'),
   );
   $form['fieldset5']['submit_postfix_plan3'] = array(
     '#prefix' => ' | ',
     '#suffix' => '<br />',
     '#type' => 'submit',
-    '#value' => t('Fix Broken Plans3'),
-    '#submit' => array('fin_migrate_form_submit_postfix_plan3'),
+    '#value' => t('Fix Texas3'),
+    '#submit' => array('fin_migrate_form_submit_postfix_texas'),
   );
   $form['fieldset5']['submit_postfix_plan_strip4'] = array(
     '#type' => 'submit',
-    '#value' => t('Broken Plans Strip4'),
-    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip4'),
+    '#value' => t('Strip CALPERS'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip_calpers'),
   );
   $form['fieldset5']['submit_postfix_plan4'] = array(
     '#prefix' => ' | ',
     '#suffix' => '<br />',
     '#type' => 'submit',
-    '#value' => t('Fix Broken Plans4'),
-    '#submit' => array('fin_migrate_form_submit_postfix_plan4'),
+    '#value' => t('Fix CALPERS'),
+    '#submit' => array('fin_migrate_form_submit_postfix_calpers'),
+  );
+  
+  $form['fieldset5']['submit_postfix_plans_truncated'] = array(
+    '#prefix' => '<br />',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('COMPLETE Broken Plans'),
+    '#submit' => array('fin_migrate_form_submit_postfix_truncated'),
+  );
+/////////////////////////////
+  $form['fieldset5']['submit_postfix_plan_strip5'] = array(
+    '#type' => 'submit',
+    '#value' => t('Strip CAL TEACHERS'),
+    '#prefix' => '<br /><br />',
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip_calteach'),
+  );
+  $form['fieldset5']['submit_postfix_plan5'] = array(
+    '#prefix' => ' | ',
+    '#suffix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Fix CAL TEACH'),
+    '#submit' => array('fin_migrate_form_submit_postfix_calteach'),
+  );
+
+  $form['fieldset5']['submit_postfix_plan_strip6'] = array(
+    '#type' => 'submit',
+    '#value' => t('Strip NEW YORK'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip_newyork'),
+  );
+  $form['fieldset5']['submit_postfix_plan6'] = array(
+    '#prefix' => ' | ',
+    '#suffix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Fix NEW YORK'),
+    '#submit' => array('fin_migrate_form_submit_postfix_newyork'),
+  );
+
+  $form['fieldset5']['submit_postfix_plan_strip7'] = array(
+    '#type' => 'submit',
+    '#value' => t('Strip UT'),
+    '#submit' => array('fin_migrate_form_submit_postfix_plan_strip_ut'),
+  );
+  $form['fieldset5']['submit_postfix_plan7'] = array(
+    '#prefix' => ' | ',
+    '#suffix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Fix UT'),
+    '#submit' => array('fin_migrate_form_submit_postfix_ut'),
+  );
+
+/////////////////////////////
+  $form['fieldset5']['submit_postfix_plans_momma'] = array(
+    '#prefix' => '<br />',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('IMPORT MOM'),
+    '#submit' => array('fin_migrate_form_submit_postfix_moms'),
+  );
+
+  $form['fieldset5']['submit_postfix_plans_imr'] = array(
+    '#prefix' => '<br />',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('IMPORT DATABASES USED'),
+    '#submit' => array('fin_migrate_form_submit_postfix_imr'),
+  );
+
+  $form['fieldset5']['submit_postfix_momamt'] = array(
+    '#prefix' => '<br />',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('IMPORT MOM AMT $$$'),
+    '#submit' => array('fin_migrate_form_submit_postfix_momamt'),
+  );
+
+  $form['fieldset5']['submit_postfix_cf'] = array(
+    '#prefix' => '<br />',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('CREATE PHANTOM OFFICES'),
+    '#submit' => array('fin_migrate_form_submit_postfix_cf'),
+  );
+
+  $form['fieldset5']['submit_postfix_mandate_titles1'] = array(
+    '#prefix' => '<br />',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('FIX MANDATE TITLES 1'),
+    '#submit' => array('fin_migrate_form_submit_postfix_mandate_titles'),
+  );
+
+  $form['fieldset5']['submit_postfix_mandate_comments'] = array(
+    '#prefix' => '<br />',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('FIX MANDATE COMMENTS'),
+    '#submit' => array('fin_migrate_form_submit_postfix_mandate_comments'),
+  );
+
+  $form['fieldset5']['contacts_bios']['submit_step2a_bio'] = array(
+    '#prefix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Re-populate Bios'),
+    '#submit' => array('fin_migrate_form_submit_import_contacts_bios'),
+  );
+  $form['fieldset5']['fix_longext']['submit_step2a_bio'] = array(
+    '#prefix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Fix Longtext body'),
+    '#submit' => array('fin_migrate_form_submit_fix_longtext'),
+  );
+  $form['fieldset5']['fix_longext_fc']['submit_step2a_bio'] = array(
+    '#prefix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Fix Longtext FC'),
+    '#submit' => array('fin_migrate_form_submit_fix_longtext_fc'),
+  );
+  $form['fieldset5']['fix_longext_save']['submit_step2a_bio'] = array(
+    '#prefix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Save Contactrs w/new bios'),
+    '#submit' => array('fin_migrate_form_submit_fix_longtext_save'),
+  );
+
+///////////////////////////////////
+  $form['fieldset6']['submit_postfix_sqls'] = array(
+    '#suffix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Run Simple SQLS'),
+    '#submit' => array('fin_migrate_form_submit_sqls'),
+  );
+  
+  $form['fieldset6']['submit_postfix_ext'] = array(
+    #suffix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Fix Broken Phone Extensions'),
+    '#submit' => array('fin_migrate_form_submit_fix_ext'),
+  );
+
+  $form['fieldset6']['submit_postfix_imgs'] = array(
+    #suffix' => '<br /><br />',
+    '#type' => 'submit',
+    '#value' => t('Run IMG REPORT'),
+    '#submit' => array('fin_migrate_form_submit_check_images'),
   );
 
 /////////////////// 
@@ -870,7 +1017,7 @@ function fin_migrate_do_step1(&$batch, $mode='step1') {
   // Get Parameters.
   //$nodemaparr = fin_migrate_get_nodemaps('step1');
   $arrs = fin_migrate_get_nodemaps($mode);
-  $nodeMapArr = $arrs['maps'];
+  $nodemaparr = $arrs['maps'];
   
   $movement = 0;
   $howmanymovements = count($nodemaparr);
@@ -909,7 +1056,8 @@ function fin_migrate_do_step1(&$batch, $mode='step1') {
       
       switch ($pseudonym) {
         case 'news':
-          $sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` ".$where." group by Title)";
+          //$sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` ".$where." group by Title)";
+        $sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` ".$where." group by Title, Type, FirmID)";  
         break;
         default:
           $sql = "select * from {" . $table . "} ".$where;
@@ -980,7 +1128,10 @@ function _fin_migrate_process_batch_step1($pseudonym, $dst, $table, $pkeyname, $
       $created = $changed;
       if ($created < 0 or !is_numeric($created)) {
         $bad2 = $created;
-        $created = time();
+        
+        //0604 make more than 32 days old
+        //$created = time();
+        $created = time()-(32*24*60*60);
         $changed = $created;
       }
     }
@@ -1049,7 +1200,8 @@ function profile2_by_uid_load($uid, $type_name) {
 /* SECTION Step2
  * //////////////////// STEP2 /////////////////////
  */
-function fin_migrate_do_step2(&$batch) {
+//function fin_migrate_do_step2(&$batch) {
+function fin_migrate_do_step2(&$batch, $mode='step2') {
   ini_set('max_execution_time', 3600000);
   ini_set('memory_limit','1024M');
 
@@ -1114,7 +1266,9 @@ function fin_migrate_do_step2(&$batch) {
         switch($pseudonym) {
           //if ($dst=="plan") {
           case 'news':
-            $sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` WHERE 1 group by Title)";
+            //$sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` WHERE 1 group by Title)";
+            $sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` WHERE 1 group by Title, Type, FirmID)";
+
           break;
           case 'plan':
             $sql = "select * from {".$table."} where Status=1".$and;        
@@ -1254,7 +1408,9 @@ function fin_migrate_do_step2a(&$batch, $mode="contacts") {
   //$mapArr = fin_migrate_get_nodemaps('step2a');
   //$map = $mapArr[$pseudonym];
   $arrs = fin_migrate_get_nodemaps('contacts');
-  $map = $arrs['maps'];
+  //$map = $arrs['maps']['contact'];
+  $map = $arrs['maps'][0]['contact'];
+  $limit = $arrs['limit'];
 
   $donesql = "select contactname from {fin_migrate_node} where step2=1 and contactname<>''";
   $doneres = db_query($donesql);
@@ -1299,7 +1455,8 @@ $jobs = $arr;
         ),
       );
       $rowCount++;
-if ($rowCount>8000) {
+//$limit=8000;
+if ($rowCount>$limit) {
   return;
 }
 
@@ -1395,12 +1552,15 @@ function _fin_migrate_process_batch_step2a($starttime, $pseudonym, $contactName,
     $mostRecent = $p_wrapper;
   }
 // Use last p_wrapper (most recent job) to populate latest fields
+/* PLW 062516 NO MORE LATEST FIELDS, deprecate  
   $stat = $p_wrapper->field_status_tr->raw();
   //The TID for 'Active' is 340
   if ($stat==340) {
-    _fin_migrate_get_latest_data($mostRecent, $entity, $wrapper);
+    // PLW 062816 no more latest fields
+    //_fin_migrate_get_latest_data($mostRecent, $entity, $wrapper);
     $wrapper->save();
   }
+  */
       
   // hide new & updated
   _fin_migrate_postdate($node);
@@ -1447,7 +1607,8 @@ function _fin_migrate_prep_employment_dates($done) {
   watchdog('FIN_MIGRATE_JOBS_TABLE', $message, array(), WATCHDOG_INFO);
 
   $arr = array();
-  $tbl = 'tblconsultantcontacts';
+ 
+   $tbl = 'tblconsultantcontacts';
   $id = 'ConsultantContactID';
   _fin_migrate_grab_job_data($tbl, $id, $arr, $done);
 
@@ -1512,7 +1673,9 @@ function _fin_migrate_prep_employment_dates($done) {
               } else {
                 $end = $nextEndDate;
               }
-              $arr[$contactName][$start][$tbl][$rowid]['inactive'] = 1;              
+              // PLW 062816 Policy change, set inactive to data, not 1
+              //$arr[$contactName][$start][$tbl][$rowid]['inactive'] = 1;
+              $arr[$contactName][$start][$tbl][$rowid]['inactive'] = $inactive;              
               $nextEndDate = $start-86460;
             }
             $arr[$contactName][$start][$tbl][$rowid]['end'] = $end;          
@@ -2052,7 +2215,7 @@ function _fin_migrate_handler_address($dstFldName, $inArr, $inData, &$wrapper, $
       switch ($handler) {
         case 'phone':
           str_replace('ext.','x',$val);
-          str_replace('ext','x',$val);
+          //str_replace('ext','x',$val);
           str_replace('EXT.','x',$val);
           str_replace('EXT','x',$val);
           $pieces = explode("x", $val);
@@ -2227,6 +2390,28 @@ function _fin_migrate_get_latest_data($p_wrapper, $entity, &$wrapper) {
             $wrapper->$fieldname->title = $val['title'];
           }
         break;
+      case 'field_major_minor_style_tr':
+        $major = $inData->MajorStyleID;
+        $minor = $inData->MinorStyleID;
+        if (!empty($major)) {
+          $tid = fin_saved_search_migration_mmm_id($major, $minor);
+          if (!empty($tid)) {
+            $parent = taxonomy_get_parents($tid);
+            $parent = reset($parent);
+            $ptid = $parent->tid;
+            if ($wrapper->field_major_minor_style_tr->validate(array($tid))) {
+                $wrapper-> field_major_minor_style_tr = array($tid);
+            }
+            else {
+              $message = "MINORTID-".$tid;
+              watchdog('INVALID_TAXONOMY', $message, array(), WATCHDOG_ERROR);
+            }
+          } else {
+            $message = "Incoming Data: ".print_r($inData,true);
+            watchdog('FIN_MIGRATE_MAJORMINOR_FAILED', $message, array(), WATCHDOG_ERROR);
+          }
+        }
+      break;
         default:
           $val = $p_wrapper->$fieldname->value();
           if (!empty($val)) {
@@ -2278,10 +2463,6 @@ function _fin_migrate_handler_collection($pseudonym, $hostFldName, $sets, $inDat
         $refAndSize = TRUE;
       }
       $srcFldName = $prms['oldkeyfldname'];
-
-// COMMA DELIMITED
-//debugBreak();
-
       for ($x=0; $x<count($pieces); $x++) {
         $arr = array();
         $oldid = trim($pieces[$x]);
@@ -2400,9 +2581,7 @@ function _fin_migrate_handler_collection($pseudonym, $hostFldName, $sets, $inDat
   if ($pKeyName) {
       $pKey = $inData->$pKeyName;    
   }
-
   $proceed = TRUE;
-
   if ( isset($params['oldtable'])) {
     $srcTable = $params['oldtable'];
     $pKeyName = $primeKeyFldName;
@@ -2419,6 +2598,11 @@ function _fin_migrate_handler_collection($pseudonym, $hostFldName, $sets, $inDat
     if (isset($params['key-alias'])) {
       $pKeyName = $params['key-alias'];
     }
+    if (isset($params['mom-key-alias'])) {
+      $oldKey = $pKey;
+      $pKeyName = $params['mom-key-alias'];
+      $pKey = $inData->ManagerFirmID;
+    }
     $rowKeyFldName = $pKeyName;
     if (isset($params['rowkeycheckfldname'])) {
       $rowKeyCheckFldName = $params['rowkeycheckfldname'];
@@ -2429,11 +2613,31 @@ function _fin_migrate_handler_collection($pseudonym, $hostFldName, $sets, $inDat
     }
 
     $proceed = TRUE;
-    $res = _fin_migrate_get_best_additional_table_data($srcTable, $pKeyName, $pKey);
-
-$message = "Fldname: ".$hostFldName." Sets contain: ".print_r($sets,true);
-watchdog('FIN_MIGRATE_COLLECTION', $message, array(), WATCHDOG_INFO);
-  
+    $force = FALSE;
+    if ($srcTable=="tblmommanagers") {
+      $force = TRUE;
+    }
+    $usefunction = TRUE;
+    //if ($srcTable=="tblfundmanagers") {
+    if ($srcTable=="tblfundmanagers" || $srcTable=="tblfundconsultants") {
+      $usefunction = FALSE;
+    }
+    if ($usefunction) {
+      $res = _fin_migrate_get_best_additional_table_data($srcTable, $pKeyName, $pKey, $force, $nocache);
+    } else {
+      $sql = "SELECT * FROM {%srctable} WHERE %keyname=%key";
+      $sql = str_replace("%srctable", $srcTable, $sql);
+      $sql = str_replace("%keyname", $pKeyName, $sql);
+      $sql = str_replace("%key", $pKey, $sql);
+      db_set_active('legacy');
+      $rs = db_query($sql);
+      db_set_active();
+      $res = array();
+      foreach($rs as $rw) {
+        //$res[$pKey][] = $rw; 
+        $res[] = $rw; 
+      }
+    }
     if ($res && isset($params['onerow'])) {
       $key = $params['onerowkeyname'];
       $fld = $params['onerowfldname'];
@@ -2461,31 +2665,70 @@ watchdog('FIN_MIGRATE_COLLECTION', $message, array(), WATCHDOG_INFO);
   }
   //if ($res) {
   if (!empty($res)) {
-    
     $dupCheck = FALSE;
     if (isset($params['dupcheck'])) {
       $dupCheck = TRUE;
       $dupFldName = $params['dupcheckfldname'];
     }
     $blankCheck = FALSE;
+
     if (isset($params['blankcheck'])) {
       $blankCheck = TRUE;
       $blankFldName = $params['blankcheckfldname'];
+      $badids = array();      
+      $badCheck = FALSE;
+      if (isset($params['blankcheckbad'])) {
+        //build array from old/new table to catch bad ids
+        $badCheck = TRUE;
+        $pseudo = $params['blankcheckbadpseudo'];
+        /***
+        $mysql = "SELECT srcid, nid from {fin_migrate_node} WHERE pseudonym='%pseudonym'";
+        $mysql = str_replace("%pseudo", $pseudo, $mysql);
+        db_set_active();
+        $myres = db_query($mysql);
+        foreach ($myres as $myrow) {
+          $badids[$myrow->srcid] = $myrow->nid;
+        }
+        ***/
+        $badids = array(
+          'manager firm' => array(5291, 6317, 6370, 7748, 3270, 6651, 6606, 7313, 4862, 9348, 5199, 8774, 9674, 5269, 5219, 9335, 9451),
+          'consultant firm' => array(176, 418, 397),
+        ); 
+      }
     }
+    
     $rowidCheck = FALSE;
     if (isset($params['rowidfldname'])) {
       $rowidCheck = TRUE;
       $rowidFldName = $params['rowidfldname'];
     }
 
-if($hostFldName=="field_manager_roster_fc") {
-  //debugBreak();
-}  
+    if (count($res)>250) {
+      $fillMode = FALSE;
+      if (isset($params['fillmode'])) {
+        $fillMode = TRUE;
+      }
+      if ($fillMode) {
+        $nid = $entity->nid;
+        $sql2 = "SELECT COUNT(*) AS cnt FROM field_data_field_manager_roster_fc WHERE entity_id=".$nid;
+        $rs = db_query($sql2);
+        $size = 0;
+        foreach ($rs as $rw) {
+          $size = $rw->cnt;
+        }
+        $res = array_slice($res, $size, count($res)-$size);
+        $message = "FILL IN REST Key Name: ".$pKeyName." | KEY: ".$pKey;
+        watchdog('FIN_MIGRATE_COLLECTION_TRUNCATED', $message, array(), WATCHDOG_INFO);
+      } else {
+        $res = array_slice($res, 0, 250);
+        $message = "TRUNCATED Key Name: ".$pKeyName." | KEY: ".$pKey;
+        watchdog('FIN_MIGRATE_COLLECTION_TRUNCATED', $message, array(), WATCHDOG_INFO);
+      }
+    }
     foreach ($res as $rw) {
       // PLW 0316 - added this because tblfundmanagers has zeros in ManagerID column
       // which causes some plans to bork when populating. Collections are key table
       // records, check that the row actually points to something
-      
       $proceed = TRUE;
 
       // 3/28/16 - fatally flawed. all dupchecks will be set 
@@ -2501,20 +2744,25 @@ if($hostFldName=="field_manager_roster_fc") {
       }
       */
       if ($blankCheck) {
-
-if ($blankFldName=="FundSize") {
-  //debugBreak();
-}
-
         $val = $rw->{$blankFldName};
         if (empty($val)) {
           $proceed = FALSE;
           $message = "Pseudonym: ".$pseudonym." | HostFld: ".$hostFldName." | CheckFldName: ".$fldName."<br /><br />Row: ".print_r($rw,true);
           watchdog('FIN_MIGRATE_BLANK_COLLECTION_ITEM', $message, array(), WATCHDOG_INFO);          
         }
+        else if ($badCheck) {
+          $checkval = (int) $val;
+          //$checkval = utf8_decode($checkval);
+          if (in_array($checkval, $badids[$pseudo])) {
+            $proceed = FALSE;
+            $message = "TYPE: ".$pseudo." | ID: ".$val;
+            watchdog('FIN_MIGRATE_ERROR_BADID', $message, array(), WATCHDOG_ERROR);
+          }
+        }
       }
-
       if ($proceed) {
+  //$message = "INCOMING RW: ".print_r($rw,true);
+  //watchdog('FIN_MIGRATE_NEW_COLLECTION', $message, array(), WATCHDOG_INFO);
         $success = TRUE;
         try {
           $newCollection = entity_create('field_collection_item', array('field_name' => $hostFldName));
@@ -2561,7 +2809,8 @@ function _fin_migrate_process_fields($fields, $inData, &$wrapper, &$entity, $ter
 
 function _fin_migrate_prep_string($val) {
   if (!empty($val)) {
-    $out = html_entity_decode($val);
+    //$out = html_entity_decode($val);
+    $out = $val;
     return $out;
   }
 }
@@ -2609,7 +2858,7 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
         $val = _fin_migrate_prep_string($val);        
         $wrapper->body->value = $val;
         $wrapper->body->summary = $val;
-        $wrapper->body->format = 'filtered_html';
+        $wrapper->body->format = 'advanced_input';
       break;
       case 'node-inactive-status':
         $out = 1;
@@ -2745,7 +2994,7 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
                   $term = $termMap[$fldName]['oldterms'][$val];
                   // because names were altered, above is hit-and-miss. This is a fallback
                   if (isset($termMap[$fldName]['newterms'][$term])) {
-                    $tid = $termMap[$fldName]['newterms'][$term];
+                    $tids[] = $termMap[$fldName]['newterms'][$term];
                   }              
                   if (!$tid) {
                     $name = $fallback[$term];
@@ -2917,7 +3166,8 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
         $major = $inData->MajorStyleID;
         $minor = $inData->MinorStyleID;
         if (!empty($major)) {
-          $tid = fin_saved_search_migration_mmm_id($major, $minor);
+          $result = fin_saved_search_migration_mmm_id($major, $minor);
+          $tid = intval($result);
           if (!empty($tid)) {
             $parent = taxonomy_get_parents($tid);
             $parent = reset($parent);
@@ -2925,10 +3175,10 @@ watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
             //052016 by bills request
             //$wrapper-> field_major_minor_style_tr = array($ptid,$tid);
             
-            if ($wrapper->field_major_minor_style_tr->validate(array($tid))) {
-                $wrapper-> field_major_minor_style_tr = array($tid);
-$message = "Wrapper assigned TID: ".$tid;
-watchdog('FIN_MIGRATE_MMM_TID', $message, array(), WATCHDOG_INFO);
+            //if ($wrapper->field_major_minor_style_tr->validate(array($tid))) {
+            if ($wrapper->field_major_minor_style_tr->validate($tid)) {            
+              //$wrapper->field_major_minor_style_tr = array($tid);
+              $wrapper->field_major_minor_style_tr = $tid;  
             }
             else {
               $message = "MINORTID-".$tid;
@@ -2937,7 +3187,6 @@ watchdog('FIN_MIGRATE_MMM_TID', $message, array(), WATCHDOG_INFO);
             //$wrapper->field_major_minor_style_tr = $tid;
             //$wrapper-> field_major_minor_style_tr[] = $ptid;
             //$wrapper-> field_major_minor_style_tr[] = $tid;
-
 /***
             $parent = taxonomy_get_parents($tid);
             $parent = reset($parent);            
@@ -3058,8 +3307,8 @@ watchdog('FIN_MIGRATE_MMM_TID', $message, array(), WATCHDOG_INFO);
             if (empty($parsed['scheme']) || empty($http)) {
               $url = 'http://' . ltrim($url, '/');
             }               
-$message = "URL: ".$url."|NID: ".$entity->nid;
-watchdog('DEBUGXX', $message, array(), WATCHDOG_INFO);
+//$message = "URL: ".$url."|NID: ".$entity->nid;
+//watchdog('DEBUGXX', $message, array(), WATCHDOG_INFO);
             
             if (!empty($url)) {
               //$wrapper->{$dstFldName}->url = $url;
@@ -3076,8 +3325,8 @@ watchdog('DEBUGXX', $message, array(), WATCHDOG_INFO);
           $url = strtolower(trim($val));
           if (!empty($url)) {
 
-$message = "URL: ".$url."|NID: ".$entity->nid;
-watchdog('DEBUGXX', $message, array(), WATCHDOG_INFO);
+//$message = "URL: ".$url."|NID: ".$entity->nid;
+//watchdog('DEBUGXX', $message, array(), WATCHDOG_INFO);
 
             $parsed = parse_url($url);
             $http = stripos($url, 'ttp:');
@@ -3160,10 +3409,12 @@ watchdog('DEBUGXX', $message, array(), WATCHDOG_INFO);
       case 'picture':
         if (!empty($val)) {
           // PLW 052216 Replace spaces w/underscorews
+          $val = strtolower($val);
           $val = str_replace(" ", "_", $val);
+          $val = str_replace("+¦", "oe", $val);
 
           //$filepath = base_path() .'migration/'.$val;
-          $filepath =  $_SERVER['DOCUMENT_ROOT'].base_path().'migration/'.strtolower($val);
+          $filepath =  $_SERVER['DOCUMENT_ROOT'].base_path().'migration/'.$val;
           $pieces = explode("/",$filepath);
           $ind = count($pieces)-1;
           $fn = strtolower($pieces[$ind]);
@@ -3174,12 +3425,15 @@ watchdog('DEBUGXX', $message, array(), WATCHDOG_INFO);
             'status' => 1,
           );
 
+          $file = file_copy($rawfile, 'public://images/contacts/'.$fn, FILE_EXISTS_REPLACE);
+         
           // We save the file to the root of the files directory.
-          $file = file_copy($rawfile, 'private://'.$fn);
+          //$file = file_copy($rawfile, 'private://'.$fn, FILE_EXISTS_REPLACE);
+          //$file = file_copy($rawfile, 'private://'.$fn);
           if (isset($file->fid)) {
             $wrapper->$dstFldName = (array) $file;
           } else {
-            $message = $val ." NOT FOUND. Data: ".print_r($inData,true);
+            $message = $val ." NOT FOUND.<br /><br />Rawfile: ".print_r($rawfile,true)."<br /><br />FN: ".$fn."<brr /><br />Data: ".print_r($inData,true);
             watchdog('FIN_MIGRATE_PHOTO_FAIL', $message, array(), WATCHDOG_ERROR);
           }
 /*
@@ -3341,6 +3595,12 @@ watchdog('DEBUGXX', $message, array(), WATCHDOG_INFO);
         //$out = $term->tid;
         $out = $statusArr[$name];
         $wrapper->$dstFldName = intval($out);
+      break;
+      case 'date2timestamp2':
+        if($val && $val<>'0000-00-00 00:00:00') {
+          $out = strtotime($val);
+          $wrapper->$dstFldName->set(intval($out));
+        }
       break;
       case 'date2timestamp':
         if($val && $val<>'0000-00-00 00:00:00') {
@@ -3511,8 +3771,11 @@ break;
             $date = time();
           }
           $date2 = strtotime($date);
+          
+          $comment = new stdClass();
           $nid = $entity->nid;
           $comment->nid = $nid; // nid of a node you want to attach a comment to
+          //$comment = new stdobj();
           $comment->cid = 0; // leave it as is
           $comment->pid = 0; // parent comment id, 0 if none 
           $comment->uid = 109; // user's id, who left the comment
@@ -3528,7 +3791,7 @@ break;
           $comment->language = LANGUAGE_NONE; // The same as for a node
           $comment->subject = ' '; 
           $comment->comment_body[$comment->language][0]['value'] = $val; // Everything here is pretty much like with a node
-          $comment->comment_body[$comment->language][0]['format'] = 'filtered_html'; 
+          $comment->comment_body[$comment->language][0]['format'] = 'advanced_input'; 
           comment_submit($comment);
           comment_save($comment);
           
@@ -3538,32 +3801,98 @@ break;
           comment_save($comment);        
         }
       break;
-      case 'comment2comment2': 
-        if (!empty($val)) {
-          $nid = $entity->nid;
-          $date = strtotime($inData->UpdatedOn);
-          $comment = (object) array(
-            'nid' => $nid,
-            'cid' => 0,
-            'pid' => 0,
-            'uid' => 109,
-            'mail' => '',
-            'is_anonymous' => 0,
-            'homepage' => '',
-            'status' => COMMENT_PUBLISHED,
-            'subject' => ' ',
-            'language' => LANGUAGE_NONE,
-            'comment_body' => array(
-              LANGUAGE_NONE => array(
-                0 => array (
-                  'value' => $val,
-                  'format' => 'filtered_html'
+      case 'mandatecomments2comment':
+        //if (!empty($val)) {
+          $mysql = "SELECT Comments as comment, Created as date FROM tblmandatecomments WHERE MandateID=%key";
+          $key = $inData->MandateID;
+          $mysql = str_replace("%key", $key, $mysql);
+          db_set_active('legacy');
+          $res = db_query($mysql);
+          db_set_active();
+          if ($res) {
+            foreach ($res as $row) {
+//$message = "ROW: ".print_r($row,true);
+//watchdog('DEBUG_WWW', $message, array(), WATCHDOG_INFO);
+
+              $timestamp = $row->date;
+              if ($timestamp==0) {
+                $timestamp = time();
+              }
+              $format = 'Y-m-d g:i:s';    // 01:05:45
+              $date = date($format, $timestamp);
+              $text = $row->comment;
+              $comment = new stdClass();
+              $nid = $entity->nid;
+              $comment->nid = $nid; // nid of a node you want to attach a comment to
+              $comment->cid = 0; // leave it as is
+              $comment->pid = 0; // parent comment id, 0 if none 
+              $comment->uid = 109; // user's id, who left the comment
+              //$comment->mail = 'email@example.com'; // user's email
+              $comment->name = 'FIN Editor'; // If user is authenticated you can omit this field, it will be auto-populated, if the user is anonymous and you want to name him somehow, input his name here
+              //$comment->thread = '01/'; // OPTIONAL. If you need comments to be threaded you can fill this value. Otherwise omit it.
+              //$comment->hostname = '127.0.01';
+              //$comment->created = $date; 
+              unset($comment->field_date['und'][0]['value']);
+              $comment->field_date['und'][0]['value'] = $date;
+              $comment->is_anonymous = 0; // leave it as is
+              $comment->homepage = ''; // you can add homepage URL here
+              $comment->status = COMMENT_PUBLISHED; // We auto-publish this comment
+              $comment->language = LANGUAGE_NONE; // The same as for a node
+              $comment->subject = ' '; 
+              $comment->comment_body[$comment->language][0]['value'] = $text; // Everything here is pretty much like with a node
+              $comment->comment_body[$comment->language][0]['format'] = 'advanced_input'; 
+              comment_submit($comment);
+              comment_save($comment);
+          
+              // have to force create date
+              $comment->created = $timestamp;          
+              $comment->changed = $timestamp;          
+              comment_save($comment);        
+            }
+          }
+      break;
+      case 'comment2comment2xxx': 
+        $oldTable = $params['oldtable'];
+        $oldKeyFldnName = $params['oldkeyfldname'];
+        $dateFldName = $params['date'];
+        $key = $inData->$oldKeyFldName;
+        $mysql = "SELECT %comment, %date FROM %oldtable WHERE %oldkey=%key";
+        $mysql = str_replace("%comment", $commentFldName, $mysql); 
+        $mysql = str_replace("%date", $dateFldName, $mysql);
+        $mysql = str_replace("%table", $oldTable, $mysql);
+        $mysql = str_replace("%oldkey", $oldKeyFldName, $mysql);
+        $mysql = str_replace("%key", $key, $mysql);
+        db_set_active('legacy');
+        $myres = db_query($mysql);
+        db_set_active();
+        if (!empty($res)) {
+          foreach ($res as $row) {
+            $nid = $entity->nid;
+            $date = $row->$dateFldName;
+            $text = $row->$commentFldName;
+            $comment = (object) array(
+              'nid' => $nid,
+              'cid' => 0,
+              'pid' => 0,
+              'uid' => 109,
+              'mail' => '',
+              'is_anonymous' => 0,
+              'homepage' => '',
+              'status' => COMMENT_PUBLISHED,
+              'subject' => ' ',
+              'language' => LANGUAGE_NONE,
+              'comment_body' => array(
+                LANGUAGE_NONE => array(
+                  0 => array (
+                    'value' => $text,
+                    'format' => 'advanced_input'
+                  )
                 )
-              )
-            ),
-          );
-          comment_submit($val);
-          comment_save($comment);
+              ),
+            );
+            comment_submit($val);
+            comment_save($comment);
+          }
         }
       break;
       case 'mandate-notesxxx':
@@ -3589,7 +3918,7 @@ break;
         switch ($type) {
           case 'consultant':
             $bundle = 'consultant_news';
-            $ps = 'consultant';
+            $ps = 'consultant firm';
             $pseudo = 'consultant news';
             $fld = 'field_consultant_firm_er';
           break;
@@ -3895,11 +4224,17 @@ break;
           $wrapper->$dstFldName = $out;
         }
       break;
-      case 'longtext':
-        $val = _fin_migrate_prep_string($val);
-        if (!empty($val)) {
-          $wrapper->$dstFldName->value = $val;
+      case 'plan-status':
+        $vl = $inData->Status;
+        $tid = 340;
+        if ($vl=="1" || $vl=="2") {
+          $tid = 341;
         }
+        $wrapper->field_status_tr = $tid;
+      break;
+      case 'longtext':
+        $wrapper->$dstFldName->value = $val;
+        $wrapper->$dstFldName->format = 'advanced_input';
       break;
       case 'shortcode':
         $refArray = array(
@@ -3980,10 +4315,12 @@ function _fin_migrate_handler_system($inArr, $inData, &$wrapper, &$entity, $term
  *  $res - an array of query resultsets, fetched
  *  
  */
-function _fin_migrate_get_best_additional_table_data($srcTable, $primeKeyFldName, $primeKey) {
+function _fin_migrate_get_best_additional_table_data($srcTable, $primeKeyFldName, $primeKey, $force=FALSE) {
   $res = array();
   $tabls = unserialize(variable_get('fin-migrate-tabl'));
-  if (!isset($tabls[$srcTable])) {
+  $resArray = array();
+
+  if (!isset($tabls[$srcTable]) or $force) {
     //if (!$tabls[$srcTable]) {
       // we cannot use indata here, we have to selectively read another table
       $sql = "select * from ".$srcTable;
@@ -3998,6 +4335,10 @@ function _fin_migrate_get_best_additional_table_data($srcTable, $primeKeyFldName
         $pk = $rs->$primeKeyFldName; 
         $ref[$pk][] = $rs;
       }
+
+      $message = "ADDT TABLE REF: ".print_r($ref,true);
+      watchdog('DEBUG_4', $message, array(), WATCHDOG_INFO);
+
       // save table to the database in case we need it later
       $tabls[$srcTable] = $ref;
       variable_set('fin-migrate-tabl', serialize($tabls));
@@ -4008,8 +4349,13 @@ function _fin_migrate_get_best_additional_table_data($srcTable, $primeKeyFldName
       }
     //}
   } else {
-    $ind = (int) $primeKey;
-    $resArray = $tabls[$srcTable][$primeKey];  
+    //$ind = (int) $primeKey;
+    if (isset($tabls[$srcTable][$primeKey])) {
+      $resArray = $tabls[$srcTable][$primeKey];  
+    }
+$message = "TRYING TO GET SUBTABLE: TBL: ".$srcTable." | Rows: ".count($resArray)." | key: ".$primeKey."<br><br>GOT: ".print_r($resArray,true);
+watchdog('ADDT_DATA_3', $message, array(), WATCHDOG_INFO);
+  
   }   
   return $resArray;
 }
@@ -4085,12 +4431,7 @@ function _fin_migrate_add_to_oldnew_node_table($pseudonym, $id, $nid, $contactna
     $sql = str_replace('%nid', $nid, $sql);
     $sql = str_replace('%contactname', $contactname, $sql);
     $sql = str_replace('%table', $table, $sql);
-$message = "SQL: ".$sql;
-watchdog('DEBUGX1',$message,array(),WATCHDOG_INFO);
     $res = db_query($sql);
-$message = "SQL: ".$sql;
-watchdog('DEBUGX2',$message,array(),WATCHDOG_INFO);
-
   }
 
   catch (Exception $e) {
@@ -4140,7 +4481,7 @@ function _fin_migrate_add_to_oldnew_collection_table($pseudonym, $srcid, $nid, $
     $res = db_query($sql);
   } 
   catch (Exception $e) { 
-    $message = "Fin Migrate Node table update failed. SQL = ".$sql."<br /><br />".getMessage();
+    $message = "Fin Migrate Node table update failed. SQL = ".$sql."<br /><br />".$e->getMessage();
     watchdog('FIN_MIGRATE_OLDNEW_NODE_TABLE', $message, array(), WATCHDOG_CRITICAL);
   }
 }
@@ -4157,8 +4498,10 @@ function _fin_migrate_node_step2_updated($nid, $failed=FALSE) {
  * Function to postdate node timestgampes to avoid new/update
  */
 function _fin_migrate_postdate($node) {
-  $aged = 32*24*60*60;
-  $created = $node->created-$aged;
+  //0604 set original date back, just match updated=created now
+  //$aged = 32*24*60*60;
+  //$created = $node->created-$aged;
+  $created = $node->created;
   $nid = $node->nid;
   $sql = "UPDATE {node} SET changed=".$created." WHERE nid=".$nid;
   $res = db_query($sql);
@@ -4282,7 +4625,7 @@ xxxxxxxxxxxxxxxxxx
                     'field_client_type_tr' => array('fldname'=>'ClientTypeID'),
                     'field_asset_class_tr' => array('fldname'=>'AssetClassID'),
                     'field_databases_used_tr' => array('fldname'=>'DatabasesUsedID'),
-                  ),
+                  
                   'http2linksnotitle' => array(
                     'field_questionnaire' => array('fldname'=>'Questionnaire'),
                   ),
@@ -4424,13 +4767,6 @@ xxxxxxxxxxxxxxxxxx
         'wuin' => array(
           'field_wuin' => array('fldname'=>'ManagerFirmID', 'tbl'=>'tblmanagerfirms'),
         ),
-        'mom' => array(
-          'field_sub_manager_firms_er' => array(
-            'oldtable' => 'tblmommanagers',
-            'fldname' => 'ManagerFirmID',
-            'primeKeyfldname' => 'MoMID',
-          ),
-        ),
         'text2email' => array(
           'field_email' => array('fldname'=>'Email'),
         ),
@@ -4465,7 +4801,59 @@ xxxxxxxxxxxxxxxxxx
       ),
     ),
   );
-  
+
+  $nm_mfpfix = array(
+    'manager firm' => array(
+      'params' => array(
+        'oldtable' => 'tblmanagerfirms',
+        'oldkeyfldname' => 'ManagerFirmID',
+        'dst'=>'manager_firm',
+      ),
+      'fields' => array(
+        'collection' => array(
+          'field_sub_manager_firms_fc' => array(
+            'params' => array(
+              'pseudonym' => 'mom',                                
+              //'rowkeyfldname' => 'ManagerFirmID',
+              'rowkeyfldname' => 'MoMID',            
+            ),
+            'sets' => array(
+              array(
+                'params' => array(
+                  'oldtable' => 'tblmommanagers',
+                  'key-alias' => 'MoMID',                  
+                  'fldname' => 'MoMID',
+                  'primeKeyfldname' => 'MomID',
+                  'rowkeyfldname' => 'MoMManagerID',
+                  'rowkeycheckfldname' => 'MoMID',
+                  'rowkeycheck' => TRUE,
+                  'blankcheck' => TRUE,
+                  'blankcheckfldname' => 'ManagerFirmID',
+                  'rowidfldname' => 'MoMManagerID',                
+                ),
+                'fields' => array(
+                  'default' => array(
+                    'field_amount' => array('fldname'=>'Amount'),                  
+                  ),
+                  'lu2term' => array(
+                    'field_geographic_tr' => array('fldname'=>'GeographicID'),
+                  ),
+                  'reference' => array(
+                    'field_manager_firm_er' => array('fldname'=>'ManagerFirmID'),
+                    'field_plan_er' => array('fldname'=>'FundID'),
+                  ),
+                  'majorminor' => array(
+                    'field_major_minor_style_tr' => array(),
+                  ), 
+                ),
+              ),
+            ),              
+          ),
+        ),
+      ),
+    ),
+  );
+
   //'address3' => array('fldname'=>array('Address3')),
   $nm_p = array(
     'plan' => array(
@@ -4491,10 +4879,14 @@ xxxxxxxxxxxxxxxxxx
         ),
         'default' => array(
           'field_acronym' => array('fldname'=>'Acronym'),
+          'field_old_lead_contact' => array('fldname'=>'ContactName'),
           'field_legendid' => array('fldname'=>'FundID'),
         ),
         'wuin' => array(
           'field_wuin' => array('fldname'=>'FundID', 'tbl'=>'tblfunds'),
+        ),
+        'plan-status' => array(
+          'field_status_tr' => array('fndname'=>'Status'),    
         ),
         'http2linknotitle' => array(
           'field_website' => array('fldname'=>'Website'),
@@ -4552,6 +4944,8 @@ xxxxxxxxxxxxxxxxxx
                   'rowkeycheck' => TRUE,
                   'blankcheck' => TRUE,
                   'blankcheckfldname' => 'ManagerFirmID',
+                  'blankcheckbad' => TRUE,
+                  'blankcheckbadpseudo' => 'manager firm',
                   'dupcheck' => FALSE,
                   'dupcheckfldname' => 'FundManagerID',
                   'rowidfldname' => 'FundManagerID',                
@@ -4592,6 +4986,8 @@ xxxxxxxxxxxxxxxxxx
                   'rowkeycheckfldname' => 'ConsultantFirmID',
                   'rowkeycheck' => TRUE,
                   'rowidfldname' => 'FundConsultantID',                
+                  'blankcheckbad' => TRUE,
+                  'blankcheckbadpseudo' => 'consultant firm',
                 ),
                 'fields' => array(
                   'lu2term' => array(
@@ -4690,7 +5086,8 @@ xxxxxxxxxxxxxxxxxx
   );
   // same as above, but called plan-history rather than plan, fir inactives
   $nm_ph['plan-history'] = $nm_p['plan'];
-    
+  //$nm_ph['plan-history']['fields']['plan-status'] = array  );
+
   $nm_ppfix = array(
     'plan' => array(
       'params' => array(
@@ -4715,6 +5112,11 @@ xxxxxxxxxxxxxxxxxx
                   'rowkeycheck' => TRUE,
                   'blankcheck' => TRUE,
                   'blankcheckfldname' => 'ManagerFirmID',
+                  // in addition to blanks, invalid ids too
+                  // this depends on manager data already being
+                  // migrated. Plans always go after firms.
+                  'blankcheckbad' => TRUE,
+                  'blankcheckbadpseudo' => 'manager firm',
                   'dupcheck' => FALSE,
                   'dupcheckfldname' => 'FundManagerID',
                   'rowidfldname' => 'FundManagerID',                
@@ -4746,7 +5148,69 @@ xxxxxxxxxxxxxxxxxx
       ),
     ),
   );
-  
+
+  $nm_ppfix_truncated = array(
+    'plan' => array(
+      'params' => array(
+        'oldtable' => 'tblfunds',
+        'oldkeyfldname' => 'FundID',
+        'dst' => 'plan',
+        'rowkeyfldname' => 'FundID',
+      ),
+      'fields' => array(
+        'collection' => array(
+          'field_manager_roster_fc' => array(
+            'params' => array(
+              'pseudonym' => 'plan manager roster',                                
+              'rowkeyfldname' => 'FundID',
+            ),
+            'sets' => array(
+              array(
+                'params' => array(
+                  'fillmode' => TRUE,
+                  'oldtable' => 'tblfundmanagers',
+                  'rowkeyfldname' => 'FundManagerID',
+                  'rowkeycheckfldname' => 'ManagerFirmID',
+                  'rowkeycheck' => TRUE,
+                  'blankcheck' => TRUE,
+                  'blankcheckfldname' => 'ManagerFirmID',
+                  // in addition to blanks, invalid ids too
+                  // this depends on manager data already being
+                  // migrated. Plans always go after firms.
+                  'blankcheckbad' => TRUE,
+                  'blankcheckbadpseudo' => 'manager firm',
+                  'dupcheck' => FALSE,
+                  'dupcheckfldname' => 'FundManagerID',
+                  'rowidfldname' => 'FundManagerID',                
+                ),
+                'fields' => array(
+                  'default' => array(
+                    'field_amount' => array('fldname'=>'Amount'),                  
+                  ),
+                  'lu2term' => array(
+                    'field_geographic_tr' => array('fldname'=>'GeographicID'),
+                  ),
+                  'reference' => array(
+                    'field_manager_firm_er' => array('fldname'=>'ManagerFirmID'),
+                  ),
+                  'major2term' => array(
+                    'field_old_major_style' => array('fldname'=>'MajorStyleID'),
+                  ), 
+                  'minor2term' => array(
+                    'field_old_minor_style' => array('fldname'=>'MinorStyleID'),
+                  ),
+                  'majorminor' => array(
+                    'field_major_minor_style_tr' => array(),
+                  ), 
+                ),
+              ),
+            ),              
+          ),
+        ),
+      ),
+    ),
+  );
+ 
 /*** 040316 I do not know where this came from
 /////////////////////////////////////////////////////////
         'title-field' => array(
@@ -4806,6 +5270,9 @@ xxxxxxxxxxxxxxxxxx
         ),
       ),
       'fields' => array(
+        'title-field' => array(
+          'title_field' => array('fldname'=>'ManagerFirmName'),
+        ),
         'default' => array(
           'field_account_size' => array('fldname'=>'Size'),
           'field_legendid' => array('fldname'=>'MandateID'),
@@ -4854,6 +5321,9 @@ xxxxxxxxxxxxxxxxxx
         ), 
         'comment2comment' => array(
           'this_is_not_a_field' => array('fldname'=>'Comments'),
+        ),
+        'mandatecomments2comment' => array(
+          'this_is_not_a_field' => array('fldname'=>'Comments', 'date'=>'Created', 'oldtable'=>'tblmandatecomments', 'oldkeyfldname'=>'MandateID'),
         ),
         'collection' => array(
           'field_consultants_hired' => array(
@@ -4957,7 +5427,20 @@ xxxxxxxxxxxxxxxxxx
                 ),
               ),
             ),              
-          ),
+          ),       
+        ),
+      ),
+    ),
+  );
+// 242 Matt | 260 Gar SourceID just make UID 1
+// gar guymoso@Yahoo.com matt matt mmccue@fin-news.com
+// 242 Matt | 260 Gar SourceID just make UID 1
+// gar guymoso@Yahoo.com matt matt mmccue@fin-news.com
+  $nm_mh['mandate-history'] = $nm_m['mandate'];  
+
+/*
+ ),
+////////////////
           'field_mandate_comments_fc' => array(
             'params' => array(
               'pseudonym' => 'mandate comment',
@@ -4985,16 +5468,8 @@ xxxxxxxxxxxxxxxxxx
               ),
             ),
           ),
-        ),
-      ),
-    ),
-  );
-// 242 Matt | 260 Gar SourceID just make UID 1
-// gar guymoso@Yahoo.com matt matt mmccue@fin-news.com
-// 242 Matt | 260 Gar SourceID just make UID 1
-// gar guymoso@Yahoo.com matt matt mmccue@fin-news.com
-  $nm_mh['mandate-history'] = $nm_m['mandate'];  
-
+//////////////////
+*/
 /*
  * Contacts - nm_cc, nm_mc, nm_pc used in step 1, nm_contact used in step 2
  
@@ -5009,11 +5484,14 @@ xxxxxxxxxxxxxxxxxx
           'node-title' => array(
             'title' => array('fldname'=>'ContactName'),
           ),
-          'node-body' => array(
-            'body' => array('fldname'=>'Bio'),      
-          ),
+          //'node-body' => array(
+          //  'body' => array('fldname'=>'Bio'),      
+          //),
           'picture' => array(
             'field_photo' => array('fldname'=>'Picture'),
+          ),
+          'longtext' => array(
+            'field_bio' => array('fldname'=>'Bio'),
           ),
         ),
       ),
@@ -5035,6 +5513,11 @@ xxxxxxxxxxxxxxxxxx
               'default'=>array(
                 'field_job_title'=>array('fldname'=>'Title'),
                 'field_legendid' => array('fldname'=>'rowid'),
+                'field_old_inactive_job' => array('fldname'=>'Inactive'),
+              ),
+              'date2timestamp2' => array(
+                'field_created_on_date' => array('fldname'=>'CreatedOn'),
+                'field_updated_on_date' => array('fldname'=>'UpdatedOn'),
               ),
               'wuin' => array(
                 'field_wuin' => array('fldname'=>'rowid', 'tbl'=>'tblconsultantcontacts'),
@@ -5095,6 +5578,11 @@ xxxxxxxxxxxxxxxxxx
               'default' => array(
                 'field_job_title' => array('fldname'=>'Title'),
                 'field_legendid' => array('fldname'=>'rowid'),
+                'field_old_inactive_job' => array('fldname'=>'Inactive'),
+              ),
+              'date2timestamp2' => array(
+                'field_created_on_date' => array('fldname'=>'CreatedOn'),
+                'field_updated_on_date' => array('fldname'=>'UpdatedOn'),
               ),
               'wuin' => array(
                 'field_wuin' => array('fldname'=>'rowid', 'tbl'=>'tblmanagercontacts'),
@@ -5151,8 +5639,13 @@ xxxxxxxxxxxxxxxxxx
               'default' => array(
                 'field_job_title' => array('fldname'=>'Title'),
                 'field_legendid' => array('fldname'=>'rowid'),
+                'field_old_inactive_job' => array('fldname'=>'Inactive'),
               ),
-             'wuin' => array(
+              'date2timestamp2' => array(
+                'field_created_on_date' => array('fldname'=>'CreatedOn'),
+                'field_updated_on_date' => array('fldname'=>'UpdatedOn'),
+              ),
+              'wuin' => array(
                 'field_wuin' => array('fldname'=>'rowid', 'tbl'=>'tblfundcontacts'),
               ),
               'employmentdate' => array(
@@ -5333,6 +5826,9 @@ xxxxxxxxxxxxxxxxxx
       'fields' => array(
         'default' => array(
           'field_acronym' => array('fldname'=>'Acronym'),
+          'field_plan_acronym' => array('fldname'=>'Acronym'),
+          'field_old_lead_contact' => array('fldname'=>'ContactName'),
+          'field_legendid' => array('fldname'=>'FundID'),
         ),
         'http2linknotitle' => array(
           'field_website' => array('fldname'=>'Website'),
@@ -5380,7 +5876,7 @@ xxxxxxxxxxxxxxxxxx
         'maps' => array(
           $nm_contact,
         ),
-        'limit'=>0,
+        'limit'=>10000,
       );
     break;
     case 'step2_news':
@@ -5426,12 +5922,28 @@ xxxxxxxxxxxxxxxxxx
         'limit'=>0,
       );
     break;    
+    case 'postfix_plan_truncated':
+      $nodeMapArr = array(
+        'maps'=>array(
+          $nm_ppfix_truncated,
+        ),
+        'limit'=>0,
+      );
+    break;        
+    case 'postfix_mom':
+      $nodeMapArr = array(
+        'maps'=>array(
+          $nm_mfpfix,
+        ),
+        'limit'=>12000,
+      );
+    break;
     case 'step2_mandate':
       $nodeMapArr = array(
         'maps'=>array(
           $nm_mh,
         ),
-        'limit'=>8000,
+        'limit'=>12000,
       );
     break;
   }
@@ -5517,7 +6029,11 @@ function _fin_migrate_setup_batch($mode) {
     case 'contacts':
       fin_migrate_do_step2a($batch, $mode);
     break;
+    default:
+      fin_migrate_do_step2($batch, $mode);
+    break;
   }
+  
   //// PLW $state_user = fin_migrate_move_users($batch);
   //$state_node_step_1 = fin_migrate_do_step1($batch);
   //$state_node_step_2 = fin_migrate_do_step2($batch);
@@ -6050,6 +6566,13 @@ MISSING
 zzz 3518=>array("name"=>"David Fischer","mid"=>"yyy"),
 zzz 3518=>array("name"=>"David Fisher","mid"=>"yyy"),
 
+ERRORS
+MODIFY 8176=>array("name"=>"David Alexander", "mid"=>"yyy"), (should be 8011)
+ADDED 2515=>array("name"=>"David Green","mid"=>"yyy"),    
+ADDED 10321=>array("name"=>"Mark Brown","mid"=>"yyy"),
+REMOVE     5682=>array("name"=>"John Nelson","mid"=>"xxx"),
+    586=>array("name"=>"John Nelson","mid"=>"yyy"),
+  *** not located in data, possibly removed.
 */
 function _fin_migrate_get_dopples() {
   $dopples = array(
@@ -6069,6 +6592,7 @@ function _fin_migrate_get_dopples() {
     1514=>array("name"=>"David Gilmore ","mid"=>"xxx"),
     4927=>array("name"=>"David Gold","mid"=>"xxx"),
     9013=>array("name"=>"David Green","mid"=>"xxx"),
+    2515=>array("name"=>"David Green","mid"=>"yyy"),    
     493=>array("name"=>"David Hanson","mid"=>"xxx"),
     1654=>array("name"=>"David Hanson","mid"=>"yyy"),
     10894=>array("name"=>"David Holmes","mid"=>"xxx"),
@@ -6120,10 +6644,8 @@ function _fin_migrate_get_dopples() {
     9411=>array("name"=>"John Moore","mid"=>"xxx"),
     9410=>array("name"=>"John Moore","mid"=>"xxx"),
     13468=>array("name"=>"John Murphy","mid"=>"xxx"),
-    5682=>array("name"=>"John Nelson","mid"=>"xxx"),
     2046=>array("name"=>"John Roberts","mid"=>"xxx"),
     3900=>array("name"=>"John Waters","mid"=>"xxx"),
-    586=>array("name"=>"John Nelson","mid"=>"yyy"),
     6559=>array("name"=>"John Wilson","mid"=>"xxx"),
     12976=>array("name"=>"John Wilson","mid"=>"yyy"),
     7228=>array("name"=>"Joseph Baker","mid"=>"xxx"),
@@ -6136,7 +6658,8 @@ function _fin_migrate_get_dopples() {
     9320=>array("name"=>"Kevin Watson","mid"=>"xxx"),
     2462=>array("name"=>"Linda Brown","mid"=>"xxx"),
     2399=>array("name"=>"Linda Brown","mid"=>"yyy"),
-    8387=>array("name"=>"Mark Brown","mid"=>"xxx"),
+    10872=>array("name"=>"Mark Brown","mid"=>"xxx"),
+    10321=>array("name"=>"Mark Brown","mid"=>"yyy"),
     8978=>array("name"=>"Mark Davis","mid"=>"xxx"),
     7809=>array("name"=>"Mark Warren","mid"=>"xxx"),
     9671=>array("name"=>"Matthew Poland","mid"=>"xxx"),
@@ -6195,84 +6718,61 @@ function _fin_migrate_get_dopples() {
 }
 
 //////////////////////////////
+function fin_migrate_form_submit_postfix_plan_strip_michigan($form, &$form_state) {
+  
+  $id = 846;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+//499184
+  _fin_migrate_do_plan_strip($nids);
+}
+function fin_migrate_form_submit_postfix_plan_strip_florida($form, &$form_state) {
+  
+  $id = 390;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+//499425
+  _fin_migrate_do_plan_strip($nids);
+}
+function fin_migrate_form_submit_postfix_plan_strip_texas($form, &$form_state) {
+  
+  $id = 541;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+//499640
+  _fin_migrate_do_plan_strip($nids);
+}
+function fin_migrate_form_submit_postfix_plan_strip_calpers($form, &$form_state) {
+  
+  $id = 255;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  _fin_migrate_do_plan_strip($nids);
+}
+///////////////////////////////
+function fin_migrate_form_submit_postfix_plan_strip_calteach($form, &$form_state) {
+  
+  $id = 258;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  _fin_migrate_do_plan_strip($nids);
+}
+function fin_migrate_form_submit_postfix_plan_strip_newyork($form, &$form_state) {
+  
+  $id = 300;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  _fin_migrate_do_plan_strip($nids);
+}
+function fin_migrate_form_submit_postfix_plan_strip_ut($form, &$form_state) {
+  
+  $id = 724;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  _fin_migrate_do_plan_strip($nids);
+}
 
-
-/*
-function fin_migrate_form_submit_postfix_plan($form, &$
-  $arr = array();
-  _fin_migrate_get_pics('consultant', $arr);
-  _fin_migrate_get_pics('fund', $arr);
-  _fin_migrate_get_pics('manager', $arr);
-  $nids = array();
-  foreach ($arr as $row) {
-    if (!empty($row['nid'])) {
-      $nids[] = $row['nid'];
-    }
-  }
-  if (!empty($nids)) {
-    $sql = "SELECT entity_id FROM field_data_field_photo WHERE bundle='contact'";
-    $res = db_query($sql);
-    $eids = array();
-    foreach ($res as $row) {
-      $eids[] = $row->entity_id;
-    }
-    $nids = array_diff($nids, $eids);
-  }
-}
-
-function _fin_migrate_get_pics($type, &$arr);
-  switch ($type) {
-    case 'consultant':
-      $sql = "SELECT max(ConsultantContactID) AS id, Picture FROM tblconsultantcontacts WHERE Picture<>'';
-    break;
-    case 'fund':
-      $sql = "SELECT max(FundContactID) AS id, Picture FROM tblfundcontacts WHERE Picture<>'';
-    break;
-    case 'manager':
-      $sql = "SELECT max(ManagerntContactID) AS id, Picture FROM tblmanagercontacts WHERE Picture<>'';
-    break;
-  }
-  if ($sql) {
-    db_set_active('legacy');
-    $res = db_query($sql);
-    foreach ($res as $row) {
-      $arr[] = array(
-        'srcid'=>$row->id,
-        'nid'=>_fin_migrate_gotIdGetNid($srcid, 'consultant contact'),
-        'filename'=>$row->Picture,
-      );
-    }
-  }
-}
-*/
-function fin_migrate_form_submit_postfix_plan_strip($form, &$form_state) {
-  $nids = array(
-    376053
-  );
-//375946, 376187, 376402
-  _fin_migrate_do_plan_strip($nids);
-}
-function fin_migrate_form_submit_postfix_plan_strip2($form, &$form_state) {
-  $nids = array(
-    376402
-  );
-//375946, 376187, 376402
-  _fin_migrate_do_plan_strip($nids);
-}
-function fin_migrate_form_submit_postfix_plan_strip3($form, &$form_state) {
-  $nids = array(
-    375946
-  );
-//375946, 376187, 376402
-  _fin_migrate_do_plan_strip($nids);
-}
-function fin_migrate_form_submit_postfix_plan_strip4($form, &$form_state) {
-  $nids = array(
-    376187,
-  );
-//375946, 376187, 376402
-  _fin_migrate_do_plan_strip($nids);
-}
+///////////////////////////////
 function _fin_migrate_do_plan_strip($nids) {  
   $bundle="field_manager_roster_fc";
   $entity_type = "field_collection_item";
@@ -6282,43 +6782,158 @@ function _fin_migrate_do_plan_strip($nids) {
 }
 
 /////////////////
-function fin_migrate_form_submit_postfix_plan($form, &$form_state) {
+function fin_migrate_form_submit_postfix_plan_michigan($form, &$form_state) {
 
-   $nids = array(
-    376053,
-  );
-  //375946, 376053, 376187, 376402
+  $id = 846;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  //499184
   
-  _fin_migrate_do_plan_fix($nids);
+  _fin_migrate_do_plan_fixes($id, $nids);
 }
-function fin_migrate_form_submit_postfix_plan2($form, &$form_state) {
+function fin_migrate_form_submit_postfix_florida($form, &$form_state) {
 
-   $nids = array(
-    376402,
-  );
-  //375946, 376053, 376187, 376402
+  $id = 390;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  //499425
   
-  _fin_migrate_do_plan_fix($nids);
+  _fin_migrate_do_plan_fixes($id, $nids);
 }
-function fin_migrate_form_submit_postfix_plan3($form, &$form_state) {
+function fin_migrate_form_submit_postfix_texas($form, &$form_state) {
 
-   $nids = array(
-    375946,
-  );
-  //375946, 376053, 376187, 376402
+  $id = 541;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  //499640
   
-  _fin_migrate_do_plan_fix($nids);
+  _fin_migrate_do_plan_fixes($id, $nids);
 }
-function fin_migrate_form_submit_postfix_plan4($form, &$form_state) {
+function fin_migrate_form_submit_postfix_calpers($form, &$form_state) {
 
-   $nids = array(
-    376187,
-  );
-  //375946, 376053, 376187, 376402
+  $id = 255;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
   
-  _fin_migrate_do_plan_fix($nids);
+  _fin_migrate_do_plan_fixes($id, $nids);
 }
-function _fin_migrate_do_plan_fix($nids) {  
+//////////////////////////////////
+function fin_migrate_form_submit_postfix_calteach($form, &$form_state) {
+
+  $id = 258;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  
+  _fin_migrate_do_plan_fixes($id, $nids);
+}
+function fin_migrate_form_submit_postfix_newyork($form, &$form_state) {
+
+  $id = 300;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  
+  _fin_migrate_do_plan_fixes($id, $nids);
+}
+
+function fin_migrate_form_submit_postfix_ut($form, &$form_state) {
+  $id = 724;
+  $nid = _fin_migrate_gotIdgetNid($id, 'plan');
+  $nids = array($nid);
+  
+  _fin_migrate_do_plan_fixes($id, $nids);
+}
+//////////////////////////////////
+function _fin_migrate_do_plan_fixes($id, $nids) {  
+  $batch = array(
+    'title' => t('Fix Broken Plans'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_manager_roster($batch, $id, $nids);
+  batch_set($batch);
+}
+
+function fin_migrate_do_manager_roster(&$batch, $id, $nids) {
+  $termMap = _fin_migrate_prep_terms();
+  
+  $sql = "SELECT * FROM tblfundmanagers WHERE ManagerFirmID>0 AND ManagerFirmID NOT IN(5291, 6317, 6370, 7748, 3270, 6651, 6606, 7313, 4862, 9348, 5199, 8774, 9674, 5269, 5219, 9335, 9451) AND FundID=".$id;
+  db_set_active('legacy');
+  $res = db_query($sql);
+  db_set_active();
+
+  $nid = $nids[0];
+  foreach ($res as $row) {
+    $rowid = $row->FundManagerID;
+    $oldid = $row->ManagerFirmID;
+    $geo = $row->GeographicID;
+    $major = $row->MajorStyleID;
+    $minor = $row->MinorStyleID;
+    $amount = intval($row->Amount);
+
+    $pseudo = "manager firm";
+    $mgrnid = _fin_migrate_gotIdgetNid($oldid, $pseudo);        
+    $fldName = 'GeographicID';
+    $geotid = _gotIdgetTid($geo, $fldName, $termMap);
+
+    $out = fin_saved_search_migration_mmm_id($major, $minor);
+    $mmtid = intval($out);
+    $batch['operations'][] = array('_fin_migrate_process_batch_manager_roster',
+      array(
+        $rowid,
+        $nid,
+        $mgrnid,
+        $geotid,
+        $mmtid,
+        $amount,
+      ),
+    );
+  }
+//xyzxyzxyz
+}
+
+function _fin_migrate_process_batch_manager_roster($rowid, $nid, $mgrnid, $geotid, $mmtid, $amount, &$context) {
+
+  $hostFldName = 'field_manager_roster_fc';
+  try {
+    $entity = node_load($nid);
+    $newCollection = entity_create('field_collection_item', array('field_name' => $hostFldName));
+    $newCollection->setHostEntity('node', $entity);
+    $fc_wrapper = entity_metadata_wrapper('field_collection_item', $newCollection);
+    
+    $fc_wrapper->field_manager_firm_er = $mgrnid;
+    $fc_wrapper->field_geographic_tr = $geotid;
+    if (!empty($amount)) {
+      $fc_wrapper->field_amount = $amount;
+    }
+    if ($fc_wrapper->field_major_minor_style_tr->validate($mmtid)) {            
+      $fc_wrapper->field_major_minor_style_tr = $mmtid;  
+    }
+    else {
+      $message = "MINORTID-".$tid;
+      watchdog('INVALID_TAXONOMY', $message, array(), WATCHDOG_ERROR);
+    }
+    
+    $fc_wrapper->save();
+    $entity_id = $fc_wrapper->getIdentifier();
+    $contactname = ''; 
+    _fin_migrate_add_to_oldnew_collection_table($pseudonym, $rowid, $nid, $contactname, $hostFldName, $entity_id);
+  }
+  catch (Exception $e) {
+    $message = 'FC - ID: '.$rowid.' NID: '.$nid.'ENTITY ID: '.$entity_id.' PSEUDONYM: '.$pseudonym.' HOSTFLD: '.$hostFldName.'<br><br>Row: '.print_r($rw,true).'<br /><br />ERROR: '.$e->getMessage();
+    watchdog('FIN_MIGRATE_SAVE_POSTFIX_MGR_ROSTER_ITEM_FAILED', $message, array(), WATCHDOG_CRITICAL);
+  }
+}
+
+function _gotIdgetTid($id, $fldName, $termMap) {
+  $tid = 0;
+  $term = $termMap[$fldName]['oldterms'][$id];
+  if (isset($termMap[$fldName]['newterms'][$term])) {
+    $tid = $termMap[$fldName]['newterms'][$term];
+  }              
+  return $tid;
+}
+
+function _fin_migrate_do_plan_fix_xxx($nids) {  
   $batch = array(
     'title' => t('Fix Broken Plans'),
     'operations' => array(),
@@ -6337,6 +6952,28 @@ function _fin_migrate_do_plan_fix($nids) {
   */
 
   $mode = "postfix_plan";
+  $state_node_step_2 = fin_migrate_do_step2x($batch, $nids, $mode);
+  batch_set($batch);
+}
+
+function fin_migrate_form_submit_postfix_truncated($form, &$form_state) {
+
+  $nids = array();
+  $ids = array(846, 390, 541);
+  //$ids = array(846, 390, 541, 255);
+  foreach ($ids as $id) {
+    $nids[] = _fin_migrate_gotIdgetNid($id, 'plan');
+  }  
+  _fin_migrate_do_plan_fix_truncated($nids);
+}
+function _fin_migrate_do_plan_fix_truncated($nids) {  
+  $batch = array(
+    'title' => t('Fix Broken Plans'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  
+  $mode = "postfix_plan_truncated";
   $state_node_step_2 = fin_migrate_do_step2x($batch, $nids, $mode);
   batch_set($batch);
 }
@@ -6375,7 +7012,30 @@ function _fin_migrate_strip_collections($nid, $bundle, $entity_type) {
 */
 }
 
-/* SECTION Step2
+//////////////////////////////////
+function fin_migrate_form_submit_postfix_moms($form, &$form_state) {
+  // MoM requires that all manager firms already be imported
+  $sql = "SELECT nid from {fin_migrate_node} WHERE pseudonym='manager firm' AND srcid IN(6171, 5060, 7749, 7325, 28, 6195, 3439, 6188)";
+  $res = db_query($sql);
+  $nids = array();
+  foreach ($res as $row) {
+    $nids[] = $row->nid;
+  }
+  _fin_migrate_do_mom_fix($nids);
+}
+
+function _fin_migrate_do_mom_fix($nids) {  
+  $batch = array(
+    'title' => t('Fix Broken Plans'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $mode = "postfix_mom";
+  $state_node_step_2 = fin_migrate_do_step2x($batch, $nids, $mode);
+  batch_set($batch);
+}
+
+/* SECTION Step2x
  * //////////////////// STEP2 /////////////////////
  */
 // SOMPLIFY.  W/Nodes & pseudo, get srcid, sql = "SELECT * from {$table} WHERE %id in (%srcids)"
@@ -6386,7 +7046,6 @@ function fin_migrate_do_step2x(&$batch, $nids=array(), $mode='step2') {
   //$nodeMapArr = fin_migrate_get_nodemaps('step2');
   $arrs = fin_migrate_get_nodemaps($mode);
   $nodeMapArr = $arrs['maps'];
-
   $termMap = _fin_migrate_prep_terms();
 
   // END TERM MAP ARRAY
@@ -6451,9 +7110,57 @@ function fin_migrate_do_step2x(&$batch, $nids=array(), $mode='step2') {
   }
 }
 
+/*
+  Version of Step Function to process content created on
+  new site only
+*/
+function fin_migrate_do_step3x(&$batch, $data=array(), $mode='step2') {
+  ini_set('max_execution_time', 3600000);
+  ini_set('memory_limit','1024M');
+  
+  //$nodeMapArr = fin_migrate_get_nodemaps('step2');
+  $arrs = fin_migrate_get_nodemaps($mode);
+  $nodeMapArr = $arrs['maps'];
+  $termMap = _fin_migrate_prep_terms();
+
+  // END TERM MAP ARRAY
+
+  $movement = 0;
+  $howManyMovements = count($nodeMapArr);
+  foreach ($nodeMapArr as $mapArr) {
+    foreach ($mapArr as $pseudonym => $map) {
+      $movement++;
+      $context['message'] = "Step (2/2) Movement (".$movement."/".$howManyMovements.") Moving ".$pseudonym;
+
+      $params = $map['params'];
+      $dst = $params['dst'];
+      if (!empty($data)) {
+        $howManyRows = $data->rowCount();
+        $rowCount=0;
+        $start = time();
+        foreach ($result as $row) {
+          $batch['operations'][] = array('_fin_migrate_process_batch_step2',
+            array(
+              $pseudonym,
+              $dst,
+              $table,
+              $row,
+              $map,
+              $termMap,
+              $start,
+              $pKeyName
+            ),
+          );
+          $rowCount++;
+        }
+      }
+    }
+  }
+}
+
 function fin_migrate_form_submit_postfix_news($form, &$form_state) {
   $batch = array(
-    'title' => t('Importing data'),
+    'title' => t('Postdate News'),
     'operations' => array(),
     'finished' => '_fin_migrate_done',
   );
@@ -6485,3 +7192,721 @@ function _fin_migrate_process_batch_predate($nid, $start, &$context) {
   _fin_migrate_postdate($node);
   $context['message'] = "Updated Node ".$nid;
 }
+
+function fin_migrate_form_submit_sqls($form, &$form_state) {
+  $sql = "UPDATE comment set subject='' WHERE name='fin editor'";
+  set_db_active();
+  db_query($sql);
+}
+
+/*
+ * Function to answer button press to show mismatches between
+ * incoming image files and what the data is expecting.
+ */
+function fin_migrate_form_submit_check_images($form, &$form_state) {
+  
+  $arrs = _fin_migrate_image_file_report();
+  $mismatches = $arrs['raw'];
+  $mismatches_formatted = $arrs['formatted'];
+  $mismatches_formatted_by_contact = $arrs['formattedcontacts'];
+  $mismatches_raw_by_contact = $arrs['rawcontacts'];
+  $message = "WITH SPACES: ".print_r($mismatches_raw_by_contact,true)."<br /><br />FORMATTED: ".print_r($mismatches_formatted_by_contact,true);
+  watchdog('IMAGE_REPORT', $message, array(), WATCHDOG_INFO);
+}
+
+function fin_migrate_form_submit_postfix_images($form, &$form_state) {
+  
+  $arrs = _fin_migrate_image_file_report();
+  $incoming = $arrs['allformatted'];
+
+  $sql = "SELECT b.filename as filename, a.entity_id as nid FROM field_data_field_photo a, files_managed b where a.field_photo_fid = b.fid AND bundle='contact'";
+  db_set_active('legacy');
+  $res = db_query($sql);
+  db_set_active();
+  $present = array();
+  foreach ($res as $row) {
+    $present[$row->filename] = $row->nid;
+  }
+  $compareIn = array_values($incoming);
+  $comparePresent = array_keys($present);
+  $todos = array_diff($compareIn, $comparePresent);
+  $nids = array();
+  foreach ($todos as $fn) {
+    $nid = $present[$fn];
+    $nids[] = $nid;
+  }
+}
+
+function _fin_migrate_image_file_report() {
+  // First, get the files from the migration folder
+  $dir = 'migration/files';
+  $files = scandir($dir);
+  $files_formatted = array();
+  foreach ($files as $file) {
+    $file = str_replace(" ", "_", $file);
+    $file = strtolower($file);
+    $files_formatted[] = $file;
+  }
+
+  $arrs = array();
+  $arrs = _fin_migrate_prep_employment_dates();
+  $names = $arrs['names'];
+  $jobs = $arrs['jobs'];
+
+  $photos = array();
+  $photos_formatted = array();
+  $photos_formatted_contact = array();
+  $photos_raw_contact = array();
+  $photos_formatted_input_by_contact = array(); 
+  foreach ($jobs as $contactName => $row) {
+    $photo = '';
+    $scoop = $row;
+    ksort($scoop);
+    foreach ($scoop as $start => $more) {
+      foreach($more as $tbl => $andmore) {
+        foreach ($andmore as $rowid => $data) {
+          $photo = strtolower(trim($data['Picture']));
+          $pieces = explode("/", $photo);
+          $last = count($pieces)-1;
+          if ($last>0) {
+            $photo = $pieces[$last];
+          }
+        }
+      }
+    }
+    if (!empty($photo)) {
+      $photos[] = $photo;
+      $photo_formatted = str_replace(" ", "_", $photo);
+      $photos_formatted[] = $photo_formatted;
+      $photos_formatted_contact[$photo_formatted] = $contactName;
+      $photos_raw_contact[$photo] = $contactName;
+    }
+  }
+  $arrs = array();
+  $set1 = array_diff($photos, $files);
+  $arrs['raw'] = $set1;
+  $set2 = array_diff($photos_formatted, $files_formatted);
+  $arrs['formatted'] = $set2;
+  $photos_formatted_by_contact = array();
+  $photos_raw_by_contact = array();  
+  foreach ($set1 as $fn) {
+    $contactName = $photos_raw_contact[$fn];
+    $photos_raw_by_contact[$contactName] = $fn;
+  }
+  foreach ($set2 as $fn) {
+    $contactName = $photos_formatted_contact[$fn];
+    $photos_formatted_by_contact[$contactName] = $fn;
+  }
+  $arrs['formattedcontacts'] = $photos_formatted_by_contact;
+  $arrs['rawcontacts'] = $photos_raw_by_contact;
+
+  foreach ($photos_formatted as $fn) {
+    $contactName = $photos_raw_contact[$fn];
+    $photos_formatted_input_by_contact[$contactName] = $fn;
+  }
+  $arrs['allformatted'] = $photos_formatted_input_by_contact;
+  return $arrs;
+}
+
+function fin_migrate_form_submit_postfix_imr($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Add Databases Used to IMR Sections'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_imr($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_imr(&$batch) {
+ 
+  $termMap = _fin_migrate_prep_terms();
+
+  $sql = "SELECT ConsultantFirmID as cfid, DatabasesUsedID as dbused FROM tblinvestmentmanagerresearch WHERE DatabasesUsedID<>'' AND DatabasesUsedID<>'0' ";
+  db_set_active('legacy');
+  $res = db_query($sql);
+  db_set_active();
+
+  $builds = array();
+  Foreach ($res as $rw) {
+    $dbs = $rw->dbused;
+    $cfid = $rw->cfid;
+    $cfnid = _fin_migrate_gotIdGetNid($cfid,'consultant firm');
+    $dbids = _fin_migrate_gotIdsGetTids($dbs, 'DatabasesUsedID', $termMap);
+    $builds[$cfnid] = $dbids;
+  } 
+  foreach ($builds as $cfnid => $dbids) {
+    if (count($dbids)>0) {
+      $batch['operations'][] = array('_fin_migrate_process_batch_imr',
+        array(
+          $cfnid,
+          $dbids,
+        ),
+      );
+    } else {
+      $message = "TASK CFNID: ".$cfnid." SKIPPED DBIDS: ".print_r($dbids,true);
+      watchdog('FIN_MIGRATE_TASK_SKIP', $message, array(), WATCHDOG_INFO);
+    }
+  }
+}
+
+function _fin_migrate_process_batch_imr($cfnid, $dbids, &$context) {
+    $sql2 = "SELECT field_invest_mgr_research_value as eid FROM field_data_field_invest_mgr_research WHERE entity_id=%eid";
+    $sql2 = str_replace("%eid", $cfnid, $sql2);
+    $res2 = db_query($sql2);
+    $eids = array();
+    $numRows = $res2->rowCount();
+    $cnt = 1;
+    $eids_updated = array();
+
+    foreach ($res2 as $rw2) {
+
+      $eid = $rw2->eid;
+      $entities = entity_load('field_collection_item', array($eid));
+      //$entity = field_collection_item_load_multiple(array($eid));
+      $entity = $entities[$eid];
+      $wrapper = entity_metadata_wrapper('field_collection_item', $entity);      
+      $wrapper->field_databases_used_tr = $dbids;
+      $wrapper->save();
+      $eids_updated[$cfnid][$eid] = $dbids;
+      $context['message'] = '['.$cnt.'/'.$numRows.'] Updated';    
+      $cnt++;
+    }
+    $message = "UPDATED ".print_r($eids_updated,true);
+    watchdog('FIN_MIGRATE_FIX_DATABASES', $message, array(), WATCHDOG_INFO);
+  }
+
+  function _fin_migrate_gotIdsGetTids($val, $fldName, $termMap) {
+    $fallback = array();
+    $vals = explode(',', $val);
+      if (empty($vals)) {
+      $vals = array($val);
+    }
+    if (!empty($vals)) {
+      $tids = array();
+      foreach ($vals as $val) {
+        if (!empty($val)) {
+          if (isset($termMap[$fldName]['oldterms'][$val])) {
+            $term = $termMap[$fldName]['oldterms'][$val];
+            if (isset($termMap[$fldName]['newterms'][$term])  ) {
+                $tids[] = $termMap[$fldName]['newterms'][$term];
+            }  else {
+              $message = "TERM ".$term." FAILED TO MATCH";
+              watchdog('FIN_MIGRATE_TIDS_TERM_FAILURE', $message, array(), WATCHDOG_INFO);
+            }
+          }
+        }
+      }
+    } 
+    return $tids;
+  }
+
+function fin_migrate_form_submit_postfix_momamt($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Add Amounts to MoM'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_momamt($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_momamt(&$batch) {
+// srcid=2 firm=5060 Northern Trust Global Advisors | 1842214
+  $sql = "SELECT MomManagerID as srcid, Amount from tblmommanagers";
+  db_set_active('legacy');
+  $res = db_query($sql);
+  db_set_active();
+
+  $srcids = array();
+  foreach ($res as $row) {
+    $amount = $row->Amount;
+    $srcids[$row->srcid] = $amount;
+  }
+  $keys = implode(", ", array_keys($srcids));
+  $sql2 = "SELECT field_id, srcid from fin_migrate_collection WHERE pseudonym='mom' AND srcid in(%keys)";
+  $sql2 = str_replace('%keys', $keys, $sql2);
+  $res2 = db_query($sql2);
+  $tasks = array();
+  foreach ($res2 as $row2) {
+    $srcid = $row2->srcid;
+    $eid = $row2->field_id;
+    $amount = $srcids[$srcid];
+    $tasks[$eid] = $amount;
+  }
+  foreach ($tasks as $eid => $amount) {
+    if (!empty($amount)) {
+      $batch['operations'][] = array('_fin_migrate_process_batch_momamt',
+        array(
+          $eid,
+          $amount,
+        ),
+      );
+    }
+  }
+}
+
+function _fin_migrate_process_batch_momamt($eid, $amount, &$context) {
+  $entities = entity_load('field_collection_item', array($eid));
+  //$entity = field_collection_item_load_multiple(array($eid));
+  $entity = $entities[$eid];
+  $wrapper = entity_metadata_wrapper('field_collection_item', $entity);
+
+  if (!empty($amount)) {
+    $wrapper->field_amount = intval($amount);
+    $wrapper->save();
+  }
+}
+
+function fin_migrate_form_submit_postfix_cf($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Create Phantom Offices'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_cf($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_cf(&$batch) {
+  $sql = "SELECT * FROM tblconsultantfirms WHERE ConsultantFirmID NOT IN (SELECT DISTINCT ConsultantFirmID FROM tblconsultantoffices) ";
+  db_set_active('legacy');
+  $res = db_query($sql);
+  db_set_active();
+
+  $builds = array();
+  Foreach ($res as $rw) {
+    $cfid = $rw->ConsultantFirmID;
+    $cfnid = _fin_migrate_gotIdGetNid($cfid,'consultant firm');
+    $builds[$cfnid] = $rw;
+  } 
+  $tasks = array();
+  foreach ($builds as $cfnid => $data) {
+    $batch['operations'][] = array('_fin_migrate_process_batch_cf',
+      array(
+        $cfnid,
+        $data,
+      ),
+    );
+  }
+}
+
+function _fin_migrate_process_batch_cf($cfnid, $data, &$context) {
+  global $DEFAULT_OWNER_UID;
+  $DEFAULT_OWNER_UID = 109;
+  $MAIN_OFFICE_TID = 337;
+
+  $termMap = _fin_migrate_prep_terms();
+
+  $addrMap = array(
+    'fields' => array(
+      'default' => array(
+        'thoroughfare' => array('fldname'=>array('Address1')),
+        'premise' => array('fldname'=>array('Address2', 'Address3')),
+        'locality' => array('fldname'=>'City'),
+        'postal_code' => array('fldname'=>'ZIP'),
+      ),
+      'phone' => array(
+        'phone_number' => array('fldname'=>'Phone'),
+        'fax_number' => array('fldname'=>'Fax'),
+      ),
+      'lu2state' => array(
+        'administrative_area' => array('fldname'=>'StateID'),
+      ),
+      'lu2country' => array(
+        'country' => array('fldname'=>'CountryID'),
+      ),
+    ),
+  );
+
+//debugBreak();
+
+  $city = $data->City;
+  $title = $city;
+  $dst = "office";
+  $timestamp = time()-(32*24*3600);
+  $values = array(
+    'title' => $title,
+    'type' => $dst,
+    'uid' => $DEFAULT_OWNER_UID,
+    'status' => 1,
+    'promote' => 0,
+    'created' => $timestamp,
+    'changed' => $timestamp,
+  );
+  $entity = entity_create('node', $values);
+  $n_wrapper = entity_metadata_wrapper('node', $entity);
+  $n_wrapper->save();
+  $nid = (int) $n_wrapper->getidentifier();
+
+  $n_wrapper->field_consultant_firm_er = $cfnid;
+  $n_wrapper->field_address = _fin_migrate_handler_address('field_address', $addrMap, $data, $n_wrapper, $termMap);
+  $n_wrapper->field_office_type_tr = $MAIN_OFFICE_TID;
+  $n_wrapper->title_field = $city;
+  $n_wrapper->save();
+  $tasks[$nid] = $data;
+}
+
+function fin_migrate_form_submit_postfix_mandate_titles($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Fix Mandate Titles'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_mandate_titles($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_mandate_titles(&$batch) {
+  global $DEFAULT_OWNER_UID;
+  $DEFAULT_OWNER_UID = 109;
+  $MAIN_OFFICE_TID = 337;
+
+  
+  $sql = "SELECT nid FROM node WHERE type='mandate' ";
+  $res = db_query($sql);
+
+  $builds = array();
+  Foreach ($res as $rw) {
+    $nid = $rw->nid;
+    $builds[] = $nid;
+  } 
+  foreach ($builds as $nid) {
+    $batch['operations'][] = array('_fin_migrate_process_batch_mandate_titles',
+      array(
+        $nid,
+      ),
+    );
+  }
+}
+
+function _fin_migrate_process_batch_mandate_titles($nid, &$context) {
+  $title = "Mandate-[plan_name]-[serial_field]";
+  $node = node_load($nid);
+  $node->title = $title;
+  $node->title_field['und'][0]['value'] = $title; 
+  node_save($node);
+}
+
+////////////////////////////////////
+function fin_migrate_form_submit_postfix_mandate_comments($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Fix Mandate Comments'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_mandate_comments($batch);
+  batch_set($batch);
+}
+
+/*
+ Copy Copy  Delete Delete   447016  590930  Plan made private equity
+  Edit Edit   Copy Copy   Delete Delete   447015  590929  (No subject)
+  Edit Edit   Copy Copy   Delete Delete   447014  590929  (No subject)
+  Edit Edit   Copy Copy   Delete Delete   447013  590929  (No subject)
+  Edit Edit   Copy Copy   Delete Delete   447012  590929  Plan is scheduled to hear the
+  Edit Edit   Copy
+
+  srcid=29133
+
+14893 no subjects, 
+*/
+function fin_migrate_do_mandate_comments(&$batch) {
+  // grab mandate comments
+  $sql = "SELECT MandateID, Comments FROM tblmandatecomments ORDER    BY MandateID, Cid";
+  db_set_active('legacy');
+  $res = db_query($sql);
+  db_set_active();
+  $comments = array();
+  foreach ($res as $row) {
+    $srcid = $row->MandateID;
+    $comment = $row->Comments;
+    $comments[$srcid][] = $comment;
+  }
+  // build table of srcids
+  $sql = "SELECT nid, srcid from fin_migrate_node WHERE pseudonym='mandate'";
+
+  db_set_active();
+  $res = db_query($sql);
+  $srcids = array();
+  foreach ($res as $row) {
+    $nid = $row->nid;
+    $srcid = $row->srcid;
+    $srcids[$nid] = $srcid;
+  }
+
+  //$sql = "SELECT nid, cid, subject FROM comment WHERE thread NOT LIKE '01%%'";
+  $sql = "SELECT nid, cid, subject, thread FROM comment WHERE nid<>'0' AND thread NOT LIKE '01%'";
+ 
+
+
+  db_set_active();
+  $res = db_query($sql);
+
+  $builds = array();
+  Foreach ($res as $row) {
+    $nid = $row->nid;
+    $cid = $row->cid;
+    $builds[$nid][$cid] = '';
+  }
+  foreach ($builds as $nid => $more) {
+    $srcid = $srcids[$nid];
+    $set = $comments[$srcid];
+    $x=0;
+    foreach ($more as $cid => $ignore) {
+      $comment = $set[$x];
+      $x++;
+
+//debugBreak();//
+
+      $batch['operations'][] = array('_fin_migrate_process_batch_mandate_comments',
+        array(
+          $nid,
+          $cid,
+          $comment,
+        ),
+      );
+    }
+  }
+}
+
+function _fin_migrate_process_batch_mandate_comments($nid, $cid, $comment, &$context) {
+  $entities = entity_load('comment', array($cid));
+  $entity = $entities[$cid];
+  $entity->comment_body['und'][0]['value'] = $comment;
+  entity_save('comment', $entity);
+  //$c_wrapper = entity_metadata_wrapper('comment', $entity);
+  //$c_wrapper->comment_body = $comment;
+  //$c_wrapper->save();
+}
+
+/////////////////////////////////////////
+function fin_migrate_form_submit_import_contacts_bios($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Move Contact Bios 2'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_contacts_bios($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_contacts_bios(&$batch) {
+
+  $sqlx = "UPDATE field_data_field_bio SET field_bio_format='advanced_input' ";
+  $res = db_query($sqlx);
+
+  $sql = "SELECT entity_id from field_data_body WHERE bundle='contact'AND body_value<>''AND entity_id IN(SELECT entity_id FROM field_data_field_bio WHERE field_bio_value is null)";
+  $res = db_query($sql);
+  foreach ($res as $row) {
+    $nid = $row->entity_id;
+    $batch['operations'][] = array('fin_migrate_process_batch_contacts_bios',
+      array(
+        $nid,
+      ),
+    );
+  }
+}
+          
+function fin_migrate_process_batch_contacts_bios($nid, &$context) {
+  
+  $sql = "SELECT body_value FROM field_data_body WHERE entity_id=%nid";
+  $sql = str_replace("%nid", $nid, $sql);
+  $bio = db_query($sql)->fetchField();  
+
+  $nodes = entity_load('node', array($nid));
+  $node = $nodes[$nid];
+  $node->field_bio['und'][0]['value']=$bio;
+  //$node->field_bio['und'][0]['format'] = 'advanced_input'; 
+  entity_save('node', $node);
+}
+
+function fin_migrate_form_submit_fix_longtext($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Set Longtext to advqanced_input html'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_fix_longtext($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_fix_longtext(&$batch) {
+  $sqlx = "UPDATE field_data_body SET body_format='advanced_input' WHERE (bundle='news' OR bundle='plan' OR bundle='consultant_firm' OR bundle='office') AND body_format<>'advanced_input' ";
+  $res = db_query($sqlx);
+  
+  $sql = "SELECT entity_id FROM field_data_body WHERE (bundle='news' OR bundle='plan' OR bundle='consultant_firm' OR bundle='office') AND body_format='advanced_input' ";
+  $res = db_query($sql);
+  $build = array();
+  foreach ($res as $row) {
+    $nid = $row->entity_id;
+    $build['body'][] = $nid;
+  }
+  foreach ($build as $fldname => $nids) {
+    foreach ($nids as $nid) {
+      $batch['operations'][] = array('fin_migrate_process_batch_fix_longtext',
+        array(
+          $nid,
+        ),
+      );
+    }
+  }
+}
+          
+function fin_migrate_process_batch_fix_longtext($nid, &$context) {
+  
+  $nodes = entity_load('node', array($nid));
+  $node = $nodes[$nid];
+  //$node->body['und'][0]['format'] = 'advanced_input'; 
+  entity_save('node', $node);
+
+  $nodes = entity_load('node', array($nid));
+  $node = $nodes[$nid];
+  //$node->body['und'][0]['format'] = 'advanced_input'; 
+  entity_save('node', $node);
+
+}
+
+/////////////////////////////
+function fin_migrate_form_submit_fix_longtext_fc($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Set FC Longtext to advqanced_input html'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_fix_longtext_fc($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_fix_longtext_fc(&$batch) {
+  $sqlx = "UPDATE field_data_field_note SET field_note_format='advanced_input'";
+  $res = db_query($sqlx);  
+  $sqlx = "UPDATE field_data_field_comment SET field_note_format='advanced_input'";
+  $res = db_query($sqlx);
+  $sqlx = "UPDATE field_data_field_note SET field_note_format='advanced_input'";
+
+  $sql1 = "SELECT entity_id from field_data_field_note";
+  $sql2 = "SELECT entity_id from field_data_field_comment";
+  $res1 = db_query($sql1);
+  $res2 = db_query($sql2);
+  $build = array();
+  foreach ($res1 as $row) {
+    $eid = $row->entity_id;
+    $build['field_note'][] = $eid;
+  }
+  foreach ($res2 as $row) {
+    $eid = $row->entity_id;
+    $build['field_comment'][] = $eid;
+  }
+  foreach ($build as $fldname => $eids) {
+    foreach ($eids as $eid) {
+      $batch['operations'][] = array('fin_migrate_process_batch_fix_longtext_fc',
+        array(
+          $eid,
+          $fldname,
+        ),
+      );
+    }
+  }
+}
+          
+function fin_migrate_process_batch_fix_longtext_fc($eid, $fldname, &$context) {
+
+  $entities = entity_load('field_collection_item', array($eid));
+  $entity = $entities[$eid];
+  //$entity->$fldname['und'][0]['format'] = 'advanced_input'; 
+  entity_save('field_collection_item', $entity);
+  $entities = entity_load('field_collection_item', array($eid));
+  $entity = $entities[$eid];
+  //$entity->$fldname['und'][0]['format'] = 'advanced_input'; 
+  entity_save('field_collection_item', $entity);
+}
+
+/////////////////////////////
+function fin_migrate_form_submit_fix_longtext_save($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Resave Field Bio'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_fix_longtext_save($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_fix_longtext_save(&$batch) {
+  $sqlx = "UPDATE field_data_field_bio SET field_bio_format='advanced_input' ";
+  $res = db_query($sqlx);
+
+  $sql = "SELECT entity_id from field_data_body WHERE bundle='contact'AND body_value<>''";
+  $res = db_query($sql);
+  foreach ($res as $row) {
+    $nid = $row->entity_id;
+    $batch['operations'][] = array('fin_migrate_process_batch_fix_longtext_save',
+      array(
+        $nid,
+      ),
+    );
+  }
+}
+          
+function fin_migrate_process_batch_fix_longtext_save($nid, &$context) {
+  $nodes = entity_load('node', array($nid));
+  $node = $nodes[$nid];
+  $node->field_bio['und'][0]['value']=$bio;
+  entity_save('node', $node);
+}
+
+////////////////////////////////////////////
+function fin_migrate_form_submit_fix_ext($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Fix Broken Extensions'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_fix_ext($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_fix_ext(&$batch) {
+  $sql = "SELECT entity_id, field_address_data FROM field_data_field_address WHERE field_address_data LIKE '%t.%'";
+  $res = db_query($sql);  
+
+  foreach ($res as $row) {
+    $eid = $row->entity_id;
+    $data = $row->field_address_data;
+    $batch['operations'][] = array('fin_migrate_process_batch_fix_ext',
+        array(
+        $eid,
+        $data,
+      ),
+    );
+   }
+}
+          
+function fin_migrate_process_batch_fix_ext($eid, $data, &$context) {
+  $arr = unserialize($data);  //$arr = json_decode($data);
+  if (isset($arr['phone_number_extension'])) {
+    $ext = $arr['phone_number_extension'];
+    $ext2 = str_replace("t. ", "", $ext);
+
+    if (!empty($ext2)) {
+      $arr['phone_number_extension'] = $ext2;
+      //$data2 = serialize($arr) . "}";
+      //$data2 = json_encode($arr);
+      $data2 = serialize($arr).'}';
+
+      $sql = "UPDATE field_data_field_address set field_address_data='%data' WHERE entity_id=".$eid;
+      $sql = str_replace('%data', $data2, $sql);
+      $res = db_query($sql);
+      $context['message'] = "FIXED FOR ID: ".$endity_id;
+    
+    $message = "DATA2: ".$data2;
+    WATCHDOG('DEBUG_000', $message, array(), WATCHDOG_INFO);
+    } else {
+      $context['message'] = "UH OH ERROR";
+    }
+  } else {   
+    $context = 'Skipped';
+  }
+}
+
