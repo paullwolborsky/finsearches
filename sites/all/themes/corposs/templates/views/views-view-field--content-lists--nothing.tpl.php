@@ -33,9 +33,9 @@
   $replace = 'fa-plus';
   if ($result) {
     while($task = $result->fetchObject()) {
-      if (strtotime($task->duedate) < $now && $task->d_completed != '') {
+      if (strtotime($task->duedate) < $now && $task->compl != 1) {
         $replace = 'fa-list-alt task-overdue';
-      } elseif ($task->d_completed != '') {
+      } elseif ($task->compl != 1) {
         $replace = 'fa-list-alt task-in-progress';
       }
     }
