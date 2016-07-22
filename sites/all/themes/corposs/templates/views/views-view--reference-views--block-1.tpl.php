@@ -10,6 +10,11 @@
       <?php print $header; ?>
     </div>
   <?php endif; ?>
+  <?php if ($exposed): ?>
+    <div class="view-filters">
+      <?php print $exposed; ?>
+    </div>
+  <?php endif; ?>
 
   <?php if ($attachment_before): ?>
     <div class="attachment attachment-before">
