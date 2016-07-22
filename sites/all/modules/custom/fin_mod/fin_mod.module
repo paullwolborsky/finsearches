@@ -69,8 +69,13 @@ function fin_mod_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+function fin_mod_explode_trim(&$array) {
+  $array = array_map('trim', explode(",", $array));
+}
+
 /**
  * Custom autocomplete function for states dropdown.
+ * Changes based on http://drupal.stackexchange.com/questions/51089/creating-module-with-autocomplete-and-accepting-multiple-values-in-textfield
  */
 function fin_mod_state_autocomplete($state = '') {
   module_load_include("inc", "addressfield", "addressfield.administrative_areas");
@@ -78,13 +83,39 @@ function fin_mod_state_autocomplete($state = '') {
   // Set statically to save time.
   $state_length = 10;
   $countries = _addressfield_get_administrative_areas_defaults();
+  fin_mod_explode_trim($state);
   foreach ($countries as $country => $states) {
     fin_mod_filter_regions($states, $state);
     $all_states = array_merge($all_states, $states);
   }
-  asort($all_states);
+  //If we decide to do multi-select autocomplete for city, refactor this into a
+  //separate module
   $all_states = array_slice($all_states, 0, $state_length);
-  drupal_json_output($all_states);
+  $json_output = array();
+  array_pop($state);
+  $state = implode(",", $state);
+  foreach($all_states as $all_state) {
+    $state_key = !empty($state) ? $state . ', ' . $all_state : $all_state;
+    $json_output[$state_key] = $all_state;
+  }
+  drupal_json_output($json_output);
+}
+
+/**
+ * Checks all values in array against a string, seeing if there's any partial
+ * match.
+ */
+function fin_mod_partial_match($string, $array) {
+  $exists = FALSE;
+  foreach ($array as $item) {
+    $stripos = stripos($string, $item);
+    // Checking for empty or NULL seemed to have problems - likely due to how
+    // stripos works.
+    if (is_int($stripos)) {
+      $exists = TRUE;
+    }
+  }
+  return $exists;
 }
 
 /**
@@ -92,7 +123,7 @@ function fin_mod_state_autocomplete($state = '') {
  */
 function fin_mod_filter_regions(&$all_regions, $region) {
   foreach ($all_regions as $region_key => $region_name) {
-    if (stripos($region_name, $region) === FALSE) {
+    if (fin_mod_partial_match($region_name, $region) === FALSE) {
       unset($all_regions[$region_key]);
     }
   }
@@ -104,7 +135,10 @@ function fin_mod_filter_regions(&$all_regions, $region) {
 function fin_mod_city_autocomplete($city = '') {
   $all_cities = db_query("SELECT DISTINCT field_address_locality FROM field_data_field_address AS f")->fetchCol();
   $city_length = 10;
+  $city = array_map('trim', explode(",", $city));
   fin_mod_filter_regions($all_cities, $city);
+  // Makes key the same as value, ensuring the right item in autocomplete
+  $all_cities = array_combine($all_cities, $all_cities);
   asort($all_cities);
   $all_cities = array_slice($all_cities, 0, $city_length);
   drupal_json_output($all_cities);
@@ -298,10 +332,7 @@ function fin_mod_add_and_remove_condition(&$query, &$conditions, $field, $inside
   if (is_string($field) && (strpos($field, '=') !== false)) {
     if ($field != 'node.nid = na.nid' && $field != 'n.nid = na.nid') {
       unset($conditions[$subquery_key]);
-      $values = explode("=", $field);
-      foreach ($values as &$item) {
-        $item = trim($item);
-      }
+      $values = array_map('trim', explode("=", $field));
       $query->condition(db_or()->condition($inside_subquery, "EXISTS")->isNull($values[0]));
     }
   }
@@ -310,7 +341,6 @@ function fin_mod_add_and_remove_condition(&$query, &$conditions, $field, $inside
 /**
  * Implements hook_field_attach_view_alter().
  */
-
 function fin_mod_field_attach_view_alter(&$build, $context) {
   module_load_include("module", "ds");
   $entity_type = $build['#entity_type'];
@@ -617,4 +647,51 @@ function fin_mod_fc_phone_add($entity, $type) {
     $entity->field_phone['und'][0]['value'] = $phone;
   }
   return $entity;
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function fin_mod_field_formatter_info() {
+  return array(
+    'fin_mod_term_reference_major_text' => array(
+      'label' => t('Fin Major Text'),
+      'field types' => array('taxonomy_term_reference'),
+    ),
+    'fin_mod_term_reference_minor_text' => array(
+      'label' => t('Fin Minor Text'),
+      'field types' => array('taxonomy_term_reference'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function fin_mod_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'fin_mod_term_reference_major_text':
+      foreach ($items as $delta => $item) {
+        // reset added to get only one item - we can switch this if we want
+        // multiple parents of minor fields
+        $term_obj = reset(taxonomy_get_parents($item['tid']));
+        $term = $term_obj->name;
+        $element[$delta] = array(
+          '#markup' => $term,
+        );
+      }
+      break;
+    case 'fin_mod_term_reference_minor_text':
+      foreach ($items as $delta => $item) {
+        $term_obj = taxonomy_term_load($item['tid']);
+        $term = $term_obj->name;
+        $element[$delta] = array(
+          '#markup' => $term,
+        );
+      }
+      break;
+  }
+
+  return $element;
 }
