@@ -1348,6 +1348,10 @@ function showEditForm(isAdd)
 
 function saveTask(form)
 {
+	if (form.task.value == '') {
+    alert("Task must have a name");
+		return false;
+  }
 	if(flag.readOnly) return false;
 	if(form.isadd.value != 0)
 		return submitFullTask(form);

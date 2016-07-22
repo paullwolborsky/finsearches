@@ -209,7 +209,7 @@ function subscriptions_ui_node_form($form, &$form_state, $node, $expand = NULL) 
     }
   }
   foreach ($options as $key=>$option) {
-    if ($option == "Follow this page" && $default_subscriptions[$key-1] == 1) {
+    if ($option == "Follow this page" && !empty($default_subscriptions[$key-1]) && $default_subscriptions[$key-1] == 1) {
       $options[$key] = "You are following this page";
     }
   }

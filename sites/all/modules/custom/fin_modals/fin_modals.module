@@ -76,15 +76,6 @@ function fin_modals_menu() {
     'theme arguments' => array('fubik'),
   );
 
-  $items['modal/%/comment/%ctools_js/%'] = array(
-    'page callback' => 'fin_modals_edit_callback',
-    'page arguments' => array(1,3,4),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-    'theme callback' => '_fin_modals_theme',
-    'theme arguments' => array('fubik'),
-  );
-  
   $items['modal/%/comment/%ctools_js'] = array(
     'page callback' => 'fin_modals_new_callback',
     'page arguments' => array(1,3),
@@ -94,6 +85,15 @@ function fin_modals_menu() {
     'theme arguments' => array('fubik'),
   );
 
+  $items['modal/%/comment/%ctools_js/%'] = array(
+    'page callback' => 'fin_modals_edit_callback',
+    'page arguments' => array(1,3,4),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'theme callback' => '_fin_modals_theme',
+    'theme arguments' => array('fubik'),
+  );
+  
   $items['modal/%/tasks/%ctools_js'] = array(
     'page callback' => 'fin_modals_task_callback',
     'page arguments' => array(1,3),
@@ -110,8 +110,8 @@ function fin_modals_menu() {
     'page arguments' => array(1),
     'access arguments' => array('access content'),
     'theme callback' => '_fin_modals_theme',
+    'theme arguments' => array('corposs'),
   );  
-  //Different link needed for different themes
   $items['modal-front/%/tasks/%ctools_js'] = array(
     'page callback' => 'fin_modals_task_callback',
     'page arguments' => array(1,3),
@@ -120,6 +120,24 @@ function fin_modals_menu() {
     'theme callback' => '_fin_modals_theme',
     'theme arguments' => array('corposs'),
   );
+  $items['modal-front/%/comment/%ctools_js'] = array(
+    'page callback' => 'fin_modals_new_callback',
+    'page arguments' => array(1,3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'theme callback' => '_fin_modals_theme',
+    'theme arguments' => array('corposs'),
+  );
+
+  $items['modal-front/%/comment/%ctools_js/%'] = array(
+    'page callback' => 'fin_modals_edit_callback',
+    'page arguments' => array(1,3,4),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'theme callback' => '_fin_modals_theme',
+    'theme arguments' => array('corposs'),
+  );
+  
   $items['resources/shortcuts']  = array(
     'type' =>  MENU_NORMAL_ITEM,
     'title' => 'Shortcuts',
@@ -191,7 +209,7 @@ function fin_modals_menu_callbacks() {
 }
 
 /**
- * Entiry actions
+ * Entity actions
  *  Used now just for saved filter delete
  */
 function fin_modals_entity_delete ($entity_type = NULL, $entity_id = NULL) {
@@ -234,8 +252,9 @@ function fin_modals_new_callback($nid, $ajax) {
     if (!empty($form_state['executed'])) {
       ctools_add_js('ajax-responder');
       $commands = array();
-      $commands[] = ctools_modal_command_dismiss();
       $commands[] = ctools_ajax_command_reload();
+    } else {
+      
     }
     print ajax_render($commands);
   }else {
@@ -247,7 +266,7 @@ function fin_modals_new_callback($nid, $ajax) {
 }
 
 /**
- *TASK callback
+ *TASK modal callback
  */
 function fin_modals_task_callback($nid, $ajax) {
   global $user;
@@ -476,10 +495,10 @@ function fin_modals_form_alter(&$form, &$form_state, $form_id){
         if (!empty($form_state['ajax']) && $form_state['ajax']) {
           $comment = $form_state['comment'];
           if(!$comment->cid) {
-            $form['#action'] = url('modal/' . $comment->nid . '/comment/nojs');
+            $form['#action'] = url('modal-front/' . $comment->nid . '/comment/nojs');
             $form['actions']['submit']['#value'] = "Add New Comment";
           } else {
-            $form['#action'] = url('modal/' . $comment->nid . '/comment/nojs/' . $comment->cid);
+            $form['#action'] = url('modal-front/' . $comment->nid . '/comment/nojs/' . $comment->cid);
           }
         }
       } elseif ($form_id == 'contact_node_form') {
@@ -765,7 +784,6 @@ function fin_modals_edit_callback($nid, $ajax, $cid) {
     if (!empty($form_state['executed'])) {
       ctools_add_js('ajax-responder');
       $commands = array();
-      $commands[] = ctools_modal_command_dismiss();
       $commands[] = ctools_ajax_command_reload();
     }
 

@@ -79,11 +79,9 @@
         $('#edit-field-job-history-und-0-field-plan-er-und-0-target-id').focus();
         $('#edit-title-field-und-0-value').focus();
         //refresh corposs pages when modal is dismisses (not saved).
-        /*
         $('#modalContent .close').click(function(){
           location.reload();
         });
-        */
       }
       
       
