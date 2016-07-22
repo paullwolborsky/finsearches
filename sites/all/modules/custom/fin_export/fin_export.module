@@ -329,10 +329,16 @@ function fin_export_plans($since = 0) {
 			fmr.field_manager_roster_fc_value AS roster_id,
 			fmn.title AS manager_name,
 			m_amount.field_amount_value AS manager_amount,
+			mms.field_major_minor_style_tr_tid AS minor_id,
+			mmstd_major.name AS major_name,
+			mmth.parent AS major_id,
+			mmstd_minor.name AS minor_name,
+			g.field_geographic_tr_tid AS geographic_id,
+			gtd.name as geographic_name,
 			fmn.created AS manager_created,
 			fa.field_acronym_value aS acronym,
 			mstd.tid AS status_id,
-			mstd.name aS manager_status,
+			mstd.name AS manager_status,
 			manager_address.field_address_country AS manager_country,
 			manager_address.field_address_administrative_area AS manager_state,
 			manager_address.field_address_locality AS manager_city,
@@ -349,6 +355,12 @@ function fin_export_plans($since = 0) {
 			INNER JOIN node fmn ON fmf.field_manager_firm_er_target_id=fmn.nid AND fmn.type='manager_firm'
 			INNER JOIN field_data_field_status_tr mstr ON fmn.nid=mstr.entity_id AND mstr.bundle='manager_firm'
 			INNER JOIN taxonomy_term_data mstd ON mstr.field_status_tr_tid=mstd.tid AND mstd.vid=5
+			LEFT JOIN field_data_field_major_minor_style_tr mms ON fmr.field_manager_roster_fc_value=mms.entity_id AND mms.bundle='field_manager_roster_fc'
+			LEFT JOIN taxonomy_term_hierarchy mmth ON mms.field_major_minor_style_tr_tid=mmth.tid
+			LEFT JOIN taxonomy_term_data mmstd_major ON mmth.parent=mmstd_major.tid
+			LEFT JOIN taxonomy_term_data mmstd_minor ON mms.field_major_minor_style_tr_tid=mmstd_minor.tid
+			LEFT JOIN field_data_field_geographic_tr g ON fmr.field_manager_roster_fc_value=g.entity_id AND g.bundle='field_manager_roster_fc'
+			LEFT JOIN taxonomy_term_data gtd ON g.field_geographic_tr_tid=gtd.tid
 			LEFT JOIN field_data_field_acronym fa ON fmn.nid=fa.entity_id AND fa.bundle='manager_firm' 
 			LEFT JOIN field_data_field_address manager_address ON fmn.nid=manager_address.entity_id AND manager_address.bundle='manager_firm' 
 			LEFT JOIN field_data_field_email manager_email ON fmn.nid=manager_email.entity_id AND manager_email.bundle='manager_firm' 
@@ -569,10 +581,12 @@ function fin_export_mandates($since = 0) {
 		$managers_hired_sql = "
 		SELECT
 			mhn.nid AS manager_hired_id,
-			mhn.title AS manager_hired_name
+			mhn.title AS manager_hired_name,
+			amount.field_amount_value AS amount
 			FROM field_data_field_managers_hired mh
 			INNER JOIN field_data_field_manager_firm_er mfer ON mh.field_managers_hired_value=mfer.entity_id AND mfer.bundle='field_managers_hired'
 			INNER JOIN node mhn ON mfer.field_manager_firm_er_target_id=mhn.nid
+			LEFT JOIN field_data_field_amount amount ON mh.field_managers_hired_value=amount.entity_id AND amount.bundle='field_managers_hired'
 			WHERE mh.entity_id=" . $rec['mandate_id'] . " AND mh.bundle='mandate'";
 		$managers_hired_result = db_query($managers_hired_sql);
 		$managers_hired = array();
@@ -585,10 +599,12 @@ function fin_export_mandates($since = 0) {
 		$managers_terminated_sql = "
 		SELECT
 			mtn.nid AS manager_terminated_id,
-			mtn.title AS manager_terminated_name
+			mtn.title AS manager_terminated_name,
+			amount.field_amount_value AS amount
 			FROM field_data_field_managers_terminated mt
 			INNER JOIN field_data_field_manager_firm_er mter ON mt.field_managers_terminated_value=mter.entity_id AND mter.bundle='field_managers_terminated'
 			INNER JOIN node mtn ON mter.field_manager_firm_er_target_id=mtn.nid
+			LEFT JOIN field_data_field_amount amount ON mt.field_managers_terminated_value=amount.entity_id AND amount.bundle='field_managers_terminated'
 			WHERE mt.entity_id=" . $rec['mandate_id'] . " AND mt.bundle='mandate'";
 		$managers_terminated_result = db_query($managers_terminated_sql);
 		$managers_terminated = array();
@@ -619,6 +635,7 @@ function fin_export_mandates($since = 0) {
     $index++;
 	};
 	variable_set('squirro_mandates_last_pull', time());
+	//dd($mandates, "Mandates");
 	dd($index, "Mandate export count");
   return drupal_json_encode($mandates);
 }
