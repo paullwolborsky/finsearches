@@ -153,7 +153,6 @@ function _subscriptions_content_node_form(array $form, $uid) {
   foreach ($query->execute() as $s) {
     $subscriptions[$s['nid']][$s['author_uid']] = $s;
   }
-
   if (module_exists('comment')) {
     // check whether we've commented:
     if (db_driver() == 'pgsql') {
@@ -189,7 +188,6 @@ function _subscriptions_content_node_form(array $form, $uid) {
   else {
     $fields = t('@latest_activity, @authored');
   }
-
   $form[0] = array(
     '#type' => 'item',
     '#title' => '',
@@ -212,17 +210,19 @@ function _subscriptions_content_node_form(array $form, $uid) {
           continue;
         }
       }
+      /*
       $subscription['extra_info'] = $tr($fields, array(
         '@latest_activity' => format_interval(time() - $subscription['latest_activity']),
         '@authored' => ($subscription['uid'] == $uid ? $tr('Yes') : $tr('No')),
         '@commented' => (!empty($subscription['commented']) ? $tr('Yes') : $tr('No')),
       ));
+      */
       subscriptions_form_helper($form[0], $defaults, $author_uid, $subscription['nid'], $title, $subscription);
     }
   }
   unset($form[0]['author']);
   if (count(element_children($form[0]))) {
-    $form[0]['extra_info']['#title'] = $tr($fields, array('@latest_activity' => 'Latest activity', '@authored' => 'authored', '@commented' => 'commented'));
+    //$form[0]['extra_info']['#title'] = $tr($fields, array('@latest_activity' => 'Latest activity', '@authored' => 'authored', '@commented' => 'commented'));
     $form[0]['defaults'] = array(
       '#type' => 'value',
       '#value' => $defaults,

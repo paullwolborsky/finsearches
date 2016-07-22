@@ -109,7 +109,7 @@ function theme_subscriptions_form_table(array $variables) {
   $rows = array();
   drupal_add_js(drupal_get_path('module', 'subscriptions') . '/subscriptions_tableselect.js', array('preprocess' => FALSE));
   $columns['checkboxes']      = array('data' => '', 'width' => '1%', 'class' => 'subscriptions-table select-all');
-  $columns['labels']          = array('data' => t('Follow'), 'width' => '18%');
+  $columns['labels']          = array('data' => t('Follow'), 'width' => '80%');
   if (isset($element['send_interval']) && $element['send_interval']['#access']) {
     $columns['send_interval'] = array('data' => t('Send interval'), 'width' => '20%');
   }
@@ -326,7 +326,6 @@ function subscriptions_page_form($form, &$form_state, $account, $stype) {
       '#weight'        => -2,
       );
   }
-
   $uid = (empty($account) ? -DRUPAL_AUTHENTICATED_RID : (is_object($account) ? $account->uid : -$account));
   $bulk_uids = (empty($_SESSION['subscriptions']['bulk_op']) ? NULL : $_SESSION['subscriptions']['uids']);
   $form['#tree']      = TRUE;
@@ -339,7 +338,7 @@ function subscriptions_page_form($form, &$form_state, $account, $stype) {
 
   $form['footer'] = array(
     '#type'        => 'item',
-    '#description' => t('The master checkboxes in the left-most column turn the given subscription on or off. To turn a range of subscriptions on or off, click and Shift-click.') . '<br />' . t('Depending on the setup of the site, you may have additional options for active subscriptions.'),
+    '#description' => t('The master checkboxes in the left-most column turn the given subscription on or off. To turn a range of subscriptions on or off, click and Shift-click.'),
     '#weight'      => 4,
     );
 
@@ -1132,7 +1131,7 @@ function subscriptions_form_helper(array &$form, array &$defaults, $author_uid, 
   }
   if (isset($subscription['type'])) {
     $form['type'][$key][$author_uid] = array(
-      '#markup' => ucwords(str_replace('-', ' ', $subscription['type'])),
+      '#markup' => ucwords(str_replace('_', ' ', $subscription['type'])),
     );
   }
 }
