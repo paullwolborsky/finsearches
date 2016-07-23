@@ -91,11 +91,16 @@ function fin_tasks_block_view($delta) {
       break;
 		case 'node_tasks':
       if (arg(0) == 'node') {
-        $nid = arg(1);
-        $block['subject'] = "Tasks";
-        $out = fin_tasks_node_list(5);
-        $block['content'] = $out;
-        $block['content'] .= "<div class='center'><a class='ctools-use-modal ctools-modal-fin-modals-task-style' href='/modal-front/" . $nid . "/tasks/nojs' title='Tasks'>Open Tasks</a></div>";
+				$block['subject'] = "Tasks";
+				if (user_has_role(10)) {
+					$nid = arg(1);
+					$out = fin_tasks_node_list(5);
+					$block['content'] = $out;
+					$block['content'] .= "<div class='center'><a class='ctools-use-modal ctools-modal-fin-modals-task-style' href='/modal-front/" . $nid . "/tasks/nojs' title='Tasks'>Open Tasks</a></div>";
+				} else {
+					$block['content'] = "<div class='center'><p>The Task feature is not enabled for your account.
+																Please <a href='/contact-us'>contact us</a> to learn more about tasks and other enhanced site features.</p></div>";
+				}
       }
       break;
   }
@@ -251,6 +256,7 @@ function fin_tasks_node_list ($limit = NULL) {
   $query->fields('t');
   $query->addField('l', 'name', 'list_name');
   $query->where("t.uid = " . $user->uid);
+	$query->where("t.compl != 1");
   $query->where("n.nid = " . $nid);
   $result = $query
       ->limit($m_limit)
@@ -268,10 +274,10 @@ function fin_tasks_node_list ($limit = NULL) {
 		$date = $title = '';
     $date = '';
     if ($rec->duedate != '') {
-      if ($rec->duedate < time()) {
-        $date = "<span class='task-overdue'>" . date('n-j-Y', strtotime($rec->duedate)) . "</soan>";
+      if (strtotime($rec->duedate) < time()) {
+        $date = "<span class='task-overdue'>" . date('n-j-y', strtotime($rec->duedate)) . "</soan>";
       } else {
-        "<span>" . $date = date('n-j-Y', strtotime($rec->duedate)) . "<span>";
+        "<span>" . $date = date('n-j-y', strtotime($rec->duedate)) . "<span>";
       }
     }
     if (strlen($rec->title) > 20) {
@@ -288,7 +294,7 @@ function fin_tasks_node_list ($limit = NULL) {
   if (count($rows) > 0) {
     $out .= theme('table', array('header' => $header, 'rows' => $rows ));
   } else {
-    $out .= "There are currenly no tasks.";
+    $out .= "There are currenly no open tasks.";
   }
 
   $out .= "</div>";

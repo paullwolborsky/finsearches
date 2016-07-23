@@ -1286,6 +1286,7 @@ function editTask(id)
 	//form.reminderdate.value = item.reminderdate;
 	//form.reminderemail.value = item.reminderemail;
 	//form.remindernote.value = item.remindernote
+	form.completed.checked = item.compl
 	$('#taskedit-date .date-created>span').text(item.date);
 	if(item.compl) {
 		$('#taskedit-date .date-completed').show().find('span').text(item.dateCompleted);
@@ -1311,6 +1312,7 @@ function clearEditForm()
 	form.id.value = '';
 	//form.reminderdate.value = '';
 	//form.remindernote.value = '';
+	form.completed.checked = false;
 	toggleEditAllTags(0);
 };
 
@@ -1346,6 +1348,10 @@ function showEditForm(isAdd)
 
 function saveTask(form)
 {
+	if (form.task.value == '') {
+    alert("Task must have a name");
+		return false;
+  }
 	if(flag.readOnly) return false;
 	if(form.isadd.value != 0)
 		return submitFullTask(form);
@@ -1369,6 +1375,7 @@ function saveTask(form)
 		//reminderdate: form.reminderdate.value,
 		//reminderemail: form.reminderemail.value,
 		//remindernote: form.remindernote.value,
+		completed: form.completed.checked ? 1 : 0,
 		duedate:form.duedate.value
 		},
 		function(json){

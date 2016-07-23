@@ -105,19 +105,28 @@ function fin_mod_state_code($state) {
 function fin_mod_content_list_state(&$query, $where, $conditions_key, $key) {
   if ($where['operator'] == 'LIKE') {
     // removes and then readds %s - maybe regex better?
-    $value = trim($where['value'], "%");
+    $values = trim($where['value'], "%");
     // Should only translate state information that is not already in code form
-    if (strlen($value) > 2) {
-      $state = fin_mod_state_code($value);
-      $query->where[$conditions_key]['conditions'][$key]['value'] = "%" . $state . "%";
+
+    fin_mod_explode_trim($values);
+    $condition = db_or();
+    foreach ($values as $value) {
+      if (strlen($value) > 2) {
+        $state = fin_mod_state_code($value);
+        //$query->where[$conditions_key]['conditions'][$key]['value'] = "%" . $state . "%";
+        //$query->where[$conditions_key]['conditions'][$key]['value'] = $state;
+        $condition->condition($where['field'], "%" . $state . "%", "LIKE");
+      }
     }
+    fin_mod_query_condition_remove($query, $conditions_key, $key);
+    $query->add_where(0, $condition);
   }
 }
 
 /**
  * Unset Main Office requirement.
  */
-function fin_mod_main_office_remove(&$query, $conditions_key, $key) {
+function fin_mod_query_condition_remove(&$query, $conditions_key, $key) {
   unset($query->where[$conditions_key]['conditions'][$key]);
 }
 
@@ -129,11 +138,11 @@ function fin_mod_content_list(&$view, &$query) {
   if (!empty($view->exposed_raw_input['field_address_administrative_area']) || !empty($view->exposed_raw_input['field_address_locality'])) {
     foreach ($query->where as $conditions_key => $conditions) {
       foreach ($conditions['conditions'] as $key => &$where) {
-        if(strpos($where['field'], 'field_data_field_address.field_address_administrative_area')) {
+        if (strpos($where['field'], 'field_data_field_address.field_address_administrative_area')) {
           fin_mod_content_list_state($query, $where, $conditions_key, $key);
         }
         if (strpos($where['field'], 'field_data_field_office_type_tr.field_office_type_tr_tid')) {
-          fin_mod_main_office_remove($query, $conditions_key, $key);
+          fin_mod_query_condition_remove($query, $conditions_key, $key);
         }
       }
     }
@@ -159,6 +168,43 @@ function fin_mod_views_query_alter(&$view, &$query) {
     $query->add_groupby('field_collection_item_field_data_field_manager_roster_fc__fi');
     $query->add_groupby('field_collection_item_field_data_field_manager_roster_fc__fi_2');
   }
+  fin_mod_shs_major_minor($query);
+}
+
+function fin_mod_shs_major_minor(&$query) {
+  $where = &$query->where;
+  // Messy nesting, but sorta necessary to drill down into the nested array
+  foreach ($where as &$iterator) {
+    foreach ($iterator as $conditions => &$condition) {
+      if (is_array($condition)) {
+        foreach ($condition as &$clause) {
+          // If it is a major minor field, turns it into an IN clause for parent
+          // and all children
+          if (is_string($clause['field'])) {
+            if ($clause['field'] == 'field_data_field_major_minor_style_tr.field_major_minor_style_tr_tid') {
+              if (isset($clause['value'])) {
+                $children = taxonomy_get_children($clause['value']);
+                if (!empty($children)) {
+                  $children = fin_mod_get_tids_from_children($children);
+                  $clause['value'] = array($clause['value']);
+                  $clause['value'] = array_merge($clause['value'], $children);
+                  $clause['operator'] = 'in';
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+function fin_mod_get_tids_from_children($children) {
+  $children_array = array();
+  foreach ($children as $child) {
+    $children_array[] = $child->tid;
+  }
+  return $children_array;
 }
 
 function fin_mod_manager_list(&$view, &$query) {
@@ -476,13 +522,7 @@ function fin_mod_exposed_filter_empty_check($filters) {
 function fin_mod_views_post_execute(&$view) {
   // Checks the condition for one particular view. Can easily be expanded to
   // all views if desired.
-  if (($view->name == 'reference_views' && $view->current_display == 'block_1')
-    || ($view->name == 'plan_mandates')
-    || ($view->name == 'mandate_search_consultant')
-    || ($view->name == 'manager_of_managers_views' && $view->current_display == 'manager_sub_managers')
-    || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_notes')
-    || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_questionnaire')
-    || ($view->name == 'reference_views' && $view->current_display == 'mandate_manager_finalists')
+  if (($view->name == 'reference_views' && $view->current_display == 'block_1') || ($view->name == 'plan_mandates') || ($view->name == 'manager_of_managers_views' && $view->current_display == 'manager_sub_managers') || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_notes') || ($view->name == 'consultant_imr_views' && $view->current_display == 'consultant_imr_questionnaire') || ($view->name == 'reference_views' && $view->current_display == 'mandate_manager_finalists')
   ) {
     $empty = fin_mod_view_result_empty_check($view->result);
     $exposed_empty = fin_mod_exposed_filter_empty_check($view->exposed_raw_input);

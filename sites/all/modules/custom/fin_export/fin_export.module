@@ -6,10 +6,10 @@
 function fin_export_menu() {
   global $user;
   $items = array();
-  $items['admin/config/financial-news/export_test'] = array(
+  $items['admin/config/financial-news/export_test/%'] = array(
     'title' => 'Test the export',
     'page callback' => array('fin_export_export_test'),
-    //'page arguments' => array(4),
+    'page arguments' => array(4),
     //'access callback' => user_access('administer site configuration'),
     'access callback' => true,
     'type' => MENU_LOCAL_TASK,
@@ -17,8 +17,11 @@ function fin_export_menu() {
 	return $items;
 }
 
-function fin_export_export_test ($name = null, $pass = null) {
+function fin_export_export_test ($endpoint = NULL) {
 	//Get authentication
+	if (!$endpoint) {
+		return "NO endpoint given";
+	}
 	$login_url = 'http://192.168.0.100:93/rest/user/login';
   $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
 	$post_data = array(
@@ -37,11 +40,15 @@ function fin_export_export_test ($name = null, $pass = null) {
   $response = drupal_http_request($login_url, $options);
   $login = json_decode($response->data);
   if ($response->code == 200) {
-    $restful_url = 'http://192.168.0.100:93/rest/plans';
+    //$restful_url = 'http://192.168.0.100:93/rest/plans';
+		//$restful_url = 'http://192.168.0.100:93/rest/managers';
+    //$restful_url = 'http://192.168.0.100:93/rest/mandates';
+    //$restful_url = 'http://192.168.0.100:93/rest/consultants';
+    //$restful_url = 'http://192.168.0.100:93/rest/contacts';
+    $restful_url = 'http://192.168.0.100:93/rest/' . $endpoint;
     $options['headers']['Cookie'] = $login->session_name . '=' . $login->sessid;
     $options['method'] = 'GET';
     $rest_response = drupal_http_request($restful_url, $options);
-    //dd($rest_response, "Rest Response");
   }
 }
 
@@ -89,7 +96,7 @@ function fin_export_services_resources() {
     'managers' => array(
       'retrieve' => array(
         'help' => 'Export Manager Data',
-        'callback' => 'fin_export_plans',
+        'callback' => 'fin_export_managers',
         'access callback' => 'user_access',
         'access arguments' => array('access content'),
         'access arguments append' => FALSE,
@@ -121,6 +128,114 @@ function fin_export_services_resources() {
           ),
         ),
       )
+    ),
+    'consultants' => array(
+      'retrieve' => array(
+        'help' => 'Export Consultant Data',
+        'callback' => 'fin_export_consultants',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+        )
+      ),
+      'index' => array(
+        'help' => 'Retrieves a listing of Consultants',
+        'callback' => 'fin_export_consultants',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+        ),
+      )
+    ),
+    'mandates' => array(
+      'retrieve' => array(
+        'help' => 'Export Mandate Data',
+        'callback' => 'fin_export_mandates',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+        )
+      ),
+      'index' => array(
+        'help' => 'Retrieves a listing of Mandates',
+        'callback' => 'fin_export_mandates',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+        ),
+      )
+    ),
+    'contacts' => array(
+      'retrieve' => array(
+        'help' => 'Export Contact Data',
+        'callback' => 'fin_export_contacts',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+        )
+      ),
+      'index' => array(
+        'help' => 'Retrieves a listing of Contact',
+        'callback' => 'fin_export_contacts',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'since',
+            'type' => 'int',
+            'description' => 'Only since last pull',
+            'source' => array('param' => 'since'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+        ),
+      )
     )
   );
 }
@@ -130,8 +245,8 @@ function fin_export_plans($since = 0) {
   $sql = "
     SELECT
     n.nid AS plan_id,
-    n.title,
-    n.created,
+    n.title AS plan_name,
+    n.created AS created_date,
     plan_type_td.tid as plan_type_id,
     plan_type_td.name as plan_type_name,
     fa.field_acronym_value as acronym,
@@ -285,6 +400,477 @@ function fin_export_plans($since = 0) {
   }
 	variable_set('squirro_plans_last_pull', time());
 	//dd($plans, "Plans");
-	dd($index, "Export count");
+	dd($index, "Plan export count");
   return drupal_json_encode($plans);
+}
+
+function fin_export_mandates($since = 0) {
+	$last_pull = variable_get('squirro_mandatess_last_pull', 0);
+  $sql = "
+	SELECT
+		mn.nid AS mandate_id,
+		mn.title AS mandate_name,
+		mn.created AS created_date,
+		d.field_date_value AS mandate_date,
+		pn.nid AS plan_id,
+		pn.title AS plan_name,
+		pttr.field_plan_type_tr_tid AS plan_type_id,
+		pttd.name AS plan_type_name,
+    plan_address.field_address_country AS plan_country,
+    plan_address.field_address_administrative_area AS plan_state,
+    plan_address.field_address_locality AS plan_city,
+    plan_address.field_address_thoroughfare AS plan_address1,
+    plan_address.field_address_premise AS plan_address2,
+    plan_address.field_address_sub_premise AS plan_address3,
+    plan_address.field_address_postal_code AS plan_zipcode,
+    plan_address.field_address_data AS raw_phones,
+		ps.field_plan_size_value AS plan_size,
+		fas.field_account_size_value AS account_size,
+		ctd.tid AS currency_id,
+		ctd.name AS currency_name,
+		mstd.tid AS mandate_status_id,
+		mstd.name AS mandate_status_name,
+		gtd.tid AS geographic_id,
+		gtd.name AS geographic_name,
+		minortd.tid AS minor_id,
+		minortd.name AS minor_name,
+		majortd.tid AS major_id,
+		majortd.name AS major_name,
+		cfer.field_consultant_firm_er_target_id AS consultant_firm_id,
+		cn.title AS consultant_firm_name
+		FROM node mn
+		LEFT JOIN field_data_field_plan_er per ON mn.nid=per.entity_id
+		LEFT JOIN field_data_field_date d ON mn.nid=d.entity_id AND d.bundle='mandate'
+		LEFT JOIN field_data_field_consultant_firm_er cfer ON mn.nid=cfer.entity_id AND cfer.bundle='mandate'
+		LEFT JOIN node cn ON cfer.field_consultant_firm_er_target_id=cn.nid AND cn.type='consultant_firm'
+		LEFT JOIN field_data_field_mandate_status_tr mstr ON mn.nid=mstr.entity_id
+		LEFT JOIN taxonomy_term_data mstd ON mstr.field_mandate_status_tr_tid=mstd.tid AND mstd.vid=20  
+		LEFT JOIN field_data_field_account_size fas ON mn.nid=fas.entity_id AND fas.bundle='mandate'
+		LEFT JOIN field_data_field_currency_tr ctr ON mn.nid=ctr.entity_id
+		LEFT JOIN taxonomy_term_data ctd ON ctr.field_currency_tr_tid=ctd.tid
+		LEFT JOIN field_data_field_geographic_tr grt ON mn.nid=grt.entity_id AND grt.bundle='mandate'
+		LEFT JOIN taxonomy_term_data gtd ON grt.field_geographic_tr_tid=gtd.tid
+		INNER JOIN field_data_field_major_minor_style_tr mmtr ON mn.nid=mmtr.entity_id AND mmtr.bundle='mandate'
+		LEFT JOIN taxonomy_term_data minortd ON mmtr.field_major_minor_style_tr_tid=minortd.tid AND minortd.vid=23
+		LEFT JOIN taxonomy_term_hierarchy mmth ON minortd.tid=mmth.tid
+		LEFT JOIN taxonomy_term_data majortd ON mmth.parent=majortd.tid AND majortd.vid=23
+		INNER JOIN node pn ON  per.field_plan_er_target_id=pn.nid
+		INNER JOIN field_data_field_plan_size_history psh ON pn.nid=psh.entity_id
+		LEFT JOIN field_data_field_plan_type_tr pttr ON pn.nid=pttr.entity_id
+		LEFT JOIN taxonomy_term_data pttd ON pttr.field_plan_type_tr_tid=pttd.tid
+		LEFT JOIN field_data_field_address plan_address ON pn.nid=plan_address.entity_id
+		INNER JOIN field_data_field_plan_size ps ON psh.field_plan_size_history_value=ps.entity_id AND ps.delta=0 ";
+
+	if ($since == 1) {
+		$sql .= "AND mn.updated > " . $last_pull . " ";
+	}
+	$sql .= "ORDER BY mn.nid ASC";
+  $result = db_query($sql);
+  $mandates = array();
+  $index = 0;
+	$c_index = 0;
+  while ($rec = $result->fetchAssoc()) {
+		$rec['plan_phones'] = unserialize($rec['raw_phones']);
+		unset($rec['plan_phones']['address3'], $rec['raw_phones']);
+		
+		//Grab consultant_finalists
+		$consultant_finalists_sql = "
+		SELECT
+			cffn.nid AS consultant_finalist_id,
+			cffn.title AS consultant_finalist_name
+			FROM field_data_field_consultants_finalists_er cfer
+			LEFT JOIN node cffn ON cfer.field_consultants_finalists_er_target_id=cffn.nid
+			WHERE cfer.entity_id=" . $rec['mandate_id'];
+		$consultant_finalists_result = db_query($consultant_finalists_sql);
+		$consultant_finalists = array();
+		while ($consultant_finalists_rec = $consultant_finalists_result->fetchAssoc()) {
+			$consultant_finalists[$consultant_finalists_rec['consultant_finalist_id']] = $consultant_finalists_rec;
+		}
+		$rec['consultant_finalists'] = 	$consultant_finalists;
+		
+		//Consultants on watch
+		$consultants_on_watch_sql = "
+		SELECT
+			cown.nid AS consultant_on_watch_id,
+			cown.title AS consultant_on_watch_name
+			FROM field_data_field_consultants_onwatch_er cower
+			INNER JOIN node cown ON cower.field_consultants_onwatch_er_target_id=cown.nid
+			WHERE cower.entity_id=" . $rec['mandate_id'];
+		$consultants_on_watch_result = db_query($consultants_on_watch_sql);
+		$consultants_on_watch = array();
+		while ($consultants_on_watch_rec = $consultants_on_watch_result->fetchAssoc()) {
+			$consultants_on_watch[$consultants_on_watch_rec['consultant_on_watch_id']] = $consultants_on_watch_rec;
+		}
+		$rec['consultants_on_watch'] = 	$consultants_on_watch;
+
+		//Consultants hired
+		$consultants_hired_sql = "
+		SELECT
+			chn.nid AS consultant_hired_id,
+			chn.title AS consultant_hired_name
+			FROM field_data_field_consultants_hired ch
+			INNER JOIN field_data_field_consultant_firm_er cfer ON ch.field_consultants_hired_value=cfer.entity_id AND cfer.bundle='field_consultants_hired'
+			INNER JOIN node chn ON cfer.field_consultant_firm_er_target_id=chn.nid
+			WHERE ch.entity_id=" . $rec['mandate_id'] . " AND ch.bundle='mandate'";
+		$consultants_hired_result = db_query($consultants_hired_sql);
+		$consultants_hired = array();
+		while ($consultants_hired_rec = $consultants_hired_result->fetchAssoc()) {
+			$consultants_hired[$consultants_hired_rec['consultant_hired_id']] = $consultants_hired_rec;
+		}
+		$rec['consultants_hired'] = 	$consultants_hired;
+
+		//Consultants terminated
+		$consultants_terminated_sql = "
+		SELECT
+			ctn.nid AS consultant_terminated_id,
+			ctn.title AS consultant_terminated_name
+			FROM field_data_field_consultants_terminated ct
+			INNER JOIN field_data_field_consultant_firm_er cter ON ct.field_consultants_terminated_value=cter.entity_id AND cter.bundle='field_consultants_terminated'
+			INNER JOIN node ctn ON cter.field_consultant_firm_er_target_id=ctn.nid
+			WHERE ct.entity_id=" . $rec['mandate_id'] . " AND ct.bundle='mandate'";
+		$consultants_terminated_result = db_query($consultants_terminated_sql);
+		$consultants_terminated = array();
+		while ($consultants_terminated_rec = $consultants_terminated_result->fetchAssoc()) {
+			$consultants_terminated[$consultants_terminated_rec['consultant_terminated_id']] = $consultants_terminated_rec;
+		}
+		$rec['consultants_terminated'] = 	$consultants_terminated;
+
+		//Manager Finalists
+		$manager_finalists_sql = "
+		SELECT
+			mffn.nid AS manager_finalist_id,
+			mffn.title AS manager_finalist_name
+			FROM field_data_field_managers_finalists_er mfer
+			INNER JOIN node mffn ON mfer.field_managers_finalists_er_target_id=mffn.nid
+			WHERE mfer.entity_id=" . $rec['mandate_id'];
+		$manager_finalists_result = db_query($manager_finalists_sql);
+		$manager_finalists = array();
+		while ($manager_finalists_rec = $manager_finalists_result->fetchAssoc()) {
+			$manager_finalists[$manager_finalists_rec['manager_finalist_id']] = $manager_finalists_rec;
+		}
+		$rec['manager_finalists'] = 	$manager_finalists;
+		
+		//Managers on watch
+		$managers_on_watch_sql = "
+		SELECT
+			mown.nid AS manager_on_watch_id,
+			mown.title AS manager_on_watch_name
+			FROM field_data_field_managers_onwatch_er mower
+			INNER JOIN node mown ON mower.field_managers_onwatch_er_target_id=mown.nid
+			WHERE mower.entity_id=" . $rec['mandate_id'];
+		$managers_on_watch_result = db_query($managers_on_watch_sql);
+		$managers_on_watch = array();
+		while ($managers_on_watch_rec = $managers_on_watch_result->fetchAssoc()) {
+			$managers_on_watch[$managers_on_watch_rec['manager_on_watch_id']] = $managers_on_watch_rec;
+		}
+		$rec['managers_on_watch'] = 	$managers_on_watch;
+		
+		//managers hired
+		$managers_hired_sql = "
+		SELECT
+			mhn.nid AS manager_hired_id,
+			mhn.title AS manager_hired_name
+			FROM field_data_field_managers_hired mh
+			INNER JOIN field_data_field_manager_firm_er mfer ON mh.field_managers_hired_value=mfer.entity_id AND mfer.bundle='field_managers_hired'
+			INNER JOIN node mhn ON mfer.field_manager_firm_er_target_id=mhn.nid
+			WHERE mh.entity_id=" . $rec['mandate_id'] . " AND mh.bundle='mandate'";
+		$managers_hired_result = db_query($managers_hired_sql);
+		$managers_hired = array();
+		while ($managers_hired_rec = $managers_hired_result->fetchAssoc()) {
+			$managers_hired[$managers_hired_rec['manager_hired_id']] = $managers_hired_rec;
+		}
+		$rec['managers_hired'] = 	$managers_hired;
+
+		//Managers terminated
+		$managers_terminated_sql = "
+		SELECT
+			mtn.nid AS manager_terminated_id,
+			mtn.title AS manager_terminated_name
+			FROM field_data_field_managers_terminated mt
+			INNER JOIN field_data_field_manager_firm_er mter ON mt.field_managers_terminated_value=mter.entity_id AND mter.bundle='field_managers_terminated'
+			INNER JOIN node mtn ON mter.field_manager_firm_er_target_id=mtn.nid
+			WHERE mt.entity_id=" . $rec['mandate_id'] . " AND mt.bundle='mandate'";
+		$managers_terminated_result = db_query($managers_terminated_sql);
+		$managers_terminated = array();
+		while ($managers_terminated_rec = $managers_terminated_result->fetchAssoc()) {
+			$managers_terminated[$managers_terminated_rec['manager_terminated_id']] = $managers_terminated_rec;
+		}
+		$rec['managers_terminated'] = 	$managers_terminated;
+
+		//Get the mandate comments
+		$comment_sql = "
+		SELECT
+		c.cid AS comment_id,
+		c.subject as comment_subject,
+		c.thread as comment_thread,
+		cb.comment_body_value as comment_body
+		FROM comment c
+		INNER JOIN field_data_comment_body cb ON c.cid=cb.entity_id 
+		WHERE c.nid="  . $rec['mandate_id'] . " AND cb.bundle='comment_node_mandate'
+		";
+		$comment_result = db_query($comment_sql);
+		$comments = array();
+		while ($comment_rec = $comment_result->fetchAssoc()) {
+			$comments[$comment_rec['comment_id']] = $comment_rec;
+		}
+		$rec['comments'] = 	$comments;
+		
+    $mandates[$rec['mandate_id']] = $rec;
+    $index++;
+	};
+	variable_set('squirro_mandates_last_pull', time());
+	dd($index, "Mandate export count");
+  return drupal_json_encode($mandates);
+}
+
+function fin_export_managers($since=0) {
+	$last_pull = variable_get('squirro_managerss_last_pull', 0);
+	
+	$sql = "
+	SELECT
+	mn.nid as manager_id,
+	mn.title as manager_name,
+	ma.field_acronym_value AS manager_acronym,
+	mstr.field_status_tr_tid AS status_id,
+	mstd.name AS manager_status,
+	office_address.field_address_country AS office_country,
+	office_address.field_address_administrative_area AS office_state,
+	office_address.field_address_locality AS office_city,
+	office_address.field_address_thoroughfare AS office_address1,
+	office_address.field_address_premise AS office_address2,
+	office_address.field_address_sub_premise AS office_address3,
+	office_address.field_address_postal_code AS office_zipcode,
+	office_address.field_address_data AS raw_phones,
+	manager_email.field_email_email AS manager_email,
+	manager_website.field_website_url AS manager_website,
+	mom.field_manager_of_managers_value AS manager_of_managers	
+	FROM node mn
+	LEFT JOIN field_data_field_acronym ma ON mn.nid=ma.entity_id
+	LEFT JOIN field_data_field_status_tr mstr ON mn.nid=mstr.entity_id AND mstr.bundle='manager_firm'
+	LEFT JOIN taxonomy_term_data mstd ON mstr.field_status_tr_tid=mstd.tid
+	LEFT JOIN field_data_field_address office_address ON mn.nid=office_address.entity_id AND office_address.bundle='manager_firm'
+	LEFT JOIN field_data_field_email manager_email ON mn.nid=manager_email.entity_id AND manager_email.bundle='manager_firm' 
+	LEFT JOIN field_data_field_website manager_website ON mn.nid=manager_website.entity_id AND manager_website.bundle='manager_firm'
+	LEFT JOIN field_data_field_manager_of_managers mom ON mn.nid=mom.entity_id
+	WHERE mn.type='manager_firm' 
+	";
+	if ($since == 1) {
+		$sql .= "AND mn.updated > " . $last_pull . " ";
+	}
+	$sql .= "ORDER BY mn.nid ASC";
+
+  $result = db_query($sql);
+  $managers = array();
+	$index = 0;
+  while ($rec = $result->fetchAssoc()) {
+		if (!empty($rec['raw_phones'])) {
+			$rec['phones'] = unserialize($rec['raw_phones']);
+			unset($rec['phones']['address3'], $rec['raw_phones']);
+		}
+		$mf_sql = "
+		SELECT
+		sm.field_sub_manager_firms_fc_value AS managed_firm_id
+		FROM field_data_field_sub_manager_firms_fc sm
+		WHERE sm.entity_id=" . $rec['manager_id'] . " ORDER BY sm.field_sub_manager_firms_fc_value ASC	
+		";
+		$mf_result = db_query($mf_sql);
+		$mf = array();
+		while ($mf_rec = $mf_result->fetchAssoc()) {
+			$mf[] = $mf_rec;
+		}
+		$rec['managed_firms'] = 	$mf;
+		$managers[$rec['manager_id']] = $rec;
+    $index++;
+	};
+	variable_set('squirro_managers_last_pull', time());
+	//dd($managers, "Managers");
+	dd($index, "Manager export count");
+  return drupal_json_encode($managers);
+}
+
+function fin_export_consultants($since = 0) {
+	$last_pull = variable_get('squirro_consultants_last_pull', 0);
+	
+	$sql = "
+	SELECT
+		cn.nid AS consultant_id,
+		cn.title AS consultant_name,
+		cn.created AS consultant_created,
+		cn.changed AS consultant_last_update,
+		fa.field_acronym_value as consultant_acronym,
+		str.field_status_tr_tid AS consultant_status_id,
+		cstd.name as consultant_status,
+		aua.field_aua_value AS consultant_aua,
+		consultant_email.field_email_email AS consultant_email,
+		consultant_website.field_website_url AS consultant_website 
+		
+		FROM node cn
+		LEFT JOIN field_data_field_acronym fa ON cn.nid=fa.entity_id AND fa.bundle='consultant_firm'
+		LEFT JOIN field_data_field_aua aua ON cn.nid=aua.entity_id AND aua.bundle='consultant_firm'
+		LEFT JOIN field_data_field_status_tr str ON cn.nid=str.entity_id AND str.bundle='consultant_firm'
+		LEFT JOIN taxonomy_term_data cstd ON str.field_status_tr_tid=cstd.tid AND cstd.vid=20  
+		LEFT JOIN field_data_field_email consultant_email ON cn.nid=consultant_email.entity_id AND consultant_email.bundle='consultant_firm' 
+		LEFT JOIN field_data_field_website consultant_website ON cn.nid=consultant_website.entity_id AND consultant_website.bundle='consultant_firm'
+		WHERE cn.type='consultant_firm'
+	";
+	if ($since == 1) {
+		$sql .= "AND cn.updated > " . $last_pull . " ";
+	}
+	$sql .= "ORDER BY cn.nid ASC";
+
+  $result = db_query($sql);
+  $consultants = array();
+	$index = 0;
+  while ($rec = $result->fetchAssoc()) {
+		//Get offices
+		$office_sql = "
+		SELECT
+		ofn.nid AS office_id,
+		ofn.title AS office_name,
+		ottd.name AS office_type,
+		office_address.field_address_country AS office_country,
+		office_address.field_address_administrative_area AS office_state,
+		office_address.field_address_locality AS office_city,
+		office_address.field_address_thoroughfare AS office_address1,
+		office_address.field_address_premise AS office_address2,
+		office_address.field_address_sub_premise AS office_address3,
+		office_address.field_address_postal_code AS office_zipcode,
+		office_address.field_address_data AS raw_phones,
+		office_email.field_email_email AS office_email
+		
+		FROM node ofn
+		INNER JOIN field_data_field_consultant_firm_er fer ON ofn.nid=fer.entity_id AND fer.bundle='office'
+		LEFT JOIN field_data_field_office_type_tr otr ON ofn.nid=otr.entity_id AND otr.bundle='office'
+		LEFT JOIN taxonomy_term_data ottd ON otr.field_office_type_tr_tid=ottd.tid AND ottd.vid=3 
+		LEFT JOIN field_data_field_address office_address ON ofn.nid=office_address.entity_id AND office_address.bundle='office'
+		LEFT JOIN field_data_field_email office_email ON ofn.nid=office_email.entity_id AND office_email.bundle='consultant_firm' 
+
+		WHERE fer.field_consultant_firm_er_target_id=" . $rec['consultant_id'] . " ORDER BY ofn.nid ASC	
+		";
+		$office_result = db_query($office_sql);
+		$main_offices = $branch_offices = array();
+		while ($office_rec = $office_result->fetchAssoc()) {
+			$office_rec['office_phones'] = unserialize($office_rec['raw_phones']);
+			unset($office_rec['office_phones']['address3'], $office_rec['raw_phones']);
+			if ($office_rec['office_type'] == 'Main') {
+				$main_offices[$office_rec['office_id']] = $office_rec;
+			} else {
+				$branch_offices[$office_rec['office_id']] = $office_rec;
+			}
+		}
+		$rec['main_office'] = 	$main_offices;
+		$rec['branch_offices'] = 	$branch_offices;
+		
+		$plan_sql = "
+		SELECT
+		pn.nid AS plan_id,
+		pn.title AS plan_title
+		FROM node pn
+		INNER JOIN field_data_field_consultant_roster_fc cr ON pn.nid=cr.entity_id
+		INNER JOIN field_data_field_consultant_firm_er fer ON cr.field_consultant_roster_fc_value=fer.entity_id AND fer.bundle='field_consultant_roster_fc'
+		WHERE fer.field_consultant_firm_er_target_id=" . $rec['consultant_id'] . " AND pn.type='plan'
+
+		";
+		$plan_result = db_query($plan_sql);
+		$plans = array();
+		while ($plan_rec = $plan_result->fetchAssoc()) {
+			$plans[$plan_rec['plan_id']] = $plan_rec;
+		}
+		$rec['plans'] = 	$plans;
+		
+    $index++;
+    $consultants[$rec['consultant_id']] = $rec;
+	}
+	variable_set('squirro_consultants_last_pull', time());
+	//dd($consultants, "Consultants");
+	dd($index, "Consultants export count");
+  return drupal_json_encode($consultants);	
+}
+
+function fin_export_contacts($since = 0) {
+	$last_pull = variable_get('squirro_contacts_last_pull', 0);
+	
+	$sql = "
+	SELECT
+		cn.nid AS contact_id,
+		cn.title AS contact_name,
+		fb.body_value AS contact_bio,
+		fm.fid AS fid,
+		fm.filename AS contact_photo_filename
+		FROM node cn
+		LEFT JOIN field_data_body fb ON cn.nid=fb.entity_id
+		LEFT JOIN field_data_field_photo fp ON cn.nid=fp.entity_id
+		LEFT JOIN file_managed fm ON fp.field_photo_fid=fm.fid
+		WHERE cn.type='contact'
+	";
+	if ($since == 1) {
+		$sql .= "AND cn.updated > " . $last_pull . " ";
+	}
+	$sql .= "ORDER BY cn.nid ASC";
+
+  $result = db_query($sql);
+  $contacts = array();
+	$index = 0;
+  while ($rec = $result->fetchAssoc()) {
+		$path = $GLOBALS['base_url'] . '/sites/default/files/images/contacts/';
+		$rec['photo-path'] = $path . $rec['contact_photo_filename'];
+		unset($rec['contact_photo_filename']);
+		$jh_sql = "
+		SELECT
+		jh.field_job_history_value AS job_history_id,
+		pi.bundle AS contact_type,
+		ed.field_employment_date_value AS job_date_start,
+		ed.field_employment_date_value2 AS job_date_end,
+		jt.field_job_title_value AS job_title,
+		cttr.field_consultant_contact_type_tr_tid AS consultant_type_id,
+		cttd.name as consultant_type_name,
+		lpc.field_lead_plan_contact_value AS lead_plan_contact,
+		cfer.field_consultant_firm_er_target_id AS consultant_firm_id,
+		coer.field_consultant_office_er_target_id AS consultant_office_id,
+		address.field_address_country AS country,
+		address.field_address_administrative_area AS state,
+		address.field_address_locality AS city,
+		address.field_address_thoroughfare AS address1,
+		address.field_address_premise AS address2,
+		address.field_address_sub_premise AS address3,
+		address.field_address_postal_code AS zipcode,
+		address.field_address_data AS raw_phones,
+		email.field_email_email AS email,
+		website.field_website_url AS website,
+		mfer.field_manager_firm_er_target_id AS manager_firm_id,
+		per.field_plan_er_target_id AS plan_id
+		FROM field_data_field_job_history jh
+		LEFT JOIN paragraphs_item pi ON jh.field_job_history_value=pi.item_id
+		LEFT JOIN field_data_field_employment_date ed ON jh.field_job_history_value=ed.entity_id
+		LEFT JOIN field_data_field_job_title jt ON jh.field_job_history_value=jt.entity_id
+		LEFT JOIN field_data_field_consultant_contact_type_tr cttr ON jh.field_job_history_value=cttr.entity_id
+		LEFT JOIN taxonomy_term_data cttd ON cttr.field_consultant_contact_type_tr_tid=cttd.tid AND cttd.vid=31
+		LEFT JOIN field_data_field_consultant_firm_er cfer ON jh.field_job_history_value=cfer.entity_id
+		LEFT JOIN field_data_field_consultant_office_er coer ON jh.field_job_history_value=coer.entity_id
+		LEFT JOIN field_data_field_manager_firm_er mfer ON jh.field_job_history_value=mfer.entity_id
+		LEFT JOIN field_data_field_plan_er per ON jh.field_job_history_value=per.entity_id
+		LEFT JOIN field_data_field_lead_plan_contact lpc ON jh.field_job_history_value=lpc.entity_id
+		LEFT JOIN field_data_field_address address ON jh.field_job_history_value=address.entity_id
+		LEFT JOIN field_data_field_email email ON jh.field_job_history_value=email.entity_id
+		LEFT JOIN field_data_field_website website ON jh.field_job_history_value=website.entity_id
+		WHERE jh.entity_id=" . $rec['contact_id'] . " ORDER BY jh.field_job_history_value DESC
+		";
+		$jh_result = db_query($jh_sql);
+		$jh = array();
+		$jh_index = 0;
+		while ($jh_rec = $jh_result->fetchAssoc()) {
+			if (!empty($jh_rec['raw_phones'])) {
+				$jh_rec['phones'] = unserialize($jh_rec['raw_phones']);
+				unset($jh_rec['phones']['address3'], $jh_rec['raw_phones']);
+			}
+			$jh[$jh_rec['job_history_id']] = $jh_rec;
+			$jh_index++;
+		}
+		$rec['job_history'] = 	$jh;
+		$index++;
+		$contacts[$rec['contact_id']] = $rec;
+	}
+	variable_set('squirro_contacts_last_pull', time());
+	dd($index, "Contacts export count");
+  return drupal_json_encode($contacts);	
 }
