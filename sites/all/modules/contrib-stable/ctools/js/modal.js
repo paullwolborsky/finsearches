@@ -552,9 +552,9 @@
     $('body').bind('keydown', modalTabTrapHandler);
     // Create our content div, get the dimensions, and hide it
     var modalContent = $('#modalContent').css('top','-1000px');
-    // Hard code this to 150 px as the initial height is not given now.
+    // Hard code this to 200 px as the initial height is not given now.
     //var mdcTop = wt + ( winHeight / 2 ) - (  modalContent.outerHeight() / 2);
-    var mdcTop = wt + ( winHeight / 2 ) - 150;
+    var mdcTop = wt + ( winHeight / 2 ) - 200;
     var mdcLeft = ( winWidth / 2 ) - ( modalContent.outerWidth() / 2);
     $('#modalBackdrop').css(css).css('top', 0).css('height', docHeight + 'px').css('width', docWidth + 'px').show();
     modalContent.css({top: mdcTop + 'px', left: mdcLeft + 'px'}).hide()[animation](speed);
