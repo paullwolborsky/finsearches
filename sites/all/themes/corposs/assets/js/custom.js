@@ -94,6 +94,16 @@
       $("#block-fin-utils-saved-searches h3.block-title").attr('title', "Saved Advanced Searches.");
       $("#block-fin-utils-subscriptions h3.block-title").attr('title', "Pages you are following.");
       $("#block-fin-utils-messages h3.block-title").attr('title', "Your Private Messages.");
+      
+      //Alert box when export button is clicked and before export page loads
+      $('.view-content-lists .feed-icon a').click(function(e){
+        e.preventDefault();                   
+        $(this).parent('.feed-icon').before("<div id='notice' style='padding:20px;background-color:#FFF;border:2px solid #142a45;width:50%;margin:0 auto;'><h2 style='text-align:center'>Building your export.  Please wait...</h2></div>");
+        var goTo = this.getAttribute("href"); 
+        setTimeout(function(){
+          window.location = goTo;
+        },10);
+      });
     }
   };
 })(jQuery, Drupal);
