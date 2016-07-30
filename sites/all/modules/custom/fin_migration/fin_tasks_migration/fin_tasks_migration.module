@@ -315,3 +315,20 @@ function fin_tasks_migration_favorite_create($id) {
     }
   }
 }
+
+/**
+ * Process with batch to save entity value attratube.
+ */
+function fin_task_entity_resave($id, $tid, $entity_type = 'node') {
+  $entity = entity_load($entity_type, array($id));
+  if (is_array($entity)) {
+    $entity = reset($entity);
+  }
+  if (is_object($entity)) {
+    $ew = entity_metadata_wrapper($entity_type, $entity);
+    if ($tid) {
+      $ew->field_attribute_tr = $tid;
+    }
+    $ew->save();
+  }
+}

@@ -84,7 +84,7 @@ stylesheets[all][] = assets/css/fonts.css
 stylesheets[all][] = assets/css/custom.css
 scripts[] = assets/js/corposs.js
 scripts[] = assets/js/custom.js
-scripts[] = corposs.tweek.js
+scripts[] = assets/js/corposs.tweek.js
 
 settings[drupalexp_default_preset] = '0'
 settings[corposs_breadcrumb]           = yes

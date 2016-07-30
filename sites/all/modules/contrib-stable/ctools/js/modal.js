@@ -80,11 +80,13 @@
       // Use the additionol pixels for creating the width and height.
       $('div.ctools-modal-content', context).css({
         'width': width + Drupal.CTools.Modal.currentSettings.modalSize.addWidth + 'px',
-        'height': height + Drupal.CTools.Modal.currentSettings.modalSize.addHeight + 'px'
+        // To remove the white space at the bottom of the window. Cross broswer test needed.
+        //'height': height + Drupal.CTools.Modal.currentSettings.modalSize.addHeight + 'px'
       });
       $('div.ctools-modal-content .modal-content', context).css({
         'width': (width - Drupal.CTools.Modal.currentSettings.modalSize.contentRight) + 'px',
-        'height': (height - Drupal.CTools.Modal.currentSettings.modalSize.contentBottom) + 'px'
+        // To remove the white space at the bottom of the window. Cross broswer test needed.
+        //'height': (height - Drupal.CTools.Modal.currentSettings.modalSize.contentBottom) + 'px'
       });
     }
 
@@ -548,10 +550,11 @@
       }
     };
     $('body').bind('keydown', modalTabTrapHandler);
-
     // Create our content div, get the dimensions, and hide it
     var modalContent = $('#modalContent').css('top','-1000px');
-    var mdcTop = wt + ( winHeight / 2 ) - (  modalContent.outerHeight() / 2);
+    // Hard code this to 200 px as the initial height is not given now.
+    //var mdcTop = wt + ( winHeight / 2 ) - (  modalContent.outerHeight() / 2);
+    var mdcTop = wt + ( winHeight / 2 ) - 200;
     var mdcLeft = ( winWidth / 2 ) - ( modalContent.outerWidth() / 2);
     $('#modalBackdrop').css(css).css('top', 0).css('height', docHeight + 'px').css('width', docWidth + 'px').show();
     modalContent.css({top: mdcTop + 'px', left: mdcLeft + 'px'}).hide()[animation](speed);
