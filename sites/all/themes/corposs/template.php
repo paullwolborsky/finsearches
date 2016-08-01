@@ -6,6 +6,9 @@ function corposs_preprocess_page(&$vars) {
 		$path = drupal_get_path('theme', 'corposs');
 		drupal_add_js($path . '/assets/js/mandate-filters.js', array('type'=>'file', 'group' => JS_THEME, 'weight' => 20));	
 	}
+	if ($request[1] == 'anon-home' && empty($request[2])) {
+		$vars['theme_hook_suggestions'][] = 'page__anon_home';
+  }
 }
 
 function corposs_breadcrumb($variables) {

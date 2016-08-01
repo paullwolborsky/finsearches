@@ -31,8 +31,8 @@ $view = views_embed_view('testimonials', 'block_1');
                     benefit plans, nonprofits and consultants.
                 </p>
                 <div id='buttons'>
-                    <div id='upper-sign-up' class='button blue'><a href='/somewhere'><span>SIGN UP FREE</span></a></div>
-                    <div id='upper-login' class='button light-blue'><a href='/somewhere'><span>LOGIN</span></a></div>
+                    <div id='upper-sign-up' class='button blue'><a href='/user/register'><span>SIGN UP FREE</span></a></div>
+                    <div id='upper-login' class='button light-blue'><a href='/user/login'><span>LOGIN</span></a></div>
                 </div>
             </div>
             <div id='upper-screenshots'>
