@@ -33,6 +33,15 @@
 
   Drupal.behaviors.fubik = {
     attach: function(context, settings) {
+      //$('#edit-field-internal-start-time-und-0-value-datepicker-popup-0')
+        $('input.date-clear').each(function () {
+          $(this).once('ctools-button')
+          .after($('<input type="button" value="today" class="teaser-button date-reset-today-btn">')).next()
+          .bind('click', function() {
+            todaydate = $.datepicker.formatDate('mm/dd/yy', new Date());
+            $(this).prev().val(todaydate);
+          });
+        });
 
       var $body = $('body', context);
       $('.view-display-id-eva_mandate_history_edit .view-content > table').wrap("<form action='" + window.location.href  + "' method='post' id='editableviews-entity-form-comment-views' accept-charset='UTF-8'></form>");
