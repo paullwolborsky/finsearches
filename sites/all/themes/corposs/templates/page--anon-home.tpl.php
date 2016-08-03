@@ -1,5 +1,6 @@
 <?php
-$view = views_embed_view('testimonials', 'block_1');
+    $view = views_embed_view('testimonials', 'block_1');
+    drupal_add_css('sites/all/themes/corposs/assets/css/pages/anon_front.css', array('group'=>CSS_THEME));
 ?>
 <div id='home-anon' class='background'>
     <div id='header'>
@@ -93,26 +94,26 @@ $view = views_embed_view('testimonials', 'block_1');
                 <div class='column'>
                     <ul>
                         <li>Using Searches</li>  
-                        <li><a href=''>Product</a></li>  
-                        <li><a href=''>Features</a></li>  
-                        <li><a href=''>Support</a></li>  
-                        <li><a href=''>Tutorials</a></li>  
+                        <li><a href='/'>Product</a></li>  
+                        <li><a href='/'>Features</a></li>  
+                        <li><a href='/'>Support</a></li>  
+                        <li><a href='/'>Tutorials</a></li>  
                     </ul>
                 </div>
                 <div class='column'>
                     <ul>
                         <li>Fin News</li>  
-                        <li><a href=''>Home</a></li>  
-                        <li><a href=''>About Us</a></li>  
-                        <li><a href=''>Contact Us</a></li>  
+                        <li><a href='/'>Home</a></li>  
+                        <li><a href='/about-us'>About Us</a></li>  
+                        <li><a href='/contact-us'>Contact Us</a></li>  
                     </ul>
                 </div>
                 <div class='column'>
                     <ul>
                         <li>Legal</li>  
-                        <li><a href=''>Terms</a></li>  
-                        <li><a href=''>Copyright</a></li>  
-                        <li><a href=''>Privacy Policy</a></li>  
+                        <li><a href='/terms-use'>Terms</a></li>  
+                        <li><a href='/copyright'>Copyright</a></li>  
+                        <li><a href='/privacy-policy'>Privacy Policy</a></li>  
                     </ul>
                 </div>
             </div>

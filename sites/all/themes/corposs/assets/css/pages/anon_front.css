@@ -1,0 +1,716 @@
+/**
+ *Styles for anonymous home page
+ *
+*/
+/* line 13, ../../../sass/pages/anon_front.scss */
+.thin {
+  font-weight: normal;
+}
+
+/* line 16, ../../../sass/pages/anon_front.scss */
+.thick {
+  font-weight: bold;
+}
+
+/* line 19, ../../../sass/pages/anon_front.scss */
+.white {
+  color: #FFF;
+}
+
+/* line 22, ../../../sass/pages/anon_front.scss */
+.blue {
+  color: #142a45;
+}
+
+/* line 26, ../../../sass/pages/anon_front.scss */
+#home-anon.background {
+  font-size: 0;
+  font-family: "Lato Regular Web";
+  /*
+  height: 500px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-perspective: 300px;
+  perspective: 300px;
+  -webkit-perspective-origin-x: 100%;
+  perspective-origin-x: 100%;
+  .section {
+    position: relative;
+    height: 500px;
+    height: 100vh;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    .section-layer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      -webkit-transform-origin-x: 100%;
+      transform-origin-x: 100%;
+    }
+    .section-layer-base {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      z-index: 4;
+      padding: 5%;
+    }
+    .section-layer-back {
+      -webkit-transform: translateZ(-300px) scale(2);
+      transform: translateZ(-300px) scale(2);
+      z-index: 3;
+    }
+    .section-layer-deep {
+      -webkit-transform: translateZ(-600px) scale(3);
+      transform: translateZ(-600px) scale(3);
+      z-index: 2;
+    }
+  }
+  */
+}
+/* line 71, ../../../sass/pages/anon_front.scss */
+#home-anon.background .section-layer {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+}
+/* line 76, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header {
+  position: relative;
+  z-index: 6;
+}
+/* line 80, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header #logo, #home-anon.background #header #menu {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 84, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header #logo {
+  width: 40%;
+  margin: 0 0 20px 0;
+}
+/* line 87, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header #logo img {
+  max-width: 300px;
+}
+/* line 91, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header #menu {
+  width: 60%;
+}
+/* line 93, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header #menu ul {
+  margin: 24px 5% 0 0;
+  padding: 0;
+  text-align: right;
+}
+/* line 97, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header #menu ul li {
+  font-family: sans-serif;
+  display: inline-block;
+  padding: 0 1%;
+  text-align: center;
+}
+/* line 103, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header #menu ul li a span {
+  color: #142a45;
+  font-size: 18px;
+}
+/* line 108, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header #menu ul li.button {
+  border: 2px solid #999;
+  border-radius: 16px;
+  padding: 7px 14px;
+  margin: 0 1%;
+}
+/* line 114, ../../../sass/pages/anon_front.scss */
+#home-anon.background #header #menu ul li.button a span {
+  color: #666;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+@media all and (max-width: 850px) {
+  /* line 126, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #logo {
+    width: 35%;
+  }
+  /* line 129, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu {
+    width: 65%;
+  }
+  /* line 131, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul {
+    margin: 24px 1% 0 0;
+  }
+  /* line 135, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul li a span {
+    font-size: 16px;
+  }
+  /* line 141, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul li.button a span {
+    font-size: 12px;
+  }
+}
+@media all and (max-width: 768px) {
+  /* line 151, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #logo, #home-anon.background #header #menu {
+    width: 100%;
+  }
+  /* line 154, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #logo {
+    margin: 0;
+  }
+  /* line 157, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu {
+    margin: 0 0 5px 0;
+  }
+  /* line 159, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul {
+    margin: 0;
+  }
+  /* line 163, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul li a span {
+    color: #142a45;
+    font-size: 18px;
+  }
+  /* line 170, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul li.button a span {
+    font-size: 14px;
+  }
+}
+@media all and (max-width: 450px) {
+  /* line 180, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #logo, #home-anon.background #header #menu {
+    width: 100%;
+  }
+  /* line 184, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul {
+    margin: 0;
+    text-align: center;
+  }
+  /* line 187, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul li {
+    padding: 0 2%;
+  }
+  /* line 190, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul li a span {
+    color: #142a45;
+    font-size: 14px;
+  }
+  /* line 195, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul li.button {
+    width: 40%;
+  }
+  /* line 198, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul li.button a span {
+    font-size: 14px;
+  }
+  /* line 202, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #header #menu ul li.button:first-child {
+    display: block;
+  }
+}
+/* line 211, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 {
+  background: #1368a6 url("/sites/all/themes/corposs/assets/images/front/light-blue-coffee.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+/* line 216, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  padding: 5% 3% 5% 1%;
+}
+/* line 221, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro h1 {
+  font-size: 48px;
+  line-height: 1;
+}
+/* line 224, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro h1.blue.shadow {
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+/* line 227, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro h1.white.shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* line 231, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro p {
+  font-size: 18px;
+  color: white;
+  line-height: 1.5;
+  margin: 5% 0 2% 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+/* line 239, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro #buttons .button {
+  border-radius: 16px;
+  padding: 5% 0;
+  margin: 3% 0;
+  width: 70%;
+  text-align: center;
+}
+/* line 245, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro #buttons .button a {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+/* line 251, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro #buttons .button.blue {
+  background-color: #142a45;
+}
+/* line 253, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro #buttons .button.blue a {
+  color: #FFF;
+}
+/* line 257, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro #buttons .button.light-blue {
+  background-color: #c7d3e1;
+}
+/* line 259, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #main-intro #buttons .button.light-blue a {
+  color: #142a45;
+}
+/* line 267, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #upper-screenshots {
+  display: inline-block;
+  vertical-align: top;
+  width: 70%;
+  position: relative;
+  padding: 5% 0 8% 0;
+}
+/* line 273, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #upper-screenshots .back {
+  top: 5%;
+  left: 5%;
+  z-index: 0;
+}
+/* line 279, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-1 .section-layer #upper-screenshots .front {
+  position: absolute;
+  top: 26%;
+  left: 10%;
+  z-index: 1;
+}
+@media all and (max-width: 1000px) {
+  /* line 287, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-1 .section-layer #main-intro {
+    width: 100%;
+    text-align: center;
+    padding: 1%;
+  }
+  /* line 291, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-1 .section-layer #main-intro h1 {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 36px;
+    padding: 0 1% 0 0;
+    margin: 0 0 5px 0;
+  }
+  /* line 298, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-1 .section-layer #main-intro p {
+    margin: 5px 0;
+  }
+  /* line 302, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-1 .section-layer #main-intro #buttons .button {
+    display: inline-block;
+    vertical-align: top;
+    width: 35%;
+    padding: 1% 0;
+    margin: 1% 5%;
+  }
+  /* line 311, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-1 .section-layer #upper-screenshots {
+    width: 96%;
+    margin: 0 auto;
+    display: block;
+    padding: 0;
+  }
+  /* line 316, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-1 .section-layer #upper-screenshots .inner {
+    padding: 0 3% 8% 1%;
+  }
+  /* line 321, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-1 .section-layer #upper-screenshots .inner .front {
+    top: 10%;
+    left: 9%;
+  }
+}
+@media all and (max-width: 400px) {
+  /* line 331, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-1 .section-layer #main-intro #buttons .button {
+    width: 46%;
+    margin: 0 1%;
+  }
+}
+/* line 341, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-2 .section-layer {
+  width: 75%;
+}
+/* line 343, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-2 .section-layer h1 {
+  width: 80%;
+  margin: 10px auto 5px;
+  text-align: center;
+  line-height: 1;
+}
+/* line 349, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-2 .section-layer #content {
+  margin: 0;
+  padding: 0;
+}
+/* line 352, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-2 .section-layer #content li {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  padding: 5% 6%;
+  text-align: center;
+}
+/* line 358, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-2 .section-layer #content li h3 {
+  line-height: 1;
+}
+/* line 361, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-2 .section-layer #content li p {
+  font-size: 16px;
+}
+@media all and (max-width: 767px) {
+  /* line 368, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-2 .section-layer {
+    width: 100%;
+  }
+  /* line 370, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-2 .section-layer h1 {
+    width: 90%;
+    font-size: 28px;
+  }
+}
+@media all and (max-width: 450px) {
+  /* line 378, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-2 .section-layer h1 {
+    margin: 10px auto;
+  }
+  /* line 382, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-2 .section-layer #content li {
+    padding: 2%;
+  }
+}
+@media all and (max-width: 350px) {
+  /* line 390, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-2 .section-layer h1 {
+    width: 100%;
+    font-size: 24px;
+  }
+  /* line 395, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-2 .section-layer #content li {
+    padding: 0 2%;
+    width: 100%;
+    display: block;
+  }
+  /* line 399, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-2 .section-layer #content li h3 {
+    font-size: 20px;
+  }
+  /* line 402, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-2 .section-layer #content li p {
+    font-size: 14px;
+  }
+}
+/* line 410, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-3 {
+  background-color: #c7d3e1;
+}
+/* line 413, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-3 .section-layer {
+  text-align: center;
+  padding: 5%;
+}
+/* line 416, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-3 .section-layer h1 {
+  width: 90%;
+  margin: 10px auto 5px;
+  text-align: center;
+  line-height: 1;
+}
+/* line 422, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-3 .section-layer h4 {
+  padding: 2% 0;
+  color: #666666;
+}
+@media all and (max-width: 450px) {
+  /* line 428, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-3 .section-layer {
+    width: 100%;
+    padding: 2% 1%;
+  }
+  /* line 431, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-3 .section-layer h1 {
+    font-size: 28px;
+  }
+  /* line 434, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-3 .section-layer h4 {
+    font-size: 16px;
+  }
+  /* line 437, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-3 .section-layer .img {
+    padding: 0 0 5px 0;
+  }
+}
+/* line 444, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer {
+  background-color: #FFF;
+  padding: 5%;
+}
+/* line 447, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer h1 {
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+/* line 451, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials {
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+}
+/* line 458, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row {
+  font-size: 16px;
+  text-align: center;
+}
+/* line 461, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-client-organization {
+  padding: 20px;
+  position: relative;
+  border: 1px solid #d3d3d3;
+  margin: 20px;
+  background: #ffffff;
+}
+/* line 467, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-client-organization .body {
+  color: #000;
+}
+/* line 470, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-client-organization .author {
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+/* line 475, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-client-organization:after, #home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-client-organization:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+/* line 486, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-client-organization:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #ffffff;
+  border-width: 15px;
+  margin-left: -15px;
+}
+/* line 492, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-client-organization:before {
+  border-color: rgba(211, 211, 211, 0);
+  border-top-color: #d3d3d3;
+  border-width: 16px;
+  margin-left: -16px;
+}
+/* line 498, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-image {
+  margin: 30px 0 0 0;
+}
+/* line 500, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-image img {
+  width: auto;
+  max-height: 100px;
+}
+@media all and (max-width: 768px) {
+  /* line 513, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-4 .section-layer .view-testimonials {
+    width: 80%;
+  }
+}
+@media all and (max-width: 600px) {
+  /* line 520, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-4 .section-layer .view-testimonials {
+    width: 90%;
+  }
+}
+@media all and (max-width: 500px) {
+  /* line 526, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-4 .section-layer {
+    padding: 0;
+  }
+  /* line 528, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-4 .section-layer .view-testimonials {
+    width: 100%;
+  }
+  /* line 534, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-image {
+    margin: 10px 0 0 0;
+  }
+  /* line 536, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-4 .section-layer .view-testimonials .view-content .views-slideshow-cycle-main-frame .views_slideshow_cycle_slide .views-row .views-field-field-image img {
+    max-height: 50px;
+  }
+}
+/* line 548, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-5 {
+  background: #1368a6 url("/sites/all/themes/corposs/assets/images/front/light-blue-table.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+/* line 552, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-5 .section-layer {
+  padding: 5%;
+  text-align: center;
+}
+/* line 555, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-5 .section-layer h1 {
+  width: 80%;
+  text-align: center;
+  margin: 30px auto;
+}
+/* line 559, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-5 .section-layer h1.shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+/* line 563, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-5 .section-layer .button {
+  border-radius: 16px;
+  padding: 3% 0;
+  margin: 0;
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+/* line 570, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-5 .section-layer .button a {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+}
+/* line 576, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-5 .section-layer .button.blue {
+  background-color: #142a45;
+}
+/* line 578, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-5 .section-layer .button.blue a {
+  color: #FFF;
+}
+@media all and (max-width: 600px) {
+  /* line 585, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-5 .section-layer {
+    padding: 1% 1% 5% 1%;
+  }
+  /* line 587, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-5 .section-layer h1 {
+    width: 100%;
+  }
+}
+@media all and (max-width: 400px) {
+  /* line 594, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-5 .section-layer h1 {
+    font-size: 28px;
+    line-height: 1;
+  }
+}
+/* line 601, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 {
+  background-color: #142a45;
+}
+/* line 603, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 .section-layer {
+  padding: 5%;
+}
+/* line 605, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 .section-layer .half {
+  width: 50%;
+  margin: 0 0 20px 0;
+}
+/* line 608, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 .section-layer .half .column {
+  display: inline-block;
+  width: 33%;
+  padding: 0 1%;
+  vertical-align: top;
+}
+/* line 613, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 .section-layer .half .column ul {
+  margin: 0;
+  padding: 0;
+  list-style: none outside none;
+}
+/* line 617, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 .section-layer .half .column ul li {
+  font-size: 14px;
+  color: #FFF;
+}
+/* line 620, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 .section-layer .half .column ul li a {
+  color: #DDD;
+}
+/* line 622, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 .section-layer .half .column ul li a:hover {
+  color: #FFF;
+}
+/* line 626, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 .section-layer .half .column ul li:first-child {
+  font-weight: bold;
+  font-size: 14px;
+}
+/* line 636, ../../../sass/pages/anon_front.scss */
+#home-anon.background #section-6 .section-layer #copyright {
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+@media all and (max-width: 768px) {
+  /* line 643, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-6 .section-layer {
+    padding: 2%;
+  }
+  /* line 645, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-6 .section-layer .half {
+    width: 80%;
+  }
+}
+@media all and (max-width: 600px) {
+  /* line 651, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-6 .section-layer {
+    padding: 1%;
+  }
+  /* line 653, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-6 .section-layer .half {
+    width: 100%;
+  }
+  /* line 656, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-6 .section-layer #copyright {
+    font-size: 10px;
+  }
+}
+@media all and (max-width: 600px) {
+  /* line 662, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-6 .section-layer {
+    padding: 1%;
+  }
+  /* line 665, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-6 .section-layer .half .column {
+    width: 30%;
+  }
+  /* line 667, ../../../sass/pages/anon_front.scss */
+  #home-anon.background #section-6 .section-layer .half .column:first-child {
+    width: 39%;
+  }
+}
