@@ -286,7 +286,7 @@ function fin_export_plans($since = 0) {
 	if ($since == 1) {
 		$sql .= "AND n.updated > " . $last_pull . " ";
 	}
-	$sql .= "ORDER BY n.nid ASC";
+	$sql .= "ORDER BY n.nid";
   $result = db_query($sql);
   $plans = array();
   $index = 0;
@@ -386,11 +386,17 @@ function fin_export_plans($since = 0) {
 			fa.field_acronym_value AS acronym,
 			cstd.tid AS status_id,
 			cstd.name AS consultant_status,
+			type_tid.field_consultant_type_tr_tid AS type_id,
+			type_td.name AS consultant_type,
+			contact_er.field_consultant_contact_er_target_id AS contact_id,
 			consultant_email.field_email_email AS consultant_email,
 			consultant_website.field_website_url AS consultant_website 
 			FROM field_data_field_consultant_roster_fc fcr
+			INNER JOIN field_data_field_consultant_type_tr type_tid ON fcr.field_consultant_roster_fc_value=type_tid.entity_id
+			INNER JOIN taxonomy_term_data type_td ON type_tid.field_consultant_type_tr_tid=type_td.tid AND type_td.vid=4 
 			INNER JOIN field_data_field_consultant_firm_er fcf ON fcr.field_consultant_roster_fc_value=fcf.entity_id AND fcf.bundle='field_consultant_roster_fc'
-			INNER JOIN node fcn ON fcf.field_consultant_firm_er_target_id=fcn.nid AND fcn.type='consultant_firm' 
+			INNER JOIN node fcn ON fcf.field_consultant_firm_er_target_id=fcn.nid AND fcn.type='consultant_firm'
+			INNER JOIN field_data_field_consultant_contact_er contact_er ON fcr.field_consultant_roster_fc_value=contact_er.entity_id
 			LEFT JOIN field_data_field_status_tr cstr ON fcn.nid=cstr.entity_id AND cstr.bundle='consultant_firm'
 			INNER JOIN taxonomy_term_data cstd ON cstr.field_status_tr_tid=cstd.tid AND cstd.vid=5 
 			LEFT JOIN field_data_field_acronym fa ON fcn.nid=fa.entity_id AND fa.bundle='consultant_firm'
