@@ -518,14 +518,19 @@ span.fieldset-legend {
   margin-bottom: 30px;
 }
 
+/* line 318, ../../sass/custom.scss */
+#block-fin-tasks-node-tasks {
+  margin-bottom: 30px;
+}
+
 /**** Asset Allocation Block ****/
-/* line 320, ../../sass/custom.scss */
+/* line 323, ../../sass/custom.scss */
 #block-views-e4fc768a8b33062e403168acc7227243 {
   margin-bottom: 15px;
 }
 
 /********** Content **********/
-/* line 325, ../../sass/custom.scss */
+/* line 328, ../../sass/custom.scss */
 body.boxed {
   background: #1368a6;
   /* Old browsers */
@@ -539,272 +544,283 @@ body.boxed {
   /* IE6-9 */
 }
 
-/* line 333, ../../sass/custom.scss */
+/* line 336, ../../sass/custom.scss */
 .page-node-3702 #page-title, .page-node-3704 #page-title, .page-node-3705 #page-title, .page-node-3706 #page-title, .page-node-3707 #page-title, .page-node-3710 #page-title, .page-node-6806 #page-title, .page-node-3711 #page-title {
   display: none;
 }
 
-/* line 337, ../../sass/custom.scss */
+/* line 340, ../../sass/custom.scss */
 body {
   font-family: "Lato Regular Web" !important;
   color: #000000;
 }
 
-/* line 341, ../../sass/custom.scss */
+/* line 344, ../../sass/custom.scss */
 h2.title {
   margin: 30px 0 0 0;
 }
 
-/* line 344, ../../sass/custom.scss */
+/* line 347, ../../sass/custom.scss */
 .breadcrumb span {
   font-size: 14px;
 }
 
-/* line 347, ../../sass/custom.scss */
+/* line 350, ../../sass/custom.scss */
 a.fieldset-title {
   text-transform: capitalize;
 }
 
-/* line 350, ../../sass/custom.scss */
+/* line 353, ../../sass/custom.scss */
 .content legend {
   /*    margin-top: 10px;
       margin-bottom: 10px; */
 }
 
-/* line 354, ../../sass/custom.scss */
+/* line 357, ../../sass/custom.scss */
 .field-name-field-photo .field-item {
   text-align: center;
 }
 
-/* line 357, ../../sass/custom.scss */
+/* line 360, ../../sass/custom.scss */
 .chosen-container-multi .chosen-choices {
   border: 1px solid #689afd;
 }
 
-/* line 360, ../../sass/custom.scss */
+/* line 363, ../../sass/custom.scss */
 .btn.form-submit {
   background: #1368a6;
 }
 
-/* line 364, ../../sass/custom.scss */
+/* line 367, ../../sass/custom.scss */
 body.node-type-mandate #page-title {
   display: none;
 }
-/* line 369, ../../sass/custom.scss */
+/* line 372, ../../sass/custom.scss */
 body.node-type-mandate .breadcrumb span.even .delimiter {
   display: none;
 }
-/* line 373, ../../sass/custom.scss */
+/* line 376, ../../sass/custom.scss */
 body.node-type-mandate .breadcrumb span.odd {
   display: none;
 }
 
 /********** Display Suite **********/
-/* line 381, ../../sass/custom.scss */
+/* line 384, ../../sass/custom.scss */
 #block-system-main h3.block-title {
   padding: 6px 0 6px 5px;
   font-size: 18px;
 }
-/* line 385, ../../sass/custom.scss */
+/* line 388, ../../sass/custom.scss */
 #block-system-main .field-group-fieldset legend {
   padding-left: 10px;
 }
 
-/* line 389, ../../sass/custom.scss */
+/* line 392, ../../sass/custom.scss */
 .ds-above-left, .ds-above-right {
   padding: 0 10px 10px 0;
   margin-bottom: 15px;
 }
-/* line 393, ../../sass/custom.scss */
+/* line 396, ../../sass/custom.scss */
 .ds-above-left .fieldset-wrapper,
 .ds-above-left .content, .ds-above-right .fieldset-wrapper,
 .ds-above-right .content {
   padding: 10px 0 10px 10px;
 }
-/* line 396, ../../sass/custom.scss */
+/* line 399, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset, .ds-above-right .field-group-fieldset {
   background: #e7efff;
 }
-/* line 399, ../../sass/custom.scss */
+/* line 402, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset .field-label,
 .ds-above-left .field-group-fieldset .field-content strong, .ds-above-right .field-group-fieldset .field-label,
 .ds-above-right .field-group-fieldset .field-content strong {
   padding-right: 0.25em;
 }
-/* line 402, ../../sass/custom.scss */
+/* line 405, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend, .ds-above-right .field-group-fieldset legend {
   padding: 5px 0;
   background: #142a45;
 }
-/* line 405, ../../sass/custom.scss */
+/* line 408, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend .btn, .ds-above-right .field-group-fieldset legend .btn {
   background: #1368a6;
 }
-/* line 408, ../../sass/custom.scss */
+/* line 411, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend span.fieldset-legend, .ds-above-right .field-group-fieldset legend span.fieldset-legend {
   color: white;
   background: none;
   font-size: 18px;
 }
-/* line 413, ../../sass/custom.scss */
+/* line 416, ../../sass/custom.scss */
 .ds-above-left .field-group-fieldset legend span.fieldset-legend a.fieldset-title, .ds-above-right .field-group-fieldset legend span.fieldset-legend a.fieldset-title {
   margin: 10px 0;
 }
 
-/* line 420, ../../sass/custom.scss */
+/* line 423, ../../sass/custom.scss */
 .ds-middle legend {
   background: #142a45;
   padding: 5px 0;
 }
 
-/* line 424, ../../sass/custom.scss */
+/* line 427, ../../sass/custom.scss */
 .ds-above-right {
   padding: 0 0 10px 10px;
 }
 
-/* line 427, ../../sass/custom.scss */
+/* line 430, ../../sass/custom.scss */
 .ds-below-left, .ds-below-right {
   padding: 0 10px 25px 0;
 }
 
-/* line 431, ../../sass/custom.scss */
+/* line 434, ../../sass/custom.scss */
 .ds-below-left h2.title, .ds-middle h2.title {
   margin-top: 0px;
 }
 
-/* line 435, ../../sass/custom.scss */
+/* line 438, ../../sass/custom.scss */
 .ds-below-right {
   padding: 0 0 25px 10px;
 }
 
-/* line 438, ../../sass/custom.scss */
+/* line 441, ../../sass/custom.scss */
 .ds-footer {
   padding: 0 0 0 0;
 }
 
-/* line 443, ../../sass/custom.scss */
+/* line 446, ../../sass/custom.scss */
 ul.links {
   float: right;
   margin: 0;
 }
 
 /*** Maps Blocks ***/
-/* line 450, ../../sass/custom.scss */
+/* line 453, ../../sass/custom.scss */
 .node-type-plan .group-plan-info {
   height: 260px;
 }
-/* line 454, ../../sass/custom.scss */
+/* line 457, ../../sass/custom.scss */
 .node-type-plan .field-name-plan-node-map-bf .content {
   padding: 0 0 0 10px;
 }
 
-/* line 460, ../../sass/custom.scss */
+/* line 463, ../../sass/custom.scss */
 .node-type-consultant-firm .ds-above-left {
   height: 220px;
   margin-bottom: 50px;
 }
-/* line 465, ../../sass/custom.scss */
+/* line 468, ../../sass/custom.scss */
 .node-type-consultant-firm .field-name-consultant-main-office-bf .field-items {
   height: 220px;
 }
-/* line 470, ../../sass/custom.scss */
+/* line 473, ../../sass/custom.scss */
 .node-type-consultant-firm .field-name-consultant-node-map-bf .content {
   padding: 0 0 0 10px;
 }
 
-/* line 479, ../../sass/custom.scss */
+/* line 482, ../../sass/custom.scss */
 .node-type-manager-firm .group-firm-info {
   height: 270px;
 }
-/* line 483, ../../sass/custom.scss */
+/* line 486, ../../sass/custom.scss */
 .node-type-manager-firm .field-name-manager-node-map-bf .content {
   padding: 0 0 0 10px;
 }
 
-/* line 488, ../../sass/custom.scss */
+/* line 491, ../../sass/custom.scss */
 #block-block-63 {
   margin-bottom: 30px;
 }
-/* line 490, ../../sass/custom.scss */
+/* line 493, ../../sass/custom.scss */
 #block-block-63 .content {
   padding: 10px 0;
   background-color: #e7efff;
 }
 
+/********** Display Suite **********/
+/* line 501, ../../sass/custom.scss */
+.node-type-plan .group-mandates {
+  display: block;
+  margin: 0 0 25px 0;
+}
+/* line 505, ../../sass/custom.scss */
+.node-type-plan .ds-below-left, .node-type-plan .ds-below-right {
+  padding: 0;
+}
+
 /********** Views **********/
-/* line 499, ../../sass/custom.scss */
+/* line 513, ../../sass/custom.scss */
 .view-id-extra_views .views-accordion-header .field-content {
   font-family: "Lato Regular Web" !important;
   font-size: 14px;
 }
-/* line 505, ../../sass/custom.scss */
+/* line 519, ../../sass/custom.scss */
 .view-id-extra_views .ui-accordion-content .recent-actions {
   display: inline-block;
   margin: 0 10px 0 0;
 }
-/* line 510, ../../sass/custom.scss */
+/* line 524, ../../sass/custom.scss */
 .view-id-extra_views .item-list {
   margin: 5px 0 4px 0;
 }
 
-/* line 515, ../../sass/custom.scss */
+/* line 529, ../../sass/custom.scss */
 .view-views-search .view-content {
   display: none;
 }
-/* line 518, ../../sass/custom.scss */
+/* line 532, ../../sass/custom.scss */
 .view-views-search .pager {
   display: none;
 }
 
-/* line 523, ../../sass/custom.scss */
+/* line 537, ../../sass/custom.scss */
 .views-submit-button button.my-views-filter-reset {
   position: relative;
   top: 11px;
   left: 10px;
 }
 
-/* line 530, ../../sass/custom.scss */
+/* line 544, ../../sass/custom.scss */
 .view-comment-views th.views-field-edit-comment {
   width: 70px;
   padding: 0;
 }
-/* line 534, ../../sass/custom.scss */
+/* line 548, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment {
   padding: 0;
 }
-/* line 536, ../../sass/custom.scss */
+/* line 550, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment a {
   margin: 0;
 }
-/* line 539, ../../sass/custom.scss */
+/* line 553, ../../sass/custom.scss */
 .view-comment-views td.views-field-edit-comment div.magical-modal-link {
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
-/* line 545, ../../sass/custom.scss */
+/* line 559, ../../sass/custom.scss */
 span.fieldset-legend {
   padding: 0;
   margin: 0;
 }
-/* line 550, ../../sass/custom.scss */
+/* line 564, ../../sass/custom.scss */
 span.fieldset-legend a {
   color: white;
 }
 
-/* line 558, ../../sass/custom.scss */
+/* line 572, ../../sass/custom.scss */
 .view-content-lists th.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views th.views-field-edit-node, .view-reference-views td.views-field-view-node {
   width: 70px;
 }
-/* line 561, ../../sass/custom.scss */
+/* line 575, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node, .view-content-lists td.views-field-view-node, .view-reference-views td.views-field-edit-node, .view-reference-views td.views-field-view-node {
   padding: 0;
 }
-/* line 563, ../../sass/custom.scss */
+/* line 577, ../../sass/custom.scss */
 .view-content-lists td.views-field-edit-node a, .view-content-lists td.views-field-view-node a, .view-reference-views td.views-field-edit-node a, .view-reference-views td.views-field-view-node a {
   margin: 0 5px;
 }
-/* line 568, ../../sass/custom.scss */
+/* line 582, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks, .view-reference-views td.views-field-field-tasks .tasks {
   display: block;
   position: absolute;
@@ -817,319 +833,309 @@ span.fieldset-legend a {
   background-color: #FFF;
   z-index: 10;
 }
-/* line 579, ../../sass/custom.scss */
+/* line 593, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks.closed, .view-reference-views td.views-field-field-tasks .tasks.closed {
   display: none;
 }
-/* line 582, ../../sass/custom.scss */
+/* line 596, ../../sass/custom.scss */
 .view-content-lists td.views-field-field-tasks .tasks .close, .view-reference-views td.views-field-field-tasks .tasks .close {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-/* line 590, ../../sass/custom.scss */
+/* line 604, ../../sass/custom.scss */
 .attachment-after {
   text-align: center;
 }
 
-/* line 593, ../../sass/custom.scss */
+/* line 607, ../../sass/custom.scss */
 .view-display-id-attachment_1 {
   display: inline-block;
 }
 
-/* line 596, ../../sass/custom.scss */
+/* line 610, ../../sass/custom.scss */
 .view-footer {
   margin-top: 10px;
 }
 
-/* line 599, ../../sass/custom.scss */
+/* line 613, ../../sass/custom.scss */
 .column-phone {
   min-width: 110px;
 }
 
 /*** Plan- Contacts View ***/
-/* line 604, ../../sass/custom.scss */
+/* line 618, ../../sass/custom.scss */
 .view-display-id-plan_lead_contact th.views-field-title {
   width: 20%;
 }
-/* line 607, ../../sass/custom.scss */
+/* line 621, ../../sass/custom.scss */
 .view-display-id-plan_lead_contact th.views-field-field-job-title {
   width: 20%;
 }
-/* line 610, ../../sass/custom.scss */
+/* line 624, ../../sass/custom.scss */
 .view-display-id-plan_lead_contact th.views-field-field-address-data {
   width: 15%;
 }
-/* line 613, ../../sass/custom.scss */
+/* line 627, ../../sass/custom.scss */
 .view-display-id-plan_lead_contact th.views-field-field-email {
   width: 20%;
 }
-/* line 616, ../../sass/custom.scss */
+/* line 630, ../../sass/custom.scss */
 .view-display-id-plan_lead_contact th.views-field-edit-node {
   width: 5%;
 }
-/* line 619, ../../sass/custom.scss */
+/* line 633, ../../sass/custom.scss */
 .view-display-id-plan_lead_contact .lead-contact {
   display: inline-block;
   margin-left: 5px;
 }
-/* line 623, ../../sass/custom.scss */
+/* line 637, ../../sass/custom.scss */
 .view-display-id-plan_lead_contact td .plan_inactive_contact a {
   text-decoration: line-through;
 }
 
-/* line 628, ../../sass/custom.scss */
-.view-display-id-plan_inactive_contacts_att td.views-field-title a {
-  text-decoration: line-through;
-}
-/* line 631, ../../sass/custom.scss */
-.view-display-id-plan_inactive_contacts_att td.views-field-title {
-  width: 17%;
-}
-/* line 634, ../../sass/custom.scss */
-.view-display-id-plan_inactive_contacts_att td.views-field-field-job-title {
-  width: 18%;
-}
-/* line 637, ../../sass/custom.scss */
-.view-display-id-plan_inactive_contacts_att td.views-field-field-address-data {
-  width: 13%;
-}
-/* line 640, ../../sass/custom.scss */
-.view-display-id-plan_inactive_contacts_att td.views-field-field-email {
-  width: 20%;
-}
-/* line 643, ../../sass/custom.scss */
-.view-display-id-plan_inactive_contacts_att td.views-field-edit-node {
-  width: 5%;
-}
-
+/*.view-display-id-plan_inactive_contacts_att {
+    td.views-field-title a {
+        text-decoration: line-through;
+    }
+    td.views-field-title {
+        width: 17%;
+    }
+    td.views-field-field-job-title {
+        width: 18%;
+    }
+    td.views-field-field-address-data {
+        width: 13%;
+    }
+    td.views-field-field-email {
+        width: 20%;
+    }
+    td.views-field-edit-node {
+        width: 5%;
+    }
+} */
 /*** Plan - Mandates Views ***/
-/* line 649, ../../sass/custom.scss */
-.node-type-plan .group-mandates {
-  display: block;
-  margin: 0 0 25px 0;
-}
-/* line 653, ../../sass/custom.scss */
-.node-type-plan .ds-below-left, .node-type-plan .ds-below-right {
-  padding: 0;
+/* line 665, ../../sass/custom.scss */
+.view-plan-mandates th.views-field-view-node {
+  min-width: 80px;
 }
 
 /*** News Views ***/
-/* line 659, ../../sass/custom.scss */
+/* line 672, ../../sass/custom.scss */
 .view-display-id-news_list h5 {
   margin: 0;
 }
-/* line 662, ../../sass/custom.scss */
+/* line 675, ../../sass/custom.scss */
 .view-display-id-news_list .views-field-title-field {
   padding: 5px;
 }
-/* line 665, ../../sass/custom.scss */
+/* line 678, ../../sass/custom.scss */
 .view-display-id-news_list td.views-field-field-cover-image {
   padding: 10px;
 }
 
-/* line 670, ../../sass/custom.scss */
+/* line 683, ../../sass/custom.scss */
 .view-display-id-plan_related_news td.views-field-field-cover-image {
   padding: 10px;
 }
 
-/* line 675, ../../sass/custom.scss */
+/* line 688, ../../sass/custom.scss */
 .view-display-id-consultant_related_news td.views-field-field-cover-image {
   padding: 10px;
 }
 
-/* line 680, ../../sass/custom.scss */
+/* line 693, ../../sass/custom.scss */
 .view-display-id-manager_related_news td.views-field-field-cover-image {
   padding: 10px;
 }
 
 /*** Consultant - Contacts View ***/
-/* line 686, ../../sass/custom.scss */
+/* line 699, ../../sass/custom.scss */
 .view-display-id-consultant_contacts td .plan_inactive_contact a {
   text-decoration: line-through;
 }
-/* line 689, ../../sass/custom.scss */
+/* line 702, ../../sass/custom.scss */
 .view-display-id-consultant_contacts td.views-field-title-field {
   width: 15%;
 }
-/* line 692, ../../sass/custom.scss */
+/* line 705, ../../sass/custom.scss */
 .view-display-id-consultant_contacts td.views-field-field-job-title {
   width: 15%;
 }
-/* line 695, ../../sass/custom.scss */
+/* line 708, ../../sass/custom.scss */
 .view-display-id-consultant_contacts td.views-field-field-job-title {
   width: 15%;
 }
-/* line 698, ../../sass/custom.scss */
+/* line 711, ../../sass/custom.scss */
 .view-display-id-consultant_contacts td.views-field-field-consultant-office-er {
   width: 15%;
 }
-/* line 701, ../../sass/custom.scss */
+/* line 714, ../../sass/custom.scss */
 .view-display-id-consultant_contacts td.views-field-field-address-data {
   width: 15%;
 }
-/* line 704, ../../sass/custom.scss */
+/* line 717, ../../sass/custom.scss */
 .view-display-id-consultant_contacts td.views-field-field-email {
   width: 15%;
 }
-/* line 707, ../../sass/custom.scss */
+/* line 720, ../../sass/custom.scss */
 .view-display-id-consultant_contacts td.views-field-edit-node {
   width: 5%;
 }
 
-/* line 712, ../../sass/custom.scss */
+/* line 725, ../../sass/custom.scss */
 .view-display-id-consultant_inactive_contacts td.views-field-title {
   width: 13%;
 }
-/* line 714, ../../sass/custom.scss */
+/* line 727, ../../sass/custom.scss */
 .view-display-id-consultant_inactive_contacts td.views-field-title a {
   text-decoration: line-through;
 }
-/* line 718, ../../sass/custom.scss */
+/* line 731, ../../sass/custom.scss */
 .view-display-id-consultant_inactive_contacts td.views-field-field-job-title {
   width: 15%;
 }
-/* line 721, ../../sass/custom.scss */
+/* line 734, ../../sass/custom.scss */
 .view-display-id-consultant_inactive_contacts td.views-field-field-job-title {
   width: 15%;
 }
-/* line 724, ../../sass/custom.scss */
+/* line 737, ../../sass/custom.scss */
 .view-display-id-consultant_inactive_contacts td.views-field-field-consultant-office-er {
   width: 15%;
 }
-/* line 727, ../../sass/custom.scss */
+/* line 740, ../../sass/custom.scss */
 .view-display-id-consultant_inactive_contacts td.views-field-field-address-data {
   width: 15%;
 }
-/* line 730, ../../sass/custom.scss */
+/* line 743, ../../sass/custom.scss */
 .view-display-id-consultant_inactive_contacts td.views-field-field-email {
   width: 15%;
 }
-/* line 733, ../../sass/custom.scss */
+/* line 746, ../../sass/custom.scss */
 .view-display-id-consultant_inactive_contacts td.views-field-edit-node {
   width: 5%;
 }
 
 /*** Consultants - Plan Assignments View ***/
-/* line 739, ../../sass/custom.scss */
+/* line 752, ../../sass/custom.scss */
 #block-views-02a6a486d0b43130d46ad7d8bf9d0d37 th.views-field-field-address-data {
   min-width: 110px;
 }
 
 /*** Managers - Sub Managers View ***/
-/* line 746, ../../sass/custom.scss */
+/* line 759, ../../sass/custom.scss */
 .view-display-id-manager_sub_managers td.views-field-edit-node a {
   margin: 0 5px;
 }
 
 /********** Exposed Filters **********/
-/* line 754, ../../sass/custom.scss */
+/* line 767, ../../sass/custom.scss */
 html.js fieldset.collapsible .fieldset-legend {
   padding-left: 0;
 }
 
-/* line 758, ../../sass/custom.scss */
+/* line 771, ../../sass/custom.scss */
 .view-header .btn {
   display: none;
 }
 
-/* line 762, ../../sass/custom.scss */
+/* line 775, ../../sass/custom.scss */
 .view-filters {
   background-color: #e7efff;
   color: #1368a6;
 }
-/* line 765, ../../sass/custom.scss */
+/* line 778, ../../sass/custom.scss */
 .view-filters #edit-container-root {
   margin: 0;
 }
-/* line 767, ../../sass/custom.scss */
+/* line 780, ../../sass/custom.scss */
 .view-filters #edit-container-root .fieldset-wrapper {
   text-align: center;
 }
-/* line 770, ../../sass/custom.scss */
+/* line 783, ../../sass/custom.scss */
 .view-filters #edit-container-root span.fieldset-legend a {
   text-transform: capitalize;
 }
-/* line 774, ../../sass/custom.scss */
+/* line 787, ../../sass/custom.scss */
 .view-filters .form-text {
   width: 220px;
   height: 24px;
   border: solid 1px #689afd;
 }
-/* line 779, ../../sass/custom.scss */
+/* line 792, ../../sass/custom.scss */
 .view-filters .views-submit-button {
   display: none;
 }
-/* line 782, ../../sass/custom.scss */
+/* line 795, ../../sass/custom.scss */
 .view-filters .chosen-container {
   max-width: 220px;
 }
-/* line 785, ../../sass/custom.scss */
+/* line 798, ../../sass/custom.scss */
 .view-filters ul.chosen-choices {
   max-width: 220px;
 }
-/* line 794, ../../sass/custom.scss */
+/* line 807, ../../sass/custom.scss */
 .view-filters .form-item {
   display: block;
 }
-/* line 797, ../../sass/custom.scss */
+/* line 810, ../../sass/custom.scss */
 .view-filters .form-item-items-per-page {
   width: auto;
   display: inline-block;
   margin-right: 10px;
 }
-/* line 802, ../../sass/custom.scss */
+/* line 815, ../../sass/custom.scss */
 .view-filters #edit-items-per-page {
   border: solid 1px #689afd;
 }
-/* line 805, ../../sass/custom.scss */
+/* line 818, ../../sass/custom.scss */
 .view-filters #views-exposed-form-map-views-map-search .form-item label {
   display: inline-block;
 }
 
 /*** Parent Lists ***/
-/* line 812, ../../sass/custom.scss */
+/* line 825, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-2, #views-exposed-form-content-lists-news-list #edit-container-container-2, #views-exposed-form-content-lists-rfps-list #edit-container-container-2 {
   display: inline-block;
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 818, ../../sass/custom.scss */
+/* line 831, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-3, #views-exposed-form-content-lists-managers-list #edit-container-container-4, #views-exposed-form-content-lists-managers-list #edit-container-container-5, #views-exposed-form-content-lists-news-list #edit-container-container-3, #views-exposed-form-content-lists-news-list #edit-container-container-4, #views-exposed-form-content-lists-news-list #edit-container-container-5, #views-exposed-form-content-lists-rfps-list #edit-container-container-3, #views-exposed-form-content-lists-rfps-list #edit-container-container-4, #views-exposed-form-content-lists-rfps-list #edit-container-container-5 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 26%;
 }
-/* line 824, ../../sass/custom.scss */
+/* line 837, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-3 legend, #views-exposed-form-content-lists-managers-list #edit-container-container-4 legend, #views-exposed-form-content-lists-managers-list #edit-container-container-5 legend, #views-exposed-form-content-lists-news-list #edit-container-container-3 legend, #views-exposed-form-content-lists-news-list #edit-container-container-4 legend, #views-exposed-form-content-lists-news-list #edit-container-container-5 legend, #views-exposed-form-content-lists-rfps-list #edit-container-container-3 legend, #views-exposed-form-content-lists-rfps-list #edit-container-container-4 legend, #views-exposed-form-content-lists-rfps-list #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 828, ../../sass/custom.scss */
+/* line 841, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-content-lists-managers-list #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-managers-list #edit-container-container-5 .fieldset-wrapper, #views-exposed-form-content-lists-news-list #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-content-lists-news-list #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-news-list #edit-container-container-5 .fieldset-wrapper, #views-exposed-form-content-lists-rfps-list #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-content-lists-rfps-list #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-rfps-list #edit-container-container-5 .fieldset-wrapper {
   padding: 0 10px;
 }
-/* line 831, ../../sass/custom.scss */
+/* line 844, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-managers-list #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-managers-list #edit-container-container-5 .form-item label, #views-exposed-form-content-lists-news-list #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-news-list #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-news-list #edit-container-container-5 .form-item label, #views-exposed-form-content-lists-rfps-list #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-rfps-list #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-rfps-list #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 836, ../../sass/custom.scss */
+/* line 849, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-3, #views-exposed-form-content-lists-news-list #edit-container-container-3, #views-exposed-form-content-lists-rfps-list #edit-container-container-3 {
   margin: 0 10px 10px 0;
 }
-/* line 839, ../../sass/custom.scss */
+/* line 852, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-4, #views-exposed-form-content-lists-news-list #edit-container-container-4, #views-exposed-form-content-lists-rfps-list #edit-container-container-4 {
   margin-bottom: 0 0 10px 0;
 }
-/* line 842, ../../sass/custom.scss */
+/* line 855, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-5, #views-exposed-form-content-lists-news-list #edit-container-container-5, #views-exposed-form-content-lists-rfps-list #edit-container-container-5 {
   margin: 0 0 10px 10px;
 }
-/* line 845, ../../sass/custom.scss */
+/* line 858, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-6, #views-exposed-form-content-lists-news-list #edit-container-container-6, #views-exposed-form-content-lists-rfps-list #edit-container-container-6 {
   width: 100%;
   margin: 0;
@@ -1137,58 +1143,58 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 /*** Plans List ***/
-/* line 853, ../../sass/custom.scss */
+/* line 866, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-2 {
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 858, ../../sass/custom.scss */
+/* line 871, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-3, #views-exposed-form-content-lists-plans-list #edit-container-container-4, #views-exposed-form-content-lists-plans-list #edit-container-container-5 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 26%;
 }
-/* line 864, ../../sass/custom.scss */
+/* line 877, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-3 legend, #views-exposed-form-content-lists-plans-list #edit-container-container-4 legend, #views-exposed-form-content-lists-plans-list #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 868, ../../sass/custom.scss */
+/* line 881, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-content-lists-plans-list #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .fieldset-wrapper {
   padding: 0 10px;
 }
-/* line 871, ../../sass/custom.scss */
+/* line 884, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-plans-list #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-plans-list #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 876, ../../sass/custom.scss */
+/* line 889, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-3 {
   margin: 0 10px 10px 0;
   width: 26%;
 }
-/* line 879, ../../sass/custom.scss */
+/* line 892, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-3 #edit-title-field-value {
   display: block;
 }
-/* line 883, ../../sass/custom.scss */
+/* line 896, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-4 {
   margin-bottom: 0 0 10px 0;
   width: 26%;
 }
-/* line 887, ../../sass/custom.scss */
+/* line 900, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-5 {
   margin: 0 0 10px 10px;
   width: 26%;
 }
-/* line 890, ../../sass/custom.scss */
+/* line 903, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-5 .fieldset-wrapper {
   padding: 0;
   margin-bottom: 10px;
 }
-/* line 894, ../../sass/custom.scss */
+/* line 907, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-5 .fieldset-wrapper::before {
   content: "Plan Size";
   font-weight: bold;
@@ -1196,116 +1202,121 @@ html.js fieldset.collapsible .fieldset-legend {
   width: 100%;
   padding: 5px 0 0 0;
 }
-/* line 903, ../../sass/custom.scss */
+/* line 916, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-container-container-6 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 908, ../../sass/custom.scss */
+/* line 921, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list .form-item-field-plan-size-value-min, #views-exposed-form-content-lists-plans-list .form-item-field-plan-size-value-max {
   display: inline-block;
   text-align: center;
   height: 24px;
 }
-/* line 912, ../../sass/custom.scss */
+/* line 925, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list .form-item-field-plan-size-value-min label, #views-exposed-form-content-lists-plans-list .form-item-field-plan-size-value-max label {
   width: auto;
   margin: 0 5px;
   padding-bottom: 3px;
 }
-/* line 917, ../../sass/custom.scss */
+/* line 930, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list .form-item-field-plan-size-value-min input[type="text"], #views-exposed-form-content-lists-plans-list .form-item-field-plan-size-value-max input[type="text"] {
   padding: 0 6px;
 }
-/* line 921, ../../sass/custom.scss */
+/* line 935, ../../sass/custom.scss */
+#views-exposed-form-content-lists-plans-list .form-item-field-plan-size-value-max label {
+  font-size: 12px;
+  vertical-align: top;
+}
+/* line 940, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-field-plan-size-value-min, #views-exposed-form-content-lists-plans-list #edit-field-plan-size-value-max {
   width: 64px;
-  height: 22px;
+  height: 24px;
   line-height: 22px;
   border: solid 1px #689afd;
 }
-/* line 927, ../../sass/custom.scss */
+/* line 946, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list #edit-field-date-value-min-datepicker-popup-6, #views-exposed-form-content-lists-plans-list #edit-field-date-value-max-datepicker-popup-6, #views-exposed-form-content-lists-plans-list #edit-created-min, #views-exposed-form-content-lists-plans-list #edit-created-max {
   display: inline-block;
   text-align: center;
   max-width: 90px;
   margin: 0;
 }
-/* line 933, ../../sass/custom.scss */
+/* line 952, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plans-list .form-type-date-popup label {
   margin-top: 0 !important;
 }
 
 /*** Plan Contacts List ***/
-/* line 942, ../../sass/custom.scss */
+/* line 961, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-4 {
   display: inline-block;
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 948, ../../sass/custom.scss */
+/* line 967, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 26%;
 }
-/* line 954, ../../sass/custom.scss */
+/* line 973, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5 legend, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6 legend, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 958, ../../sass/custom.scss */
+/* line 977, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5 .fieldset-wrapper, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6 .fieldset-wrapper, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 .fieldset-wrapper {
   padding: 0 10px;
 }
-/* line 961, ../../sass/custom.scss */
+/* line 980, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5 .form-item label, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6 .form-item label, #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 966, ../../sass/custom.scss */
+/* line 985, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5 {
   margin: 0 10px 10px 0;
 }
-/* line 968, ../../sass/custom.scss */
+/* line 987, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-5 #edit-title-field-value {
   width: 220px;
 }
-/* line 972, ../../sass/custom.scss */
+/* line 991, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-6 {
   margin-bottom: 0 0 10px 0;
 }
-/* line 975, ../../sass/custom.scss */
+/* line 994, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-7 {
   margin: 0 0 10px 10px;
 }
-/* line 978, ../../sass/custom.scss */
+/* line 997, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list #edit-container-container-8 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 983, ../../sass/custom.scss */
+/* line 1002, ../../sass/custom.scss */
 #views-exposed-form-content-lists-plan-contacts-list .form-item-field-address-locality label {
   display: block;
 }
 
 /*** Mandates List ***/
-/* line 989, ../../sass/custom.scss */
+/* line 1008, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .fieldset-wrapper {
   overflow: hidden;
 }
-/* line 992, ../../sass/custom.scss */
+/* line 1011, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-2 {
   display: inline-block;
   max-width: 97%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 998, ../../sass/custom.scss */
+/* line 1017, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-3, #views-exposed-form-content-lists-mandates-list #edit-container-container-4, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 {
   display: inline-block;
   vertical-align: top;
@@ -1313,54 +1324,54 @@ html.js fieldset.collapsible .fieldset-legend {
   padding: 0 2%;
   box-sizing: border-box;
 }
-/* line 1004, ../../sass/custom.scss */
+/* line 1023, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-3 legend, #views-exposed-form-content-lists-mandates-list #edit-container-container-4 legend, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1008, ../../sass/custom.scss */
+/* line 1027, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-mandates-list #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-mandates-list #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1014, ../../sass/custom.scss */
+/* line 1033, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-4 .fieldset-wrapper {
   text-align: center;
 }
-/* line 1017, ../../sass/custom.scss */
+/* line 1036, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-4 ul.chosen-choices {
   width: 100%;
 }
-/* line 1021, ../../sass/custom.scss */
+/* line 1040, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-5 {
   margin: 0 0 10px 10px;
   width: 30%;
 }
-/* line 1025, ../../sass/custom.scss */
+/* line 1044, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-6 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 1030, ../../sass/custom.scss */
+/* line 1049, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-mandate-status-tr-tid {
   padding: 0;
   margin: 0 0 -20px 0;
 }
-/* line 1034, ../../sass/custom.scss */
+/* line 1053, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-mandate-status-tr-tid #edit_field_mandate_status_tr_tid_chosen {
   margin: 0 0 4px 0;
 }
-/* line 1038, ../../sass/custom.scss */
+/* line 1057, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-mandate-status-tr-tid:after {
   content: "Date";
   font-weight: bold;
 }
-/* line 1043, ../../sass/custom.scss */
+/* line 1062, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-mandate-status-tr-tid label {
   display: block;
 }
-/* line 1047, ../../sass/custom.scss */
+/* line 1066, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-field-date-value-min-wrapper, #views-exposed-form-content-lists-mandates-list #edit-field-date-value-max-wrapper {
   width: 50%;
   display: inline-block;
@@ -1368,11 +1379,11 @@ html.js fieldset.collapsible .fieldset-legend {
   padding: 0 1% 0 0;
   box-sizing: border-box;
 }
-/* line 1054, ../../sass/custom.scss */
+/* line 1073, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-field-date-value-min-wrapper #edit-field-date-value-min-inside-wrapper .form-item label, #views-exposed-form-content-lists-mandates-list #edit-field-date-value-min-wrapper #edit-field-date-value-max-inside-wrapper .form-item label, #views-exposed-form-content-lists-mandates-list #edit-field-date-value-max-wrapper #edit-field-date-value-min-inside-wrapper .form-item label, #views-exposed-form-content-lists-mandates-list #edit-field-date-value-max-wrapper #edit-field-date-value-max-inside-wrapper .form-item label {
   margin-top: 0;
 }
-/* line 1058, ../../sass/custom.scss */
+/* line 1077, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-field-date-value-min-wrapper #edit-field-date-value-min-datepicker-popup-0, #views-exposed-form-content-lists-mandates-list #edit-field-date-value-min-wrapper #edit-field-date-value-max-datepicker-popup-0, #views-exposed-form-content-lists-mandates-list #edit-field-date-value-max-wrapper #edit-field-date-value-min-datepicker-popup-0, #views-exposed-form-content-lists-mandates-list #edit-field-date-value-max-wrapper #edit-field-date-value-max-datepicker-popup-0 {
   display: inline-block;
   text-align: center;
@@ -1381,81 +1392,81 @@ html.js fieldset.collapsible .fieldset-legend {
   margin: 0;
   width: 100%;
 }
-/* line 1068, ../../sass/custom.scss */
+/* line 1087, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-field-date-value-min-wrapper {
   padding: 0 1% 0 3%;
 }
-/* line 1071, ../../sass/custom.scss */
+/* line 1090, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-type-date-popup label {
   display: block;
 }
-/* line 1074, ../../sass/custom.scss */
+/* line 1093, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #date-presets-wrapper {
   margin: 8px 0 0 0;
 }
-/* line 1076, ../../sass/custom.scss */
+/* line 1095, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #date-presets-wrapper #preset-dates {
   width: 92%;
   height: 24px;
   border: 1px solid #689afd;
   box-sizing: border-box;
 }
-/* line 1083, ../../sass/custom.scss */
+/* line 1102, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-plan-type-tr-tid {
   width: auto;
 }
-/* line 1085, ../../sass/custom.scss */
+/* line 1104, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-plan-type-tr-tid label {
   display: block;
   float: none;
 }
-/* line 1092, ../../sass/custom.scss */
+/* line 1111, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-address-administrative-area {
   width: 30%;
   display: inline-block;
   text-align: center;
   margin-right: 5px;
 }
-/* line 1097, ../../sass/custom.scss */
+/* line 1116, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-address-administrative-area label {
   display: block;
 }
-/* line 1100, ../../sass/custom.scss */
+/* line 1119, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-address-administrative-area #edit-field-address-administrative-area {
   width: 100%;
   margin-bottom: 0;
   height: 22px;
   line-height: 22px;
 }
-/* line 1107, ../../sass/custom.scss */
+/* line 1126, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-address-country {
   width: 57%;
   display: inline-block;
   text-align: center;
   margin-left: 5px;
 }
-/* line 1112, ../../sass/custom.scss */
+/* line 1131, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-address-country label {
   display: block;
   margin-top: 0;
 }
-/* line 1116, ../../sass/custom.scss */
+/* line 1135, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-address-country #edit_field_address_country_chosen {
   max-width: 100%;
 }
-/* line 1120, ../../sass/custom.scss */
+/* line 1139, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-title {
   width: 220px;
 }
-/* line 1122, ../../sass/custom.scss */
+/* line 1141, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-title label {
   display: block;
 }
-/* line 1127, ../../sass/custom.scss */
+/* line 1146, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-title {
   width: 100%;
 }
-/* line 1130, ../../sass/custom.scss */
+/* line 1149, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-min, #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-max {
   display: inline-block;
   text-align: center;
@@ -1463,13 +1474,13 @@ html.js fieldset.collapsible .fieldset-legend {
   width: 35%;
   float: left;
 }
-/* line 1136, ../../sass/custom.scss */
+/* line 1155, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-min label, #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-max label {
   width: auto;
   margin: 0 5px;
   padding-bottom: 3px;
 }
-/* line 1141, ../../sass/custom.scss */
+/* line 1160, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-min #edit-field-account-size-value-min, #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-min #edit-field-account-size-value-max, #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-max #edit-field-account-size-value-min, #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-max #edit-field-account-size-value-max {
   width: 100%;
   height: 22px;
@@ -1477,21 +1488,21 @@ html.js fieldset.collapsible .fieldset-legend {
   border: solid 1px #689afd;
   text-align: center;
 }
-/* line 1149, ../../sass/custom.scss */
+/* line 1168, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-max {
   width: 63%;
 }
-/* line 1151, ../../sass/custom.scss */
+/* line 1170, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-account-size-value-max #edit-field-account-size-value-max {
   width: 50%;
   float: right;
 }
-/* line 1158, ../../sass/custom.scss */
+/* line 1177, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-5 .fieldset-wrapper {
   padding: 0;
   margin-bottom: 10px;
 }
-/* line 1162, ../../sass/custom.scss */
+/* line 1181, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-container-container-5 .fieldset-wrapper::before {
   content: "Mandate Size";
   font-weight: bold;
@@ -1499,26 +1510,26 @@ html.js fieldset.collapsible .fieldset-legend {
   width: auto;
   padding: 5px 0 0 0;
 }
-/* line 1171, ../../sass/custom.scss */
+/* line 1190, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit_field_geographic_tr_tid_chosen, #views-exposed-form-content-lists-mandates-list #form-item-field-attribute-tr-tid, #views-exposed-form-content-lists-mandates-list #edit_major_style_chosen, #views-exposed-form-content-lists-mandates-list #form-item-field-attribute-tr-tid {
   width: 48%;
 }
-/* line 1174, ../../sass/custom.scss */
+/* line 1193, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-geographic-tr-tid, #views-exposed-form-content-lists-mandates-list .form-item-major-style, #views-exposed-form-content-lists-mandates-list .form-item-field-attribute-tr-tid, #views-exposed-form-content-lists-mandates-list .form-item-minor-style {
   width: 50%;
   float: left;
   padding: 0 1%;
   text-align: center;
 }
-/* line 1180, ../../sass/custom.scss */
+/* line 1199, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list .form-item-field-geographic-tr-tid .chosen-container, #views-exposed-form-content-lists-mandates-list .form-item-major-style .chosen-container, #views-exposed-form-content-lists-mandates-list .form-item-field-attribute-tr-tid .chosen-container, #views-exposed-form-content-lists-mandates-list .form-item-minor-style .chosen-container {
   max-width: 100%;
 }
-/* line 1184, ../../sass/custom.scss */
+/* line 1203, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list ul.chosen-choices {
   height: 24px;
 }
-/* line 1187, ../../sass/custom.scss */
+/* line 1206, ../../sass/custom.scss */
 #views-exposed-form-content-lists-mandates-list #edit-field-major-minor-style-tr-tid-select-1 {
   border: solid 1px #689afd;
   width: 98%;
@@ -1527,7 +1538,7 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 /*** RFPs List ***/
-/* line 1196, ../../sass/custom.scss */
+/* line 1215, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-min, #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-max {
   display: inline-block;
   text-align: center;
@@ -1535,13 +1546,13 @@ html.js fieldset.collapsible .fieldset-legend {
   width: 35%;
   float: left;
 }
-/* line 1202, ../../sass/custom.scss */
+/* line 1221, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-min label, #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-max label {
   width: auto;
   margin: 0 5px;
   padding-bottom: 3px;
 }
-/* line 1207, ../../sass/custom.scss */
+/* line 1226, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-min #edit-field-account-size-value-min, #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-min #edit-field-account-size-value-max, #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-max #edit-field-account-size-value-min, #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-max #edit-field-account-size-value-max {
   width: 89px;
   height: 22px;
@@ -1549,31 +1560,31 @@ html.js fieldset.collapsible .fieldset-legend {
   border: solid 1px #689afd;
   text-align: center;
 }
-/* line 1215, ../../sass/custom.scss */
+/* line 1234, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-max {
   width: 63%;
 }
-/* line 1217, ../../sass/custom.scss */
+/* line 1236, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list .form-item-field-account-size-value-max #edit-field-account-size-value-max {
   width: 50%;
   float: right;
 }
-/* line 1223, ../../sass/custom.scss */
+/* line 1242, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list #edit-container-container-3 .fieldset-wrapper {
   padding: 0;
   margin-bottom: 10px;
 }
-/* line 1229, ../../sass/custom.scss */
+/* line 1248, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list #edit-container-container-5 .fieldset-wrapper {
   padding: 0;
 }
-/* line 1233, ../../sass/custom.scss */
+/* line 1252, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list .shs-select {
   border: solid 1px #689afd;
   height: 24px;
   padding: 0 0 3px 0;
 }
-/* line 1238, ../../sass/custom.scss */
+/* line 1257, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list .form-item-title-field-value::after {
   content: "Mandate Size";
   font-weight: bold;
@@ -1581,57 +1592,57 @@ html.js fieldset.collapsible .fieldset-legend {
   width: auto;
   padding: 3px 0 0 0;
 }
-/* line 1246, ../../sass/custom.scss */
+/* line 1265, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list #edit-title-field-value {
   margin-bottom: 0;
 }
-/* line 1249, ../../sass/custom.scss */
+/* line 1268, ../../sass/custom.scss */
 #views-exposed-form-content-lists-rfps-list #edit-field-major-minor-style-tr-tid-select-1 {
   width: 220px;
 }
 
 /*** Consultants List ***/
-/* line 1255, ../../sass/custom.scss */
+/* line 1274, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultants-list #edit-container-container-2 {
   display: inline-block;
   width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1261, ../../sass/custom.scss */
+/* line 1280, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultants-list #edit-container-container-3, #views-exposed-form-content-lists-consultants-list #edit-container-container-4, #views-exposed-form-content-lists-consultants-list #edit-container-container-6 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 26%;
 }
-/* line 1267, ../../sass/custom.scss */
+/* line 1286, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultants-list #edit-container-container-3 legend, #views-exposed-form-content-lists-consultants-list #edit-container-container-4 legend, #views-exposed-form-content-lists-consultants-list #edit-container-container-6 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1271, ../../sass/custom.scss */
+/* line 1290, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultants-list #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-content-lists-consultants-list #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-consultants-list #edit-container-container-6 .fieldset-wrapper {
   padding: 0 10px;
 }
-/* line 1274, ../../sass/custom.scss */
+/* line 1293, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultants-list #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-consultants-list #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-consultants-list #edit-container-container-6 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1279, ../../sass/custom.scss */
+/* line 1298, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultants-list #edit-container-container-3 {
   margin: 0 5px 10px 0;
 }
-/* line 1282, ../../sass/custom.scss */
+/* line 1301, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultants-list #edit-container-container-4 {
   margin-bottom: 0 5px 10px 5px;
 }
-/* line 1285, ../../sass/custom.scss */
+/* line 1304, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultants-list #edit-container-container-6 {
   margin: 0 0 10px 5px;
 }
-/* line 1288, ../../sass/custom.scss */
+/* line 1307, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultants-list #edit-container-container-7 {
   width: 100%;
   margin: 0;
@@ -1639,183 +1650,183 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 /*** Consultant Contacts List ***/
-/* line 1296, ../../sass/custom.scss */
+/* line 1315, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-3 {
   display: inline-block;
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1302, ../../sass/custom.scss */
+/* line 1321, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-4, #views-exposed-form-content-lists-consultant-contacts #edit-container-container-5, #views-exposed-form-content-lists-consultant-contacts #edit-container-container-6 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 30%;
 }
-/* line 1307, ../../sass/custom.scss */
+/* line 1326, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-4 legend, #views-exposed-form-content-lists-consultant-contacts #edit-container-container-5 legend, #views-exposed-form-content-lists-consultant-contacts #edit-container-container-6 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1311, ../../sass/custom.scss */
+/* line 1330, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-consultant-contacts #edit-container-container-5 .fieldset-wrapper, #views-exposed-form-content-lists-consultant-contacts #edit-container-container-6 .fieldset-wrapper {
   padding: 0 10px;
 }
-/* line 1314, ../../sass/custom.scss */
+/* line 1333, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-consultant-contacts #edit-container-container-5 .form-item label, #views-exposed-form-content-lists-consultant-contacts #edit-container-container-6 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1319, ../../sass/custom.scss */
+/* line 1338, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-4 {
   margin: 0 10px 5px 0;
 }
-/* line 1321, ../../sass/custom.scss */
+/* line 1340, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-4 .fieldset-wrapper label {
   padding-left: 14px;
 }
-/* line 1325, ../../sass/custom.scss */
+/* line 1344, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-5 {
   margin-bottom: 0 5px 10px 5px;
 }
-/* line 1328, ../../sass/custom.scss */
+/* line 1347, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-6 {
   margin: 0 0 10px 5px;
 }
-/* line 1331, ../../sass/custom.scss */
+/* line 1350, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-7 {
   width: 100%;
   margin: 0;
   position: relative;
   background: none;
 }
-/* line 1336, ../../sass/custom.scss */
+/* line 1355, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts #edit-container-container-7 .fieldset-wrapper {
   padding: 0;
 }
-/* line 1340, ../../sass/custom.scss */
+/* line 1359, ../../sass/custom.scss */
 #views-exposed-form-content-lists-consultant-contacts .form-autocomplete {
   width: 100%;
   max-width: 200px;
 }
 
 /*** Managers List ***/
-/* line 1347, ../../sass/custom.scss */
+/* line 1366, ../../sass/custom.scss */
 #views-exposed-form-content-lists-managers-list #edit-container-container-2 {
   width: 99%;
 }
 
 /*** Manager of Managers List ***/
-/* line 1353, ../../sass/custom.scss */
+/* line 1372, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers #edit-container-container-3 {
   display: inline-block;
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1359, ../../sass/custom.scss */
+/* line 1378, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers #edit-container-container-4, #views-exposed-form-content-lists-manager-of-managers #edit-container-container-5, #views-exposed-form-content-lists-manager-of-managers #edit-container-container-6 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 27%;
 }
-/* line 1365, ../../sass/custom.scss */
+/* line 1384, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers #edit-container-container-4 legend, #views-exposed-form-content-lists-manager-of-managers #edit-container-container-5 legend, #views-exposed-form-content-lists-manager-of-managers #edit-container-container-6 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1369, ../../sass/custom.scss */
+/* line 1388, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-content-lists-manager-of-managers #edit-container-container-5 .fieldset-wrapper, #views-exposed-form-content-lists-manager-of-managers #edit-container-container-6 .fieldset-wrapper {
   padding: 0 10px;
 }
-/* line 1372, ../../sass/custom.scss */
+/* line 1391, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-manager-of-managers #edit-container-container-5 .form-item label, #views-exposed-form-content-lists-manager-of-managers #edit-container-container-6 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1377, ../../sass/custom.scss */
+/* line 1396, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers #edit-container-container-4 {
   margin: 0 10px 10px 0;
 }
-/* line 1380, ../../sass/custom.scss */
+/* line 1399, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers #edit-container-container-5 {
   margin-bottom: 0 0 10px 0;
 }
-/* line 1383, ../../sass/custom.scss */
+/* line 1402, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers #edit-container-container-6 {
   margin: 0 0 10px 10px;
 }
-/* line 1386, ../../sass/custom.scss */
+/* line 1405, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers #edit-container-container-7 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 1391, ../../sass/custom.scss */
+/* line 1410, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers .form-item-field-address-locality-selective label {
   padding-left: 15px;
 }
-/* line 1394, ../../sass/custom.scss */
+/* line 1413, ../../sass/custom.scss */
 #views-exposed-form-content-lists-manager-of-managers .form-item-field-address-administrative-area-selective label {
   padding-left: 15px;
 }
 
 /*** News List ***/
-/* line 1400, ../../sass/custom.scss */
+/* line 1419, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-2 {
   display: inline-block;
   max-width: 97%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1406, ../../sass/custom.scss */
+/* line 1425, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-3, #views-exposed-form-content-lists-page-1 #edit-container-container-4, #views-exposed-form-content-lists-page-1 #edit-container-container-5 {
   display: inline-block;
   vertical-align: top;
   padding: 0 10px;
 }
-/* line 1411, ../../sass/custom.scss */
+/* line 1430, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-3 legend, #views-exposed-form-content-lists-page-1 #edit-container-container-4 legend, #views-exposed-form-content-lists-page-1 #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1415, ../../sass/custom.scss */
+/* line 1434, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-3 .form-item label, #views-exposed-form-content-lists-page-1 #edit-container-container-4 .form-item label, #views-exposed-form-content-lists-page-1 #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1420, ../../sass/custom.scss */
+/* line 1439, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-3 {
   margin: 0 10px 10px 0;
   width: 29%;
 }
-/* line 1424, ../../sass/custom.scss */
+/* line 1443, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-4 {
   margin-bottom: 0 10px 10px 0;
   width: 27%;
 }
-/* line 1427, ../../sass/custom.scss */
+/* line 1446, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-4 .fieldset-wrapper {
   text-align: center;
 }
-/* line 1430, ../../sass/custom.scss */
+/* line 1449, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-4 ul.chosen-choices {
   width: 100%;
 }
-/* line 1434, ../../sass/custom.scss */
+/* line 1453, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-5 {
   margin: 0 0 10px 10px;
   width: 30%;
 }
-/* line 1438, ../../sass/custom.scss */
+/* line 1457, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-6 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 1444, ../../sass/custom.scss */
+/* line 1463, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-5 .fieldset-wrapper::before {
   content: "Date";
   font-weight: bold;
@@ -1823,18 +1834,18 @@ html.js fieldset.collapsible .fieldset-legend {
   width: auto;
   padding: 5px 0 0 10px;
 }
-/* line 1452, ../../sass/custom.scss */
+/* line 1471, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-min-wrapper, #views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-max-wrapper {
   width: 49%;
   display: inline-block;
   text-align: center;
   padding: 0 10px;
 }
-/* line 1459, ../../sass/custom.scss */
+/* line 1478, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-min-inside-wrapper .form-item label, #views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-max-inside-wrapper .form-item label {
   margin-top: 0;
 }
-/* line 1463, ../../sass/custom.scss */
+/* line 1482, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-min-datepicker-popup-0, #views-exposed-form-content-lists-page-1 #edit-container-container-5 #edit-field-date-value-max-datepicker-popup-0 {
   display: inline-block;
   text-align: center;
@@ -1843,7 +1854,7 @@ html.js fieldset.collapsible .fieldset-legend {
   line-height: 22px;
   margin: 0;
 }
-/* line 1471, ../../sass/custom.scss */
+/* line 1490, ../../sass/custom.scss */
 #views-exposed-form-content-lists-page-1 #edit-container-container-5 .form-item label {
   margin-top: 0;
 }
@@ -1892,79 +1903,79 @@ html.js fieldset.collapsible .fieldset-legend {
     }
 } */
 /*** Map Search ***/
-/* line 1523, ../../sass/custom.scss */
+/* line 1542, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search .form-text {
   max-width: 250px;
 }
-/* line 1526, ../../sass/custom.scss */
+/* line 1545, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search .form-item label {
   display: block;
 }
-/* line 1529, ../../sass/custom.scss */
+/* line 1548, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-container-container-2 {
   display: inline-block;
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1535, ../../sass/custom.scss */
+/* line 1554, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-container-container-3, #views-exposed-form-map-views-map-search #edit-container-container-4, #views-exposed-form-map-views-map-search #edit-container-container-5 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
 }
-/* line 1541, ../../sass/custom.scss */
+/* line 1560, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-container-container-3 legend, #views-exposed-form-map-views-map-search #edit-container-container-4 legend, #views-exposed-form-map-views-map-search #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1545, ../../sass/custom.scss */
+/* line 1564, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-map-views-map-search #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-map-views-map-search #edit-container-container-5 .fieldset-wrapper {
   padding: 0 10px 10px 10px;
 }
-/* line 1548, ../../sass/custom.scss */
+/* line 1567, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-container-container-3 .form-item label, #views-exposed-form-map-views-map-search #edit-container-container-4 .form-item label, #views-exposed-form-map-views-map-search #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1553, ../../sass/custom.scss */
+/* line 1572, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-container-container-3 {
   margin: 0 10px 10px 0;
   width: 30%;
 }
-/* line 1557, ../../sass/custom.scss */
+/* line 1576, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-container-container-4 {
   margin-bottom: 0 0 10px 0;
   width: 30%;
 }
-/* line 1561, ../../sass/custom.scss */
+/* line 1580, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-container-container-5 {
   margin: 0 0 10px 10px;
   width: 30%;
 }
-/* line 1565, ../../sass/custom.scss */
+/* line 1584, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-container-container-6 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 1571, ../../sass/custom.scss */
+/* line 1590, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search .form-item-title #edit-title {
   margin-bottom: 0;
 }
-/* line 1575, ../../sass/custom.scss */
+/* line 1594, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search .form-item-field-address-administrative-area, #views-exposed-form-map-views-map-search .form-item-field-address-postal-code {
   width: 43%;
   display: inline-block;
   text-align: center;
   margin: 0 5px;
 }
-/* line 1581, ../../sass/custom.scss */
+/* line 1600, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-field-address-administrative-area, #views-exposed-form-map-views-map-search #edit-field-address-postal-code {
   width: 100%;
   margin-bottom: 0;
 }
-/* line 1585, ../../sass/custom.scss */
+/* line 1604, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search .form-type-geofield-proximity {
   width: auto;
   display: inline-block;
@@ -1972,53 +1983,53 @@ html.js fieldset.collapsible .fieldset-legend {
   margin-right: 0;
   margin: 0 auto;
 }
-/* line 1591, ../../sass/custom.scss */
+/* line 1610, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search .form-type-geofield-proximity label {
   width: auto;
   display: block;
   text-align: center;
 }
-/* line 1595, ../../sass/custom.scss */
+/* line 1614, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search .form-type-geofield-proximity label:before {
   content: "or";
   margin-right: 10px;
 }
-/* line 1601, ../../sass/custom.scss */
+/* line 1620, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-field-geofield-distance {
   width: 250px;
   position: relative;
   margin: 0 auto;
 }
-/* line 1606, ../../sass/custom.scss */
+/* line 1625, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search .form-item-field-geofield-distance-distance {
   width: 20%;
   display: inline-block;
   text-align: center;
   padding-top: 3px;
 }
-/* line 1612, ../../sass/custom.scss */
+/* line 1631, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-field-geofield-distance-distance {
   width: 100%;
   text-align: center;
 }
-/* line 1616, ../../sass/custom.scss */
+/* line 1635, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search .form-item-field-geofield-distance-unit {
   display: inline-block;
   text-align: center;
   float: left;
   width: 50%;
 }
-/* line 1622, ../../sass/custom.scss */
+/* line 1641, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-field-geofield-distance-unit {
   height: 24px;
   border: solid 1px #689afd;
 }
-/* line 1626, ../../sass/custom.scss */
+/* line 1645, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit_field_geofield_distance_unit_chosen {
   display: inline-block;
   width: 100% !important;
 }
-/* line 1630, ../../sass/custom.scss */
+/* line 1649, ../../sass/custom.scss */
 #views-exposed-form-map-views-map-search #edit-field-geofield-distance-origin {
   width: 95%;
   display: inline-block;
@@ -2027,259 +2038,259 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 /*** Map Search Table ***/
-/* line 1638, ../../sass/custom.scss */
+/* line 1657, ../../sass/custom.scss */
 .ip-geoloc-table {
   margin: 30px 0 0 0;
 }
-/* line 1640, ../../sass/custom.scss */
+/* line 1659, ../../sass/custom.scss */
 .ip-geoloc-table td {
   padding: 10px;
 }
-/* line 1643, ../../sass/custom.scss */
+/* line 1662, ../../sass/custom.scss */
 .ip-geoloc-table th.views-field {
   padding: 0 10px;
 }
 
-/*** Plan - Manager Roster **/
-/* line 1649, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 #edit-container-container-2 {
-  display: inline-block;
-  max-width: 99%;
-  text-align: center;
-  margin: 10px auto;
-}
-/* line 1655, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 #edit-container-container-3, #views-exposed-form-reference-views-block-1 #edit-container-container-4, #views-exposed-form-reference-views-block-1 #edit-container-container-5 {
-  display: inline-block;
-  text-align: center;
-  vertical-align: top;
-  width: 30%;
-}
-/* line 1660, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 #edit-container-container-3 legend, #views-exposed-form-reference-views-block-1 #edit-container-container-4 legend, #views-exposed-form-reference-views-block-1 #edit-container-container-5 legend {
-  border: solid 1px #142a45;
-  color: #ccc;
-}
-/* line 1667, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 #edit-container-container-3 .form-item label, #views-exposed-form-reference-views-block-1 #edit-container-container-4 .form-item label, #views-exposed-form-reference-views-block-1 #edit-container-container-5 .form-item label {
-  margin-bottom: 0;
-  margin-top: 5px;
-}
-/* line 1672, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 #edit-container-container-3 {
-  margin: 0 10px 10px 0;
-}
-/* line 1675, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 #edit-container-container-4 {
-  margin-bottom: 0 0 10px 0;
-}
-/* line 1678, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 #edit-container-container-5 {
-  margin: 0 0 10px 10px;
-}
-/* line 1681, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 #edit-container-container-6 {
-  width: 100%;
-  margin: 0;
-  position: relative;
-}
-/* line 1686, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 ul.chosen-choices {
-  height: 24px;
-}
-/* line 1689, ../../sass/custom.scss */
-#views-exposed-form-reference-views-block-1 #edit-field-major-minor-style-tr-tid-select-1 {
-  border: solid 1px #689afd;
-  height: 24px;
-  padding: 0 0 2px 0;
-}
-
-/*** Plan Mandates ***/
-/* line 1698, ../../sass/custom.scss */
+/*** Plan - Mandates ***/
+/* line 1669, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-2 {
   display: inline-block;
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1704, ../../sass/custom.scss */
+/* line 1675, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-3, #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-4, #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-5 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 30%;
 }
-/* line 1709, ../../sass/custom.scss */
+/* line 1680, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-3 legend, #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-4 legend, #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1716, ../../sass/custom.scss */
+/* line 1687, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-3 .form-item label, #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-4 .form-item label, #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1721, ../../sass/custom.scss */
+/* line 1692, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-3 {
   margin: 0 10px 10px 0;
 }
-/* line 1724, ../../sass/custom.scss */
+/* line 1695, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-4 {
   margin-bottom: 0 0 10px 0;
 }
-/* line 1727, ../../sass/custom.scss */
+/* line 1698, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-5 {
   margin: 0 0 10px 10px;
 }
-/* line 1730, ../../sass/custom.scss */
+/* line 1701, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates #edit-container-container-6 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 1735, ../../sass/custom.scss */
+/* line 1706, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates ul.chosen-choices {
   height: 24px;
 }
-/* line 1738, ../../sass/custom.scss */
+/* line 1709, ../../sass/custom.scss */
 #views-exposed-form-plan-mandates-plan-mandates #edit-field-major-minor-style-tr-tid-select-1 {
   border: solid 1px #689afd;
   height: 24px;
   padding: 0 0 2px 0;
 }
 
-/*** Consultant - Contacts ***/
+/*** Plan - Manager Roster **/
+/* line 1718, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-2 {
+  display: inline-block;
+  max-width: 99%;
+  text-align: center;
+  margin: 10px auto;
+}
+/* line 1724, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-3, #block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-4, #block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-5 {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width: 30%;
+}
+/* line 1729, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-3 legend, #block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-4 legend, #block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-5 legend {
+  border: solid 1px #142a45;
+  color: #ccc;
+}
+/* line 1736, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-3 .form-item label, #block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-4 .form-item label, #block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-5 .form-item label {
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+/* line 1741, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-3 {
+  margin: 0 10px 10px 0;
+}
+/* line 1744, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-4 {
+  margin-bottom: 0 0 10px 0;
+}
 /* line 1747, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-5 {
+  margin: 0 0 10px 10px;
+}
+/* line 1750, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-container-container-6 {
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+/* line 1755, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd ul.chosen-choices {
+  height: 24px;
+}
+/* line 1758, ../../sass/custom.scss */
+#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd #edit-field-major-minor-style-tr-tid-select-1 {
+  border: solid 1px #689afd;
+  height: 24px;
+  padding: 0 0 2px 0;
+}
+
+/*** Consultant - Contacts ***/
+/* line 1767, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-4 {
   display: inline-block;
   width: 60%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1753, ../../sass/custom.scss */
+/* line 1773, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-5 {
   display: inline-block;
   text-align: center;
   width: 43%;
   margin: 0;
 }
-/* line 1758, ../../sass/custom.scss */
+/* line 1778, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1762, ../../sass/custom.scss */
+/* line 1782, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-5 .fieldset-wrapper {
   padding: 0 10px 10px 10px;
 }
-/* line 1765, ../../sass/custom.scss */
+/* line 1785, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1770, ../../sass/custom.scss */
+/* line 1790, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-contacts #edit-container-container-6 {
   display: inline-block;
   text-align: center;
   vertical-align: bottom;
   width: 40%;
   min-width: 30%;
-  margin: 0;
+  margin: 0 0 10px 0;
   background: none;
 }
 
 /*** Consultant - IMR Contacts ***/
-/* line 1783, ../../sass/custom.scss */
+/* line 1803, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-imr-contacts #edit-container-container-3 {
   display: inline-block;
   width: 60%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1789, ../../sass/custom.scss */
+/* line 1809, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-imr-contacts #edit-container-container-4 {
   display: inline-block;
   text-align: center;
   width: 43%;
   margin: 0;
 }
-/* line 1794, ../../sass/custom.scss */
+/* line 1814, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-imr-contacts #edit-container-container-4 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1798, ../../sass/custom.scss */
+/* line 1818, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-imr-contacts #edit-container-container-4 .fieldset-wrapper {
   padding: 0 10px 10px 10px;
 }
-/* line 1801, ../../sass/custom.scss */
+/* line 1821, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-imr-contacts #edit-container-container-4 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1806, ../../sass/custom.scss */
+/* line 1826, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-imr-contacts #edit-container-container-5 {
   display: inline-block;
   text-align: center;
   vertical-align: bottom;
   width: 40%;
   min-width: 30%;
-  margin: 0;
+  margin: 0 0 10px 0;
   background: none;
 }
 
 /*** Consultant Mandate Assignments ***/
-/* line 1819, ../../sass/custom.scss */
+/* line 1839, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-container-container-2 {
   display: inline-block;
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1825, ../../sass/custom.scss */
+/* line 1845, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-container-container-3, #views-exposed-form-reference-views-consultant-mandates #edit-container-container-4, #views-exposed-form-reference-views-consultant-mandates #edit-container-container-5 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 30%;
 }
-/* line 1830, ../../sass/custom.scss */
+/* line 1850, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-container-container-3 legend, #views-exposed-form-reference-views-consultant-mandates #edit-container-container-4 legend, #views-exposed-form-reference-views-consultant-mandates #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1834, ../../sass/custom.scss */
+/* line 1854, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-container-container-3 .form-item label, #views-exposed-form-reference-views-consultant-mandates #edit-container-container-4 .form-item label, #views-exposed-form-reference-views-consultant-mandates #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1839, ../../sass/custom.scss */
+/* line 1859, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-container-container-3 {
   margin: 0 10px 10px 0;
 }
-/* line 1841, ../../sass/custom.scss */
+/* line 1861, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-container-container-3 .form-item-title-field-value label {
   display: block;
 }
-/* line 1845, ../../sass/custom.scss */
+/* line 1865, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-container-container-4 {
   margin-bottom: 0 0 10px 0;
 }
-/* line 1848, ../../sass/custom.scss */
+/* line 1868, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-container-container-5 {
   margin: 0 0 10px 10px;
 }
-/* line 1851, ../../sass/custom.scss */
+/* line 1871, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-container-container-6 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 1856, ../../sass/custom.scss */
+/* line 1876, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates ul.chosen-choices {
   height: 24px;
 }
-/* line 1859, ../../sass/custom.scss */
+/* line 1879, ../../sass/custom.scss */
 #views-exposed-form-reference-views-consultant-mandates #edit-field-major-minor-style-tr-tid-select-1 {
   border: solid 1px #689afd;
   height: 24px;
@@ -2287,103 +2298,103 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 /*** Manager - Mandate Assignments ***/
-/* line 1868, ../../sass/custom.scss */
+/* line 1888, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-container-container-2 {
   display: inline-block;
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 1874, ../../sass/custom.scss */
+/* line 1894, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-container-container-3, #views-exposed-form-reference-views-manager-mandates #edit-container-container-4, #views-exposed-form-reference-views-manager-mandates #edit-container-container-5 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 30%;
 }
-/* line 1880, ../../sass/custom.scss */
+/* line 1900, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-container-container-3 legend, #views-exposed-form-reference-views-manager-mandates #edit-container-container-4 legend, #views-exposed-form-reference-views-manager-mandates #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 1884, ../../sass/custom.scss */
+/* line 1904, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-reference-views-manager-mandates #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-reference-views-manager-mandates #edit-container-container-5 .fieldset-wrapper {
   padding: 0 10px 10px 10px;
 }
-/* line 1887, ../../sass/custom.scss */
+/* line 1907, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-container-container-3 .form-item label, #views-exposed-form-reference-views-manager-mandates #edit-container-container-4 .form-item label, #views-exposed-form-reference-views-manager-mandates #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 1892, ../../sass/custom.scss */
+/* line 1912, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-container-container-3 {
   margin: 0 10px 0 0;
 }
-/* line 1895, ../../sass/custom.scss */
+/* line 1915, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-container-container-4 {
   margin-bottom: 0 0 0 0;
 }
-/* line 1898, ../../sass/custom.scss */
+/* line 1918, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-container-container-5 {
   margin: 0 0 0 10px;
 }
-/* line 1901, ../../sass/custom.scss */
+/* line 1921, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-container-container-6 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 1906, ../../sass/custom.scss */
+/* line 1926, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-text {
   height: 22px;
 }
-/* line 1909, ../../sass/custom.scss */
+/* line 1929, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-field-date-value-min-wrapper, #views-exposed-form-reference-views-manager-mandates #edit-field-date-value-max-wrapper {
   width: 45%;
   display: inline-block;
   text-align: center;
 }
-/* line 1914, ../../sass/custom.scss */
+/* line 1934, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-field-date-value-max-wrapper {
   float: right;
 }
-/* line 1917, ../../sass/custom.scss */
+/* line 1937, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .container-inline-date > .form-item {
   margin-right: 0;
 }
-/* line 1921, ../../sass/custom.scss */
+/* line 1941, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-field-date-value-min-inside-wrapper .form-item label, #views-exposed-form-reference-views-manager-mandates #edit-field-date-value-max-inside-wrapper .form-item label {
   margin: 0;
 }
-/* line 1925, ../../sass/custom.scss */
+/* line 1945, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-field-date-value-min-datepicker-popup-1, #views-exposed-form-reference-views-manager-mandates #edit-field-date-value-max-datepicker-popup-1 {
   display: inline-block;
   text-align: center;
-  width: 100%;
+  width: 45%;
   height: 22px;
   line-height: 22px;
   margin: 0;
 }
-/* line 1933, ../../sass/custom.scss */
+/* line 1953, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-mandate-status-tr-tid {
   padding-left: 12px;
 }
-/* line 1936, ../../sass/custom.scss */
+/* line 1956, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-mandate-status-tr-tid ul.chosen-choices {
   margin-bottom: 10px;
 }
-/* line 1940, ../../sass/custom.scss */
+/* line 1960, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-mandate-status-tr-tid-selective label {
   padding-left: 5px;
 }
-/* line 1943, ../../sass/custom.scss */
+/* line 1963, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-mandate-status-tr-tid::after {
   content: "Date";
   font-weight: bold;
   width: 100%;
   padding: 0 0 0 5px;
 }
-/* line 1949, ../../sass/custom.scss */
+/* line 1969, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-field-major-minor-style-tr-tid-select-1 {
   width: 95%;
   height: 22px;
@@ -2391,64 +2402,64 @@ html.js fieldset.collapsible .fieldset-legend {
   border: solid 1px #689afd;
   padding: 0 0 2px 0;
 }
-/* line 1956, ../../sass/custom.scss */
+/* line 1976, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-plan-er-target-id-selective label, #views-exposed-form-reference-views-manager-mandates .form-item-field-consultant-firm-er-target-id-selective label {
   padding-left: 10px;
 }
-/* line 1959, ../../sass/custom.scss */
+/* line 1979, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit_field_geographic_tr_tid_selective_chosen, #views-exposed-form-reference-views-manager-mandates #form-item-field-attribute-tr-tid-selective, #views-exposed-form-reference-views-manager-mandates #edit_major_style_chosen, #views-exposed-form-reference-views-manager-mandates #form-item-field-attribute-tr-tid-selective {
   width: 48%;
 }
-/* line 1961, ../../sass/custom.scss */
+/* line 1981, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit_field_geographic_tr_tid_selective_chosen .form-type-select label, #views-exposed-form-reference-views-manager-mandates #form-item-field-attribute-tr-tid-selective .form-type-select label, #views-exposed-form-reference-views-manager-mandates #edit_major_style_chosen .form-type-select label, #views-exposed-form-reference-views-manager-mandates #form-item-field-attribute-tr-tid-selective .form-type-select label {
   padding-left: 0;
 }
-/* line 1965, ../../sass/custom.scss */
+/* line 1985, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-geographic-tr-tid-selective, #views-exposed-form-reference-views-manager-mandates .form-item-major-style, #views-exposed-form-reference-views-manager-mandates .form-item-field-attribute-tr-tid-selective, #views-exposed-form-reference-views-manager-mandates .form-item-minor-style {
   width: 48%;
   display: inline-block;
   text-align: center;
 }
-/* line 1969, ../../sass/custom.scss */
+/* line 1989, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-geographic-tr-tid-selective .chosen-container, #views-exposed-form-reference-views-manager-mandates .form-item-major-style .chosen-container, #views-exposed-form-reference-views-manager-mandates .form-item-field-attribute-tr-tid-selective .chosen-container, #views-exposed-form-reference-views-manager-mandates .form-item-minor-style .chosen-container {
   max-width: 100%;
 }
-/* line 1973, ../../sass/custom.scss */
+/* line 1993, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-title-field-value {
   margin-bottom: 0;
 }
-/* line 1977, ../../sass/custom.scss */
+/* line 1997, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-title:after {
   content: "Mandate Size";
   font-weight: bold;
 }
-/* line 1981, ../../sass/custom.scss */
+/* line 2001, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-title .form-text {
   margin-bottom: 6px;
 }
-/* line 1985, ../../sass/custom.scss */
+/* line 2005, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-geographic-tr-tid-selective label, #views-exposed-form-reference-views-manager-mandates .form-item-major-style label, #views-exposed-form-reference-views-manager-mandates .form-item-field-attribute-tr-tid-selective label, #views-exposed-form-reference-views-manager-mandates .form-item-minor-style label {
   padding-left: 0;
 }
-/* line 1988, ../../sass/custom.scss */
+/* line 2008, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-account-size-value-min, #views-exposed-form-reference-views-manager-mandates .form-item-field-account-size-value-max {
   display: inline-block;
   text-align: center;
   height: 24px;
 }
-/* line 1993, ../../sass/custom.scss */
+/* line 2013, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-account-size-value-min {
   width: 40%;
   float: left;
   padding-left: 5px;
 }
-/* line 1998, ../../sass/custom.scss */
+/* line 2018, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-account-size-value-max {
   width: 60%;
   float: right;
   padding-right: 5px;
 }
-/* line 2002, ../../sass/custom.scss */
+/* line 2022, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates .form-item-field-account-size-value-max label {
   display: inline-block;
   float: left;
@@ -2456,7 +2467,7 @@ html.js fieldset.collapsible .fieldset-legend {
   margin: 0 5px;
   padding-bottom: 5px;
 }
-/* line 2010, ../../sass/custom.scss */
+/* line 2030, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-field-account-size-value-min, #views-exposed-form-reference-views-manager-mandates #edit-field-account-size-value-max {
   display: inline-block;
   height: 22px;
@@ -2464,69 +2475,69 @@ html.js fieldset.collapsible .fieldset-legend {
   border: solid 1px #689afd;
   text-align: center;
 }
-/* line 2017, ../../sass/custom.scss */
+/* line 2037, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-field-account-size-value-min {
   float: left;
   width: 95%;
 }
-/* line 2021, ../../sass/custom.scss */
+/* line 2041, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-mandates #edit-field-account-size-value-max {
   float: right;
   width: 70%;
 }
 
 /*** Manager - Clients ***/
-/* line 2029, ../../sass/custom.scss */
+/* line 2049, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-container-container-2 {
   display: inline-block;
   max-width: 99%;
   text-align: center;
   margin: 10px auto;
 }
-/* line 2035, ../../sass/custom.scss */
+/* line 2055, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-container-container-3, #views-exposed-form-reference-views-manager-plans #edit-container-container-4, #views-exposed-form-reference-views-manager-plans #edit-container-container-5 {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   width: 30%;
 }
-/* line 2041, ../../sass/custom.scss */
+/* line 2061, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-container-container-3 legend, #views-exposed-form-reference-views-manager-plans #edit-container-container-4 legend, #views-exposed-form-reference-views-manager-plans #edit-container-container-5 legend {
   border: solid 1px #142a45;
   color: #ccc;
 }
-/* line 2045, ../../sass/custom.scss */
+/* line 2065, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-container-container-3 .fieldset-wrapper, #views-exposed-form-reference-views-manager-plans #edit-container-container-4 .fieldset-wrapper, #views-exposed-form-reference-views-manager-plans #edit-container-container-5 .fieldset-wrapper {
   padding: 0 10px 10px 10px;
 }
-/* line 2048, ../../sass/custom.scss */
+/* line 2068, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-container-container-3 .form-item label, #views-exposed-form-reference-views-manager-plans #edit-container-container-4 .form-item label, #views-exposed-form-reference-views-manager-plans #edit-container-container-5 .form-item label {
   margin-bottom: 0;
   margin-top: 5px;
 }
-/* line 2053, ../../sass/custom.scss */
+/* line 2073, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-container-container-3 {
   margin: 0 10px 10px 0;
 }
-/* line 2056, ../../sass/custom.scss */
+/* line 2076, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-container-container-4 {
   margin-bottom: 0 0 10px 0;
 }
-/* line 2059, ../../sass/custom.scss */
+/* line 2079, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-container-container-5 {
   margin: 0 0 10px 10px;
 }
-/* line 2062, ../../sass/custom.scss */
+/* line 2082, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-container-container-6 {
   width: 100%;
   margin: 0;
   position: relative;
 }
-/* line 2067, ../../sass/custom.scss */
+/* line 2087, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans .form-autocomplete {
   height: 22px;
 }
-/* line 2071, ../../sass/custom.scss */
+/* line 2091, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans .form-item-title-field-value:after {
   content: "Plan Size";
   font-weight: bold;
@@ -2534,52 +2545,52 @@ html.js fieldset.collapsible .fieldset-legend {
   width: auto;
   padding: 5px 0 0 0;
 }
-/* line 2080, ../../sass/custom.scss */
+/* line 2100, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-title-field-value {
   margin-bottom: 0;
 }
-/* line 2083, ../../sass/custom.scss */
+/* line 2103, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans .form-item-field-plan-size-value-min, #views-exposed-form-reference-views-manager-plans .form-item-field-plan-size-value-max {
   display: inline-block;
   text-align: center;
   height: 24px;
   margin: 0;
 }
-/* line 2088, ../../sass/custom.scss */
+/* line 2108, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans .form-item-field-plan-size-value-min label, #views-exposed-form-reference-views-manager-plans .form-item-field-plan-size-value-max label {
   width: auto;
   margin: 0 5px;
   padding-bottom: 3px;
 }
-/* line 2094, ../../sass/custom.scss */
+/* line 2114, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans .form-item-field-plan-size-value-min {
   width: 40%;
   float: left;
   padding-left: 5px;
 }
-/* line 2099, ../../sass/custom.scss */
+/* line 2119, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans .form-item-field-plan-size-value-max {
   width: 60%;
   float: right;
   padding-right: 5px;
 }
-/* line 2104, ../../sass/custom.scss */
+/* line 2124, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-field-plan-size-value-min, #views-exposed-form-reference-views-manager-plans #edit-field-plan-size-value-max {
   height: 22px;
   border: solid 1px #689afd;
   text-align: center;
 }
-/* line 2109, ../../sass/custom.scss */
+/* line 2129, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-field-plan-size-value-min {
   float: left;
   width: 100%;
 }
-/* line 2113, ../../sass/custom.scss */
+/* line 2133, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-field-plan-size-value-max {
   float: right;
   width: 70%;
 }
-/* line 2117, ../../sass/custom.scss */
+/* line 2137, ../../sass/custom.scss */
 #views-exposed-form-reference-views-manager-plans #edit-field-major-minor-style-tr-tid-select-1 {
   width: 95%;
   height: 22px;
@@ -2589,22 +2600,22 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 /********** Buttons **********/
-/* line 2127, ../../sass/custom.scss */
+/* line 2147, ../../sass/custom.scss */
 .btn {
   background: #1368a6;
 }
-/* line 2129, ../../sass/custom.scss */
+/* line 2149, ../../sass/custom.scss */
 .btn :hover {
   background: #142a45;
 }
 
-/* line 2133, ../../sass/custom.scss */
+/* line 2153, ../../sass/custom.scss */
 legend {
   padding: 5px;
   background: #142a45;
 }
 
-/* line 2137, ../../sass/custom.scss */
+/* line 2157, ../../sass/custom.scss */
 button.form-reset {
   vertical-align: bottom;
   background: #1368a6;
@@ -2613,7 +2624,7 @@ button.form-reset {
   margin-left: 10px;
 }
 
-/* line 2144, ../../sass/custom.scss */
+/* line 2164, ../../sass/custom.scss */
 #save-search-trigger {
   background: #1368a6;
   vertical-align: middle;
@@ -2622,211 +2633,211 @@ button.form-reset {
   color: white;
 }
 
-/* line 2152, ../../sass/custom.scss */
+/* line 2172, ../../sass/custom.scss */
 .views-exposed-form .views-exposed-widget {
   padding: 0;
 }
-/* line 2154, ../../sass/custom.scss */
+/* line 2174, ../../sass/custom.scss */
 .views-exposed-form .views-exposed-widget .form-submit {
   margin-top: 0;
 }
-/* line 2158, ../../sass/custom.scss */
+/* line 2178, ../../sass/custom.scss */
 .views-exposed-form #edit-items-per-page {
   vertical-align: none;
   margin-bottom: 0;
 }
-/* line 2162, ../../sass/custom.scss */
+/* line 2182, ../../sass/custom.scss */
 .views-exposed-form #edit-submit-content-lists {
   margin-top: 0;
   margin-left: 10px;
 }
-/* line 2166, ../../sass/custom.scss */
+/* line 2186, ../../sass/custom.scss */
 .views-exposed-form button.form-reset {
   vertical-align: middle;
 }
 
-/* line 2170, ../../sass/custom.scss */
+/* line 2190, ../../sass/custom.scss */
 .btn-danger {
   box-shadow: none;
 }
 
 /********** Tables **********/
-/* line 2175, ../../sass/custom.scss */
+/* line 2195, ../../sass/custom.scss */
 table.views-table {
   width: 100%;
 }
 
-/* line 2178, ../../sass/custom.scss */
+/* line 2198, ../../sass/custom.scss */
 tbody {
   border-top: none;
 }
 
-/* line 2181, ../../sass/custom.scss */
+/* line 2201, ../../sass/custom.scss */
 th {
   border-bottom: none;
 }
 
-/* line 2184, ../../sass/custom.scss */
+/* line 2204, ../../sass/custom.scss */
 th.views-field {
   padding: 0 5px;
 }
 
-/* line 2187, ../../sass/custom.scss */
+/* line 2207, ../../sass/custom.scss */
 td.views-field {
   padding: 0 5px;
 }
 
-/* line 2190, ../../sass/custom.scss */
+/* line 2210, ../../sass/custom.scss */
 td.views-field-field-cover-image img {
   max-width: none !important;
 }
 
-/* line 2193, ../../sass/custom.scss */
+/* line 2213, ../../sass/custom.scss */
 tr.odd {
   background-color: #dedede;
   border: none;
 }
 
-/* line 2197, ../../sass/custom.scss */
+/* line 2217, ../../sass/custom.scss */
 tr.even {
   background-color: white;
   border: none;
 }
 
-/* line 2201, ../../sass/custom.scss */
+/* line 2221, ../../sass/custom.scss */
 tr.odd td.active {
   background-color: #dedede;
 }
 
-/* line 2204, ../../sass/custom.scss */
+/* line 2224, ../../sass/custom.scss */
 tr.even td.active {
   background-color: white;
 }
 
-/* line 2209, ../../sass/custom.scss */
+/* line 2229, ../../sass/custom.scss */
 .node-type-plan #block-views-plan-mandates-plan-mandates td.views-field-view-node {
   min-width: 70px;
 }
-/* line 2211, ../../sass/custom.scss */
+/* line 2231, ../../sass/custom.scss */
 .node-type-plan #block-views-plan-mandates-plan-mandates td.views-field-view-node a {
   margin: 0 5px;
 }
 
 /********** Accordion **********/
-/* line 2219, ../../sass/custom.scss */
+/* line 2239, ../../sass/custom.scss */
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   background: #e7efff;
   border: none;
 }
 
-/* line 2224, ../../sass/custom.scss */
+/* line 2244, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-header .ui-accordion-header-icon {
   left: 0.1em;
 }
-/* line 2227, ../../sass/custom.scss */
+/* line 2247, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-icons {
   padding-left: 1.8em;
 }
-/* line 2230, ../../sass/custom.scss */
+/* line 2250, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-icons {
   padding-left: 1.4em;
 }
-/* line 2233, ../../sass/custom.scss */
+/* line 2253, ../../sass/custom.scss */
 .ui-accordion .ui-accordion-content {
   padding: 0.5em 1em;
 }
 
-/* line 2237, ../../sass/custom.scss */
+/* line 2257, ../../sass/custom.scss */
 .ui-corner-all {
   border-radius: 0;
 }
 
-/* line 2240, ../../sass/custom.scss */
+/* line 2260, ../../sass/custom.scss */
 .ui-widget-content {
   border: none;
 }
 
 /********** Widgets **********/
-/* line 2246, ../../sass/custom.scss */
+/* line 2266, ../../sass/custom.scss */
 .view-views-search .view-content {
   display: none;
 }
-/* line 2249, ../../sass/custom.scss */
+/* line 2269, ../../sass/custom.scss */
 .view-views-search .pager {
   display: none;
 }
 
 /********** Nodes **********/
-/* line 2255, ../../sass/custom.scss */
+/* line 2275, ../../sass/custom.scss */
 legend {
   margin-bottom: 0;
 }
 
-/* line 2260, ../../sass/custom.scss */
+/* line 2280, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy {
   width: 60%;
 }
-/* line 2262, ../../sass/custom.scss */
+/* line 2282, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart {
   height: 300px;
   width: 100%;
 }
-/* line 2265, ../../sass/custom.scss */
+/* line 2285, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content {
   height: 100%;
 }
-/* line 2267, ../../sass/custom.scss */
+/* line 2287, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart {
   height: 100%;
 }
-/* line 2269, ../../sass/custom.scss */
+/* line 2289, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-right.seventy .view-display-id-eva_asset_allocation_chart .view-content .pie-chart #aa-chart {
   height: 100%;
 }
-/* line 2276, ../../sass/custom.scss */
+/* line 2296, ../../sass/custom.scss */
 body.node-type-plan #block-system-main .ds-below-left.thirty {
   width: 40%;
 }
 
-/* line 2281, ../../sass/custom.scss */
+/* line 2301, ../../sass/custom.scss */
 .breadcrumb {
   background-color: #fff;
 }
 
-/* line 2283, ../../sass/custom.scss */
+/* line 2303, ../../sass/custom.scss */
 .page-node .collapsiblock .views-table a:not(.contextual-links-trigger) {
   background: none;
   color: #1368a6;
   display: inline;
 }
 
-/* line 2288, ../../sass/custom.scss */
+/* line 2308, ../../sass/custom.scss */
 .ds-middle .view.collapsiblock, .ds-below-left .view.collapsiblock, .ds-footer .view.collapsiblock {
   background-color: #fff;
 }
 
-/* line 2292, ../../sass/custom.scss */
+/* line 2312, ../../sass/custom.scss */
 .page-node ul.links {
   margin-bottom: 20px;
 }
 
-/* line 2295, ../../sass/custom.scss */
+/* line 2315, ../../sass/custom.scss */
 .view-foia-history {
   margin-bottom: 20px;
 }
 
 /*** Plans ***/
-/* line 2299, ../../sass/custom.scss */
+/* line 2319, ../../sass/custom.scss */
 .field-name-plan-potential-leads-mandates-bf, .field-name-plan-new-leads-mandates-bf, .field-name-plan-ongoing-mandates-bf, .field-name-plan-completed-mandates-bf, .field-name-plan-closed-mandates-bf {
   margin: 0;
 }
-/* line 2301, ../../sass/custom.scss */
+/* line 2321, ../../sass/custom.scss */
 .field-name-plan-potential-leads-mandates-bf .content, .field-name-plan-new-leads-mandates-bf .content, .field-name-plan-ongoing-mandates-bf .content, .field-name-plan-completed-mandates-bf .content, .field-name-plan-closed-mandates-bf .content {
   padding: 0 0 0 10px;
 }
 
 /*** Contacts ***/
-/* line 2306, ../../sass/custom.scss */
+/* line 2326, ../../sass/custom.scss */
 .node-type-contact {
   /*.group-middle {
       width: 39%;
@@ -2834,206 +2845,226 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
       margin: 0 10px;
   }  -- Deprecated when layout changed to 2-columns */
 }
-/* line 2307, ../../sass/custom.scss */
+/* line 2327, ../../sass/custom.scss */
 .node-type-contact .group-left {
   width: 38%;
   padding: 10px;
 }
-/* line 2316, ../../sass/custom.scss */
+/* line 2336, ../../sass/custom.scss */
 .node-type-contact .group-right {
   width: 50%;
   padding: 0;
   background: none;
 }
-/* line 2321, ../../sass/custom.scss */
+/* line 2341, ../../sass/custom.scss */
 .node-type-contact .group-footer {
   background: none;
   padding-top: 30px;
 }
 
 /*** Mandates ***/
-/* line 2328, ../../sass/custom.scss */
+/* line 2348, ../../sass/custom.scss */
 .node-type-mandate .ds-above-left, .node-type-mandate .ds-below-left {
   padding: 0 10px 0 0;
   margin-bottom: 0;
 }
-/* line 2332, ../../sass/custom.scss */
+/* line 2352, ../../sass/custom.scss */
 .node-type-mandate .ds-above-right, .node-type-mandate .ds-below-right {
   padding: 0;
   margin-bottom: 0;
 }
-/* line 2336, ../../sass/custom.scss */
+/* line 2356, ../../sass/custom.scss */
 .node-type-mandate .group-mandate-info, .node-type-mandate .field-name-mandate-plan-info-bf {
   height: 200px;
   background: #e7efff;
 }
 
 /*** Consultant Firms ***/
-/* line 2343, ../../sass/custom.scss */
+/* line 2363, ../../sass/custom.scss */
 .node-type-consultant-firm .ds-above-left .field-type-ds {
   margin: 0 !important;
 }
-/* line 2346, ../../sass/custom.scss */
+/* line 2366, ../../sass/custom.scss */
 .node-type-consultant-firm .ds-above-right .field-type-ds {
   margin: 0 !important;
 }
-/* line 2349, ../../sass/custom.scss */
+/* line 2369, ../../sass/custom.scss */
 .node-type-consultant-firm .field-name-consultant-main-office-bf {
   background: #e7efff;
 }
 
 /*** Office ***/
-/* line 2354, ../../sass/custom.scss */
+/* line 2374, ../../sass/custom.scss */
 .node-office .ds-above-right .content {
   padding: 0;
 }
 
 /*** News ***/
-/* line 2359, ../../sass/custom.scss */
+/* line 2379, ../../sass/custom.scss */
 .node-type-news .field-label {
   margin-right: 5px;
 }
-/* line 2363, ../../sass/custom.scss */
+/* line 2383, ../../sass/custom.scss */
 .node-type-news .field-name-field-manager-firm-er .field-label, .node-type-news .field-name-field-consultant-firm-er .field-label, .node-type-news .field-name-field-plan-er .field-label {
   font-weight: normal;
 }
 
 /********** Entityforms **********/
-/* line 2371, ../../sass/custom.scss */
+/* line 2391, ../../sass/custom.scss */
 .page-eform-submit-contact-us #fin-info-1, .page-eform-submit-contact-us #fin-info-2, .page-eform-submit-contact-us #fin-info-3 {
   width: 33%;
   float: left;
   margin: 0 0 30px 0;
 }
-/* line 2376, ../../sass/custom.scss */
+/* line 2396, ../../sass/custom.scss */
 .page-eform-submit-contact-us .group-left, .page-eform-submit-contact-us .group-middle, .page-eform-submit-contact-us .group-right, .page-eform-submit-contact-us .group-footer {
   background: #d4e2fe;
   padding-left: 10px;
   padding-right: 10px;
 }
-/* line 2381, ../../sass/custom.scss */
+/* line 2401, ../../sass/custom.scss */
 .page-eform-submit-contact-us .group-footer {
   padding-bottom: 10px;
 }
-/* line 2384, ../../sass/custom.scss */
+/* line 2404, ../../sass/custom.scss */
 .page-eform-submit-contact-us input[type="text"] {
   width: 75%;
 }
 
-/* line 2389, ../../sass/custom.scss */
+/* line 2409, ../../sass/custom.scss */
 .page-eform-submit-trial .entitytype-trial-form {
   background: #d4e2fe;
   padding: 15px;
   text-align: center;
 }
-/* line 2394, ../../sass/custom.scss */
+/* line 2414, ../../sass/custom.scss */
 .page-eform-submit-trial .pre-instructions {
   text-align: left;
 }
-/* line 2397, ../../sass/custom.scss */
+/* line 2417, ../../sass/custom.scss */
 .page-eform-submit-trial input[type="text"], .page-eform-submit-trial input[type="tel"] {
   margin: 0 0 0 5px;
   border: 1px solid #689afd;
 }
-/* line 2401, ../../sass/custom.scss */
+/* line 2421, ../../sass/custom.scss */
 .page-eform-submit-trial .field-type-text, .page-eform-submit-trial .field-type-telephone, .page-eform-submit-trial .field-type-email {
   width: 45%;
   display: inline-block;
 }
-/* line 2406, ../../sass/custom.scss */
+/* line 2426, ../../sass/custom.scss */
 .page-eform-submit-trial .ield-name-field-form-name input[type="text"] {
   margin: 0 0 0 6px;
 }
-/* line 2410, ../../sass/custom.scss */
+/* line 2430, ../../sass/custom.scss */
 .page-eform-submit-trial .field-name-field-form-job-title {
   width: 50%;
 }
-/* line 2414, ../../sass/custom.scss */
+/* line 2434, ../../sass/custom.scss */
 .page-eform-submit-trial .field-name-field-form-organization input[type="text"] {
   width: 80%;
   margin: 0 0 0 3px;
 }
-/* line 2419, ../../sass/custom.scss */
+/* line 2439, ../../sass/custom.scss */
 .page-eform-submit-trial .field-name-field-form-phone {
   width: 50%;
 }
-/* line 2421, ../../sass/custom.scss */
+/* line 2441, ../../sass/custom.scss */
 .page-eform-submit-trial .field-name-field-form-phone input[type="tel"] {
   width: 82%;
   margin: 0 0 0 7px;
 }
-/* line 2426, ../../sass/custom.scss */
+/* line 2446, ../../sass/custom.scss */
 .page-eform-submit-trial .field-name-field-form-email {
   width: 50%;
   float: left;
 }
 
 /********** Home Page **********/
-/* line 2434, ../../sass/custom.scss */
+/* line 2453, ../../sass/custom.scss */
+.page-node-3702 {
+  /* Recent Mandate Block */
+  /* FIN Welcome Block */
+  /* Analytics Home Block */
+}
+/* line 2454, ../../sass/custom.scss */
 .page-node-3702 #section-main-content {
   padding: 0;
 }
-/* line 2438, ../../sass/custom.scss */
+/* line 2458, ../../sass/custom.scss */
 .page-node-3702 #section-shortcodes .content {
   padding: 10px;
 }
-/* line 2442, ../../sass/custom.scss */
+/* line 2463, ../../sass/custom.scss */
 .page-node-3702 #block-views-d63620fa1f60e86bc7bd5963a68ab4e6 {
+  height: 170px;
   margin-bottom: 30px;
 }
-/* line 2446, ../../sass/custom.scss */
+/* line 2467, ../../sass/custom.scss */
+.page-node-3702 #block-fin-utils-subscriptions {
+  height: 380px;
+}
+/* line 2469, ../../sass/custom.scss */
 .page-node-3702 #block-fin-utils-subscriptions th, .page-node-3702 #block-fin-utils-subscriptions td {
   padding: 0 5px;
 }
-/* line 2449, ../../sass/custom.scss */
+/* line 2472, ../../sass/custom.scss */
 .page-node-3702 #block-fin-utils-subscriptions input.form-checkbox {
   vertical-align: middle;
 }
-/* line 2452, ../../sass/custom.scss */
+/* line 2475, ../../sass/custom.scss */
 .page-node-3702 #block-fin-utils-subscriptions input[type="checkbox"] {
   margin: 0;
 }
-/* line 2456, ../../sass/custom.scss */
+/* line 2479, ../../sass/custom.scss */
 .page-node-3702 #block-block-51 {
   margin-bottom: 30px;
 }
-/* line 2459, ../../sass/custom.scss */
+/* line 2482, ../../sass/custom.scss */
 .page-node-3702 #block-block-51 .trial-button a {
   color: white;
   background: #1368a6;
   padding: 10px 15px;
   margin: 10px 0 0 0;
 }
-/* line 2464, ../../sass/custom.scss */
+/* line 2487, ../../sass/custom.scss */
 .page-node-3702 #block-block-51 .trial-button a:hover {
   color: #428bca;
   background: #1368a6;
 }
-/* line 2472, ../../sass/custom.scss */
+/* line 2495, ../../sass/custom.scss */
 .page-node-3702 #block-block-41 .content {
   text-align: center;
 }
-/* line 2477, ../../sass/custom.scss */
+/* line 2500, ../../sass/custom.scss */
+.page-node-3702 #block-block-21 {
+  height: 170px;
+  margin-bottom: 30px;
+}
+/* line 2503, ../../sass/custom.scss */
 .page-node-3702 #block-block-21 h3.block-title span {
   text-transform: none;
 }
-/* line 2481, ../../sass/custom.scss */
+/* line 2508, ../../sass/custom.scss */
+.page-node-3702 #block-block-31 {
+  height: 380px;
+}
+/* line 2511, ../../sass/custom.scss */
 .page-node-3702 #block-block-61 {
   margin-bottom: 30px;
 }
-/* line 2483, ../../sass/custom.scss */
+/* line 2513, ../../sass/custom.scss */
 .page-node-3702 #block-block-61 .content {
   padding: 10px 10px 0 10px;
 }
-/* line 2485, ../../sass/custom.scss */
+/* line 2515, ../../sass/custom.scss */
 .page-node-3702 #block-block-61 .content p {
   margin: 0;
 }
-/* line 2490, ../../sass/custom.scss */
+/* line 2520, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home {
   margin-bottom: 30px;
 }
-/* line 2492, ../../sass/custom.scss */
+/* line 2522, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home .views-field-body {
   float: left;
   margin: 10px;
@@ -3046,26 +3077,26 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
       float: left;
   } */
 }
-/* line 2496, ../../sass/custom.scss */
+/* line 2526, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home .views-field-body .field-content {
   float: left;
 }
-/* line 2508, ../../sass/custom.scss */
+/* line 2538, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home .views-field-field-client-organization {
   margin: 0 10px;
 }
-/* line 2511, ../../sass/custom.scss */
+/* line 2541, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home #views_slideshow_controls_text_testimonials-testimonials_home {
   z-index: 100;
   position: relative;
   width: 100%;
   margin-top: 10px;
 }
-/* line 2516, ../../sass/custom.scss */
+/* line 2546, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home #views_slideshow_controls_text_testimonials-testimonials_home #views_slideshow_controls_text_previous_testimonials-testimonials_home {
   float: left;
 }
-/* line 2518, ../../sass/custom.scss */
+/* line 2548, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home #views_slideshow_controls_text_testimonials-testimonials_home #views_slideshow_controls_text_previous_testimonials-testimonials_home a {
   display: block;
   background: url("../images/arrow-left.png") bottom;
@@ -3073,15 +3104,15 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
   height: 25px;
   text-indent: -99999px;
 }
-/* line 2525, ../../sass/custom.scss */
+/* line 2555, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home #views_slideshow_controls_text_testimonials-testimonials_home #views_slideshow_controls_text_previous_testimonials-testimonials_home a:hover {
   background: url("../images/arrow-left-hover.png") bottom;
 }
-/* line 2529, ../../sass/custom.scss */
+/* line 2559, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home #views_slideshow_controls_text_testimonials-testimonials_home #views_slideshow_controls_text_next_testimonials-testimonials_home {
   float: right;
 }
-/* line 2531, ../../sass/custom.scss */
+/* line 2561, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home #views_slideshow_controls_text_testimonials-testimonials_home #views_slideshow_controls_text_next_testimonials-testimonials_home a {
   display: block;
   background: url("../images/arrow-right.png") bottom;
@@ -3089,491 +3120,557 @@ body.node-type-plan #block-system-main .ds-below-left.thirty {
   height: 25px;
   text-indent: -99999px;
 }
-/* line 2538, ../../sass/custom.scss */
+/* line 2568, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home #views_slideshow_controls_text_testimonials-testimonials_home #views_slideshow_controls_text_next_testimonials-testimonials_home a:hover {
   background: url("../images/arrow-right-hover.png") bottom;
 }
-/* line 2542, ../../sass/custom.scss */
+/* line 2572, ../../sass/custom.scss */
 .page-node-3702 #block-views-testimonials-testimonials-home #views_slideshow_controls_text_testimonials-testimonials_home span#views_slideshow_controls_text_pause_testimonials-testimonials_home {
   display: none;
 }
-/* line 2547, ../../sass/custom.scss */
+/* line 2577, ../../sass/custom.scss */
 .page-node-3702 .region-latestworks {
   background: #e7efff;
   padding: 10px 15px;
 }
-/* line 2551, ../../sass/custom.scss */
+/* line 2581, ../../sass/custom.scss */
 .page-node-3702 #fin-info-1, .page-node-3702 #fin-info-2, .page-node-3702 #fin-info-3 {
   width: 33%;
   float: left;
   margin: 0 0 30px 0;
 }
-/* line 2556, ../../sass/custom.scss */
+/* line 2586, ../../sass/custom.scss */
 .page-node-3702 #contact-link {
   width: 150px;
   float: right;
 }
 
 /********** Resources **********/
-/* line 2563, ../../sass/custom.scss */
+/* line 2593, ../../sass/custom.scss */
 #block-fin-utils-saved-filters, #block-fin-utils-saved-searches, #block-fin-utils-subscriptions {
   margin-bottom: 30px;
 }
 
-/* line 2566, ../../sass/custom.scss */
+/* line 2596, ../../sass/custom.scss */
 #block-fin-utils-messages {
   margin-bottom: 30px;
 }
-/* line 2568, ../../sass/custom.scss */
+/* line 2598, ../../sass/custom.scss */
 #block-fin-utils-messages fieldset.collapsed {
   height: auto;
 }
-/* line 2572, ../../sass/custom.scss */
+/* line 2602, ../../sass/custom.scss */
 #block-fin-utils-messages .privatemsg-filter-actions input.form-submit {
   margin-right: 10px;
 }
 
 /*** Resources Page ***/
-/* line 2579, ../../sass/custom.scss */
+/* line 2609, ../../sass/custom.scss */
 .page-node-6806 td, .page-node-6806 th {
   padding: 0 10px;
 }
-/* line 2582, ../../sass/custom.scss */
+/* line 2612, ../../sass/custom.scss */
 .page-node-6806 input[type="radio"], .page-node-6806 input[type="checkbox"] {
   vertical-align: middle;
   margin: 0;
 }
-/* line 2587, ../../sass/custom.scss */
+/* line 2617, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #edit-filter {
   background-color: #e7efff;
   margin: 0 10px 10px 10px;
 }
-/* line 2590, ../../sass/custom.scss */
+/* line 2620, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #edit-filter .fieldset-wrapper {
   padding: 0 10px;
 }
-/* line 2594, ../../sass/custom.scss */
+/* line 2624, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #edit-filter .fieldset-legend a.fieldset-title {
   color: white;
 }
-/* line 2596, ../../sass/custom.scss */
+/* line 2626, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #edit-filter .fieldset-legend a.fieldset-title:hover {
   color: #428bca;
 }
-/* line 2602, ../../sass/custom.scss */
+/* line 2632, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #edit-filter .form-item-search, .page-node-6806 #block-fin-utils-messages #edit-filter .form-item-author {
   display: inline-block;
   margin: 10px;
 }
-/* line 2606, ../../sass/custom.scss */
+/* line 2636, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #edit-filter #edit-actions--2 {
   margin: 0 0 10px 0;
 }
-/* line 2610, ../../sass/custom.scss */
+/* line 2640, ../../sass/custom.scss */
 .page-node-6806 #block-fin-utils-messages #privatemsg-list-form {
   background-color: white;
 }
 
 /*** Messages Page ***/
-/* line 2618, ../../sass/custom.scss */
+/* line 2648, ../../sass/custom.scss */
 .page-messages #privatemsg-list-form .container-inline {
   margin-bottom: 10px;
 }
-/* line 2623, ../../sass/custom.scss */
+/* line 2653, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter {
   background-color: #e7efff;
 }
-/* line 2625, ../../sass/custom.scss */
+/* line 2655, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter legend {
   background-color: #142a45;
 }
-/* line 2628, ../../sass/custom.scss */
+/* line 2658, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter .fieldset-wrapper {
   padding: 0 10px;
 }
-/* line 2631, ../../sass/custom.scss */
+/* line 2661, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter a.fieldset-title {
   margin-left: 5px;
   color: white;
 }
-/* line 2634, ../../sass/custom.scss */
+/* line 2664, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter a.fieldset-title:hover {
   color: #428bca;
 }
-/* line 2638, ../../sass/custom.scss */
+/* line 2668, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter .form-item-search, .page-messages #privatemsg-list #edit-filter .form-item-author {
   display: inline-block;
   margin-left: 10px;
 }
-/* line 2642, ../../sass/custom.scss */
+/* line 2672, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter #edit-actions--2 {
   margin: 0 0 10px 0;
 }
-/* line 2645, ../../sass/custom.scss */
+/* line 2675, ../../sass/custom.scss */
 .page-messages #privatemsg-list #edit-filter #edit-submit--2 {
   margin-right: 10px;
 }
 
-/* line 2651, ../../sass/custom.scss */
+/* line 2681, ../../sass/custom.scss */
 .privatemsg-message-column {
   float: none;
 }
 
-/* line 2654, ../../sass/custom.scss */
+/* line 2684, ../../sass/custom.scss */
 #privatemsg-list-form .privatemsg-list {
   width: 100%;
 }
 
-/* line 2657, ../../sass/custom.scss */
+/* line 2687, ../../sass/custom.scss */
 .privatemsg-list td {
   padding: 0 5px;
 }
 
-/* line 2660, ../../sass/custom.scss */
+/* line 2690, ../../sass/custom.scss */
 .privatemsg-list th {
   padding: 0 5px;
 }
 
-/* line 2663, ../../sass/custom.scss */
+/* line 2693, ../../sass/custom.scss */
 .privatemsg-list tr.odd {
   background-color: #dedede;
   border: 1px solid white;
 }
 
-/* line 2667, ../../sass/custom.scss */
+/* line 2697, ../../sass/custom.scss */
 .privatemsg-list tr.even {
   background-color: white;
   border: 1px solid white;
 }
 
-/* line 2672, ../../sass/custom.scss */
+/* line 2702, ../../sass/custom.scss */
 .privatemsg-list tr.odd td.active, .privatemsg-list tr.even td.active {
   background-color: #d4e2fe;
 }
 
-/* line 2676, ../../sass/custom.scss */
+/* line 2706, ../../sass/custom.scss */
 .privatemsg-list .form-checkbox {
   margin-top: -1px;
 }
 
-/* line 2679, ../../sass/custom.scss */
+/* line 2709, ../../sass/custom.scss */
 #privatemsg-list span.fieldset-legend a {
   color: #aaa;
 }
 
-/* line 2683, ../../sass/custom.scss */
+/* line 2713, ../../sass/custom.scss */
 .page-messages-sent .form-item-operation {
   display: none;
 }
 
-/* line 2688, ../../sass/custom.scss */
+/* line 2718, ../../sass/custom.scss */
 .page-messages .form-item-tag-add, .page-messages #edit-tag-add-submit, .page-messages-sent .form-item-tag-add, .page-messages-sent #edit-tag-add-submit {
   display: none;
 }
-/* line 2691, ../../sass/custom.scss */
+/* line 2721, ../../sass/custom.scss */
 .page-messages th.select-all, .page-messages-sent th.select-all {
   text-align: center;
 }
 
-/* line 2696, ../../sass/custom.scss */
+/* line 2726, ../../sass/custom.scss */
 #subscriptions-ui-node-form .sticky-table {
   margin-bottom: 5px;
 }
 
-/* line 2700, ../../sass/custom.scss */
+/* line 2730, ../../sass/custom.scss */
 #block-subscriptions-ui-0 {
   background: #142a45;
 }
-/* line 2702, ../../sass/custom.scss */
+/* line 2732, ../../sass/custom.scss */
 #block-subscriptions-ui-0 tr.odd, #block-subscriptions-ui-0 tr.even {
   background-color: #e7efff;
 }
-/* line 2704, ../../sass/custom.scss */
+/* line 2734, ../../sass/custom.scss */
 #block-subscriptions-ui-0 tr.odd #edit-subscriptions-1, #block-subscriptions-ui-0 tr.odd #edit-subscriptions-2, #block-subscriptions-ui-0 tr.even #edit-subscriptions-1, #block-subscriptions-ui-0 tr.even #edit-subscriptions-2 {
   margin: 0 5px;
   vertical-align: middle;
 }
-/* line 2709, ../../sass/custom.scss */
+/* line 2739, ../../sass/custom.scss */
 #block-subscriptions-ui-0 .btn {
   background: #1368a6;
 }
 
-/* line 2713, ../../sass/custom.scss */
+/* line 2743, ../../sass/custom.scss */
 .block-subscriptions-ui {
   padding: 0 !important;
 }
-/* line 2715, ../../sass/custom.scss */
+/* line 2745, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe {
   height: auto;
 }
-/* line 2717, ../../sass/custom.scss */
+/* line 2747, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe legend {
   border-bottom: none;
   margin: 0;
   padding: 4px 0 4px 5px;
   background: #142a45;
 }
-/* line 2722, ../../sass/custom.scss */
+/* line 2752, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe legend .fieldset-legend {
   background: none;
   background-image: none;
   padding: 0;
 }
-/* line 2728, ../../sass/custom.scss */
+/* line 2758, ../../sass/custom.scss */
 .block-subscriptions-ui #subscribe .fieldset-wrapper {
   background: #e7efff;
   padding: 10px;
 }
 
-/* line 2734, ../../sass/custom.scss */
+/* line 2764, ../../sass/custom.scss */
 #block-subscriptions-ui-0 {
   margin-bottom: 15px;
 }
 
-/* line 2738, ../../sass/custom.scss */
+/* line 2768, ../../sass/custom.scss */
 #subscriptions-page-user-overview td, #subscriptions-page-user-overview th, #subscriptions-page-form td, #subscriptions-page-form th, .page-user-saved-searches td, .page-user-saved-searches th {
   padding: 5px;
 }
 
-/* line 2743, ../../sass/custom.scss */
+/* line 2773, ../../sass/custom.scss */
 .page-user-subscriptions fieldset.collapsible {
   margin-bottom: 30px;
 }
-/* line 2747, ../../sass/custom.scss */
+/* line 2777, ../../sass/custom.scss */
 .page-user-subscriptions #edit-suspend span.fieldset-legend {
   margin-left: 5px;
 }
-/* line 2750, ../../sass/custom.scss */
+/* line 2780, ../../sass/custom.scss */
 .page-user-subscriptions #edit-suspend .fieldset-wrapper {
   background: #e7efff;
   padding: 10px 0;
 }
-/* line 2753, ../../sass/custom.scss */
+/* line 2783, ../../sass/custom.scss */
 .page-user-subscriptions #edit-suspend .fieldset-wrapper .form-item-state {
   margin-top: 0;
   margin-left: 15px;
 }
-/* line 2759, ../../sass/custom.scss */
+/* line 2789, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings {
   background: #e7efff;
 }
-/* line 2761, ../../sass/custom.scss */
+/* line 2791, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings span.fieldset-legend {
   margin-left: 5px;
 }
-/* line 2764, ../../sass/custom.scss */
+/* line 2794, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-save-settings, .page-user-subscriptions #edit-settings #edit-reset {
   margin-bottom: 10px;
 }
-/* line 2767, ../../sass/custom.scss */
+/* line 2797, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings .form-item-autosub-comment, .page-user-subscriptions #edit-settings .form-item-sendself, .page-user-subscriptions #edit-settings .form-item-send-comments, .page-user-subscriptions #edit-settings #edit-visibility {
   display: none;
 }
-/* line 2770, ../../sass/custom.scss */
+/* line 2800, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-autosub {
   display: none;
   margin-left: 15px;
 }
-/* line 2773, ../../sass/custom.scss */
+/* line 2803, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-autosub .fieldset-wrapper {
   padding: 10px 10px 0 10px;
 }
-/* line 2776, ../../sass/custom.scss */
+/* line 2806, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-autosub span.fieldset-legend {
   margin-left: 5px;
   color: white;
   text-transform: capitalize;
 }
-/* line 2782, ../../sass/custom.scss */
+/* line 2812, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings .form-item-digest {
   margin-top: 15px 0 0 15px;
   padding: 0 10px 10px 10px;
 }
-/* line 2786, ../../sass/custom.scss */
+/* line 2816, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-preferences {
   margin: 0 15px;
 }
-/* line 2788, ../../sass/custom.scss */
+/* line 2818, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-preferences span.fieldset-legend {
   margin-left: 5px;
   color: white;
   text-transform: capitalize;
 }
-/* line 2793, ../../sass/custom.scss */
+/* line 2823, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-preferences .fieldset-wrapper {
   padding: 10px;
 }
-/* line 2795, ../../sass/custom.scss */
+/* line 2825, ../../sass/custom.scss */
 .page-user-subscriptions #edit-settings #edit-preferences .fieldset-wrapper .form-item-send-interval {
   margin-top: 0;
 }
-/* line 2801, ../../sass/custom.scss */
+/* line 2831, ../../sass/custom.scss */
 .page-user-subscriptions input[type="checkbox"] {
   margin: 0 5px 0 0;
 }
 
-/* line 2805, ../../sass/custom.scss */
+/* line 2835, ../../sass/custom.scss */
 span.fieldset-legend a {
   background-color: #142a45;
 }
 
-/* line 2808, ../../sass/custom.scss */
+/* line 2838, ../../sass/custom.scss */
 #edit-autosub {
   margin: 15px 0 0 0;
 }
 
-/* line 2811, ../../sass/custom.scss */
+/* line 2841, ../../sass/custom.scss */
 #edit-submit, #edit-save-settings, #edit-save-notifications, #edit-reset {
   background-color: #1368a6;
   padding: 4px 6px;
   margin: 0 10px;
 }
 
-/* line 2817, ../../sass/custom.scss */
+/* line 2847, ../../sass/custom.scss */
 #user-tasks-table table {
   width: 100%;
 }
-/* line 2820, ../../sass/custom.scss */
+/* line 2850, ../../sass/custom.scss */
 #user-tasks-table table thead th {
   padding: 0 5px;
 }
-/* line 2824, ../../sass/custom.scss */
+/* line 2854, ../../sass/custom.scss */
 #user-tasks-table table td {
   padding: 0 5px;
 }
-/* line 2827, ../../sass/custom.scss */
+/* line 2857, ../../sass/custom.scss */
 #user-tasks-table table td:nth-child(5) {
   min-width: 90px;
 }
-/* line 2833, ../../sass/custom.scss */
+/* line 2863, ../../sass/custom.scss */
 #user-tasks-table table td:nth-child(7) {
   text-align: center;
 }
 
-/* line 2840, ../../sass/custom.scss */
+/* line 2870, ../../sass/custom.scss */
 .task-overdue {
   color: #ff0000;
 }
 
-/* line 2843, ../../sass/custom.scss */
+/* line 2873, ../../sass/custom.scss */
 .task-in-progress {
   color: #339900;
 }
 
-/* line 2848, ../../sass/custom.scss */
+/* line 2878, ../../sass/custom.scss */
 #block-fin-utils-messages #privatemsg-list-form .container-inline {
   margin: 0 0 10px 0;
 }
-/* line 2851, ../../sass/custom.scss */
+/* line 2881, ../../sass/custom.scss */
 #block-fin-utils-messages #privatemsg-list-form .btn-danger {
   box-shadow: none;
 }
-/* line 2856, ../../sass/custom.scss */
+/* line 2886, ../../sass/custom.scss */
 #block-fin-utils-messages table.privatemsg-list th.select-all {
   text-align: center;
 }
 
-/* line 2862, ../../sass/custom.scss */
+/* line 2892, ../../sass/custom.scss */
 .page-user-saved-searches #saved-searches-header {
   color: white;
   padding-left: 10px;
 }
 
-/* line 2868, ../../sass/custom.scss */
+/* line 2898, ../../sass/custom.scss */
 .page-user-saved-searches #saved-searches-header, .page-user-saved-searches #block-system-main {
   display: none;
 }
 
 /********** User Pages **********/
-/* line 2875, ../../sass/custom.scss */
+/* line 2905, ../../sass/custom.scss */
 .page-user .ds-above-left {
   width: 50%;
 }
-/* line 2878, ../../sass/custom.scss */
+/* line 2908, ../../sass/custom.scss */
 .page-user .ds-below-left, .page-user .ds-below-middle, .page-user .ds-below-right {
   padding: 0;
 }
-/* line 2881, ../../sass/custom.scss */
+/* line 2911, ../../sass/custom.scss */
 .page-user .field-label {
   margin-right: 5px;
 }
-/* line 2886, ../../sass/custom.scss */
+/* line 2916, ../../sass/custom.scss */
 .page-user .block-fin-user-tracking .content .form-wrapper {
   margin: 0 0 15px 0;
   background: #e7efff;
 }
-/* line 2889, ../../sass/custom.scss */
+/* line 2919, ../../sass/custom.scss */
 .page-user .block-fin-user-tracking .content .form-wrapper legend {
   background: #e7efff;
   border-bottom: none;
 }
-/* line 2892, ../../sass/custom.scss */
+/* line 2922, ../../sass/custom.scss */
 .page-user .block-fin-user-tracking .content .form-wrapper legend span.fieldset-legend {
   text-transform: capitalize;
 }
-/* line 2896, ../../sass/custom.scss */
+/* line 2926, ../../sass/custom.scss */
 .page-user .block-fin-user-tracking .content .form-wrapper .fieldset-wrapper {
   padding: 10px;
 }
 
-/* line 2904, ../../sass/custom.scss */
+/* line 2934, ../../sass/custom.scss */
 .page-user-edit .form-item-mail {
   margin: 0 20px 0 0;
 }
-/* line 2907, ../../sass/custom.scss */
+/* line 2937, ../../sass/custom.scss */
 .page-user-edit .form-item-name, .page-user-edit .form-item-mail {
   display: none;
 }
-/* line 2910, ../../sass/custom.scss */
+/* line 2940, ../../sass/custom.scss */
 .page-user-edit .form-item-pass::before {
   content: "Change Password";
   width: 100%;
   font-size: 18px;
   font-weight: bold;
 }
-/* line 2916, ../../sass/custom.scss */
+/* line 2946, ../../sass/custom.scss */
 .page-user-edit input[type="radio"], .page-user-edit input[type="checkbox"] {
   margin: 0 5px 0 0;
   vertical-align: middle;
 }
 
 /********** Edit Forms **********/
+/* line 2954, ../../sass/custom.scss */
+a.tabledrag-handle .handle {
+  width: 30px;
+  height: 30px;
+}
+
 /*** Mandate Edit ***/
-/* line 2925, ../../sass/custom.scss */
+/* line 2961, ../../sass/custom.scss */
+form.node-mandate-form .form-text, form.node-mandate-form .form-select {
+  border: solid 1px #689afd;
+}
+/* line 2964, ../../sass/custom.scss */
+form.node-mandate-form .form-item {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* line 2968, ../../sass/custom.scss */
 form.node-mandate-form .form-type-checkbox {
   display: inline-block;
   width: 20%;
 }
-/* line 2929, ../../sass/custom.scss */
+/* line 2972, ../../sass/custom.scss */
 form.node-mandate-form input[type=checkbox] {
   display: inline-block;
   float: left;
   margin: 4px 5px 0 5px;
 }
-/* line 2935, ../../sass/custom.scss */
+/* line 2978, ../../sass/custom.scss */
 form.node-mandate-form .ds-above-left .field-group-fieldset, form.node-mandate-form .ds-above-middle .field-group-fieldset, form.node-mandate-form .ds-above-right .field-group-fieldset {
   background: #bad0fd;
 }
-/* line 2938, ../../sass/custom.scss */
+/* line 2981, ../../sass/custom.scss */
 form.node-mandate-form .ds-above-left legend, form.node-mandate-form .ds-above-middle legend, form.node-mandate-form .ds-above-right legend {
   padding-left: 5px;
 }
-/* line 2942, ../../sass/custom.scss */
+/* line 2984, ../../sass/custom.scss */
+form.node-mandate-form .ds-above-left .fieldset-wrapper, form.node-mandate-form .ds-above-middle .fieldset-wrapper, form.node-mandate-form .ds-above-right .fieldset-wrapper {
+  padding: 10px;
+}
+/* line 2988, ../../sass/custom.scss */
 form.node-mandate-form tr.draggable {
   background-color: #bad0fd;
 }
-/* line 2946, ../../sass/custom.scss */
+/* line 2992, ../../sass/custom.scss */
+form.node-mandate-form .ds-above-middle tr.draggable, form.node-mandate-form .ds-above-right tr.draggable {
+  background: #d4e2fe;
+  border: solid 1px #689afd;
+}
+/* line 2996, ../../sass/custom.scss */
+form.node-mandate-form .ds-above-middle .tabledrag-toggle-weight-wrapper, form.node-mandate-form .ds-above-right .tabledrag-toggle-weight-wrapper {
+  display: none;
+}
+/* line 2999, ../../sass/custom.scss */
 form.node-mandate-form .ds-above-middle .form-item, form.node-mandate-form .ds-above-right .form-item {
   padding: 10px;
-  border: 1px solid #689afd;
+  background: #d4e2fe;
+}
+/* line 3004, ../../sass/custom.scss */
+form.node-mandate-form .group-plan-info {
+  height: auto;
+}
+/* line 3007, ../../sass/custom.scss */
+form.node-mandate-form .field-name-field-date, form.node-mandate-form .field-name-field-account-size, form.node-mandate-form .field-name-field-geographic-tr, form.node-mandate-form .field-name-field-major-minor-style-tr, form.node-mandate-form .field-name-field-attribute-tr, form.node-mandate-form #entityreference-autofill-node-mandate---field_currency_tr {
+  display: inline-block;
+  width: 47%;
+  margin: 0 15px 0 0;
+  vertical-align: top;
+}
+/* line 3013, ../../sass/custom.scss */
+form.node-mandate-form .field-name-field-mandate-status-tr {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 3016, ../../sass/custom.scss */
+form.node-mandate-form .field-name-field-mandate-status-tr .chosen-container {
+  width: 150px;
+}
+/* line 3020, ../../sass/custom.scss */
+form.node-mandate-form .field-name-field-consultants-finalists-er, form.node-mandate-form .field-name-field-consultants-onwatch-er, form.node-mandate-form .field-name-field-consultants-hired, form.node-mandate-form .field-name-field-consultants-terminated, form.node-mandate-form .field-name-field-manager-finalists-fc, form.node-mandate-form .field-name-field-managers-onwatch-fc, form.node-mandate-form .field-name-field-managers-hired, form.node-mandate-form .field-name-field-managers-terminated {
+  border: solid 1px #689afd;
+}
+/* line 3024, ../../sass/custom.scss */
+form.node-mandate-form #field-comments-fc-values thead {
+  background: #bad0fd;
+  padding: 10px;
+}
+/* line 3029, ../../sass/custom.scss */
+form.node-mandate-form .btn-info {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 /*** Contact Edit ***/
-/* line 2954, ../../sass/custom.scss */
+/* line 3036, ../../sass/custom.scss */
 form.node-contact-form table {
   width: 100%;
 }
-/* line 2957, ../../sass/custom.scss */
+/* line 3039, ../../sass/custom.scss */
+form.node-contact-form input[type="text"], form.node-contact-form textarea {
+  border: solid 1px #689afd;
+}
+/* line 3042, ../../sass/custom.scss */
 form.node-contact-form tr.draggable {
   background-color: #e7efff;
   border: 1px solid #689afd;
@@ -3583,28 +3680,79 @@ form.node-contact-form tr.draggable {
       margin: 0 20px;
   }*/
 }
-/* line 2961, ../../sass/custom.scss */
+/* line 3046, ../../sass/custom.scss */
 form.node-contact-form tr.draggable .field-group-fieldset {
   background: #d4e2fe;
 }
-/* line 2963, ../../sass/custom.scss */
+/* line 3048, ../../sass/custom.scss */
 form.node-contact-form tr.draggable .field-group-fieldset .fieldset-wrapper {
   padding: 10px;
 }
-/* line 2967, ../../sass/custom.scss */
+/* line 3052, ../../sass/custom.scss */
 form.node-contact-form tr.draggable span.fieldset-legend {
   color: white;
   text-transform: capitalize;
 }
-/* line 2971, ../../sass/custom.scss */
+/* line 3056, ../../sass/custom.scss */
 form.node-contact-form tr.draggable .field-name-field-status-tr, form.node-contact-form tr.draggable .field-name-field-lead-plan-contact {
   /*//display: inline-block;
   width: 40%;
   margin: 10px;*/
 }
+/* line 3067, ../../sass/custom.scss */
+form.node-contact-form #edit-field-job-history-und-0-paragraph-bundle-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+/* line 3072, ../../sass/custom.scss */
+form.node-contact-form .group-job-info, form.node-contact-form .group-organization {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+  margin: 0 5px;
+}
+/* line 3078, ../../sass/custom.scss */
+form.node-contact-form .field-name-field-status-tr, form.node-contact-form .field-name-field-lead-plan-contact, form.node-contact-form .field-name-field-job-title {
+  display: inline-block;
+  margin: 5px 0;
+}
+/* line 3082, ../../sass/custom.scss */
+form.node-contact-form .container-inline-date {
+  width: 49% !important;
+}
+/* line 3084, ../../sass/custom.scss */
+form.node-contact-form .container-inline-date .chosen-container {
+  width: 100px !important;
+}
+/* line 3087, ../../sass/custom.scss */
+form.node-contact-form .container-inline-date .form-item label {
+  width: 100%;
+}
+/* line 3091, ../../sass/custom.scss */
+form.node-contact-form .form-item-field-job-history-und-0-field-employment-date-und-0-value-month, form.node-contact-form .form-item-field-job-history-und-0-field-employment-date-und-0-value-year {
+  display: inline-block;
+  margin: 0 10px;
+}
+/* line 3095, ../../sass/custom.scss */
+form.node-contact-form .field-name-field-email {
+  margin: 10px 0 0 0;
+}
+/* line 3098, ../../sass/custom.scss */
+form.node-contact-form .btn-info {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/********** Login / Registration **********/
+/* line 3106, ../../sass/custom.scss */
+.not-logged-in .tabs, .not-logged-in #block-system-main {
+  width: 55%;
+  margin: 0 auto;
+}
 
 /********** Chosen Widget Fix **********/
-/* line 2985, ../../sass/custom.scss */
+/* line 3113, ../../sass/custom.scss */
 .chosen-container {
   width: 220px !important;
 }
