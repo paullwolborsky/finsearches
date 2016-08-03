@@ -315,9 +315,6 @@ span.fieldset-legend {
 #block-views-user-views-organization-members {
     margin-bottom: 30px;
 }
-#block-fin-tasks-node-tasks {
-    margin-bottom: 30px;
-}
 
 /**** Asset Allocation Block ****/
 #block-views-e4fc768a8b33062e403168acc7227243 {
@@ -496,17 +493,6 @@ ul.links {
     }
 }
 
-/********** Display Suite **********/
-.node-type-plan {
-    .group-mandates{
-        display: block;
-        margin: 0 0 25px 0;
-    }
-    .ds-below-left, .ds-below-right {
-        padding: 0;
-    }
-}
-
 /********** Views **********/
 .view-id-extra_views {
     .views-accordion-header {
@@ -638,8 +624,7 @@ fieldset.collapsible .fieldset-legend {
         text-decoration: line-through;
     }
 }
-
-/*.view-display-id-plan_inactive_contacts_att {
+.view-display-id-plan_inactive_contacts_att {
     td.views-field-title a {
         text-decoration: line-through;
     }
@@ -658,15 +643,17 @@ fieldset.collapsible .fieldset-legend {
     td.views-field-edit-node {
         width: 5%;
     }
-} */
-
+}
 /*** Plan - Mandates Views ***/
-.view-plan-mandates {
-    th.views-field-view-node {
-        min-width: 80px;
+.node-type-plan {
+    .group-mandates{
+        display: block;
+        margin: 0 0 25px 0;
+    }
+    .ds-below-left, .ds-below-right {
+        padding: 0;
     }
 }
-
 /*** News Views ***/
 .view-display-id-news_list {
     h5 {
@@ -918,7 +905,7 @@ html.js fieldset.collapsible .fieldset-legend {
         margin: 0;
         position: relative;
     }
-    .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
+        .form-item-field-plan-size-value-min, .form-item-field-plan-size-value-max {
         display: inline-block;
         text-align: center;
         height: 24px;
@@ -931,15 +918,9 @@ html.js fieldset.collapsible .fieldset-legend {
             padding: 0 6px;
         }
     }
-    .form-item-field-plan-size-value-max {
-        label {
-            font-size: 12px;
-            vertical-align: top;
-        }
-    }
     #edit-field-plan-size-value-min, #edit-field-plan-size-value-max {
         width: 64px;
-        height: 24px;
+        height: 22px;
         line-height: 22px;
         border: solid 1px $border-blue;
     }
@@ -1663,9 +1644,8 @@ html.js fieldset.collapsible .fieldset-legend {
         padding: 0 10px;
     }
 }
-
-/*** Plan - Mandates ***/
-#views-exposed-form-plan-mandates-plan-mandates {
+/*** Plan - Manager Roster **/
+#views-exposed-form-reference-views-block-1 {
     #edit-container-container-2 {
         display: inline-block;
         max-width: 99%;
@@ -1713,8 +1693,8 @@ html.js fieldset.collapsible .fieldset-legend {
     }
 }
 
-/*** Plan - Manager Roster **/
-#block-views-3e5068db7e8a3f1336fd58ab9a9e5fcd {
+/*** Plan Mandates ***/
+#views-exposed-form-plan-mandates-plan-mandates {
     #edit-container-container-2 {
         display: inline-block;
         max-width: 99%;
@@ -1793,7 +1773,7 @@ html.js fieldset.collapsible .fieldset-legend {
         vertical-align: bottom;
         width: 40%;
         min-width: 30%;
-        margin: 0 0 10px 0;
+        margin: 0;
         background: none;
     }
 }
@@ -1829,7 +1809,7 @@ html.js fieldset.collapsible .fieldset-legend {
         vertical-align: bottom;
         width: 40%;
         min-width: 30%;
-        margin: 0 0 10px 0;
+        margin: 0;
         background: none;
     }
 }
@@ -1945,7 +1925,7 @@ html.js fieldset.collapsible .fieldset-legend {
     #edit-field-date-value-min-datepicker-popup-1, #edit-field-date-value-max-datepicker-popup-1 {
         display: inline-block;
         text-align: center;
-        width: 45%;
+        width: 100%;
         height: 22px;
         line-height: 22px;
         margin: 0;
@@ -2459,13 +2439,10 @@ body.node-type-plan {
             padding: 10px;
         }
     }
-    /* Recent Mandate Block */
     #block-views-d63620fa1f60e86bc7bd5963a68ab4e6 {
-        height: 170px;
         margin-bottom: 30px;
     }
     #block-fin-utils-subscriptions {
-        height: 380px;
         th, td {
             padding: 0 5px;
         }
@@ -2496,17 +2473,10 @@ body.node-type-plan {
             text-align: center;
         }
     }
-    /* FIN Welcome Block */
     #block-block-21 {
-        height: 170px;
-        margin-bottom: 30px;
         h3.block-title span {
             text-transform: none;
         }
-    }
-    /* Analytics Home Block */
-    #block-block-31 {
-        height: 380px;
     }
     #block-block-61 {
         margin-bottom: 30px;
@@ -2950,21 +2920,8 @@ span.fieldset-legend a {
 }
 
 /********** Edit Forms **********/
-a.tabledrag-handle {
-    .handle {
-        width: 30px;
-        height: 30px;
-    }
-}
 /*** Mandate Edit ***/
 form.node-mandate-form {
-    .form-text, .form-select {
-        border: solid 1px $border-blue;
-    }
-    .form-item {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
     .form-type-checkbox {
         display: inline-block;
         width: 20%;
@@ -2981,63 +2938,21 @@ form.node-mandate-form {
         legend {
             padding-left: 5px;
         }
-        .fieldset-wrapper {
-            padding: 10px;
-        }
     }
     tr.draggable {
         background-color: $fieldset-background-blue;
     }
     .ds-above-middle, .ds-above-right {
-        tr.draggable {
-            background: $form-item-active-blue;
-            border: solid 1px $border-blue;
-        }
-        .tabledrag-toggle-weight-wrapper {
-            display: none;
-        }
         .form-item {
             padding: 10px;
-            background: $form-item-active-blue;
+            border: 1px solid $border-blue;
         }
-    }
-    .group-plan-info {
-        height: auto;
-    }
-    .field-name-field-date, .field-name-field-account-size, .field-name-field-geographic-tr, .field-name-field-major-minor-style-tr, .field-name-field-attribute-tr, #entityreference-autofill-node-mandate---field_currency_tr {
-        display: inline-block;
-        width: 47%;
-        margin: 0 15px 0 0;
-        vertical-align: top;
-    }
-    .field-name-field-mandate-status-tr {
-        display: inline-block;
-        vertical-align: top;
-        .chosen-container {
-            width: 150px;
-        }
-    }
-    .field-name-field-consultants-finalists-er, .field-name-field-consultants-onwatch-er, .field-name-field-consultants-hired, .field-name-field-consultants-terminated, .field-name-field-manager-finalists-fc, .field-name-field-managers-onwatch-fc, .field-name-field-managers-hired, .field-name-field-managers-terminated {
-        border: solid 1px $border-blue;
-    }
-    #field-comments-fc-values {
-        thead {
-            background: $fieldset-background-blue;
-            padding: 10px;
-        }
-    }
-    .btn-info {
-        -webkit-box-shadow: none;
-        box-shadow: none;
     }
 }
 /*** Contact Edit ***/
 form.node-contact-form {
     table {
         width: 100%;
-    }
-    input[type="text"], textarea {
-        border: solid 1px $border-blue;
     }
     tr.draggable {
         //width: 100%;
@@ -3063,49 +2978,6 @@ form.node-contact-form {
             width: 40%;
             margin: 0 20px;
         }*/
-    }
-    #edit-field-job-history-und-0-paragraph-bundle-title {
-        font-size: 20px;
-        font-weight: bold;
-        margin: 10px 0;
-    }
-    .group-job-info, .group-organization {
-        display: inline-block;
-        width: 49%;
-        vertical-align: top;
-        margin: 0 5px;
-    }
-    .field-name-field-status-tr, .field-name-field-lead-plan-contact, .field-name-field-job-title {
-        display: inline-block;
-        margin: 5px 0;
-    }
-    .container-inline-date {
-        width: 49% !important;
-        .chosen-container {
-            width: 100px !important;
-        }
-        .form-item label {
-            width: 100%;
-        }
-    }
-    .form-item-field-job-history-und-0-field-employment-date-und-0-value-month, .form-item-field-job-history-und-0-field-employment-date-und-0-value-year {
-        display: inline-block;
-        margin: 0 10px;
-    }
-    .field-name-field-email {
-        margin: 10px 0 0 0;
-    }
-    .btn-info {
-        -webkit-box-shadow: none;
-        box-shadow: none;
-    }
-}
-
-/********** Login / Registration **********/
-.not-logged-in  {
-    .tabs, #block-system-main {
-        width: 55%;
-        margin: 0 auto;
     }
 }
 
