@@ -538,3 +538,38 @@ function fin_custom_field_widget_properties_alter(&$widget, $context) {
     }
   }
 }
+
+/**
+ * Help function to combine the news.
+ */
+function fin_custom_process_news_entity($e) {
+  $nwfirst = NULL;
+  foreach ($e as $key => $nid) {
+    if ($key == 0) {
+      $node = node_load($nid);
+      $nwfirst = entity_metadata_wrapper('node', $node);
+    }
+    else {
+      $node1 = node_load($nid);
+      $nw = entity_metadata_wrapper('node', $node1);
+      $q = reset($nw->field_news_type->value());
+      $p = entity_create('paragraphs_item', array('bundle' => $q->bundle, 'field_name' => 'field_news_type'));
+      $pw = entity_metadata_wrapper('paragraphs_item', $p, array('buddle', $q->bundle));
+
+      if (isset($q->field_consultant_firm_er)) {
+        $pw->field_consultant_firm_er->set(intval($q->field_consultant_firm_er['und'][0]['target_id']));
+      }
+      if (isset($q->field_manager_firm_er)) {
+        $pw->field_manager_firm_er->set(intval($q->field_manager_firm_er['und'][0]['target_id']));
+      }
+      if (isset($q->field_plan_er)) {
+        $pw->field_plan_er->set(intval($q->field_plan_er['und'][0]['target_id']));
+      }
+      $pw->field_news_type_human_tr->set(intval($q->field_news_type_human_tr['und'][0]['tid']));
+      $p->setHostEntity('node', $nwfirst->value());
+      $nwfirst->save();
+      node_delete($nid);
+    }
+  }
+
+}
