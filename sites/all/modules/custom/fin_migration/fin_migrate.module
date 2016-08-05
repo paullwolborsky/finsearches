@@ -1,5 +1,4 @@
 <?php
-
 /*
 Had to fix fin_migrate, which had 13k 'consultant contacts w/consultant firm nodes
 delete from fin_migrate where nid in (select nid from node where type<>'contact') and contactname<>''
@@ -90,6 +89,16 @@ function fin_migrate_form() {
     '#value' => t(' Step1 C '),
     '#submit' => array('fin_migrate_form_submit_import_step1c'),
   );
+  $form['fieldset1']['step1']['submit_step1d'] = array(
+    '#type' => 'submit',
+    '#value' => t(' Step1 Mandate '),
+    '#submit' => array('fin_migrate_form_submit_import_step1d'),
+  );  
+  $form['fieldset1']['step1']['submit_step1e'] = array(
+    '#type' => 'submit',
+    '#value' => t(' Step1 News '),
+    '#submit' => array('fin_migrate_form_submit_import_step1e'),
+  );  
   $form['fieldset1']['step2']['submit_news'] = array(
     '#suffix' => ' | ',    
     '#type' => 'submit',
@@ -102,12 +111,16 @@ function fin_migrate_form() {
     '#value' => t(' Step2 Basics+MOM '),
     '#submit' => array('fin_migrate_form_submit_import_step2_basic'),
   );
+  
+  /***
   $form['fieldset1']['step2']['submit_sample'] = array(
     '#suffix' => ' | ',    
     '#type' => 'submit',
     '#value' => t(' Step2 Sample '),
     '#submit' => array('fin_migrate_form_submit_import_step2_sample'),
   );
+  **/
+
   $form['fieldset1']['step2']['submit_plan'] = array(
     '#suffix' => ' | ',        
     '#type' => 'submit',
@@ -124,18 +137,18 @@ function fin_migrate_form() {
     '#value' => t('Contacts'),
     '#submit' => array('fin_migrate_form_submit_import_contacts'),
   );
-/***
+
+  $form['fieldset2']['Import_New_Major_Minors_prep'] = array(
+    '#type' => 'submit',
+    '#value' => t('Setup Tables for MM Import'),
+    '#submit' => array('fin_migrate_form_submit_import_mm_prep'),
+  );
   $form['fieldset2']['Import_New_Major_Minors'] = array(
     '#type' => 'submit',
-    '#value' => t('Import New Major/Minors'),
+    '#value' => t('Import Latest Major/Minors'),
     '#submit' => array('fin_migrate_form_submit_import_mm'),
   );
-***/
-  $form['fieldset2']['Import_New_Major_Minors'] = array(
-    '#type' => 'submit',
-    '#value' => t('Unmark NEWS'),
-    '#submit' => array('fin_migrate_form_submit_postfix_news'),
-  );
+  
   $form['fieldset3']['Import_mass_multiples'] = array(
       '#type' => 'submit',
     '#value' => t('Jobs Report'),
@@ -281,6 +294,23 @@ function fin_migrate_form() {
     '#value' => t('CREATE PHANTOM OFFICES'),
     '#submit' => array('fin_migrate_form_submit_postfix_cf'),
   );
+  $form['fieldset5']['submit_postfix_cf2'] = array(
+    '#prefix' => '<br />',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('CREATE PHANTOM MAIN OFFICES'),
+    '#submit' => array('fin_migrate_form_submit_postfix_cf2'),
+  );
+
+
+  $form['fieldset5']['submit_postfix_contact_office'] = array(
+    '#prefix' => '<br />',
+    '#suffix' => '<br />',
+    '#type' => 'submit',
+    '#value' => t('ASSIGN CONTACTS TO PHANTOM OFICES'),
+    '#submit' => array('fin_migrate_form_submit_postfix_cc_co'),
+  );
+
 
   $form['fieldset5']['submit_postfix_mandate_titles1'] = array(
     '#prefix' => '<br />',
@@ -1056,7 +1086,7 @@ function fin_migrate_do_step1(&$batch, $mode='step1') {
       }
       
       switch ($pseudonym) {
-        case 'news':
+        case 'newsxxx':
           //$sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` ".$where." group by Title)";
         $sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` ".$where." group by Title, Type, FirmID)";  
         break;
@@ -1266,12 +1296,12 @@ function fin_migrate_do_step2(&$batch, $mode='step2') {
         db_set_active('legacy');
         switch($pseudonym) {
           //if ($dst=="plan") {
-          case 'news':
+          case 'newsxxx':
             //$sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` WHERE 1 group by Title)";
             $sql = "SELECT * FROM {tblnews} WHERE NewsID in(SELECT max(NewsID) FROM `tblnews` WHERE 1 group by Title, Type, FirmID)";
 
           break;
-          case 'plan':
+          case 'planxxx':
             $sql = "select * from {".$table."} where Status=1".$and;        
             if (isset($params['step3'])) {
               $sql = "select * from {".$table."}";
@@ -1281,13 +1311,13 @@ function fin_migrate_do_step2(&$batch, $mode='step2') {
             //$sql = "select * from {".$table."} where Status=1 AND FundID NOT IN (6114, 6139, 6763) ".$and;
             //ID 6114
           break;
-          case 'plan-history':
+          case 'plan-historyxxx':
             $sql = "SELECT * FROM {tblfunds} ".$where;
           break;
-          case 'mandate-history':
+          case 'mandate-historyxxx':
             $sql = "SELECT * FROM {tblmandates} ".$where;
           break;
-          case 'mandate':
+          case 'mandatexxx':
             //} else if ($dst=="mandate") {
             $sql = "select * from {".$table."} WHERE FundID in (select FundID from tblfunds where Status=1) ".$and." ORDER BY MandateID";
             //$sql = "select * from {".$table."} ".$where." and FundID in (select FundID from tblfunds where Status=1) ORDER BY MandateID DESC";
@@ -2215,15 +2245,19 @@ function _fin_migrate_handler_address($dstFldName, $inArr, $inData, &$wrapper, $
       }
       switch ($handler) {
         case 'phone':
-          str_replace('ext.','x',$val);
+          //str_replace('ext.','x',$val);
           //str_replace('ext','x',$val);
-          str_replace('EXT.','x',$val);
-          str_replace('EXT','x',$val);
-          $pieces = explode("x", $val);
-          $val2 = $val; //for debugging purposes
-          $val = $pieces[0];
+          $val = trim($val);
+          $val = strtolower($val);
+          $val = str_replace(",", "", $val);
+          $val = str_replace(":", "", $val);
+          $val = str_replace('-x', 'x', $val);          
+          $val = str_replace('ext.','x',$val);
+          $val = str_replace('ext','x',$val);
+          $pieces = explode("x", $val);          
           if (isset($pieces[1])) {
-            $addrArr['phone_number_extension'] = $pieces[1];
+            $val = trim($pieces[0]);
+            $addrArr['phone_number_extension'] = trim($pieces[1]);
           }
         break;
         case 'lu2state':
@@ -2475,75 +2509,31 @@ function _fin_migrate_handler_collection($pseudonym, $hostFldName, $sets, $inDat
       }
     }
   }
-  else if (isset($params['gather-mandate-notesxxx'])) {
-    $customInData = TRUE;
-    $mandateID = $inData->MandateID;
-    $empty = TRUE;
-    $notes = $inData->Comments;
-    $strArr = array();
-    if (!empty($notes)) {
-      $strArr[] = 'Migrated Comment: '.$notes;
-      $empty = FALSE;
-    }
-    $history = $inData->History;
-    if (!empty($history)) {
-      $strArr[] = 'History: '.$history;
-      $empty = FALSE;
-    }
-    $combined = implode(" | ", $strArr);
-    $out = array();
-    if (!empty($combined)) {
-      $date = time();
-      $newInData[] = (object) array(
-        'id' => $mandateID,
-        'date' => $date,
-        'author' => $DEFAULT_OWNER_UID,
-        'subject' => 'Migrated Comment',
-        'comment' => $combined,
-      );
-      $empty = FALSE;
-    }
-  }
   else if (isset($params['gather-mandate-notes-1'])) {
     $newInData = array();
     $customInData = TRUE;
 
-    $mandateID = $inData->MandateID;
     $empty = TRUE;
-/*** DEPRECATE 4/20/16    
-    $notes = $inData->Comments;
-    $strArr = array();
-    if (!empty($notes)) {
-      $strArr[] = 'Migrated Comment: '.$notes;
+    $mandateID = $inData->MandateID;
+    $comment = $inData->Comments;
+    if (!empty($comment)) {
       $empty = FALSE;
-    }
-    $history = $inData->History;
-    if (!empty($history)) {
-      $strArr[] = 'History: '.$history;
-      $empty = FALSE;
-    }
-    $combined = implode(" | ", $strArr);
-    $out = array();
-    if (!empty($combined)) {
       $date = time();
       $newInData[] = (object) array(
         'id' => 0,
         'date' => $date,
         'author' => $DEFAULT_OWNER_UID,
-        'subject' => 'Migrated Comment',
-        'comment' => $combined,
+        'comment' => $comment,
         'mandateid' => $mandateID,
       );
-      $empty = FALSE;
     }
-***/
-    $mandateID = $inData->MandateID;
     $sql = "SELECT * FROM tblmandatecomments WHERE MandateID=".$mandateID." ORDER BY Created";
     db_set_active('legacy');
     $res = db_query($sql);
     db_set_active();
     if ($res->rowCount()>0) {
       foreach ($res as $row) {
+        $empty = FALSE;
         $newInData[] = (object) array(
           'id' => $row->cid,
           'date' => $row->Created,
@@ -2569,9 +2559,30 @@ function _fin_migrate_handler_collection($pseudonym, $hostFldName, $sets, $inDat
         'id' => $consultantFirmID,
         'date' => $date,
         'author' => $DEFAULT_OWNER_UID,
-        'subject' => 'Migrated Comment',
+        'subject' => ' ',
         'comment' => $comments,
-        'mandateid' => $consultantFirmID,
+        'consultant' => $consultantFirmID,
+      );
+      $empty = FALSE;
+    }
+  }
+ ////////////////////////////////////////////////
+else if (isset($params['gather-comment'])) {
+    $newInData = array();
+    $customInData = TRUE;
+
+    $empty = TRUE;
+    $keyFldName = $params['keyfldname'];
+    $id = $inData->$keyFldName;
+    $comments = $inData->Comments;
+    $out = array();
+    if (!empty($comments)) {
+      $date = time();
+      $newInData[] = (object) array(
+        'id' => $id,
+        'date' => $date,
+        'author' => $DEFAULT_OWNER_UID,
+        'comment' => $comments,
       );
       $empty = FALSE;
     }
@@ -2841,8 +2852,8 @@ function _fin_migrate_process_field($handler, $dstFldName, $params, $inData, &$w
     $action = $handler;
 
 // PERFORMANCE turn this off
-$message = "Action: ".$action." Field: ".$dstFldName." Val: ".print_r($val,true);
-watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
+//$message = "Action: ".$action." Field: ".$dstFldName." Val: ".print_r($val,true);
+//watchdog('PROCESS FIELD', $message, array(), WATCHDOG_INFO);
 
     switch ($action) {
       case 'node-title':
@@ -4774,9 +4785,9 @@ xxxxxxxxxxxxxxxxxx
         'http2link' => array(
           'field_website' => array('fldname'=>'Website'),          
         ),
-        'comment2comment' => array(
-          'this_is_not_a_field' => array('fldname'=>'Comments'),
-        ),
+        //'comment2comment' => array(
+        //  'this_is_not_a_field' => array('fldname'=>'Comments'),
+        //),
         'address' => array(
           'field_address' => array(
             'fields' => array(
@@ -4795,6 +4806,33 @@ xxxxxxxxxxxxxxxxxx
               ),
               'lu2country' => array(
                 'country' => array('fldname'=>'CountryID'),
+              ),
+            ),
+          ),
+        ),
+        'collection' => array(
+          'field_comments_fc' => array(
+            'params' => array(
+              'pseudonym' => 'manager comment',
+              'rowidfldname' => 'id',                        
+            ),
+            'sets' => array(
+              array(
+                'params' => array(
+                  'gather-comment' => array(),              
+                  'keyfldname' => 'ManagerFirmID',
+                ),
+                'fields' => array(
+                  'default' => array(
+                    'field_author_er' => array('fldname'=>'author'),
+                  ),
+                  'longtext' => array(
+                    'field_comment' => array('fldname'=>'comment'),
+                  ),
+                  'timestampe2date' => array(
+                    'field_date' => array('fldname'=>'date'),                  
+                  ),
+                ),
               ),
             ),
           ),
@@ -4905,9 +4943,9 @@ xxxxxxxxxxxxxxxxxx
         'http2link' => array(
           'field_website' => array('fldname'=>'Website'),          
         ),
-        'comment2comment' => array(
-          'this_is_not_a_field' => array('fldname'=>'Comments'),
-        ),
+        //'comment2comment' => array(
+        //  'this_is_not_a_field' => array('fldname'=>'Comments'),
+        //),
         'address' => array(
           'field_address' => array(
             'fields' => array(
@@ -5052,6 +5090,31 @@ xxxxxxxxxxxxxxxxxx
                 ),
               ),
             ),              
+          ),
+          'field_comments_fc' => array(
+            'params' => array(
+              'pseudonym' => 'Plan comment',
+              'rowidfldname' => 'id',                        
+            ),
+            'sets' => array(
+              array(
+                'params' => array(
+                  'gather-comment' => array(),              
+                  'keyfldname' => 'FundID',
+                ),
+                'fields' => array(
+                  'default' => array(
+                    'field_author_er' => array('fldname'=>'author'),
+                  ),
+                  'longtext' => array(
+                    'field_comment' => array('fldname'=>'comment'),
+                  ),
+                  'timestampe2date' => array(
+                    'field_date' => array('fldname'=>'date'),                  
+                  ),
+                ),
+              ),
+            ),
           ),
           'field_foia_history' => array(
             'params' => array(
@@ -5308,9 +5371,6 @@ xxxxxxxxxxxxxxxxxx
           'field_consultant_contact_er' => array('fldname'=>'ConsultantContactID'),
         ),
         'onwatch' => array(
-          'field_consultants_finalists_er' => array(
-            'fldname'=>'ConsultantFinalists', 
-            'oldkeyfldname'=>'ConsultantFirmID'),
           'field_managers_onwatch_er' => array('fldname'=>'FirmsOnWatch', 'oldkeyfldname'=>'ManagerFirmID'),
           'field_managers_finalists_er' => array('fldname'=>'Finalists', 'oldkeyfldname'=>'ManagerFirmID'),
         ),
@@ -5320,13 +5380,39 @@ xxxxxxxxxxxxxxxxxx
         'minor2term' => array(
           'field_old_minor_style' => array('fldname'=>'MinorStyleID'),
         ), 
-        'comment2comment' => array(
-          'this_is_not_a_field' => array('fldname'=>'Comments'),
-        ),
-        'mandatecomments2comment' => array(
-          'this_is_not_a_field' => array('fldname'=>'Comments', 'date'=>'Created', 'oldtable'=>'tblmandatecomments', 'oldkeyfldname'=>'MandateID'),
-        ),
+        //'comment2comment' => array(
+        //  'this_is_not_a_field' => array('fldname'=>'Comments'),
+        //),
+        //'mandatecomments2comment' => array(
+        //  'this_is_not_a_field' => array('fldname'=>'Comments', 'date'=>'Created', 'oldtable'=>'tblmandatecomments', 'oldkeyfldname'=>'MandateID'),
+        //),
         'collection' => array(
+          'field_comments_fc' => array(
+            'params' => array(
+              'pseudonym' => 'mandate comment',
+              'rowidfldname' => 'MandateID',            
+              //'rowidfldname' => 'id',                        
+            ),
+            'sets' => array(
+              array(
+                'params' => array(
+                  'gather-mandate-notes-1' => array(), // no params needed
+                  'rowidfldname' => 'id',                
+                ),
+                'fields' => array(
+                  'default' => array(
+                    'field_author_er' => array('fldname'=>'author'),
+                  ),
+                  'longtext' => array(
+                    'field_comment' => array('fldname'=>'comment'),
+                  ),
+                  'timestampe2date' => array(
+                    'field_date' => array('fldname'=>'date'),                  
+                  ),
+                ),
+              ),
+            ),
+          ),          
           'field_consultants_hired' => array(
             'params' => array(
               'pseudonym' => 'mandate consultant hired',
@@ -5872,6 +5958,22 @@ xxxxxxxxxxxxxxxxxx
         'limit'=>0,
       );
     break;
+    case 'step1d':
+      $nodeMapArr = array(
+        'maps'=>array(
+          $nm_m,
+        ),
+        'limit'=>0,
+      );
+    break;
+    case 'step1e':
+      $nodeMapArr = array(
+        'maps'=>array(
+          $nm_news,
+        ),
+        'limit'=>0,
+      );
+    break;
     case 'contacts':
       $nodeMapArr = array(
         'maps' => array(
@@ -5996,6 +6098,12 @@ function fin_migrate_form_submit_import_step1b($form, &$form_state) {
 function fin_migrate_form_submit_import_step1c($form, &$form_state) {
   _fin_migrate_setup_batch('step1c');
 }
+function fin_migrate_form_submit_import_step1d($form, &$form_state) {
+  _fin_migrate_setup_batch('step1d');
+}
+function fin_migrate_form_submit_import_step1e($form, &$form_state) {
+  _fin_migrate_setup_batch('step1e');
+}
 function fin_migrate_form_submit_import_contacts($form, &$form_state) {
   _fin_migrate_setup_batch('contacts');
 }
@@ -6025,6 +6133,8 @@ function _fin_migrate_setup_batch($mode) {
     case 'step1a':
     case 'step1b':
     case 'step1c':
+    case 'step1d':
+    case 'step1e':
       fin_migrate_do_step1($batch, $mode);
     break;
     case 'contacts':
@@ -6249,14 +6359,14 @@ function _fin_migrate_split_dopples() {
   watchdog('FIN_MIGRATE_SHARED_NAMES', $message, array(), WATCHDOG_INFO);
 }
 
-function fin_migrate_form_submit_import_mm($form, &$form_state) {
+function fin_migrate_form_submit_import_mmxxx($form, &$form_state) {
   $batch = array(
     'title' => t('Importing new Major/Minors'),
     'operations' => array(),
     'finished' => '_fin_migrate_done',
   );
 
-  $state = _fin_migrate_feed_batch_mm($batch);
+  $state = _fin_migrate_feed_batch_mmxxx($batch);
   batch_set($batch);
 }
 
@@ -6264,7 +6374,7 @@ function fin_migrate_form_submit_import_mm($form, &$form_state) {
  SRCID: 24661 NID 357408 Real Estate->Mortgage Backed to
   Active Equity -> Mortgage backed
 */
-function _fin_migrate_feed_batch_mm(&$batch) {
+function _fin_migrate_feed_batch_mmxxx(&$batch) {
 //zzzzzz
   $sql = "SELECT srcid FROM fin_migrate WHERE step2=2 and pseudonym='mandate'";
   db_set_active();
@@ -6315,7 +6425,7 @@ if ($rowCount>1500) {
   FROM fin_migrate m, tblmajorminormap o, field_data_field_old_major_style omaj, field_data_field_old_minor_style omin
   WHERE n.field_old_mionor_style<>o.MajorStyle
 */
-function _fin_migrate_do_batch_mmm($mid, $major, $minor, $nid, $start, &$context) {
+function _fin_migrate_do_batch_mmmxxx($mid, $major, $minor, $nid, $start, &$context) {
   
   $vid = 'major_minor_styles';
   if (!empty($nid)) {
@@ -7016,12 +7126,37 @@ function _fin_migrate_strip_collections($nid, $bundle, $entity_type) {
 //////////////////////////////////
 function fin_migrate_form_submit_postfix_moms($form, &$form_state) {
   // MoM requires that all manager firms already be imported
-  $sql = "SELECT nid from {fin_migrate_node} WHERE pseudonym='manager firm' AND srcid IN(6171, 5060, 7749, 7325, 28, 6195, 3439, 6188)";
+  //$sql = "SELECT nid from {fin_migrate_node} WHERE pseudonym='manager firm' AND srcid IN(6171, 5060, 7749, 7325, 28, 6195, 3439, 6188)";
+  
+  // first, find out what we have alreadyu
+  $sql = "SELECT DISTINCT entity_id FROM field_data_field_sub_manager_firms_fc";
   $res = db_query($sql);
-  $nids = array();
+  $checknids = array();
   foreach ($res as $row) {
-    $nids[] = $row->nid;
+    $checknids[] = $row->entity_id;    
   }
+
+  $sql = "SELECT DISTINCT MoMID FROM tblmommanagers";
+  db_set_active('legacy');
+  $res = db_query($sql);
+  db_set_active();
+  $srcids = array();
+  foreach ($res as $row) {
+    $srcids[] = $row->MoMID;
+  }
+  $idStr = implode(", ", $srcids);
+  $sql = "SELECT nid from {fin_migrate_node} WHERE pseudonym='manager firm' AND srcid IN(6".$idStr.")";
+  $res = db_query($sql);
+  db_set_active();
+  $checknids2 = array();
+  foreach ($res as $row) {
+    $checknids2[] = $row->nid;
+  }
+  $nids = array_diff($checknids2, $checknids);
+
+  $message = "CHECKNID: ".print_r($checknids, true)."<br><br>srcids: ".print_r($srcids,true)."<br><br>Checknids2: ".print_r($checknids2,true)."<br><br>NIDS".print_r($nids,true);
+  WATCHDOG('DEBUG_AAA', $message, array(), WATCHDOG_INFO);
+
   _fin_migrate_do_mom_fix($nids);
 }
 
@@ -7458,7 +7593,42 @@ function _fin_migrate_process_batch_momamt($eid, $amount, &$context) {
     $wrapper->save();
   }
 }
+//////////////////////////////////////////////////////////////
+function fin_migrate_form_submit_postfix_cf2($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Create Phantom MAIN Offices'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_cf2($batch);
+  batch_set($batch);
+}
 
+function fin_migrate_do_cf2(&$batch) {
+  //$sql = "SELECT * FROM tblconsultantfirms WHERE ConsultantFirmID NOT IN (SELECT DISTINCT ConsultantFirmID FROM tblconsultantoffices) ";
+  $sql = "SELECT * from tblconsultantfirms a, tblconsultantoffices b WHERE a.ConsultantFirmID=b.ConsultantFirmID AND a.ConsultantFirmID IN(SELECT DISTINCT ConsultantFirmID FROM tblconsultantoffices GROUP BY ConsultantFirmID HAVING SUM(OfficeType)=0)";
+  db_set_active('legacy');
+  $res = db_query($sql);
+  db_set_active();
+
+  $builds = array();
+  Foreach ($res as $rw) {
+    $cfid = $rw->ConsultantFirmID;
+    $cfnid = _fin_migrate_gotIdGetNid($cfid,'consultant firm');
+    $builds[$cfnid] = $rw;
+  } 
+  $tasks = array();
+  foreach ($builds as $cfnid => $data) {
+    $batch['operations'][] = array('_fin_migrate_process_batch_cf',
+      array(
+        $cfnid,
+        $data,
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////////////////
 function fin_migrate_form_submit_postfix_cf($form, &$form_state) { 
    $batch = array(
     'title' => t('Create Phantom Offices'),
@@ -7911,3 +8081,382 @@ function fin_migrate_process_batch_fix_ext($eid, $data, &$context) {
   }
 }
 
+/////////////////////////////////////////////////////////
+
+function fin_migrate_form_submit_postfix_cc_co($form, &$form_state) { 
+   $batch = array(
+    'title' => t('Assign Contacts to Phantom Offices'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state_node_step_2 = fin_migrate_do_cc_co($batch);
+  batch_set($batch);
+}
+
+function fin_migrate_do_cc_co(&$batch) {
+  //buill array of consultant contact firms
+ 
+  $MAIN_OFFICE_TID = 337;
+/*
+  $sql = "SELECT field_consultant_firm_er_target_id AS cfnid, a.entity_id as onid FROM field_data_field_consultant_firm_er a, field_data_field_office_type_tr b WHERE a.entity_id=b.entity_id AND a.bundle='office' AND b.field_office_type_tr_tid=337";
+*/
+  $sql = "SELECT field_consultant_firm_er_target_id AS cfnid, a.entity_id as onid FROM field_data_field_consultant_firm_er a, field_data_field_office_type_tr b WHERE a.entity_id=b.entity_id AND a.bundle='office' AND b.field_office_type_tr_tid=337";
+
+  $res = db_query($sql);
+
+$message = "RES: ".print_r($res,true);
+watchdog('DEBUG_000', $message, array(), WATCHDOG_INFO);
+
+  $cfs = array();
+  foreach ($res as $row) {
+    $onid = $row->onid;
+    $cfnid = $row->cfnid;
+    $cfs[$cfnid] = $onid;
+  
+  $message = "CFNID: ".$cfnid." | ONID: ".$onid."<br><br>ROW: ".print_r($row,true);
+  watchdog('DEBUG_000', $message, array(), WATCHDOG_INFO);
+
+  }  
+
+  $message = print_r($cfs, true);
+  watchdog('DEBUG_000', $message, array(), WATCHDOG_INFO);         
+
+  $sql2 = "SELECT a.entity_id AS cnid, a.delta AS delta, a.field_job_history_value AS eid FROM field_data_field_job_history a LEFT JOIN field_data_field_consultant_office_er b on a.field_job_history_value=b.entity_id WHERE b.field_consultant_office_er_target_id IS NULL AND field_job_history_value IN(SELECT entity_id FROM field_data_field_job_type_tr WHERE bundle='consultant_contact')";
+  $res = db_query($sql2);
+
+  $eids = array();
+  $cnids = array();
+  $deltas = array();
+  Foreach ($res as $row) {
+    $eid = $row->eid;
+    $eids[] = $eid;
+    $cnid = $row->cnid;
+    $cnids[$eid] = $cnid;
+    $delta = $row->delta;
+    $deltas[$eid] = $delta;
+  } 
+  $eidStr = implode(",", $eids);
+  $sql3 = "SELECT entity_id as eid, field_consultant_firm_er_target_id AS cfnid FROM field_data_field_consultant_firm_er WHERE entity_id IN(".$eidStr.")";-
+  $res = db_query($sql3);
+  foreach ($res as $row) {
+    $eid = $row->eid;
+    $cfnid = $row->cfnid;
+    $onid = $cfs[$cfnid];
+    $cnid = $cnids[$eid];
+    $delta = $deltas[$eid];
+
+    $batch['operations'][] = array('_fin_migrate_process_batch_cc_co',
+      array(
+        $eid,
+        $onid,
+        $cnid,
+        $delta,
+      ),
+    );
+  }
+}
+
+function _fin_migrate_process_batch_cc_co($eid, $onid, $cnid, $delta, &$context) {
+  
+  $entities = entity_load('paragraphs_item', array($eid));
+  $entity = $entities[$eid];
+  $p_wrapper = entity_metadata_wrapper('paragraphs_item', $entity);
+  $p_wrapper->field_consultant_office_er = $onid;
+  $p_wrapper->save();
+
+/*
+  entities = entity_load('node', array($cnid));
+  $entity = $entities[$cnid];
+  $entity->field_job_history[$delta]->field_consultant_office_er['und'][0]['target_id'] = $onid;
+  $n_wrapper = entity_metadata_wrapper('node', $entity);
+  $n_wrapper->save();
+
+$message = "CONTACT NID: ".$cnid."<br><br>".print_r($entity,true);
+watchdog('DEBUG_000', $message, array(), WATCHDOG_INFO);
+*/
+
+}
+
+////////////////////////////////////////////
+function fin_migrate_form_submit_import_mm_prep($form, &$form_state) {
+  $batch = array(
+    'title' => t('Set Up Tables for MM Import'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+  $state = _fin_migrate_feed_batch_mm_prep($batch);
+  batch_set($batch);
+}
+
+/*
+0 - MandateID,
+MandateDate,
+StatusID,
+StatusNewID,
+FundID,
+GeographicID,
+6-MajorStyleID,
+7-Major,
+8-MinorStyleID,
+9-Minor,
+10-NEW MAJOR,
+11-NEW MINOR,
+12-ATTRIBUTE,
+Size,
+CurrencyID,
+ConsultantFirmID,ConsultantContac
+*/
+
+function _fin_migrate_feed_batch_mm_prep(&$batch) {
+  // file import.csv must be in same folder as migration module
+  $pseudo = "mandate";
+  $c_id = 0;
+  $c_oldmajor = 7;
+  $c_oldminor = 9;
+  $c_major = 10;
+  $c_minor = 11;
+  $c_attribute = 12;
+
+  if (($handle = fopen("migration/import.csv", "r")) !== FALSE) {
+    $data = array();
+    //while (($row = fget($handle, 1000000) !== FALSE) {
+    $ignore = fgets($handle, 4096);
+    while (($line = fgets($handle, 4096)) !== false) {      
+      if (!feof($handle) && !empty($line)) {        
+        
+
+        $row = explode(",", $line);
+
+$message = "LINE--".$line."<br><br>ROW: ".print_r($row,true);
+watchdog('IMPORT_MM-data', $message, array(), WATCHDOG_INFO);
+
+        $rw = array();
+        if (isset($row[$c_id])) {
+          $id = $row[$c_id];
+        }
+        if (!empty($id)) {
+          $rw['id'] = $row[$c_id];
+          $rw['oldmajor'] = $row[$c_oldmajor];
+          $rw['oldminor'] = $row[$c_oldminor];
+          $rw['major'] = $row[$c_major];
+          $rw['minor'] = $row[$c_minor];
+          $rw['attribute'] = $row[$c_attribute];
+          $data[] = $rw;
+        }
+      }
+    }  
+  }    
+
+$message = "DATA: ".print_r($data,true);
+watchdog('IMPORT MM-data', $message, array(), WATCHDOG_INFO);
+  $start = time();
+  foreach($data as $row) {
+    $id = $row['id'];
+    $oldMajor = $rw['oldmajor'];
+    $oldMinor = $row['oldminor'];
+    $major = $row['major'];
+    $minor = $row['minor'];
+    $attribute = $row['attribute'];
+    $nid = _fin_migrate_gotIdGetNid($id, $pseudo);    
+
+    $batch['operations'][] = array('_fin_migrate_do_batch_mmm_prep',
+      array(
+        $id,
+        $oldMajor,
+        $oldMinor,
+        $major,
+        $minor,
+        $attribute,
+        $nid,
+        $start,
+      ),
+    );
+  }
+}
+
+function _fin_migrate_do_batch_mmm_prep($id, $oldMajor, $oldMinor, $major, $minor, $attribute, $nid, $start, &$context) {
+
+  $checksql = "SELECT * FROM tblmajorminormap WHERE MandateID=".$id;
+  db_set_active();
+  $res = db_query($checksql);
+  db_set_active();
+  if (!$res->rowCount()) {
+   $sql = "INSERT INTO tblmajorminormap(ManDateID, OldMajorStyle, OldMinorStyle, MajorStyle, MinorStyle) VALUE($id, '%oldmajor', '%oldminor', '%major', '%minor')";
+    $sql = str_replace('%oldmajor', $oldMajor, $sql);
+    $sql = str_replace('%oldminor', $oldMinor, $sql);
+    $sql = str_replace('%major', $major, $sql);
+    $sql = str_replace('%minor', $minor, $sql);  
+  // LIVE db_set_active('legacy');
+    $res = db_query($sql);
+
+$message = "SQL: ".$sql." | RES: ".print_r($res,true);
+watchdog('IMPORT_MM_INSERT', $message, array(), WATCHDOG_INFO);
+
+  } else {
+    $sql = "UPDATE tblmajorminormap SET MajorStyle='%newmajor', MinorStyle='%newminor', OldMajorStyle='%oldmajor', OldMinorStyle='%oldminor' WHERE MandateID=%mandateid"; 
+    $sql = str_replace("%newmajor",$major,$sql);
+    $sql = str_replace("%newminor",$minor,$sql);
+    $sql = str_replace("%oldmajor",$oldmajor,$sql);
+    $sql = str_replace("%oldminor",$oldminor,$sql);
+    $sql = str_replace("%attribute",$attribute,$sql);
+    $sql = str_replace("%mandateid",$id, $sql);
+    $res = db_query($sql);    
+
+$message = "SQL: ".$sql." | RES: ".print_r($res,true);
+watchdog('IMPORT_MM_UPDATE', $message, array(), WATCHDOG_INFO);
+  }
+
+  $sql2 = "INSERT INTO fin_mig2(nid,srcid,newmajor,newminor,attribute,oldmajor,oldminor, pseudonym,attributetid,mmtid,oldmmtid) VALUES($nid, $id, '%newmajor', '%newminor', '%attribute', '%oldmajor', '%oldminor','%pseudo',0,0,0)";
+  $sql2 = str_replace("%newmajor",$major,$sql2);
+  $sql2 = str_replace("%newminor",$minor,$sql2);
+  $sql2 = str_replace("%attribute",$attribute,$sql2);
+  $sql2 = str_replace("%oldmajor",$oldMajor,$sql2);
+  $sql2 = str_replace("%oldminor",$oldMajor,$sql2);
+  $sql2 = str_replace("%pseudo", $pseudo, $sql2);
+
+  db_set_active();
+  $res = db_query($sql2);
+}
+
+function fin_migrate_form_submit_import_mm($form, &$form_state) {
+  $batch = array(
+    'title' => t('Importing Major/Minors'),
+    'operations' => array(),
+    'finished' => '_fin_migrate_done',
+  );
+
+  $state = _fin_migrate_feed_batch_mm($batch);
+  batch_set($batch);
+}
+
+function _fin_migrate_feed_batch_mm(&$batch) {
+  $vid = 'attributes';
+  $sql = "SELECT newmajor, newminor, attribute, srcid, nid FROM fin_mig2 WHERE step2 IS NULL";
+  db_set_active();
+  $res = db_query($sql);
+  
+  $message = "SQL: ".$sql;
+  watchdog('IMPORT-MM-TASKS', $message, array(), WATCHDOG_INFO);
+
+  $start = time();
+  foreach ($res as $row) {
+    $nid = $row->nid;
+    $mid = $row->srcid;
+    $major = trim($row->newmajor);
+    $minor = trim($row->newminor);
+    $attribute = trim($row->attribute);
+    //$result = fin_saved_search_migration_mmm_id($major, $minor);
+    //$mmtid = intval($result);
+    if (!empty($nid)) {
+      $batch['operations'][] = array('_fin_migrate_do_batch_mm',
+        array(
+          $nid,
+          $major,
+          $minor,
+          $attribute,
+          $start,
+        ),
+      );
+    }
+  }
+}
+
+function _fin_migrate_do_batch_mm($nid, $major, $minor, $attribute, $start, &$context) {
+  $success = TRUE;
+  $vid = 'attributes';
+  $atid = 0;
+  if (!empty($attribute)) {
+    $term = taxonomy_get_term_by_name($attribute,$vid);
+    $atid = $term->tid;
+  }
+  $mmtid = _fin_migraet_helper_mm_tax($major, $minor);
+
+  $nodes = entity_load('node', array($nid));
+  $node = $nodes[$nid];
+  $oldmmtid=0;
+  $m_wrapper = entity_metadata_wrapper('node', $node);
+  if (!empty($mmtid)) {
+    $oldmmtid = $m_wrapper->field_major_minor_style_tr->value();
+    $m_wrapper->field_major_minor_style_tr = $mmtid;
+  } else {
+    $message = "Mandate: ".$id." Major/Minor ZERO";
+    watchdog('IMPORT_MM_FAIL-MM', $message, array(), WATCHDOG_INFO); 
+    $success = FALSE;
+  } if (!empty($atid)) {
+    $m_wrapper->field_attribute_tr = $atid;
+  //else if (empty($atid) && !empty($attribute)) {
+    $message = "Mandate: ".$id." Attribute ".$attribute;
+    watchdog('IMPORT_MM_FAIL-ATT', $message, array(), WATCHDOG_INFO); 
+    $success = FALSE;
+  }
+  if ($success) {
+    //$wrapper->save();
+    $sql = "UPDATE fin_mig2 SET step2=2, attributetid=%atid, mmtid=%mmtid, oldmmtid=%oldmmtid WHERE nid=".$nid;
+    $sql = str_replace('%atid', $atid, $sql);
+    $sql = str_replace('%mmtid', $mmtid, $sql);
+    $sql = str_replace('%oldmmtid', $oldmmtid, $sql);
+    ////$res = db_query($sql);
+  }
+}
+
+function _fin_migraet_helper_mm_tax($major, $minor) {
+  $vid = 'major_minor_styles';
+  if (!empty($major)) {
+    $minortid = NULL;
+    if (empty($minor)) {
+      //$minor = 'None';
+      $minor = 'n/a';
+    }
+    $term = taxonomy_get_term_by_name($major,$vid);
+    $keys = array_keys($term);
+    //Find which one is level 0
+    $count = count($keys);
+    if ($count>1) {
+      foreach ($term as $tid=>$trm) {
+        $parent = taxonomy_get_parents($tid);
+        if (empty($parent)) {
+          $majortid = $tid;
+        }
+      }
+    } else {
+      $majortid = $keys[0];
+    }
+    if (!empty($minor) && !empty($majortid)) {
+      $sql = "SELECT d.name, d.tid from taxonomy_term_data d, taxonomy_term_hierarchy h where h.tid=d.tid and h.parent=".$majortid;
+      db_set_active();
+      $res = db_query($sql);
+      if ($res) {
+        $children = array();
+        foreach ($res as $row) {
+          $name = trim($row->name);
+          $children[$name] = $row->tid;
+        }
+        if (!empty($children)) {
+          //$minortid = $children[$minor];
+          foreach ($children as $name => $tid) {
+            $tgtname = utf8_decode($minor);
+            $childname = utf8_decode($name);
+            if ($tgtname==$childname) {
+              $minortid = $tid;
+            }
+          }
+          $message = "MINORTID NOW: ".$minortid."<br>Children[".$minor."] MINOR: ".$minor."<br><br>";
+          if (isset($children[$minor])) {
+            $minortid = $children[$minor];
+          }
+          $message = "PTID: ".$majortid."|MINOR:".$minor."/".$minortid."|Children: <br><br>SQL: ".$sql."<br><br>".print_r($children,true);
+          watchdog('DEBUG2', $message, array(), WATCHDOG_INFO);
+        }
+      }
+      if (empty($majortid)) {
+        $message = "MID: ".$mid." |NID: ".$nid." |Major: ".$major."[".$majortid."] |Minor: ".$minor."[".$minortid."]";
+        watchdog('MAJOR/MINOR MISMATCH', $message, array(), WATCHDOG_ERROR);
+      }
+      if (empty($minortid) ) {
+        $message = "MID: ".$mid." |NID: ".$nid." |Major: ".$major."[".$majortid."] |Minor: ".$minor."[".$minortid."]";
+        watchdog('MINOR MISS', $message, array(), WATCHDOG_ERROR);
+      }
+    }
+  }
+  return $minortid;
+}
