@@ -5487,6 +5487,52 @@ xxxxxxxxxxxxxxxxxx
               ),
             ),              
           ),
+          'field_managers_onwatch_fc' => array(
+            'params' => array(
+              'pseudonym' => 'mandate manager onwatch',
+              'rowidfldname' => 'MandateID',            
+            ),
+            'sets' => array(
+              array(
+                'params' => array(
+                  'comma-delimited-field' => array(
+                    'srcref' => 'FirmsOnWatch',
+                    'dstref' => 'field_manager_firm_er',
+                    'oldkeyfldname' => 'ManagerFirmID',
+                  ),
+                  //'rowidfldname' => 'MandateID',                
+                ),
+                'fields' => array(
+                  'reference' => array(
+                    'field_manager_firm_er' => array('fldname'=>'ManagerFirmID', 'pseudonym'=>'manager firm'),
+                  ),
+                ),
+              ),
+            ),              
+          ),
+          'field_manager_finalists_fc' => array(
+            'params' => array(
+              'pseudonym' => 'mandate manager finalists',
+              'rowidfldname' => 'MandateID',            
+            ),
+            'sets' => array(
+              array(
+                'params' => array(
+                  'comma-delimited-field' => array(
+                    'srcref' => 'Finalists',
+                    'dstref' => 'field_manager_firm_er',
+                    'oldkeyfldname' => 'ManagerFirmID',
+                  ),
+                  //'rowidfldname' => 'MandateID',                
+                ),
+                'fields' => array(
+                  'reference' => array(
+                    'field_manager_firm_er' => array('fldname'=>'ManagerFirmID', 'pseudonym'=>'manager firm'),
+                  ),
+                ),
+              ),
+            ),              
+          ),          
           'field_managers_terminated' => array(
             'params' => array(
               'pseudonym' => 'mandate manager terminated',
